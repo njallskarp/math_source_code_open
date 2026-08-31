@@ -1,0 +1,8 @@
+diagonal_sum_counts_checked=0..21
+case=0; possible_o=4,6,8,10,12,14,16,18,20; reflected_patterns=123
+case=1; possible_o=4,6,8,10,12,14,16,18; reflected_patterns=120
+case=2; possible_o=4,6,8,10,12,14,16,18; reflected_patterns=120
+case=3; possible_o=4,6,8,10,12,14,16; reflected_patterns=113
+case=4; possible_o=4,6,8,10,12,14,16; reflected_patterns=113
+case=5; possible_o=2,4,6,8,10,12,14,16; reflected_patterns=116
+certificate=verified

@@ -14,8 +14,9 @@ from pathlib import Path
 from threading import Timer
 from time import monotonic
 
+from pysat.card import CardEnc, EncType
 from pysat.formula import CNF, IDPool
-from pysat.solvers import Solver
+from pysat.solvers import Solver, SolverNames
 
 G = tuple[int, int]
 HALF = 21
@@ -102,7 +103,14 @@ class Model:
         # Independent cyclic rotation of each original word by an even CRT
         # shift rotates its coupled state word and preserves every constraint.
         if symmetry_breaking:
-            for rows in self.choice.values():
+            if quarter_turns == 1:
+                rotation_names = ("a",)
+            elif quarter_turns == 41:
+                rotation_names = ("b",)
+            else:
+                rotation_names = ("a", "b")
+            for name in rotation_names:
+                rows = self.choice[name]
                 for row in rows[1:]:
                     for at_zero in range(len(STATES)):
                         for later in range(at_zero):
@@ -173,6 +181,8 @@ class Model:
                 for index in unit_indices:
                     self.cnf.append([-row[index], unit])
                 self.cnf.append([-unit, *(row[index] for index in unit_indices)])
+        if symmetry_breaking:
+            self.add_extreme_branch_constraints()
         self.add_binary_shadow()
 
         # The two center energies are redundant under the local state table,
@@ -237,11 +247,97 @@ class Model:
                     f"paf_{label}_i_{shift}",
                 )
 
+    def add_extreme_branch_constraints(self) -> None:
+        """Encode the proved reflection lemmas at q=1 and q=41."""
+        opposite_indices = tuple(
+            index for index, state in enumerate(STATES) if state[1] == (0, 0)
+        )
+        if self.quarter_turns == 1:
+            # Rotate the unique B-quarter cell to zero.  The fixed sums orient
+            # its S entry to the imaginary axis and H entry to the real axis.
+            oriented_quarter_indices = tuple(
+                index
+                for index, state in enumerate(STATES)
+                if state[0][0] == 0
+                and state[1][1] == 0
+                and state[0][0] ** 2 + state[0][1] ** 2 == 1
+            )
+            assert len(oriented_quarter_indices) == 4
+            self.cnf.append(
+                [self.choice["b"][0][index] for index in oriented_quarter_indices]
+            )
+            opposite = [
+                self.add_subset_indicator(
+                    row, opposite_indices, f"q1_b_opposite_{j}"
+                )
+                for j, row in enumerate(self.choice["b"])
+            ]
+            for shift in range(1, HALF // 2 + 1):
+                left = opposite[shift]
+                right = opposite[-shift]
+                self.cnf.extend(([-left, right], [left, -right]))
+            minimum, maximum = {
+                0: (4, 20),
+                1: (4, 18),
+                2: (4, 18),
+                3: (4, 16),
+                4: (4, 16),
+                5: (2, 16),
+            }[self.case]
+            self.cnf.extend(
+                CardEnc.atleast(
+                    lits=opposite,
+                    bound=minimum,
+                    vpool=self.pool,
+                    encoding=EncType.seqcounter,
+                ).clauses
+            )
+            self.cnf.extend(
+                CardEnc.atmost(
+                    lits=opposite,
+                    bound=maximum,
+                    vpool=self.pool,
+                    encoding=EncType.seqcounter,
+                ).clauses
+            )
+
+        if self.quarter_turns == 41:
+            # Rotate the unique A-opposite cell to zero.  Around that center,
+            # the imaginary/real axes of the H units are reflected.
+            self.cnf.append(
+                [self.choice["a"][0][index] for index in opposite_indices]
+            )
+            imaginary_h_indices = tuple(
+                index
+                for index, state in enumerate(STATES)
+                if state[1] in ((0, 1), (0, -1))
+            )
+            assert len(imaginary_h_indices) == 4
+            imaginary_axis = [
+                self.add_subset_indicator(
+                    row, imaginary_h_indices, f"q41_a_h_imaginary_{j}"
+                )
+                for j, row in enumerate(self.choice["a"])
+            ]
+            for shift in range(1, HALF // 2 + 1):
+                left = imaginary_axis[shift]
+                right = imaginary_axis[-shift]
+                self.cnf.extend(([-left, right], [left, -right]))
+
     def add_exactly_one(self, literals: list[int]) -> None:
         self.cnf.append(literals)
         for i, left in enumerate(literals):
             for right in literals[i + 1 :]:
                 self.cnf.append([-left, -right])
+
+    def add_subset_indicator(
+        self, row: list[int], indices: tuple[int, ...], label: str
+    ) -> int:
+        result = self.pool.id(label)
+        for index in indices:
+            self.cnf.append([-row[index], result])
+        self.cnf.append([-result, *(row[index] for index in indices)])
+        return result
 
     def add_at_most_one_sequential(self, literals: list[int], label: str) -> None:
         if len(literals) < 2:
@@ -459,6 +555,17 @@ def run_case(
     seconds: float,
     output: Path | None,
 ) -> str:
+    cadical_names = set(
+        SolverNames.cadical103
+        + SolverNames.cadical153
+        + SolverNames.cadical195
+        + SolverNames.cadical300
+    )
+    if seconds > 0 and solver_name.lower() in cadical_names:
+        raise ValueError(
+            "CaDiCaL does not support PySAT's interruptible limited solve; "
+            "use --seconds 0 or an interruptible solver such as glucose4"
+        )
     started = monotonic()
     model = Model(case, quarter_turns)
     build_seconds = monotonic() - started
