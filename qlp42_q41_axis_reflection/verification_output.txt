@@ -1,0 +1,11 @@
+local_states=16
+local_kinds=equal:4,opposite:4,quarter:8
+q41_family_counts=q_A:20,q_B:21
+global_types=opposite:1,equal:0
+removed_pair_root_triples=64
+reflection_clauses=10
+axis_assignments=1024
+compressed_count_shape=m0,m1,m2,m3,m3,m2,m1
+compressed_count_patterns=128
+parity_masks=00,18,24,3c,42,5a,66,7e
+certificate=verified
