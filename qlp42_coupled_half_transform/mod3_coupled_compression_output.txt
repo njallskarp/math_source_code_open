@@ -1,0 +1,15 @@
+image=golang:1.25.0-bookworm@sha256:81dc45d05a7444ead8c92a389621fafabc8e40f8fd1a19d7e5df14e61e98bc1a
+compiler=g++ -std=c++20 -O3 -Wall -Wextra -Wpedantic
+case=0; triples=2304,2304,1764,1932; admissible=265248,135090; matching_descriptors=238; ordered_compression_pairs=73008; independent_rotation_orbits=8112; quarter_totals=1,5,9,13,17,21,25,29,33,37,41
+case=1; triples=2116,2116,1932,2116; admissible=189865,186351; matching_descriptors=85; ordered_compression_pairs=95484; independent_rotation_orbits=10612; quarter_totals=1,5,9,13,17,21,25,29,33,37,41
+case=2; triples=2116,2116,2016,2016; admissible=189865,184896; matching_descriptors=69; ordered_compression_pairs=80136; independent_rotation_orbits=8904; quarter_totals=1,5,9,13,17,21,25,29,33,37,41
+case=3; triples=2016,2016,2016,2208; admissible=173088,218115; matching_descriptors=238; ordered_compression_pairs=73080; independent_rotation_orbits=8120; quarter_totals=1,5,9,13,17,21,25,29,33,37,41
+case=4; triples=2016,2016,2016,2208; admissible=173088,218115; matching_descriptors=238; ordered_compression_pairs=73080; independent_rotation_orbits=8120; quarter_totals=1,5,9,13,17,21,25,29,33,37,41
+case=5; triples=1932,1932,2208,2208; admissible=146316,255612; matching_descriptors=91; ordered_compression_pairs=83160; independent_rotation_orbits=9240; quarter_totals=1,5,9,13,17,21,25,29,33,37,41
+certificate=verified
+
+sat_command=uv run --with python-sat==1.9.dev15 python qlp42_coupled_half_transform/solve_coupled_half_transform_sat.py --case 0 --quarter-turns 1 --seconds 30
+sat_result=case=0; quarter_turns=1; variables=160340; clauses=1109799; build_seconds=1.298; status=UNKNOWN; solve_seconds=30.159
+sat_command=uv run --with python-sat==1.9.dev15 python qlp42_coupled_half_transform/solve_coupled_half_transform_sat.py --case 0 --quarter-turns 41 --seconds 30
+sat_result=case=0; quarter_turns=41; variables=160340; clauses=1109799; build_seconds=1.535; status=UNKNOWN; solve_seconds=30.035
+sat_note=UNKNOWN is not evidence for feasibility or infeasibility.
