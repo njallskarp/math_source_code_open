@@ -72,6 +72,19 @@ belong to the same single-edge-connected component of the optimum-2 plateau.
 The unit test independently recounts every intermediate coloring and checks the
 endpoint against the primary certificate.
 
+Continue the neutral defect transport until no unused edge preserves the count:
+
+```bash
+python plateau_path.py certificate.json --radius 43 --allow-partial
+```
+
+This reaches radius 37. If cyclic edge `i` means `{i,i+1}` modulo 43, the edge
+positions obey `p[2k] = 42+17k` and `p[2k+1] = 37+17k` modulo 43. The first 37
+positions are distinct and the next requested position is the already-used
+edge 42. An exact scan of all 866 unused edges at the terminal coloring finds
+no constant-two extension: the minimum next count is four, uniquely at edge
+`(21,22)`. The compact result is `defect-orbit-primary.json`.
+
 At any partial perturbation with at least two monochromatic `K5`s, a final
 coloring with at most one must change an edge in at least one of any two chosen
 current witnesses. The checker branches on precisely that union of at most 20

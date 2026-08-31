@@ -14,7 +14,11 @@ from solve_cyclic43 import ORDER, edge, load_certificate
 
 
 def find_plateau_path(
-    certificate: Path, radius: int, target: Path | None = None
+    certificate: Path,
+    radius: int,
+    target: Path | None = None,
+    allow_partial: bool = False,
+    greedy_minimum: bool = False,
 ) -> dict[str, object]:
     flips = load_certificate(certificate)
     colors, edges = initial_colors(flips)
@@ -42,6 +46,9 @@ def find_plateau_path(
 
     changed: list[int] = []
     steps: list[dict[str, object]] = []
+    terminal_candidate_histogram: dict[int, int] | None = None
+    terminal_minimum_count: int | None = None
+    terminal_minimum_edges: list[tuple[int, int]] = []
 
     def witnesses() -> list[list[int]]:
         result = []
@@ -61,8 +68,14 @@ def find_plateau_path(
     if len(base_witnesses) != 2:
         raise ValueError(f"expected two base witnesses, got {len(base_witnesses)}")
 
+    current_count = len(base_witnesses)
+    objective_sequence = [current_count]
+
     for depth in range(1, radius + 1):
         accepted = None
+        candidate_histogram: dict[int, int] = {}
+        candidate_minimum: int | None = None
+        candidate_minimizers: list[tuple[int, int]] = []
         changed_set = set(changed)
         for edge_id in range(len(edges)):
             if edge_id in changed_set:
@@ -74,31 +87,55 @@ def find_plateau_path(
                 count = red_counts[five_id]
                 old_mono += is_monochromatic(count)
                 new_mono += is_monochromatic(count + delta)
-            if 2 - old_mono + new_mono == 2:
+            resulting_count = current_count - old_mono + new_mono
+            candidate_histogram[resulting_count] = (
+                candidate_histogram.get(resulting_count, 0) + 1
+            )
+            if candidate_minimum is None or resulting_count < candidate_minimum:
+                candidate_minimum = resulting_count
+                candidate_minimizers = [edges[edge_id]]
+            elif resulting_count == candidate_minimum:
+                candidate_minimizers.append(edges[edge_id])
+            if not greedy_minimum and resulting_count == 2:
                 accepted = edge_id
-                toggle(edge_id)
-                changed.append(edge_id)
-                current_witnesses = witnesses()
-                if len(current_witnesses) != 2:
-                    raise AssertionError((depth, len(current_witnesses)))
-                steps.append(
-                    {
-                        "radius": depth,
-                        "new_reversed_edge": edges[edge_id],
-                        "monochromatic_k5": current_witnesses,
-                    }
-                )
                 break
+        if greedy_minimum and candidate_minimizers:
+            accepted = edge_ids[candidate_minimizers[0]]
         if accepted is None:
-            raise RuntimeError(f"greedy plateau search stopped at radius {depth - 1}")
+            if not allow_partial:
+                raise RuntimeError(
+                    f"greedy plateau search stopped at radius {depth - 1}"
+                )
+            terminal_candidate_histogram = candidate_histogram
+            terminal_minimum_count = candidate_minimum
+            terminal_minimum_edges = candidate_minimizers
+            break
+        toggle(accepted)
+        changed.append(accepted)
+        current_witnesses = witnesses()
+        current_count = len(current_witnesses)
+        objective_sequence.append(current_count)
+        if not greedy_minimum and current_count != 2:
+            raise AssertionError((depth, current_count))
+        step: dict[str, object] = {
+            "radius": depth,
+            "new_reversed_edge": edges[accepted],
+            "monochromatic_k5": current_witnesses,
+        }
+        if greedy_minimum:
+            step["monochromatic_k5_count"] = current_count
+        steps.append(step)
 
     changed_edges = {edges[item] for item in changed}
     result: dict[str, object] = {
         "certificate": certificate.name,
         "base_monochromatic_k5": base_witnesses,
         "requested_radius": radius,
-        "path_found": True,
-        "monochromatic_k5_count_at_every_step": 2,
+        "achieved_radius": len(steps),
+        "path_found": len(steps) == radius,
+        "monochromatic_k5_count_at_every_step": (
+            2 if all(count == 2 for count in objective_sequence) else None
+        ),
         "steps": steps,
         "scope_note": (
             "This is an explicit upper-bound witness on each exact-radius sphere. "
@@ -106,6 +143,16 @@ def find_plateau_path(
             "through radius six."
         ),
     }
+    if greedy_minimum:
+        result["objective_sequence_including_base"] = objective_sequence
+    if terminal_candidate_histogram is not None:
+        result["terminal_unused_edge_result_count_histogram"] = {
+            str(count): terminal_candidate_histogram[count]
+            for count in sorted(terminal_candidate_histogram)
+        }
+        result["terminal_has_unused_constant_two_extension"] = False
+        result["terminal_unused_edge_minimum_count"] = terminal_minimum_count
+        result["terminal_unused_edge_minimizers"] = terminal_minimum_edges
     if target is not None:
         target_flips = load_certificate(target)
         symmetric_difference = flips ^ target_flips
@@ -113,7 +160,10 @@ def find_plateau_path(
         result["source_target_hamming_distance"] = len(symmetric_difference)
         result["path_endpoint_matches_target"] = changed_edges == symmetric_difference
         result["source_target_differing_edges"] = sorted(symmetric_difference)
-        if radius == len(symmetric_difference) and changed_edges != symmetric_difference:
+        if (
+            len(steps) == radius == len(symmetric_difference)
+            and changed_edges != symmetric_difference
+        ):
             raise AssertionError("requested geodesic does not reach target certificate")
     return result
 
@@ -123,9 +173,17 @@ def main() -> None:
     parser.add_argument("certificate", type=Path)
     parser.add_argument("--radius", type=int, default=6)
     parser.add_argument("--target", type=Path)
+    parser.add_argument("--allow-partial", action="store_true")
+    parser.add_argument("--greedy-minimum", action="store_true")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    result = find_plateau_path(args.certificate, args.radius, args.target)
+    result = find_plateau_path(
+        args.certificate,
+        args.radius,
+        args.target,
+        args.allow_partial,
+        args.greedy_minimum,
+    )
     serialized = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.write_text(serialized)

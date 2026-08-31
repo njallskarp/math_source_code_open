@@ -101,6 +101,40 @@ class DirectVerifierTests(unittest.TestCase):
         self.assertEqual(changed, expected_difference)
         self.assertTrue(payload["path_endpoint_matches_target"])
 
+    def test_compact_defect_orbit_certificate(self) -> None:
+        payload = json.loads((HERE / "defect-orbit-primary.json").read_text())
+        positions = payload["edge_positions"]
+        expected = [
+            ((42 if index % 2 == 0 else 37) + 17 * (index // 2)) % 43
+            for index in range(37)
+        ]
+        self.assertEqual(positions, expected)
+        self.assertEqual(len(set(positions)), 37)
+        self.assertEqual((37 + 17 * 18) % 43, payload["first_repeated_next_position"])
+
+        edge_ids, _ = complete_graph_edges()
+        colors, _ = initial_colors(load_certificate(HERE / payload["certificate"]))
+        changed = []
+        for position in positions:
+            changed_edge = (0, 42) if position == 42 else (position, position + 1)
+            changed.append(changed_edge)
+            colors[edge_ids[changed_edge]] = not colors[edge_ids[changed_edge]]
+        count, witnesses = direct_count(colors, edge_ids)
+        self.assertEqual(count, 2)
+        self.assertEqual(
+            [list(item) for item in witnesses],
+            payload["terminal_monochromatic_k5"],
+        )
+
+        escape = tuple(payload["terminal_unused_edge_minimizers"][0])
+        colors[edge_ids[escape]] = not colors[edge_ids[escape]]
+        escape_count, _ = direct_count(colors, edge_ids)
+        self.assertEqual(escape_count, payload["terminal_unused_edge_minimum_count"])
+        self.assertEqual(
+            sum(payload["terminal_unused_edge_result_count_histogram"].values()),
+            payload["terminal_unused_edge_count"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

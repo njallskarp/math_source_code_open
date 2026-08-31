@@ -191,9 +191,47 @@ reported as apparently new to the searched sources rather than as a priority
 claim.
 
 ```text
-33e3345f8edcfe533d90aa7a21fe05022c473329dda494b2329ea923766cf85f  plateau_path.py
-2d5650a3e860bbd4fa0d79f76ea95e57792f46154f1185ac198d7b850c90bcdb  plateau-bridge.json
+891d364aa10305efa6b0c78b62a420aad73f161018c37c1a56118dda3037d9cc  plateau_path.py
+2166af94a8646525095c28936abe29d10fc2c2885fc78c0777a3c1eb1e3200cf  plateau-bridge.json
+ae755d23c0ee09a38c94f90f58201339735bf9231cb8f97af9660a2bb2d42c2c  defect-orbit-primary.json
 ```
+
+### A maximal 37-step neutral defect orbit
+
+Starting from the primary certificate, the constant-two transport continues
+for 37 distinct length-one reversals. Write $e_i=\{i,i+1\}$ with indices modulo
+43. The reversed edge positions have the closed form
+
+$$
+p_{2k}=42+17k \pmod {43},\qquad
+p_{2k+1}=37+17k \pmod {43}.
+$$
+
+The 19 even-indexed and 18 odd-indexed positions are individually distinct
+because 17 is invertible modulo 43. An overlap would require
+$a-b\equiv-18\pmod {43}$ with $0\leq a\leq18$ and $0\leq b\leq17$, which is
+impossible. Thus the first 37 positions are distinct. The next prescribed
+position is
+
+$$
+p_{37}=37+17\cdot18\equiv42=p_0\pmod {43},
+$$
+
+so the neutral transport asks to reuse its first edge.
+
+Exact enumeration confirms two monochromatic `K5`s after each of the 37
+reversals. At the terminal coloring, all 866 unused edges were tested. None
+preserves a count of two: the minimum is four, attained uniquely by `(21,22)`.
+Thus this is a maximal Hamming-increasing constant-two path under the specified
+transport rule, and its endpoint has a strict barrier in every unused-edge
+direction. It is not a proof that no other constant-two path can branch earlier.
+
+The compact recurrence, terminal witnesses, and complete unused-edge count
+histogram are in
+[`defect-orbit-primary.json`](defect-orbit-primary.json). The separate
+globally-best one-step probe chooses the unique four-clique exit and then rises
+through counts 7, 10, 13, 15, and 17 over its next five steps; this is a search
+diagnostic, not an optimal barrier theorem.
 
 Context for the current `43 <= R(5,5) <= 46` range and modern computational
 methods is provided by Angeltveit and McKay,
