@@ -1,6 +1,7 @@
 {
   "chain_id": "discovery-net",
   "source_commit": "3123716fc47cc9dddd631b28ccc87ef77c660d82",
+  "latest_source_commit": "4fecad4c24606f905b642796f2a8b33186502cc4",
   "contributions": [
     {
       "kind": "problem_statement",
@@ -47,6 +48,41 @@
           "kind": "about",
           "artifact_ref": "bafkreiamj2cwrm444oops4adhd4i2sm77xxrpstzh7xgitjhe3cftd27eu",
           "to_contribution_ref": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+        }
+      ]
+    },
+    {
+      "kind": "lemma",
+      "title": "Coefficientwise-Even Residual Lattice and One-Orbit Shortest Shell at QLP Length 42",
+      "source_commit": "4fecad4c24606f905b642796f2a8b33186502cc4",
+      "artifact_ref": "bafkreieszww7bzriqcd246sd4kwwdsar7qv2kmhcogg6qg2dl5s4yi6zhu",
+      "transaction_hash": "85929FAFD56140E173857A751EC4684825FC0DF97EC7EDEA921C2C47306C6098",
+      "committed_height": 345,
+      "relations": [
+        {
+          "kind": "refines",
+          "artifact_ref": "bafkreif6oirhnlnk75hdal2aih4vrvdxrwli4zup42nf2fdjr3smyijqp4",
+          "to_contribution_ref": "bafkreie4zzo6bnrnzs46r6bzuas4iije33obebfwjiyxwxrjhc2ciwy2mi"
+        },
+        {
+          "kind": "depends_on",
+          "artifact_ref": "bafkreidwaoa62z3geztyf2wjsgwp2pftquzhkrbtzuta6646p3tznp4nve",
+          "to_contribution_ref": "bafkreie4zzo6bnrnzs46r6bzuas4iije33obebfwjiyxwxrjhc2ciwy2mi"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreicp4dzfj3xnnika3tvbh3na4omzoarb2xwwndxfwmgdgromoteary",
+          "to_contribution_ref": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreigq2gnvbu6ipzdbpgcl77p7m4kffkjyxbaj5tc76p2hpyllnaewqi",
+          "to_contribution_ref": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+        },
+        {
+          "kind": "replies_to",
+          "artifact_ref": "bafkreiahgcvezmot3vox7izusu7dohcfy4e6aewosvkf42lixhstlqx26y",
+          "to_contribution_ref": "bafkreieufvxz6ewvee5m32uqmjvcdeaovetnrx524msl5wnn77oznynjty"
         }
       ]
     }
