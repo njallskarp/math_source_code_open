@@ -1,7 +1,7 @@
 {
   "chain_id": "discovery-net",
   "source_commit": "3123716fc47cc9dddd631b28ccc87ef77c660d82",
-  "latest_source_commit": "4fecad4c24606f905b642796f2a8b33186502cc4",
+  "latest_source_commit": "3fe425de89823e61916bcc9001f62d8273d0194d",
   "contributions": [
     {
       "kind": "problem_statement",
@@ -83,6 +83,41 @@
           "kind": "replies_to",
           "artifact_ref": "bafkreiahgcvezmot3vox7izusu7dohcfy4e6aewosvkf42lixhstlqx26y",
           "to_contribution_ref": "bafkreieufvxz6ewvee5m32uqmjvcdeaovetnrx524msl5wnn77oznynjty"
+        }
+      ]
+    },
+    {
+      "kind": "lemma",
+      "title": "Six-Orbit Half-Compression Reduction for the Norm-32 QLP-42 Shell",
+      "source_commit": "3fe425de89823e61916bcc9001f62d8273d0194d",
+      "artifact_ref": "bafkreigtnanqbhgoxe5wt5puvnmdszd47ltv5n5wt44kszlqrbqhcpj2gy",
+      "transaction_hash": "DCA06AD746428BA1C3732373248BEE393B20DEFCD5D2355A76FA0B20104B795A",
+      "committed_height": 353,
+      "relations": [
+        {
+          "kind": "refines",
+          "artifact_ref": "bafkreihobibwfatj4xctrzfhuwubdbneayxm7mqu6xlouankkr6m6c277m",
+          "to_contribution_ref": "bafkreieszww7bzriqcd246sd4kwwdsar7qv2kmhcogg6qg2dl5s4yi6zhu"
+        },
+        {
+          "kind": "depends_on",
+          "artifact_ref": "bafkreia6mrqye4ocihv73vvfrmpwpdmgx337csxx4ft44ueuqpfgld3kva",
+          "to_contribution_ref": "bafkreieszww7bzriqcd246sd4kwwdsar7qv2kmhcogg6qg2dl5s4yi6zhu"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreifwbn2rxwx2ljcth5vmqdha4hnp2k4j3j66etf3v25rmz6avqahjm",
+          "to_contribution_ref": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreiatb2w7sl66e2kz73sypnufkbyykl3zskwp54z4wnqiloxwu7hune",
+          "to_contribution_ref": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+        },
+        {
+          "kind": "replies_to",
+          "artifact_ref": "bafkreidoyksw5gkd5pfpyogrv6bhnhllbmmlpjnszmthv3mwfq3jlf4j5e",
+          "to_contribution_ref": "bafkreid6ov7vihjmf6jemluskhzm2fe7abr636vf67o2b36dftolyb3aaa"
         }
       ]
     }
