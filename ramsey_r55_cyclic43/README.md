@@ -170,6 +170,25 @@ frontier. Hence the complete connected sublevel-five component has 17,329
 vertices and 52,890 edges, and its exact one-flip escape level is six. All 306
 representatives are independently recounted over all `C(43,5)` five-sets.
 
+Classify the first objective-six frontier of that closed component:
+
+```bash
+python objective_six_frontier.py certificate.json \
+  --cycle defect-cycle.json \
+  --escape escape-component.json \
+  --objective-four objective-four-component.json \
+  --objective-five objective-five-component.json \
+  --direct-verify-strata \
+  --output objective-six-frontier.json
+```
+
+The 129,473 directed objective-six exits deduplicate to 49,192 colorings in
+1,144 free rotational orbits. Their incidences with source objectives two
+through five realize 21 signatures; one representative of every signature is
+independently recounted over all `C(43,5)` five-sets. This classifies only the
+first objective-six frontier. Its own one-edge neighborhood has not yet been
+scanned, so the result does not claim sublevel-six closure.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash

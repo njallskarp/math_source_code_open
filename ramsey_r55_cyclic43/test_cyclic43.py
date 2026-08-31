@@ -432,6 +432,57 @@ class DirectVerifierTests(unittest.TestCase):
         self.assertEqual(4_171 + 13_158, 17_329)
         self.assertEqual(10_621 + 29_541 + 12_728, 52_890)
 
+    def test_objective_six_frontier_certificate(self) -> None:
+        payload = json.loads((HERE / "objective-six-frontier.json").read_text())
+        self.assertEqual(payload["sublevel_five_source_rotation_type_count"], 403)
+        self.assertEqual(
+            payload["sublevel_five_all_edge_rotation_representative_neighbor_checks"],
+            403 * 903,
+        )
+        self.assertEqual(
+            payload["sublevel_five_symmetry_lifted_neighbor_checks"],
+            17_329 * 903,
+        )
+        self.assertEqual(
+            payload["objective_six_directed_rotation_representative_count"], 3_011
+        )
+        self.assertEqual(
+            payload["objective_six_directed_sublevel_five_edge_count"],
+            3_011 * 43,
+        )
+        self.assertEqual(payload["objective_six_frontier_rotation_orbit_count"], 1_144)
+        self.assertEqual(payload["objective_six_frontier_vertex_count"], 1_144 * 43)
+        self.assertTrue(payload["objective_six_frontier_has_trivial_rotation_stabilizers"])
+
+        edge_histogram = payload["objective_six_directed_source_edge_histogram"]
+        representative_histogram = payload[
+            "objective_six_directed_source_rotation_representative_histogram"
+        ]
+        self.assertEqual(sum(edge_histogram.values()), 129_473)
+        self.assertEqual(
+            {source: 43 * count for source, count in representative_histogram.items()},
+            edge_histogram,
+        )
+
+        signatures = payload[
+            "objective_six_frontier_source_incidence_signature_histogram"
+        ]
+        self.assertEqual(len(signatures), 21)
+        self.assertEqual(sum(signatures.values()), 49_192)
+        coordinate_totals = [0, 0, 0, 0]
+        for signature, count in signatures.items():
+            coordinates = list(map(int, signature.split(",")))
+            for index, coordinate in enumerate(coordinates):
+                coordinate_totals[index] += coordinate * count
+        self.assertEqual(
+            coordinate_totals,
+            [edge_histogram[str(source)] for source in (2, 3, 4, 5)],
+        )
+        self.assertEqual(sum(coordinate_totals), 129_473)
+        self.assertEqual(
+            payload["direct_recount_objective_six_incidence_signature_count"], 21
+        )
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

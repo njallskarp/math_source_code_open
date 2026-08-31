@@ -490,6 +490,46 @@ checker and compact certificate are
 c9ebbdcb0a3c246adbb93ca9386fa84e3538e1a77835b01a66a428fe3e555103  objective-five-component.json
 ```
 
+### The first objective-six frontier
+
+Every edge reversal at the complete 17,329-vertex sublevel-five component was
+classified using its 403 rotation types. The objective-six exits split by
+source objective as follows:
+
+```text
+source objective       2       3       4       5     total
+directed edges      1,677  15,480  36,034  76,282   129,473
+rotation types         39     360     838   1,774     3,011
+```
+
+Thus 363,909 explicit source-edge evaluations represent all
+$17,329\cdot903=15,648,087$ labeled cases. After endpoint duplicates are
+removed, the first objective-six frontier consists of
+
+$$
+49,192=1,144\cdot43
+$$
+
+colorings in free rotational orbits. The number of neighbors that each
+frontier coloring has at source objectives two, three, four, and five gives 21
+distinct incidence signatures. Their complete distribution is persisted in
+the compact certificate, and its coordinate-weighted sums independently
+recover the four directed-edge counts above. One representative of each of
+the 21 signatures was reconstructed and directly recounted over all
+$\binom{43}{5}$ five-sets; every recount returned objective six.
+
+This is an exact first-frontier classification. The objective-six states'
+own neighbors have not been scanned, so this result neither closes the
+sublevel-six component nor raises the escape level beyond six. The exact
+checker and compact certificate are
+[`objective_six_frontier.py`](objective_six_frontier.py) and
+[`objective-six-frontier.json`](objective-six-frontier.json).
+
+```text
+cd1955be1b81d6aa3b8aa20225461db3b19b21690fe7705cc0a6a38ae0ed67f6  objective_six_frontier.py
+a637e58df47b8c17f25805234b72328af21036472bbec08cf66a45f8281cc6eb  objective-six-frontier.json
+```
+
 ### Radius-five exclusion tube around the 37-edge defect orbit
 
 The forced-witness search was run independently through radius five around all
