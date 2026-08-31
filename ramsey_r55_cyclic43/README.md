@@ -46,11 +46,34 @@ structurally different optimum. Both optima remain at two monochromatic `K5`s
 through Hamming radius three, even when edge changes in either direction are
 allowed.
 
+The bounded-distance C++ checker extends this result through radius six:
+
+```bash
+g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
+  local_rigidity_bounded.cpp -o local_rigidity_bounded
+./local_rigidity_bounded certificate.json 6
+./local_rigidity_bounded certificate-fm.json 6
+```
+
+The persisted runs used Homebrew GCC 16.2.0 on macOS 26.2 arm64. The primary
+and Fu-Malik passes took 197.71 and 200.04 seconds of wall time, respectively.
+
+At any partial perturbation with at least two monochromatic `K5`s, a final
+coloring with at most one must change an edge in at least one of any two chosen
+current witnesses. The checker branches on precisely that union of at most 20
+edges and memoizes the resulting flip sets. Because the total radius is at most
+six, changing all ten edges of a current witness and making it monochromatic in
+the opposite color is impossible. This gives a complete search rather than a
+heuristic local search. The persisted radius-six outputs are
+`local-rigidity-radius6-primary.json` and `local-rigidity-radius6-fm.json`.
+
 The MaxSAT solver establishes optimality within the stated red-to-blue family.
 The direct verifier checks the upper-bound coloring, but is not an independently
 checkable proof of the MaxSAT lower bound; that solver trust boundary should be
-kept explicit when citing the result. The local-rigidity scripts use exact finite
-enumeration and directly recount a minimizing perturbation as an internal check.
+kept explicit when citing the result. The radius-one through radius-three
+scripts use exact finite enumeration and directly recount minimizing
+perturbations. The radius-six result relies on the C++ exhaustive search and its
+forced-hitting-set completeness argument; it is not a SAT proof certificate.
 
 Primary sources and data context:
 

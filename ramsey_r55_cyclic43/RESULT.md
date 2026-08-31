@@ -89,16 +89,19 @@ The result rules out the entire monotone red-to-blue neighborhood of this major
 two optimal certificates are also concrete near-solutions for future searches
 that allow blue-to-red changes and other non-monotone moves.
 
-## Exact unrestricted local rigidity through radius three
+## Exact unrestricted local rigidity through radius six
 
 The next search layer allows arbitrary edge reversals, including blue-to-red
 changes. Both structurally different optimum-2 certificates are locally rigid:
 
-> Every coloring at Hamming distance at most three from either certificate has
+> Every coloring at Hamming distance at most six from either certificate has
 > at least two monochromatic copies of `K5`.
 
-The bound is sharp at every radius one, two, and three: explicit perturbations at
-each exact radius still have two monochromatic `K5`s.
+The bound is sharp for the closed ball because each center itself has exactly
+two monochromatic `K5`s. Explicit perturbations also show sharpness at every
+exact radius one, two, and three; the radius-four through radius-six computation
+is a lower-bound search and does not claim an exact-radius witness at those
+three distances.
 
 For each base coloring, the two original monochromatic cliques contain 14
 distinct edges. Any improving perturbation must touch at least one of those
@@ -127,7 +130,36 @@ recounted directly over all 962,598 five-sets. The persisted results are:
 This is a local exclusion result, not evidence that no distant one-clique or
 zero-clique coloring exists. Its practical implication is that a successful
 non-monotone search cannot make a shallow repair of either optimum: it must leave
-both Hamming balls of radius three.
+both Hamming balls of radius six.
+
+### Forced-witness search for radii four through six
+
+For a partial edge-reversal set `T`, suppose its coloring has at least two
+monochromatic witnesses `A` and `B`. Any extension of `T` that ends with at most
+one monochromatic `K5` must reverse an as-yet unchanged edge in
+$E(A) \cup E(B)$: otherwise both witnesses survive. With a total radius at most six, an
+extension cannot reverse all ten currently equal-colored edges of a witness and
+make it monochromatic in the other color. Branching on this at-most-20-edge
+hitting set at every state is therefore exhaustive. States reached in different
+orders are memoized by their sorted reversal sets.
+
+For the primary certificate, the radius-six search expanded 5,192,120 distinct
+depth-six states and considered 6,797,733 candidate branches in total. For the
+Fu-Malik certificate it expanded 5,261,019 distinct depth-six states and
+considered 6,548,804 branches. Neither search found a coloring with zero or one
+monochromatic `K5`; since the centers have two, the exact minimum in each closed
+radius-six ball is two. The C++ source is
+[`local_rigidity_bounded.cpp`](local_rigidity_bounded.cpp), with persisted
+outputs in [`local-rigidity-radius6-primary.json`](local-rigidity-radius6-primary.json)
+and [`local-rigidity-radius6-fm.json`](local-rigidity-radius6-fm.json).
+
+SHA-256 digests:
+
+```text
+e7ea42ffcef7c23b00336cbdb27f12203ee2e0ad93afd2a8d6093fe0071ce308  local_rigidity_bounded.cpp
+a0addcbe7aaae06ac3d67aec330d191ce393ce4423993a642efabffc1d4a4233  local-rigidity-radius6-primary.json
+37c0a740ac7ee06a9fb20204ade77f323781a9528f4596aefe57f5b5315e6131  local-rigidity-radius6-fm.json
+```
 
 Context for the current `43 <= R(5,5) <= 46` range and modern computational
 methods is provided by Angeltveit and McKay,

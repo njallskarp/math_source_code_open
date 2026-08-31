@@ -59,6 +59,22 @@ class DirectVerifierTests(unittest.TestCase):
             count, _ = direct_count(colors, edge_ids)
             self.assertEqual(count, 2)
 
+    def test_persisted_radius_six_searches_exclude_improvement(self) -> None:
+        for name in (
+            "local-rigidity-radius6-primary.json",
+            "local-rigidity-radius6-fm.json",
+        ):
+            payload = json.loads((HERE / name).read_text())
+            self.assertEqual(payload["radius"], 6)
+            self.assertEqual(payload["base_monochromatic_k5_count"], 2)
+            self.assertFalse(payload["improvement_found"])
+            self.assertEqual(payload["exact_minimum_through_requested_radius"], 2)
+            self.assertEqual(len(payload["expanded_by_depth"]), 7)
+            self.assertEqual(
+                payload["expanded_by_depth"][1:],
+                payload["distinct_nonroot_states_by_depth"][1:],
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

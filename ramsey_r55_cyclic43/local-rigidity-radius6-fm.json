@@ -1,0 +1,18 @@
+{
+  "certificate": "certificate-fm.json",
+  "base_monochromatic_k5_count": 2,
+  "base_monochromatic_k5": [[27,30,31,35,36],[30,31,35,36,39]],
+  "radius": 6,
+  "compiler": "g++-16 (Homebrew GCC 16.2.0) 16.2.0",
+  "compiler_flags": "-std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic",
+  "platform": "macOS 26.2 arm64",
+  "elapsed_seconds": 200.04,
+  "target_monochromatic_k5_count": 1,
+  "improvement_found": false,
+  "exact_minimum_through_requested_radius": 2,
+  "expanded_by_depth": [1,14,185,2501,32990,421247,5261019],
+  "distinct_nonroot_states_by_depth": [0,14,185,2501,32990,421247,5261019],
+  "candidate_branches_considered": 6548804,
+  "maximum_intermediate_monochromatic_k5_count": 186,
+  "completeness_argument": "At a state with at least two monochromatic K5s, any extension ending with at most one must flip an edge in at least one of two chosen witnesses. Branching over their edge union is exhaustive; memoization removes only duplicate flip sets."
+}
