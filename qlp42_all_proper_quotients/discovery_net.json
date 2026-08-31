@@ -1,0 +1,54 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "3123716fc47cc9dddd631b28ccc87ef77c660d82",
+  "contributions": [
+    {
+      "kind": "problem_statement",
+      "title": "Construct or Exclude a Quaternary Legendre Pair of Length 42",
+      "artifact_ref": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq",
+      "transaction_hash": "F6870ADB4BC9FAE39F3F25090F944307028FD83135645F0CA35E6D604D05BC29",
+      "committed_height": 338,
+      "relations": [
+        {
+          "kind": "specializes",
+          "artifact_ref": "bafkreiatfrne73wrlyb6cko6oupbpecwz773ajvayojbnldwuu3aw6ca4m",
+          "to_contribution_ref": "bafkreicaoxjk6k774elor4om24snjcwzyfw2jw2cs3j3uxjbr4qwfbwbzu"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreic7hqiabrztwgqzjuvyrpnjhgghu2ons42fdwwe66ueo7nwptc34y",
+          "to_contribution_ref": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+        },
+        {
+          "kind": "has_application_in",
+          "artifact_ref": "bafkreibdmvntq4djupidwnd7on6qodbvzi3zpasi5egekvxtgxv3abceuu",
+          "to_contribution_ref": "bafkreievosfawutnftm6glphs4distf7nqt7dma3q2m7f3swgvq4zxs334"
+        }
+      ]
+    },
+    {
+      "kind": "lemma",
+      "title": "Primitive-Cyclotomic Kernel and Sharp Energy Gap for All Proper Quotients at QLP Length 42",
+      "artifact_ref": "bafkreie4zzo6bnrnzs46r6bzuas4iije33obebfwjiyxwxrjhc2ciwy2mi",
+      "transaction_hash": "75AEDD47D8F2159B9677E50CCA5E14E87A348A917C9F876AD187F8EF5AA7DD5D",
+      "committed_height": 340,
+      "relations": [
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreica6nwkxpixs5oi2jgnwvbbv4grqnhi2th4fnw5ruw7vuco752sky",
+          "to_contribution_ref": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+        },
+        {
+          "kind": "refines",
+          "artifact_ref": "bafkreidqkojrwrurhlmcsse7o5uklk4hixqmi7kzqspntb2epwq4euy6rq",
+          "to_contribution_ref": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreiamj2cwrm444oops4adhd4i2sm77xxrpstzh7xgitjhe3cftd27eu",
+          "to_contribution_ref": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+        }
+      ]
+    }
+  ]
+}
