@@ -10,6 +10,8 @@ from pysat.card import CardEnc, EncType
 from pysat.formula import CNF, IDPool
 from pysat.solvers import Solver
 
+from verify_half_compression import REPRESENTATIVES
+
 N = 42
 PROPER_FACTOR = [0] * 31
 for exponent, coefficient in {
@@ -76,7 +78,11 @@ def paf(sequence: str) -> list[complex]:
 
 
 def solve_target(
-    parameters: tuple[int, ...], sign: int, solver_name: str, encoding: int
+    parameters: tuple[int, ...],
+    sign: int,
+    solver_name: str,
+    encoding: int,
+    compression_case: int | None,
 ) -> bool:
     target_residual = residual(parameters, sign)
     pool = IDPool()
@@ -115,8 +121,20 @@ def solve_target(
     add_equals(families["av"], 21)
     add_equals(families["bu"], 20)
     add_equals(families["bv"], 21)
-    cnf.append([-families["au"][0]])
-    cnf.append([-families["av"][0]])
+
+    if compression_case is None:
+        # Use A's free phase to normalize A_0=1.  When a canonical half
+        # compression is selected below, that same phase freedom was already
+        # spent in the six-orbit reduction and must not be fixed again.
+        cnf.append([-families["au"][0]])
+        cnf.append([-families["av"][0]])
+    else:
+        p, q, x, y = REPRESENTATIVES[compression_case]
+        even = list(range(0, N, 2))
+        add_equals([families["au"][index] for index in even], (21 - p - q) // 2)
+        add_equals([families["av"][index] for index in even], (21 - p + q) // 2)
+        add_equals([families["bu"][index] for index in even], (21 - x - y) // 2)
+        add_equals([families["bv"][index] for index in even], (21 - x + y) // 2)
 
     for shift in range(1, N // 2 + 1):
         real_xors: list[int] = []
@@ -159,6 +177,8 @@ def solve_target(
         add_equals(plus + [-literal for literal in minus], 84)
 
     label = "_".join(map(str, parameters)) + ("_plus" if sign > 0 else "_minus")
+    if compression_case is not None:
+        label += f"_compression_{compression_case}"
     print(
         f"target={label}; variables={pool.top}; clauses={len(cnf.clauses)}",
         flush=True,
@@ -208,6 +228,12 @@ def main() -> None:
         default="cardnetwrk",
     )
     parser.add_argument("--all", action="store_true")
+    parser.add_argument(
+        "--compression-case",
+        type=int,
+        choices=range(len(REPRESENTATIVES)),
+        help="select one of the six symmetry-reduced modulo-two compressions",
+    )
     args = parser.parse_args()
     encodings = {
         "cardnetwrk": EncType.cardnetwrk,
@@ -223,7 +249,11 @@ def main() -> None:
     )
     for parameters, sign in targets:
         satisfiable_targets += solve_target(
-            parameters, sign, args.solver, encodings[args.encoding]
+            parameters,
+            sign,
+            args.solver,
+            encodings[args.encoding],
+            args.compression_case,
         )
     print(
         f"satisfiable_targets={satisfiable_targets}; total_targets={len(targets)}"
