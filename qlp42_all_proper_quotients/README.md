@@ -65,17 +65,71 @@ correlation residual energy at least 32.  This does not decide existence at
 length 42; it identifies and quantifies the primitive-frequency obstruction
 that every proper compression necessarily misses.
 
+## Coefficientwise-even refinement
+
+The parity relaxation above can be sharpened for actual fourth-root
+autocorrelations. For an even-length fourth-root sequence `A` and any shift
+`s`, put `z_j=A_j*conj(A_(j+s))`. The product of all `z_j` is one. If `n_r`
+counts the values `i^r`, this says
+
+```text
+n_1 + 2*n_2 + 3*n_3 = 0 (mod 4).
+```
+
+Consequently `n_1+n_3` is even; because the sequence length is even,
+`n_0+n_2` is also even. Both coordinates of `PAF(A,s)` are therefore even.
+For QLP-42 residuals this gives the stronger necessary condition
+
+```text
+e_s in 2*Z[i] for every s.
+```
+
+Since `P(0)=-1`, coefficient induction through `E=P*H` shows `H=2G` with
+Gaussian-integral coefficients. Anti-reciprocity now becomes
+
+```text
+G_(12-k) = -conj(G_k)  (1 <= k <= 5),
+G_6 = i*t,
+```
+
+again giving an explicit rank-11 integer lattice, but a proper sublattice of
+the earlier `(1+i)`-divisible relaxation. Its Gram matrix splits orthogonally
+into blocks of dimensions 5 and 6. Exact rational LDL verifies `M-I` is
+positive definite. Direct enumeration of 41,598 and 280,768 nonzero vectors
+in the respective coordinate balls, up to global sign, proves that the
+minimum energy remains 32.
+
+The refinement makes the shortest shell extremely rigid: it contains only
+six signed residuals, forming one orbit under multiplication of shifts by
+units modulo 42. A representative is
+
+```text
+e_s = -2 for s in {4,11,31,38},
+e_s =  2 for s in {10,17,25,32},
+e_s =  0 otherwise.
+```
+
+Thus deciding whether the lower bound 32 is sharp for actual sequence pairs
+reduces to the realizability of this single residual pattern up to decimation.
+This is a strict reduction, not yet an existence or nonexistence result.
+
 ## Exact verification
 
 The theorem and the finite minimum use only integer and rational arithmetic.
 
 ```bash
 python verify_primitive_quotient_kernel.py
+python verify_even_residual_lattice.py
 
 c++ -std=c++20 -O3 -Wall -Wextra -Wpedantic \
   verify_residual_lattice_minimum.cpp \
   -o verify_residual_lattice_minimum
 ./verify_residual_lattice_minimum
+
+c++ -std=c++20 -O3 -Wall -Wextra -Wpedantic \
+  verify_even_residual_lattice_minimum.cpp \
+  -o verify_even_residual_lattice_minimum
+./verify_even_residual_lattice_minimum
 ```
 
 The first program verifies the cyclotomic factorization, exact rank 30 of the
@@ -83,11 +137,23 @@ combined quotient pushforward, a 12-vector rational kernel basis, the
 11-vector integral Hermitian basis, its Gram matrix, and exact positive
 definiteness of `M-I`.  The second performs the complete bounded enumeration.
 
+The even-lattice programs verify the stronger coefficientwise divisibility,
+the refined Gram matrix and exact LDL pivots, the orthogonal block minima,
+the six signed shortest vectors, and their single decimation orbit.
+
 `search_all_proper_quotients.cpp` and
 `solve_all_proper_quotients_pysat.py` record exploratory searches for an
 actual sequence pair in the quotient-feasible set.  The heuristic reached
 residual quotient score 200; the initial exact SAT run did not finish within
 the research window.  Neither observation is part of the theorem.
+
+`solve_norm32_residuals_pysat.py` is an exact realizability model for the
+single shortest-shell representative, while `search_norm32_residual.cpp` is
+an independent heuristic. The initial exact runs remained unresolved and the
+heuristic did not find a witness, so neither is used as evidence for or
+against realizability. The two `explore_*shell*.cpp` programs record the
+discarded Fourier-screening route; power-spectrum nonnegativity is too weak
+at this normalization and is not used in any result.
 
 ## Primary-source context
 
