@@ -56,7 +56,7 @@ STATES = tuple(
     for x in ROOTS
     for y in ROOTS
 )
-assert len(set((state[0], state[1]) for state in STATES)) == 16
+assert len({(state[0], state[1]) for state in STATES}) == 16
 
 
 def gaussian_paf(sequence: list[G]) -> list[G]:
@@ -134,6 +134,25 @@ class Model:
             modulus=4,
             target=1,
             label="quarter_turns_mod4",
+        )
+        # The fixed Gaussian sums orient the two binary shadows: reducing
+        # sum(H_A)=0 and sum(H_B)=1 modulo 1+i forces an even number of
+        # quarter-turn cells in A and an odd number in B.  These clauses are
+        # logically redundant with the exact H-sum automata but propagate the
+        # oriented mod-7 refinement directly in the Boolean layer.
+        self.add_modulo_automaton(
+            self.choice["a"],
+            unit_values,
+            modulus=2,
+            target=0,
+            label="quarter_turns_a_even",
+        )
+        self.add_modulo_automaton(
+            self.choice["b"],
+            unit_values,
+            modulus=2,
+            target=1,
+            label="quarter_turns_b_odd",
         )
         if quarter_turns is not None:
             self.add_sum_automaton(
@@ -396,6 +415,16 @@ def verify(case: int, decoded: dict[str, list[tuple[G, G, G, G]]]) -> None:
             original[22 * j % 42] = state[2]
             original[(22 * j + 21) % 42] = state[3]
         originals[name] = original
+
+    quarter_counts = {
+        name: sum(
+            state[0][0] * state[0][0] + state[0][1] * state[0][1] == 1
+            for state in states
+        )
+        for name, states in decoded.items()
+    }
+    assert quarter_counts["a"] % 2 == 0
+    assert quarter_counts["b"] % 2 == 1
 
     for component, target in ((0, TARGET_S), (1, TARGET_H)):
         paf_a = gaussian_paf(transformed["a"][component])
