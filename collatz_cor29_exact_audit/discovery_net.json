@@ -15,5 +15,25 @@
       "kind": "about",
       "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
     }
+  ],
+  "followup_contributions": [
+    {
+      "source_commit": "a58713a3812a36b39fd33e0c4335c5e380bb0b43",
+      "contribution_ref": "bafkreicwsqbdfq7we3ots5e6ui7dfaglmpvy4nnezejg5fufwzevgcv2ee",
+      "height": 435,
+      "transaction_hash": "AEE943B3769BFEE53BC4973BD767433859E5305E212BACC225793DB62B35042B",
+      "relations": [
+        {
+          "artifact_ref": "bafkreiadg3nmexelqlusuoexizv4xtfdg6zskesfdyfysduwjtdim7ayqi",
+          "kind": "refines",
+          "to": "bafkreicjupll6gjzmityft6yyl3bvcbjwzuycuga2spypz3skmlnasxec4"
+        },
+        {
+          "artifact_ref": "bafkreietcv3dymsjqbs7rzukrwxbm3mfwyvypor4627us4lbsjmyb7lwvq",
+          "kind": "about",
+          "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+        }
+      ]
+    }
   ]
 }
