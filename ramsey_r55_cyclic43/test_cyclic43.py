@@ -4,6 +4,7 @@ import json
 import unittest
 from pathlib import Path
 
+from local_rigidity import complete_graph_edges, direct_count, initial_colors
 from solve_cyclic43 import load_certificate, verify_flips
 
 
@@ -32,6 +33,31 @@ class DirectVerifierTests(unittest.TestCase):
         for name in ("certificate.json", "certificate-fm.json"):
             payload = json.loads((HERE / name).read_text())
             self.assertEqual(payload["optimum"], 2)
+
+    def test_persisted_local_rigidity_minimizers_recount_to_two(self) -> None:
+        cases = (
+            ("certificate.json", "local-rigidity-primary.json", "radius_two_minimizer_sample"),
+            ("certificate-fm.json", "local-rigidity-fm.json", "radius_two_minimizer_sample"),
+            (
+                "certificate.json",
+                "local-rigidity-radius3-primary.json",
+                "radius_three_minimizer_sample",
+            ),
+            (
+                "certificate-fm.json",
+                "local-rigidity-radius3-fm.json",
+                "radius_three_minimizer_sample",
+            ),
+        )
+        edge_ids, _ = complete_graph_edges()
+        for certificate_name, result_name, sample_field in cases:
+            colors, _ = initial_colors(load_certificate(HERE / certificate_name))
+            payload = json.loads((HERE / result_name).read_text())
+            for changed_edge in payload[sample_field]:
+                normalized = tuple(changed_edge)
+                colors[edge_ids[normalized]] = not colors[edge_ids[normalized]]
+            count, _ = direct_count(colors, edge_ids)
+            self.assertEqual(count, 2)
 
 
 if __name__ == "__main__":

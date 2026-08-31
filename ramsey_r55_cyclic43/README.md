@@ -33,10 +33,24 @@ Recount every `K5` in an existing certificate without invoking a SAT solver:
 python solve_cyclic43.py --verify certificate.json
 ```
 
+Compute exact unrestricted edge-toggle rigidity through radii two and three:
+
+```bash
+python local_rigidity.py certificate.json --output local-rigidity-primary.json
+python local_rigidity_radius3.py certificate.json \
+  --output local-rigidity-radius3-primary.json
+```
+
+The same commands with `certificate-fm.json` independently analyze the second,
+structurally different optimum. Both optima remain at two monochromatic `K5`s
+through Hamming radius three, even when edge changes in either direction are
+allowed.
+
 The MaxSAT solver establishes optimality within the stated red-to-blue family.
 The direct verifier checks the upper-bound coloring, but is not an independently
 checkable proof of the MaxSAT lower bound; that solver trust boundary should be
-kept explicit when citing the result.
+kept explicit when citing the result. The local-rigidity scripts use exact finite
+enumeration and directly recount a minimizing perturbation as an internal check.
 
 Primary sources and data context:
 

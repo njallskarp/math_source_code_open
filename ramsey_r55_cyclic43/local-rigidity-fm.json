@@ -1,0 +1,64 @@
+{
+  "base_monochromatic_k5": [
+    [
+      27,
+      30,
+      31,
+      35,
+      36
+    ],
+    [
+      30,
+      31,
+      35,
+      36,
+      39
+    ]
+  ],
+  "base_monochromatic_k5_count": 2,
+  "certificate": "certificate-fm.json",
+  "complete_graph_edge_count": 903,
+  "radius_one_minimizer_count": 2,
+  "radius_one_minimizers": [
+    [
+      30,
+      31
+    ],
+    [
+      35,
+      36
+    ]
+  ],
+  "radius_one_minimum": 2,
+  "radius_two_examined_candidate_count": 12537,
+  "radius_two_examined_minimizer_count": 2,
+  "radius_two_minimizer_sample": [
+    [
+      9,
+      10
+    ],
+    [
+      30,
+      31
+    ]
+  ],
+  "radius_two_minimum": 2,
+  "radius_two_sample_monochromatic_k5": [
+    [
+      1,
+      4,
+      5,
+      9,
+      10
+    ],
+    [
+      4,
+      5,
+      9,
+      10,
+      13
+    ]
+  ],
+  "relevant_edge_count": 14,
+  "scope_note": "The radius-two improvement search examines only pairs touching a base monochromatic K5. Every omitted pair leaves both base K5s monochromatic and therefore cannot have count below two."
+}

@@ -1,0 +1,56 @@
+{
+  "base_monochromatic_k5": [
+    [
+      27,
+      30,
+      31,
+      35,
+      36
+    ],
+    [
+      30,
+      31,
+      35,
+      36,
+      39
+    ]
+  ],
+  "base_monochromatic_k5_count": 2,
+  "certificate": "certificate-fm.json",
+  "complete_graph_edge_count": 903,
+  "radius_three_examined_candidate_count": 5607287,
+  "radius_three_examined_minimizer_count": 2,
+  "radius_three_minimizer_sample": [
+    [
+      4,
+      5
+    ],
+    [
+      9,
+      10
+    ],
+    [
+      30,
+      31
+    ]
+  ],
+  "radius_three_minimum": 2,
+  "radius_three_sample_monochromatic_k5": [
+    [
+      4,
+      5,
+      6,
+      26,
+      27
+    ],
+    [
+      4,
+      5,
+      25,
+      26,
+      27
+    ]
+  ],
+  "relevant_edge_count": 14,
+  "scope_note": "Every examined triple contains an edge of a base monochromatic K5. Every omitted triple leaves both base K5s monochromatic and cannot have count below two."
+}

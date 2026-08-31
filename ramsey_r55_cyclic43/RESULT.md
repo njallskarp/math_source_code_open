@@ -89,6 +89,46 @@ The result rules out the entire monotone red-to-blue neighborhood of this major
 two optimal certificates are also concrete near-solutions for future searches
 that allow blue-to-red changes and other non-monotone moves.
 
+## Exact unrestricted local rigidity through radius three
+
+The next search layer allows arbitrary edge reversals, including blue-to-red
+changes. Both structurally different optimum-2 certificates are locally rigid:
+
+> Every coloring at Hamming distance at most three from either certificate has
+> at least two monochromatic copies of `K5`.
+
+The bound is sharp at every radius one, two, and three: explicit perturbations at
+each exact radius still have two monochromatic `K5`s.
+
+For each base coloring, the two original monochromatic cliques contain 14
+distinct edges. Any improving perturbation must touch at least one of those
+edges; otherwise both original cliques survive. This reduces the exact search to
+all 903 single-edge changes, 12,537 improvement-relevant two-edge changes, and
+5,607,287 improvement-relevant three-edge changes.
+
+The computation enumerates all five-sets once and uses the exact Boolean
+inclusion-exclusion expansion of the clique-count function:
+
+```text
+M(T) = M(empty)
+     + sum(single-edge deltas)
+     + sum(pair interactions)
+     + sum(triple interactions),
+```
+
+which is exact for `|T| <= 3`. A minimizing perturbation from each run is then
+recounted directly over all 962,598 five-sets. The persisted results are:
+
+- [`local-rigidity-primary.json`](local-rigidity-primary.json)
+- [`local-rigidity-fm.json`](local-rigidity-fm.json)
+- [`local-rigidity-radius3-primary.json`](local-rigidity-radius3-primary.json)
+- [`local-rigidity-radius3-fm.json`](local-rigidity-radius3-fm.json)
+
+This is a local exclusion result, not evidence that no distant one-clique or
+zero-clique coloring exists. Its practical implication is that a successful
+non-monotone search cannot make a shallow repair of either optimum: it must leave
+both Hamming balls of radius three.
+
 Context for the current `43 <= R(5,5) <= 46` range and modern computational
 methods is provided by Angeltveit and McKay,
 [`R(5,5) <= 46`](https://doi.org/10.1002/jgt.70029). Authoritative Ramsey graph
