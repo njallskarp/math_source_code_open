@@ -11,6 +11,7 @@ realizing the canonical norm-32 residual shell.
 from __future__ import annotations
 
 from argparse import ArgumentParser
+from pathlib import Path
 
 from ortools.sat.python import cp_model
 
@@ -54,6 +55,32 @@ for x_index, x in enumerate(ROOTS):
         h = div_one_plus_i(x[0] + y[0], x[1] + y[1])
         STATE_ROWS.append((len(STATE_ROWS), *s, *h, x_index, y_index))
 assert len(STATE_ROWS) == 16
+
+
+def verify_state_table() -> None:
+    """Check the reusable table and the inverse map on every exact state."""
+    table_path = Path(__file__).with_name("state_table.tsv")
+    lines = table_path.read_text(encoding="utf-8").splitlines()
+    assert lines[0].split("\t") == [
+        "state", "S_re", "S_im", "H_re", "H_im", "x_phase", "y_phase"
+    ]
+    external_rows = [tuple(map(int, line.split("\t"))) for line in lines[1:]]
+    assert external_rows == STATE_ROWS
+    for row in STATE_ROWS:
+        _, sr, si, hr, hi, x_index, y_index = row
+        # x=(1+i)(H+S)/2 and y=(1+i)(H-S)/2.
+        x_sum = (hr + sr, hi + si)
+        y_sum = (hr - sr, hi - si)
+        reconstructed_x = (
+            (x_sum[0] - x_sum[1]) // 2,
+            (x_sum[0] + x_sum[1]) // 2,
+        )
+        reconstructed_y = (
+            (y_sum[0] - y_sum[1]) // 2,
+            (y_sum[0] + y_sum[1]) // 2,
+        )
+        assert reconstructed_x == ROOTS[x_index]
+        assert reconstructed_y == ROOTS[y_index]
 
 # Transition rows are (left_state, right_state, S_real, S_imag,
 # H_real, H_imag).  They encode both correlations in one table.
@@ -274,6 +301,7 @@ def solve_case(case: int, seconds: float, workers: int, log: bool) -> bool:
 
 
 def main() -> None:
+    verify_state_table()
     parser = ArgumentParser()
     parser.add_argument("--case", type=int, choices=range(6))
     parser.add_argument("--seconds", type=float, default=300.0)

@@ -92,11 +92,15 @@ the theorem.
 
 `solve_coupled_transform_ortools.py` turns the bijection into a finite-domain
 CP-SAT model.  Each of the 42 paired coordinates has one state variable in
-`0..15`; the generated state table has columns
+`0..15`; the reusable `state_table.tsv` has columns
 
 ```text
 (state, Re(S), Im(S), Re(H), Im(H), x_phase, y_phase).
 ```
+
+At startup, the solver regenerates all 16 rows from the ordered phase pairs,
+compares them with the TSV, and verifies the inverse formulas
+`x=(1+i)(H+S)/2` and `y=(1+i)(H-S)/2` on every row.
 
 For each cyclic pair, one generated 256-row allowed-assignment table channels
 the two endpoint states to both Gaussian products
