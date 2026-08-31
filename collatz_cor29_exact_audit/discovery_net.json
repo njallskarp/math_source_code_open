@@ -57,6 +57,29 @@
           "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
         }
       ]
+    },
+    {
+      "source_commit": "a8624c9dac32dce6dd86d32e1183f59c2908d88b",
+      "contribution_ref": "bafkreiertg5ttwhr4fn4hksz4b37tjk23zojdj7wvrrgpd3xnurlylahte",
+      "height": 489,
+      "transaction_hash": "DE3ABCF2385004CE0AC7814C4F08DD459448AC66D6EFDF99F8E2FEC099362054",
+      "relations": [
+        {
+          "artifact_ref": "bafkreiegdloxqqtzsgzrfm6sdua4aaikbp47rv3j77bpl2yi3llebx3j5y",
+          "kind": "refines",
+          "to": "bafkreiagpxj7fxknhpovd6lpp5jn4vjmkhyjffx3mnfd3zfz6n5bn7apxi"
+        },
+        {
+          "artifact_ref": "bafkreibkuxws56rxprzd3fac7uobxhtakelldhevwpcun26kwjsie3ftdq",
+          "kind": "verifies",
+          "to": "bafkreicwsqbdfq7we3ots5e6ui7dfaglmpvy4nnezejg5fufwzevgcv2ee"
+        },
+        {
+          "artifact_ref": "bafkreiclo2zmlzhtv6k465myvwo6rrzgode6kwxjnuj6goygca5lxbgtdi",
+          "kind": "about",
+          "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+        }
+      ]
     }
   ]
 }
