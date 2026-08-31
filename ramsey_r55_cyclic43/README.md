@@ -189,6 +189,53 @@ independently recounted over all `C(43,5)` five-sets. This classifies only the
 first objective-six frontier. Its own one-edge neighborhood has not yet been
 scanned, so the result does not claim sublevel-six closure.
 
+Close the full objective-six layer with the bit-packed C++ kernel:
+
+```bash
+g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
+  objective_six_component.cpp -o objective_six_component
+./objective_six_component certificate.json defect-cycle.json \
+  --representatives objective-six-component-representatives.json \
+  > objective-six-component-fast.json
+```
+
+The first frontier is not closed: breadth-first orbit expansion finds exactly
+39 additional free rotation orbits. It then closes with 1,183 objective-six
+orbits, or 50,869 colorings. The sixth layer has 55,126 induced edges. Hence the
+complete connected sublevel-six component through the primary optimum has
+
+```text
+68,198 vertices and 237,489 edges,
+```
+
+and its exact one-flip escape level is seven. The complete scan evaluates
+1,068,249 representative edge reversals, representing 45,934,707 full-state
+checks. On the recorded Apple Silicon host, the optimized scan took 0.86
+seconds; the original Python reference run was interrupted after 18 minutes
+before reaching the sixth-layer closure. The speedup comes from keeping states
+in fifteen 64-bit words and maintaining all 903 single-flip objective deltas
+incrementally while an orbit DFS changes one edge and backtracks.
+
+Independently verify every one of the 1,183 representatives with a fresh direct
+five-set recount and fresh per-state single-flip deltas:
+
+```bash
+g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic -fopenmp \
+  verify_objective_six_component.cpp -o verify_objective_six_component
+OMP_NUM_THREADS=10 ./verify_objective_six_component \
+  certificate.json objective-six-component-representatives.json \
+  > objective-six-component-independent.json
+```
+
+The independent checker took 1.79 seconds, found zero missing same-layer
+neighbors, and reproduced the complete neighbor-objective histogram exactly.
+It does not reuse the incremental search engine: every representative is
+decoded from the compact certificate, all 962,598 five-sets are recounted, and
+all 903 one-edge objective deltas are rebuilt from scratch. The two C++ programs
+share only the mathematical encoding and standard-library JSON parsing, so
+compiler, edge-ordering, and rotation implementations remain within the trust
+boundary.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash

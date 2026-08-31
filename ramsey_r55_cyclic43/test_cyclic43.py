@@ -483,6 +483,74 @@ class DirectVerifierTests(unittest.TestCase):
             payload["direct_recount_objective_six_incidence_signature_count"], 21
         )
 
+    def test_objective_six_component_and_independent_recount(self) -> None:
+        component = json.loads(
+            (HERE / "objective-six-component-fast.json").read_text()
+        )
+        independent = json.loads(
+            (HERE / "objective-six-component-independent.json").read_text()
+        )
+        representatives = json.loads(
+            (HERE / "objective-six-component-representatives.json").read_text()
+        )["objective_six_rotation_representatives"]
+
+        self.assertEqual(
+            component["objective_six_first_frontier_rotation_orbit_count"],
+            1_144,
+        )
+        self.assertEqual(
+            component["objective_six_component_rotation_orbit_count"], 1_183
+        )
+        self.assertEqual(
+            component["additional_objective_six_rotation_orbit_count"], 39
+        )
+        self.assertEqual(component["objective_six_component_vertex_count"], 50_869)
+        self.assertEqual(
+            component["objective_six_component_induced_edge_count"], 55_126
+        )
+        self.assertTrue(component["complete_sublevel_six_component_is_closed"])
+        self.assertEqual(
+            component["complete_sublevel_six_component_vertex_count"], 68_198
+        )
+        self.assertEqual(
+            component["complete_sublevel_six_component_edge_count"], 237_489
+        )
+        self.assertEqual(
+            component["exact_one_flip_escape_level_from_sublevel_six_component"],
+            7,
+        )
+
+        histogram = component[
+            "aggregate_objective_six_component_neighbor_objective_histogram"
+        ]
+        self.assertEqual(sum(histogram.values()), 50_869 * 903)
+        self.assertEqual(
+            {objective: histogram[objective] for objective in ("2", "3", "4", "5")},
+            {"2": 1_677, "3": 15_480, "4": 36_034, "5": 76_282},
+        )
+        self.assertEqual(histogram["6"], 2 * 55_126)
+        self.assertGreater(histogram["7"], 0)
+        self.assertEqual(17_329 + 50_869, 68_198)
+        self.assertEqual(52_890 + 129_473 + 55_126, 237_489)
+
+        self.assertEqual(len(representatives), 1_183)
+        self.assertEqual(len({tuple(item) for item in representatives}), 1_183)
+        self.assertEqual(
+            independent["independent_direct_recount_representative_count"], 1_183
+        )
+        self.assertEqual(independent["rotation_orbit_count"], 1_183)
+        self.assertEqual(independent["missing_same_layer_neighbor_count"], 0)
+        self.assertEqual(
+            independent["same_layer_directed_edge_count"], 2 * 55_126
+        )
+        self.assertEqual(
+            independent["aggregate_neighbor_objective_histogram"], histogram
+        )
+        self.assertEqual(
+            independent["lower_neighbor_histogram"],
+            {"2": 1_677, "3": 15_480, "4": 36_034, "5": 76_282},
+        )
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

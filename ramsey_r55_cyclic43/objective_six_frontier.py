@@ -29,7 +29,9 @@ def analyze(
     escape_path: Path,
     objective_four_path: Path,
     objective_five_path: Path,
+    scan_frontier: bool = False,
     direct_verify_strata: bool = False,
+    direct_verify: bool = False,
 ) -> dict[str, object]:
     primary = frozenset(load_certificate(certificate))
     cycle = json.loads(cycle_path.read_text())
@@ -206,7 +208,7 @@ def analyze(
                 raise AssertionError((signature, recounted))
             direct_recount_count += 1
 
-    return {
+    result: dict[str, object] = {
         "certificate": certificate.name,
         "cycle_certificate": cycle_path.name,
         "escape_certificate": escape_path.name,
@@ -249,6 +251,161 @@ def analyze(
         ),
     }
 
+    if not scan_frontier:
+        return result
+
+    known_sublevel_five_states = set(known_sublevel_four_states)
+    known_sublevel_five_states.update(objective_five_states)
+    if len(known_sublevel_five_states) != 17_329:
+        raise AssertionError(len(known_sublevel_five_states))
+
+    first_frontier_orbit_count = len(objective_six_orbits)
+    objective_six_component_states = set(frontier_states)
+    objective_six_queue = sorted(objective_six_orbits)
+    queue_index = 0
+    aggregate_neighbor_histogram: Counter[int] = Counter()
+    known_low_directed: Counter[int] = Counter()
+    new_low_directed: Counter[int] = Counter()
+    new_low_orbits: dict[int, set[tuple[Edge, ...]]] = {
+        objective: set() for objective in range(6)
+    }
+    objective_six_same_layer_directed = 0
+    direct_recount_representative_count = 0
+
+    while queue_index < len(objective_six_queue):
+        canonical = objective_six_queue[queue_index]
+        queue_index += 1
+        representative = objective_six_orbits[canonical]
+        engine.move_to(representative)
+        if engine.current_count != 6:
+            raise AssertionError((queue_index, engine.current_count))
+        if direct_verify:
+            recounted, _ = direct_count(engine.colors, engine.edge_ids)
+            if recounted != 6:
+                raise AssertionError((queue_index, recounted))
+            direct_recount_representative_count += 1
+
+        resulting_counts = engine.all_resulting_counts()
+        aggregate_neighbor_histogram.update(
+            {
+                objective: ORDER * count
+                for objective, count in Counter(resulting_counts).items()
+            }
+        )
+        for edge_id, objective in enumerate(resulting_counts):
+            if objective > 6:
+                continue
+            neighbor = toggled_state(representative, engine.edges[edge_id])
+            if objective <= 5:
+                if neighbor in known_sublevel_five_states:
+                    known_low_directed[objective] += ORDER
+                else:
+                    new_low_directed[objective] += ORDER
+                    new_low_orbits[objective].add(canonical_rotation(neighbor))
+                continue
+
+            neighbor_canonical = canonical_rotation(neighbor)
+            if neighbor_canonical not in objective_six_orbits:
+                orbit = rotation_orbit(neighbor)
+                if len(orbit) != ORDER:
+                    raise AssertionError(
+                        "objective-six closure state has rotational stabilizer"
+                    )
+                if objective_six_component_states.intersection(orbit):
+                    raise AssertionError("objective-six rotation orbits overlap")
+                objective_six_orbits[neighbor_canonical] = neighbor
+                objective_six_component_states.update(orbit)
+                objective_six_queue.append(neighbor_canonical)
+            objective_six_same_layer_directed += ORDER
+
+    expected_known_low = Counter(
+        {
+            int(source): count
+            for source, count in result[
+                "objective_six_directed_source_edge_histogram"
+            ].items()
+        }
+    )
+    if known_low_directed != expected_known_low:
+        raise AssertionError((known_low_directed, expected_known_low))
+    if objective_six_same_layer_directed % 2:
+        raise AssertionError(objective_six_same_layer_directed)
+
+    component_closed = not new_low_directed
+    objective_six_induced_edge_count = objective_six_same_layer_directed // 2
+    sublevel_six_vertex_count = 17_329 + len(objective_six_component_states)
+    sublevel_six_edge_count = (
+        52_890 + directed_count + objective_six_induced_edge_count
+    )
+    outside_objectives = sorted(
+        objective
+        for objective, count in aggregate_neighbor_histogram.items()
+        if objective > 6 and count
+    )
+    if component_closed and not outside_objectives:
+        raise AssertionError("closed sublevel-six component has no exit")
+
+    result.update(
+        {
+            "objective_six_component_all_edge_rotation_representative_neighbor_checks": (
+                len(objective_six_orbits) * len(engine.edges)
+            ),
+            "objective_six_component_symmetry_lifted_neighbor_checks": (
+                len(objective_six_component_states) * len(engine.edges)
+            ),
+            "aggregate_objective_six_component_neighbor_objective_histogram": {
+                str(objective): count
+                for objective, count in sorted(aggregate_neighbor_histogram.items())
+            },
+            "known_sublevel_five_directed_neighbor_histogram": {
+                str(objective): count
+                for objective, count in sorted(known_low_directed.items())
+            },
+            "new_objective_at_most_five_directed_neighbor_histogram": {
+                str(objective): count
+                for objective, count in sorted(new_low_directed.items())
+            },
+            "new_objective_at_most_five_rotation_orbit_histogram": {
+                str(objective): len(orbits)
+                for objective, orbits in sorted(new_low_orbits.items())
+            },
+            "additional_objective_six_rotation_orbit_count": (
+                len(objective_six_orbits) - first_frontier_orbit_count
+            ),
+            "objective_six_component_rotation_orbit_count": len(
+                objective_six_orbits
+            ),
+            "objective_six_component_vertex_count": len(
+                objective_six_component_states
+            ),
+            "objective_six_component_induced_edge_count": (
+                objective_six_induced_edge_count
+            ),
+            "direct_recount_objective_six_representative_count": (
+                direct_recount_representative_count
+            ),
+            "complete_sublevel_six_component_is_closed": component_closed,
+            "complete_sublevel_six_component_vertex_count": (
+                sublevel_six_vertex_count if component_closed else None
+            ),
+            "complete_sublevel_six_component_edge_count": (
+                sublevel_six_edge_count if component_closed else None
+            ),
+            "exact_one_flip_escape_level_from_sublevel_six_component": (
+                outside_objectives[0] if component_closed else None
+            ),
+            "scope_note": (
+                "Every objective-six orbit reached from the certified sublevel-five "
+                "component is closed by breadth-first enumeration under all 903 "
+                "edge reversals. New objective-six orbits are enqueued until no "
+                "unscanned orbit remains. A zero new-low histogram certifies the "
+                "complete connected sublevel-six component; it does not address "
+                "disconnected components elsewhere in the coloring space."
+            ),
+        }
+    )
+    return result
+
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -257,16 +414,22 @@ def main() -> None:
     parser.add_argument("--escape", type=Path, required=True)
     parser.add_argument("--objective-four", type=Path, required=True)
     parser.add_argument("--objective-five", type=Path, required=True)
+    parser.add_argument("--scan-frontier", action="store_true")
     parser.add_argument("--direct-verify-strata", action="store_true")
+    parser.add_argument("--direct-verify", action="store_true")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    if args.direct_verify and not args.scan_frontier:
+        parser.error("--direct-verify requires --scan-frontier")
     result = analyze(
         args.certificate,
         args.cycle,
         args.escape,
         args.objective_four,
         args.objective_five,
+        scan_frontier=args.scan_frontier,
         direct_verify_strata=args.direct_verify_strata,
+        direct_verify=args.direct_verify,
     )
     serialized = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
