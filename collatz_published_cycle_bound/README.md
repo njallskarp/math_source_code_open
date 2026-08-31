@@ -52,6 +52,54 @@ ln(x) = 2 * sum_(k>=0) z^(2k+1)/(2k+1),  z=(x-1)/(x+1),
 with an exact geometric tail bound. No floating-point arithmetic or enormous
 integer powers are used.
 
+## Exact stability window and next jump
+
+For the parameterized interval
+
+```text
+log_2(3) < N/K < log_2(3) + 1/(3*A*ln(2)),
+```
+
+the published bound is locally constant over a large exact range of integer
+`A`. The checker isolates each transcendental transition threshold between two
+consecutive integers. The current phase begins at
+
+```text
+A = 4,358,487,209,795,430,953,243
+```
+
+and persists through
+
+```text
+A = 51,012,555,828,807,148,352,152.
+```
+
+Hercher's target `A = 4,370,000,000,000,000,000,000` is only about `0.263%`
+above the phase-entry threshold. On the other hand, the method cannot make its
+next discrete improvement until `A` reaches
+
+```text
+51,012,555,828,807,148,352,153,
+```
+
+about `11.67` times the current target. From there through
+
+```text
+A = 380,764,284,831,658,724,601,024,
+```
+
+the least admissible upper semiconvergent is
+
+```text
+1411629234715/890638885193,
+```
+
+which would force at least `890,638,885,193` odd entries,
+`1,411,629,234,715` shortcut entries, and `2,302,268,119,908` classical
+entries. This is a conditional phase diagram for the existing
+mean-reciprocal/continued-fraction method, not a claim that the stronger
+mean-reciprocal premise has been proved.
+
 ## Run
 
 Tested with Python 3.12.12, using only the standard library.

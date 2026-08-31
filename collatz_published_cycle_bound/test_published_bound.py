@@ -5,6 +5,8 @@ from fractions import Fraction
 
 from verify_published_bound import (
     LOWER,
+    NEXT_LOWER,
+    NEXT_TARGET,
     PREVIOUS_UPPER,
     TARGET,
     certify,
@@ -28,6 +30,11 @@ class PublishedBoundCertificateTests(unittest.TestCase):
             1,
         )
         self.assertEqual(
+            NEXT_TARGET.numerator * NEXT_LOWER.denominator
+            - NEXT_LOWER.numerator * NEXT_TARGET.denominator,
+            1,
+        )
+        self.assertEqual(
             PREVIOUS_UPPER.numerator * TARGET.denominator
             - TARGET.numerator * PREVIOUS_UPPER.denominator,
             1,
@@ -38,6 +45,40 @@ class PublishedBoundCertificateTests(unittest.TestCase):
         self.assertEqual(result["minimum_odd_entries"], 137_528_045_312)
         self.assertEqual(result["minimum_shortcut_entries"], 217_976_794_617)
         self.assertEqual(result["minimum_classical_entries"], 355_504_839_929)
+
+    def test_exact_phase_windows(self) -> None:
+        result = certify()
+        self.assertEqual(
+            result["current_phase_entry_threshold_floor"],
+            4_358_487_209_795_430_953_242,
+        )
+        self.assertEqual(
+            result["current_phase_entry_threshold_ceiling"],
+            4_358_487_209_795_430_953_243,
+        )
+        self.assertEqual(
+            result["next_phase_entry_threshold_floor"],
+            51_012_555_828_807_148_352_152,
+        )
+        self.assertEqual(
+            result["next_phase_entry_threshold_ceiling"],
+            51_012_555_828_807_148_352_153,
+        )
+        self.assertEqual(
+            result["next_phase_exit_threshold_floor"],
+            380_764_284_831_658_724_601_024,
+        )
+        self.assertEqual(
+            result["next_phase_exit_threshold_ceiling"],
+            380_764_284_831_658_724_601_025,
+        )
+        self.assertEqual(result["next_phase_minimum_odd_entries"], 890_638_885_193)
+        self.assertEqual(
+            result["next_phase_minimum_shortcut_entries"], 1_411_629_234_715
+        )
+        self.assertEqual(
+            result["next_phase_minimum_classical_entries"], 2_302_268_119_908
+        )
 
 
 if __name__ == "__main__":
