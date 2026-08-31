@@ -63,3 +63,16 @@ uv run --with ortools==9.14.6206 \
 The strongest next step is a proof-producing SAT encoding of this projection,
 with cyclic symmetry breaking and the six sum cases split into independent
 instances.
+
+`HALF_DIFFERENCE_PARITY.md` proves an additional mod-4 defect-count
+restriction.  `solve_norm32_half_difference_scaled_ortools.py` implements the
+equivalent scaled ternary grid, the exact 43-coordinate support equation,
+full independent cyclic lex-leader constraints, finite ternary product
+tables, and that mod-4 restriction.  A 60-second, eight-worker case-0 run
+remained `UNKNOWN` after 19,490 conflicts and 469,931 branches; bounded solver
+outcomes are not mathematical evidence.
+
+`search_norm32_half_difference_scaled.cpp` is a deterministic
+simulated-annealing companion that preserves all sums, the support count, and
+the mod-4 restriction.  Its near misses are also not evidence; it prints an
+exact witness only after direct verification.
