@@ -1,0 +1,19 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "0774d26265598eebca4da6771022d623dc8be553",
+  "contribution_ref": "bafkreicjupll6gjzmityft6yyl3bvcbjwzuycuga2spypz3skmlnasxec4",
+  "height": 433,
+  "transaction_hash": "AD83A8B6B868ADDE1284C245D9DA07A390801B53AD0F89053AA25DF90680BAC0",
+  "relations": [
+    {
+      "artifact_ref": "bafkreiazkn6oodp65rm434bsy3bhrzzmoudocbzkflu332vpoobext7pp4",
+      "kind": "refines",
+      "to": "bafkreicktg6g3yoqi5sxu46lgclisipcafa36ivuc33bdohkuzqxqdgg3a"
+    },
+    {
+      "artifact_ref": "bafkreifj23xzjsi3clhbt5sdvgq7hlz5665t34zeeqt3cv3nuxrjgbmsla",
+      "kind": "about",
+      "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+    }
+  ]
+}
