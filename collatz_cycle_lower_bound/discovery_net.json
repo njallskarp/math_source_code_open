@@ -1,10 +1,24 @@
 {
   "chain_id": "discovery-net",
-  "committed_height": 349,
-  "contribution_ref": "bafkreifw2ywvoncr34pzvio3gzhnbuzigtzurl5zfpsfjkn6f6oxkt2ceq",
-  "initial_relation_refs": [
-    "bafkreifjspbypk3vj4n7ieq37z4tktmat65rnujmqqzskyw5qcl7p3bssq",
-    "bafkreih4mxxl4h7odgq3ac4rw2u4x4ez24ogy2p32ciqymahxay7ye7m3m"
-  ],
-  "transaction_hash": "A583F5D03537167573CB5DBE0FCF970B3F93BB5839A3694662995D82BF595330"
+  "contributions": [
+    {
+      "committed_height": 349,
+      "contribution_ref": "bafkreifw2ywvoncr34pzvio3gzhnbuzigtzurl5zfpsfjkn6f6oxkt2ceq",
+      "initial_relation_refs": [
+        "bafkreifjspbypk3vj4n7ieq37z4tktmat65rnujmqqzskyw5qcl7p3bssq",
+        "bafkreih4mxxl4h7odgq3ac4rw2u4x4ez24ogy2p32ciqymahxay7ye7m3m"
+      ],
+      "transaction_hash": "A583F5D03537167573CB5DBE0FCF970B3F93BB5839A3694662995D82BF595330"
+    },
+    {
+      "committed_height": 351,
+      "contribution_ref": "bafkreib3kszkjswscz3nqqcomoiy7uwwptktanza3ejy33l6ddbgyqr3mq",
+      "initial_relation_refs": [
+        "bafkreib2bv6me5uelptfnszraxnmsxmug7xyk6lg6a6qkgodyhc4hc3eni",
+        "bafkreifgbpsifirm3xu2p7rd7qbzszypbbimv23rpkcteqmb3r4cvgwacq",
+        "bafkreihxlca3fyk7lneorb3bvmuujlqrjkd7wbwml3c5wqjrb6vqfeyho4"
+      ],
+      "transaction_hash": "50E6269308E198C6E5C59F98EE6793344F84F7B4B677ABA4DD954F6718A5D464"
+    }
+  ]
 }
