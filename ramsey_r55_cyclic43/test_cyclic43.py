@@ -612,6 +612,134 @@ class DirectVerifierTests(unittest.TestCase):
             expected_incidence,
         )
 
+    def test_objective_seven_component_and_independent_recount(self) -> None:
+        component = json.loads(
+            (HERE / "objective-seven-component-fast.json").read_text()
+        )
+        independent = json.loads(
+            (HERE / "objective-seven-component-independent.json").read_text()
+        )
+        representatives = component[
+            "objective_seven_component_rotation_representatives"
+        ]
+        histogram = component[
+            "new_state_neighbor_objective_histogram_by_source_objective"
+        ]["7"]
+
+        self.assertEqual(
+            component["objective_seven_first_frontier_rotation_orbit_count"],
+            4_217,
+        )
+        self.assertEqual(
+            component["complete_objective_seven_rotation_orbit_count"], 4_217
+        )
+        self.assertEqual(
+            component["additional_objective_seven_rotation_orbit_count"], 0
+        )
+        self.assertEqual(
+            component["new_objective_at_most_six_rotation_orbit_count"], 0
+        )
+        self.assertEqual(component["complete_objective_seven_vertex_count"], 181_331)
+        self.assertEqual(
+            component["new_threshold_seven_internal_edge_count"], 219_988
+        )
+        self.assertTrue(component["complete_sublevel_seven_component_is_closed"])
+        self.assertEqual(
+            component["complete_sublevel_seven_component_vertex_count"], 249_529
+        )
+        self.assertEqual(
+            component["complete_sublevel_seven_component_edge_count"], 982_679
+        )
+        self.assertEqual(
+            component["exact_one_flip_escape_level_from_sublevel_seven_component"],
+            8,
+        )
+        self.assertEqual(68_198 + 181_331, 249_529)
+        self.assertEqual(237_489 + 525_202 + 219_988, 982_679)
+        self.assertEqual(sum(histogram.values()), 181_331 * 903)
+        self.assertEqual(histogram["7"], 2 * 219_988)
+        self.assertEqual(
+            sum(histogram[str(objective)] for objective in range(2, 7)),
+            525_202,
+        )
+        self.assertEqual(len(representatives), 4_217)
+        self.assertEqual(len({tuple(item) for item in representatives}), 4_217)
+
+        self.assertEqual(
+            independent["independent_direct_recount_representative_count"], 4_217
+        )
+        self.assertTrue(independent["objective_seven_component_is_closed"])
+        self.assertEqual(
+            independent["missing_objective_at_most_seven_neighbor_count"], 0
+        )
+        self.assertEqual(independent["objective_seven_induced_edge_count"], 219_988)
+        self.assertEqual(independent["exact_one_flip_escape_level"], 8)
+        self.assertEqual(
+            independent["aggregate_neighbor_objective_histogram"], histogram
+        )
+
+    def test_objective_eight_first_frontier_and_independent_recount(self) -> None:
+        frontier = json.loads(
+            (HERE / "objective-eight-frontier-fast.json").read_text()
+        )
+        independent = json.loads(
+            (HERE / "objective-eight-frontier-independent.json").read_text()
+        )
+        representatives = frontier["objective_eight_rotation_representatives"]
+        signatures = frontier[
+            "objective_eight_incidence_signatures_2_through_7"
+        ]
+        expected_incidence = {
+            "2": 2_537,
+            "3": 16_813,
+            "4": 62_393,
+            "5": 285_649,
+            "6": 541_456,
+            "7": 1_020_906,
+        }
+
+        self.assertEqual(
+            frontier["objective_eight_first_frontier_rotation_orbit_count"],
+            13_702,
+        )
+        self.assertEqual(
+            frontier["objective_eight_first_frontier_vertex_count"], 589_186
+        )
+        self.assertEqual(frontier["incidence_signature_count"], 64)
+        self.assertEqual(
+            frontier["directed_incidence_by_source_objective"], expected_incidence
+        )
+        self.assertEqual(
+            frontier["total_directed_sublevel_seven_incidence"], 1_929_754
+        )
+        self.assertEqual(sum(expected_incidence.values()), 1_929_754)
+        self.assertEqual(len(representatives), 13_702)
+        self.assertEqual(len({tuple(item) for item in representatives}), 13_702)
+        self.assertEqual(len(signatures), 13_702)
+        self.assertTrue(all(len(signature) == 6 for signature in signatures))
+        self.assertEqual(
+            [
+                43 * sum(signature[index] for signature in signatures)
+                for index in range(6)
+            ],
+            [expected_incidence[str(objective)] for objective in range(2, 8)],
+        )
+
+        self.assertEqual(
+            independent["independent_direct_recount_representative_count"],
+            13_702,
+        )
+        self.assertTrue(independent["all_representatives_have_objective_eight"])
+        self.assertTrue(
+            independent["all_representatives_are_canonical_and_free"]
+        )
+        self.assertEqual(independent["missing_lower_neighbor_count"], 0)
+        self.assertEqual(independent["incidence_signature_mismatch_count"], 0)
+        self.assertEqual(
+            independent["directed_incidence_by_source_objective"],
+            expected_incidence,
+        )
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

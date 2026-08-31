@@ -283,6 +283,72 @@ seven, rebuilt every single-flip delta, checked every lower-objective neighbor
 against the certified component, and reproduced every target's five-coordinate
 incidence signature with zero discrepancies.
 
+Close the full threshold-seven component and simultaneously extract its first
+objective-eight frontier:
+
+```bash
+./objective_six_component certificate.json defect-cycle.json \
+  --objective-seven-component objective-seven-component-fast.json \
+  --objective-eight-frontier objective-eight-frontier-fast.json \
+  > /tmp/objective-six-regression.json
+```
+
+The first objective-seven frontier is already closed: it contains all 4,217
+objective-seven rotation orbits, with no additional objective-seven orbit and
+no newly connected orbit of objective at most six. The seventh layer has
+219,988 induced edges. Therefore the complete connected sublevel-seven
+component through the primary optimum has
+
+```text
+249,529 vertices and 982,679 edges,
+```
+
+and exact one-flip escape level eight. The exact closure examined 3,807,951
+representative reversals, representing 163,741,893 full-state checks.
+
+Verify all seventh-layer moves by a fresh direct recount:
+
+```bash
+OMP_NUM_THREADS=10 ./verify_objective_six_component \
+  certificate.json objective-six-component-representatives.json \
+  --objective-seven-component objective-seven-component-fast.json \
+  objective-seven-frontier-fast.json \
+  > objective-seven-component-independent.json
+```
+
+The independent checker found no missing objective-at-most-seven neighbor and
+reproduced the full boundary histogram, including 439,976 directed same-layer
+incidences and 1,020,906 exits to objective eight.
+
+The complete first objective-eight frontier has 13,702 free rotation orbits,
+or 589,186 colorings. Its 1,929,754 directed incidences with the sublevel-seven
+component split by source objective as
+
+```text
+2:     2,537
+3:    16,813
+4:    62,393
+5:   285,649
+6:   541,456
+7: 1,020,906
+```
+
+Exactly 64 incidence signatures `(d_2,...,d_7)` occur. Independently verify all
+13,702 targets and signatures with:
+
+```bash
+OMP_NUM_THREADS=10 ./verify_objective_six_component \
+  certificate.json objective-six-component-representatives.json \
+  --objective-eight-frontier objective-eight-frontier-fast.json \
+  objective-seven-component-fast.json objective-seven-frontier-fast.json \
+  > objective-eight-frontier-independent.json
+```
+
+The ten-thread direct verifier took 12.77 seconds and found zero wrong
+objectives, noncanonical representatives, missing sublevel-seven neighbors, or
+signature discrepancies. The objective-eight result is a first-frontier
+classification only; it does not claim closure at threshold eight.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash
