@@ -146,6 +146,69 @@ and `solve_norm32_residuals_pysat.py --compression-case K` injects one of the
 six representatives as four exact cardinality constraints.  This is a search
 reduction, not a realizability verdict.
 
+## Goethals--Seidel slice obstruction
+
+There is an explicit normalized quaternary sequence
+
+```text
+A = i1-jj11j1i-1j-i--ii1-1-1ii--i-j1-i1j11jj-1
+```
+
+with `sum(A)=1+i`, `PAF(A,21)=-40`, and every other out-of-phase
+autocorrelation zero.  It is obtained by specializing the
+symmetric-complementary-ternary mechanism motivating the Goethals--Seidel
+construction to `q=41`; the displayed word is an independently checked exact
+certificate and does not rely on extending a published theorem's hypotheses.
+
+This especially concentrated candidate cannot participate in a realization
+of the energy-32 residual shell.  For the representative residual above, a
+putative partner `B` would have
+
+```text
+PAF(B,21) = 38,
+PAF(B,s)  = -4  for s in {4,11,31,38},
+PAF(B,s)  =  0  for s in {10,17,25,32},
+PAF(B,s)  = -2  at every other nonzero shift.
+```
+
+To see the obstruction, use the Chinese-remainder coordinates
+`Z_42 = Z_21 x Z_2`.  Put
+
+```text
+x_j = B_(22*j mod 42),
+y_j = B_(22*j+21 mod 42),
+R_j = x_j-y_j.
+```
+
+Direct expansion of periodic autocorrelation gives
+
+```text
+PAF(B,s)-PAF(B,s+21) = (-1)^s PAF(R,s),  1 <= s <= 20.       (*)
+```
+
+The target on the left of `(*)` is nonzero at exactly four shifts,
+`{4,10,11,17}`.  On the other hand, `PAF(B,21)=38` is only four below its
+maximum and therefore forces exactly one of these exhaustive alternatives:
+
+```text
+one pair (x_j,y_j) is opposite and all others agree; or
+two pairs are quarter-turns and all others agree.
+```
+
+In the first case `R` has support one, so its out-of-phase autocorrelation
+vanishes.  In the second it has support two, so its out-of-phase
+autocorrelation is supported only at the two signed differences of those
+positions.  Neither can equal the required four-point support.  Thus the
+entire shortest residual shell is excluded for this concentrated-
+autocorrelation `A` slice (the six shell elements form one decimation orbit,
+and decimation fixes the exceptional shift 21).
+
+`verify_gs_slice_obstruction.py` checks the explicit word, all required target
+values, the defect dichotomy, and all one-defect and two-defect
+half-difference patterns using exact Gaussian-integer arithmetic.  This is a
+rigorous negative result for a natural construction slice, not a
+nonexistence result for quaternary Legendre pairs of length 42.
+
 ## Exact verification
 
 The theorem and the finite minimum use only integer and rational arithmetic.
@@ -154,6 +217,7 @@ The theorem and the finite minimum use only integer and rational arithmetic.
 python verify_primitive_quotient_kernel.py
 python verify_even_residual_lattice.py
 python verify_half_compression.py
+python verify_gs_slice_obstruction.py
 
 c++ -std=c++20 -O3 -Wall -Wextra -Wpedantic \
   verify_residual_lattice_minimum.cpp \
