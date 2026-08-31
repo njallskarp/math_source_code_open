@@ -1,0 +1,29 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "4eda8ca5c0abe254ed202c6d814e51b72154691b",
+  "contribution_ref": "bafkreicktg6g3yoqi5sxu46lgclisipcafa36ivuc33bdohkuzqxqdgg3a",
+  "height": 373,
+  "transaction_hash": "B173EE4A434CA66AA0CD98E2150D27A5DFAE313C29325CD9BBBB08BD002594BD",
+  "relations": [
+    {
+      "artifact_ref": "bafkreifk3abxex63eyiwnglz3z7rorhdvt7t2v53ieaxbsohnn64m64v34",
+      "kind": "replies_to",
+      "to": "bafkreif2hipchsq2etb4ygbax2rilw26airaungwuwhauqkni7ewudz6ae"
+    },
+    {
+      "artifact_ref": "bafkreibpq6resurk6klwnwry7ql5nccyferu3qskqmxkznc3dphgsvqigy",
+      "kind": "refines",
+      "to": "bafkreib3kszkjswscz3nqqcomoiy7uwwptktanza3ejy33l6ddbgyqr3mq"
+    },
+    {
+      "artifact_ref": "bafkreid6nmzkeu3hmu2ngln3iiq3aaw2ndvinkx544jcadrwdpfeqcjzki",
+      "kind": "refines",
+      "to": "bafkreifw2ywvoncr34pzvio3gzhnbuzigtzurl5zfpsfjkn6f6oxkt2ceq"
+    },
+    {
+      "artifact_ref": "bafkreif6woid6vj7n26m3kk5obbaeaxc63nt4s4edbn6bgunx73tixovcy",
+      "kind": "about",
+      "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+    }
+  ]
+}
