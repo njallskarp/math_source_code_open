@@ -75,6 +75,32 @@ class DirectVerifierTests(unittest.TestCase):
                 payload["distinct_nonroot_states_by_depth"][1:],
             )
 
+    def test_plateau_bridge_recounts_and_reaches_primary(self) -> None:
+        payload = json.loads((HERE / "plateau-bridge.json").read_text())
+        source = load_certificate(HERE / payload["certificate"])
+        target = load_certificate(HERE / payload["target_certificate"])
+        expected_difference = source ^ target
+        self.assertEqual(len(expected_difference), 15)
+        self.assertEqual(
+            {tuple(item) for item in payload["source_target_differing_edges"]},
+            expected_difference,
+        )
+
+        edge_ids, _ = complete_graph_edges()
+        colors, _ = initial_colors(source)
+        changed = set()
+        for expected_radius, step in enumerate(payload["steps"], start=1):
+            changed_edge = tuple(step["new_reversed_edge"])
+            changed.add(changed_edge)
+            colors[edge_ids[changed_edge]] = not colors[edge_ids[changed_edge]]
+            count, witnesses = direct_count(colors, edge_ids)
+            self.assertEqual(step["radius"], expected_radius)
+            self.assertEqual(count, 2)
+            self.assertEqual([list(item) for item in witnesses], step["monochromatic_k5"])
+
+        self.assertEqual(changed, expected_difference)
+        self.assertTrue(payload["path_endpoint_matches_target"])
+
 
 if __name__ == "__main__":
     unittest.main()

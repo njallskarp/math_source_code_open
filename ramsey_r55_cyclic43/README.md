@@ -58,6 +58,20 @@ g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
 The persisted runs used Homebrew GCC 16.2.0 on macOS 26.2 arm64. The primary
 and Fu-Malik passes took 197.71 and 200.04 seconds of wall time, respectively.
 
+Find and verify a constant-two path between the two optima:
+
+```bash
+python plateau_path.py certificate-fm.json --radius 15 \
+  --target certificate.json --output plateau-bridge.json
+```
+
+The certificates have Hamming distance 15. The path uses every differing edge
+exactly once, so it is geodesic, and every intermediate coloring has exactly
+two monochromatic `K5`s. All 15 edges have cyclic length one. Thus the optima
+belong to the same single-edge-connected component of the optimum-2 plateau.
+The unit test independently recounts every intermediate coloring and checks the
+endpoint against the primary certificate.
+
 At any partial perturbation with at least two monochromatic `K5`s, a final
 coloring with at most one must change an edge in at least one of any two chosen
 current witnesses. The checker branches on precisely that union of at most 20
