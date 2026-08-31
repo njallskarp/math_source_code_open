@@ -102,25 +102,37 @@ mean-reciprocal premise has been proved.
 
 ## Run
 
-Tested with Python 3.12.12, using only the standard library.
+Tested with Python 3.12.12, using only the standard library, and Lean 4.33.1.
 
 ```bash
 python3 verify_published_bound.py
 python3 -m unittest -v test_published_bound.py
+lean lean/CollatzFareyBounds.lean
 ```
+
+The Lean toolchain is pinned in `lean-toolchain`. The Lean file uses no Mathlib,
+no `sorry`, no `admit`, no custom axioms, and no `native_decide`. Its six main
+theorems formalize the exact denominator, shortcut-length, and classical-length
+consequences for the current and next rational phases. `#print axioms` reports
+only Lean's standard `propext` and `Quot.sound`, introduced through the
+kernel-bundled `omega` tactic.
 
 ## Status and trust boundary
 
 The continued-fraction and rounding bridge is independently exact. The numbers
-are a reconstruction of an already published bound, not a novelty claim.
+are a reconstruction of an already published bound, not a novelty claim. Lean
+checks the discrete rational-interval-to-length bridge and the closed
+determinant/witness arithmetic.
 
-This small checker does **not** independently rerun Hercher's five-week search
+Neither checker independently reruns Hercher's five-week search
 or Barina's exhaustive convergence verification. It conditions on the interval
 target implemented by Hercher's official program and on the cited published
 computations. Hercher's search program uses ordinary floating-point values, so
 that upstream numerical implementation remains inside the trust boundary. The
 2026 corrigendum repairs the proof of Theorem 21; the interval used here comes
-from Theorem 16 and the Corollary 29 search target.
+from Theorem 16 and the Corollary 29 search target. Lean also does not formalize
+the atanh-series derivation of the logarithmic endpoint inequalities; the exact
+Python checker remains the bridge for those analytic comparisons.
 
 Primary sources retrieved 2026-08-31:
 
