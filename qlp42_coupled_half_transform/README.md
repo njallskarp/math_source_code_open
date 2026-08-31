@@ -88,6 +88,36 @@ every independent shift, derives both norm-32 targets, and checks all six sum
 cases.  No floating-point arithmetic, SAT result, or heuristic output enters
 the theorem.
 
+## Solver-ready exact model
+
+`solve_coupled_transform_ortools.py` turns the bijection into a finite-domain
+CP-SAT model.  Each of the 42 paired coordinates has one state variable in
+`0..15`; the generated state table has columns
+
+```text
+(state, Re(S), Im(S), Re(H), Im(H), x_phase, y_phase).
+```
+
+For each cyclic pair, one generated 256-row allowed-assignment table channels
+the two endpoint states to both Gaussian products
+`S_j*conj(S_(j+s))` and `H_j*conj(H_(j+s))`.  The model imposes all independent
+shifts of both targets in (2), all four Gaussian sum constraints, S-energy 43,
+the mod-4 unit-support restriction, and independent cyclic lex leaders.  Any
+reported solution is decoded back to two length-42 fourth-root words and then
+checked with exact Gaussian arithmetic against the original norm-32 shell.
+
+Run all six canonical cases with a reproducible dependency version:
+
+```bash
+uv run --with ortools==9.14.6206 \
+  python solve_coupled_transform_ortools.py --seconds 300 --workers 8
+```
+
+A 2026-08-31 smoke run under Python 3.12.12 and uv 0.11.13 used 20 seconds per
+case and returned `UNKNOWN` for all six cases.  This is only a model-execution
+check: a time-limited `UNKNOWN` result is neither a feasibility witness nor an
+infeasibility certificate.
+
 ## Scope and source context
 
 This reformulation does not decide whether the norm-32 shell is realizable
