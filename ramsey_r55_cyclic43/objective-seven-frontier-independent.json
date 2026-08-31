@@ -1,0 +1,16 @@
+{
+  "independent_direct_recount_representative_count": 4217,
+  "all_representatives_have_objective_seven": true,
+  "all_representatives_are_canonical_and_free": true,
+  "missing_lower_neighbor_count": 0,
+  "incidence_signature_mismatch_count": 0,
+  "directed_incidence_by_source_objective": {
+    "2": 2193,
+    "3": 14018,
+    "4": 72111,
+    "5": 142072,
+    "6": 294808
+  },
+  "method": "parallel independent direct five-set recount and fresh lower-neighbor membership check",
+  "openmp_max_threads": 10
+}

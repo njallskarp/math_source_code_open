@@ -86,22 +86,35 @@ std::set<std::pair<int, int>> load_flips(const std::string& path) {
     return flips;
 }
 
-std::vector<State> load_representatives(const std::string& path) {
-    const std::string array = keyed_array(
-        read_text(path), "objective_six_rotation_representatives"
-    );
+std::vector<std::vector<int>> load_integer_arrays(
+    const std::string& path, const std::string& key
+) {
+    const std::string array = keyed_array(read_text(path), key);
     const std::regex list_pattern(R"(\[([^\[\]]*)\])");
     const std::regex integer_pattern(R"(([0-9]+))");
-    std::vector<State> result;
+    std::vector<std::vector<int>> result;
     for (std::sregex_iterator it(array.begin(), array.end(), list_pattern), last;
          it != last; ++it) {
-        State state;
+        std::vector<int> values;
         const std::string inner = (*it)[1];
         for (std::sregex_iterator jt(
                  inner.begin(), inner.end(), integer_pattern
              ), integer_last;
              jt != integer_last; ++jt) {
-            const int id = std::stoi((*jt)[1]);
+            values.push_back(std::stoi((*jt)[1]));
+        }
+        result.push_back(std::move(values));
+    }
+    return result;
+}
+
+std::vector<State> load_representatives(
+    const std::string& path, const std::string& key
+) {
+    std::vector<State> result;
+    for (const std::vector<int>& values : load_integer_arrays(path, key)) {
+        State state;
+        for (int id : values) {
             if (id < 0 || id >= edge_count)
                 throw std::runtime_error("invalid representative edge id");
             state.toggle(id);
@@ -344,18 +357,213 @@ struct Verifier {
         output << "  \"openmp_max_threads\": " << omp_get_max_threads() << "\n";
         output << "}\n";
     }
+
+    struct FrontierSummary {
+        std::array<std::uint64_t, 7> incidence_by_source{};
+        std::uint64_t verified_representatives = 0;
+        std::uint64_t noncanonical_representatives = 0;
+        std::uint64_t nonfree_representatives = 0;
+        std::uint64_t objective_mismatches = 0;
+        std::uint64_t missing_lower_neighbors = 0;
+        std::uint64_t signature_mismatches = 0;
+    };
+
+    FrontierSummary verify_frontier_one(
+        const State& state,
+        const std::array<std::unordered_set<State, StateHash>, 7>& lower_sets,
+        const std::vector<int>& expected_signature
+    ) const {
+        FrontierSummary result;
+        result.verified_representatives = 1;
+        if (!(canonical(state) == state)) ++result.noncanonical_representatives;
+        if (rotate(state, 1) == state) ++result.nonfree_representatives;
+
+        std::array<bool, edge_count> red{};
+        for (int id = 0; id < edge_count; ++id)
+            red[id] = seed_red[id] != state.contains(id);
+        std::array<int, edge_count> delta{};
+        int monochromatic = 0;
+        for (const FiveSet& five : five_sets) {
+            int count = 0;
+            for (int id : five.edges) count += red[id];
+            if (count == 0 || count == 10) {
+                ++monochromatic;
+                for (int id : five.edges) --delta[id];
+            } else if (count == 1) {
+                for (int id : five.edges) {
+                    if (red[id]) {
+                        ++delta[id];
+                        break;
+                    }
+                }
+            } else if (count == 9) {
+                for (int id : five.edges) {
+                    if (!red[id]) {
+                        ++delta[id];
+                        break;
+                    }
+                }
+            }
+        }
+        if (monochromatic != 7) {
+            ++result.objective_mismatches;
+            return result;
+        }
+
+        std::array<std::uint64_t, 7> local_incidence{};
+        for (int id = 0; id < edge_count; ++id) {
+            const int objective = monochromatic + delta[id];
+            if (objective > 6) continue;
+            State neighbor = state;
+            neighbor.toggle(id);
+            const State key = canonical(neighbor);
+            if (objective < 2 || !lower_sets[objective].contains(key)) {
+                ++result.missing_lower_neighbors;
+                continue;
+            }
+            ++local_incidence[objective];
+        }
+        for (int objective = 2; objective <= 6; ++objective) {
+            result.incidence_by_source[objective] = local_incidence[objective];
+            if (expected_signature.size() != 5 ||
+                static_cast<std::uint64_t>(expected_signature[objective - 2]) !=
+                    local_incidence[objective])
+                ++result.signature_mismatches;
+        }
+        return result;
+    }
+
+    void write_frontier_json(
+        const std::string& frontier_path, std::ostream& output
+    ) const {
+        std::array<std::unordered_set<State, StateHash>, 7> lower_sets;
+        for (int objective = 2; objective <= 6; ++objective) {
+            const auto states = load_representatives(
+                frontier_path,
+                "objective_" + std::to_string(objective) +
+                    "_rotation_representatives"
+            );
+            for (const State& state : states) {
+                if (!(canonical(state) == state))
+                    throw std::runtime_error(
+                        "noncanonical lower-layer representative"
+                    );
+                lower_sets[objective].insert(state);
+            }
+        }
+        if (lower_sets[2].size() != 2 || lower_sets[3].size() != 17 ||
+            lower_sets[4].size() != 78 || lower_sets[5].size() != 306 ||
+            lower_sets[6].size() != 1183)
+            throw std::runtime_error("lower-layer representative count mismatch");
+
+        const std::vector<State> targets = load_representatives(
+            frontier_path, "objective_seven_rotation_representatives"
+        );
+        const std::vector<std::vector<int>> signatures = load_integer_arrays(
+            frontier_path,
+            "objective_seven_incidence_signatures_2_through_6"
+        );
+        if (targets.empty() || targets.size() != signatures.size())
+            throw std::runtime_error("frontier/signature count mismatch");
+        std::unordered_set<State, StateHash> target_set;
+        for (const State& target : targets)
+            if (!target_set.insert(target).second)
+                throw std::runtime_error("duplicate objective-seven representative");
+
+        const int thread_count = omp_get_max_threads();
+        std::vector<FrontierSummary> thread_summaries(thread_count);
+        std::string error;
+#pragma omp parallel for schedule(dynamic, 1)
+        for (std::size_t index = 0; index < targets.size(); ++index) {
+            try {
+                const FrontierSummary local = verify_frontier_one(
+                    targets[index], lower_sets, signatures[index]
+                );
+                FrontierSummary& destination =
+                    thread_summaries[omp_get_thread_num()];
+                for (int objective = 2; objective <= 6; ++objective)
+                    destination.incidence_by_source[objective] +=
+                        local.incidence_by_source[objective];
+                destination.verified_representatives +=
+                    local.verified_representatives;
+                destination.noncanonical_representatives +=
+                    local.noncanonical_representatives;
+                destination.nonfree_representatives +=
+                    local.nonfree_representatives;
+                destination.objective_mismatches += local.objective_mismatches;
+                destination.missing_lower_neighbors +=
+                    local.missing_lower_neighbors;
+                destination.signature_mismatches += local.signature_mismatches;
+            } catch (const std::exception& exception) {
+#pragma omp critical
+                {
+                    if (error.empty()) error = exception.what();
+                }
+            }
+        }
+        if (!error.empty()) throw std::runtime_error(error);
+
+        FrontierSummary total;
+        for (const FrontierSummary& source : thread_summaries) {
+            for (int objective = 2; objective <= 6; ++objective)
+                total.incidence_by_source[objective] +=
+                    source.incidence_by_source[objective];
+            total.verified_representatives += source.verified_representatives;
+            total.noncanonical_representatives +=
+                source.noncanonical_representatives;
+            total.nonfree_representatives += source.nonfree_representatives;
+            total.objective_mismatches += source.objective_mismatches;
+            total.missing_lower_neighbors += source.missing_lower_neighbors;
+            total.signature_mismatches += source.signature_mismatches;
+        }
+        if (total.verified_representatives != targets.size() ||
+            total.noncanonical_representatives ||
+            total.nonfree_representatives || total.objective_mismatches ||
+            total.missing_lower_neighbors || total.signature_mismatches)
+            throw std::runtime_error("objective-seven frontier verification failed");
+
+        output << "{\n";
+        output << "  \"independent_direct_recount_representative_count\": "
+               << total.verified_representatives << ",\n";
+        output << "  \"all_representatives_have_objective_seven\": true,\n";
+        output << "  \"all_representatives_are_canonical_and_free\": true,\n";
+        output << "  \"missing_lower_neighbor_count\": 0,\n";
+        output << "  \"incidence_signature_mismatch_count\": 0,\n";
+        output << "  \"directed_incidence_by_source_objective\": {";
+        for (int objective = 2; objective <= 6; ++objective) {
+            if (objective != 2) output << ',';
+            output << "\n    \"" << objective << "\": "
+                   << order * total.incidence_by_source[objective];
+        }
+        output << "\n  },\n";
+        output << "  \"method\": \"parallel independent direct five-set recount and fresh lower-neighbor membership check\",\n";
+        output << "  \"openmp_max_threads\": " << omp_get_max_threads()
+               << "\n}\n";
+    }
 };
 
 }  // namespace
 
 int main(int argc, char** argv) try {
-    if (argc != 3) {
+    if (argc != 3 && argc != 5) {
         std::cerr << "usage: verify_objective_six_component CERTIFICATE.json "
-                     "objective-six-component-representatives.json\n";
+                     "objective-six-component-representatives.json "
+                     "[--objective-seven-frontier FRONTIER.json]\n";
         return 2;
     }
-    Verifier verifier(load_flips(argv[1]), load_representatives(argv[2]));
-    verifier.write_json(std::cout);
+    Verifier verifier(
+        load_flips(argv[1]),
+        load_representatives(
+            argv[2], "objective_six_rotation_representatives"
+        )
+    );
+    if (argc == 3) {
+        verifier.write_json(std::cout);
+    } else {
+        if (std::string(argv[3]) != "--objective-seven-frontier")
+            throw std::runtime_error("expected --objective-seven-frontier");
+        verifier.write_frontier_json(argv[4], std::cout);
+    }
     return 0;
 } catch (const std::exception& error) {
     std::cerr << "error: " << error.what() << '\n';

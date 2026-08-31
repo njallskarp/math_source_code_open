@@ -5,13 +5,16 @@
 #include <cstdint>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <map>
+#include <numeric>
 #include <regex>
 #include <set>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -124,6 +127,8 @@ struct Search {
 
     std::array<std::unordered_set<State, StateHash>, 7> orbit_states;
     std::unordered_set<State, StateHash> first_objective_six_frontier;
+    std::unordered_map<State, std::array<std::uint16_t, 7>, StateHash>
+        first_objective_seven_incidence;
     std::array<std::map<int, std::uint64_t>, 7> aggregate_histogram;
     std::array<std::map<int, std::uint64_t>, 7> directed_to_higher;
     std::array<std::uint64_t, 7> same_layer_directed{};
@@ -287,6 +292,18 @@ struct Search {
         lower_neighbor_orbits[level][objective].insert(canonical(neighbor));
     }
 
+    void record_objective_seven_neighbor(int source_level, int id) {
+        State neighbor = state;
+        neighbor.toggle(id);
+        const State key = canonical(neighbor);
+        require_free_orbit(neighbor);
+        auto& incidence = first_objective_seven_incidence[key];
+        if (incidence[source_level] ==
+            std::numeric_limits<std::uint16_t>::max())
+            throw std::runtime_error("objective-seven incidence overflow");
+        ++incidence[source_level];
+    }
+
     void ensure_level(int target, int source_level, int id) {
         State neighbor = state;
         neighbor.toggle(id);
@@ -316,6 +333,7 @@ struct Search {
 
         for (int id = 0; id < edge_count; ++id) {
             const int objective = resulting_count(id);
+            if (objective == 7) record_objective_seven_neighbor(level, id);
             if (objective < level) {
                 record_lower_neighbor(level, objective, id);
             } else if (objective == level) {
@@ -335,6 +353,7 @@ struct Search {
         orbit_states[level].insert(key);
         for (int id = 0; id < edge_count; ++id) {
             const int objective = resulting_count(id);
+            if (objective == 7) record_objective_seven_neighbor(level, id);
             if (objective >= 4 && objective <= 6)
                 ensure_level(objective, level, id);
         }
@@ -463,6 +482,116 @@ struct Search {
         output << "\n  ]\n}\n";
     }
 
+    static void write_state(std::ostream& output, const State& state) {
+        output << '[';
+        bool separator = false;
+        for (int id = 0; id < edge_count; ++id) {
+            if (!state.contains(id)) continue;
+            if (separator) output << ',';
+            output << id;
+            separator = true;
+        }
+        output << ']';
+    }
+
+    void write_objective_seven_frontier(const std::string& path) const {
+        std::vector<State> frontier;
+        frontier.reserve(first_objective_seven_incidence.size());
+        for (const auto& [state, incidence] : first_objective_seven_incidence) {
+            (void)incidence;
+            frontier.push_back(state);
+        }
+        std::sort(frontier.begin(), frontier.end());
+
+        std::array<std::uint64_t, 7> directed_by_source{};
+        std::map<std::array<std::uint16_t, 7>, std::uint64_t> signatures;
+        for (const State& target : frontier) {
+            const auto& incidence = first_objective_seven_incidence.at(target);
+            ++signatures[incidence];
+            for (int source = 2; source <= 6; ++source)
+                directed_by_source[source] += orbit_size * incidence[source];
+        }
+        if (directed_by_source[6] != 294808)
+            throw std::runtime_error(
+                "objective-seven incidence from objective six mismatch"
+            );
+
+        std::ofstream output(path);
+        if (!output) throw std::runtime_error("cannot write " + path);
+        output << "{\n  \"order\": 43,\n  \"edge_count\": 903,\n";
+        output << "  \"source_sublevel_six_component_vertex_count\": 68198,\n";
+        output << "  \"objective_seven_first_frontier_rotation_orbit_count\": "
+               << frontier.size() << ",\n";
+        output << "  \"objective_seven_first_frontier_vertex_count\": "
+               << orbit_size * frontier.size() << ",\n";
+        output << "  \"directed_incidence_by_source_objective\": {";
+        for (int source = 2; source <= 6; ++source) {
+            if (source != 2) output << ',';
+            output << "\n    \"" << source << "\": "
+                   << directed_by_source[source];
+        }
+        output << "\n  },\n";
+        output << "  \"total_directed_sublevel_six_incidence\": "
+               << std::accumulate(
+                      directed_by_source.begin(), directed_by_source.end(),
+                      std::uint64_t{0}
+                  )
+               << ",\n";
+        output << "  \"incidence_signature_count\": " << signatures.size()
+               << ",\n";
+        output << "  \"incidence_signature_histogram\": [\n";
+        bool signature_separator = false;
+        for (const auto& [signature, count] : signatures) {
+            if (signature_separator) output << ",\n";
+            output << "    {\"signature_2_through_6\":[";
+            for (int source = 2; source <= 6; ++source) {
+                if (source != 2) output << ',';
+                output << signature[source];
+            }
+            output << "],\"orbit_count\":" << count << '}';
+            signature_separator = true;
+        }
+        output << "\n  ],\n";
+
+        for (int objective = 2; objective <= 6; ++objective) {
+            std::vector<State> lower(
+                orbit_states[objective].begin(), orbit_states[objective].end()
+            );
+            std::sort(lower.begin(), lower.end());
+            output << "  \"objective_" << objective
+                   << "_rotation_representatives\": [\n";
+            for (std::size_t index = 0; index < lower.size(); ++index) {
+                if (index) output << ",\n";
+                output << "    ";
+                write_state(output, lower[index]);
+            }
+            output << "\n  ],\n";
+        }
+
+        output << "  \"objective_seven_rotation_representatives\": [\n";
+        for (std::size_t index = 0; index < frontier.size(); ++index) {
+            if (index) output << ",\n";
+            output << "    ";
+            write_state(output, frontier[index]);
+        }
+        output << "\n  ],\n";
+        output << "  \"objective_seven_incidence_signatures_2_through_6\": [\n";
+        for (std::size_t index = 0; index < frontier.size(); ++index) {
+            if (index) output << ",\n";
+            const auto& incidence = first_objective_seven_incidence.at(frontier[index]);
+            output << "    [";
+            for (int source = 2; source <= 6; ++source) {
+                if (source != 2) output << ',';
+                output << incidence[source];
+            }
+            output << ']';
+        }
+        output << "\n  ],\n";
+        output << "  \"method\": \"exact orbit-canonical enumeration of every one-flip objective-seven neighbor of the complete sublevel-six component\",\n";
+        output << "  \"scope_note\": \"This is the complete first objective-seven frontier only; it does not assert closure of the objective-seven layer.\"\n";
+        output << "}\n";
+    }
+
     void write_json(std::ostream& output, double elapsed_seconds) const {
         const std::uint64_t component_orbits = orbit_states[6].size();
         const std::uint64_t component_vertices = component_orbits * orbit_size;
@@ -525,17 +654,23 @@ struct Search {
 }  // namespace
 
 int main(int argc, char** argv) try {
-    if (argc != 3 && argc != 5) {
+    if (argc != 3 && argc != 5 && argc != 7) {
         std::cerr
             << "usage: objective_six_component CERTIFICATE.json defect-cycle.json "
-               "[--representatives OUTPUT.json]\n";
+               "[--representatives OUTPUT.json] "
+               "[--objective-seven-frontier OUTPUT.json]\n";
         return 2;
     }
     std::string representative_path;
-    if (argc == 5) {
-        if (std::string(argv[3]) != "--representatives")
-            throw std::runtime_error("expected --representatives");
-        representative_path = argv[4];
+    std::string objective_seven_frontier_path;
+    for (int argument = 3; argument < argc; argument += 2) {
+        const std::string option = argv[argument];
+        if (option == "--representatives")
+            representative_path = argv[argument + 1];
+        else if (option == "--objective-seven-frontier")
+            objective_seven_frontier_path = argv[argument + 1];
+        else
+            throw std::runtime_error("unknown output option " + option);
     }
     const auto start = std::chrono::steady_clock::now();
     Search search(load_flips(argv[1]));
@@ -545,6 +680,8 @@ int main(int argc, char** argv) try {
     ).count();
     if (!representative_path.empty())
         search.write_representatives(representative_path);
+    if (!objective_seven_frontier_path.empty())
+        search.write_objective_seven_frontier(objective_seven_frontier_path);
     search.write_json(std::cout, elapsed);
     return 0;
 } catch (const std::exception& error) {

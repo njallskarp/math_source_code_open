@@ -236,6 +236,53 @@ share only the mathematical encoding and standard-library JSON parsing, so
 compiler, edge-ordering, and rotation implementations remain within the trust
 boundary.
 
+Extract the complete first objective-seven frontier of the closed sublevel-six
+component:
+
+```bash
+g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
+  objective_six_component.cpp -o objective_six_component
+./objective_six_component certificate.json defect-cycle.json \
+  --objective-seven-frontier objective-seven-frontier-fast.json \
+  > /tmp/objective-six-regression.json
+```
+
+The exact frontier has 4,217 free rotation orbits, hence 181,331 colorings.
+Its 525,202 directed incidences with the complete sublevel-six component split
+by source objective as
+
+```text
+2:   2,193
+3:  14,018
+4:  72,111
+5: 142,072
+6: 294,808
+```
+
+There are 35 distinct per-target incidence signatures
+`(d_2,d_3,d_4,d_5,d_6)`. The 495 KiB certificate stores every canonical target,
+the parallel signature list, and all lower-layer representatives needed for an
+independent membership check. This is only the first objective-seven frontier;
+it does not assert that the objective-seven layer is closed.
+
+Verify all targets and signatures using direct five-set recounts rather than
+the incremental search engine:
+
+```bash
+g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic -fopenmp \
+  verify_objective_six_component.cpp -o verify_objective_six_component
+OMP_NUM_THREADS=10 ./verify_objective_six_component \
+  certificate.json objective-six-component-representatives.json \
+  --objective-seven-frontier objective-seven-frontier-fast.json \
+  > objective-seven-frontier-independent.json
+```
+
+The recorded ten-thread run took 3.06 seconds. It directly recounted all
+962,598 five-sets for each of 4,217 targets, established objective exactly
+seven, rebuilt every single-flip delta, checked every lower-objective neighbor
+against the certified component, and reproduced every target's five-coordinate
+incidence signature with zero discrepancies.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash
