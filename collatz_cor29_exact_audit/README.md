@@ -27,7 +27,7 @@ Tested with Python 3.12.12 and standard-library dependencies only.
 
 ```bash
 python3 audit_prefix.py --depth 20 --c 1536
-python3 -m unittest -v test_audit_prefix.py
+python3 -m unittest -v test_audit_prefix.py test_sharded_audit.py
 
 g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
   -I/opt/homebrew/include \
@@ -35,6 +35,15 @@ g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
 python3 compare_implementations.py --binary ./audit_prefix_fast \
   --depth 12 --depth 16 --depth 20 --depth 25
 ./audit_prefix_fast --depth 40 --c 1536
+
+./audit_prefix_fast --split-depth 25 \
+  --frontier-out frontier-depth25.txt --c 1536
+python3 run_sharded_audit.py \
+  --binary ./audit_prefix_fast \
+  --frontier frontier-depth25.txt \
+  --depth 35 --shard-count 8 --jobs 8 \
+  --results-directory shard-results-depth35 \
+  --aggregate-out aggregate-depth35.txt
 ```
 
 The official computation used depth 300 and took weeks. This implementation is
@@ -60,6 +69,39 @@ reduced exact minimum-margin fraction, against the slower Python reference.
 
 The C++ measurements below used Homebrew GCC 16.2.0 and Boost 1.92.0 on arm64
 macOS. The generated binary is intentionally not committed.
+
+### Deterministic restartable decomposition
+
+The compact checker can serialize every surviving state at a chosen split
+depth. Format `collatz_cor29_frontier_v1` writes every exact integer in decimal
+and every binary64 value by its 16 hexadecimal bits, so loading a frontier
+recovers the exact machine state rather than a decimal approximation. The file
+also records the complete audit counters and minimum margin through the split.
+
+State indices are assigned by the deterministic depth-first traversal. For
+`M` shards, shard `i` receives exactly the indices congruent to `i` modulo `M`.
+These residue classes are disjoint and cover all serialized states. The Python
+runner binds every shard result to the SHA-256 hashes of both the frontier and
+compiled binary, writes results atomically, validates existing results before
+reusing them, and checks that the selected-state counts sum to the full frontier
+before aggregation. Additive counters are summed, the maximum multiplier error
+is maximized, and exact rational margins are minimized.
+
+A depth-16 frontier was serialized twice with identical SHA-256
+`6ff2cb370ea46464804514d513b0dc97c6c70aeeb03ebe9a07a2bf5b20bd6e04`.
+Partitioning its 1,492 states into four shards through depth 25 reproduced every
+field of the monolithic depth-25 result. A second invocation reused all four
+validated shard files and produced the same aggregate.
+
+For a realistic checkpoint, the depth-25 frontier contains 108,417 states in
+16,074,772 bytes and has SHA-256
+`da01c7ecdef1538e77f583620df9ab29376b1b21340ab0c795933ebfe6264602`.
+Eight independent modulo shards extended it through depth 35. Their exact
+aggregate reproduced the earlier monolithic result: 40,609,380 generated
+states, 7,966,661 exact prunes, 12,338,030 frontier states, zero decision or
+branch disagreements, and the same minimum rational margin. This verifies the
+decomposition on a nontrivial prefix; it does not yet constitute the remaining
+depth-300 computation.
 
 ## Audited results
 
