@@ -150,6 +150,26 @@ most three neighbor outside the earlier component, and every objective-four
 neighbor stays in the closure. Thus the exact one-flip escape level from this
 basin is five.
 
+Close the objective-five layer and scan its full one-edge neighborhood:
+
+```bash
+python objective_five_frontier.py certificate.json \
+  --cycle defect-cycle.json \
+  --escape escape-component.json \
+  --objective-four objective-four-component.json \
+  --scan-frontier --direct-verify \
+  --output objective-five-component.json
+```
+
+The 29,541 outgoing objective-five edges from the sublevel-four component
+deduplicate to 13,158 colorings in 306 free rotational orbits. Scanning all
+903 edge reversals at every orbit representative finds no new endpoint of
+objective at most five: every lower endpoint is already in the certified
+sublevel-four component and every objective-five endpoint stays in this
+frontier. Hence the complete connected sublevel-five component has 17,329
+vertices and 52,890 edges, and its exact one-flip escape level is six. All 306
+representatives are independently recounted over all `C(43,5)` five-sets.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash

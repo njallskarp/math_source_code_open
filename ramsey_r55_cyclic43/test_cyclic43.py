@@ -387,6 +387,51 @@ class DirectVerifierTests(unittest.TestCase):
         self.assertEqual(len(boundaries), 731)
         self.assertEqual(len(rotation_orbit(centers[0])), 43)
 
+    def test_complete_sublevel_five_component_certificate(self) -> None:
+        payload = json.loads((HERE / "objective-five-component.json").read_text())
+        self.assertTrue(payload["complete_sublevel_five_component_is_closed"])
+        self.assertEqual(payload["objective_five_frontier_rotation_orbit_count"], 306)
+        self.assertEqual(payload["objective_five_frontier_vertex_count"], 13_158)
+        self.assertEqual(
+            payload["objective_five_directed_low_component_edge_count"], 29_541
+        )
+        self.assertEqual(payload["objective_five_frontier_induced_edge_count"], 12_728)
+        self.assertEqual(payload["complete_sublevel_five_component_vertex_count"], 17_329)
+        self.assertEqual(payload["complete_sublevel_five_component_edge_count"], 52_890)
+        self.assertEqual(
+            payload["exact_one_flip_escape_level_from_sublevel_five_component"], 6
+        )
+        self.assertEqual(payload["new_objective_five_rotation_orbit_count"], 0)
+        self.assertEqual(
+            payload["new_objective_at_most_four_rotation_orbit_histogram"],
+            {"0": 0, "1": 0, "2": 0, "3": 0, "4": 0},
+        )
+        self.assertEqual(
+            payload["direct_recount_objective_five_representative_count"], 306
+        )
+
+        aggregate = payload[
+            "aggregate_objective_five_frontier_neighbor_objective_histogram"
+        ]
+        self.assertEqual(sum(aggregate.values()), 13_158 * 903)
+        self.assertEqual(aggregate["2"], 1_806)
+        self.assertEqual(aggregate["3"], 7_826)
+        self.assertEqual(aggregate["4"], 19_909)
+        self.assertEqual(aggregate["5"], 2 * 12_728)
+        self.assertGreater(aggregate["6"], 0)
+
+        signatures = payload[
+            "objective_five_frontier_source_incidence_signature_histogram"
+        ]
+        self.assertEqual(sum(signatures.values()), 13_158)
+        directed_incidence = sum(
+            sum(map(int, signature.split(","))) * count
+            for signature, count in signatures.items()
+        )
+        self.assertEqual(directed_incidence, 29_541)
+        self.assertEqual(4_171 + 13_158, 17_329)
+        self.assertEqual(10_621 + 29_541 + 12_728, 52_890)
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

@@ -431,6 +431,65 @@ $K_5$ count. The exact orbit-closure checker and compact certificate are
 ae827dec07a2e021c22934b6c649726fc2c90cda9b03d66b32c21b41f0151550  objective-four-component.json
 ```
 
+### The complete connected sublevel-five component
+
+The 29,541 directed objective-five edges leaving the complete sublevel-four
+component split by source objective as follows:
+
+```text
+source objective       2      3       4    total
+directed edges      1,806  7,826  19,909   29,541
+rotation types         42    182      463      687
+```
+
+After endpoint duplicates are removed, the first objective-five frontier has
+13,158 colorings in 306 free rotation orbits. If an incidence signature
+$(d_2,d_3,d_4)$ records the number of neighbors of each lower objective, its
+exact distribution is
+
+```text
+signature   (0,0,1) (0,0,2) (0,0,3) (0,1,1)
+vertices         344      86    4,042    5,246
+
+signature   (0,1,2) (0,2,0) (0,2,1) (1,0,0)
+vertices         688     301      645    1,806
+```
+
+Every one of the 903 edge reversals at all 306 rotation representatives was
+then evaluated, giving 276,318 explicit cases and 11,881,674 cases after
+symmetry lifting. The reverse scan recovers exactly the same 1,806, 7,826,
+and 19,909 lower incidences. It finds no lower endpoint outside the certified
+sublevel-four component and no objective-five endpoint outside the frontier.
+The frontier has 12,728 induced edges. All 306 representatives were also
+reconstructed and recounted directly over all $\binom{43}{5}$ five-sets.
+
+It follows that this is the entire objective-five layer of the connected
+sublevel component containing the Cyclic(43) certificate. Therefore the
+complete connected sublevel-five component has
+
+$$
+4,171+13,158=17,329\text{ vertices}
+$$
+
+and
+
+$$
+10,621+29,541+12,728=52,890\text{ edges}.
+$$
+
+The scan exhibits objective-six exits and no outside endpoint of objective at
+most five, so six is the exact one-flip escape level from this enlarged basin.
+This is a finite local theorem about the connected component around the
+certificate, not a global lower bound for all two-colorings of $K_{43}$. The
+checker and compact certificate are
+[`objective_five_frontier.py`](objective_five_frontier.py) and
+[`objective-five-component.json`](objective-five-component.json).
+
+```text
+6014f24ad0718cdda206be1cefe65bfece73552964ed08a7d0f4d12debda9e8e  objective_five_frontier.py
+c9ebbdcb0a3c246adbb93ca9386fa84e3538e1a77835b01a66a428fe3e555103  objective-five-component.json
+```
+
 ### Radius-five exclusion tube around the 37-edge defect orbit
 
 The forced-witness search was run independently through radius five around all
