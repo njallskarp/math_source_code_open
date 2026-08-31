@@ -85,20 +85,22 @@ edge 42. An exact scan of all 866 unused edges at the terminal coloring finds
 no constant-two extension: the minimum next count is four, uniquely at edge
 `(21,22)`. The compact result is `defect-orbit-primary.json`.
 
-Check a radius-five tube around every vertex of the 15-edge bridge:
+Check a radius-six tube around every vertex of the 15-edge bridge:
 
 ```bash
 python bridge_tube.py \
   --checker ./local_rigidity_bounded \
   --bridge plateau-bridge.json \
-  --radius 5 --jobs 4 \
-  --output bridge-tube-radius5.json
+  --radius 6 --jobs 4 \
+  --output bridge-tube-radius6.json
 ```
 
 All 16 centers have exact closed-ball minimum two. Accounting exactly for ball
-overlaps, their union contains 78,403,224,656,596 distinct colorings—about 15.76
-times one radius-five ball. Per-center search counts and the overlap calculation
-are stored in `bridge-tube-radius5.json`.
+overlaps, their union contains 11,711,422,789,686,316 distinct colorings—about
+15.71 times one radius-six ball. Any coloring with at most one monochromatic
+`K5` is therefore at least seven edge reversals from every bridge center.
+Per-center search counts and the overlap calculation are stored in
+`bridge-tube-radius6.json`.
 
 At any partial perturbation with at least two monochromatic `K5`s, a final
 coloring with at most one must change an edge in at least one of any two chosen

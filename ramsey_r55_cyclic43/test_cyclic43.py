@@ -137,59 +137,70 @@ class DirectVerifierTests(unittest.TestCase):
             payload["terminal_unused_edge_count"],
         )
 
-    def test_bridge_tube_certificate_and_union_size(self) -> None:
-        payload = json.loads((HERE / "bridge-tube-radius5.json").read_text())
-        self.assertEqual(payload["center_count"], 16)
-        self.assertEqual(payload["tube_radius"], 5)
-        self.assertTrue(
-            all(
-                center["exact_minimum_through_requested_radius"] == 2
-                for center in payload["centers"]
+    def test_bridge_tube_certificates_and_union_sizes(self) -> None:
+        for radius in (5, 6):
+            payload = json.loads(
+                (HERE / f"bridge-tube-radius{radius}.json").read_text()
             )
-        )
-        self.assertEqual(
-            sum(
-                center["candidate_branches_considered"]
-                for center in payload["centers"]
-            ),
-            payload["total_candidate_branches_considered"],
-        )
-
-        path_length = payload["bridge_edge_count"]
-        nearest = Counter()
-        for mask in range(1 << path_length):
-            nearest[
-                min((mask ^ ((1 << prefix) - 1)).bit_count()
-                    for prefix in range(path_length + 1))
-            ] += 1
-        self.assertEqual(
-            {str(distance): count for distance, count in sorted(nearest.items())},
-            payload["path_coordinate_nearest_prefix_distance_histogram"],
-        )
-        outside_coordinates = 903 - path_length
-        union_size = sum(
-            count
-            * sum(comb(outside_coordinates, extra) for extra in range(6 - distance))
-            for distance, count in nearest.items()
-            if distance <= 5
-        )
-        self.assertEqual(union_size, payload["distinct_coloring_count_in_ball_union"])
-        self.assertEqual(
-            sum(comb(903, distance) for distance in range(6)),
-            payload["single_ball_size"],
-        )
-
-        endpoint_files = (
-            "local-rigidity-radius6-fm.json",
-            "local-rigidity-radius6-primary.json",
-        )
-        for center, endpoint_file in zip(
-            (payload["centers"][0], payload["centers"][-1]), endpoint_files
-        ):
-            endpoint = json.loads((HERE / endpoint_file).read_text())
+            self.assertEqual(payload["center_count"], 16)
+            self.assertEqual(payload["tube_radius"], radius)
+            self.assertTrue(
+                all(
+                    center["exact_minimum_through_requested_radius"] == 2
+                    for center in payload["centers"]
+                )
+            )
             self.assertEqual(
-                center["expanded_by_depth"], endpoint["expanded_by_depth"][:6]
+                sum(
+                    center["candidate_branches_considered"]
+                    for center in payload["centers"]
+                ),
+                payload["total_candidate_branches_considered"],
             )
+
+            path_length = payload["bridge_edge_count"]
+            nearest = Counter()
+            for mask in range(1 << path_length):
+                nearest[
+                    min(
+                        (mask ^ ((1 << prefix) - 1)).bit_count()
+                        for prefix in range(path_length + 1)
+                    )
+                ] += 1
+            self.assertEqual(
+                {str(distance): count for distance, count in sorted(nearest.items())},
+                payload["path_coordinate_nearest_prefix_distance_histogram"],
+            )
+            outside_coordinates = 903 - path_length
+            union_size = sum(
+                count
+                * sum(
+                    comb(outside_coordinates, extra)
+                    for extra in range(radius - distance + 1)
+                )
+                for distance, count in nearest.items()
+                if distance <= radius
+            )
+            self.assertEqual(
+                union_size, payload["distinct_coloring_count_in_ball_union"]
+            )
+            self.assertEqual(
+                sum(comb(903, distance) for distance in range(radius + 1)),
+                payload["single_ball_size"],
+            )
+
+            endpoint_files = (
+                "local-rigidity-radius6-fm.json",
+                "local-rigidity-radius6-primary.json",
+            )
+            for center, endpoint_file in zip(
+                (payload["centers"][0], payload["centers"][-1]), endpoint_files
+            ):
+                endpoint = json.loads((HERE / endpoint_file).read_text())
+                self.assertEqual(
+                    center["expanded_by_depth"],
+                    endpoint["expanded_by_depth"][: radius + 1],
+                )
 
 
 if __name__ == "__main__":
