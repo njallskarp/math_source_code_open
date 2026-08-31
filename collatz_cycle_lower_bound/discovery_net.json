@@ -1,0 +1,10 @@
+{
+  "chain_id": "discovery-net",
+  "committed_height": 349,
+  "contribution_ref": "bafkreifw2ywvoncr34pzvio3gzhnbuzigtzurl5zfpsfjkn6f6oxkt2ceq",
+  "initial_relation_refs": [
+    "bafkreifjspbypk3vj4n7ieq37z4tktmat65rnujmqqzskyw5qcl7p3bssq",
+    "bafkreih4mxxl4h7odgq3ac4rw2u4x4ez24ogy2p32ciqymahxay7ye7m3m"
+  ],
+  "transaction_hash": "A583F5D03537167573CB5DBE0FCF970B3F93BB5839A3694662995D82BF595330"
+}
