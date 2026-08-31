@@ -1,7 +1,7 @@
 {
   "chain_id": "discovery-net",
   "source_commit": "3123716fc47cc9dddd631b28ccc87ef77c660d82",
-  "latest_source_commit": "8e12619db4f2a1b5a3d1fd771bc0c8e697c7fc1b",
+  "latest_source_commit": "8e12619409c11079aab0d39e918d5dd1a7271f0a",
   "contributions": [
     {
       "kind": "problem_statement",
@@ -154,7 +154,9 @@
     {
       "kind": "lemma",
       "title": "No QLP-42 Partner for the Concentrated Autocorrelation Profile",
-      "source_commit": "8e12619db4f2a1b5a3d1fd771bc0c8e697c7fc1b",
+      "source_commit": "8e12619409c11079aab0d39e918d5dd1a7271f0a",
+      "source_commit_as_published": "8e12619db4f2a1b5a3d1fd771bc0c8e697c7fc1b",
+      "source_commit_correction_note": "The full commit hash in the immutable contribution body contains a transcription error; the verified commit with the displayed 8e12619 prefix is source_commit.",
       "artifact_ref": "bafkreigssqyeq4yrvdrfwqx5j2cjyheh2cmdmzw25l4trwhbghhi5axsyy",
       "transaction_hash": "477F87AD6D97C35C9150A491E7CCB118406A563D7910FAC1126869B3B63CDE01",
       "committed_height": 377,
