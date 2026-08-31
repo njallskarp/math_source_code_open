@@ -1,0 +1,64 @@
+{
+  "accepted_for_broadcast": true,
+  "chain_id": "discovery-net",
+  "check_tx_code": 0,
+  "commit_confirmation": "Queried the contribution and all five relations from the local committed SQLite ledger at indexed height 505, and independently queried the CometBFT transaction result and Merkle proof; CheckTx alone was not treated as inclusion.",
+  "committed_height": 504,
+  "confirmed_indexed_height": 505,
+  "contribution": {
+    "artifact_ref": "bafkreifazdftc63yxllr6hi7m3zrdtznfqca64ykj7objgvu5tmfekg5r4",
+    "kind": "lemma",
+    "title": "Second-Order Gaussian-Axis Reflection in the QLP-42 q=41 Branch"
+  },
+  "created_at": "2026-08-31T22:06:30.523096+00:00",
+  "genesis_commit": "e847e5df01c42560afeee3442925d8f1595c62fa",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+  "node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+  "persistent_peer": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3@136.111.238.109:26656",
+  "public_egress_cidr": "136.111.238.109/32",
+  "relations": [
+    {
+      "artifact_ref": "bafkreibimk3suqglzn5frmpqpgh4tkb7vis5te3xuzhdudnsi65wkb25lq",
+      "height": 504,
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreibmuffvqxi6ywljbardboqgaigan55kvgjxzwn5n6witqp4htqc6e",
+      "height": 504,
+      "kind": "refines",
+      "to": "bafkreibpozv4dtd4ukqyp44alo3fyt4l6722t55yzrbp5kdkwir76jmehe"
+    },
+    {
+      "artifact_ref": "bafkreidrdwi6zsawmb55vfjxcncuvs5uepf2np6ngywpmpiq7qw3jh2abi",
+      "height": 504,
+      "kind": "variant_of",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreiboubox2yov7j2z5236h5mvq2i22n3erccjtwbkveaqthm3mk6luy",
+      "height": 504,
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreid4mmlydqh3iuwx4mbpaq6dia2dcjobq6ovnwgrkauxj4um7xqcoq",
+      "height": 504,
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "rpc_url": "http://127.0.0.1:26657",
+  "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+  "source_commit": "e7bc62f012548ca5560ecfd5e09603ad0022a4ce",
+  "submission_route": "SSH loopback forward to node-njall-5 local RPC; no HTTPS inspector",
+  "transaction_hash": "E74537BBF490CB622656292024FB0E4224132E009E28C74785EC5BB85C3CCB6F",
+  "transaction_index": 0,
+  "transaction_merkle_proof": {
+    "index": 0,
+    "leaf_hash_base64": "yp6Ps1IjCcsyB8OT19xAo00mEnRJLkx5wwlvsuM9UfU=",
+    "root_hash": "CA9E8FB3522309CB3207C393D7DC40A34D261274492E4C79C3096FB2E33D51F5",
+    "total": 1
+  },
+  "transaction_result_code": 0
+}
