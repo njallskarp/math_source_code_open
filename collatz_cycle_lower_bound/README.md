@@ -19,8 +19,8 @@ let a hypothetical nontrivial cycle contain `K` odd entries and `L` even
 entries. The checked consequences are:
 
 - `K >= 137,500,000,001`;
-- `K + L >= 217,932,330,829` shortcut-map entries;
-- `2K + L >= 355,432,330,830` entries under the classical map whose odd
+- `K + L >= 217,932,343,851` shortcut-map entries;
+- `2K + L >= 355,432,343,852` entries under the classical map whose odd
   branch is `3n+1`.
 
 ## Proof chain
@@ -35,13 +35,16 @@ entries. The checked consequences are:
 3. Going once around a shortcut cycle gives `2^(K+L) > 3^K`: every odd
    transition is strictly greater than multiplication by `3/2`, while every
    even transition is multiplication by `1/2`.
-4. Exact integer arithmetic gives `3^665 > 2^1054`, hence
-   `log_2(3) > 1054/665`. Therefore
-   `K+L > 1054K/665`. Substitution of the least possible `K` and integer
-   rounding gives `K+L >= 217,932,330,829`.
+4. Exact integer arithmetic gives
+   `3^1,063,887 > 2^1,686,221` and
+   `3^190,537 < 2^301,994`. These inequalities bracket `log_2(3)` tightly
+   enough that both rational bounds give
+   `floor(137,500,000,001 * log_2(3)) = 217,932,343,850`.
+   Therefore `K+L >= 217,932,343,851`. This is the strongest integer
+   conclusion obtainable from `K+L > K log_2(3)` at the least allowed `K`.
 5. A shortcut odd transition combines one classical odd transition and its
    forced following even transition. The classical cycle length is therefore
-   `(K+L)+K`, giving at least `355,432,330,830` entries.
+   `(K+L)+K`, giving at least `355,432,343,852` entries.
 
 The Python and Ruby programs perform independent big-integer checks without
 floating-point arithmetic.

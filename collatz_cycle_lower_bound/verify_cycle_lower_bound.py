@@ -12,10 +12,13 @@ BARINA_EXCLUSIVE_LIMIT = 1 << 71
 HERCHER_X0_THRESHOLD = 1536 * (1 << 60)
 HERCHER_STRICT_ODD_BOUND = 137_500_000_000
 
-# A convenient lower convergent to log_2(3), certified without floating point
-# by the exact inequality 3^665 > 2^1054.
-LOG2_3_LOWER_NUMERATOR = 1054
-LOG2_3_LOWER_DENOMINATOR = 665
+# Rational bounds on log_2(3), certified without floating point by exact
+# integer comparisons.  They are tailored to determine floor(K*log_2(3))
+# at the smallest K allowed by Hercher's strict odd-entry bound.
+LOG2_3_LOWER_NUMERATOR = 1_686_221
+LOG2_3_LOWER_DENOMINATOR = 1_063_887
+LOG2_3_UPPER_NUMERATOR = 301_994
+LOG2_3_UPPER_DENOMINATOR = 190_537
 
 
 def verify() -> dict[str, int | bool]:
@@ -28,10 +31,17 @@ def verify() -> dict[str, int | bool]:
     q = LOG2_3_LOWER_DENOMINATOR
     assert pow(3, q) > pow(2, p)
 
+    upper_p = LOG2_3_UPPER_NUMERATOR
+    upper_q = LOG2_3_UPPER_DENOMINATOR
+    assert pow(3, upper_q) < pow(2, upper_p)
+
     # If K and L are the odd- and even-entry counts for Hercher's shortcut
     # map, going once around a cycle gives 2^(K+L) > 3^K.  The certified
     # rational lower bound log_2(3) > p/q therefore gives K+L > pK/q.
-    shortcut_entries_min = (p * odd_entries_min) // q + 1
+    lower_floor = (p * odd_entries_min) // q
+    upper_floor = (upper_p * odd_entries_min) // upper_q
+    assert lower_floor == upper_floor
+    shortcut_entries_min = lower_floor + 1
     assert q * (shortcut_entries_min - 1) <= p * odd_entries_min
     assert q * shortcut_entries_min > p * odd_entries_min
 
@@ -43,8 +53,8 @@ def verify() -> dict[str, int | bool]:
         "barina_exclusive_limit": 2_361_183_241_434_822_606_848,
         "hercher_x0_threshold": 1_770_887_431_076_116_955_136,
         "odd_entries_min": 137_500_000_001,
-        "shortcut_entries_min": 217_932_330_829,
-        "classical_entries_min": 355_432_330_830,
+        "shortcut_entries_min": 217_932_343_851,
+        "classical_entries_min": 355_432_343_852,
     }
     actual = {
         "barina_exclusive_limit": BARINA_EXCLUSIVE_LIMIT,
@@ -58,7 +68,7 @@ def verify() -> dict[str, int | bool]:
     return {
         **actual,
         "barina_implies_hercher_hypothesis": True,
-        "three_pow_665_exceeds_two_pow_1054": True,
+        "exact_log_product_floor_certified": True,
     }
 
 
