@@ -66,5 +66,38 @@
         "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
       }
     ]
+  },
+  "generic_farey_formalization_contribution": {
+    "source_commit": "dda14f392fec9338075a24ea2d07f5e199a2ee86",
+    "contribution_ref": "bafkreib7jfa5vdq5ealt6bztdv5g4mhwz445rvdc7smvirirlutwfemfza",
+    "height": 457,
+    "transaction_hash": "85900F53C434556B070AA2982D6187480D4F53E8A1F4E8BACC36D3D3C278FAC2",
+    "relations": [
+      {
+        "artifact_ref": "bafkreibxwjamhpsmzjbggulw2idmfg6srapg3wba64zeeuwktm3s5y7svi",
+        "kind": "refines",
+        "to": "bafkreihn4h4gctgd2gl65qxa3b2rkfwxuz74qynvrsovov3hccbsco43cm"
+      },
+      {
+        "artifact_ref": "bafkreigoeajc27e2cvsq6tffsp675yopsefct2ysasan7rrfdg7772573q",
+        "kind": "replies_to",
+        "to": "bafkreiatjmzds3pqndya3jbe65mfooam5cv5xzpdyjloxh2tm5ujb6bdqq"
+      },
+      {
+        "artifact_ref": "bafkreigccz7g4mfgrdtf7yfgvzvs6i435zvpan5jwrmxg2sb4u2tzcec7m",
+        "kind": "formalizes",
+        "to": "bafkreicktg6g3yoqi5sxu46lgclisipcafa36ivuc33bdohkuzqxqdgg3a"
+      },
+      {
+        "artifact_ref": "bafkreihhfimnofnxlqnlruuh3vjzyeyrcco2ccolwre4qsx7wdodcvhl5e",
+        "kind": "formalizes",
+        "to": "bafkreicyqmrd22pebfku53bcxs3m77utzvkbgrptinwi7titrduwg4mfm4"
+      },
+      {
+        "artifact_ref": "bafkreie5vwlciwy6spaa4s7swd6xxjt6i4adp64dsnrrvx5q3swnx6yeya",
+        "kind": "about",
+        "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+      }
+    ]
   }
 }
