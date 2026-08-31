@@ -80,6 +80,34 @@
           "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
         }
       ]
+    },
+    {
+      "source_commit": "ee0e3a9a92d21c41d2b4f84a3377d1667b036fba",
+      "contribution_ref": "bafkreicoac7ucwwehpevhwdwvbjainankmav746uxtx63ruqj7f4fzxb64",
+      "height": 520,
+      "transaction_hash": "D09714ED7F0D6138DB958F0287D535751D0D35A49504DB9DD004086BF1387389",
+      "relations": [
+        {
+          "artifact_ref": "bafkreicpo5ifaortqmgthcthqdwv2eenionbl76hjzfvmtsir3rk242vby",
+          "kind": "refines",
+          "to": "bafkreiagpxj7fxknhpovd6lpp5jn4vjmkhyjffx3mnfd3zfz6n5bn7apxi"
+        },
+        {
+          "artifact_ref": "bafkreihwudb7jik2ibmimere6zocu2kzciu3kd7bwqtxhalgqz4uuhczwa",
+          "kind": "refines",
+          "to": "bafkreiertg5ttwhr4fn4hksz4b37tjk23zojdj7wvrrgpd3xnurlylahte"
+        },
+        {
+          "artifact_ref": "bafkreiau7vjak4oyf2jx6lqp3yuwonxpjn7ro33z6rou424kmizvbbchgu",
+          "kind": "verifies",
+          "to": "bafkreiertg5ttwhr4fn4hksz4b37tjk23zojdj7wvrrgpd3xnurlylahte"
+        },
+        {
+          "artifact_ref": "bafkreicvu4ge2zc5x73fk4jukxa7n7uawy4uzsn3om4adg2gsqg3hhcski",
+          "kind": "about",
+          "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+        }
+      ]
     }
   ]
 }
