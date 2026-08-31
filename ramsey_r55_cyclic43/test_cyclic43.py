@@ -6,6 +6,7 @@ from collections import Counter
 from math import comb
 from pathlib import Path
 
+from defect_orbit_tube import prefix_chain_distance_histogram
 from local_rigidity import complete_graph_edges, direct_count, initial_colors
 from solve_cyclic43 import load_certificate, verify_flips
 
@@ -14,6 +15,20 @@ HERE = Path(__file__).resolve().parent
 
 
 class DirectVerifierTests(unittest.TestCase):
+    def test_prefix_chain_histogram_closed_form(self) -> None:
+        for length in range(13):
+            brute_force = Counter()
+            for mask in range(1 << length):
+                brute_force[
+                    min(
+                        (mask ^ ((1 << prefix) - 1)).bit_count()
+                        for prefix in range(length + 1)
+                    )
+                ] += 1
+            self.assertEqual(
+                prefix_chain_distance_histogram(length), dict(brute_force)
+            )
+
     def test_seed_has_exactly_43_red_cliques(self) -> None:
         result = verify_flips(set())
         self.assertEqual(result["red_k5_count"], 43)
@@ -135,6 +150,55 @@ class DirectVerifierTests(unittest.TestCase):
         self.assertEqual(
             sum(payload["terminal_unused_edge_result_count_histogram"].values()),
             payload["terminal_unused_edge_count"],
+        )
+
+    def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
+        payload = json.loads(
+            (HERE / "defect-orbit-tube-radius5.json").read_text()
+        )
+        self.assertEqual(payload["path_edge_count"], 37)
+        self.assertEqual(payload["center_count"], 38)
+        self.assertEqual(payload["tube_radius"], 5)
+        self.assertTrue(
+            all(
+                center["exact_minimum_through_requested_radius"] == 2
+                for center in payload["centers"]
+            )
+        )
+        self.assertEqual(
+            sum(
+                center["candidate_branches_considered"]
+                for center in payload["centers"]
+            ),
+            payload["total_candidate_branches_considered"],
+        )
+
+        nearest = prefix_chain_distance_histogram(payload["path_edge_count"])
+        self.assertEqual(
+            {str(distance): count for distance, count in nearest.items()},
+            payload["path_coordinate_nearest_prefix_distance_histogram"],
+        )
+        outside_coordinates = 903 - payload["path_edge_count"]
+        radius = payload["tube_radius"]
+        union_size = sum(
+            count
+            * sum(
+                comb(outside_coordinates, extra)
+                for extra in range(radius - distance + 1)
+            )
+            for distance, count in nearest.items()
+            if distance <= radius
+        )
+        self.assertEqual(
+            union_size, payload["distinct_coloring_count_in_ball_union"]
+        )
+
+        primary = json.loads(
+            (HERE / "local-rigidity-radius6-primary.json").read_text()
+        )
+        self.assertEqual(
+            payload["centers"][0]["expanded_by_depth"],
+            primary["expanded_by_depth"][:6],
         )
 
     def test_bridge_tube_certificates_and_union_sizes(self) -> None:

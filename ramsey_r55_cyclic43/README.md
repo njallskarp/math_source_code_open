@@ -85,6 +85,23 @@ edge 42. An exact scan of all 866 unused edges at the terminal coloring finds
 no constant-two extension: the minimum next count is four, uniquely at edge
 `(21,22)`. The compact result is `defect-orbit-primary.json`.
 
+Certify a radius-five tube around all 38 vertices of that defect orbit:
+
+```bash
+python defect_orbit_tube.py \
+  --checker ./local_rigidity_bounded \
+  --orbit defect-orbit-primary.json \
+  --radius 5 --jobs 4 \
+  --output defect-orbit-tube-radius5.json
+```
+
+Every closed ball has exact minimum two. Their union contains exactly
+186,056,295,651,406 distinct colorings after overlaps are removed, so any
+coloring with at most one monochromatic `K5` is at least six edge reversals
+from every orbit center. The script counts overlap using a reflection-principle
+formula for distance from a binary word to the prefix chain; it does not
+enumerate all `2^37` path-coordinate patterns.
+
 Check a radius-six tube around every vertex of the 15-edge bridge:
 
 ```bash
