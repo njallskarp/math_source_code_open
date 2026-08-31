@@ -28,13 +28,38 @@ Tested with Python 3.12.12 and standard-library dependencies only.
 ```bash
 python3 audit_prefix.py --depth 20 --c 1536
 python3 -m unittest -v test_audit_prefix.py
+
+g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
+  -I/opt/homebrew/include \
+  audit_prefix_fast.cpp -o audit_prefix_fast
+python3 compare_implementations.py --binary ./audit_prefix_fast \
+  --depth 12 --depth 16 --depth 20 --depth 25
+./audit_prefix_fast --depth 40 --c 1536
 ```
 
 The official computation used depth 300 and took weeks. This implementation is
-deliberately a **prefix auditor**, not a claimed reproduction of that full
-search. Its purpose is to validate the exact recurrence, measure binary64
-decision margins on accessible prefixes, and provide a base for an optimized
-exact or interval-arithmetic implementation.
+still a **prefix auditor**, not a claimed reproduction of that full search. Its
+purpose is to validate the exact recurrence, measure binary64 decision margins
+on accessible prefixes, and provide a base for a checkpointed, parallel exact
+depth-300 audit.
+
+`audit_prefix_fast.cpp` removes normalized `Fraction` objects from the search's
+hot path. If a state has `o` odd steps, it stores the running reciprocal sum as
+an integer divided by `3^o`; a correction factor is stored as exponents in
+`2^p/3^q`; and pruning is reduced to integer cross-products. The exact ceiling
+correction uses
+
+```text
+ceil((S * min_factor_den - rest * min_factor_num)
+     / (min_factor_num * 2^depth)).
+```
+
+The binary64 side retains the operation order and constants of the official
+program. The comparison harness checks every reported field, including the
+reduced exact minimum-margin fraction, against the slower Python reference.
+
+The C++ measurements below used Homebrew GCC 16.2.0 and Boost 1.92.0 on arm64
+macOS. The generated binary is intentionally not committed.
 
 ## Audited results
 
@@ -98,6 +123,33 @@ still prevents extrapolation to the 270 unexamined levels. The depth-30 run is
 an exact verified computation of this implementation; unlike the depth-25
 frontier count, it was not separately reproduced with the official C++ binary.
 
+### Compact-invariant extension through depth 40
+
+The optimized implementation exactly matched the Python reference at depths
+12, 16, 20, 25, and 32. At depth 32 it reduced elapsed time on this machine from
+337.68 seconds to 5.27 seconds while reproducing all output fields. It then
+extended the exhaustive paired audit to depth 40:
+
+```text
+generated=436551086
+pruned_exact=86945706
+frontier=131329838
+decision_disagreements=0
+corrected_multiplier_disagreements=42323
+float_multiplier_below_exact=10425
+float_multiplier_above_exact=31898
+maximum_multiplier_error=10923
+second_branch_disagreements=0
+minimum_scaled_margin=
+  31453538815797864297484931/24354856878979826184202135702515069
+elapsed_seconds=241.49
+```
+
+The minimum scaled margin is approximately `1.29147e-9`. This is an exact
+verified computation of the compact-invariant implementation, cross-checked
+against the independent Python representation on smaller complete prefixes. It
+does not certify depths 41 through 300.
+
 ## Primary source and trust boundary
 
 - C. Hercher, official Corollary 29 program,
@@ -109,5 +161,9 @@ frontier count, it was not separately reproduced with the official C++ binary.
   <https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.html>.
 
 The exact mirror was independently transcribed from the published program, so
-transcription and semantic-equivalence errors remain possible. Agreement with
-binary64 on a finite prefix does not certify the unexamined depth-300 tree.
+transcription and semantic-equivalence errors remain possible. The two local
+implementations share that transcription and therefore are not fully
+independent. Agreement with binary64 on a finite prefix does not certify the
+unexamined depth-300 tree. A complete audit still needs deterministic frontier
+serialization, parallel subtree checking, restartable checkpoints, and an
+independently checkable aggregate certificate.
