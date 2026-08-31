@@ -25,5 +25,23 @@
       "kind": "about",
       "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
     }
-  ]
+  ],
+  "phase_transition_contribution": {
+    "source_commit": "d51bb242b166d0bc46c19991acd2da55a5e2499c",
+    "contribution_ref": "bafkreicyqmrd22pebfku53bcxs3m77utzvkbgrptinwi7titrduwg4mfm4",
+    "height": 379,
+    "transaction_hash": "8523CBC1778C2714BAC30799BF12A5C16639B37B728E589877766D6320179E8B",
+    "relations": [
+      {
+        "artifact_ref": "bafkreieuof2z5hck7cmsbrgohstoizhnc7bodfoopogehq5lno6w75unbi",
+        "kind": "refines",
+        "to": "bafkreicktg6g3yoqi5sxu46lgclisipcafa36ivuc33bdohkuzqxqdgg3a"
+      },
+      {
+        "artifact_ref": "bafkreihigfxako4nqtwlddrinx47vokcqrr2vdfrkaegenu65ryhoxji2a",
+        "kind": "about",
+        "to": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+      }
+    ]
+  }
 }
