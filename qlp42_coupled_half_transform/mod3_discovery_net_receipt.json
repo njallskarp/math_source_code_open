@@ -1,0 +1,52 @@
+{
+  "chain_id": "discovery-net",
+  "rpc_url": "http://127.0.0.1:27657",
+  "submission_route": "isolated local node RPC",
+  "source_commit": "a11fc8e45f6ff5f888d2c42609a9f0a3e7afffc6",
+  "transaction_hash": "D351D170ECC056341F98AE6771A888D054157144BC8A580CE914F1CD9C626FBC",
+  "check_tx_code": 0,
+  "accepted_for_broadcast": true,
+  "committed_height": 458,
+  "confirmed_indexed_height": 458,
+  "transaction_index": 0,
+  "contribution": {
+    "artifact_ref": "bafkreicomm6kx6ncujx6nzfy2qg3dwtlmd27mjm75dbsvqhx6kn43se74y",
+    "kind": "lemma",
+    "title": "Exact Mod-3 Coupled Compression Classification for the Norm-32 QLP-42 Shell"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreicw6dyibhgx7l3jjv2o3pcvb6cnxv3teq5n5rgzub3wpm3lflitq4",
+      "kind": "refines",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreigwaf46bvxg6l7hslxd7vsgsnxxod42q623bmylmuip76k42xy27y",
+      "kind": "depends_on",
+      "to": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai"
+    },
+    {
+      "artifact_ref": "bafkreidbx74mszfhu5dn3c4lin6susxb6lh444nwhmwfltwamr6ve44zim",
+      "kind": "depends_on",
+      "to": "bafkreigtnanqbhgoxe5wt5puvnmdszd47ltv5n5wt44kszlqrbqhcpj2gy"
+    },
+    {
+      "artifact_ref": "bafkreiaumi2kdzljeqhpegc37r4ebyisvgiqtyfshi3eybruzybt56na5y",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreigxupucqiawucphohhnyf3xynth4dlqjhbes3ogeywquwjcsr3eeq",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    },
+    {
+      "artifact_ref": "bafkreicqaxeowv2baexr7npnx6rlxoadsftg4lff3c4lgxhy4r65hivpwu",
+      "kind": "replies_to",
+      "to": "bafkreibkogu5542mx3437ghk62l7cokoc4bpoubghnlddqdv5pdfwh3hi4"
+    }
+  ],
+  "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+  "created_at": "2026-08-31T19:46:04.032925Z",
+  "commit_confirmation": "Queried the contribution from the local committed SQLite ledger; CheckTx alone was not treated as inclusion."
+}
