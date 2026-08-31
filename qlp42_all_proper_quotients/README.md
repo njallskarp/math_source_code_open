@@ -209,6 +209,74 @@ half-difference patterns using exact Gaussian-integer arithmetic.  This is a
 rigorous negative result for a natural construction slice, not a
 nonexistence result for quaternary Legendre pairs of length 42.
 
+## Complete exclusion of the concentrated autocorrelation profile
+
+The same half-difference coordinates, followed by a second exact compression,
+exclude the concentrated profile from an actual QLP-42, not merely from the
+norm-32 residual shell.  More precisely, no fourth-root sequence `A` with
+
+```text
+PAF(A,21)=-40,
+PAF(A,s)=0 for every other nonzero shift s
+```
+
+can be a member of a quaternary Legendre pair of length 42.  This includes the
+explicit sequence displayed above, but the argument uses only its
+autocorrelation profile.
+
+Suppose that `B` were a partner.  Then `PAF(B,21)=38` and
+`PAF(B,s)=-2` at every other nonzero shift.  In the CRT coordinates above,
+put `C=x+y` as well as `R=x-y`.  The vanishing paired-lag differences force
+all out-of-phase autocorrelations of `R` to vanish.  The exceptional-lag
+defect equation still gives `2*o+q=2`.  The two-quarter-turn case has a
+two-point `R`; because 21 is odd, its autocorrelation is nonzero at the two
+distinct signed differences of those points.  Hence that case is impossible,
+and exactly one pair `(x_j,y_j)` is opposite while the other 20 agree.
+
+It follows that `C=2T`, where `T` is a length-21 sequence having one zero and
+20 fourth-root entries.  Adding the paired autocorrelations gives
+
+```text
+PAF(C,s)=PAF(B,s)+PAF(B,s+21)=-4,  1 <= s <= 20,
+```
+
+so
+
+```text
+PAF(T,0)=20,
+PAF(T,s)=-1 for every nonzero shift s.
+```
+
+In particular `sum(T)=0`.  Compress `T` modulo 7 by
+
+```text
+V_r = T_r + T_(r+7) + T_(r+14).
+```
+
+A cyclic shift puts the unique zero in class 0.  Thus `V_0` is a sum of two
+fourth roots and each of `V_1,...,V_6` is a sum of three.  Compression of the
+displayed autocorrelation gives the necessary length-7 conditions
+
+```text
+sum(V)=0,
+PAF(V,0)=18,
+PAF(V,s)=-3 for 1 <= s <= 6.
+```
+
+There are exactly 9 distinct Gaussian integers expressible as a sum of two
+fourth roots and 16 expressible as a sum of three.  Exact exhaustion chooses
+`V_0,...,V_5`, forces `V_6` from `sum(V)=0`, and checks its domain and all six
+autocorrelations.  Of the `9*16^5 = 9,437,184` assignments, 2,795,584 have a
+forced `V_6` in the three-root domain and none satisfies the autocorrelation
+conditions.  Therefore the required `T`, hence the putative partner `B`, does
+not exist.
+
+`verify_concentrated_profile_nonexistence.cpp` is a standard-library C++20
+certificate using integer pairs for Gaussian arithmetic.  Its exhaustive
+search is over compressed values, not the `4^20` underlying words.  This
+proves a profile-level slice obstruction only; it does not exclude QLP-42
+pairs having other autocorrelation profiles.
+
 ## Exact verification
 
 The theorem and the finite minimum use only integer and rational arithmetic.
@@ -220,6 +288,11 @@ python verify_half_compression.py
 python verify_gs_slice_obstruction.py
 
 c++ -std=c++20 -O3 -Wall -Wextra -Wpedantic \
+  verify_concentrated_profile_nonexistence.cpp \
+  -o verify_concentrated_profile_nonexistence
+./verify_concentrated_profile_nonexistence
+
+c++ -std=c++20 -O3 -Wall -Wextra -Wpedantic \
   verify_residual_lattice_minimum.cpp \
   -o verify_residual_lattice_minimum
 ./verify_residual_lattice_minimum
@@ -229,6 +302,11 @@ c++ -std=c++20 -O3 -Wall -Wextra -Wpedantic \
   -o verify_even_residual_lattice_minimum
 ./verify_even_residual_lattice_minimum
 ```
+
+On the macOS Command Line Tools 17 installation used for the recorded run,
+the libc++ headers required adding
+`-isystem "$(xcrun --show-sdk-path)/usr/include/c++/v1"` to the C++ compiler
+command.
 
 The first program verifies the cyclotomic factorization, exact rank 30 of the
 combined quotient pushforward, a 12-vector rational kernel basis, the
