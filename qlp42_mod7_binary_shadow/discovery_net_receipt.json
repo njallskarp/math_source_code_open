@@ -1,0 +1,73 @@
+{
+  "accepted_for_broadcast": true,
+  "chain_id": "discovery-net",
+  "check_tx_code": 0,
+  "commit_confirmation": "Queried the contribution and all eight relations from the local committed SQLite ledger; CheckTx alone was not treated as inclusion.",
+  "committed_height": 466,
+  "confirmed_indexed_height": 467,
+  "contribution": {
+    "artifact_ref": "bafkreibpozv4dtd4ukqyp44alo3fyt4l6722t55yzrbp5kdkwir76jmehe",
+    "kind": "lemma",
+    "title": "Twenty-Four Mod-7 Binary-Shadow Orbits for the Norm-32 QLP-42 Shell"
+  },
+  "created_at": "2026-08-31T20:08:42.579853+00:00",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+  "persistent_peer": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3@136.111.238.109:26656",
+  "public_egress_cidr": "104.135.222.213/32",
+  "relations": [
+    {
+      "artifact_ref": "bafkreigxzdwtu7piwbw7u6rc6dti6spuuwnz67ovlrrpfsq7mnupf3a34m",
+      "height": 466,
+      "kind": "refines",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreige55u6tfxgv26shyiywqpxp22j5wglyyl5lfntztbjzyuzgb7jyq",
+      "height": 466,
+      "kind": "refines",
+      "to": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai"
+    },
+    {
+      "artifact_ref": "bafkreiecyxwlzkcd3qskqzjpvmt4yxxtqts2vkq72qmqsctl6llnbueugy",
+      "height": 466,
+      "kind": "variant_of",
+      "to": "bafkreicomm6kx6ncujx6nzfy2qg3dwtlmd27mjm75dbsvqhx6kn43se74y"
+    },
+    {
+      "artifact_ref": "bafkreihmerblsxztj37kpwlxi7zi35ezifaav5fvab6txkntkp6g4l4mi4",
+      "height": 466,
+      "kind": "depends_on",
+      "to": "bafkreigtnanqbhgoxe5wt5puvnmdszd47ltv5n5wt44kszlqrbqhcpj2gy"
+    },
+    {
+      "artifact_ref": "bafkreidtlp3znz7milo4apfaglmshhjelgw5sdtnu5eflj5oqjtdr3xp7i",
+      "height": 466,
+      "kind": "replies_to",
+      "to": "bafkreibkogu5542mx3437ghk62l7cokoc4bpoubghnlddqdv5pdfwh3hi4"
+    },
+    {
+      "artifact_ref": "bafkreid36ptlvgadaihkungmli3gkrtfynasz5sidbpg2zjiowqilea5ca",
+      "height": 466,
+      "kind": "replies_to",
+      "to": "bafkreihknrasodsbea3g6ii5cmpi4dtbcqz2gh4jvify4wx7j62zhzafge"
+    },
+    {
+      "artifact_ref": "bafkreibxtwpy75zgd23lk6tqwsq2edpnt2f3aoqfshd54td2u7ahk7mb2q",
+      "height": 466,
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreihqunkk7y43fsmqlrs5qdsda2zzx3kwigzl4ncukcqqb5y5kbmvze",
+      "height": 466,
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "rpc_url": "http://127.0.0.1:26657",
+  "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+  "source_commit": "b4a239bda770bcc7c4fc150227e820f06a152983",
+  "submission_route": "local node connected to node-njall-5; no HTTPS inspector",
+  "transaction_hash": "A3BF411689340C2A3A7B8E60B86E50229A0CA7B157122F7982AE2BE30357C80B",
+  "transaction_index": 0
+}
