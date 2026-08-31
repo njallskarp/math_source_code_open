@@ -375,6 +375,62 @@ ultimately to a zero-clique coloring. The exact checker and certificate are
 76e23b3b4ca7ce94117fa897366645597494a984dc6d3c6e96040eb0009269f7  escape-component.json
 ```
 
+### The complete connected sublevel-four component
+
+The preceding theorem identifies every objective-four edge leaving the
+817-vertex sublevel-three component. There are 946 such directed edges from
+$C_{86}$ and 4,988 from its objective-three boundary. After duplicates are
+removed, their endpoints form a first objective-four frontier of 3,311
+colorings in 77 rotational orbits. The incidence distribution is particularly
+simple: 688 frontier colorings have one neighbor in the lower component and
+2,623 have two.
+
+An orbit-wise breadth-first search then closes the objective-four layer. It
+adds exactly one further rotational orbit of 43 colorings, which has no direct
+edge to the lower component. No additional objective-four orbit is generated.
+Thus the objective-four layer contains 3,354 colorings in 78 free rotational
+orbits. Its graph has 3,182 internal edges, and its degrees within the full
+sublevel-four component are
+
+```text
+degree       2     3      4
+vertices    43  1032   2279
+```
+
+Every one of the 903 edge reversals was evaluated at all 78 rotational
+representatives, for 70,434 explicit neighbor evaluations. Rotation symmetry
+lifts these to 3,028,662 labeled cases. The only lower-objective neighbors are
+exactly the already known 946 objective-two and 4,988 objective-three edges;
+all 6,364 directed objective-four neighbors remain inside the closed layer.
+All $78\binom{43}{5}=75,082,644$ representative five-set counts were also
+recomputed directly.
+
+Consequently the complete connected component induced by objective values at
+most four and containing the primary certificate has
+
+$$
+817+3,354=4,171\text{ vertices}
+$$
+
+and
+
+
+$$
+1,505+5,934+3,182=10,621\text{ edges}.
+$$
+
+The next outgoing moves have objective five, so five is the exact one-flip
+escape level from this basin. This does not constrain what happens after the
+basin is left and does not imply a global lower bound on the monochromatic
+$K_5$ count. The exact orbit-closure checker and compact certificate are
+[`objective_four_frontier.py`](objective_four_frontier.py) and
+[`objective-four-component.json`](objective-four-component.json).
+
+```text
+9add8ee4d248ae73a4bf8ca75cdd72c27cc92288cbfdd3362626ddb0b1d8e41a  objective_four_frontier.py
+ae827dec07a2e021c22934b6c649726fc2c90cda9b03d66b32c21b41f0151550  objective-four-component.json
+```
+
 ### Radius-five exclusion tube around the 37-edge defect orbit
 
 The forced-witness search was run independently through radius five around all

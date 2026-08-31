@@ -132,6 +132,24 @@ rotation symmetry, finds no other objective-two or objective-three neighbor.
 Therefore the entire connected sublevel-three component has 817 vertices and
 1,505 edges: `C86`, the 43 paths, and 731 center-to-boundary spokes.
 
+Close the next objective layer under every one-edge move:
+
+```bash
+python objective_four_frontier.py certificate.json \
+  --cycle defect-cycle.json \
+  --escape escape-component.json \
+  --scan-frontier --direct-verify \
+  --output objective-four-component.json
+```
+
+The first objective-four frontier has 3,311 vertices in 77 rotational orbits.
+Orbit-wise breadth-first expansion adds exactly one more 43-vertex orbit and
+then closes. The complete connected sublevel-four component therefore has
+4,171 vertices and 10,621 edges. No objective-four vertex has an objective at
+most three neighbor outside the earlier component, and every objective-four
+neighbor stays in the closure. Thus the exact one-flip escape level from this
+basin is five.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash

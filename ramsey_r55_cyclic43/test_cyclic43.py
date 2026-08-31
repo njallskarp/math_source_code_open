@@ -10,6 +10,7 @@ from defect_cycle import analyze_cycle, position_edge, transport_position
 from defect_orbit_tube import prefix_chain_distance_histogram
 from escape_component import analyze as analyze_escape_component
 from local_rigidity import complete_graph_edges, direct_count, initial_colors
+from objective_four_frontier import cycle_and_boundary_states, rotation_orbit
 from solve_cyclic43 import load_certificate, verify_flips
 
 
@@ -337,6 +338,54 @@ class DirectVerifierTests(unittest.TestCase):
             "odd_exit_dihedral_orbits",
         ):
             self.assertEqual(rerun[field], payload[field])
+
+    def test_complete_sublevel_four_component_certificate(self) -> None:
+        payload = json.loads((HERE / "objective-four-component.json").read_text())
+        self.assertTrue(payload["complete_sublevel_four_component_is_closed"])
+        self.assertEqual(payload["first_objective_four_frontier_vertex_count"], 3311)
+        self.assertEqual(
+            payload["first_objective_four_frontier_rotation_orbit_count"], 77
+        )
+        self.assertEqual(payload["additional_objective_four_rotation_orbit_count"], 1)
+        self.assertEqual(payload["objective_four_component_rotation_orbit_count"], 78)
+        self.assertEqual(payload["objective_four_component_vertex_count"], 3354)
+        self.assertEqual(payload["complete_sublevel_four_component_vertex_count"], 4171)
+        self.assertEqual(payload["complete_sublevel_four_component_edge_count"], 10621)
+        self.assertEqual(payload["objective_four_directed_center_edge_count"], 946)
+        self.assertEqual(payload["objective_four_directed_boundary_edge_count"], 4988)
+        self.assertEqual(payload["objective_four_induced_edge_count"], 3182)
+        self.assertEqual(
+            payload["direct_recount_objective_four_representative_count"], 78
+        )
+        self.assertEqual(
+            payload["new_objective_at_most_three_rotation_orbit_histogram"],
+            {"0": 0, "1": 0, "2": 0, "3": 0},
+        )
+
+        aggregate = payload["aggregate_objective_four_neighbor_objective_histogram"]
+        self.assertEqual(sum(aggregate.values()), 3354 * 903)
+        self.assertEqual(aggregate["2"], 946)
+        self.assertEqual(aggregate["3"], 4988)
+        self.assertEqual(aggregate["4"], 2 * 3182)
+        degrees = payload["objective_four_vertex_sublevel_four_degree_histogram"]
+        self.assertEqual(sum(degrees.values()), 3354)
+        self.assertEqual(
+            sum(int(degree) * count for degree, count in degrees.items()),
+            946 + 4988 + 2 * 3182,
+        )
+        self.assertEqual(
+            1505 + aggregate["2"] + aggregate["3"] + aggregate["4"] // 2,
+            10621,
+        )
+
+        primary = frozenset(load_certificate(HERE / payload["certificate"]))
+        cycle = json.loads((HERE / payload["cycle_certificate"]).read_text())
+        centers, boundaries = cycle_and_boundary_states(
+            primary, cycle["edge_positions"]
+        )
+        self.assertEqual(len(set(centers)), 86)
+        self.assertEqual(len(boundaries), 731)
+        self.assertEqual(len(rotation_orbit(centers[0])), 43)
 
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
