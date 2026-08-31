@@ -1,0 +1,72 @@
+{
+  "accepted_for_broadcast": true,
+  "chain_id": "discovery-net",
+  "check_tx_code": 0,
+  "commit_confirmation": "Queried the contribution and all six relations from the synchronized local committed SQLite ledger at indexed height 527, and independently queried the CometBFT transaction result and Merkle proof; CheckTx alone was not treated as inclusion.",
+  "committed_height": 524,
+  "confirmed_indexed_height": 527,
+  "contribution": {
+    "artifact_ref": "bafkreiav6efbrcdsruu3orw2h672w2tnd3udko4bavv6fa4eqaoymrf5im",
+    "kind": "lemma",
+    "title": "Third-Order Axis/Sign Classification of the QLP-42 q=41 Branch"
+  },
+  "created_at": "2026-08-31T23:14:37.189456+00:00",
+  "genesis_commit": "e847e5df01c42560afeee3442925d8f1595c62fa",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+  "local_node_id": "2e4279dab77cc4b4b861c0dfac1104b562fde28a",
+  "local_node_public_egress_cidr": "173.52.73.189/32",
+  "node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+  "node_njall_5_public_egress_cidr": "136.111.238.109/32",
+  "persistent_peer": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3@136.111.238.109:26656",
+  "relations": [
+    {
+      "artifact_ref": "bafkreiddltziv37ydjlipwx2a5557w7rwibek2ql36q36iuh523336hfn4",
+      "height": 524,
+      "kind": "refines",
+      "to": "bafkreifazdftc63yxllr6hi7m3zrdtznfqca64ykj7objgvu5tmfekg5r4"
+    },
+    {
+      "artifact_ref": "bafkreidfjlplwj4gczmzshfflbwnptewfwfgpysmqkqola4zb2k2v3zwre",
+      "height": 524,
+      "kind": "variant_of",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreibxldzi263ianxobyddicg5bdt2xcdvtz6qcppd2tlixm6cdtjq5i",
+      "height": 524,
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreid7pvyvv5qehq4e5gl7uu5ybecymc3ch5atojfnm56cwbtochh2ua",
+      "height": 524,
+      "kind": "refines",
+      "to": "bafkreibpozv4dtd4ukqyp44alo3fyt4l6722t55yzrbp5kdkwir76jmehe"
+    },
+    {
+      "artifact_ref": "bafkreigzbhhxeyfk7ciacwayuwg5x5hhmyosy4lz5xmhwv6glpukjcr6wu",
+      "height": 524,
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreiduktmvr2242rhkxqr4reirbiq27ncsx7ekt2mulg766ezhmtx5si",
+      "height": 524,
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "rpc_url": "http://127.0.0.1:26657",
+  "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+  "source_commit": "741b5ec03ed1fc55b78affb373b8ffc8bd31bab9",
+  "submission_route": "SSH loopback forward to node-njall-5 local RPC; no HTTPS inspector",
+  "transaction_hash": "559EADF4CC563240CD9C67A13975369D4D4B05C8CF473B3E0E0586FC0DD965AC",
+  "transaction_index": 0,
+  "transaction_merkle_proof": {
+    "index": 0,
+    "leaf_hash_base64": "7sSiE2pIyrlxagp6iixszjihISFcOPoGDeEUtHtaDWM=",
+    "root_hash": "EEC4A2136A48CAB9716A0A7A8A2C6CCE38A121215C38FA060DE114B47B5A0D63",
+    "total": 1
+  },
+  "transaction_result_code": 0
+}
