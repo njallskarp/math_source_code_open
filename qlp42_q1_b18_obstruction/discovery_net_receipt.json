@@ -1,0 +1,71 @@
+{
+  "accepted_for_broadcast": true,
+  "chain_id": "discovery-net",
+  "check_tx_code": 0,
+  "commit_confirmation": "Queried the contribution and all six relations from the local committed SQLite ledger at indexed height 537, and independently queried the local CometBFT transaction result and Merkle proof; CheckTx alone was not treated as inclusion.",
+  "committed_height": 536,
+  "confirmed_indexed_height": 537,
+  "contribution": {
+    "artifact_ref": "bafkreib6xyklj6sa55p34p2dmvm7rtfy6n4djb5ornc4h5ezkcllgeab4a",
+    "kind": "lemma",
+    "title": "Mod-7 Compression Obstruction to the QLP-42 q=1 b=18 Row"
+  },
+  "created_at": "2026-08-31T23:46:54.325663+00:00",
+  "genesis_commit": "e847e5df01c42560afeee3442925d8f1595c62fa",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+  "node_id": "c6b685c9098bd691d1969177c83909bd6c986540",
+  "node_recovery": "The isolated CometBFT container was restarted with its application and data volumes preserved after diagnostics showed it stale at height 512 while all four connected peers were at height 538. It replayed the missing committed blocks and exposed the original transaction at height 536; the transaction was not resubmitted.",
+  "persistent_peer": "d3fec047e0d258b60baa61de6229a565e8366973@34.172.207.3:26656",
+  "public_egress_cidr": "173.52.73.189/32",
+  "relations": [
+    {
+      "artifact_ref": "bafkreih5zq6sgsht4cwr7fajys3dmn5cmkrool6rhhuaysktpm2sxhp7bq",
+      "height": 536,
+      "kind": "refines",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreieyzgtpf5d6kqtdmdxsorl5i6g5keilkqcm5vjezadfpw3pdgjpnm",
+      "height": 536,
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreieowjrsju3iv3y4oxa3ra25exrzbv7liduwywu672u2p4e5nugbdi",
+      "height": 536,
+      "kind": "refines",
+      "to": "bafkreibpozv4dtd4ukqyp44alo3fyt4l6722t55yzrbp5kdkwir76jmehe"
+    },
+    {
+      "artifact_ref": "bafkreid57acitbccmjvvxlxdbhgyatle2cvbhhmwhh3d7m7ttfktkxtfjy",
+      "height": 536,
+      "kind": "specializes",
+      "to": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai"
+    },
+    {
+      "artifact_ref": "bafkreigxxmdgkzpbusq72ljdfhthdm4c4m5xk4ijbkqjnqguf5mhmn6hia",
+      "height": 536,
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreih7d4amtyp7gcwpekj7ketbcukzwirfaaqwkaf6thcapxd32g5i5i",
+      "height": 536,
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "rpc_url": "http://127.0.0.1:27657",
+  "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+  "source_commit": "b999e216fddcf502c72964167a59d5b6a9920f88",
+  "submission_route": "isolated local research node connected to node-njall-1; no HTTPS inspector",
+  "transaction_hash": "07F22C085A8571A1260EF4C265FEBA363BF218E913563A8394FCC67417F6C456",
+  "transaction_index": 0,
+  "transaction_merkle_proof": {
+    "index": 0,
+    "leaf_hash_base64": "Ky3B9ckJ3M0aGMod5/8Gbm8/OmmjIb4dYm5KpZ9ytHE=",
+    "root_hash": "2B2DC1F5C909DCCD1A18CA1DE7FF066E6F3F3A69A321BE1D626E4AA59F72B471",
+    "total": 1
+  },
+  "transaction_result_code": 0
+}
