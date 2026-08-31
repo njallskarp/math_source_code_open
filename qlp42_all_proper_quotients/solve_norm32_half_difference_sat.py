@@ -79,6 +79,19 @@ class Model:
             for row in rows:
                 self.add_exactly_one(row)
 
+        # Binary shadows modulo (1+i): unit[name][j] is true exactly for the
+        # four quarter-turn half-differences (the diagonal alphabet symbols).
+        self.unit = {
+            name: [self.pool.id(f"unit_{name}_{j}") for j in range(HALF)]
+            for name in ("a", "b")
+        }
+        for name, rows in self.choice.items():
+            for j, row in enumerate(rows):
+                unit = self.unit[name][j]
+                for literal in row[1:5]:
+                    self.cnf.append([-literal, unit])
+                self.cnf.append([-unit, *row[1:5]])
+
         # Independent cyclic rotation of either word preserves its sum and
         # PAF.  Thus each word may be rotated so that position zero contains
         # a least alphabet symbol in the fixed ordering above.
@@ -121,6 +134,7 @@ class Model:
             target=1,
             label="quarter_count_mod4",
         )
+        self.add_binary_shadow()
 
         for shift in range(1, HALF // 2 + 1):
             real_rows: list[list[int]] = []
@@ -158,6 +172,52 @@ class Model:
         for i, left in enumerate(literals):
             for right in literals[i + 1 :]:
                 self.cnf.append([-left, -right])
+
+    def add_and(self, left: int, right: int, label: str) -> int:
+        result = self.pool.id(label)
+        self.cnf.extend([[-result, left], [-result, right], [-left, -right, result]])
+        return result
+
+    def add_xor_equality(self, literals: list[int], parity: int, label: str) -> None:
+        if not literals:
+            if parity:
+                self.cnf.append([])
+            return
+        current = literals[0]
+        for i, literal in enumerate(literals[1:]):
+            result = self.pool.id(f"{label}_xor_{i}")
+            self.cnf.extend(
+                [
+                    [current, literal, -result],
+                    [current, -literal, result],
+                    [-current, literal, result],
+                    [-current, -literal, -result],
+                ]
+            )
+            current = result
+        self.cnf.append([current if parity else -current])
+
+    def add_binary_shadow(self) -> None:
+        for shift in range(HALF // 2 + 1):
+            products: list[int] = []
+            for name in ("a", "b"):
+                units = self.unit[name]
+                if shift == 0:
+                    products.extend(units)
+                    continue
+                products.extend(
+                    self.add_and(
+                        units[j],
+                        units[(j + shift) % HALF],
+                        f"binary_corr_{shift}_{name}_{j}",
+                    )
+                    for j in range(HALF)
+                )
+            self.add_xor_equality(
+                products,
+                parity=1 if shift == 0 else 0,
+                label=f"binary_paf_{shift}",
+            )
 
     def product_value_row(
         self,

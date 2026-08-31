@@ -12,5 +12,11 @@ case=0; representative=(1, 0, 5, 0); variables=155447; clauses=990799; build_sec
 case=0; status=UNKNOWN; solve_seconds=20.054
 summary=case0:UNKNOWN
 
+command=uv run --with python-sat==1.9.dev15 python solve_norm32_half_difference_sat.py --case 0 --seconds 20
+model=finite-state integer sums plus complete F2 autocorrelation shadow
+case=0; representative=(1, 0, 5, 0); variables=156360; clauses=994084; build_seconds=1.273
+case=0; status=UNKNOWN; solve_seconds=20.018
+summary=case0:UNKNOWN
+
 The bounded SAT result is recorded only as an implementation smoke test.
 UNKNOWN is not evidence for feasibility or infeasibility.
