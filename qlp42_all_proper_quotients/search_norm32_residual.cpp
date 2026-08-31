@@ -80,13 +80,13 @@ constexpr std::array<int, kLength> target_residual() {
 
 constexpr auto kTargetResidual = target_residual();
 
-std::int64_t score(const State& a, const State& b) {
+std::int64_t score(const State& a, const State& b, bool real_only) {
   std::int64_t total = 0;
   for (int shift = 1; shift < kLength; ++shift) {
     const G target{kTargetResidual[shift] - 2, 0};
     const G difference = a.paf[shift] + b.paf[shift] - target;
-    total += std::int64_t(difference.x) * difference.x +
-             std::int64_t(difference.y) * difference.y;
+    total += std::int64_t(difference.x) * difference.x;
+    if (!real_only) total += std::int64_t(difference.y) * difference.y;
   }
   return total;
 }
@@ -111,6 +111,7 @@ void print_phases(const char* name, const Phases& phases) {
 int main(int argc, char** argv) {
   const int restarts = argc > 1 ? std::stoi(argv[1]) : 100;
   const int steps = argc > 2 ? std::stoi(argv[2]) : 1000000;
+  const bool real_only = argc > 3 && std::string(argv[3]) == "real-only";
   std::mt19937_64 rng(0x4e4f524d3332514cULL);
   std::uniform_real_distribution<double> unit(0.0, 1.0);
   const Phases base_a = parse("ji111-1j-i--ji-j-ji1jjj-1ijj1jiii-1iij1-ii");
@@ -124,7 +125,7 @@ int main(int argc, char** argv) {
     std::shuffle(pb.begin(), pb.end(), rng);
     State a = make_state(pa);
     State b = make_state(pb);
-    std::int64_t current = score(a, b);
+    std::int64_t current = score(a, b, real_only);
 
     for (int step = 0; step < steps; ++step) {
       State& chosen = (rng() & 1) ? a : b;
@@ -144,7 +145,7 @@ int main(int argc, char** argv) {
         new_j = (new_i + 2) % 4;
       }
       apply_set_pair(chosen, i, new_i, j, new_j);
-      const std::int64_t next = score(a, b);
+      const std::int64_t next = score(a, b, real_only);
       const double progress = double(step) / std::max(1, steps - 1);
       const double temperature = 120.0 * std::pow(0.05 / 120.0, progress);
       if (next <= current || unit(rng) < std::exp(double(current - next) / temperature)) {
