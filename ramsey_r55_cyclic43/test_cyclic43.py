@@ -170,6 +170,48 @@ class DirectVerifierTests(unittest.TestCase):
         self.assertTrue(payload["full_one_flip_neutral_component_is_cycle_C86"])
         self.assertTrue(payload["neutral_neighbors_are_predecessor_and_successor"])
         self.assertTrue(payload["direct_recount_all_states_equal_two"])
+        self.assertEqual(payload["off_component_neighbor_minimum"], 3)
+        self.assertEqual(
+            payload["off_component_neighbor_minimum_histogram"], {"3": 86}
+        )
+        self.assertEqual(
+            payload["off_component_minimizer_count_histogram"],
+            {"8": 43, "9": 43},
+        )
+        self.assertEqual(payload["off_component_minimizer_count_total"], 731)
+        self.assertEqual(
+            payload["off_component_minimizer_cyclic_length_histogram"],
+            {"1": 731},
+        )
+        self.assertTrue(payload["off_component_minimizers_follow_modular_window"])
+        self.assertTrue(payload["neighbor_spectra_depend_only_on_state_parity"])
+        self.assertEqual(payload["distinct_all_edge_neighbor_spectrum_count"], 2)
+        self.assertEqual(
+            payload["all_edge_neighbor_spectrum_class_size_histogram"],
+            {"43": 2},
+        )
+
+        aggregate_spectrum = payload[
+            "aggregate_all_edge_neighbor_objective_histogram"
+        ]
+        even_spectrum = payload["even_state_all_edge_neighbor_objective_histogram"]
+        odd_spectrum = payload["odd_state_all_edge_neighbor_objective_histogram"]
+        self.assertEqual(sum(aggregate_spectrum.values()), 86 * 903)
+        self.assertEqual(sum(even_spectrum.values()), 903)
+        self.assertEqual(sum(odd_spectrum.values()), 903)
+        self.assertEqual(even_spectrum["3"], 8)
+        self.assertEqual(odd_spectrum["3"], 9)
+        self.assertEqual(
+            aggregate_spectrum,
+            {
+                objective: 43
+                * (
+                    even_spectrum.get(objective, 0)
+                    + odd_spectrum.get(objective, 0)
+                )
+                for objective in aggregate_spectrum
+            },
+        )
 
         primary = load_certificate(HERE / payload["certificate"])
         fu_malik = load_certificate(HERE / payload["fu_malik_certificate"])

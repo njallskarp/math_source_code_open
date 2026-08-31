@@ -268,6 +268,26 @@ $$
 C_{86}.
 $$
 
+The scan also gives the exact energy barrier around this component. Excluding
+the two cycle neighbors, every one-edge move produces at least three
+monochromatic `K5`s, and equality occurs at every state. Let $S_n$ be the set
+of cyclic length-one edge positions whose reversal from state $n$ produces
+exactly three. Exhaustive enumeration yields the modular sliding windows
+
+$$
+S_{2k}=\{17j\bmod43:k-8\leq j\leq k-1\},
+\qquad
+S_{2k+1}=\{17j\bmod43:k-8\leq j\leq k\}.
+$$
+
+Hence every even-indexed state has eight minimum off-cycle exits and every
+odd-indexed state has nine, giving 731 directed minimum exits in total. All 731
+use cyclic length-one edges. More strongly, the complete multiset of objective
+values over all 903 one-edge neighbors is identical within each parity class:
+there are exactly two spectra, each shared by 43 states. This makes objective
+three the sharp one-flip escape level everywhere on $C_{86}$ and exposes a
+two-phase periodic boundary for a subsequent orbit-quotiented search.
+
 This statement permits arbitrary reuse of every edge. It does not rule out
 paths that temporarily increase the monochromatic count above two and later
 return to the optimum plateau. The calculation and compact certificate are
@@ -287,8 +307,8 @@ The $C_{86}$ result here concerns a different perturbation family and upgrades
 the analogous qualitative phenomenon to an exhaustive component theorem.
 
 ```text
-7b6835fadc535a0f14436a6a49afb16fa4a41ed2f7644b74168e91c0f665fb3e  defect_cycle.py
-a81dad4cf135181fd8b47b890457969d2c1722c25a13584abefa23543d17beea  defect-cycle.json
+8e1d119f3b9fd93ed6d9b866ca2ccf81183792d8731ea9207c8937b28545b5db  defect_cycle.py
+be7c8b1ae32519ac175167523b1afe0937cdeb0d6072bd6539df2bb7595e3d31  defect-cycle.json
 ```
 
 ### Radius-five exclusion tube around the 37-edge defect orbit

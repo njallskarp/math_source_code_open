@@ -16,7 +16,7 @@ from local_rigidity import (
     is_monochromatic,
     initial_colors,
 )
-from solve_cyclic43 import ORDER, edge, load_certificate
+from solve_cyclic43 import ORDER, cyclic_distance, edge, load_certificate
 
 
 def position_edge(position: int) -> tuple[int, int]:
@@ -104,14 +104,33 @@ def analyze_cycle(
     neutral_neighbor_positions = []
     all_edge_neutral_degrees = []
     non_length_one_neutral_edges: list[dict[str, object]] = []
+    aggregate_neighbor_objectives: Counter[int] = Counter()
+    neighbor_spectrum_indices: dict[tuple[tuple[int, int], ...], int] = {}
+    neighbor_spectrum_class_states: list[list[int]] = []
+    off_component_minima = []
+    off_component_minimizer_counts = []
+    off_component_minimizer_positions = []
+    off_component_minimizer_lengths: Counter[int] = Counter()
     fu_malik_state_index: int | None = None
 
     for index, position in enumerate(positions):
         if all_edge_neighbors:
+            resulting_counts = [
+                resulting_count(edge_id) for edge_id in range(len(edges))
+            ]
+            state_spectrum = Counter(resulting_counts)
+            aggregate_neighbor_objectives.update(state_spectrum)
+            spectrum_signature = tuple(sorted(state_spectrum.items()))
+            spectrum_class = neighbor_spectrum_indices.get(spectrum_signature)
+            if spectrum_class is None:
+                spectrum_class = len(neighbor_spectrum_class_states)
+                neighbor_spectrum_indices[spectrum_signature] = spectrum_class
+                neighbor_spectrum_class_states.append([])
+            neighbor_spectrum_class_states[spectrum_class].append(index)
             all_neutral_ids = [
                 edge_id
-                for edge_id in range(len(edges))
-                if resulting_count(edge_id) == 2
+                for edge_id, count in enumerate(resulting_counts)
+                if count == 2
             ]
             all_edge_neutral_degrees.append(len(all_neutral_ids))
             neutral = sorted(
@@ -128,6 +147,33 @@ def analyze_cycle(
                 non_length_one_neutral_edges.append(
                     {"state_index": index, "edges": other_edges}
                 )
+            cycle_neighbor_ids = {
+                length_one_ids[positions[(index - 1) % period]],
+                length_one_ids[positions[index]],
+            }
+            off_minimum = min(
+                count
+                for edge_id, count in enumerate(resulting_counts)
+                if edge_id not in cycle_neighbor_ids
+            )
+            off_minimizers = [
+                edge_id
+                for edge_id, count in enumerate(resulting_counts)
+                if edge_id not in cycle_neighbor_ids and count == off_minimum
+            ]
+            off_component_minima.append(off_minimum)
+            off_component_minimizer_counts.append(len(off_minimizers))
+            if any(
+                cyclic_distance(*edges[edge_id]) != 1
+                for edge_id in off_minimizers
+            ):
+                raise AssertionError("off-component minimizer is not length one")
+            off_component_minimizer_positions.append(
+                sorted(edge_position(edges[edge_id]) for edge_id in off_minimizers)
+            )
+            off_component_minimizer_lengths.update(
+                cyclic_distance(*edges[edge_id]) for edge_id in off_minimizers
+            )
         else:
             neutral = [
                 candidate
@@ -223,7 +269,53 @@ def analyze_cycle(
         result["direct_recount_state_count"] = len(direct_counts)
         result["direct_recount_all_states_equal_two"] = True
     if all_edge_neighbors:
+        expected_spectrum_states = [
+            list(range(parity, period, 2)) for parity in range(2)
+        ]
+        if neighbor_spectrum_class_states != expected_spectrum_states:
+            raise AssertionError(neighbor_spectrum_class_states)
+        spectrum_signatures: list[tuple[tuple[int, int], ...] | None] = [
+            None
+        ] * len(neighbor_spectrum_indices)
+        for signature, class_index in neighbor_spectrum_indices.items():
+            spectrum_signatures[class_index] = signature
+        if any(signature is None for signature in spectrum_signatures):
+            raise AssertionError(spectrum_signatures)
+
+        expected_minimizer_positions = []
+        for state_index in range(period):
+            k = state_index // 2
+            final_offset = 0 if state_index % 2 else -1
+            expected_minimizer_positions.append(
+                sorted(
+                    17 * offset % ORDER
+                    for offset in range(k - 8, k + final_offset + 1)
+                )
+            )
+        if off_component_minimizer_positions != expected_minimizer_positions:
+            raise AssertionError("modular minimizer window mismatch")
+
         result["all_edge_neighbor_checks"] = period * len(edges)
+        result["aggregate_all_edge_neighbor_objective_histogram"] = {
+            str(objective): count
+            for objective, count in sorted(aggregate_neighbor_objectives.items())
+        }
+        result["distinct_all_edge_neighbor_spectrum_count"] = len(
+            neighbor_spectrum_indices
+        )
+        result["neighbor_spectra_depend_only_on_state_parity"] = True
+        result["even_state_all_edge_neighbor_objective_histogram"] = {
+            str(objective): count for objective, count in spectrum_signatures[0]
+        }
+        result["odd_state_all_edge_neighbor_objective_histogram"] = {
+            str(objective): count for objective, count in spectrum_signatures[1]
+        }
+        result["all_edge_neighbor_spectrum_class_size_histogram"] = {
+            str(size): count
+            for size, count in sorted(
+                Counter(map(len, neighbor_spectrum_class_states)).items()
+            )
+        }
         result["neutral_all_edge_degree_histogram"] = {
             str(degree): count
             for degree, count in sorted(Counter(all_edge_neutral_degrees).items())
@@ -233,6 +325,31 @@ def analyze_cycle(
         )
         result["full_one_flip_neutral_component_is_cycle_C86"] = not (
             non_length_one_neutral_edges
+        )
+        result["off_component_neighbor_minimum"] = min(off_component_minima)
+        result["off_component_neighbor_minimum_histogram"] = {
+            str(minimum): count
+            for minimum, count in sorted(Counter(off_component_minima).items())
+        }
+        result["off_component_minimizer_count_histogram"] = {
+            str(count): frequency
+            for count, frequency in sorted(
+                Counter(off_component_minimizer_counts).items()
+            )
+        }
+        result["off_component_minimizer_count_total"] = sum(
+            off_component_minimizer_counts
+        )
+        result["off_component_minimizer_cyclic_length_histogram"] = {
+            str(length): count
+            for length, count in sorted(off_component_minimizer_lengths.items())
+        }
+        result["off_component_minimizers_follow_modular_window"] = True
+        result["off_component_even_state_minimizer_formula"] = (
+            "S_(2k) = {17j mod 43 : k-8 <= j <= k-1}"
+        )
+        result["off_component_odd_state_minimizer_formula"] = (
+            "S_(2k+1) = {17j mod 43 : k-8 <= j <= k}"
         )
         if not non_length_one_neutral_edges:
             result["scope_note"] = (

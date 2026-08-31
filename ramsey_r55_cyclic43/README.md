@@ -104,6 +104,16 @@ cycle `C86`. The Fu-Malik certificate occurs at state 71, and the existing
 15-step bridge is exactly the closing segment. The direct-verification mode
 recounts all 962,598 five-sets independently at every state.
 
+The same exhaustive neighborhood scan determines the exact first-step escape
+barrier. Every off-cycle neighbor has at least three monochromatic `K5`s, and
+this bound is attained at every cycle state. If `S_n` is the set of cyclic
+length-one positions attaining three from state `n`, then
+`S_(2k) = {17j mod 43 : k-8 <= j <= k-1}` and
+`S_(2k+1) = {17j mod 43 : k-8 <= j <= k}`. Thus even states have eight minimum
+exits, odd states have nine, and the full 903-neighbor objective spectrum
+depends only on state parity. The certificate records all aggregate and
+parity-resolved counts.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash
