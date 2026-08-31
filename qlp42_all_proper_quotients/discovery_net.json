@@ -1,7 +1,7 @@
 {
   "chain_id": "discovery-net",
   "source_commit": "3123716fc47cc9dddd631b28ccc87ef77c660d82",
-  "latest_source_commit": "3fe425de89823e61916bcc9001f62d8273d0194d",
+  "latest_source_commit": "4652c74fdffc1ddd3d87fb36b72d94ba327ca60d",
   "contributions": [
     {
       "kind": "problem_statement",
@@ -118,6 +118,36 @@
           "kind": "replies_to",
           "artifact_ref": "bafkreidoyksw5gkd5pfpyogrv6bhnhllbmmlpjnszmthv3mwfq3jlf4j5e",
           "to_contribution_ref": "bafkreid6ov7vihjmf6jemluskhzm2fe7abr636vf67o2b36dftolyb3aaa"
+        }
+      ]
+    },
+    {
+      "kind": "lemma",
+      "title": "Half-Difference Obstruction for the Concentrated Goethals--Seidel Slice at QLP Length 42",
+      "source_commit": "4652c74fdffc1ddd3d87fb36b72d94ba327ca60d",
+      "artifact_ref": "bafkreiajda4smlxuiove336imrkix5jcwhkdotyyqwqwldmhnll5l6eltq",
+      "transaction_hash": "B52EC4C7FFC85E0132E5E7E17E32729238ADE6F36946090277CEFE1119A8BDE2",
+      "committed_height": 357,
+      "relations": [
+        {
+          "kind": "refines",
+          "artifact_ref": "bafkreickw7lkshkpzajrb42y3b3hvqfanrw7fyj45j2f2no25lcd4eqdea",
+          "to_contribution_ref": "bafkreieszww7bzriqcd246sd4kwwdsar7qv2kmhcogg6qg2dl5s4yi6zhu"
+        },
+        {
+          "kind": "depends_on",
+          "artifact_ref": "bafkreigj6hzn2b7n2yxghkra35fhhplkvdxhtypdxe2ydci6rdbay7jnlq",
+          "to_contribution_ref": "bafkreieszww7bzriqcd246sd4kwwdsar7qv2kmhcogg6qg2dl5s4yi6zhu"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreid7yvrymnsn5bpc74wb4b72zhldef7f4kbpasu2fgsrav6k34mhcu",
+          "to_contribution_ref": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreicx22o5a5nrwi3kffrvdragkkcwqygsvktycqduzg7gyppuppj22u",
+          "to_contribution_ref": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
         }
       ]
     }
