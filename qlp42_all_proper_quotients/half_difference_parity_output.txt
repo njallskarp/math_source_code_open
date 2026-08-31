@@ -1,0 +1,16 @@
+command=python3 verify_half_difference_parity.py
+python=3.12.12
+binary_words=2097152
+autocorrelation_signatures=2048
+compatible_ordered_pairs=1585059840
+count_triples=(1, 21, 20),(5, 19, 18),(9, 17, 16),(13, 15, 14),(17, 13, 12),(21, 11, 10),(25, 9, 8),(29, 7, 6),(33, 5, 4),(37, 3, 2),(41, 1, 0)
+certificate=verified
+
+command=uv run --with python-sat==1.9.dev15 python solve_norm32_half_difference_sat.py --case 0 --seconds 20
+python-sat=1.9.dev15
+case=0; representative=(1, 0, 5, 0); variables=155447; clauses=990799; build_seconds=1.162
+case=0; status=UNKNOWN; solve_seconds=20.054
+summary=case0:UNKNOWN
+
+The bounded SAT result is recorded only as an implementation smoke test.
+UNKNOWN is not evidence for feasibility or infeasibility.
