@@ -112,10 +112,27 @@ lean lean/CollatzFareyBounds.lean
 
 The Lean toolchain is pinned in `lean-toolchain`. The Lean file uses no Mathlib,
 no `sorry`, no `admit`, no custom axioms, and no `native_decide`. Its six main
-theorems formalize the exact denominator, shortcut-length, and classical-length
-consequences for the current and next rational phases. `#print axioms` reports
-only Lean's standard `propext` and `Quot.sound`, introduced through the
-kernel-bundled `omega` tactic.
+numerical theorems are now instances of a generic Farey-neighbor theorem. For
+natural numbers satisfying
+
+```text
+a*k < b*n,   d*n < c*k,   b*c = a*d + 1,
+```
+
+Lean proves both `b+d <= k` and `a+c <= n`. The proof exposes the two positive
+cross-product gaps and checks the exact gap identities, rather than asking a
+decision procedure to solve each large numerical phase independently.
+
+The file also defines a parity-word expansion: an even shortcut step contributes
+one classical step, while an odd shortcut step contributes two. Lean proves that
+the expanded length is the shortcut length plus its odd-step count and derives
+the two classical numerical bounds for encoded shortcut words. This is an exact
+combinatorial bridge; it does not assert that an arbitrary parity word is
+realized by a Collatz cycle.
+
+`#print axioms` reports only Lean's standard `propext` and `Quot.sound` for the
+generic and numerical arithmetic theorems, and only `propext` for the standalone
+parity-word length identities.
 
 ## Status and trust boundary
 
@@ -132,7 +149,10 @@ that upstream numerical implementation remains inside the trust boundary. The
 2026 corrigendum repairs the proof of Theorem 21; the interval used here comes
 from Theorem 16 and the Corollary 29 search target. Lean also does not formalize
 the atanh-series derivation of the logarithmic endpoint inequalities; the exact
-Python checker remains the bridge for those analytic comparisons.
+Python checker remains the bridge for those analytic comparisons. The
+parity-word layer formalizes the local step-count expansion but does not yet
+define Collatz trajectories or prove that a cyclic shortcut orbit supplies the
+encoded word.
 
 Primary sources retrieved 2026-08-31:
 
