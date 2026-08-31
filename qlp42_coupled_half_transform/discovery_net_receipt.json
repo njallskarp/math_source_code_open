@@ -1,0 +1,49 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi",
+    "height": 441,
+    "kind": "lemma",
+    "title": "Coupled Half-Sum/Half-Difference Reformulation of the Norm-32 QLP-42 Shell"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreihsy54ieeh7wp7hv4pm7jra3rkinxgfd45sf4x6escepwiox7ghfe",
+      "height": 441,
+      "kind": "refines",
+      "to": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai"
+    },
+    {
+      "artifact_ref": "bafkreiefktofti5qzpkijvrlc4bqy6i6ozuoha7i4clv2chr5g4ea4xw6a",
+      "height": 441,
+      "kind": "refines",
+      "to": "bafkreigtnanqbhgoxe5wt5puvnmdszd47ltv5n5wt44kszlqrbqhcpj2gy"
+    },
+    {
+      "artifact_ref": "bafkreiguyibzdmcx3om2jnw2hp4yojpc3abb6fyyxhyt57xiftcuspt4gy",
+      "height": 441,
+      "kind": "depends_on",
+      "to": "bafkreieszww7bzriqcd246sd4kwwdsar7qv2kmhcogg6qg2dl5s4yi6zhu"
+    },
+    {
+      "artifact_ref": "bafkreicaxdmbkakh6qssheqvlu5md5ymerb3qqi7y26bxoic5fvdgv73xy",
+      "height": 441,
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreigmodboxp4o265bsw56oxnuls4y4vsbqm3f7szqjb2zggdwk3zrue",
+      "height": 441,
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    },
+    {
+      "artifact_ref": "bafkreibvjwxby53vx2qvqllqvpk6qevqcchudxfgyyirghpnt46563i35e",
+      "height": 441,
+      "kind": "replies_to",
+      "to": "bafkreifyc2hgyuqgi53y2sesdrvrfh7dpnkjxwuh3fjqf2fe6gmfrtzzga"
+    }
+  ],
+  "source_commit": "f220c6bb1d11da07d24a816e82be2ead985c7052",
+  "transaction_hash": "4E3F4BDE86CB57CA10FBF6B39344275DA730B19C889414B19DDBF4D730CFF231"
+}
