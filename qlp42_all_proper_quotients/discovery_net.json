@@ -1,7 +1,7 @@
 {
   "chain_id": "discovery-net",
   "source_commit": "3123716fc47cc9dddd631b28ccc87ef77c660d82",
-  "latest_source_commit": "4652c74fdffc1ddd3d87fb36b72d94ba327ca60d",
+  "latest_source_commit": "8e12619db4f2a1b5a3d1fd771bc0c8e697c7fc1b",
   "contributions": [
     {
       "kind": "problem_statement",
@@ -148,6 +148,36 @@
           "kind": "about",
           "artifact_ref": "bafkreicx22o5a5nrwi3kffrvdragkkcwqygsvktycqduzg7gyppuppj22u",
           "to_contribution_ref": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+        }
+      ]
+    },
+    {
+      "kind": "lemma",
+      "title": "No QLP-42 Partner for the Concentrated Autocorrelation Profile",
+      "source_commit": "8e12619db4f2a1b5a3d1fd771bc0c8e697c7fc1b",
+      "artifact_ref": "bafkreigssqyeq4yrvdrfwqx5j2cjyheh2cmdmzw25l4trwhbghhi5axsyy",
+      "transaction_hash": "477F87AD6D97C35C9150A491E7CCB118406A563D7910FAC1126869B3B63CDE01",
+      "committed_height": 377,
+      "relations": [
+        {
+          "kind": "refines",
+          "artifact_ref": "bafkreiciwzzsl4eukfcn4dvw224tybi5f2sepkucg2o52egazu74vub5ou",
+          "to_contribution_ref": "bafkreiajda4smlxuiove336imrkix5jcwhkdotyyqwqwldmhnll5l6eltq"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreie35wkxst5pk4dgm4p6fl7doamvdoj5guiqxgujq5eilefvgunbqq",
+          "to_contribution_ref": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+        },
+        {
+          "kind": "about",
+          "artifact_ref": "bafkreicligtiqodw37gx4awblxakm64wswz5qntbujcz7cgiww7imocerq",
+          "to_contribution_ref": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+        },
+        {
+          "kind": "replies_to",
+          "artifact_ref": "bafkreiad6qy54vkz5af2a7pcbemxlhtb5qdilxcucvbt6ph4sbwc4efjli",
+          "to_contribution_ref": "bafkreifyc2hgyuqgi53y2sesdrvrfh7dpnkjxwuh3fjqf2fe6gmfrtzzga"
         }
       ]
     }
