@@ -311,6 +311,70 @@ the analogous qualitative phenomenon to an exhaustive component theorem.
 be7c8b1ae32519ac175167523b1afe0937cdeb0d6072bd6539df2bb7595e3d31  defect-cycle.json
 ```
 
+### The complete connected sublevel-three component
+
+The modular windows also determine how the 731 minimum escape colorings meet
+one another. Encode a cycle state by its 43-bit mask of length-one reversals
+relative to the primary certificate. For every pair $(n,p)$ with $p\in S_n$,
+let
+
+$$
+B_{n,p}=C_n\mathbin\triangle\{p\}.
+$$
+
+Exact mask comparison proves that all 731 colorings $B_{n,p}$ are distinct and
+that each is adjacent to exactly one cycle state, namely $C_n$. Holding $p$
+fixed, it remains in the sliding window for 17 consecutive values of $n$.
+Successive masks differ by the corresponding cycle edge, while no other pair
+differs in one coordinate. Consequently the graph induced by the boundary is
+
+$$
+43P_{17},
+$$
+
+the disjoint union of 43 paths of order 17. It has 688 edges, 86 endpoints of
+boundary degree one, and 645 internal vertices of boundary degree two.
+
+It remains necessary to rule out objective-at-most-three neighbors outside
+these paths. The center states split into two rotational types:
+
+$$
+C_{2k}=C_0+17k,
+\qquad C_{2k+1}=C_1+17k \pmod {43}.
+$$
+
+Thus the boundary has only 17 rotational types, further paired into nine
+dihedral types by the reflections $x\mapsto20-x$ at $C_0$ and
+$x\mapsto37-x$ at $C_1$. All 903 edge reversals were evaluated at each of the
+17 rotational representatives. Every representative has exactly one
+objective-two neighbor, its center, and either one or two objective-three
+neighbors, precisely its neighbors in its certified $P_{17}$. There are no
+other objective-two or objective-three exits. Rotation therefore lifts 15,351
+explicit evaluations to all $731\cdot903=660,093$ boundary-neighbor cases.
+All 17 boundary representatives were also reconstructed and their
+$\binom{43}{5}$ five-sets recounted independently.
+
+It follows that the complete connected component of the coloring graph induced
+by monochromatic-$K_5$ counts at most three and containing the primary
+certificate has exactly
+
+$$
+86+731=817\text{ vertices},\qquad
+86+731+688=1,505\text{ edges}.
+$$
+
+Structurally it is $C_{86}$, 43 copies of $P_{17}$, and one spoke joining every
+path vertex to its unique cycle center. This is a local sublevel-set theorem,
+not a claim that objective four cannot lead to another low-energy component or
+ultimately to a zero-clique coloring. The exact checker and certificate are
+[`escape_component.py`](escape_component.py) and
+[`escape-component.json`](escape-component.json).
+
+```text
+0f96e15ff11c7325b9ecef4fb75d8dd8a94fb3bb627389b8cfc369ddfc72a434  escape_component.py
+76e23b3b4ca7ce94117fa897366645597494a984dc6d3c6e96040eb0009269f7  escape-component.json
+```
+
 ### Radius-five exclusion tube around the 37-edge defect orbit
 
 The forced-witness search was run independently through radius five around all

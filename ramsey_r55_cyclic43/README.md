@@ -114,6 +114,24 @@ exits, odd states have nine, and the full 903-neighbor objective spectrum
 depends only on state parity. The certificate records all aggregate and
 parity-resolved counts.
 
+Classify the complete connected objective-at-most-three component containing
+that cycle:
+
+```bash
+python escape_component.py certificate.json \
+  --cycle defect-cycle.json \
+  --all-edge-neighbors --direct-verify \
+  --output escape-component.json
+```
+
+The 731 objective-three boundary colorings are all distinct. Their induced
+graph is the disjoint union of 43 paths `P17`, one for each cyclic length-one
+edge position, and each boundary vertex has one edge back to a unique cycle
+state. A full 903-edge scan of 17 rotational representatives, lifted by proven
+rotation symmetry, finds no other objective-two or objective-three neighbor.
+Therefore the entire connected sublevel-three component has 817 vertices and
+1,505 edges: `C86`, the 43 paths, and 731 center-to-boundary spokes.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash

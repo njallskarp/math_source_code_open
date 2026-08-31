@@ -8,6 +8,7 @@ from pathlib import Path
 
 from defect_cycle import analyze_cycle, position_edge, transport_position
 from defect_orbit_tube import prefix_chain_distance_histogram
+from escape_component import analyze as analyze_escape_component
 from local_rigidity import complete_graph_edges, direct_count, initial_colors
 from solve_cyclic43 import load_certificate, verify_flips
 
@@ -252,6 +253,88 @@ class DirectVerifierTests(unittest.TestCase):
             "fu_malik_state_index",
             "closing_bridge_positions",
             "length_one_neutral_component_is_cycle_C86",
+        ):
+            self.assertEqual(rerun[field], payload[field])
+
+    def test_complete_sublevel_three_component_certificate(self) -> None:
+        payload = json.loads((HERE / "escape-component.json").read_text())
+        self.assertEqual(payload["objective_two_vertex_count"], 86)
+        self.assertEqual(payload["objective_three_boundary_vertex_count"], 731)
+        self.assertEqual(payload["candidate_sublevel_three_vertex_count"], 817)
+        self.assertEqual(payload["candidate_sublevel_three_edge_count"], 1505)
+        self.assertEqual(payload["boundary_component_count"], 43)
+        self.assertEqual(payload["boundary_component_size_histogram"], {"17": 43})
+        self.assertEqual(
+            payload["boundary_induced_degree_histogram"], {"1": 86, "2": 645}
+        )
+        self.assertEqual(payload["boundary_induced_edge_count"], 688)
+        self.assertEqual(payload["center_boundary_edge_count"], 731)
+        self.assertEqual(payload["center_induced_edge_count"], 86)
+        self.assertEqual(payload["boundary_rotation_orbit_count"], 17)
+        self.assertEqual(payload["boundary_dihedral_orbit_count"], 9)
+        self.assertEqual(payload["direct_recount_representative_count"], 17)
+        self.assertEqual(
+            payload["all_edge_rotation_representative_neighbor_checks"],
+            17 * 903,
+        )
+        self.assertEqual(
+            payload["symmetry_lifted_boundary_neighbor_checks"], 731 * 903
+        )
+        self.assertTrue(payload["boundary_vertices_are_distinct"])
+        self.assertTrue(payload["boundary_components_are_P17"])
+        self.assertTrue(
+            payload["each_boundary_vertex_has_unique_objective_two_neighbor"]
+        )
+        self.assertTrue(
+            payload["all_objective_three_neighbors_remain_in_boundary_paths"]
+        )
+        self.assertTrue(payload["full_sublevel_three_component_through_C86_is_closed"])
+        self.assertTrue(
+            payload[
+                "full_sublevel_three_component_through_C86_is_C86_plus_43_P17"
+            ]
+        )
+
+        aggregate = payload["aggregate_boundary_neighbor_objective_histogram"]
+        self.assertEqual(sum(aggregate.values()), 731 * 903)
+        self.assertEqual(aggregate["2"], 731)
+        self.assertEqual(aggregate["3"], 2 * 688)
+        degrees = payload["candidate_sublevel_three_degree_histogram"]
+        self.assertEqual(
+            sum(int(degree) * count for degree, count in degrees.items()),
+            2 * 1505,
+        )
+
+        records = payload["boundary_dihedral_representative_records"]
+        self.assertEqual(len(records), 9)
+        primary = load_certificate(HERE / payload["certificate"])
+        edge_ids, _ = complete_graph_edges()
+        for record in records:
+            colors, _ = initial_colors(primary)
+            if record["center_parity"]:
+                changed_edge = position_edge(42)
+                colors[edge_ids[changed_edge]] = not colors[edge_ids[changed_edge]]
+            exit_edge = position_edge(record["exit_position_orbit"][0])
+            colors[edge_ids[exit_edge]] = not colors[edge_ids[exit_edge]]
+            count, witnesses = direct_count(colors, edge_ids)
+            self.assertEqual(count, 3)
+            self.assertEqual(
+                [list(witness) for witness in witnesses],
+                record["direct_recount_witnesses"],
+            )
+            self.assertEqual(sum(record["neighbor_objective_histogram"].values()), 903)
+
+        rerun = analyze_escape_component(
+            HERE / payload["certificate"], HERE / payload["cycle_certificate"]
+        )
+        for field in (
+            "objective_three_boundary_vertex_count",
+            "boundary_component_size_histogram",
+            "boundary_induced_degree_histogram",
+            "candidate_sublevel_three_vertex_count",
+            "candidate_sublevel_three_edge_count",
+            "even_exit_dihedral_orbits",
+            "odd_exit_dihedral_orbits",
         ):
             self.assertEqual(rerun[field], payload[field])
 
