@@ -1,0 +1,10 @@
+local_states=16
+local_kinds=equal:4,opposite:4,quarter:8
+q1_family_counts=q_A:0,q_B:1
+second_order_cross_configurations=512
+reflection_clauses=10
+oriented_exceptional_states=4
+global_types=opposite:21,equal:20
+compressed_count_shape=k0,k1,k2,k3,k3,k2,k1
+compressed_count_patterns=128
+certificate=verified
