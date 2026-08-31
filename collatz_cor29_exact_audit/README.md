@@ -36,7 +36,9 @@ search. Its purpose is to validate the exact recurrence, measure binary64
 decision margins on accessible prefixes, and provide a base for an optimized
 exact or interval-arithmetic implementation.
 
-## Depth-25 result
+## Audited results
+
+### Independent depth-25 frontier check
 
 For `c = 1536`, the exact auditor exhausts the full residue prefix through
 depth 25:
@@ -69,6 +71,32 @@ compiled with GCC 14.4.0 in the `gcc:14` container image (image digest
 Before entering its depth-300 continuation it printed the same depth-25
 frontier count, `108417`. The full run was intentionally stopped; no conclusion
 about the remaining tree is claimed.
+
+### Exact extension through depth 30
+
+The paired exact/binary64 audit was extended five levels beyond the official
+parallelization frontier:
+
+```text
+depth=30
+generated=3790686
+pruned_exact=734461
+frontier=1160883
+decision_disagreements=0
+corrected_multiplier_disagreements=39878
+float_multiplier_below_exact=10026
+float_multiplier_above_exact=29852
+maximum_multiplier_error=10923
+second_branch_disagreements=0
+minimum_scaled_margin=
+  2989566120402674981159/2058234223534933879597325018841
+```
+
+The final margin is about `1.45249e-9`. No unsafe pruning is observed among
+3,790,686 generated states, although the continued upward multiplier drift
+still prevents extrapolation to the 270 unexamined levels. The depth-30 run is
+an exact verified computation of this implementation; unlike the depth-25
+frontier count, it was not separately reproduced with the official C++ binary.
 
 ## Primary source and trust boundary
 
