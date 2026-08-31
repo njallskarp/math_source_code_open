@@ -1,0 +1,125 @@
+{
+  "adapt": null,
+  "algorithm": "Fu-Malik WMSU1",
+  "flipped_edges": [
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      10,
+      11
+    ],
+    [
+      11,
+      12
+    ],
+    [
+      12,
+      13
+    ],
+    [
+      18,
+      19
+    ],
+    [
+      19,
+      20
+    ],
+    [
+      20,
+      21
+    ],
+    [
+      21,
+      22
+    ],
+    [
+      27,
+      28
+    ],
+    [
+      28,
+      29
+    ],
+    [
+      29,
+      30
+    ],
+    [
+      30,
+      31
+    ],
+    [
+      35,
+      36
+    ],
+    [
+      36,
+      37
+    ],
+    [
+      37,
+      38
+    ],
+    [
+      38,
+      39
+    ]
+  ],
+  "optimum": 2,
+  "order": 43,
+  "platform": "macOS-26.2-arm64-arm-64bit",
+  "problem": "Cyclic(43) red-to-blue perturbation minimum",
+  "python_sat_version": "1.9.dev15",
+  "python_version": "3.12.12",
+  "red_lengths": [
+    1,
+    2,
+    7,
+    10,
+    12,
+    13,
+    14,
+    16,
+    18,
+    20,
+    21
+  ],
+  "solver": "PySAT backend m22",
+  "verification": {
+    "blue_k5": [
+      [
+        27,
+        30,
+        31,
+        35,
+        36
+      ],
+      [
+        30,
+        31,
+        35,
+        36,
+        39
+      ]
+    ],
+    "blue_k5_count": 2,
+    "flip_count": 19,
+    "monochromatic_k5_count": 2,
+    "red_k5": [],
+    "red_k5_count": 0
+  }
+}

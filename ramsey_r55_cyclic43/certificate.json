@@ -1,0 +1,121 @@
+{
+  "adapt": true,
+  "algorithm": "RC2",
+  "flipped_edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      8,
+      9
+    ],
+    [
+      9,
+      10
+    ],
+    [
+      10,
+      11
+    ],
+    [
+      11,
+      12
+    ],
+    [
+      17,
+      18
+    ],
+    [
+      18,
+      19
+    ],
+    [
+      19,
+      20
+    ],
+    [
+      25,
+      26
+    ],
+    [
+      26,
+      27
+    ],
+    [
+      27,
+      28
+    ],
+    [
+      28,
+      29
+    ],
+    [
+      34,
+      35
+    ],
+    [
+      35,
+      36
+    ],
+    [
+      36,
+      37
+    ],
+    [
+      37,
+      38
+    ]
+  ],
+  "optimum": 2,
+  "order": 43,
+  "platform": "macOS-26.2-arm64-arm-64bit",
+  "problem": "Cyclic(43) red-to-blue perturbation minimum",
+  "python_sat_version": "1.9.dev15",
+  "python_version": "3.12.12",
+  "red_lengths": [
+    1,
+    2,
+    7,
+    10,
+    12,
+    13,
+    14,
+    16,
+    18,
+    20,
+    21
+  ],
+  "solver": "PySAT backend g4",
+  "verification": {
+    "blue_k5": [],
+    "blue_k5_count": 0,
+    "flip_count": 18,
+    "monochromatic_k5_count": 2,
+    "red_k5": [
+      [
+        0,
+        20,
+        21,
+        22,
+        42
+      ],
+      [
+        0,
+        20,
+        21,
+        41,
+        42
+      ]
+    ],
+    "red_k5_count": 2
+  }
+}
