@@ -34,7 +34,7 @@ g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
   audit_prefix_fast.cpp -o audit_prefix_fast
 python3 compare_implementations.py --binary ./audit_prefix_fast \
   --depth 12 --depth 16 --depth 20 --depth 25
-./audit_prefix_fast --depth 40 --c 1536
+./audit_prefix_fast --depth 44 --c 1536
 
 ./audit_prefix_fast --split-depth 25 \
   --frontier-out frontier-depth25.txt --c 1536
@@ -165,32 +165,40 @@ still prevents extrapolation to the 270 unexamined levels. The depth-30 run is
 an exact verified computation of this implementation; unlike the depth-25
 frontier count, it was not separately reproduced with the official C++ binary.
 
-### Compact-invariant extension through depth 40
+### Compact-invariant extension through depth 44
 
 The optimized implementation exactly matched the Python reference at depths
 12, 16, 20, 25, and 32. At depth 32 it reduced elapsed time on this machine from
-337.68 seconds to 5.27 seconds while reproducing all output fields. It then
-extended the exhaustive paired audit to depth 40:
+337.68 seconds to 5.27 seconds while reproducing all output fields. Depth 41
+was run both monolithically and as eight hash-bound shards; every field matched.
+Depths 42, 43, and 44 were then completed with the same decomposition:
 
 ```text
-generated=436551086
-pruned_exact=86945706
-frontier=131329838
+frontier_sha256=da01c7ecdef1538e77f583620df9ab29376b1b21340ab0c795933ebfe6264602
+binary_sha256=c89a030b33f6a4e4af7513655e756d2b090b68d5619c3c762af4734c4bcf7e29
+shard_count=8
+selected_states=108417
+```
+
+```text
+generated=2902125180
+pruned_exact=563453476
+frontier=887609115
 decision_disagreements=0
-corrected_multiplier_disagreements=42323
-float_multiplier_below_exact=10425
-float_multiplier_above_exact=31898
+corrected_multiplier_disagreements=42499
+float_multiplier_below_exact=10435
+float_multiplier_above_exact=32064
 maximum_multiplier_error=10923
 second_branch_disagreements=0
 minimum_scaled_margin=
-  31453538815797864297484931/24354856878979826184202135702515069
-elapsed_seconds=241.49
+  575662982657459068858763/221051743115939704517342540931141237
 ```
 
-The minimum scaled margin is approximately `1.29147e-9`. This is an exact
-verified computation of the compact-invariant implementation, cross-checked
-against the independent Python representation on smaller complete prefixes. It
-does not certify depths 41 through 300.
+The minimum scaled margin is approximately `2.60420e-12`; it first appears by
+depth 43 and remains the minimum at depth 44. This is an exact verified
+computation of the compact-invariant implementation, cross-checked against the
+independent Python representation on smaller complete prefixes and against the
+monolithic execution at depth 41. It does not certify depths 45 through 300.
 
 ## Primary source and trust boundary
 
@@ -206,6 +214,7 @@ The exact mirror was independently transcribed from the published program, so
 transcription and semantic-equivalence errors remain possible. The two local
 implementations share that transcription and therefore are not fully
 independent. Agreement with binary64 on a finite prefix does not certify the
-unexamined depth-300 tree. A complete audit still needs deterministic frontier
-serialization, parallel subtree checking, restartable checkpoints, and an
-independently checkable aggregate certificate.
+unexamined depth-300 tree. The deterministic frontier, parallel subtree,
+restartable checkpoint, and exact aggregate layers are now implemented and
+tested, but a complete audit still requires executing depths 45 through 300 and
+independently checking the semantic transcription from the official program.
