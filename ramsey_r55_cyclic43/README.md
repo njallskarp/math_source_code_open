@@ -86,22 +86,23 @@ no constant-two extension: the minimum next count is four, uniquely at edge
 `(21,22)`. The compact result is `defect-orbit-primary.json`.
 
 Continue the modular transport after it first reuses an edge and classify the
-length-one neutral component:
+one-flip neutral component:
 
 ```bash
 python defect_cycle.py certificate.json \
   --fu-malik certificate-fm.json \
   --bridge plateau-bridge.json \
-  --direct-verify --output defect-cycle.json
+  --all-edge-neighbors --direct-verify \
+  --output defect-cycle.json
 ```
 
 The transport closes after 86 steps and visits 86 distinct two-clique
-colorings. At every state, exactly two of the 43 cyclic length-one reversals
-preserve the objective: the predecessor and successor edges. Thus the complete
-length-one optimum-2 component through the primary certificate is the cycle
-`C86`. The Fu-Malik certificate occurs at state 71, and the existing 15-step
-bridge is exactly the closing segment. The direct-verification mode recounts
-all 962,598 five-sets independently at every state.
+colorings. At every state, exactly two of all 903 single-edge reversals preserve
+the objective: the predecessor and successor length-one edges. Thus the complete
+one-flip-connected optimum-2 component through the primary certificate is the
+cycle `C86`. The Fu-Malik certificate occurs at state 71, and the existing
+15-step bridge is exactly the closing segment. The direct-verification mode
+recounts all 962,598 five-sets independently at every state.
 
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 

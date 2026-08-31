@@ -1,4 +1,5 @@
 {
+  "all_edge_neighbor_checks": 77658,
   "bridge": "plateau-bridge.json",
   "certificate": "certificate.json",
   "closing_bridge_length": 15,
@@ -114,15 +115,20 @@
   ],
   "fu_malik_certificate": "certificate-fm.json",
   "fu_malik_state_index": 71,
+  "full_one_flip_neutral_component_is_cycle_C86": true,
   "length_one_neutral_component_is_cycle_C86": true,
   "monochromatic_k5_count_at_every_state": 2,
+  "neutral_all_edge_degree_histogram": {
+    "2": 86
+  },
   "neutral_length_one_degree_histogram": {
     "2": 86
   },
   "neutral_neighbors_are_predecessor_and_successor": true,
   "order": 43,
   "returns_to_primary": true,
-  "scope_note": "All 43 cyclic length-one reversals are tested at each of the 86 states. This classifies the connected optimum-2 component through the primary certificate inside the length-one edge subcube only; other edge lengths may provide exits.",
+  "scope_note": "All 903 single-edge reversals are tested at each of the 86 states. This classifies the complete one-flip-connected optimum-2 component through the primary certificate; paths through higher objective values remain outside the claim.",
+  "states_with_non_length_one_neutral_edges": [],
   "transport_even_formula": "p_(2k) = 42 + 17k mod 43",
   "transport_odd_formula": "p_(2k+1) = 37 + 17k mod 43",
   "transport_period": 86

@@ -43,6 +43,7 @@ def analyze_cycle(
     fu_malik_certificate: Path,
     bridge_path: Path,
     direct_verify: bool = False,
+    all_edge_neighbors: bool = False,
 ) -> dict[str, object]:
     flips = load_certificate(certificate)
     fu_malik_flips = load_certificate(fu_malik_certificate)
@@ -101,14 +102,38 @@ def analyze_cycle(
     objective_sequence = [current_count]
     neutral_degrees = []
     neutral_neighbor_positions = []
+    all_edge_neutral_degrees = []
+    non_length_one_neutral_edges: list[dict[str, object]] = []
     fu_malik_state_index: int | None = None
 
     for index, position in enumerate(positions):
-        neutral = [
-            candidate
-            for candidate, edge_id in enumerate(length_one_ids)
-            if resulting_count(edge_id) == 2
-        ]
+        if all_edge_neighbors:
+            all_neutral_ids = [
+                edge_id
+                for edge_id in range(len(edges))
+                if resulting_count(edge_id) == 2
+            ]
+            all_edge_neutral_degrees.append(len(all_neutral_ids))
+            neutral = sorted(
+                edge_position(edges[edge_id])
+                for edge_id in all_neutral_ids
+                if edges[edge_id] in length_one_edges
+            )
+            other_edges = [
+                edges[edge_id]
+                for edge_id in all_neutral_ids
+                if edges[edge_id] not in length_one_edges
+            ]
+            if other_edges:
+                non_length_one_neutral_edges.append(
+                    {"state_index": index, "edges": other_edges}
+                )
+        else:
+            neutral = [
+                candidate
+                for candidate, edge_id in enumerate(length_one_ids)
+                if resulting_count(edge_id) == 2
+            ]
         expected = sorted(
             {positions[(index - 1) % period], positions[index]}
         )
@@ -197,6 +222,25 @@ def analyze_cycle(
             raise AssertionError((direct_counts, direct_colors == colors))
         result["direct_recount_state_count"] = len(direct_counts)
         result["direct_recount_all_states_equal_two"] = True
+    if all_edge_neighbors:
+        result["all_edge_neighbor_checks"] = period * len(edges)
+        result["neutral_all_edge_degree_histogram"] = {
+            str(degree): count
+            for degree, count in sorted(Counter(all_edge_neutral_degrees).items())
+        }
+        result["states_with_non_length_one_neutral_edges"] = (
+            non_length_one_neutral_edges
+        )
+        result["full_one_flip_neutral_component_is_cycle_C86"] = not (
+            non_length_one_neutral_edges
+        )
+        if not non_length_one_neutral_edges:
+            result["scope_note"] = (
+                "All 903 single-edge reversals are tested at each of the 86 "
+                "states. This classifies the complete one-flip-connected "
+                "optimum-2 component through the primary certificate; paths "
+                "through higher objective values remain outside the claim."
+            )
     return result
 
 
@@ -206,6 +250,7 @@ def main() -> None:
     parser.add_argument("--fu-malik", type=Path, required=True)
     parser.add_argument("--bridge", type=Path, required=True)
     parser.add_argument("--direct-verify", action="store_true")
+    parser.add_argument("--all-edge-neighbors", action="store_true")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     result = analyze_cycle(
@@ -213,6 +258,7 @@ def main() -> None:
         args.fu_malik,
         args.bridge,
         direct_verify=args.direct_verify,
+        all_edge_neighbors=args.all_edge_neighbors,
     )
     serialized = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:

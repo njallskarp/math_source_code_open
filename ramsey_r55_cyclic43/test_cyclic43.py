@@ -153,7 +153,7 @@ class DirectVerifierTests(unittest.TestCase):
             payload["terminal_unused_edge_count"],
         )
 
-    def test_length_one_neutral_component_is_cycle_c86(self) -> None:
+    def test_full_one_flip_neutral_component_is_cycle_c86(self) -> None:
         payload = json.loads((HERE / "defect-cycle.json").read_text())
         positions = payload["edge_positions"]
         self.assertEqual(
@@ -164,6 +164,10 @@ class DirectVerifierTests(unittest.TestCase):
         )
         self.assertEqual(payload["distinct_states_before_return"], 86)
         self.assertEqual(payload["neutral_length_one_degree_histogram"], {"2": 86})
+        self.assertEqual(payload["all_edge_neighbor_checks"], 86 * 903)
+        self.assertEqual(payload["neutral_all_edge_degree_histogram"], {"2": 86})
+        self.assertEqual(payload["states_with_non_length_one_neutral_edges"], [])
+        self.assertTrue(payload["full_one_flip_neutral_component_is_cycle_C86"])
         self.assertTrue(payload["neutral_neighbors_are_predecessor_and_successor"])
         self.assertTrue(payload["direct_recount_all_states_equal_two"])
 
