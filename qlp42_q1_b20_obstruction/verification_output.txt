@@ -1,0 +1,9 @@
+d2_size=9
+d3_size=16
+raw_domain_tuples=150994944
+sum_zero_tuples=2795584
+energy_18_tuples=60024
+shift_1_tuples=656
+shifts_1_2_tuples=0
+solutions=0
+certificate=verified

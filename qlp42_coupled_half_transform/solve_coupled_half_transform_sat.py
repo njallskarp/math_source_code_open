@@ -277,7 +277,7 @@ class Model:
                 right = opposite[-shift]
                 self.cnf.extend(([-left, right], [left, -right]))
             minimum, maximum = {
-                0: (4, 20),
+                0: (4, 18),
                 1: (4, 18),
                 2: (4, 18),
                 3: (4, 16),
