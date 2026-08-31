@@ -138,11 +138,33 @@ class Audit:
     maximum_multiplier_error: int = 0
     second_branch_disagreements: int = 0
     minimum_scaled_margin: Fraction | None = None
+    minimum_margin_depth: int | None = None
+    minimum_margin_path: str | None = None
+    minimum_margin_mean: Fraction | None = None
+    minimum_margin_rest_start: int | None = None
+    minimum_margin_exact_multiplier: int | None = None
+    minimum_margin_corrected_start: int | None = None
 
-    def record_margin(self, local_mean: Fraction) -> None:
+    def record_margin(
+        self,
+        local_mean: Fraction,
+        *,
+        depth: int,
+        path: str,
+        mean_min: Fraction,
+        rest_start: int,
+        exact_multiplier: int,
+        corrected_start: int,
+    ) -> None:
         margin = abs(A * local_mean - 1)
         if self.minimum_scaled_margin is None or margin < self.minimum_scaled_margin:
             self.minimum_scaled_margin = margin
+            self.minimum_margin_depth = depth
+            self.minimum_margin_path = path
+            self.minimum_margin_mean = mean_min
+            self.minimum_margin_rest_start = rest_start
+            self.minimum_margin_exact_multiplier = exact_multiplier
+            self.minimum_margin_corrected_start = corrected_start
 
 
 def ceil_fraction(value: Fraction) -> int:
@@ -155,6 +177,7 @@ def child_state(
     second_branch: bool,
     convergence_bound: int,
     audit: Audit,
+    path: str,
 ) -> tuple[State, bool, bool]:
     rest_start = state.rest_start + ((1 << nr) if second_branch else 0)
     rest_start_float = state.rest_start_float + (float(1 << nr) if second_branch else 0.0)
@@ -227,7 +250,15 @@ def child_state(
     float_keep = local_mean_float >= 1.0 / float(A)
     if exact_keep != float_keep:
         audit.decision_disagreements += 1
-    audit.record_margin(local_mean)
+    audit.record_margin(
+        local_mean,
+        depth=nr + 1,
+        path=path,
+        mean_min=mean_min,
+        rest_start=rest_start,
+        exact_multiplier=exact_multiplier,
+        corrected_start=exact_corrected_start,
+    )
 
     return (
         State(
@@ -267,7 +298,7 @@ def audit_prefix(depth: int, c: int = DEFAULT_C) -> Audit:
         rest_start_float=1.0,
     )
 
-    def visit(state: State, nr: int) -> None:
+    def visit(state: State, nr: int, path: str) -> None:
         second_exact = state.rest_start + (1 << nr) <= A
         second_float = state.rest_start_float + float(1 << nr) <= 1.0 / (1.0 / float(A))
         if second_exact != second_float:
@@ -277,17 +308,18 @@ def audit_prefix(depth: int, c: int = DEFAULT_C) -> Audit:
             if second_branch and not second_exact:
                 continue
             audit.generated += 1
+            child_path = path + ("1" if second_branch else "0")
             child, exact_keep, _ = child_state(
-                state, nr, second_branch, convergence_bound, audit
+                state, nr, second_branch, convergence_bound, audit, child_path
             )
             if not exact_keep:
                 audit.pruned_exact += 1
             elif nr + 1 == depth:
                 audit.frontier += 1
             else:
-                visit(child, nr + 1)
+                visit(child, nr + 1, child_path)
 
-    visit(start, 1)
+    visit(start, 1, "")
     return audit
 
 
@@ -315,6 +347,27 @@ def main() -> None:
     print(
         "minimum_scaled_margin="
         f"{audit.minimum_scaled_margin.numerator}/{audit.minimum_scaled_margin.denominator}"
+    )
+    assert audit.minimum_margin_depth is not None
+    assert audit.minimum_margin_path is not None
+    assert audit.minimum_margin_mean is not None
+    assert audit.minimum_margin_rest_start is not None
+    assert audit.minimum_margin_exact_multiplier is not None
+    assert audit.minimum_margin_corrected_start is not None
+    print("minimum_margin_origin=root")
+    print(f"minimum_margin_depth={audit.minimum_margin_depth}")
+    print(f"minimum_margin_path_length={len(audit.minimum_margin_path)}")
+    print(f"minimum_margin_path={audit.minimum_margin_path}")
+    print(f"minimum_margin_mean_num={audit.minimum_margin_mean.numerator}")
+    print(f"minimum_margin_mean_den={audit.minimum_margin_mean.denominator}")
+    print(f"minimum_margin_rest_start={audit.minimum_margin_rest_start}")
+    print(
+        "minimum_margin_exact_multiplier="
+        f"{audit.minimum_margin_exact_multiplier}"
+    )
+    print(
+        "minimum_margin_corrected_start="
+        f"{audit.minimum_margin_corrected_start}"
     )
 
 

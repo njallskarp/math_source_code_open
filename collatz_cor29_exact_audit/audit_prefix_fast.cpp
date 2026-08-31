@@ -16,6 +16,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -141,9 +142,22 @@ struct Audit {
   bool has_margin = false;
   cpp_int minimum_margin_num;
   cpp_int minimum_margin_den;
+  std::size_t minimum_margin_origin = std::numeric_limits<std::size_t>::max();
+  unsigned minimum_margin_depth = 0;
+  unsigned minimum_margin_path_length = 0;
+  cpp_int minimum_margin_path_bits = 0;
+  cpp_int minimum_margin_mean_num;
+  cpp_int minimum_margin_mean_den;
+  cpp_int minimum_margin_rest_start;
+  cpp_int minimum_margin_exact_multiplier;
+  cpp_int minimum_margin_corrected_start;
 
   void record_margin(const cpp_int& mean_num, const cpp_int& mean_den,
-                     const cpp_int& corrected_start) {
+                     const cpp_int& rest_start,
+                     const cpp_int& exact_multiplier,
+                     const cpp_int& corrected_start, unsigned depth,
+                     std::size_t origin, unsigned path_length,
+                     const cpp_int& path_bits) {
     cpp_int difference = kA * mean_num - mean_den * corrected_start;
     if (difference < 0) difference = -difference;
     cpp_int denominator = mean_den * corrected_start;
@@ -152,9 +166,20 @@ struct Audit {
       has_margin = true;
       minimum_margin_num = std::move(difference);
       minimum_margin_den = std::move(denominator);
+      minimum_margin_origin = origin;
+      minimum_margin_depth = depth;
+      minimum_margin_path_length = path_length;
+      minimum_margin_path_bits = path_bits;
+      minimum_margin_mean_num = mean_num;
+      minimum_margin_mean_den = mean_den;
+      minimum_margin_rest_start = rest_start;
+      minimum_margin_exact_multiplier = exact_multiplier;
+      minimum_margin_corrected_start = corrected_start;
     }
   }
 };
+
+constexpr std::size_t kRootOrigin = std::numeric_limits<std::size_t>::max();
 
 cpp_int ceil_div_positive(const cpp_int& numerator,
                           const cpp_int& denominator) {
@@ -182,7 +207,9 @@ struct ChildResult {
 
 ChildResult child_state(const State& parent, unsigned nr, bool second_branch,
                         const cpp_int& convergence_bound,
-                        double convergence_bound_float, Audit& audit) {
+                        double convergence_bound_float, Audit& audit,
+                        std::size_t origin, unsigned path_length,
+                        const cpp_int& path_bits) {
   State child = parent;
   const unsigned next_nr = nr + 1;
   if (second_branch) {
@@ -280,14 +307,18 @@ ChildResult child_state(const State& parent, unsigned nr, bool second_branch,
     ++audit.decision_disagreements;
   }
   audit.record_margin(child.mean_min_num, child.mean_min_den,
-                      exact_corrected_start);
+                      child.rest_start, exact_multiplier,
+                      exact_corrected_start, next_nr, origin,
+                      path_length, path_bits);
 
   return {std::move(child), exact_keep, float_keep};
 }
 
 void visit(const State& state, unsigned nr, unsigned depth,
            const cpp_int& convergence_bound, double convergence_bound_float,
-           Audit& audit, std::vector<State>* frontier_states = nullptr) {
+           Audit& audit, std::vector<State>* frontier_states = nullptr,
+           std::size_t origin = kRootOrigin,
+           unsigned path_length = 0, const cpp_int& path_bits = 0) {
   const bool second_exact = state.rest_start + pow2_exact[nr] <= kA;
   const bool second_float =
       state.rest_start_float + pow2_float[nr] <= kSecondBranchLimit;
@@ -298,9 +329,12 @@ void visit(const State& state, unsigned nr, unsigned depth,
   for (bool second_branch : {false, true}) {
     if (second_branch && !second_exact) continue;
     ++audit.generated;
+    const cpp_int child_path_bits =
+        (path_bits << 1) + (second_branch ? 1 : 0);
     ChildResult result = child_state(
         state, nr, second_branch, convergence_bound,
-        convergence_bound_float, audit);
+        convergence_bound_float, audit, origin, path_length + 1,
+        child_path_bits);
     if (!result.exact_keep) {
       ++audit.pruned_exact;
     } else if (nr + 1 == depth) {
@@ -310,7 +344,8 @@ void visit(const State& state, unsigned nr, unsigned depth,
       }
     } else {
       visit(result.state, nr + 1, depth, convergence_bound,
-            convergence_bound_float, audit, frontier_states);
+            convergence_bound_float, audit, frontier_states, origin,
+            path_length + 1, child_path_bits);
     }
   }
 }
@@ -377,6 +412,36 @@ void print_audit(std::ostream& output, const Audit& unnormalized) {
   if (audit.has_margin) {
     output << "minimum_scaled_margin=" << audit.minimum_margin_num
            << '/' << audit.minimum_margin_den << '\n';
+    output << "minimum_margin_origin=";
+    if (audit.minimum_margin_origin == kRootOrigin) {
+      output << "root\n";
+    } else {
+      output << audit.minimum_margin_origin << '\n';
+    }
+    output << "minimum_margin_depth=" << audit.minimum_margin_depth << '\n';
+    output << "minimum_margin_path_length="
+           << audit.minimum_margin_path_length << '\n';
+    std::string path(audit.minimum_margin_path_length, '0');
+    cpp_int bits = audit.minimum_margin_path_bits;
+    for (unsigned i = 0; i < audit.minimum_margin_path_length; ++i) {
+      if ((bits & 1) != 0) {
+        path[audit.minimum_margin_path_length - 1 - i] = '1';
+      }
+      bits >>= 1;
+    }
+    output << "minimum_margin_path=" << path << '\n';
+    const cpp_int mean_divisor = gcd(audit.minimum_margin_mean_num,
+                                     audit.minimum_margin_mean_den);
+    output << "minimum_margin_mean_num="
+           << audit.minimum_margin_mean_num / mean_divisor << '\n';
+    output << "minimum_margin_mean_den="
+           << audit.minimum_margin_mean_den / mean_divisor << '\n';
+    output << "minimum_margin_rest_start="
+           << audit.minimum_margin_rest_start << '\n';
+    output << "minimum_margin_exact_multiplier="
+           << audit.minimum_margin_exact_multiplier << '\n';
+    output << "minimum_margin_corrected_start="
+           << audit.minimum_margin_corrected_start << '\n';
   } else {
     output << "minimum_scaled_margin=none\n";
   }
@@ -434,7 +499,7 @@ void write_frontier(const std::string& path, const FrontierData& frontier) {
   if (!output) {
     throw std::runtime_error("cannot open frontier for writing: " + path);
   }
-  output << "format=collatz_cor29_frontier_v1\n";
+  output << "format=collatz_cor29_frontier_v2\n";
   output << "split_depth=" << frontier.split_depth << '\n';
   output << "c=" << frontier.c << '\n';
   const Audit root = normalized_audit(frontier.root_audit);
@@ -455,6 +520,31 @@ void write_frontier(const std::string& path, const FrontierData& frontier) {
          << root.second_branch_disagreements << '\n';
   output << "root_minimum_scaled_margin=" << root.minimum_margin_num
          << '/' << root.minimum_margin_den << '\n';
+  output << "root_minimum_margin_origin=root\n";
+  output << "root_minimum_margin_depth=" << root.minimum_margin_depth << '\n';
+  output << "root_minimum_margin_path_length="
+         << root.minimum_margin_path_length << '\n';
+  std::string root_path(root.minimum_margin_path_length, '0');
+  cpp_int root_bits = root.minimum_margin_path_bits;
+  for (unsigned i = 0; i < root.minimum_margin_path_length; ++i) {
+    if ((root_bits & 1) != 0) {
+      root_path[root.minimum_margin_path_length - 1 - i] = '1';
+    }
+    root_bits >>= 1;
+  }
+  output << "root_minimum_margin_path=" << root_path << '\n';
+  const cpp_int root_mean_divisor = gcd(root.minimum_margin_mean_num,
+                                        root.minimum_margin_mean_den);
+  output << "root_minimum_margin_mean_num="
+         << root.minimum_margin_mean_num / root_mean_divisor << '\n';
+  output << "root_minimum_margin_mean_den="
+         << root.minimum_margin_mean_den / root_mean_divisor << '\n';
+  output << "root_minimum_margin_rest_start="
+         << root.minimum_margin_rest_start << '\n';
+  output << "root_minimum_margin_exact_multiplier="
+         << root.minimum_margin_exact_multiplier << '\n';
+  output << "root_minimum_margin_corrected_start="
+         << root.minimum_margin_corrected_start << '\n';
   output << "states=" << frontier.states.size() << '\n';
   output << "--states--\n";
   for (std::size_t index = 0; index < frontier.states.size(); ++index) {
@@ -507,7 +597,9 @@ FrontierData read_frontier(const std::string& path) {
     }
     throw std::runtime_error("frontier header field is missing: " + name);
   };
-  if (field("format") != "collatz_cor29_frontier_v1") {
+  const std::string format = field("format");
+  if (format != "collatz_cor29_frontier_v1" &&
+      format != "collatz_cor29_frontier_v2") {
     throw std::runtime_error("unsupported frontier format");
   }
 
@@ -534,6 +626,37 @@ FrontierData read_frontier(const std::string& path) {
   frontier.root_audit.has_margin = true;
   frontier.root_audit.minimum_margin_num = margin_num;
   frontier.root_audit.minimum_margin_den = margin_den;
+  if (format == "collatz_cor29_frontier_v2") {
+    if (field("root_minimum_margin_origin") != "root") {
+      throw std::runtime_error("invalid root witness origin");
+    }
+    frontier.root_audit.minimum_margin_origin = kRootOrigin;
+    frontier.root_audit.minimum_margin_depth =
+        static_cast<unsigned>(std::stoul(field("root_minimum_margin_depth")));
+    frontier.root_audit.minimum_margin_path_length = static_cast<unsigned>(
+        std::stoul(field("root_minimum_margin_path_length")));
+    const std::string path = field("root_minimum_margin_path");
+    if (path.size() != frontier.root_audit.minimum_margin_path_length) {
+      throw std::runtime_error("invalid root witness path length");
+    }
+    for (char bit : path) {
+      if (bit != '0' && bit != '1') {
+        throw std::runtime_error("invalid root witness path bit");
+      }
+      frontier.root_audit.minimum_margin_path_bits <<= 1;
+      if (bit == '1') ++frontier.root_audit.minimum_margin_path_bits;
+    }
+    frontier.root_audit.minimum_margin_mean_num =
+        cpp_int(field("root_minimum_margin_mean_num"));
+    frontier.root_audit.minimum_margin_mean_den =
+        cpp_int(field("root_minimum_margin_mean_den"));
+    frontier.root_audit.minimum_margin_rest_start =
+        cpp_int(field("root_minimum_margin_rest_start"));
+    frontier.root_audit.minimum_margin_exact_multiplier =
+        cpp_int(field("root_minimum_margin_exact_multiplier"));
+    frontier.root_audit.minimum_margin_corrected_start =
+        cpp_int(field("root_minimum_margin_corrected_start"));
+  }
 
   const std::size_t expected_states = std::stoull(field("states"));
   frontier.states.reserve(expected_states);
@@ -578,7 +701,8 @@ Audit audit_frontier_shard(const FrontierData& frontier, unsigned target_depth,
        index += shard_count) {
     ++selected_states;
     visit(frontier.states[index], frontier.split_depth, target_depth,
-          convergence_bound, convergence_bound_float, audit);
+          convergence_bound, convergence_bound_float, audit, nullptr,
+          index);
   }
   return audit;
 }

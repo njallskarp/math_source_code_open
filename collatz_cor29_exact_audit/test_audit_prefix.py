@@ -30,6 +30,12 @@ class ExactPrefixAuditTests(unittest.TestCase):
         self.assertEqual(audit.frontier, 1_492)
         self.assertEqual(audit.decision_disagreements, 0)
         self.assertEqual(audit.second_branch_disagreements, 0)
+        self.assertEqual(audit.minimum_margin_depth, 16)
+        self.assertEqual(audit.minimum_margin_path, "001010111000101")
+        self.assertEqual(audit.minimum_margin_mean, Fraction(106_351, 196_830))
+        self.assertEqual(
+            audit.minimum_margin_corrected_start, 2_361_183_241_434_822_648_745
+        )
 
 
 if __name__ == "__main__":

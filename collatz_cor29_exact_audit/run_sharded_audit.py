@@ -23,6 +23,18 @@ SUM_FIELDS = (
     "second_branch_disagreements",
 )
 
+WITNESS_FIELDS = (
+    "minimum_margin_origin",
+    "minimum_margin_depth",
+    "minimum_margin_path_length",
+    "minimum_margin_path",
+    "minimum_margin_mean_num",
+    "minimum_margin_mean_den",
+    "minimum_margin_rest_start",
+    "minimum_margin_exact_multiplier",
+    "minimum_margin_corrected_start",
+)
+
 
 def parse_key_values(text: str, *, stop_at_states: bool = False) -> dict[str, str]:
     result: dict[str, str] = {}
@@ -100,6 +112,8 @@ def validate_shard(
         "maximum_multiplier_error",
         "minimum_scaled_margin",
     }
+    if values.get("minimum_scaled_margin") != "none":
+        required.update(WITNESS_FIELDS)
     missing = sorted(required - values.keys())
     if missing:
         raise ValueError(f"shard {shard_index} is missing fields: {missing}")
@@ -191,6 +205,9 @@ def aggregate(
     selected_states = 0
     maximum_error = int(frontier_values["root_maximum_multiplier_error"])
     minimum_margin = Fraction(frontier_values["root_minimum_scaled_margin"])
+    witness = {
+        field: frontier_values[f"root_{field}"] for field in WITNESS_FIELDS
+    }
 
     for shard_index, values in enumerate(shard_values):
         validate_shard(
@@ -211,7 +228,10 @@ def aggregate(
         maximum_error = max(maximum_error, int(values["maximum_multiplier_error"]))
         margin_text = values["minimum_scaled_margin"]
         if margin_text != "none":
-            minimum_margin = min(minimum_margin, Fraction(margin_text))
+            shard_margin = Fraction(margin_text)
+            if shard_margin < minimum_margin:
+                minimum_margin = shard_margin
+                witness = {field: values[field] for field in WITNESS_FIELDS}
 
     if selected_states != frontier_states:
         raise ValueError(
@@ -219,7 +239,7 @@ def aggregate(
         )
 
     lines = [
-        "format=collatz_cor29_aggregate_v1",
+        "format=collatz_cor29_aggregate_v2",
         f"frontier_sha256={frontier_hash}",
         f"binary_sha256={binary_hash}",
         f"split_depth={split_depth}",
@@ -240,6 +260,7 @@ def aggregate(
         f"{totals['second_branch_disagreements']}",
         "minimum_scaled_margin="
         f"{minimum_margin.numerator}/{minimum_margin.denominator}",
+        *(f"{field}={witness[field]}" for field in WITNESS_FIELDS),
     ]
     return "\n".join(lines) + "\n"
 
@@ -262,8 +283,13 @@ def main() -> None:
 
     frontier_text = args.frontier.read_text(encoding="utf-8")
     frontier_values = parse_key_values(frontier_text, stop_at_states=True)
-    if frontier_values.get("format") != "collatz_cor29_frontier_v1":
+    if frontier_values.get("format") not in {
+        "collatz_cor29_frontier_v1",
+        "collatz_cor29_frontier_v2",
+    }:
         parser.error("unsupported frontier format")
+    if frontier_values.get("format") != "collatz_cor29_frontier_v2":
+        parser.error("frontier v2 is required for margin-witness aggregation")
     split_depth = int(frontier_values["split_depth"])
     c = int(frontier_values["c"])
     frontier_states = int(frontier_values["states"])

@@ -22,6 +22,15 @@ class ShardedAuditAggregationTests(unittest.TestCase):
             "root_maximum_multiplier_error": "9",
             "root_second_branch_disagreements": "0",
             "root_minimum_scaled_margin": "3/10",
+            "root_minimum_margin_origin": "root",
+            "root_minimum_margin_depth": "3",
+            "root_minimum_margin_path_length": "2",
+            "root_minimum_margin_path": "01",
+            "root_minimum_margin_mean_num": "7",
+            "root_minimum_margin_mean_den": "2",
+            "root_minimum_margin_rest_start": "5",
+            "root_minimum_margin_exact_multiplier": "1",
+            "root_minimum_margin_corrected_start": "13",
         }
 
     def shard(self, index: int, margin: str) -> dict[str, str]:
@@ -46,6 +55,15 @@ class ShardedAuditAggregationTests(unittest.TestCase):
             "maximum_multiplier_error": str(4 + index),
             "second_branch_disagreements": "0",
             "minimum_scaled_margin": margin,
+            "minimum_margin_origin": str(index),
+            "minimum_margin_depth": "6",
+            "minimum_margin_path_length": "2",
+            "minimum_margin_path": f"{index:02b}",
+            "minimum_margin_mean_num": str(11 + index),
+            "minimum_margin_mean_den": "3",
+            "minimum_margin_rest_start": str(17 + index),
+            "minimum_margin_exact_multiplier": "2",
+            "minimum_margin_corrected_start": str(49 + index),
         }
 
     def test_exact_aggregation(self) -> None:
@@ -62,6 +80,8 @@ class ShardedAuditAggregationTests(unittest.TestCase):
         self.assertIn("corrected_multiplier_disagreements=4\n", result)
         self.assertIn("maximum_multiplier_error=9\n", result)
         self.assertIn("minimum_scaled_margin=1/4\n", result)
+        self.assertIn("minimum_margin_origin=0\n", result)
+        self.assertIn("minimum_margin_path=00\n", result)
 
     def test_rejects_incomplete_partition(self) -> None:
         bad = self.shard(1, "2/7")

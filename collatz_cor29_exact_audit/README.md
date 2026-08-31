@@ -34,7 +34,7 @@ g++-16 -std=c++20 -O3 -DNDEBUG -Wall -Wextra -Wpedantic \
   audit_prefix_fast.cpp -o audit_prefix_fast
 python3 compare_implementations.py --binary ./audit_prefix_fast \
   --depth 12 --depth 16 --depth 20 --depth 25
-./audit_prefix_fast --depth 44 --c 1536
+./audit_prefix_fast --depth 45 --c 1536
 
 ./audit_prefix_fast --split-depth 25 \
   --frontier-out frontier-depth25.txt --c 1536
@@ -44,6 +44,10 @@ python3 run_sharded_audit.py \
   --depth 35 --shard-count 8 --jobs 8 \
   --results-directory shard-results-depth35 \
   --aggregate-out aggregate-depth35.txt
+python3 verify_margin_witness.py \
+  --aggregate aggregate-depth35.txt \
+  --frontier frontier-depth25.txt \
+  --binary ./audit_prefix_fast
 ```
 
 The official computation used depth 300 and took weeks. This implementation is
@@ -102,6 +106,28 @@ states, 7,966,661 exact prunes, 12,338,030 frontier states, zero decision or
 branch disagreements, and the same minimum rational margin. This verifies the
 decomposition on a nontrivial prefix; it does not yet constitute the remaining
 depth-300 computation.
+
+### Replayable minimum-margin witnesses
+
+Frontier and aggregate format version 2 preserve a witness whenever the exact
+audit finds a new smallest decision margin. A root witness records its complete
+branch word. A sharded witness records the deterministic depth-25 frontier
+index and its branch suffix, together with the depth, minimum-mean numerator
+and denominator, residue representative, exact correction multiplier, and
+corrected starting value. These fields directly recompute
+`abs(A * local_mean - 1)` without floating-point arithmetic.
+
+`verify_margin_witness.py` checks the frontier and binary SHA-256 bindings,
+independently rebuilds the selected frontier state's exact integers and
+rationals from the root using the slower Python representation, replays the
+suffix, and checks every exact witness field. The independently computed
+binary64 mean can differ from the serialized optimized-C++ value by one ULP
+because the two representations do not use identical floating-point operation
+sequences. The replay claim is therefore deliberately restricted to exact
+reachability and exact decision arithmetic; the serialized C++ bits remain the
+binding for the paired binary64 audit. Global minimality of a witness still
+depends on the exhaustive, hash-bound shard aggregate rather than on the local
+replay alone.
 
 ## Audited results
 
@@ -165,40 +191,52 @@ still prevents extrapolation to the 270 unexamined levels. The depth-30 run is
 an exact verified computation of this implementation; unlike the depth-25
 frontier count, it was not separately reproduced with the official C++ binary.
 
-### Compact-invariant extension through depth 44
+### Compact-invariant extension through depth 45
 
 The optimized implementation exactly matched the Python reference at depths
 12, 16, 20, 25, and 32. At depth 32 it reduced elapsed time on this machine from
 337.68 seconds to 5.27 seconds while reproducing all output fields. Depth 41
 was run both monolithically and as eight hash-bound shards; every field matched.
-Depths 42, 43, and 44 were then completed with the same decomposition:
+Depths 42 through 45 were then completed with the same decomposition. The
+depth-45 run used the replayable version-2 certificate:
 
 ```text
-frontier_sha256=da01c7ecdef1538e77f583620df9ab29376b1b21340ab0c795933ebfe6264602
-binary_sha256=c89a030b33f6a4e4af7513655e756d2b090b68d5619c3c762af4734c4bcf7e29
+frontier_sha256=75bd7a0c0e18263935910646c097c3fecb008c4ede6d3005ecec9749d8c32198
+binary_sha256=40765190d1e7ab7bd18b84c70741381398b632c91df88b21b33d27097f18cb40
 shard_count=8
 selected_states=108417
 ```
 
 ```text
-generated=2902125180
-pruned_exact=563453476
-frontier=887609115
+generated=4677343410
+pruned_exact=936919394
+frontier=1401752312
 decision_disagreements=0
-corrected_multiplier_disagreements=42499
-float_multiplier_below_exact=10435
-float_multiplier_above_exact=32064
+corrected_multiplier_disagreements=42521
+float_multiplier_below_exact=10436
+float_multiplier_above_exact=32085
 maximum_multiplier_error=10923
 second_branch_disagreements=0
 minimum_scaled_margin=
   575662982657459068858763/221051743115939704517342540931141237
+minimum_margin_origin=29559
+minimum_margin_depth=43
+minimum_margin_path=010100000110000010
+minimum_margin_mean_num=202335691639831
+minimum_margin_mean_den=213516729579636
+minimum_margin_rest_start=2250912350777
+minimum_margin_exact_multiplier=470795402
+minimum_margin_corrected_start=4141160152670722638393
 ```
 
 The minimum scaled margin is approximately `2.60420e-12`; it first appears by
-depth 43 and remains the minimum at depth 44. This is an exact verified
-computation of the compact-invariant implementation, cross-checked against the
-independent Python representation on smaller complete prefixes and against the
-monolithic execution at depth 41. It does not certify depths 45 through 300.
+depth 43 and remains the minimum at depth 45. The Python replay checker rebuilt
+frontier state 29,559 from the root, reproduced its exact rational state,
+replayed the 18-bit suffix, and independently recovered every exact witness
+field and the reduced margin. This is an exact verified computation of the
+compact-invariant implementation, cross-checked against the independent Python
+representation on smaller complete prefixes and against the monolithic
+execution at depth 41. It does not certify depths 46 through 300.
 
 ## Primary source and trust boundary
 
@@ -216,5 +254,5 @@ implementations share that transcription and therefore are not fully
 independent. Agreement with binary64 on a finite prefix does not certify the
 unexamined depth-300 tree. The deterministic frontier, parallel subtree,
 restartable checkpoint, and exact aggregate layers are now implemented and
-tested, but a complete audit still requires executing depths 45 through 300 and
+tested, but a complete audit still requires executing depths 46 through 300 and
 independently checking the semantic transcription from the official program.
