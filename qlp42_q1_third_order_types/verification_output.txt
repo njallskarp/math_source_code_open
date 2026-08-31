@@ -1,0 +1,15 @@
+local_states=16
+divided_cross_residues=verified
+baseline_reflected_type_pairs=215008364
+baseline_a_rotation_orbits=10239544
+third_order_b_masks=480
+third_order_labeled_type_pairs=194439
+third_order_a_rotation_orbits=9259
+case=0;b_masks=480;labeled=194439;orbits=9259
+case=1;b_masks=479;labeled=194418;orbits=9258
+case=2;b_masks=479;labeled=194418;orbits=9258
+case=3;b_masks=477;labeled=194376;orbits=9256
+case=4;b_masks=477;labeled=194376;orbits=9256
+case=5;b_masks=477;labeled=194376;orbits=9256
+unique_exceptional_orientation=verified
+certificate=verified
