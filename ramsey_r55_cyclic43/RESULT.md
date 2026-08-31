@@ -233,6 +233,63 @@ globally-best one-step probe chooses the unique four-clique exit and then rises
 through counts 7, 10, 13, 15, and 17 over its next five steps; this is a search
 diagnostic, not an optimal barrier theorem.
 
+### The complete length-one neutral component is an 86-cycle
+
+The 37-step segment continues after its first repeated edge if reversals are
+allowed to cancel earlier reversals. Extend the position formulas to all
+$n\geq0$:
+
+$$
+p_{2k}=42+17k\pmod {43},\qquad
+p_{2k+1}=37+17k\pmod {43}.
+$$
+
+Because $17$ is invertible modulo 43, both parity subsequences permute all 43
+positions. Thus the 86-step word uses every cyclic length-one edge exactly
+twice and returns to the initial coloring. Exact state-mask enumeration proves
+that the 86 states before the return are distinct.
+
+Incremental exact clique counting confirms two monochromatic `K5`s at every
+state. As an independent check, every one of the 86 states was reconstructed
+and all $\binom{43}{5}=962{,}598$ five-sets were recounted directly. The
+Fu-Malik certificate occurs at state 71, and positions 71 through 85 are
+exactly the previously certified 15-step geodesic bridge back to the primary
+certificate.
+
+There is also an exact component classification inside the length-one
+subcube. At each of the 86 states, all 43 cyclic length-one reversals were
+tested. Exactly two preserve a count of two: the predecessor and successor on
+the displayed orbit. Consequently, the connected component of the primary
+certificate in the graph of optimum-2 colorings with length-one adjacency is
+precisely
+
+$$
+C_{86}.
+$$
+
+This statement permits arbitrary reuse of length-one edges but does not rule
+out optimum-two exits using other cyclic lengths. The calculation and compact
+certificate are [`defect_cycle.py`](defect_cycle.py) and
+[`defect-cycle.json`](defect-cycle.json). This local-landscape structure was
+not identified in the searched sources and is reported as apparently new to
+those sources, not as a priority claim.
+
+A May 2026 public computational report on one-vertex extensions of McKay's
+42-vertex catalog also observes empirical one-flip conflict type-switching and
+cycle-like trapping, but it neither studies `Cyclic(43)` nor classifies a
+length-one component. It explicitly limits its landscape claim to selected
+extension witnesses. That adjacent work is
+[Janowska--Gniewislawa, *Independent Computational Verification of One-Vertex
+Extension Barriers for Ramsey(5,5) Graphs on 42 Vertices*](https://github.com/antydizajn/ramsey-r55-verification/blob/main/paper.md).
+The $C_{86}$ result here concerns a different perturbation family and upgrades
+the analogous qualitative phenomenon to an exhaustive component theorem in
+the stated subcube.
+
+```text
+beb97184200ec05aca35e74351970e07f25be35b20bb695c5a2122bcc307b171  defect_cycle.py
+b7624408edd88db61e5cd5235615fe4bea13cac614b9f1fc7aca8cad8e4549e2  defect-cycle.json
+```
+
 ### Radius-five exclusion tube around the 37-edge defect orbit
 
 The forced-witness search was run independently through radius five around all

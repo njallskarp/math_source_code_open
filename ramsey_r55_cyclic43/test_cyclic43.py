@@ -6,6 +6,7 @@ from collections import Counter
 from math import comb
 from pathlib import Path
 
+from defect_cycle import analyze_cycle, position_edge, transport_position
 from defect_orbit_tube import prefix_chain_distance_histogram
 from local_rigidity import complete_graph_edges, direct_count, initial_colors
 from solve_cyclic43 import load_certificate, verify_flips
@@ -151,6 +152,62 @@ class DirectVerifierTests(unittest.TestCase):
             sum(payload["terminal_unused_edge_result_count_histogram"].values()),
             payload["terminal_unused_edge_count"],
         )
+
+    def test_length_one_neutral_component_is_cycle_c86(self) -> None:
+        payload = json.loads((HERE / "defect-cycle.json").read_text())
+        positions = payload["edge_positions"]
+        self.assertEqual(
+            positions, [transport_position(index) for index in range(86)]
+        )
+        self.assertEqual(
+            Counter(positions), Counter({position: 2 for position in range(43)})
+        )
+        self.assertEqual(payload["distinct_states_before_return"], 86)
+        self.assertEqual(payload["neutral_length_one_degree_histogram"], {"2": 86})
+        self.assertTrue(payload["neutral_neighbors_are_predecessor_and_successor"])
+        self.assertTrue(payload["direct_recount_all_states_equal_two"])
+
+        primary = load_certificate(HERE / payload["certificate"])
+        fu_malik = load_certificate(HERE / payload["fu_malik_certificate"])
+        active = primary.copy()
+        relative_mask = 0
+        seen = {relative_mask}
+        edge_ids, _ = complete_graph_edges()
+        colors, _ = initial_colors(primary)
+        direct_samples = {38, 50, 70, 85}
+        for state_index, position in enumerate(positions, start=1):
+            changed_edge = position_edge(position)
+            relative_mask ^= 1 << position
+            if changed_edge in active:
+                active.remove(changed_edge)
+            else:
+                active.add(changed_edge)
+            colors[edge_ids[changed_edge]] = not colors[edge_ids[changed_edge]]
+            if state_index < 86:
+                self.assertNotIn(relative_mask, seen)
+                seen.add(relative_mask)
+            if state_index == payload["fu_malik_state_index"]:
+                self.assertEqual(active, fu_malik)
+            if state_index in direct_samples:
+                count, _ = direct_count(colors, edge_ids)
+                self.assertEqual(count, 2)
+        self.assertEqual(relative_mask, 0)
+        self.assertEqual(active, primary)
+
+        rerun = analyze_cycle(
+            HERE / payload["certificate"],
+            HERE / payload["fu_malik_certificate"],
+            HERE / payload["bridge"],
+        )
+        for field in (
+            "edge_positions",
+            "distinct_states_before_return",
+            "neutral_length_one_degree_histogram",
+            "fu_malik_state_index",
+            "closing_bridge_positions",
+            "length_one_neutral_component_is_cycle_C86",
+        ):
+            self.assertEqual(rerun[field], payload[field])
 
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
