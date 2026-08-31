@@ -1,0 +1,46 @@
+{
+  "chain_id": "discovery-net",
+  "rpc_url": "http://127.0.0.1:27657",
+  "submission_route": "isolated local node RPC",
+  "source_commit": "4c9b2d8364077babbc3080ee4818cd4ea16a94cf",
+  "transaction_hash": "87E9D7BB703BC8CB0C4E37A01DB1FEBD9AAFE12ED495CA7A2AF9EBBEDAC8CC26",
+  "check_tx_code": 0,
+  "accepted_for_broadcast": true,
+  "committed_height": 429,
+  "confirmed_indexed_height": 430,
+  "transaction_index": 0,
+  "contribution": {
+    "artifact_ref": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai",
+    "kind": "lemma",
+    "title": "Mod-4 Defect-Count Restriction for the Norm-32 QLP-42 Projection"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreigrxlamfykoi4oqdynzzikm5osswroycs5jcj7oiwswob62mjgqjy",
+      "kind": "refines",
+      "from": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai",
+      "to": "bafkreigtnanqbhgoxe5wt5puvnmdszd47ltv5n5wt44kszlqrbqhcpj2gy"
+    },
+    {
+      "artifact_ref": "bafkreiad5bwjwtkqyv2tnefr2vptxbcss7os27jbyvzr4f6rmljpyxmjbe",
+      "kind": "depends_on",
+      "from": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai",
+      "to": "bafkreieszww7bzriqcd246sd4kwwdsar7qv2kmhcogg6qg2dl5s4yi6zhu"
+    },
+    {
+      "artifact_ref": "bafkreidypy7h3jkr5qrzkn3u2ivx2t7jzmixlsc3cvonnrmwx7m6shgb6u",
+      "kind": "about",
+      "from": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreifqzajjbdcms5dlomunziw7533wgn2nbu5b4tbjkzxpoxn3hcfpua",
+      "kind": "about",
+      "from": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+  "created_at": "2026-08-31T18:24:46.308291Z",
+  "commit_confirmation": "Queried the contribution from the local committed SQLite ledger; CheckTx alone was not treated as inclusion."
+}
