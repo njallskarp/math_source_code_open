@@ -1,0 +1,31 @@
+$ python3 verify_q41_h_exact_intersection.py
+predecessor_sha256=cefc2f614980396aaecc9894733e3e8840658966b5d33e1ae6811a7bcc4b3d69
+hyperplane_verifier_sha256=604a25cf955a9ff18a509711f50a3ce1de8c2fad1192289bcdfe56aac25a5e14
+b_words_wt_0_mod_4=523776
+b_rotation_orbits_wt_0_mod_4=24946
+grouped_b_systems=585
+grouped_axis_tests=599040
+a_direction_even_parity_checks=10240
+survivor_residual_parity_checks=328264
+rank_0=0,0,0,0
+rank_3=0,0,0,0
+rank_4=168,8,0,0
+rank_6=6552,312,0,0
+rank_7=90720,4320,0,0
+rank_9=32937408,1568448,20554128,978768
+rank_10=395587584,18837504,197793792,9418752
+fourth_order_wt_0_mod_4_labeled_pairs=428622432
+fourth_order_wt_0_mod_4_axis_orbits=20410592
+h_exact_labeled_pairs=218347920
+h_exact_axis_orbits=10397520
+canonical_group_stream_sha256=bf8861cb10501ad1daf0ff119d88e95ade9502fc43c44919e738779aade2bcee
+rank_at_most_7_elimination=verified
+rank_table=verified
+certificate=verified
+
+$ python3 independent_sample_check.py
+direct_a_signature_samples=512
+direct_pair_direction_checks=5120
+sum_zero_criterion=verified
+even_direction_parity=verified
+independent_sample_check=verified
