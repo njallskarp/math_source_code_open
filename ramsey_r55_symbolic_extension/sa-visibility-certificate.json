@@ -1,0 +1,21 @@
+{
+  "arithmetic": "exact fractions",
+  "atom_count": 3529,
+  "conclusion": "SA multiplier degrees 0, 1, and 2 cannot refute the signed-K4 extension system with the degree window; degree 3 is the first level that algebraically exposes each forbidden K4 atom.",
+  "core_order": 42,
+  "degree_three_blue_identity": "(-1+x0+x1+x2+x3)(1-x0)(1-x1)(1-x2) = -prod_{i=0}^3(1-x_i)",
+  "degree_three_red_identity": "(3-x0-x1-x2-x3)x0x1x2 = -x0x1x2x3",
+  "degree_window": [
+    18,
+    24
+  ],
+  "inequality_check_count": 14116,
+  "maximum_verified_multiplier_degree": 2,
+  "minimum_uniform_slack": {
+    "blue_k4": "0",
+    "degree_high": "1/2",
+    "degree_low": "1/2",
+    "red_k4": "0"
+  },
+  "uniform_moments": "y_S = 2^(-|S|)"
+}
