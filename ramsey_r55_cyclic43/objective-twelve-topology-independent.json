@@ -1,0 +1,323 @@
+{
+  "active_source_count": 563783,
+  "all_independent_topology_checks_pass": true,
+  "edge_count": 903,
+  "exceptional_source_state_hamming_distance": 7,
+  "exceptional_source_state_symmetric_difference": [
+    273,
+    308,
+    468,
+    732,
+    750,
+    812,
+    825
+  ],
+  "exceptional_star_components": [
+    {
+      "edge_count": 15,
+      "source_cycle_edge_positions": [
+        5,
+        6,
+        13,
+        14,
+        15,
+        16,
+        22,
+        23,
+        25,
+        29,
+        31,
+        32,
+        38,
+        39,
+        40,
+        41
+      ],
+      "source_id": 8207,
+      "source_objective": 8,
+      "source_state_edge_pairs": [
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          13,
+          14
+        ],
+        [
+          14,
+          15
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          16,
+          17
+        ],
+        [
+          22,
+          23
+        ],
+        [
+          23,
+          24
+        ],
+        [
+          25,
+          26
+        ],
+        [
+          29,
+          30
+        ],
+        [
+          31,
+          32
+        ],
+        [
+          32,
+          33
+        ],
+        [
+          38,
+          39
+        ],
+        [
+          39,
+          40
+        ],
+        [
+          40,
+          41
+        ],
+        [
+          41,
+          42
+        ]
+      ],
+      "source_state_edges": [
+        200,
+        237,
+        468,
+        497,
+        525,
+        552,
+        693,
+        713,
+        750,
+        812,
+        837,
+        848,
+        893,
+        897,
+        900,
+        902
+      ],
+      "source_state_uses_only_cycle_edges": true,
+      "target_count": 15,
+      "target_ids_in_sorted_frontier": [
+        249610,
+        249613,
+        249828,
+        249972,
+        250831,
+        253034,
+        253208,
+        255906,
+        301677,
+        308376,
+        460515,
+        460720,
+        460783,
+        462029,
+        506724
+      ]
+    },
+    {
+      "edge_count": 12,
+      "source_cycle_edge_positions": [
+        5,
+        6,
+        7,
+        8,
+        14,
+        15,
+        16,
+        22,
+        23,
+        24,
+        30,
+        31,
+        32,
+        38,
+        39,
+        40,
+        41
+      ],
+      "source_id": 11778,
+      "source_objective": 8,
+      "source_state_edge_pairs": [
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          14,
+          15
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          16,
+          17
+        ],
+        [
+          22,
+          23
+        ],
+        [
+          23,
+          24
+        ],
+        [
+          24,
+          25
+        ],
+        [
+          30,
+          31
+        ],
+        [
+          31,
+          32
+        ],
+        [
+          32,
+          33
+        ],
+        [
+          38,
+          39
+        ],
+        [
+          39,
+          40
+        ],
+        [
+          40,
+          41
+        ],
+        [
+          41,
+          42
+        ]
+      ],
+      "source_state_edges": [
+        200,
+        237,
+        273,
+        308,
+        497,
+        525,
+        552,
+        693,
+        713,
+        732,
+        825,
+        837,
+        848,
+        893,
+        897,
+        900,
+        902
+      ],
+      "source_state_uses_only_cycle_edges": true,
+      "target_count": 12,
+      "target_ids_in_sorted_frontier": [
+        468431,
+        469457,
+        469866,
+        496112,
+        496967,
+        505562,
+        506875,
+        519518,
+        572191,
+        897485,
+        899058,
+        905589
+      ]
+    }
+  ],
+  "full_component_count": 4,
+  "full_components": [
+    {
+      "cycle_rank": 1532485,
+      "edges": 2336601,
+      "source_vertices": 282383,
+      "target_vertices": 521734
+    },
+    {
+      "cycle_rank": 1518355,
+      "edges": 2319878,
+      "source_vertices": 281398,
+      "target_vertices": 520126
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 15,
+      "source_vertices": 1,
+      "target_vertices": 15
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 12,
+      "source_vertices": 1,
+      "target_vertices": 12
+    }
+  ],
+  "full_cycle_rank": 3050840,
+  "full_profile_match": true,
+  "inactive_source_count": 408,
+  "incidence_count": 4656506,
+  "incidence_stream_sha256": "5751813a0f55aa342f78d98fef290716272534e8e8ae32b29bcdd5dbe6416443",
+  "method": "independent Python union-find over the complete little-endian incidence stream, with NumPy memory maps and vectorized final path compression; no C++ disjoint-set code is reused",
+  "order": 43,
+  "q11_active_source_count": 372716,
+  "q11_component_count": 33358,
+  "q11_cycle_rank": 759978,
+  "q11_inactive_source_count": 408,
+  "q11_largest_component": {
+    "cycle_rank": 26246,
+    "edges": 54902,
+    "source_vertices": 9258,
+    "target_vertices": 19399
+  },
+  "q11_summary_match": true,
+  "scope_note": "This independently reconstructs the persisted q12 boundary topology and identifies its two star sources; endpoint enumeration still uses the certified C++ incidence streamer.",
+  "source_count": 564191,
+  "source_objectives_sha256": "825ad243414175291c83631c710c3bb535d79f6b0524d9c6727bd0660a0d907c",
+  "source_states_sha256": "9363321bea9fa4a9fa4910e17065f5a7b6990648c4d558a35245463599691d1c",
+  "stream_metadata_sha256": "8d69afec18d29230af5c49268cf9bc24a933952557fc32d768af031600611bbc",
+  "target_count": 1041887
+}
