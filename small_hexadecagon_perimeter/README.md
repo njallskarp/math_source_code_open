@@ -1,4 +1,4 @@
-# Certified global maximum for the small-hexadecagon fixed code
+# Certified independent audit of the small-hexadecagon maximum
 
 This directory independently reconstructs and locally certifies the `n=16`
 candidate reported by Bernd Mulansky and Andreas Potschka for their fixed-code
@@ -443,9 +443,55 @@ Combining this quotient with the fixed-code uniqueness, saturation, and code
 exclusion results proves a conditional uniqueness theorem: **among global
 competitors whose difference body has 32 strict vertices, the certified
 candidate is the unique maximizer up to translation, rotation, reflection,
-central inversion, and cyclic relabeling.**  The unrestricted theorem still
-requires an independent audit of the strict-32-edge reduction; no claim here
-closes that remaining hypothesis.
+central inversion, and cyclic relabeling.**  The next section independently
+audits and closes the strict-32-edge reduction needed to remove that
+hypothesis.
+
+## Strict-32-edge reduction and unrestricted theorem
+
+The final certificate closes that hypothesis without a general-position
+perturbation.  After zero edges and collinear boundary subdivisions are
+removed, let `k<=16` be the genuine edge count of `P`, and let `r` be the
+number of unordered antipodal pairs among its oriented edge directions.
+The exact cyclic edge merge of `P+(-P)` then has
+
+```text
+m = 2k-2r
+```
+
+genuine edges.  Thus the only 32-edge case is `k=16,r=0`; every degeneracy
+has even `m<=30`.
+
+For completeness, the sharp disk bound is derived directly from Cauchy's
+support-function formula.  Integrating over the normal cone of vertex `q_i`
+with exterior angle `alpha_i` gives at most
+`2 sin(alpha_i/2)`.  Jensen and `sum alpha_i=2pi` therefore give
+
+```text
+p(Z) <= 2m sin(pi/m).
+```
+
+Since `x sin(pi/x)` is strictly increasing and `p(Z)=2p(P)`, every nonstrict
+case satisfies
+
+```text
+p(P) <= 30 sin(pi/30)
+     < 3.135853898029605
+     < p0.
+```
+
+The exact Machin/Taylor route certifies a separation margin greater than
+`0.000693818457002`, and an independent 512-bit Arb route agrees.  This
+contradicts the feasible certified candidate.  Compactness is handled in the
+closure allowing repeated vertices; the same inequality forces its maximizer
+back to a genuine 16-gon with a strict 32-edge difference body.
+
+Consequently the entire certificate chain proves the unrestricted result:
+**among all convex planar hexadecagons of diameter at most one, the
+Arb-enclosed candidate is the unique perimeter maximizer up to translation,
+rotation, reflection, central inversion, and cyclic relabeling.**  The
+standalone proof and dependency/trust table are in
+[`CONSOLIDATED_AUDIT.md`](CONSOLIDATED_AUDIT.md).
 
 ### Relationship to the August 2026 proof candidate
 
@@ -507,6 +553,10 @@ python3 -m venv .venv
 .venv/bin/python verify_symmetry_quotient_exact.py
 .venv/bin/python verify_symmetry_quotient_sympy.py
 .venv/bin/python -m unittest -v test_symmetry_quotient.py
+.venv/bin/python verify_strict_edge_exact.py
+.venv/bin/python verify_strict_edge_arb.py
+.venv/bin/python verify_strict_edge_identities.py
+.venv/bin/python -m unittest -v test_strict_edge_reduction.py
 shasum -a 256 -c SHA256SUMS
 ```
 
@@ -562,6 +612,16 @@ generic coordinates for every half edge and a generic linear map.  The
 remaining interpretation is the standard geometric fact that an orthogonal
 map and central inversion preserve congruence and that a strictly convex
 polygon is determined up to translation by its cyclic edge list.
+
+The strict-edge certificate separates the final analytic bridge in the same
+way.  `verify_strict_edge_exact.py` checks every admissible `(k,r)` edge-count
+case and proves the 30-gon comparison using only `Fraction` arithmetic and
+Machin/Taylor intervals.  `verify_strict_edge_arb.py` independently recomputes
+the comparison at 512 bits, while `verify_strict_edge_identities.py` checks
+the support-cone integral, edge-count formula, and monotonicity identities in
+SymPy.  Compactness, support-function perimeter additivity, the cyclic edge
+merge, and Jensen's inequality remain the explicit human-readable trust
+boundary documented in `CONSOLIDATED_AUDIT.md`.
 
 ## Formula audit
 

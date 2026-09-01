@@ -1,0 +1,13 @@
+{
+  "theorem": "strict 32-edge reduction for a perimeter-maximizing convex small hexadecagon",
+  "candidate_perimeter_lower": "3.1365477164866073860859670319412282272981367658092326927892182035777457554738176289058573625428211593",
+  "maximum_input_edges": 16,
+  "maximum_difference_body_edges": 32,
+  "largest_nonstrict_difference_body_edge_count": 30,
+  "regular_30_half_perimeter_upper": "3.135853898029605",
+  "candidate_margin_lower": "0.000693818457002",
+  "machin_arctan_pairs": 80,
+  "sine_series_pairs": 30,
+  "arb_precision_bits": 512,
+  "proof_candidate_commit_audited": "a45ff036f9dcd5b297fb4f77a3dea347b8debaac"
+}

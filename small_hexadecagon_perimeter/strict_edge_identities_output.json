@@ -1,0 +1,7 @@
+{
+  "exact_strict_edge_identities": true,
+  "coefficient_domain": "ZZ and symbolic trigonometric identities",
+  "normal_cone_integral_identity": true,
+  "regular_bound_strict_monotonicity_reduction": "q'(t)=t sin(t), q(0)=0",
+  "merged_edge_count_identity": "m=2k-2r"
+}

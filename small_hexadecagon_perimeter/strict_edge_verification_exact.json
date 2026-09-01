@@ -1,0 +1,12 @@
+{
+  "exact_strict_edge_certificate": true,
+  "arithmetic": "integer/Fraction Machin-Taylor intervals",
+  "edge_count_cases_checked": 77,
+  "unique_32_edge_case": {
+    "genuine_P_edges": 16,
+    "antipodal_pairs": 0
+  },
+  "nonstrict_edge_count_upper": 30,
+  "regular_30_half_perimeter_upper": "3.135853898029605",
+  "candidate_margin_lower": "0.000693818457002"
+}

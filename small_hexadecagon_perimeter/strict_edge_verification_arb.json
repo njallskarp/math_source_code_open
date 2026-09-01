@@ -1,0 +1,6 @@
+{
+  "arb_strict_edge_certificate": true,
+  "precision_bits": 512,
+  "regular_30_half_perimeter": "[3.135853898029604141995024644074943572420 +/- 3.24e-40]",
+  "candidate_margin": "[0.0006938184570032440909423878662846548784607 +/- 1.85e-44]"
+}
