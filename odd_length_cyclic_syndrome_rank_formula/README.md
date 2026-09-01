@@ -219,6 +219,67 @@ the dimension, enumerator total, constant-axis kernel, full-rank coefficient,
 and dichotomy criterion for all 499 odd lengths from 3 through 999.  This is
 an exact finite audit of the general proof, not the source of the theorem.
 
+## Boolean image-lattice theorem
+
+The CRT support controls more than rank.  Identify the syndrome space
+`F_2^m` with
+
+```text
+W = {y in R : y*=y and y mod (x+1)=0}
+```
+
+by sending `t=(t_1,...,t_m)` to
+
+```text
+sum_{s=1}^m t_s (x^s+x^(-s)).
+```
+
+Under this identification,
+
+```text
+D_b(sigma) = sigma b* + (sigma b*)*.                       (10)
+```
+
+For every nontrivial reciprocal-factor orbit `O`, let `W_O` be its summand
+of `W`.  Then
+
+```text
+image(D_b) = direct_sum_{O active for b} W_O,                (11)
+```
+
+where a self-reciprocal orbit is active when `b_f != 0`, and a reciprocal
+pair is active when `(b_f,b_f*) != (0,0)`.
+
+For a reciprocal pair, the map in (10) is onto the fixed diagonal as soon as
+one component of `b` is nonzero.  For a self-reciprocal field `K`, it is the
+relative trace `c -> c+c*` from `K` to its index-two fixed field, after an
+invertible multiplication when `b_f != 0`; this trace is surjective.  Zero
+components give zero output.  CRT independence proves (11).
+
+Consequently, if `r_n` is the number of nontrivial reciprocal-factor orbits:
+
+- there are exactly `2^r_n` distinct syndrome images;
+- these images form a Boolean lattice under inclusion;
+- `image(D_b) subset image(D_c)` exactly when every orbit active for `b` is
+  active for `c`;
+- the dimension weights of the Boolean atoms are `d` for a reciprocal pair
+  and `d/2` for a self-reciprocal factor; and
+- for unrestricted axes, a fixed active-orbit set `S` occurs for exactly
+
+```text
+2 product_{reciprocal pairs O in S}(2^(2d_O)-1)
+  product_{self factors O in S}(2^d_O-1)                    (12)
+```
+
+axis words.  For even axes, delete the leading factor `2`.
+
+Thus the rank enumerator is the weighted rank-generating polynomial of an
+exact Boolean image lattice, rather than only a numerical distribution.
+`verify_image_lattice.py` independently builds the binary matrix image of
+every one of the 43,688 axes at odd lengths through 15.  It checks equality
+of images for equal CRT activity, inequality for distinct activity, every
+multiplicity (12), all dimensions, and all pairwise lattice containments.
+
 ## Independent computational certificate
 
 `verify_rank_formula.py` uses only the Python standard library.  It:
@@ -238,6 +299,10 @@ The separate arithmetic checker validates formulas (6)--(9) and records a
 SHA-256 digest of all 499 complete even-axis rank spectra in its expected
 output.
 
+The image-lattice checker records a canonical reduced basis for every direct
+matrix image in its exhaustive-record digest; it does not infer image equality
+from matching ranks.
+
 The exhaustive direct-record stream has SHA-256
 
 ```text
@@ -251,10 +316,13 @@ Tested with Python 3.12.12 on arm64 macOS.
 ```sh
 python3 verify_rank_formula.py
 python3 verify_arithmetic_formula.py
+python3 verify_image_lattice.py
 python3 verify_rank_formula.py > /tmp/rank-formula-output.txt
 diff -u expected_output.txt /tmp/rank-formula-output.txt
 python3 verify_arithmetic_formula.py > /tmp/arithmetic-output.txt
 diff -u expected_arithmetic_output.txt /tmp/arithmetic-output.txt
+python3 verify_image_lattice.py > /tmp/image-lattice-output.txt
+diff -u expected_image_lattice_output.txt /tmp/image-lattice-output.txt
 shasum -a 256 -c SHA256SUMS
 ```
 

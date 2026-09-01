@@ -1,0 +1,11 @@
+odd-length syndrome image-lattice certificate
+n= 3 reciprocal_orbits=1 distinct_images=2 image_dimensions=0,1
+n= 5 reciprocal_orbits=1 distinct_images=2 image_dimensions=0,2
+n= 7 reciprocal_orbits=1 distinct_images=2 image_dimensions=0,3
+n= 9 reciprocal_orbits=2 distinct_images=4 image_dimensions=0,1,3,4
+n=11 reciprocal_orbits=1 distinct_images=2 image_dimensions=0,5
+n=13 reciprocal_orbits=1 distinct_images=2 image_dimensions=0,6
+n=15 reciprocal_orbits=3 distinct_images=8 image_dimensions=0,1,2,3,4,5,6,7
+exhaustive_axes=43688
+image_record_sha256=aedec7d31bd59b750244b46bd0bb8fc76d29a5058a7dfd1adedc0ef874b1d13e
+status=PASS
