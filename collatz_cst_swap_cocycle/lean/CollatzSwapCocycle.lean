@@ -188,6 +188,46 @@ theorem lengthFiveStrictDefectCertificate :
     1 - 2 = 4 - 5 := by
   omega
 
+/-- Exact prefix/suffix reconstruction for the target `p10s` of a wrapped
+adjacent swap.  Here `rho, eta` are the prefix cylinder, `x` is the target
+lift, `H, e, Bs, rs, zs` are the suffix data, and `m` is the compatible lift
+transported through the suffix.  The conclusion isolates the prefix surplus
+`L*rho - e*(3*eta+1) - 4*Bs`. -/
+theorem splitTargetMargin
+    (L H F P₀ e rho eta x rs Bs zs m r z d A : Int)
+    (hL : L = 4 * H)
+    (hA : A = F * L)
+    (hd : d = A - P₀ * e)
+    (hr : r = rho + F * x)
+    (hcompat : P₀ * x + 3 * eta + 1 = 4 * rs + L * m)
+    (hsuffix : H * zs = e * rs + Bs)
+    (hz : z = zs + e * m) :
+    L * (r - z) = d * x + (L * rho - e * (3 * eta + 1) - 4 * Bs) := by
+  grind
+
+/-- A lower bound `chi <= x` on the target lift certifies positive margin as
+soon as it clears the split barrier.  Taking `chi = x mod 2^m` gives the
+finite low-bit certificate hierarchy used by the exact audit. -/
+theorem splitBarrierCertificate
+    (L d M x chi Q : Int)
+    (hmargin : L * M = d * x + Q)
+    (hL : 0 < L) (hd : 0 ≤ d) (hchi : chi ≤ x)
+    (hcertificate : 0 < d * chi + Q) :
+    0 < M := by
+  have hdx : d * chi ≤ d * x :=
+    Int.mul_le_mul_of_nonneg_left hchi hd
+  have hscaled : 0 < L * M := by
+    rw [hmargin]
+    omega
+  have hcases : 0 < M ∨ M ≤ 0 := by omega
+  cases hcases with
+  | inl hM => exact hM
+  | inr hM =>
+      have hL0 : 0 ≤ L := by omega
+      have hnonpos : L * M ≤ 0 :=
+        Int.mul_nonpos_of_nonneg_of_nonpos hL0 hM
+      omega
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -203,5 +243,7 @@ theorem lengthFiveStrictDefectCertificate :
 #print axioms pathPhaseLag
 #print axioms zeroIndexSourceWrapAntidominance
 #print axioms lengthFiveStrictDefectCertificate
+#print axioms splitTargetMargin
+#print axioms splitBarrierCertificate
 
 end CollatzSwapCocycle
