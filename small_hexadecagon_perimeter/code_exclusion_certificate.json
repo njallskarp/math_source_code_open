@@ -1,0 +1,18 @@
+{
+  "n": 16,
+  "representative_half_code": "+--+-++-+--+-++-",
+  "squared_gap_radius_upper": "0.000032491",
+  "normalized_code_count": 32768,
+  "universal_screen_survivor_count": 1494,
+  "trace_screen_survivor_count": 32,
+  "spectral_screen_survivor_count": 16,
+  "universal_screen_margin_lower": "0.0030",
+  "trace_screen_margin_lower": "0.0028",
+  "spectral_screen_margin_lower": "0.0047",
+  "machin_arctan_pairs": 24,
+  "sine_series_pairs": 30,
+  "fixed_point_decimal_digits": 60,
+  "sqrt_decimal_digits": 90,
+  "arb_precision_bits": 512,
+  "proof_candidate_commit_audited": "a45ff036f9dcd5b297fb4f77a3dea347b8debaac"
+}

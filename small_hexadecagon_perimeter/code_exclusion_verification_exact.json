@@ -1,0 +1,30 @@
+{
+  "exact_certificate": true,
+  "arithmetic": "integer intervals from Fraction/Machin/Taylor bounds",
+  "normalized_codes_checked": 32768,
+  "universal_screen_survivors": 1494,
+  "trace_screen_survivors": 32,
+  "spectral_screen_survivors": 16,
+  "survivors": [
+    "++-+--++--+-++-+",
+    "++-+--+-++-+--++",
+    "++-+--+-++--++-+",
+    "++--++-+--+-++-+",
+    "++--+-++-+--+-++",
+    "+-++-+--++--+-++",
+    "+-++-+--+-++--++",
+    "+-++--++-+--+-++",
+    "+-+--++--+-++-+-",
+    "+-+--+-++-+--++-",
+    "+-+--+-++--++-+-",
+    "+--++-+--+-++-+-",
+    "+--++--+-++-+--+",
+    "+--+-++-+--++--+",
+    "+--+-++-+--+-++-",
+    "+--+-++--++-+--+"
+  ],
+  "dihedral_orbit_size": 16,
+  "universal_screen_margin_lower": "0.0030",
+  "trace_screen_margin_lower": "0.0028",
+  "spectral_screen_margin_lower": "0.0047"
+}

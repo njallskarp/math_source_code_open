@@ -279,9 +279,92 @@ cover the cyclic summation by parts, normal-cone integral, perimeter
 gradient, tangent projection, radial MFCQ derivative, and rank block.
 
 This does not yet prove the unrestricted optimum.  It validates the
-reconstruction, perturbation-feasibility, and saturation bridges, but it does
-not independently audit the finite competing-code exclusion or the final
-dihedral/congruence quotient.
+reconstruction, perturbation-feasibility, and saturation bridges.  The next
+section independently audits the finite competing-code exclusion; the final
+dihedral/congruence quotient remains separate.
+
+## Competing-code exclusion theorem
+
+Assume the saturation conclusion above and let
+`c=(c_0,...,c_15)` be a half-code.  Multiplying every sign by `-1` negates the
+closure residual and loses no solutions, so normalize `c_0=+1`.  There are
+then exactly `2^15=32768` codes.  Put `r=pi/16`,
+`zeta=exp(i*r)`, `delta_j=r+x_j`, and
+
+```text
+s_j = x_0+...+x_(j-1),
+a_j = c_(j-1)-c_j                         (1 <= j <= 15),
+b_c = (zeta-1) sum_(j=0)^15 c_j zeta^j.
+```
+
+The saturated closure equation has the exact expansion
+
+```text
+0 = G_c = b_c + i sum_(j=1)^15 a_j zeta^j s_j + R_c(s),
+|R_c(s)| <= sum_(j=1)^15 s_j^2.
+```
+
+Let `D` be the 15-by-15 Dirichlet path Laplacian.  Its inverse is checked
+symbolically to be
+
+```text
+(D^-1)_(jk) = min(j,k)(16-max(j,k))/16.
+```
+
+Since `||x||_2^2=s^T D s`, the linear term has sharp energy-norm bound
+`sigma_c ||x||_2`, where
+
+```text
+sigma_c^2 = lambda_max(B_c D^-1 B_c^T)
+```
+
+and column `j` of the real 2-by-15 matrix `B_c` represents
+`i a_j zeta^j`.  Moreover,
+
+```text
+||s||_2^2 <= C ||x||_2^2,
+C = 1/(4 sin^2(pi/32)).
+```
+
+Thus a necessary condition for a code to support any saturated point in the
+candidate-level region `||x||_2^2 < rho2=0.000032491` is
+
+```text
+|b_c| <= sqrt(rho2) sigma_c + C rho2.                 (*)
+```
+
+The dependency-free certificate proves the contrapositive of `(*)` in three
+structural stages.  If `k` is the number of internal sign switches, then
+`sigma_c <= 2 sqrt(C k)` leaves 1,494 codes.  Replacing this by the exact
+trace bound for `B_c D^-1 B_c^T` leaves 32.  Computing the upper eigenvalue
+of that 2-by-2 Gram matrix leaves exactly 16.  The respective excluded-code
+margins in `|b_c|-sqrt(rho2)sigma-C rho2` exceed
+
+```text
+0.0030, 0.0028, 0.0047.
+```
+
+The final 16 codes are exactly the normalized formal dihedral orbit of
+
+```text
++--+-++-+--+-++-.
+```
+
+The exact route encloses `pi` by Machin's formula, every root coordinate by
+alternating rational Taylor sums, and every square root by integer square
+roots.  A separate 512-bit Arb implementation skips the trace screen and
+recomputes the spectral inequality directly for all 1,494 first-stage
+survivors; it obtains the same 16 codes and the same conservative margins.
+Exact SymPy checks independently verify the cyclotomic residual, the vertex
+summation-by-parts form, the Dirichlet Green kernel, and the linearization.
+No solver or floating-point prescreen is used.
+
+Together with the boundary localization and saturation theorems, this rules
+out every normalized competing half-code outside that formal orbit at the
+candidate perimeter level.  It does not yet prove that every listed formal
+dihedral action induces precisely the required polygon congruence, nor audit
+all bookkeeping in the final quotient; that is the remaining bridge before
+an unrestricted `n=16` conclusion.
 
 ### Relationship to the August 2026 proof candidate
 
@@ -300,6 +383,11 @@ candidate's remaining geometric reductions.  It replaces the coarse
 constants by the candidate-level threshold, the band
 `(0.1908839833334,0.2017683188778)`, Euclidean radius below
 `sqrt(0.000032491) < 0.005701`, and a certified simplex-volume reduction.
+The competing-code theorem independently audits Lemma 8.1 with that sharper
+radius.  Its switch-count and trace reductions are not present in the proof
+candidate, and its exact checker uses Taylor root enclosures rather than the
+candidate verifier's nested-radical implementation.  These distinctions do
+not constitute a priority claim for the underlying finite exclusion idea.
 The source inspected was commit
 `a45ff036f9dcd5b297fb4f77a3dea347b8debaac` of the
 [proof-candidate repository](https://github.com/aster2024/reinhardt-powers-of-two-proof-candidates),
@@ -331,6 +419,10 @@ python3 -m venv .venv
 .venv/bin/python verify_saturation_bounds_symbolic.py
 .venv/bin/python verify_saturation_bounds_arb.py
 .venv/bin/python -m unittest -v test_saturation_bridge.py
+.venv/bin/python verify_code_exclusion_exact.py
+.venv/bin/python verify_code_exclusion_arb.py
+.venv/bin/python verify_code_exclusion_identities.py
+.venv/bin/python -m unittest -v test_code_exclusion.py
 shasum -a 256 -c SHA256SUMS
 ```
 
@@ -369,6 +461,16 @@ identities in SymPy.  The human-readable geometric interpretation uses
 standard planar Minkowski edge merging, Cauchy's perimeter formula, openness
 of strict convexity, and the KKT theorem under MFCQ.  These are the remaining
 non-formalized mathematical trust boundary.
+
+The code-exclusion certificate again separates arithmetic routes.
+`verify_code_exclusion_exact.py` implements the switch, trace, and spectral
+screens using fixed integer intervals derived from rational Machin/Taylor
+bounds.  `verify_code_exclusion_arb.py` independently applies the universal
+screen and then direct 2-by-2 Arb spectral bounds.  The compact outputs list
+all 16 survivors, while `verify_code_exclusion_identities.py` checks the
+algebraic reduction and Green kernel.  The human-readable Taylor-remainder
+argument and the interpretation of the formal dihedral action are the
+non-programmatic trust boundary.
 
 ## Formula audit
 

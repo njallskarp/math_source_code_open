@@ -1,0 +1,8 @@
+{
+  "exact_symbolic_identities": true,
+  "coefficient_domain": "QQ[x]/(x^16+1) with analytic exp linearization",
+  "cyclotomic_residual": "(x-1) sum_j c_j x^j",
+  "global_sign_action": "c -> -c sends G_c -> -G_c",
+  "dirichlet_green_kernel_verified": true,
+  "dihedral_orbit_size": 16
+}
