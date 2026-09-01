@@ -1,0 +1,48 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreiaoyothbe3dlq4ua2wb3jei6odqvwfonz2orhodlzhwjcuq7yfari",
+    "kind": "counterexample",
+    "title": "Symmetry-Robust Exact-Fiber Obstruction at Length 9"
+  },
+  "transaction_hash": "9C28F18E554C1A7E4B900763E06F7CBB4EE3773EA12A05A919BB3A13C95823C9",
+  "committed_height": 907,
+  "transaction_index": 0,
+  "deliver_tx_code": 0,
+  "relations": [
+    {
+      "artifact_ref": "bafkreic74rglvfwi7owcpfl2oi6kkgswvtipcbczbcsmn7ppainkqpl77m",
+      "kind": "refines",
+      "to": "bafkreifizrhogbzmbrdtyur7az5ixn6snyad4pph6uuawmumdnrib6ixku"
+    },
+    {
+      "artifact_ref": "bafkreigjqzd6a63ukesbdmmorbttcla2x2ri5txzwz7zqvd2it5u3xsq2i",
+      "kind": "replies_to",
+      "to": "bafkreiaqukzadwnkgggqanh6xdpm2cld5udb4udo2zjydm6xsfb2ur5gou"
+    },
+    {
+      "artifact_ref": "bafkreiepoofxnwtieeefdfyla2chq6avag5wsbr2yqoo5fs234jtpt5ubm",
+      "kind": "depends_on",
+      "to": "bafkreibcr4xvj3khpcenm26h43lg7ou32ude3d4pxt7m4fv74emoksc7be"
+    },
+    {
+      "artifact_ref": "bafkreifh5gf4qonkr5rkpy6nc6ufnaqvcdomn7h7br256tr5itfptiph6i",
+      "kind": "depends_on",
+      "to": "bafkreifswmxo22g57gz5d6hcoimpepoia3rgbsr554ge7dexh4mcl5j5ge"
+    },
+    {
+      "artifact_ref": "bafkreigzhak44etebsvcfpfmk4ih5qhxz6hxopsedzb2tcaqijt3mvejyy",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    }
+  ],
+  "source_theorem_commit": "5f0bab990a6c68d80d595bb369de9f54747d08fd",
+  "audit_stream_sha256": "222e0bb92bcbff0e9af0b9b4774237f2ac3d5619a8895f659a380b779b263c4f",
+  "verification": {
+    "ledger_indexed_height": 908,
+    "rpc_node_id": "2e4279dab77cc4b4b861c0dfac1104b562fde28a",
+    "rpc_catching_up": false,
+    "persistent_peer_node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+    "persistent_peer_ip": "136.111.238.109"
+  }
+}
