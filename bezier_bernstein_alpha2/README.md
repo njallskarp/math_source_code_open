@@ -1,8 +1,15 @@
 # The alpha = 2 Bezier-Bernstein asymptotic
 
-This project develops the integer-parameter `alpha = 2` regime of Ulrich
-Abel's open problem on the asymptotic behavior of Bernstein operators of
-Bezier type.
+This project develops a short, independent order-statistic proof and reusable
+Lean lemmas for the integer-parameter `alpha = 2` regime of Ulrich Abel's
+problem on the asymptotic behavior of Bernstein operators of Bezier type.
+
+Important status correction: Kenta Kitamura published a complete Lean proof
+of the more general positive-`alpha` theorem in July 2026.  The associated
+Formal Conjectures status-change pull request is open.  This project therefore
+does not claim to solve a currently open problem or claim priority.  Its
+remaining formal target is the explicit specialization
+`mu(2) = -1/sqrt(pi)` and a compact independent proof route.
 
 For
 
@@ -25,7 +32,7 @@ sqrt(n) * (B(n,2) f x - f x)
   -> -f'(x) * sqrt(x * (1-x) / pi).
 ```
 
-## Checked result in this revision
+## Checked results
 
 `BezierBernstein/OrderStatistic.lean` proves over an arbitrary commutative
 ring that the mass of the three disjoint cases defining `min(X,Y)=k` equals
@@ -43,8 +50,20 @@ sum_{k=0}^n minPairMass n p k = tailMass n p 0 ^ 2.
 
 Thus normalized input masses produce normalized squared-tail differences.
 Together these are the exact finite identities that convert the `alpha = 2`
-operator into an expectation of an order statistic.  The asymptotic theorem
-is not yet claimed in this revision.
+operator into an expectation of an order statistic.
+
+`BezierBernstein/DifferenceIdentity.lean` additionally proves the exact
+finite product-mass reduction
+
+```text
+pairMinMoment n p
+  = totalMass n p * firstMoment n p - pairAbsDiffMoment n p / 2,
+```
+
+and its normalized centered form.  See `PAPER_PROOF.md` for the complete short
+probability proof of the asymptotic and its explicit uniform-integrability and
+Taylor-remainder bounds.  The full asymptotic has not yet been formalized in
+this package.
 
 ## Verification
 
@@ -52,6 +71,7 @@ Pinned versions:
 
 ```text
 Lean 4.33.1
+Lake 5.0.0-src+819816b
 Mathlib v4.33.1
 Mathlib commit 0df444a360eaa60ab8c11dca51a86af692955474
 ```
@@ -77,14 +97,18 @@ pp. 401-402:
 
 https://www.math.bas.bg/mathmod/Proceedings_CTF/CTF-2010/files_CTF-2010/Open_problems.pdf
 
+General positive-`alpha` Lean proof, Kenta Kitamura, immutable commit:
+
+https://github.com/KitaKen1/bezier-bernstein-voronovskaja-lean/blob/3f35c631d215b3841242275bf3ed2c59ea153a2d/Voronovskaja.lean
+
+Formal Conjectures status-change pull request:
+
+https://github.com/google-deepmind/formal-conjectures/pull/4646
+
 ## Scope and next step
 
-The next proof layer is the one-dimensional difference reduction
-
-```text
-min(X,Y) = (X + Y - |X-Y|) / 2,
-```
-
-followed by a central limit theorem and a uniform-integrability argument for
-`|X-Y| / sqrt(n)`.  Convergence in distribution alone is not sufficient for
-the expectation limit.
+The next formal layer is the explicit Gaussian order-statistic evaluation
+`mu(2) = -1/sqrt(pi)`, followed by alignment of the finite product-mass theorem
+with Mathlib probability integrals.  Convergence in distribution alone remains
+insufficient for the expectation limit; `PAPER_PROOF.md` records the required
+uniform-integrability bridge.
