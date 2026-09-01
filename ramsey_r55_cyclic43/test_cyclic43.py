@@ -1369,6 +1369,67 @@ class DirectVerifierTests(unittest.TestCase):
             fast["additional_objective_10_rotation_representatives"],
         )
 
+    def test_objective_ten_component_quotient_structure(self) -> None:
+        structure = json.loads(
+            (HERE / "objective-ten-component-structure.json").read_text()
+        )
+        self.assertEqual(
+            structure["complete_additional_objective_ten_rotation_orbit_count"],
+            527,
+        )
+        self.assertEqual(structure["first_expansion_rotation_orbit_count"], 376)
+        self.assertEqual(
+            structure["shell_distance_histogram"],
+            {"1": 376, "2": 116, "3": 32, "4": 3},
+        )
+        self.assertEqual(
+            structure["maximum_shell_distance_from_original_frontier"], 4
+        )
+        self.assertEqual(structure["internal_directed_quotient_incidence"], 2_252)
+        self.assertEqual(structure["simple_internal_quotient_edge_count"], 1_126)
+        self.assertEqual(structure["internal_quotient_edge_multiplicity"], 1_126)
+        self.assertEqual(structure["internal_parallel_edge_excess"], 0)
+        self.assertEqual(structure["internal_self_orbit_directed_incidence"], 0)
+        self.assertEqual(structure["internal_labeled_edge_count"], 48_418)
+        self.assertEqual(structure["frontier_quotient_incidence"], 1_258)
+        self.assertEqual(structure["simple_frontier_quotient_edge_count"], 1_258)
+        self.assertEqual(structure["frontier_parallel_incidence_excess"], 0)
+        self.assertEqual(structure["frontier_labeled_edge_count"], 54_094)
+        self.assertEqual(
+            structure["distinct_original_frontier_source_orbit_count"], 841
+        )
+        self.assertEqual(
+            structure["shell_internal_edge_multiplicity"],
+            {
+                "1-1": 540,
+                "1-2": 302,
+                "2-2": 146,
+                "2-3": 96,
+                "3-3": 30,
+                "3-4": 12,
+            },
+        )
+        self.assertEqual(structure["internal_component_count"], 21)
+        profiles = structure["internal_component_profiles"]
+        self.assertEqual(sum(item["added_orbit_count"] for item in profiles), 527)
+        self.assertEqual(
+            sum(item["simple_internal_edge_count"] for item in profiles), 1_126
+        )
+        self.assertEqual(sum(item["frontier_incidence"] for item in profiles), 1_258)
+        self.assertEqual(
+            [item["added_orbit_count"] for item in profiles[:5]],
+            [178, 131, 116, 50, 15],
+        )
+        self.assertEqual(structure["reflection_fixed_rotation_orbit_count"], 37)
+        self.assertEqual(
+            structure["reflection_fixed_rotation_orbit_count_by_shell"],
+            {"1": 18, "2": 10, "3": 6, "4": 3},
+        )
+        self.assertEqual(structure["dihedral_orbit_count"], 282)
+        partners = structure["reflection_component_partners"]
+        self.assertEqual(len(partners), 21)
+        self.assertTrue(all(partners[partners[index]] == index for index in range(21)))
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

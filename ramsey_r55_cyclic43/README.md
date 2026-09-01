@@ -736,6 +736,41 @@ For a finer audit, the 527 added orbits contribute 22,661 labeled vertices,
 Their complete sorted representative list is reproduced independently in both
 persisted component certificates.
 
+### Quotient geometry of the 527-orbit addition
+
+An exact quotient-neighbor scan gives considerably more structure than the
+aggregate closure count.  The added orbits lie in four successive one-flip
+shells beyond the original objective-ten frontier:
+
+\[
+\begin{array}{c|rrrr}
+\text{distance from the original frontier}&1&2&3&4\\ \hline
+\text{rotation orbits}&376&116&32&3.
+\end{array}
+\]
+
+The induced cyclic quotient on these 527 orbits has 1,126 edges, with no
+loops and no parallel multiplicity.  It has 21 connected components; the five
+largest have 178, 131, 116, 50, and 15 vertices.  Its exact shell-edge counts
+are
+
+\[
+e_{11}=540,\quad e_{12}=302,\quad e_{22}=146,\quad
+e_{23}=96,\quad e_{33}=30,\quad e_{34}=12.
+\]
+
+The boundary back to the original frontier consists of 1,258 simple quotient
+edges incident with 841 distinct original-frontier orbits; again there is no
+parallel multiplicity.  Multiplying the internal and boundary quotient counts
+by the free rotation-orbit size 43 reproduces 48,418 and 54,094 labeled edges.
+The first shell agrees exactly with the independently persisted 376-orbit
+first expansion.
+
+Reflection preserves every shell and permutes the 21 components.  Exactly 37
+rotation orbits are reflection-fixed, so the addition has 282 dihedral orbits.
+All three depth-four orbits are reflection-fixed.  This decomposition supplies
+small, symmetry-stable pieces for subsequent objective-eleven boundary scans.
+
 ### Reproduction and independent verification
 
 Build and regenerate the full lower closure and frontier with:
@@ -777,6 +812,12 @@ python3 analyze_objective_ten_boundary.py \
   objective-ten-frontier-fast.json \
   objective-ten-frontier-independent.json \
   > objective-ten-boundary-structure.json
+
+python3 analyze_objective_ten_component_structure.py \
+  objective-ten-frontier-fast.json \
+  objective-ten-component-fast.json \
+  objective-ten-component-independent.json \
+  > objective-ten-component-structure.json
 ```
 
 The independent checker found zero omitted frontier neighbors, zero wrong
@@ -812,7 +853,7 @@ boundaries. Complete sorted representatives are retained so a future formal or
 alternative-language verifier does not need to trust aggregate prose.
 
 The results above were regenerated with Homebrew GCC 16.2.0 and Python
-3.12.12. The complete regression suite passed 27/27 tests. The threshold-nine
+3.12.12. The complete regression suite passed 28/28 tests. The threshold-nine
 optimized closure and aggregate recount took 408.60 seconds; its independent
 ten-thread direct recount with explicit reachability BFS took 32.79 seconds,
 and the lower-island direct
@@ -823,7 +864,7 @@ bidirectional boundary recount took 221.78 seconds; the deterministic
 certificate-intersection analysis took 0.90 seconds. The expanded ten-thread
 direct verifier and complete threshold-ten closure took 228.94 seconds; the
 independent optimized regeneration and closure took 2,030.69 seconds under
-concurrent load.
+concurrent load.  The quotient-geometry scan took 4.90 seconds.
 
 SHA-256:
 
@@ -833,7 +874,7 @@ d963ccaabefd5838bbdf96632dfc3f767a903ee401e0d98c5dd1c936093fc79a  verify_objecti
 cb66b314063d1fdc21ee965e0efd94e55a67b48ccf527253553f20b126e30e65  verify_objective_ten_frontier.cpp
 216a3726bf3e842731cadee81181a762dbdb9f0ec4f9aba46b7e73d22c8e688c  verify_external_objective_eight_components.py
 885d86d8fa5dac7864c322101bdccb5d28231cc6b431a4b59b9da4148d9944ea  verify_threshold_nine_lower_islands.py
-1f3f85fe06b883e0528591fdaac2f061591d5c1706f4a2ba67098da78fe1784f  test_cyclic43.py
+e784e45d07e227b83d9e92beab1de51db70a2e5fc82b1bf4fd5c085cc1ade25d  test_cyclic43.py
 740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
 b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
 ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
@@ -847,6 +888,8 @@ fe3a66d5d937bc109920e45b2c105e5cfa2dbdebbb56a3b25adf8f0686650c88  threshold-nine
 977ddfaa5ab06d43e28a0f2a1d13606d571d12e1a7fca06751651a719cefae56  objective-ten-frontier-independent.json
 2a8eb47b4204801169ecae8f0734643d091455124ee2ee09ccba9698e9236551  analyze_objective_ten_boundary.py
 a6fc7029bd7ec7d79fd5d50ea629db88878ea7f3e0b14d4a89aff354fe72bb72  objective-ten-boundary-structure.json
+0c29669eb32ac4bb64f8bcffa38813cfdd258faae9701e070dbfdbe65284d4e4  analyze_objective_ten_component_structure.py
+6a26775e85ad7a09574074e9fd615ca39f56f3508f85e12625c6ac2b4a34e076  objective-ten-component-structure.json
 389a31ddb2546fd62da112b138757ee4cbd54577520e54d7d8e8d3cc0991b996  objective-ten-component-fast.json
 ea791e04c6928dbd083afd428652ba1d9dbc895647d5f5f4961c1d22a95d4a14  objective-ten-component-independent.json
 ```
