@@ -1,0 +1,17 @@
+{
+  "claim": "signed-K4 inverse singular-DP length barrier",
+  "core_variables": 42,
+  "obstruction_clauses": 44,
+  "leaf_clause_length": 4,
+  "leaf_tail_intersection": 0,
+  "first_derived_clause_length": 6,
+  "maximum_loss_per_descendant_resolution": 1,
+  "terminal_binary_clause_length": 2,
+  "minimum_reductions_for_binary_clause": 5,
+  "maximum_terminal_p": 37,
+  "excluded_p": [38, 39, 40, 41],
+  "coverage_clauses_per_sign": 11,
+  "one_flip_avoiding_witnesses": 3,
+  "maximum_final_fan_arity": 30,
+  "small_inverse_audit_p": [2, 3, 4]
+}

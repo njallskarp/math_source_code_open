@@ -66,6 +66,17 @@ near-\(K_5\) defect witnesses at the first reduction variable.  This turns
 the unresolved 44-clause case into a constrained inverse-resolution
 problem rather than an arbitrary clause search.
 
+## Inverse singular-DP classification and length barrier
+
+`inverse-singular-dp-length-barrier.md` gives the exact common-core-split
+parametrization of every one-step inverse singular-DP extension. At the
+signed-`K4` leaves the final inverse step is forced to be a disjoint `3+3`
+fan of arity at most 30. A resolution-ancestry argument proves that a binary
+clause cannot occur before five singular reductions, excluding the canonical
+terminal families `F_38`, `F_39`, `F_40`, and `F_41`. A compact JSON
+certificate and standard-library checker audit the arithmetic and every
+small common-core split of `F_p` for `p=2,3,4`.
+
 ## Reproduce
 
 ```bash
