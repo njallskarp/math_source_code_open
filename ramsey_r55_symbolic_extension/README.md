@@ -35,6 +35,24 @@ one-red-edge defects; the complementary statement also holds.  Global
 double counting gives exact rational inequalities whose defect terms are
 the creation terms in monochromatic-\(K_5\) edge-flip derivatives.
 
+## Deficiency-one exclusion and a 44-clause lower bound
+
+`deficiency-one-monotone-obstruction-bound.md` combines bichromatic clone
+coverage with the splitting theorem for minimally unsatisfiable CNFs of
+deficiency one.  A monotone \((k,\ell)\)-CNF in \(\mathrm{MU}(1)\) has at
+least
+
+\[
+\binom{k+\ell}{k}
+\]
+
+clauses.  Since signed-\(K_4\) extension subsystems are monotone
+\((4,4)\)-CNFs and every minimal obstruction on a Ramsey \((5,5,42)\)-core
+uses all 42 variables, a hypothetical 43-clause obstruction would belong to
+\(\mathrm{MU}(1)\) but would need at least \(\binom{8}{4}=70\) clauses.  Thus
+every such obstruction has at least 44 clauses; together with the certified
+74-clause core for graph 0 this gives \(44\leq\mu(G_0)\leq74\).
+
 ## Reproduce
 
 ```bash
