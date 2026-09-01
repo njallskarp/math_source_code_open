@@ -1,0 +1,317 @@
+{
+  "order": 43,
+  "complete_objective_eleven_frontier_rotation_orbit_count": 372974,
+  "complete_objective_eleven_frontier_quotient_incidence": 1557119,
+  "optimized_and_independent_global_frontiers_agree": true,
+  "objective_ten_addition_source_rotation_orbit_count": 527,
+  "addition_touched_objective_eleven_target_rotation_orbit_count": 3393,
+  "addition_objective_eleven_quotient_incidence": 4339,
+  "addition_objective_eleven_labeled_incidence": 186577,
+  "addition_source_target_parallel_incidence_excess": 0,
+  "addition_exclusive_objective_eleven_target_rotation_orbit_count": 2393,
+  "addition_shared_objective_eleven_target_rotation_orbit_count": 1000,
+  "addition_exclusive_objective_eleven_target_vertex_count": 102899,
+  "addition_source_distinct_target_degree_histogram": {
+    "4": 4,
+    "5": 15,
+    "6": 54,
+    "7": 103,
+    "8": 133,
+    "9": 109,
+    "10": 66,
+    "11": 24,
+    "12": 13,
+    "13": 6
+  },
+  "addition_source_incidence_histogram": {
+    "4": 4,
+    "5": 15,
+    "6": 54,
+    "7": 103,
+    "8": 133,
+    "9": 109,
+    "10": 66,
+    "11": 24,
+    "12": 13,
+    "13": 6
+  },
+  "target_distinct_addition_source_degree_histogram": {
+    "1": 2593,
+    "2": 654,
+    "3": 146
+  },
+  "target_addition_incidence_histogram": {
+    "1": 2593,
+    "2": 654,
+    "3": 146
+  },
+  "target_preaddition_incidence_histogram": {
+    "0": 2393,
+    "1": 470,
+    "2": 306,
+    "3": 76,
+    "4": 68,
+    "5": 76,
+    "6": 4
+  },
+  "target_component_support_size_histogram": {
+    "1": 2655,
+    "2": 730,
+    "3": 8
+  },
+  "target_shell_support_histogram": {
+    "1": 2489,
+    "1,2": 184,
+    "1,2,3": 8,
+    "1,2,4": 2,
+    "1,3": 64,
+    "1,4": 10,
+    "2": 462,
+    "2,3": 88,
+    "3": 72,
+    "4": 14
+  },
+  "exclusive_target_shell_support_histogram": {
+    "1": 1551,
+    "1,2": 182,
+    "1,2,3": 8,
+    "1,2,4": 2,
+    "1,3": 60,
+    "1,4": 8,
+    "2": 420,
+    "2,3": 88,
+    "3": 64,
+    "4": 10
+  },
+  "targets_incident_to_multiple_addition_components": 738,
+  "addition_component_intersection_simple_edge_count": 29,
+  "addition_component_intersection_connected_component_count": 9,
+  "addition_component_pair_shared_target_count": {
+    "0-1": 266,
+    "0-2": 214,
+    "0-5": 10,
+    "0-6": 10,
+    "0-8": 10,
+    "0-9": 10,
+    "1-3": 140,
+    "1-14": 2,
+    "1-15": 4,
+    "1-16": 2,
+    "2-4": 32,
+    "4-5": 9,
+    "4-6": 9,
+    "4-8": 6,
+    "4-9": 6,
+    "5-8": 2,
+    "5-16": 2,
+    "5-17": 2,
+    "6-9": 2,
+    "6-14": 2,
+    "6-17": 2,
+    "8-14": 2,
+    "8-15": 2,
+    "9-15": 2,
+    "9-16": 2,
+    "14-15": 1,
+    "14-17": 1,
+    "15-16": 1,
+    "16-17": 1
+  },
+  "addition_component_objective_eleven_profiles": [
+    {
+      "index": 0,
+      "source_orbit_count": 178,
+      "objective_eleven_quotient_incidence": 1559,
+      "distinct_objective_eleven_target_orbit_count": 1485,
+      "exclusive_target_orbit_count": 1155,
+      "shared_target_orbit_count": 330,
+      "other_component_neighbor_count": 6
+    },
+    {
+      "index": 1,
+      "source_orbit_count": 131,
+      "objective_eleven_quotient_incidence": 958,
+      "distinct_objective_eleven_target_orbit_count": 870,
+      "exclusive_target_orbit_count": 704,
+      "shared_target_orbit_count": 166,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 2,
+      "source_orbit_count": 116,
+      "objective_eleven_quotient_incidence": 991,
+      "distinct_objective_eleven_target_orbit_count": 991,
+      "exclusive_target_orbit_count": 747,
+      "shared_target_orbit_count": 244,
+      "other_component_neighbor_count": 2
+    },
+    {
+      "index": 3,
+      "source_orbit_count": 50,
+      "objective_eleven_quotient_incidence": 324,
+      "distinct_objective_eleven_target_orbit_count": 290,
+      "exclusive_target_orbit_count": 208,
+      "shared_target_orbit_count": 82,
+      "other_component_neighbor_count": 1
+    },
+    {
+      "index": 4,
+      "source_orbit_count": 15,
+      "objective_eleven_quotient_incidence": 150,
+      "distinct_objective_eleven_target_orbit_count": 150,
+      "exclusive_target_orbit_count": 96,
+      "shared_target_orbit_count": 54,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 5,
+      "source_orbit_count": 6,
+      "objective_eleven_quotient_incidence": 73,
+      "distinct_objective_eleven_target_orbit_count": 71,
+      "exclusive_target_orbit_count": 32,
+      "shared_target_orbit_count": 39,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 6,
+      "source_orbit_count": 6,
+      "objective_eleven_quotient_incidence": 73,
+      "distinct_objective_eleven_target_orbit_count": 71,
+      "exclusive_target_orbit_count": 32,
+      "shared_target_orbit_count": 39,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 7,
+      "source_orbit_count": 4,
+      "objective_eleven_quotient_incidence": 28,
+      "distinct_objective_eleven_target_orbit_count": 28,
+      "exclusive_target_orbit_count": 16,
+      "shared_target_orbit_count": 12,
+      "other_component_neighbor_count": 0
+    },
+    {
+      "index": 8,
+      "source_orbit_count": 3,
+      "objective_eleven_quotient_incidence": 32,
+      "distinct_objective_eleven_target_orbit_count": 32,
+      "exclusive_target_orbit_count": 23,
+      "shared_target_orbit_count": 9,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 9,
+      "source_orbit_count": 3,
+      "objective_eleven_quotient_incidence": 32,
+      "distinct_objective_eleven_target_orbit_count": 32,
+      "exclusive_target_orbit_count": 23,
+      "shared_target_orbit_count": 9,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 10,
+      "source_orbit_count": 2,
+      "objective_eleven_quotient_incidence": 14,
+      "distinct_objective_eleven_target_orbit_count": 14,
+      "exclusive_target_orbit_count": 9,
+      "shared_target_orbit_count": 5,
+      "other_component_neighbor_count": 0
+    },
+    {
+      "index": 11,
+      "source_orbit_count": 2,
+      "objective_eleven_quotient_incidence": 14,
+      "distinct_objective_eleven_target_orbit_count": 14,
+      "exclusive_target_orbit_count": 9,
+      "shared_target_orbit_count": 5,
+      "other_component_neighbor_count": 0
+    },
+    {
+      "index": 12,
+      "source_orbit_count": 2,
+      "objective_eleven_quotient_incidence": 11,
+      "distinct_objective_eleven_target_orbit_count": 11,
+      "exclusive_target_orbit_count": 6,
+      "shared_target_orbit_count": 5,
+      "other_component_neighbor_count": 0
+    },
+    {
+      "index": 13,
+      "source_orbit_count": 2,
+      "objective_eleven_quotient_incidence": 11,
+      "distinct_objective_eleven_target_orbit_count": 11,
+      "exclusive_target_orbit_count": 6,
+      "shared_target_orbit_count": 5,
+      "other_component_neighbor_count": 0
+    },
+    {
+      "index": 14,
+      "source_orbit_count": 1,
+      "objective_eleven_quotient_incidence": 11,
+      "distinct_objective_eleven_target_orbit_count": 11,
+      "exclusive_target_orbit_count": 6,
+      "shared_target_orbit_count": 5,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 15,
+      "source_orbit_count": 1,
+      "objective_eleven_quotient_incidence": 10,
+      "distinct_objective_eleven_target_orbit_count": 10,
+      "exclusive_target_orbit_count": 8,
+      "shared_target_orbit_count": 2,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 16,
+      "source_orbit_count": 1,
+      "objective_eleven_quotient_incidence": 11,
+      "distinct_objective_eleven_target_orbit_count": 11,
+      "exclusive_target_orbit_count": 6,
+      "shared_target_orbit_count": 5,
+      "other_component_neighbor_count": 5
+    },
+    {
+      "index": 17,
+      "source_orbit_count": 1,
+      "objective_eleven_quotient_incidence": 12,
+      "distinct_objective_eleven_target_orbit_count": 12,
+      "exclusive_target_orbit_count": 4,
+      "shared_target_orbit_count": 8,
+      "other_component_neighbor_count": 4
+    },
+    {
+      "index": 18,
+      "source_orbit_count": 1,
+      "objective_eleven_quotient_incidence": 7,
+      "distinct_objective_eleven_target_orbit_count": 7,
+      "exclusive_target_orbit_count": 5,
+      "shared_target_orbit_count": 2,
+      "other_component_neighbor_count": 0
+    },
+    {
+      "index": 19,
+      "source_orbit_count": 1,
+      "objective_eleven_quotient_incidence": 9,
+      "distinct_objective_eleven_target_orbit_count": 9,
+      "exclusive_target_orbit_count": 8,
+      "shared_target_orbit_count": 1,
+      "other_component_neighbor_count": 0
+    },
+    {
+      "index": 20,
+      "source_orbit_count": 1,
+      "objective_eleven_quotient_incidence": 9,
+      "distinct_objective_eleven_target_orbit_count": 9,
+      "exclusive_target_orbit_count": 8,
+      "shared_target_orbit_count": 1,
+      "other_component_neighbor_count": 0
+    }
+  ],
+  "reflection_fixed_touched_target_rotation_orbit_count": 5,
+  "reflection_fixed_exclusive_target_rotation_orbit_count": 5,
+  "touched_target_dihedral_orbit_count": 1699,
+  "exclusive_target_dihedral_orbit_count": 1199,
+  "method": "exact cyclic canonicalization of every one-edge move from all 527 added objective-ten representatives, targetwise subtraction from the complete objective-eleven incidence certificate, and exact shell/component/reflection analysis",
+  "scope_note": "Classifies the part of the complete first objective-eleven frontier incident to the 527-orbit threshold-ten addition; it does not assert threshold-eleven closure or classify disconnected sublevel-ten components."
+}
