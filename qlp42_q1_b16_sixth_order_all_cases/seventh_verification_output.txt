@@ -1,0 +1,6 @@
+a_support=0,2,4,10,12 seventh_s_soluble=0
+a_support=0,2,4,13,15 seventh_s_soluble=0
+exact_b_assignments=500992
+seventh_b_residue_fingerprints=500740
+surviving_orbits=0
+certificate=verified

@@ -1,0 +1,7 @@
+direct_interpolation_and_audit_checks=3893760
+case_0_a_phase_assignments=100 b_exact_assignments=500992 surviving_orbits=0 surviving_masks=0
+case_1_a_phase_assignments=25 b_exact_assignments=500992 surviving_orbits=2 surviving_masks=1
+case_2_a_phase_assignments=25 b_exact_assignments=804968 surviving_orbits=0 surviving_masks=0
+case_3_a_phase_assignments=10 b_exact_assignments=804968 surviving_orbits=0 surviving_masks=0
+case_4_a_phase_assignments=10 b_exact_assignments=804968 surviving_orbits=0 surviving_masks=0
+certificate=verified
