@@ -1,0 +1,12 @@
+{
+  "n": 16,
+  "representative_half_code": "+--+-++-+--+-++-",
+  "full_code_length": 32,
+  "normalized_survivor_count": 16,
+  "full_dihedral_action_count": 64,
+  "witnesses_per_normalized_survivor": 4,
+  "reflection_shift_offset": 15,
+  "code_exclusion_source": "code_exclusion_verification_exact.json",
+  "python_version": "3.12",
+  "sympy_version": "1.14.0"
+}

@@ -174,9 +174,9 @@ the strict-gap region by the boundary theorem, and is a regular KKT point by
 the singular-value bound.  It must therefore be the Arb-enclosed candidate.
 
 This independently audits and sharpens Guo--Luo Lemmas 9.1--9.3.  By itself
-it does **not** establish unrestricted `n=16` optimality.  The next section
-audits the geometric saturation bridge separately; competing-code and final
-symmetry-quotient claims remain outside the combined result.
+it does **not** establish unrestricted `n=16` optimality.  The following
+sections audit the geometric saturation bridge, competing-code exclusion,
+and symmetry quotient separately.
 
 ## Difference-body reconstruction and saturation theorem
 
@@ -361,10 +361,91 @@ No solver or floating-point prescreen is used.
 
 Together with the boundary localization and saturation theorems, this rules
 out every normalized competing half-code outside that formal orbit at the
-candidate perimeter level.  It does not yet prove that every listed formal
-dihedral action induces precisely the required polygon congruence, nor audit
-all bookkeeping in the final quotient; that is the remaining bridge before
-an unrestricted `n=16` conclusion.
+candidate perimeter level.  The next section proves that the formal orbit is
+indeed one polygon-congruence class.
+
+## Symmetry/congruence quotient theorem
+
+The formal 16-code orbit does not merely identify sign strings.  Acting
+simultaneously on the code and on the labeled difference body proves that all
+sixteen survivors reconstruct congruent polygons.
+
+Write the full centrally symmetric vertex and edge lists modulo 32 as
+
+```text
+V_(j+16)=-V_j,
+E_j=V_(j+1)-V_j,
+E_(j+16)=-E_j,
+C_(j+16)=-C_j.
+```
+
+The selected polygon-edge sequence `F_j=C_j E_j` is 16-periodic.  Its first
+sixteen entries, sorted by direction, reconstruct the polygon uniquely up to
+translation.
+
+For a cyclic shift `s`, choose the rotation `A` that restores the normalized
+starting vertex and define
+
+```text
+V'_j=A V_(j+s),       C'_j=epsilon C_(j+s),
+```
+
+where `epsilon` makes `C'_0=+1`.  Then
+
+```text
+E'_j=A E_(j+s),
+F'_j=epsilon A F_(j+s).
+```
+
+Thus the new selected-edge multiset is that of `epsilon A P`; global sign is
+just central inversion.  Closure transforms as `G'=epsilon A G`, while the
+gap sequence is permuted by `delta'_j=delta_(j+s)`.
+
+For a reflected index action, choose an orientation-reversing orthogonal map
+`A` restoring the starting vertex and put
+
+```text
+V'_j=A V_(s-j+1),     C'_j=epsilon C_(s-j).
+```
+
+The endpoint convention is now explicit:
+
+```text
+E'_j=-A E_(s-j),
+F'_j=-epsilon A F_(s-j),
+delta'_j=delta_(s-j).
+```
+
+Hence reflection also preserves closure, perimeter, the candidate-level
+neighborhood, and reconstruction up to an allowed Euclidean isometry and
+translation.  In both cases `V'_0` is normalized, `V'_16=-V'_0`, odd shifts
+cross the antipodal endpoint correctly, and the normalized full code remains
+antiperiodic.
+
+For the displayed representative there is a stronger exact identity
+
+```text
+C_(s-j) = -C_(j+15-s)       modulo 32.
+```
+
+Consequently the normalized dihedral orbit is already the normalized cyclic
+shift orbit.  Its sixteen elements have unique canonical shift witnesses
+`s=0,...,15`; all 64 shift/reflection actions give four witnesses per code.
+The dependency-free checker verifies every action in the free signed-edge
+module, including closure and selected-edge-multiset equivariance.  An
+independent SymPy checker proves the same 64 identities over
+`ZZ[a,b,c,d,x_0,...,x_15,y_0,...,y_15]`, checks every gap permutation, and
+verifies the antiperiodic shift relations `R^16=-I`, `R^32=I`.  Orthogonality
+is not assumed by either algebraic identity checker; it enters only when
+interpreting `A` as a congruence.
+
+Combining this quotient with the fixed-code uniqueness, saturation, and code
+exclusion results proves a conditional uniqueness theorem: **among global
+competitors whose difference body has 32 strict vertices, the certified
+candidate is the unique maximizer up to translation, rotation, reflection,
+central inversion, and cyclic relabeling.**  The unrestricted theorem still
+requires an independent audit of the strict-32-edge reduction; no claim here
+closes that remaining hypothesis.
 
 ### Relationship to the August 2026 proof candidate
 
@@ -423,6 +504,9 @@ python3 -m venv .venv
 .venv/bin/python verify_code_exclusion_arb.py
 .venv/bin/python verify_code_exclusion_identities.py
 .venv/bin/python -m unittest -v test_code_exclusion.py
+.venv/bin/python verify_symmetry_quotient_exact.py
+.venv/bin/python verify_symmetry_quotient_sympy.py
+.venv/bin/python -m unittest -v test_symmetry_quotient.py
 shasum -a 256 -c SHA256SUMS
 ```
 
@@ -469,8 +553,15 @@ bounds.  `verify_code_exclusion_arb.py` independently applies the universal
 screen and then direct 2-by-2 Arb spectral bounds.  The compact outputs list
 all 16 survivors, while `verify_code_exclusion_identities.py` checks the
 algebraic reduction and Green kernel.  The human-readable Taylor-remainder
-argument and the interpretation of the formal dihedral action are the
-non-programmatic trust boundary.
+argument remains a non-programmatic trust boundary.
+
+The quotient certificate uses no numerical arithmetic.  The dependency-free
+checker works with exact signed basis edges and records one canonical cyclic
+witness for every survivor.  The independent SymPy checker works with two
+generic coordinates for every half edge and a generic linear map.  The
+remaining interpretation is the standard geometric fact that an orthogonal
+map and central inversion preserve congruence and that a strictly convex
+polygon is determined up to translation by its cyclic edge list.
 
 ## Formula audit
 

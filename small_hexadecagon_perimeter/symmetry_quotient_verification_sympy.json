@@ -1,0 +1,10 @@
+{
+  "sympy_symmetry_quotient": true,
+  "coefficient_domain": "ZZ[a,b,c,d,x_0,...,x_15,y_0,...,y_15]",
+  "normalized_orbit_size": 16,
+  "symbolic_closure_identities": 64,
+  "symbolic_edge_multiset_identities": 64,
+  "symbolic_gap_permutations": 64,
+  "antiperiodic_shift_relations": "R^16=-I and R^32=I",
+  "orthogonality_used_by_checker": false
+}

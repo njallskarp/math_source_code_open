@@ -1,0 +1,32 @@
+{
+  "exact_symmetry_quotient": true,
+  "model": "free signed-edge module with E_(j+16)=-E_j",
+  "normalized_survivor_count": 16,
+  "full_dihedral_actions_checked": 64,
+  "cyclic_orbit_already_complete": true,
+  "witnesses_per_survivor": [
+    4
+  ],
+  "reflection_identity": "C_(s-j)=-C_(j+15-s)",
+  "endpoint_actions_checked": 8,
+  "closure_equivariance": "G_prime=mu*A*G",
+  "reconstruction_equivariance": "Edges(P_prime)=mu*A*Edges(P)",
+  "canonical_cyclic_witnesses": [
+    {"code": "++-+--++--+-++-+", "shift": 9, "reflected": false, "normalization_sign": -1, "polygon_factor_after_isometry": -1},
+    {"code": "++-+--+-++-+--++", "shift": 1, "reflected": false, "normalization_sign": -1, "polygon_factor_after_isometry": -1},
+    {"code": "++-+--+-++--++-+", "shift": 5, "reflected": false, "normalization_sign": 1, "polygon_factor_after_isometry": 1},
+    {"code": "++--++-+--+-++-+", "shift": 13, "reflected": false, "normalization_sign": 1, "polygon_factor_after_isometry": 1},
+    {"code": "++--+-++-+--+-++", "shift": 15, "reflected": false, "normalization_sign": -1, "polygon_factor_after_isometry": -1},
+    {"code": "+-++-+--++--+-++", "shift": 7, "reflected": false, "normalization_sign": -1, "polygon_factor_after_isometry": -1},
+    {"code": "+-++-+--+-++--++", "shift": 3, "reflected": false, "normalization_sign": 1, "polygon_factor_after_isometry": 1},
+    {"code": "+-++--++-+--+-++", "shift": 11, "reflected": false, "normalization_sign": 1, "polygon_factor_after_isometry": 1},
+    {"code": "+-+--++--+-++-+-", "shift": 10, "reflected": false, "normalization_sign": -1, "polygon_factor_after_isometry": -1},
+    {"code": "+-+--+-++-+--++-", "shift": 2, "reflected": false, "normalization_sign": -1, "polygon_factor_after_isometry": -1},
+    {"code": "+-+--+-++--++-+-", "shift": 6, "reflected": false, "normalization_sign": 1, "polygon_factor_after_isometry": 1},
+    {"code": "+--++-+--+-++-+-", "shift": 14, "reflected": false, "normalization_sign": 1, "polygon_factor_after_isometry": 1},
+    {"code": "+--++--+-++-+--+", "shift": 12, "reflected": false, "normalization_sign": -1, "polygon_factor_after_isometry": -1},
+    {"code": "+--+-++-+--++--+", "shift": 4, "reflected": false, "normalization_sign": -1, "polygon_factor_after_isometry": -1},
+    {"code": "+--+-++-+--+-++-", "shift": 0, "reflected": false, "normalization_sign": 1, "polygon_factor_after_isometry": 1},
+    {"code": "+--+-++--++-+--+", "shift": 8, "reflected": false, "normalization_sign": 1, "polygon_factor_after_isometry": 1}
+  ]
+}
