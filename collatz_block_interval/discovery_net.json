@@ -1,0 +1,31 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "4f8e92d44646363383f80cca897da5f4bc42802b",
+  "indexed_height_confirmed": 636,
+  "contributions": [
+    {
+      "kind": "conjecture",
+      "title": "Terras coefficient stopping-time conjecture",
+      "artifact_ref": "bafkreihwsjyqauv43wd6lmspwcmbqucl6bdzyoowicbuacoinqkfulrcja",
+      "height": 633,
+      "transaction_hash": "7B96D7881FA5B4164B0E648475D22AEC51916817FA5A019B2A22F16BDE0A5BB8",
+      "relation_refs": [
+        "bafkreigucqdro3kf2p5r4apyxq2xhdippdmgsmkkud7gz364lodo663o7a"
+      ]
+    },
+    {
+      "kind": "formalization",
+      "title": "Exact all-prefix lift intervals and composable Collatz blocks",
+      "artifact_ref": "bafkreiafvhyyuxqumromaeyslfc2feg2efgb3l3cjpyyrx3e243iiectqu",
+      "height": 635,
+      "transaction_hash": "932A7B6D96A82B870FFDB5BF442D0EC4D806BA232C00F3F7BC7A824370A59234",
+      "relation_refs": [
+        "bafkreih54xmh4xs73kishy3fdkcbq4kgdgkzpn5acnzhipkdbmwgq6woje",
+        "bafkreiaooujq4d4boxlet7ccl54ij7iyvjw3szkbcw4vj47nscs6uimdou",
+        "bafkreibpzshaot4pkbom56qs4bqijvaoysxf3ktdo6gjdody6aomh5xrmm",
+        "bafkreiamksjn22ub57t2wtt4xdl6wuktwgkdw4umcvcbe64mecrpabdeq4",
+        "bafkreibi25nnsd3wipuf6vpbczfkvaf5l54durpv2p4dng5baqmoftuah4"
+      ]
+    }
+  ]
+}
