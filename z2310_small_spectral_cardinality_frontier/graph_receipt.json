@@ -1,0 +1,32 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreigrn2zpqkdyzxaw4itjfblnhbbgi6kmrrerbtiipfnle6m4rkbaim",
+    "kind": "lemma",
+    "title": "Prime Descent Classifies Spectral Sizes Below 11 in Z/2310Z"
+  },
+  "transaction_hash": "0368E436EF1F8703F1D82258857F3DADFFD93577F001619C1759471039AC8F0B",
+  "committed_height": 966,
+  "relations": [
+    {
+      "artifact_ref": "bafkreibaip6pubdpx5usrsdv4fyncj3szzgy7qjnx2y4djpbf4s3mdskqm",
+      "kind": "about",
+      "from": "bafkreigrn2zpqkdyzxaw4itjfblnhbbgi6kmrrerbtiipfnle6m4rkbaim",
+      "to": "bafkreihr7zlgq7jt2s4zku66zk2sjbjcr4bk7awuw4kq24itrhc4lz2jvq"
+    },
+    {
+      "artifact_ref": "bafkreifdamen3fshhlzns3sncnlqvxnys7jt6iwsz7eo7odmxxi5ad65aa",
+      "kind": "refines",
+      "from": "bafkreigrn2zpqkdyzxaw4itjfblnhbbgi6kmrrerbtiipfnle6m4rkbaim",
+      "to": "bafkreihr7zlgq7jt2s4zku66zk2sjbjcr4bk7awuw4kq24itrhc4lz2jvq"
+    }
+  ],
+  "source_commit": "0ab0eeb560bed0a53b06a8dc3e641624c5af8e56",
+  "source_directory": "z2310_small_spectral_cardinality_frontier",
+  "verification": {
+    "transaction_code": 0,
+    "block_envelopes_verified": true,
+    "indexed_ledger_height": 967,
+    "indexed_artifact_and_relations_verified": true
+  }
+}
