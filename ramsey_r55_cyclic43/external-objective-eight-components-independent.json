@@ -1,0 +1,15 @@
+{
+  "additional_closure_representative_count": 1,
+  "all_representatives_are_canonical_and_free": true,
+  "all_representatives_have_objective_eight": true,
+  "exact_one_flip_escape_level": 9,
+  "external_component_induced_edge_count": 1376,
+  "external_component_is_closed": true,
+  "external_component_vertex_count": 903,
+  "independent_direct_recount_representative_count": 21,
+  "input_seed_representative_count": 20,
+  "method": "independent Python direct five-set recount, fresh cyclic canonicalization, and complete one-flip membership check",
+  "missing_objective_at_most_eight_neighbor_count": 0,
+  "objective_nine_boundary_directed_incidence": 5633,
+  "objective_nine_boundary_rotation_orbit_count": 115
+}

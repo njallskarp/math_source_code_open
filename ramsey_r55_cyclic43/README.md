@@ -406,8 +406,44 @@ component closure: those external states are reached only after passing through
 objective nine. Their representatives are included in the independent JSON for
 follow-up classification of the newly exposed low-objective islands.
 
+Classify every threshold-eight component meeting those 20 exposed seeds with:
+
+```bash
+./objective_six_component certificate.json defect-cycle.json \
+  --objective-seven-component /tmp/objective-seven-regression.json \
+  --objective-eight-component /tmp/objective-eight-regression.json \
+  --external-objective-eight-seeds objective-nine-frontier-independent.json \
+  --external-objective-eight-components \
+    external-objective-eight-components-fast.json \
+  > /tmp/objective-six-regression.json
+```
+
+All 20 seeds lie in one complete external sublevel-eight component. Exact
+closure adds one rotation orbit, so the island consists of 21 free rotation
+orbits, or 903 labeled colorings, all with objective exactly eight. Its induced
+one-flip graph has 1,376 edges, its exact escape level is nine, and its
+objective-nine boundary contains 115 rotation orbits reached by 5,633 directed
+full-state incidences. The optimized closure run took 100.39 seconds.
+
+Independently verify the claim by direct five-set recount and a fresh rotation
+canonicalizer:
+
+```bash
+python3 verify_external_objective_eight_components.py \
+  external-objective-eight-components-fast.json \
+  objective-nine-frontier-independent.json \
+  > external-objective-eight-components-independent.json
+```
+
+The independent run took 9.00 seconds and found zero wrong objectives,
+noncanonical or non-free representatives, or missing objective-at-most-eight
+neighbors. It reproduced the vertex, edge, escape, and objective-nine-boundary
+counts exactly. This classifies all threshold-eight components meeting the 20
+exposed seeds; it does not rule out components that have no incidence with the
+certified primary objective-nine frontier.
+
 The results above were regenerated with Homebrew GCC 16.2.0 and Python
-3.12.12. The complete regression suite passed 22/22 tests. A clean optimized
+3.12.12. The complete regression suite passed 23/23 tests. A clean optimized
 rerun took 207.46 seconds and reproduced both theorem-bearing certificates
 byte-for-byte; clean independent recounts took 10.72 seconds for the complete
 eighth layer and 25.79 seconds for the objective-nine frontier, again producing
@@ -416,13 +452,16 @@ byte-identical outputs.
 SHA-256:
 
 ```text
-c74525b3b9faa3ffce4bc2b5186821d59f68afff83f561e4b4ff9bfe54c19a1b  objective_six_component.cpp
+6c5a40601b0d2bf7498bdf4059562386cc35728eab3e192fc97e3f6b17c1d19e  objective_six_component.cpp
 6d269c153d48cc15b2ac443fe2b3808ecdcb7c447fb94419e2c0687a3f5edbde  verify_objective_six_component.cpp
-1d4586d889071ef76921ab1ee6aece7d0fc23c03b8240b3facec6bd7ecb62d1c  test_cyclic43.py
+216a3726bf3e842731cadee81181a762dbdb9f0ec4f9aba46b7e73d22c8e688c  verify_external_objective_eight_components.py
+94b5cd50f50503e5fefa223b53f006be5db6e7e3356429c7e484d8e49c3918e6  test_cyclic43.py
 740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
 b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
 ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
 892e1990095bfb0d714e1ce1dabd9a51b37bda8c114559ed5e67d353c482a295  objective-nine-frontier-independent.json
+dee76687683f480bb3eeb788608bf0420c8d61fe5378558adb961acc42f160ff  external-objective-eight-components-fast.json
+319f92ea07c57edf4a94a1fc89c60ab177a3bd4d02f73f4127f29c2c7979db78  external-objective-eight-components-independent.json
 ```
 
 Certify a radius-five tube around all 38 vertices of that defect orbit:

@@ -2,6 +2,7 @@
 #include <array>
 #include <bit>
 #include <chrono>
+#include <cctype>
 #include <cstdint>
 #include <fstream>
 #include <iostream>
@@ -110,6 +111,50 @@ std::vector<int> load_integer_array(
         result.push_back(std::stoi((*it)[1]));
     }
     return result;
+}
+
+std::vector<State> load_state_array(
+    const std::string& path, const std::string& key
+) {
+    const std::string array = keyed_array(read_text(path), key);
+    std::vector<State> states;
+    std::size_t position = 1;
+    auto skip_separators = [&]() {
+        while (position < array.size() &&
+               (std::isspace(static_cast<unsigned char>(array[position])) ||
+                array[position] == ','))
+            ++position;
+    };
+    while (true) {
+        skip_separators();
+        if (position >= array.size() || array[position] == ']') break;
+        if (array[position++] != '[')
+            throw std::runtime_error("malformed state array " + key);
+        State state;
+        while (true) {
+            skip_separators();
+            if (position >= array.size())
+                throw std::runtime_error("unterminated state in " + key);
+            if (array[position] == ']') {
+                ++position;
+                break;
+            }
+            if (!std::isdigit(static_cast<unsigned char>(array[position])))
+                throw std::runtime_error("noninteger state entry in " + key);
+            int edge = 0;
+            while (position < array.size() &&
+                   std::isdigit(static_cast<unsigned char>(array[position]))) {
+                edge = 10 * edge + (array[position] - '0');
+                ++position;
+            }
+            if (edge < 0 || edge >= edge_count || state.contains(edge))
+                throw std::runtime_error("invalid state edge in " + key);
+            state.toggle(edge);
+        }
+        states.push_back(state);
+    }
+    if (states.empty()) throw std::runtime_error("empty state array " + key);
+    return states;
 }
 
 struct Search {
@@ -268,6 +313,13 @@ struct Search {
     void require_free_orbit(const State& source) const {
         if (rotate(source, 1) == source)
             throw std::runtime_error("non-free rotation orbit encountered");
+    }
+
+    std::uint64_t rotation_orbit_size(const State& source) const {
+        std::set<State> orbit;
+        for (int offset = 0; offset < order; ++offset)
+            orbit.insert(rotate(source, offset));
+        return orbit.size();
     }
 
     int length_one_edge(int position) const {
@@ -1098,6 +1150,216 @@ struct Search {
         output << "}\n";
     }
 
+    void write_external_objective_eight_components(
+        const std::string& seed_path, const std::string& output_path
+    ) {
+        struct Component {
+            std::array<std::unordered_set<State, StateHash>, 9> states;
+            std::vector<std::pair<int, State>> queue;
+            std::array<std::uint64_t, 9> orbit_count_by_objective{};
+            std::uint64_t vertex_count = 0;
+            std::uint64_t edge_count = 0;
+            std::uint64_t seed_count = 0;
+            int escape_level = -1;
+            std::unordered_set<State, StateHash> objective_nine_boundary;
+            std::uint64_t objective_nine_directed_incidence = 0;
+        };
+
+        std::vector<State> seeds = load_state_array(
+            seed_path,
+            "out_of_component_objective_eight_rotation_representatives"
+        );
+        std::sort(seeds.begin(), seeds.end());
+        seeds.erase(std::unique(seeds.begin(), seeds.end()), seeds.end());
+        if (seeds.size() != 20)
+            throw std::runtime_error("external objective-eight seed count mismatch");
+
+        std::array<std::unordered_map<State, std::size_t, StateHash>, 9> owner;
+        std::vector<Component> components;
+        std::vector<std::size_t> seed_component;
+        seed_component.reserve(seeds.size());
+
+        for (const State& raw_seed : seeds) {
+            const State seed = canonical(raw_seed);
+            if (!(seed == raw_seed))
+                throw std::runtime_error("external seed is not canonical");
+            move_to(seed);
+            if (monochromatic_count != 8)
+                throw std::runtime_error("external seed is not objective eight");
+            if (orbit_states[8].contains(seed))
+                throw std::runtime_error("external seed belongs to primary component");
+
+            if (const auto found = owner[8].find(seed); found != owner[8].end()) {
+                ++components[found->second].seed_count;
+                seed_component.push_back(found->second);
+                continue;
+            }
+
+            const std::size_t component_id = components.size();
+            components.emplace_back();
+            Component& component = components.back();
+            component.seed_count = 1;
+            component.states[8].insert(seed);
+            component.queue.push_back({8, seed});
+            owner[8].emplace(seed, component_id);
+            seed_component.push_back(component_id);
+
+            for (std::size_t queue_position = 0;
+                 queue_position < component.queue.size(); ++queue_position) {
+                const auto [objective, source] = component.queue[queue_position];
+                move_to(source);
+                if (monochromatic_count != objective)
+                    throw std::runtime_error(
+                        "external component queue objective mismatch"
+                    );
+                for (int id = 0; id < edge_count; ++id) {
+                    const int target_objective = resulting_count(id);
+                    if (target_objective > 8) {
+                        if (component.escape_level < 0 ||
+                            target_objective < component.escape_level)
+                            component.escape_level = target_objective;
+                        continue;
+                    }
+                    if (target_objective < 0)
+                        throw std::runtime_error("negative objective");
+                    State neighbor = state;
+                    neighbor.toggle(id);
+                    const State key = canonical(neighbor);
+                    if (orbit_states[target_objective].contains(key))
+                        throw std::runtime_error(
+                            "external threshold-eight component meets primary component"
+                        );
+                    const auto [entry, inserted] =
+                        owner[target_objective].emplace(key, component_id);
+                    if (!inserted) {
+                        if (entry->second != component_id)
+                            throw std::runtime_error(
+                                "external components unexpectedly merge"
+                            );
+                        continue;
+                    }
+                    component.states[target_objective].insert(key);
+                    component.queue.push_back({target_objective, key});
+                }
+            }
+
+            std::uint64_t internal_directed = 0;
+            for (const auto& [objective, source] : component.queue) {
+                move_to(source);
+                if (monochromatic_count != objective)
+                    throw std::runtime_error(
+                        "external component recount objective mismatch"
+                    );
+                const std::uint64_t source_orbit_size =
+                    rotation_orbit_size(source);
+                ++component.orbit_count_by_objective[objective];
+                component.vertex_count += source_orbit_size;
+                for (int id = 0; id < edge_count; ++id) {
+                    const int target_objective = resulting_count(id);
+                    State neighbor = state;
+                    neighbor.toggle(id);
+                    const State key = canonical(neighbor);
+                    if (target_objective <= 8) {
+                        const auto found = owner[target_objective].find(key);
+                        if (found == owner[target_objective].end() ||
+                            found->second != component_id)
+                            throw std::runtime_error(
+                                "external component is not closed"
+                            );
+                        internal_directed += source_orbit_size;
+                    } else if (target_objective == 9) {
+                        component.objective_nine_boundary.insert(key);
+                        component.objective_nine_directed_incidence +=
+                            source_orbit_size;
+                    }
+                }
+            }
+            if (internal_directed % 2 || component.escape_level < 0)
+                throw std::runtime_error(
+                    "invalid external component aggregate"
+                );
+            component.edge_count = internal_directed / 2;
+        }
+
+        std::ofstream output(output_path);
+        if (!output) throw std::runtime_error("cannot write " + output_path);
+        std::uint64_t total_orbits = 0;
+        std::uint64_t total_vertices = 0;
+        std::uint64_t total_edges = 0;
+        for (const Component& component : components) {
+            total_orbits += component.queue.size();
+            total_vertices += component.vertex_count;
+            total_edges += component.edge_count;
+        }
+        output << "{\n  \"order\": 43,\n  \"edge_count\": 903,\n";
+        output << "  \"input_external_objective_eight_seed_orbit_count\": "
+               << seeds.size() << ",\n";
+        output << "  \"complete_exposed_external_component_count\": "
+               << components.size() << ",\n";
+        output << "  \"total_external_rotation_orbit_count\": "
+               << total_orbits << ",\n";
+        output << "  \"total_external_vertex_count\": " << total_vertices
+               << ",\n";
+        output << "  \"total_external_induced_edge_count\": " << total_edges
+               << ",\n";
+        output << "  \"seed_component_indices\": [";
+        for (std::size_t index = 0; index < seed_component.size(); ++index) {
+            if (index) output << ',';
+            output << seed_component[index];
+        }
+        output << "],\n  \"components\": [\n";
+        for (std::size_t component_id = 0; component_id < components.size();
+             ++component_id) {
+            if (component_id) output << ",\n";
+            const Component& component = components[component_id];
+            output << "    {\"component_index\":" << component_id;
+            output << ",\"input_seed_orbit_count\":" << component.seed_count;
+            output << ",\"rotation_orbit_count\":" << component.queue.size();
+            output << ",\"vertex_count\":" << component.vertex_count;
+            output << ",\"induced_edge_count\":" << component.edge_count;
+            output << ",\"exact_one_flip_escape_level\":"
+                   << component.escape_level;
+            output << ",\"objective_nine_boundary_rotation_orbit_count\":"
+                   << component.objective_nine_boundary.size();
+            output << ",\"objective_nine_boundary_directed_incidence\":"
+                   << component.objective_nine_directed_incidence;
+            output << ",\"rotation_orbit_count_by_objective\":{";
+            bool count_separator = false;
+            for (int objective = 0; objective <= 8; ++objective) {
+                if (!component.orbit_count_by_objective[objective]) continue;
+                if (count_separator) output << ',';
+                output << '\"' << objective << "\":"
+                       << component.orbit_count_by_objective[objective];
+                count_separator = true;
+            }
+            output << "},\"rotation_representatives_by_objective\":{";
+            bool layer_separator = false;
+            for (int objective = 0; objective <= 8; ++objective) {
+                if (component.states[objective].empty()) continue;
+                if (layer_separator) output << ',';
+                output << "\n      \"" << objective << "\": [\n";
+                std::vector<State> representatives(
+                    component.states[objective].begin(),
+                    component.states[objective].end()
+                );
+                std::sort(representatives.begin(), representatives.end());
+                for (std::size_t index = 0; index < representatives.size();
+                     ++index) {
+                    if (index) output << ",\n";
+                    output << "        ";
+                    write_state(output, representatives[index]);
+                }
+                output << "\n      ]";
+                layer_separator = true;
+            }
+            output << "\n    }}";
+        }
+        output << "\n  ],\n";
+        output << "  \"method\": \"exact orbit-canonical closure from all exposed external objective-eight seeds under every one-edge move of objective at most eight\",\n";
+        output << "  \"scope_note\": \"Classifies every sublevel-eight component meeting the 20 exposed seeds; components with no seed adjacent across the certified primary objective-nine frontier remain out of scope.\"\n";
+        output << "}\n";
+    }
+
     void write_json(std::ostream& output, double elapsed_seconds) const {
         const std::uint64_t component_orbits = orbit_states[6].size();
         const std::uint64_t component_vertices = component_orbits * orbit_size;
@@ -1160,7 +1422,7 @@ struct Search {
 }  // namespace
 
 int main(int argc, char** argv) try {
-    if (argc < 3 || argc > 15 || argc % 2 == 0) {
+    if (argc < 3 || argc > 19 || argc % 2 == 0) {
         std::cerr
             << "usage: objective_six_component CERTIFICATE.json defect-cycle.json "
                "[--representatives OUTPUT.json] "
@@ -1168,7 +1430,9 @@ int main(int argc, char** argv) try {
                "[--objective-seven-component OUTPUT.json] "
                "[--objective-eight-frontier OUTPUT.json] "
                "[--objective-eight-component OUTPUT.json] "
-               "[--objective-nine-frontier OUTPUT.json]\n";
+               "[--objective-nine-frontier OUTPUT.json] "
+               "[--external-objective-eight-seeds INPUT.json] "
+               "[--external-objective-eight-components OUTPUT.json]\n";
         return 2;
     }
     std::string representative_path;
@@ -1177,6 +1441,8 @@ int main(int argc, char** argv) try {
     std::string objective_eight_frontier_path;
     std::string objective_eight_component_path;
     std::string objective_nine_frontier_path;
+    std::string external_objective_eight_seed_path;
+    std::string external_objective_eight_component_path;
     for (int argument = 3; argument < argc; argument += 2) {
         const std::string option = argv[argument];
         if (option == "--representatives")
@@ -1191,6 +1457,10 @@ int main(int argc, char** argv) try {
             objective_eight_component_path = argv[argument + 1];
         else if (option == "--objective-nine-frontier")
             objective_nine_frontier_path = argv[argument + 1];
+        else if (option == "--external-objective-eight-seeds")
+            external_objective_eight_seed_path = argv[argument + 1];
+        else if (option == "--external-objective-eight-components")
+            external_objective_eight_component_path = argv[argument + 1];
         else
             throw std::runtime_error("unknown output option " + option);
     }
@@ -1226,6 +1496,22 @@ int main(int argc, char** argv) try {
                 "objective-nine frontier requires objective-eight closure"
             );
         search.write_objective_nine_frontier(objective_nine_frontier_path);
+    }
+    if (!external_objective_eight_component_path.empty()) {
+        if (objective_eight_component_path.empty() ||
+            external_objective_eight_seed_path.empty())
+            throw std::runtime_error(
+                "external objective-eight classification requires the primary "
+                "objective-eight closure and an external seed certificate"
+            );
+        search.write_external_objective_eight_components(
+            external_objective_eight_seed_path,
+            external_objective_eight_component_path
+        );
+    } else if (!external_objective_eight_seed_path.empty()) {
+        throw std::runtime_error(
+            "external objective-eight seed input requires an output path"
+        );
     }
     search.write_json(std::cout, elapsed);
     return 0;

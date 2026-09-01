@@ -1,0 +1,39 @@
+{
+  "order": 43,
+  "edge_count": 903,
+  "input_external_objective_eight_seed_orbit_count": 20,
+  "complete_exposed_external_component_count": 1,
+  "total_external_rotation_orbit_count": 21,
+  "total_external_vertex_count": 903,
+  "total_external_induced_edge_count": 1376,
+  "seed_component_indices": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  "components": [
+    {"component_index":0,"input_seed_orbit_count":20,"rotation_orbit_count":21,"vertex_count":903,"induced_edge_count":1376,"exact_one_flip_escape_level":9,"objective_nine_boundary_rotation_orbit_count":115,"objective_nine_boundary_directed_incidence":5633,"rotation_orbit_count_by_objective":{"8":21},"rotation_representatives_by_objective":{
+      "8": [
+        [162,273,375,468,525,672,732,783,825,858,897,900,902],
+        [162,273,375,468,525,672,732,783,825,858,893,897,900,902],
+        [162,273,375,468,525,672,713,732,783,825,858,897,900,902],
+        [162,273,375,468,525,672,713,732,783,825,858,893,897,900,902],
+        [162,273,375,468,525,672,693,732,783,825,858,897,900,902],
+        [162,273,375,468,525,672,693,732,783,825,858,893,897,900,902],
+        [162,273,375,468,552,672,732,783,825,858,897,900,902],
+        [162,273,375,468,552,672,713,732,783,825,858,897,900,902],
+        [162,273,375,468,552,693,732,783,825,858,897,900,902],
+        [162,273,375,468,552,672,693,732,783,825,858,897,900,902],
+        [162,273,375,468,525,552,672,732,783,825,858,897,900,902],
+        [162,273,375,468,525,552,672,713,732,783,825,858,897,900,902],
+        [162,273,375,468,525,552,693,732,783,825,858,897,900,902],
+        [162,273,375,468,525,552,672,693,732,783,825,858,897,900,902],
+        [162,273,375,468,497,552,672,732,783,825,858,897,900,902],
+        [162,273,375,468,497,552,672,713,732,783,825,858,897,900,902],
+        [162,273,375,468,497,552,693,732,783,825,858,897,900,902],
+        [162,273,375,468,497,552,672,693,732,783,825,858,897,900,902],
+        [162,237,342,438,525,672,693,713,732,812,848,875,893,902],
+        [162,237,342,438,525,672,693,713,732,812,848,875,893,897,902],
+        [162,237,342,438,525,672,693,713,732,812,848,875,893,900,902]
+      ]
+    }}
+  ],
+  "method": "exact orbit-canonical closure from all exposed external objective-eight seeds under every one-edge move of objective at most eight",
+  "scope_note": "Classifies every sublevel-eight component meeting the 20 exposed seeds; components with no seed adjacent across the certified primary objective-nine frontier remain out of scope."
+}

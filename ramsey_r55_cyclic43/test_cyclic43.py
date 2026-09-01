@@ -893,6 +893,67 @@ class DirectVerifierTests(unittest.TestCase):
         self.assertEqual(len(external), 20)
         self.assertEqual(len({tuple(item) for item in external}), 20)
 
+    def test_exposed_external_objective_eight_component(self) -> None:
+        fast = json.loads(
+            (HERE / "external-objective-eight-components-fast.json").read_text()
+        )
+        independent = json.loads(
+            (
+                HERE
+                / "external-objective-eight-components-independent.json"
+            ).read_text()
+        )
+        seeds_payload = json.loads(
+            (HERE / "objective-nine-frontier-independent.json").read_text()
+        )
+
+        self.assertEqual(
+            fast["input_external_objective_eight_seed_orbit_count"], 20
+        )
+        self.assertEqual(fast["complete_exposed_external_component_count"], 1)
+        self.assertEqual(fast["total_external_rotation_orbit_count"], 21)
+        self.assertEqual(fast["total_external_vertex_count"], 903)
+        self.assertEqual(fast["total_external_induced_edge_count"], 1_376)
+        self.assertEqual(set(fast["seed_component_indices"]), {0})
+
+        component = fast["components"][0]
+        representatives = component[
+            "rotation_representatives_by_objective"
+        ]["8"]
+        seeds = seeds_payload[
+            "out_of_component_objective_eight_rotation_representatives"
+        ]
+        self.assertEqual(component["input_seed_orbit_count"], 20)
+        self.assertEqual(component["rotation_orbit_count"], 21)
+        self.assertEqual(component["rotation_orbit_count_by_objective"], {"8": 21})
+        self.assertEqual(len(representatives), 21)
+        self.assertEqual(len({tuple(item) for item in representatives}), 21)
+        self.assertTrue({tuple(item) for item in seeds} <= {
+            tuple(item) for item in representatives
+        })
+        self.assertEqual(component["exact_one_flip_escape_level"], 9)
+        self.assertEqual(
+            component["objective_nine_boundary_rotation_orbit_count"], 115
+        )
+        self.assertEqual(
+            component["objective_nine_boundary_directed_incidence"], 5_633
+        )
+
+        self.assertEqual(
+            independent["independent_direct_recount_representative_count"], 21
+        )
+        self.assertEqual(independent["additional_closure_representative_count"], 1)
+        self.assertTrue(independent["all_representatives_have_objective_eight"])
+        self.assertTrue(independent["all_representatives_are_canonical_and_free"])
+        self.assertTrue(independent["external_component_is_closed"])
+        self.assertEqual(
+            independent["missing_objective_at_most_eight_neighbor_count"], 0
+        )
+        self.assertEqual(independent["external_component_vertex_count"], 903)
+        self.assertEqual(
+            independent["external_component_induced_edge_count"], 1_376
+        )
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()
