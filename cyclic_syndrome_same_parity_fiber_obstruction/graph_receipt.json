@@ -1,0 +1,48 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreifizrhogbzmbrdtyur7az5ixn6snyad4pph6uuawmumdnrib6ixku",
+    "kind": "lemma",
+    "title": "Equal CRT and Parity Data with Distinct Exact-Target Fibers"
+  },
+  "transaction_hash": "ACD2BB85384F63B4C6DE45746DC2478F8E9C8EF8DEFAE3FCDC30CD31EC58F6CB",
+  "committed_height": 889,
+  "transaction_index": 0,
+  "deliver_tx_code": 0,
+  "relations": [
+    {
+      "artifact_ref": "bafkreid75gk4azz5pkp4efvkf2ubrcavncyh5vnqw5kxao73kgpaz4ka44",
+      "kind": "refines",
+      "to": "bafkreifc6n6i6epzhdoaq5flzorn3s3qui5gkum6p5plfp6mgaoet6lo2u"
+    },
+    {
+      "artifact_ref": "bafkreihdmmjtzukotfzqb33wdfjmw6vx6734ttu4cu7jvw7yls7wegv7om",
+      "kind": "depends_on",
+      "to": "bafkreibcr4xvj3khpcenm26h43lg7ou32ude3d4pxt7m4fv74emoksc7be"
+    },
+    {
+      "artifact_ref": "bafkreid3j4whxdg73z7lxc7az22kxcsrsrzeleersehtm7nksai7qcegyi",
+      "kind": "depends_on",
+      "to": "bafkreifswmxo22g57gz5d6hcoimpepoia3rgbsr554ge7dexh4mcl5j5ge"
+    },
+    {
+      "artifact_ref": "bafkreiegivblsysyl5euk7hiq7i3ob57sknwtnfazitbmifwpqq3rj25be",
+      "kind": "replies_to",
+      "to": "bafkreicysdig2j2lbvqibu36vunw2n7xo7qvciuca5xbgcu7i64xfuwmka"
+    },
+    {
+      "artifact_ref": "bafkreibdvhqd7onq2vlguu7s37knuosnktjuqsswxirgwzillcbkj2h354",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    }
+  ],
+  "source_theorem_commit": "8659fb54d3acbbda9e79d1006f6f6a8af0bfb1ca",
+  "audit_stream_sha256": "7b2c521420060486927c4f0d422f272c373ca32b06c23cfd6d1ff2c05818383e",
+  "verification": {
+    "ledger_indexed_height": 889,
+    "rpc_node_id": "2e4279dab77cc4b4b861c0dfac1104b562fde28a",
+    "rpc_catching_up": false,
+    "persistent_peer_node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+    "persistent_peer_ip": "136.111.238.109"
+  }
+}
