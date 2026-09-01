@@ -1,0 +1,15 @@
+local_fifth_order_formula_checks=80
+input_fifth_s_a_rotation_orbits=16
+input_fifth_s_b_masks=11
+b_exact_h_phase_assignment_counts=20
+direct_quadratic_interpolation_and_audit_checks=8704
+direct_full_witness_checks=15
+axis_patterns_examined=33569
+fully_exhausted_orbits=1
+fifth_h_surviving_a_rotation_orbits=15
+fifth_h_surviving_labeled_pairs=315
+fifth_h_surviving_b_masks=10
+fifth_h_eliminated_a_rotation_orbits=1
+fifth_h_eliminated_labeled_pairs=21
+fifth_h_eliminated_b_masks=1
+certificate=verified
