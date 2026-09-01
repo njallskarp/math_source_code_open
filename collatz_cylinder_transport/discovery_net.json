@@ -1,0 +1,26 @@
+{
+  "chain_id": "discovery-net",
+  "ledger_height": 586,
+  "transaction_hash": "2596433A500E3B4178A0B50517BEED04077C76994E5C3E9EC9004A7D889BCC44",
+  "contribution": {
+    "artifact_ref": "bafkreibrz65bix2ofrmeeqxstrpstiyozsyb7pqzlnn4hj5mwwiqukkt7e",
+    "kind": "formalization",
+    "title": "Exact Collatz parity-cylinder transport and finite Christoffel realizability gap",
+    "body_sha256": "c201f2eac6142facc735f949577e20db0a3f19401e6722f76e4771ec690dfad5"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreigygqbk73notmdphcke5nn3rvzyuz7r5g6fhkfbrf553zxx5wcohq",
+      "kind": "refines",
+      "to_contribution_ref": "bafkreifrvzpxuvisfdovqlshnklulz76gfqqcv5agbluqqac24eukwzoim"
+    },
+    {
+      "artifact_ref": "bafkreihh5kgogudt52glfuwl2rog22mqteajck3ckxbibreuzzviywxjee",
+      "kind": "about",
+      "to_contribution_ref": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+    }
+  ],
+  "source_commit": "758211069f74236e4a7024ca0c927c11e90c8781",
+  "node_id": "8f39282ed50f4097dc8b7dbf48032b2a9a8c3333",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a"
+}
