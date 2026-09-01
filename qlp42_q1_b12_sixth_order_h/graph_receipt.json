@@ -1,0 +1,64 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreih75uznb2wromkdqin7cvdbcxoxasd65gic53tjt2fd45rxalo62i",
+    "kind": "lemma",
+    "title": "Exact-H and Sixth-Order-H Reduction of the QLP-42 q=1 b=12 Frontier",
+    "created_at": "2026-09-01T09:51:10.115624+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "fe9a75607867a9837610eda32668c98c385aaf6a23857b7fe1cbbdedf7aaf190365ac4c5144e3e2dd5db28b6f23cee80f586ea65d1e5159d14a3afba72733e0c"
+  },
+  "transaction": {
+    "hash": "1F002264621483CD9002BAB3412898E67FCBD5872E3C095F228FDEE8D769ED76",
+    "height": 725,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreiexm2o7catw2komy3ocmmxov3dejwwhwepqxmpp2xrwj7elmqo2cm",
+      "kind": "refines",
+      "to": "bafkreicnp5z435wzuohax5l5w3zwo2ddwppu6chf26s3wyov6xl65bfglm"
+    },
+    {
+      "artifact_ref": "bafkreie2kkiqjtsbvave546nxrtjs3foxzcilhdycufhn77u2kals3ylfy",
+      "kind": "depends_on",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreigavrok7afn7co6fae7cvcadzzzwkh7geeksuattkuad7y2n3e2y4",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreihujperal437wrl6oupdx4vbj5g3nzyvj3zvkhhimzmoespfkypiu",
+      "kind": "specializes",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreibbnve4ftmntyxijaaqpuno4dw3i6tnn5b6wwa4pmtvaltmnrfmrm",
+      "kind": "variant_of",
+      "to": "bafkreiekm7zww266v43itzyryt5oovmmlirmjadlkzq4nmffjiyujhpy44"
+    },
+    {
+      "artifact_ref": "bafkreiad7ck4yxu66paspsnl72lhp2bg3gj3u7odbssr4ybqp4bnomtjji",
+      "kind": "variant_of",
+      "to": "bafkreiami2ubtcu42ykule36klgia43pstqbrxmxhzg4lhyprxvwv66kfe"
+    },
+    {
+      "artifact_ref": "bafkreifat7ik5nj6lfhoa34byjsesxnnqpwapidcpumvw3uyiprkbge6ju",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreic3m7wzhofr4agmgbrjab3bgelld6z4reduvuyfzljob2ug3ffzdi",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 726,
+    "queried_at": "2026-09-01T09:52:04Z",
+    "graphql_errors": []
+  }
+}
