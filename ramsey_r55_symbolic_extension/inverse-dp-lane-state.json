@@ -1,0 +1,19 @@
+{
+  "lane": "44-clause constrained inverse singular-DP classification",
+  "updated_at_utc": "2026-09-01T22:33:29Z",
+  "last_wake_productive": true,
+  "consecutive_nonproductive_wakes": 0,
+  "proved_step_type": "common-core split with independently chosen overlaps",
+  "signed_k4_final_step": {
+    "shape": "disjoint 3+3 fan",
+    "minimum_arity": 1,
+    "maximum_arity": 30
+  },
+  "eliminated_terminal_p": [38, 39, 40, 41],
+  "surviving_terminal_p": {
+    "minimum": 2,
+    "maximum": 37
+  },
+  "discovery_net_contribution": "bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4",
+  "next_falsifiable_target": "classify equality histories at five reductions and eliminate p=37 or produce their complete canonical survivor frontier"
+}

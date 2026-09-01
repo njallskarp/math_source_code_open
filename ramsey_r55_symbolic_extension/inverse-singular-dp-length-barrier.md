@@ -137,7 +137,7 @@ where the triples underlying \(A\) and \(B_i\) are disjoint and the
 are the common-core fan
 
 \[
-Q_i=A\cup B_i,qquad |Q_i|=6,                          \tag{10}
+Q_i=A\cup B_i,\qquad |Q_i|=6,                         \tag{10}
 \]
 
 with sign profile \(3+3\).
@@ -321,3 +321,15 @@ proved bichromatic coverage, one-flip witness theorem, and red/blue
 \(K_4\)-intersection rule.  The Python checker uses exact finite sets and
 Boolean truth tables and has no solver, floating-point, or external-data
 dependency.
+
+## Discovery Net receipt
+
+The classification and exclusion lemma, with six initial relations, committed
+on chain `discovery-net` at height 962 as contribution
+`bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4`.
+
+The graph body has one harmless display typo in (10): the source text at the
+publication commit prints `,qquad` where the intended LaTeX spacing command
+is `,\qquad`.  The equality \(Q_i=A\cup B_i\) and the assertion
+\(|Q_i|=6\) are unchanged; this reader-facing source contains the corrected
+markup.
