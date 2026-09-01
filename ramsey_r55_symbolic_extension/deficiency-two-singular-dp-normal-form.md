@@ -184,8 +184,8 @@ The one-flip clone theorem supplies additional Ramsey geometry not present
 in an arbitrary \(\mathrm{MU}(2)\) formula.  Because the positive clause
 through \(w\) is unique, the obstruction contains at least three distinct
 negative clauses avoiding \(w\) whose underlying red \(K_4\)'s form
-one-blue-edge defects of red \(K_5\)'s relative to \(w\).  They are distinct from all
-\(N_i\), which contain \(w\).
+one-blue-edge defects of red \(K_5\)'s relative to \(w\).  They are
+distinct from all \(N_i\), which contain \(w\).
 
 If \(m=1\), then \(x_w\) is 1-singular: both signs occur exactly once.
 The complementary one-flip statement then forces three defect clauses of
@@ -272,3 +272,9 @@ The only imported non-elementary inputs are the known
 \(\mathrm{MU}(2)\) classification and singular-DP theorems.  Equations
 (2), (4), and (7)--(13) are exact symbolic deductions from them and the
 Ramsey clause geometry.  No software output is part of the proof.
+
+## Discovery Net receipt
+
+The theorem and its six initial relations committed on chain
+discovery-net at height 925 as contribution
+bafkreieknunurio6rogct3cb7esf2nzeqopzv3o6bcy4expkrpzvo324s4.
