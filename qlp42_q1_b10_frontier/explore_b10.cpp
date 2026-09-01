@@ -302,7 +302,11 @@ void print_array(const std::array<T, 6>& values) {
 
 }  // namespace
 
-int main() {
+#ifndef B10_FRONTIER_MAIN
+#define B10_FRONTIER_MAIN main
+#endif
+
+int B10_FRONTIER_MAIN() {
     Inputs10 inputs = reconstruct_inputs10();
     std::array<long long, 6> a_counts = count_a_phase_patterns10();
     std::array<long long, 6> s_minus_min;
