@@ -125,12 +125,14 @@ struct Search {
     std::array<int, edge_count> single_flip_delta{};
     int monochromatic_count = 0;
 
-    std::array<std::unordered_set<State, StateHash>, 8> orbit_states;
+    std::array<std::unordered_set<State, StateHash>, 9> orbit_states;
     std::unordered_set<State, StateHash> first_objective_six_frontier;
     std::unordered_map<State, std::array<std::uint16_t, 7>, StateHash>
         first_objective_seven_incidence;
     std::unordered_map<State, std::array<std::uint16_t, 8>, StateHash>
         first_objective_eight_incidence;
+    std::unordered_map<State, std::array<std::uint16_t, 9>, StateHash>
+        first_objective_nine_incidence;
     std::array<std::map<int, std::uint64_t>, 7> aggregate_histogram;
     std::array<std::map<int, std::uint64_t>, 7> directed_to_higher;
     std::array<std::uint64_t, 7> same_layer_directed{};
@@ -318,6 +320,18 @@ struct Search {
         ++incidence[source_level];
     }
 
+    void record_objective_nine_neighbor(int source_level, int id) {
+        State neighbor = state;
+        neighbor.toggle(id);
+        const State key = canonical(neighbor);
+        require_free_orbit(neighbor);
+        auto& incidence = first_objective_nine_incidence[key];
+        if (incidence[source_level] ==
+            std::numeric_limits<std::uint16_t>::max())
+            throw std::runtime_error("objective-nine incidence overflow");
+        ++incidence[source_level];
+    }
+
     void ensure_level(int target, int source_level, int id) {
         State neighbor = state;
         neighbor.toggle(id);
@@ -349,6 +363,7 @@ struct Search {
             const int objective = resulting_count(id);
             if (objective == 7) record_objective_seven_neighbor(level, id);
             if (objective == 8) record_objective_eight_neighbor(level, id);
+            if (objective == 9) record_objective_nine_neighbor(level, id);
             if (objective < level) {
                 record_lower_neighbor(level, objective, id);
             } else if (objective == level) {
@@ -370,6 +385,7 @@ struct Search {
             const int objective = resulting_count(id);
             if (objective == 7) record_objective_seven_neighbor(level, id);
             if (objective == 8) record_objective_eight_neighbor(level, id);
+            if (objective == 9) record_objective_nine_neighbor(level, id);
             if (objective >= 4 && objective <= 6)
                 ensure_level(objective, level, id);
         }
@@ -672,6 +688,8 @@ struct Search {
                 histograms[objective][target_objective] += orbit_size;
                 if (target_objective == 8)
                     record_objective_eight_neighbor(objective, id);
+                if (target_objective == 9)
+                    record_objective_nine_neighbor(objective, id);
                 if (target_objective > 7) {
                     if (escape_level < 0 || target_objective < escape_level)
                         escape_level = target_objective;
@@ -854,6 +872,232 @@ struct Search {
         output << "}\n";
     }
 
+    void write_objective_eight_component(const std::string& path) {
+        std::array<std::unordered_set<State, StateHash>, 9> new_orbits;
+        std::vector<std::pair<int, State>> queue;
+        queue.reserve(first_objective_eight_incidence.size());
+        for (const auto& [target, incidence] : first_objective_eight_incidence) {
+            (void)incidence;
+            if (orbit_states[8].insert(target).second) {
+                new_orbits[8].insert(target);
+                queue.push_back({8, target});
+            }
+        }
+        const std::uint64_t first_frontier_orbits = queue.size();
+        if (first_frontier_orbits != 13702)
+            throw std::runtime_error("objective-eight first frontier mismatch");
+
+        for (std::size_t position = 0; position < queue.size(); ++position) {
+            const auto [objective, source] = queue[position];
+            move_to(source);
+            if (monochromatic_count != objective)
+                throw std::runtime_error("threshold-eight queue objective mismatch");
+            for (int id = 0; id < edge_count; ++id) {
+                const int target_objective = resulting_count(id);
+                if (target_objective > 8) continue;
+                if (target_objective < 0)
+                    throw std::runtime_error("negative objective");
+                State neighbor = state;
+                neighbor.toggle(id);
+                const State key = canonical(neighbor);
+                if (!orbit_states[target_objective].insert(key).second) continue;
+                require_free_orbit(neighbor);
+                new_orbits[target_objective].insert(key);
+                queue.push_back({target_objective, key});
+            }
+        }
+
+        std::array<std::map<int, std::uint64_t>, 9> histograms;
+        std::uint64_t new_to_known_directed = 0;
+        std::uint64_t new_internal_directed = 0;
+        int escape_level = -1;
+        for (const auto& [objective, source] : queue) {
+            move_to(source);
+            if (monochromatic_count != objective)
+                throw std::runtime_error("threshold-eight recount objective mismatch");
+            for (int id = 0; id < edge_count; ++id) {
+                const int target_objective = resulting_count(id);
+                histograms[objective][target_objective] += orbit_size;
+                if (target_objective == 9)
+                    record_objective_nine_neighbor(objective, id);
+                if (target_objective > 8) {
+                    if (escape_level < 0 || target_objective < escape_level)
+                        escape_level = target_objective;
+                    continue;
+                }
+                State neighbor = state;
+                neighbor.toggle(id);
+                const State key = canonical(neighbor);
+                if (!orbit_states[target_objective].contains(key))
+                    throw std::runtime_error("accepted threshold-eight neighbor missing");
+                if (new_orbits[target_objective].contains(key))
+                    new_internal_directed += orbit_size;
+                else
+                    new_to_known_directed += orbit_size;
+            }
+        }
+        if (new_internal_directed % 2 || escape_level < 0)
+            throw std::runtime_error("invalid objective-eight closure aggregate");
+
+        std::uint64_t new_orbit_count = 0;
+        std::uint64_t new_lower_orbit_count = 0;
+        for (int objective = 0; objective <= 8; ++objective) {
+            new_orbit_count += new_orbits[objective].size();
+            if (objective < 8) new_lower_orbit_count += new_orbits[objective].size();
+        }
+        if (new_lower_orbit_count == 0 && new_to_known_directed != 1929754)
+            throw std::runtime_error("objective-eight lower incidence mismatch");
+
+        const std::uint64_t new_vertex_count = orbit_size * new_orbit_count;
+        const std::uint64_t new_internal_edges = new_internal_directed / 2;
+        const std::uint64_t complete_vertices = 249529 + new_vertex_count;
+        const std::uint64_t complete_edges =
+            982679 + new_to_known_directed + new_internal_edges;
+
+        std::vector<State> objective_eight_representatives(
+            new_orbits[8].begin(), new_orbits[8].end()
+        );
+        std::sort(
+            objective_eight_representatives.begin(),
+            objective_eight_representatives.end()
+        );
+
+        std::ofstream output(path);
+        if (!output) throw std::runtime_error("cannot write " + path);
+        output << "{\n  \"order\": 43,\n  \"edge_count\": 903,\n";
+        output << "  \"objective_eight_first_frontier_rotation_orbit_count\": "
+               << first_frontier_orbits << ",\n";
+        output << "  \"complete_threshold_eight_new_rotation_orbit_count\": "
+               << new_orbit_count << ",\n";
+        output << "  \"complete_objective_eight_rotation_orbit_count\": "
+               << new_orbits[8].size() << ",\n";
+        output << "  \"additional_objective_eight_rotation_orbit_count\": "
+               << new_orbits[8].size() - first_frontier_orbits << ",\n";
+        output << "  \"new_objective_at_most_seven_rotation_orbit_count\": "
+               << new_lower_orbit_count << ",\n";
+        output << "  \"complete_objective_eight_vertex_count\": "
+               << orbit_size * new_orbits[8].size() << ",\n";
+        output << "  \"new_to_sublevel_seven_directed_edge_count\": "
+               << new_to_known_directed << ",\n";
+        output << "  \"new_threshold_eight_internal_edge_count\": "
+               << new_internal_edges << ",\n";
+        output << "  \"complete_sublevel_eight_component_vertex_count\": "
+               << complete_vertices << ",\n";
+        output << "  \"complete_sublevel_eight_component_edge_count\": "
+               << complete_edges << ",\n";
+        output << "  \"complete_sublevel_eight_component_is_closed\": true,\n";
+        output << "  \"exact_one_flip_escape_level_from_sublevel_eight_component\": "
+               << escape_level << ",\n";
+        output << "  \"new_rotation_representative_neighbor_checks\": "
+               << new_orbit_count * edge_count << ",\n";
+        output << "  \"new_symmetry_lifted_neighbor_checks\": "
+               << new_vertex_count * edge_count << ",\n";
+        output << "  \"new_state_neighbor_objective_histogram_by_source_objective\": {";
+        bool source_separator = false;
+        for (int objective = 0; objective <= 8; ++objective) {
+            if (histograms[objective].empty()) continue;
+            if (source_separator) output << ',';
+            output << "\n    \"" << objective << "\": {";
+            bool target_separator = false;
+            for (const auto& [target, count] : histograms[objective]) {
+                if (target_separator) output << ',';
+                output << "\n      \"" << target << "\": " << count;
+                target_separator = true;
+            }
+            output << "\n    }";
+            source_separator = true;
+        }
+        output << "\n  },\n";
+        output << "  \"objective_eight_component_rotation_representatives\": [\n";
+        for (std::size_t index = 0;
+             index < objective_eight_representatives.size(); ++index) {
+            if (index) output << ",\n";
+            output << "    ";
+            write_state(output, objective_eight_representatives[index]);
+        }
+        output << "\n  ],\n";
+        output << "  \"method\": \"iterative exact orbit closure under all one-edge moves with objective at most eight\",\n";
+        output << "  \"scope_note\": \"Complete connected threshold-eight component through the certified Cyclic(43) optimum; disconnected components remain out of scope.\"\n";
+        output << "}\n";
+    }
+
+    void write_objective_nine_frontier(const std::string& path) const {
+        std::vector<State> frontier;
+        frontier.reserve(first_objective_nine_incidence.size());
+        for (const auto& [state, incidence] : first_objective_nine_incidence) {
+            (void)incidence;
+            frontier.push_back(state);
+        }
+        std::sort(frontier.begin(), frontier.end());
+
+        std::array<std::uint64_t, 9> directed_by_source{};
+        std::map<std::array<std::uint16_t, 9>, std::uint64_t> signatures;
+        for (const State& target : frontier) {
+            const auto& incidence = first_objective_nine_incidence.at(target);
+            ++signatures[incidence];
+            for (int source = 2; source <= 8; ++source)
+                directed_by_source[source] += orbit_size * incidence[source];
+        }
+
+        std::ofstream output(path);
+        if (!output) throw std::runtime_error("cannot write " + path);
+        output << "{\n  \"order\": 43,\n  \"edge_count\": 903,\n";
+        output << "  \"objective_nine_first_frontier_rotation_orbit_count\": "
+               << frontier.size() << ",\n";
+        output << "  \"objective_nine_first_frontier_vertex_count\": "
+               << orbit_size * frontier.size() << ",\n";
+        output << "  \"directed_incidence_by_source_objective\": {";
+        for (int source = 2; source <= 8; ++source) {
+            if (source != 2) output << ',';
+            output << "\n    \"" << source << "\": "
+                   << directed_by_source[source];
+        }
+        output << "\n  },\n";
+        output << "  \"total_directed_sublevel_eight_incidence\": "
+               << std::accumulate(
+                      directed_by_source.begin(), directed_by_source.end(),
+                      std::uint64_t{0}
+                  )
+               << ",\n";
+        output << "  \"incidence_signature_count\": " << signatures.size()
+               << ",\n";
+        output << "  \"incidence_signature_histogram\": [\n";
+        bool signature_separator = false;
+        for (const auto& [signature, count] : signatures) {
+            if (signature_separator) output << ",\n";
+            output << "    {\"signature_2_through_8\":[";
+            for (int source = 2; source <= 8; ++source) {
+                if (source != 2) output << ',';
+                output << signature[source];
+            }
+            output << "],\"orbit_count\":" << count << '}';
+            signature_separator = true;
+        }
+        output << "\n  ],\n";
+        output << "  \"objective_nine_rotation_representatives\": [\n";
+        for (std::size_t index = 0; index < frontier.size(); ++index) {
+            if (index) output << ",\n";
+            output << "    ";
+            write_state(output, frontier[index]);
+        }
+        output << "\n  ],\n";
+        output << "  \"objective_nine_incidence_signatures_2_through_8\": [\n";
+        for (std::size_t index = 0; index < frontier.size(); ++index) {
+            if (index) output << ",\n";
+            const auto& incidence = first_objective_nine_incidence.at(frontier[index]);
+            output << "    [";
+            for (int source = 2; source <= 8; ++source) {
+                if (source != 2) output << ',';
+                output << incidence[source];
+            }
+            output << ']';
+        }
+        output << "\n  ],\n";
+        output << "  \"method\": \"exact orbit-canonical enumeration of every one-flip objective-nine neighbor of the complete sublevel-eight component\",\n";
+        output << "  \"scope_note\": \"This is the complete first objective-nine frontier only; it does not assert closure of the objective-nine layer.\"\n";
+        output << "}\n";
+    }
+
     void write_json(std::ostream& output, double elapsed_seconds) const {
         const std::uint64_t component_orbits = orbit_states[6].size();
         const std::uint64_t component_vertices = component_orbits * orbit_size;
@@ -916,19 +1160,23 @@ struct Search {
 }  // namespace
 
 int main(int argc, char** argv) try {
-    if (argc < 3 || argc > 11 || argc % 2 == 0) {
+    if (argc < 3 || argc > 15 || argc % 2 == 0) {
         std::cerr
             << "usage: objective_six_component CERTIFICATE.json defect-cycle.json "
                "[--representatives OUTPUT.json] "
                "[--objective-seven-frontier OUTPUT.json] "
                "[--objective-seven-component OUTPUT.json] "
-               "[--objective-eight-frontier OUTPUT.json]\n";
+               "[--objective-eight-frontier OUTPUT.json] "
+               "[--objective-eight-component OUTPUT.json] "
+               "[--objective-nine-frontier OUTPUT.json]\n";
         return 2;
     }
     std::string representative_path;
     std::string objective_seven_frontier_path;
     std::string objective_seven_component_path;
     std::string objective_eight_frontier_path;
+    std::string objective_eight_component_path;
+    std::string objective_nine_frontier_path;
     for (int argument = 3; argument < argc; argument += 2) {
         const std::string option = argv[argument];
         if (option == "--representatives")
@@ -939,6 +1187,10 @@ int main(int argc, char** argv) try {
             objective_seven_component_path = argv[argument + 1];
         else if (option == "--objective-eight-frontier")
             objective_eight_frontier_path = argv[argument + 1];
+        else if (option == "--objective-eight-component")
+            objective_eight_component_path = argv[argument + 1];
+        else if (option == "--objective-nine-frontier")
+            objective_nine_frontier_path = argv[argument + 1];
         else
             throw std::runtime_error("unknown output option " + option);
     }
@@ -960,6 +1212,20 @@ int main(int argc, char** argv) try {
                 "objective-eight frontier requires objective-seven closure"
             );
         search.write_objective_eight_frontier(objective_eight_frontier_path);
+    }
+    if (!objective_eight_component_path.empty()) {
+        if (objective_seven_component_path.empty())
+            throw std::runtime_error(
+                "objective-eight component requires objective-seven closure"
+            );
+        search.write_objective_eight_component(objective_eight_component_path);
+    }
+    if (!objective_nine_frontier_path.empty()) {
+        if (objective_eight_component_path.empty())
+            throw std::runtime_error(
+                "objective-nine frontier requires objective-eight closure"
+            );
+        search.write_objective_nine_frontier(objective_nine_frontier_path);
     }
     search.write_json(std::cout, elapsed);
     return 0;

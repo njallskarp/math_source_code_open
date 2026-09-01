@@ -349,6 +349,63 @@ objectives, noncanonical representatives, missing sublevel-seven neighbors, or
 signature discrepancies. The objective-eight result is a first-frontier
 classification only; it does not claim closure at threshold eight.
 
+Close threshold eight and collect its complete first objective-nine frontier in
+the same exact pass:
+
+```bash
+./objective_six_component certificate.json defect-cycle.json \
+  --objective-seven-component /tmp/objective-seven-regression.json \
+  --objective-eight-component objective-eight-component-fast.json \
+  --objective-nine-frontier objective-nine-frontier-fast.json \
+  > /tmp/objective-six-regression.json
+```
+
+The eighth layer is not equal to its first frontier: exact closure adds 36
+rotation orbits, giving 13,738 free rotation orbits and 590,734 colorings. It
+has 764,153 induced one-flip edges. Consequently the connected component of
+all states with objective at most eight that contains the primary optimum has
+
+```text
+840,263 vertices and 3,676,586 edges,
+```
+
+and exact escape level nine. The closure examined 12,405,414 representative
+reversals, or 533,432,802 symmetry-lifted checks. Directly verify the entire
+eighth layer with:
+
+```bash
+OMP_NUM_THREADS=10 ./verify_objective_six_component \
+  certificate.json objective-six-component-representatives.json \
+  --objective-eight-component objective-eight-component-fast.json \
+  objective-seven-component-fast.json objective-seven-frontier-fast.json \
+  > objective-eight-component-independent.json
+```
+
+The independent checker directly recounts every five-set for all 13,738
+representatives, finds no missing objective-at-most-eight neighbor, and matches
+the optimized neighbor histogram entry-for-entry.
+
+The complete first objective-nine frontier has 42,661 free rotation orbits,
+1,834,423 colorings, 6,603,854 directed incidences with the certified
+sublevel-eight component, and 113 signatures `(d_2,...,d_8)`. Verify it with:
+
+```bash
+OMP_NUM_THREADS=10 ./verify_objective_six_component \
+  certificate.json objective-six-component-representatives.json \
+  --objective-nine-frontier objective-nine-frontier-fast.json \
+  objective-eight-component-fast.json objective-seven-component-fast.json \
+  objective-seven-frontier-fast.json \
+  > objective-nine-frontier-independent.json
+```
+
+All frontier objectives and component-incidence signatures match. The fresh
+recount also detects 64 representative incidences (2,752 after lifting the 43
+rotations) from frontier states to exactly 20 objective-eight rotation orbits
+outside the primary sublevel-eight component. This does not contradict the
+component closure: those external states are reached only after passing through
+objective nine. Their representatives are included in the independent JSON for
+follow-up classification of the newly exposed low-objective islands.
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash

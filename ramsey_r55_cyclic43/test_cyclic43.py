@@ -740,6 +740,159 @@ class DirectVerifierTests(unittest.TestCase):
             expected_incidence,
         )
 
+    def test_objective_eight_component_and_independent_recount(self) -> None:
+        component = json.loads(
+            (HERE / "objective-eight-component-fast.json").read_text()
+        )
+        independent = json.loads(
+            (HERE / "objective-eight-component-independent.json").read_text()
+        )
+        representatives = component[
+            "objective_eight_component_rotation_representatives"
+        ]
+        histogram = component[
+            "new_state_neighbor_objective_histogram_by_source_objective"
+        ]["8"]
+
+        self.assertEqual(
+            component["objective_eight_first_frontier_rotation_orbit_count"],
+            13_702,
+        )
+        self.assertEqual(
+            component["complete_objective_eight_rotation_orbit_count"], 13_738
+        )
+        self.assertEqual(
+            component["additional_objective_eight_rotation_orbit_count"], 36
+        )
+        self.assertEqual(
+            component["new_objective_at_most_seven_rotation_orbit_count"], 0
+        )
+        self.assertEqual(component["complete_objective_eight_vertex_count"], 590_734)
+        self.assertEqual(
+            component["new_to_sublevel_seven_directed_edge_count"], 1_929_754
+        )
+        self.assertEqual(
+            component["new_threshold_eight_internal_edge_count"], 764_153
+        )
+        self.assertTrue(component["complete_sublevel_eight_component_is_closed"])
+        self.assertEqual(
+            component["complete_sublevel_eight_component_vertex_count"], 840_263
+        )
+        self.assertEqual(
+            component["complete_sublevel_eight_component_edge_count"], 3_676_586
+        )
+        self.assertEqual(
+            component["exact_one_flip_escape_level_from_sublevel_eight_component"],
+            9,
+        )
+        self.assertEqual(249_529 + 590_734, 840_263)
+        self.assertEqual(982_679 + 1_929_754 + 764_153, 3_676_586)
+        self.assertEqual(sum(histogram.values()), 590_734 * 903)
+        self.assertEqual(histogram["8"], 2 * 764_153)
+        self.assertEqual(
+            sum(histogram[str(objective)] for objective in range(2, 8)),
+            1_929_754,
+        )
+        self.assertEqual(len(representatives), 13_738)
+        self.assertEqual(len({tuple(item) for item in representatives}), 13_738)
+
+        self.assertEqual(
+            independent["independent_direct_recount_representative_count"],
+            13_738,
+        )
+        self.assertTrue(independent["objective_eight_component_is_closed"])
+        self.assertEqual(
+            independent["missing_objective_at_most_eight_neighbor_count"], 0
+        )
+        self.assertEqual(independent["objective_eight_induced_edge_count"], 764_153)
+        self.assertEqual(independent["exact_one_flip_escape_level"], 9)
+        self.assertEqual(
+            independent["aggregate_neighbor_objective_histogram"], histogram
+        )
+
+    def test_objective_nine_first_frontier_and_external_low_neighbors(self) -> None:
+        frontier = json.loads(
+            (HERE / "objective-nine-frontier-fast.json").read_text()
+        )
+        independent = json.loads(
+            (HERE / "objective-nine-frontier-independent.json").read_text()
+        )
+        representatives = frontier["objective_nine_rotation_representatives"]
+        signatures = frontier[
+            "objective_nine_incidence_signatures_2_through_8"
+        ]
+        expected_incidence = {
+            "2": 3_827,
+            "3": 24_854,
+            "4": 77_056,
+            "5": 234_952,
+            "6": 1_098_736,
+            "7": 1_911_694,
+            "8": 3_252_735,
+        }
+
+        self.assertEqual(
+            frontier["objective_nine_first_frontier_rotation_orbit_count"],
+            42_661,
+        )
+        self.assertEqual(
+            frontier["objective_nine_first_frontier_vertex_count"], 1_834_423
+        )
+        self.assertEqual(frontier["incidence_signature_count"], 113)
+        self.assertEqual(
+            frontier["directed_incidence_by_source_objective"], expected_incidence
+        )
+        self.assertEqual(
+            frontier["total_directed_sublevel_eight_incidence"], 6_603_854
+        )
+        self.assertEqual(sum(expected_incidence.values()), 6_603_854)
+        self.assertEqual(len(representatives), 42_661)
+        self.assertEqual(len({tuple(item) for item in representatives}), 42_661)
+        self.assertEqual(len(signatures), 42_661)
+        self.assertTrue(all(len(signature) == 7 for signature in signatures))
+        self.assertEqual(
+            [
+                43 * sum(signature[index] for signature in signatures)
+                for index in range(7)
+            ],
+            [expected_incidence[str(objective)] for objective in range(2, 9)],
+        )
+
+        self.assertEqual(
+            independent["independent_direct_recount_representative_count"],
+            42_661,
+        )
+        self.assertEqual(independent["incidence_signature_mismatch_count"], 0)
+        self.assertEqual(
+            independent["directed_incidence_by_source_objective"],
+            expected_incidence,
+        )
+        self.assertEqual(
+            independent[
+                "out_of_component_lower_neighbor_representative_incidence_count"
+            ],
+            64,
+        )
+        self.assertEqual(
+            independent["out_of_component_lower_neighbor_full_incidence_count"],
+            2_752,
+        )
+        self.assertEqual(
+            independent["out_of_component_lower_neighbor_incidence_by_objective"],
+            {"8": 2_752},
+        )
+        self.assertEqual(
+            independent[
+                "out_of_component_lower_neighbor_rotation_orbits_by_objective"
+            ],
+            {"8": 20},
+        )
+        external = independent[
+            "out_of_component_objective_eight_rotation_representatives"
+        ]
+        self.assertEqual(len(external), 20)
+        self.assertEqual(len({tuple(item) for item in external}), 20)
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()
