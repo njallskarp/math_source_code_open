@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <bit>
 #include <cstdint>
 #include <cstdlib>
 #include <iomanip>
@@ -108,6 +109,11 @@ struct Counts {
   unsigned maximum_excluded_lift_mismatch_length = 0;
   unsigned maximum_excluded_lift_mismatch_position = 0;
   std::string maximum_excluded_lift_mismatch_word;
+  std::map<unsigned, u64> excluded_lift_ladder_step_histogram;
+  std::map<unsigned, u64> excluded_lift_mismatch_histogram;
+  u64 excluded_lift_ladder_bit_bound = 0;
+  u64 suffix_rank_formula_failures = 0;
+  u64 valuation_mismatch_failures = 0;
   u64 descent_failures = 0;
   std::map<unsigned, u64> residual_by_prefix_length;
   std::map<unsigned, u64> wrapped_by_prefix_length;
@@ -302,6 +308,37 @@ void analyze_word(u64 bits, unsigned length, Counts &counts) {
         }
         const unsigned suffix_length = length - position - 2;
         const u64 suffix_bits = bits >> (position + 2);
+        if (suffix_length == 0) {
+          throw std::runtime_error("ladder certificate has empty suffix");
+        }
+        Cylinder suffix;
+        for (unsigned index = 0; index < suffix_length; ++index) {
+          suffix = suffix.extend(
+              static_cast<unsigned>((suffix_bits >> index) & 1U));
+        }
+        const u64 suffix_modulus = u64{1} << suffix_length;
+        const u64 shadow_zero = static_cast<u64>(
+            (static_cast<u128>(prefix_power) * lift_mod_four +
+             3 * static_cast<u128>(prefix.endpoint) + 1) /
+            4);
+        const u64 actual_rank = (target_lift - lift_mod_four) / 4;
+        const u64 shadow_difference =
+            (suffix.residue + suffix_modulus -
+             (shadow_zero & (suffix_modulus - 1))) &
+            (suffix_modulus - 1);
+        const u64 rank_inverse =
+            inverse_odd_mod_power_two(prefix_power, suffix_modulus);
+        const u64 suffix_rank = static_cast<u64>(
+            (static_cast<u128>(shadow_difference) * rank_inverse) %
+            suffix_modulus);
+        if (suffix_rank != actual_rank) {
+          ++counts.suffix_rank_formula_failures;
+          throw std::runtime_error("suffix-rank formula failed");
+        }
+        ++counts.excluded_lift_ladder_step_histogram[
+            static_cast<unsigned>(ladder_steps)];
+        counts.excluded_lift_ladder_bit_bound +=
+            2 * ladder_steps + suffix_length - 2;
         std::vector<unsigned> mismatch_depths;
         mismatch_depths.reserve(static_cast<std::size_t>(ladder_steps));
         for (u64 rank = 0; rank < ladder_steps; ++rank) {
@@ -312,8 +349,16 @@ void analyze_word(u64 bits, unsigned length, Counts &counts) {
             throw std::runtime_error(
                 "a strictly lower candidate matched the full suffix");
           }
+          const u64 delta = actual_rank - rank;
+          const unsigned valuation_mismatch =
+              static_cast<unsigned>(std::countr_zero(delta)) + 1;
+          if (mismatch != valuation_mismatch) {
+            ++counts.valuation_mismatch_failures;
+            throw std::runtime_error("valuation mismatch law failed");
+          }
           ++counts.excluded_lift_ladder_candidates;
           counts.excluded_lift_ladder_parity_bits += mismatch;
+          ++counts.excluded_lift_mismatch_histogram[mismatch];
           mismatch_depths.push_back(mismatch);
           if (mismatch > counts.maximum_excluded_lift_mismatch_depth) {
             counts.maximum_excluded_lift_mismatch_depth = mismatch;
@@ -503,6 +548,12 @@ int main(int argc, char **argv) {
             << counts.maximum_excluded_lift_mismatch_length
             << ",j:" << counts.maximum_excluded_lift_mismatch_position
             << ",word:" << counts.maximum_excluded_lift_mismatch_word << '\n'
+            << "excluded_lift_ladder_bit_bound="
+            << counts.excluded_lift_ladder_bit_bound << '\n'
+            << "suffix_rank_formula_failures="
+            << counts.suffix_rank_formula_failures << '\n'
+            << "valuation_mismatch_failures="
+            << counts.valuation_mismatch_failures << '\n'
             << "descent_failures=" << counts.descent_failures << '\n'
             << "minimum_margin=" << counts.minimum_margin << '\n'
             << "minimum_margin_length=" << counts.minimum_margin_length << '\n'
@@ -513,6 +564,15 @@ int main(int argc, char **argv) {
   for (const auto &[bits_used, count] : counts.symbolic_certificate_bits) {
     std::cout << "symbolic_certificate_bits=" << bits_used
               << ",edges=" << count << '\n';
+  }
+  for (const auto &[steps, count] :
+       counts.excluded_lift_ladder_step_histogram) {
+    std::cout << "excluded_lift_ladder_steps=" << steps
+              << ",certificates=" << count << '\n';
+  }
+  for (const auto &[depth, count] : counts.excluded_lift_mismatch_histogram) {
+    std::cout << "excluded_lift_mismatch_depth=" << depth
+              << ",candidates=" << count << '\n';
   }
   std::cout << "maximum_certificate_bits=" << counts.maximum_certificate_bits
             << '\n'

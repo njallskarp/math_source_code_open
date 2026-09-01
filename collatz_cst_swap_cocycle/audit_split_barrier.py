@@ -80,6 +80,11 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
     excluded_lift_ladder_parity_bits = 0
     maximum_excluded_lift_ladder_steps = 0
     maximum_excluded_lift_mismatch_depth = 0
+    excluded_lift_ladder_step_histogram: Counter[int] = Counter()
+    excluded_lift_mismatch_histogram: Counter[int] = Counter()
+    excluded_lift_ladder_bit_bound = 0
+    suffix_rank_formula_failures = 0
+    valuation_mismatch_failures = 0
     descent_failures = 0
     certificate_bits: Counter[int] = Counter()
     symbolic_certificate_bits: Counter[int] = Counter()
@@ -193,6 +198,27 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
                             )
                         suffix_length = length - position - 2
                         suffix_bits = bits >> (position + 2)
+                        suffix_modulus = 1 << suffix_length
+                        prefix_power = 3 * prefix.pow3
+                        shadow_zero = (
+                            prefix_power * lift_mod_four
+                            + 3 * prefix.endpoint
+                            + 1
+                        ) // 4
+                        actual_rank = (target_lift - lift_mod_four) // 4
+                        suffix_rank = (
+                            (suffix.residue - shadow_zero)
+                            * pow(prefix_power, -1, suffix_modulus)
+                        ) % suffix_modulus
+                        if suffix_rank != actual_rank:
+                            suffix_rank_formula_failures += 1
+                            raise AssertionError("suffix-rank formula failed")
+                        excluded_lift_ladder_step_histogram[
+                            ladder_steps
+                        ] += 1
+                        excluded_lift_ladder_bit_bound += (
+                            2 * ladder_steps + suffix_length - 2
+                        )
                         for rank in range(ladder_steps):
                             candidate_lift = lift_mod_four + 4 * rank
                             mismatch = first_suffix_parity_mismatch(
@@ -205,8 +231,18 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
                                 raise AssertionError(
                                     "a lower candidate matched the full suffix"
                                 )
+                            delta = actual_rank - rank
+                            valuation_mismatch = (
+                                (delta & -delta).bit_length()
+                            )
+                            if mismatch != valuation_mismatch:
+                                valuation_mismatch_failures += 1
+                                raise AssertionError(
+                                    "valuation mismatch law failed"
+                                )
                             excluded_lift_ladder_candidates += 1
                             excluded_lift_ladder_parity_bits += mismatch
+                            excluded_lift_mismatch_histogram[mismatch] += 1
                             maximum_excluded_lift_mismatch_depth = max(
                                 maximum_excluded_lift_mismatch_depth, mismatch
                             )
@@ -314,6 +350,15 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
         "maximum_excluded_lift_mismatch_depth": (
             maximum_excluded_lift_mismatch_depth
         ),
+        "excluded_lift_ladder_step_histogram": dict(
+            sorted(excluded_lift_ladder_step_histogram.items())
+        ),
+        "excluded_lift_mismatch_histogram": dict(
+            sorted(excluded_lift_mismatch_histogram.items())
+        ),
+        "excluded_lift_ladder_bit_bound": excluded_lift_ladder_bit_bound,
+        "suffix_rank_formula_failures": suffix_rank_formula_failures,
+        "valuation_mismatch_failures": valuation_mismatch_failures,
         "descent_failures": descent_failures,
         "minimum_margin": minimum_margin or 0,
         "minimum_margin_length": minimum_margin_length,

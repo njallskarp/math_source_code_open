@@ -103,6 +103,16 @@ class SwapCocycleTests(unittest.TestCase):
         self.assertEqual(report["excluded_lift_ladder_parity_bits"], 127)
         self.assertEqual(report["maximum_excluded_lift_ladder_steps"], 1)
         self.assertEqual(report["maximum_excluded_lift_mismatch_depth"], 3)
+        self.assertEqual(
+            report["excluded_lift_ladder_step_histogram"], {1: 62}
+        )
+        self.assertEqual(
+            report["excluded_lift_mismatch_histogram"],
+            {1: 9, 2: 41, 3: 12},
+        )
+        self.assertEqual(report["excluded_lift_ladder_bit_bound"], 712)
+        self.assertEqual(report["suffix_rank_formula_failures"], 0)
+        self.assertEqual(report["valuation_mismatch_failures"], 0)
         self.assertEqual(report["descent_failures"], 0)
         self.assertEqual(
             report["certificate_bits"], {0: 737, 2: 31, 3: 9, 4: 41, 5: 12}
@@ -131,6 +141,17 @@ class SwapCocycleTests(unittest.TestCase):
         self.assertEqual(relative_coefficient_crossing(prefix, 1), 47)
         suffix_bits = bits >> (position + 2)
         suffix_length = len(word) - position - 2
+        suffix_modulus = 1 << suffix_length
+        prefix_power = 3 * prefix.pow3
+        shadow_zero = (
+            prefix_power + 3 * prefix.endpoint + 1
+        ) // 4
+        suffix_rank = (
+            (suffix.residue - shadow_zero)
+            * pow(prefix_power, -1, suffix_modulus)
+        ) % suffix_modulus
+        self.assertEqual(suffix_rank, 655_360)
+        self.assertEqual((suffix_rank & -suffix_rank).bit_length(), 18)
         self.assertEqual(
             first_suffix_parity_mismatch(
                 prefix, 1, suffix_bits, suffix_length
@@ -146,6 +167,39 @@ class SwapCocycleTests(unittest.TestCase):
             gap * target_lift + prefix_surplus,
             local_modulus * target.margin,
         )
+
+    def test_length_27_rank_six_barrier(self) -> None:
+        word = "111010110101101101011111000"
+        position = 2
+        bits = sum(int(bit) << index for index, bit in enumerate(word))
+        target = cylinder_from_bits(bits, len(word))
+        prefix = cylinder_from_bits(bits, position)
+        suffix = cylinder_from_bits(
+            bits >> (position + 2), len(word) - position - 2
+        )
+        local_modulus = 1 << (len(word) - position)
+        target_lift = (target.residue - prefix.residue) // (1 << position)
+        gap = target.pow2 - target.pow3
+        surplus = (
+            local_modulus * prefix.residue
+            - suffix.pow3 * (3 * prefix.endpoint + 1)
+            - 4 * suffix.numerator
+        )
+        chi = target_lift & 3
+        rank_needed = (-(gap * chi + surplus)) // (4 * gap) + 1
+        suffix_modulus = 1 << (len(word) - position - 2)
+        prefix_power = 3 * prefix.pow3
+        shadow_zero = (
+            prefix_power * chi + 3 * prefix.endpoint + 1
+        ) // 4
+        suffix_rank = (
+            (suffix.residue - shadow_zero)
+            * pow(prefix_power, -1, suffix_modulus)
+        ) % suffix_modulus
+
+        self.assertEqual((gap, surplus), (5_077_565, -114_363_149))
+        self.assertEqual((chi, rank_needed, suffix_rank), (1, 6, 56_388))
+        self.assertGreaterEqual(suffix_rank, rank_needed)
 
 
 if __name__ == "__main__":

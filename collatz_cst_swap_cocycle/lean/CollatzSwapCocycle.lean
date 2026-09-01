@@ -318,6 +318,85 @@ theorem excludedLiftLadderBarrierCertificate
   exact splitBarrierCertificate
     L d M x (chi + R * N) Q hmargin hL hd hlower hcertificate
 
+/-- The full suffix compatibility equation has a rank normal form.  If
+`x = chi+4*t` and `y₀` is the endpoint induced by the base lift `chi`, then
+the true rank satisfies `y₀+P₀*t = rs+H*m`. -/
+theorem suffixRankEquation
+    (P₀ c chi t y₀ rs H m : Int)
+    (hbase : P₀ * chi + c = 4 * y₀)
+    (hcompat : P₀ * (chi + 4 * t) + c = 4 * rs + 4 * H * m) :
+    y₀ + P₀ * t = rs + H * m := by
+  grind
+
+/-- Candidate shadows form an exact arithmetic progression.  This is the
+algebraic source of the valuation law for their first parity mismatch. -/
+theorem candidateShadowDifference
+    (P₀ y₀ k t yk yt : Int)
+    (hk : yk = y₀ + P₀ * k)
+    (ht : yt = y₀ + P₀ * t) :
+    yk - yt = P₀ * (k - t) := by
+  grind
+
+/-- If `N` is the first rank whose affine barrier is positive, positivity of
+the split margin is equivalent to the exact rank inequality `N ≤ t`. -/
+theorem rankedBarrier_iff
+    (L d M chi R Q t N : Int)
+    (hmargin : L * M = d * (chi + R * t) + Q)
+    (hL : 0 < L) (hd : 0 ≤ d) (hR : 0 ≤ R)
+    (hbelow : d * (chi + R * (N - 1)) + Q ≤ 0)
+    (habove : 0 < d * (chi + R * N) + Q) :
+    0 < M ↔ N ≤ t := by
+  constructor
+  · intro hM
+    have hscaled : 0 < L * M := Int.mul_pos hL hM
+    rw [hmargin] at hscaled
+    have hcases : N ≤ t ∨ t < N := by omega
+    cases hcases with
+    | inl hNt => exact hNt
+    | inr htN =>
+        have htle : t ≤ N - 1 := by omega
+        have hmulR : R * t ≤ R * (N - 1) :=
+          Int.mul_le_mul_of_nonneg_left htle hR
+        have harg : chi + R * t ≤ chi + R * (N - 1) :=
+          Int.add_le_add_left hmulR chi
+        have hmulD : d * (chi + R * t) ≤
+            d * (chi + R * (N - 1)) :=
+          Int.mul_le_mul_of_nonneg_left harg hd
+        have hq : d * (chi + R * t) + Q ≤
+            d * (chi + R * (N - 1)) + Q :=
+          Int.add_le_add_right hmulD Q
+        have hnonpos : d * (chi + R * t) + Q ≤ 0 :=
+          calc
+            d * (chi + R * t) + Q ≤
+                d * (chi + R * (N - 1)) + Q := hq
+            _ ≤ 0 := hbelow
+        omega
+  · intro hNt
+    have hmulR : R * N ≤ R * t :=
+      Int.mul_le_mul_of_nonneg_left hNt hR
+    have harg : chi + R * N ≤ chi + R * t :=
+      Int.add_le_add_left hmulR chi
+    have hmulD : d * (chi + R * N) ≤ d * (chi + R * t) :=
+      Int.mul_le_mul_of_nonneg_left harg hd
+    have hq : d * (chi + R * N) + Q ≤
+        d * (chi + R * t) + Q :=
+      Int.add_le_add_right hmulD Q
+    have hpositive : 0 < d * (chi + R * t) + Q :=
+      calc
+        0 < d * (chi + R * N) + Q := habove
+        _ ≤ d * (chi + R * t) + Q := hq
+    have hscaled : 0 < L * M := by
+      rw [hmargin]
+      exact hpositive
+    have hcases : 0 < M ∨ M ≤ 0 := by omega
+    cases hcases with
+    | inl hM => exact hM
+    | inr hM =>
+        have hL0 : 0 ≤ L := by omega
+        have hnonpos : L * M ≤ 0 :=
+          Int.mul_nonpos_of_nonneg_of_nonpos hL0 hM
+        omega
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -340,5 +419,8 @@ theorem excludedLiftLadderBarrierCertificate
 #print axioms candidateClassMismatch_excludesLift
 #print axioms excludedLiftLadderLowerBound
 #print axioms excludedLiftLadderBarrierCertificate
+#print axioms suffixRankEquation
+#print axioms candidateShadowDifference
+#print axioms rankedBarrier_iff
 
 end CollatzSwapCocycle

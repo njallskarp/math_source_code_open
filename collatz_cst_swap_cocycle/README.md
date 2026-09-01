@@ -481,6 +481,72 @@ and the resulting barrier certificate.  The executable bridge from a stated
 parity mismatch to candidate-class mismatch is checked independently by the
 C++ generator and a separate arbitrary-precision Python verifier.
 
+### Suffix-rank normal form and valuation law
+
+The whole ladder has a closed symbolic form.  Put `H=2^h` and retain
+`x=chi+4*t` with `0<=chi<4`.  Since `0<=x<4H`, necessarily `0<=t<H`.
+Define
+
+```text
+y_0 = (P0*chi+3*eta+1)/4.
+```
+
+Subtracting this equation from suffix compatibility gives
+
+```text
+y_0+P0*t = r_s+H*m.
+```
+
+Because `P0` is odd, it is invertible modulo `H`, so the true lift rank is the
+unique representative
+
+```text
+t = [P0^(-1)*(r_s-y_0)]_H,             0 <= t < H.       (RN)
+```
+
+If `d*chi+Q<=0` and `N` is the first barrier-clearing rank defined above,
+then the split identity has the exact normal form
+
+```text
+M > 0  iff  t >= N.                                      (RB)
+```
+
+Thus the one-edge CST target is a modular least-representative inequality,
+not intrinsically a trajectory search.
+
+There is also an exact explanation of every ladder mismatch.  The candidate
+shadow at rank `k` is `y_k=y_0+P0*k`, while the true shadow is congruent to
+`r_s` modulo `H`.  Hence
+
+```text
+y_k-y_t = P0*(k-t),
+v2(y_k-y_t) = v2(k-t).
+```
+
+The classical parity-vector bijection modulo powers of two now gives, for
+`k!=t`,
+
+```text
+first one-based suffix mismatch depth = 1+v2(t-k).        (VL)
+```
+
+No Collatz iteration is required to predict the mismatch.  Moreover, when
+the certificate excludes `k=0,...,N-1` and `N<=t<H`, its total number of
+individually inspected parity bits obeys
+
+```text
+sum_(k=0)^(N-1) (1+v2(t-k)) <= 2*N+h-2.                  (CB)
+```
+
+Indeed the number of `t-k` divisible by `2^ell` is at most
+`ceil(N/2^ell)`, and
+`sum_(ell=1)^(h-1) ceil(N/2^ell) <= N+h-2`.
+
+Lean proves the division-free rank equation, the candidate-shadow difference
+identity, and the barrier equivalence (RB).  The valuation/parity bridge uses
+the classical parity-vector theorem and is checked exactly by both audit
+implementations; it is not yet formalized in Lean.
+
 ### Exact finite audit and fixed-bit obstruction
 
 Two implementations independently enumerate coefficient-first-crossing
@@ -533,6 +599,9 @@ excluded_lift_ladder_candidates=764967
 excluded_lift_ladder_parity_bits=1661756
 maximum_excluded_lift_ladder_steps=6
 maximum_excluded_lift_mismatch_depth=18
+excluded_lift_ladder_bit_bound=20210179
+suffix_rank_formula_failures=0
+valuation_mismatch_failures=0
 descent_failures=0
 minimum_margin=1 (word 1100)
 maximum_certificate_bits=20
@@ -548,6 +617,44 @@ whole frontier it excludes 764,967 candidates, needs at most six candidates
 on one edge, and observes each mismatch within at most 18 suffix steps.  This
 is a complete symbolic compression of this finite frontier, not a uniform
 proof of CST.
+
+The rank histogram is
+
+```text
+N=1:724816, N=2:4412, N=3:3466,
+N=4:3556,   N=5:1221, N=6:100.
+```
+
+The exact observed 1,661,756 inspected bits are well below the summed
+per-certificate bound 20,210,179 from (CB).  Both implementations report zero
+suffix-rank formula failures and zero valuation-law failures through their
+respective verified ranges.
+
+The independent Python and C++ implementations agree through depth 27 on the
+rank layer, including both extrema:
+
+```text
+first_crossings=502524
+wrapped_edges=1115630
+nonpositive_prefix_surplus=123922
+excluded_lift_ladder_certificates=62946
+excluded_lift_ladder_candidates=90342
+excluded_lift_ladder_parity_bits=195360
+maximum_excluded_lift_ladder_steps=6
+maximum_excluded_lift_mismatch_depth=18
+suffix_rank_formula_failures=0
+valuation_mismatch_failures=0
+descent_failures=0
+sha256=93f4ebb7e6562a605924dbd35e7e1f284779fabd277f20da673839985e8c783b
+```
+
+As a single-implementation falsification check, the C++ frontier was also
+extended through depth 36.  (No new first crossing occurs at depth 36.)  It
+enumerates 62,469,393 first crossings, 205,121,993 wrapped edges, and
+10,224,685 ladder certificates with zero descent, rank-formula, or valuation
+failures.  The maximum rank remains six, while the maximum mismatch depth
+rises to 19.  This extension is exact for the implementation but is not an
+independently reproduced theorem.
 
 The base-shadow remainder is itself highly compressed: all cases occur over
 24 prefix states, and their `y_2` values belong to the ten-element set
@@ -583,9 +690,9 @@ d*5+Q = 19785972 > 0.
 Hence no certificate restricted to at most 19 low lift bits can be universal,
 but the symbolic parity-mismatch certificate avoids exposing those bits.
 This is a concrete obstruction to fixed-small-residue proofs, not evidence
-against CST.  Through length 34, all wrapped edges have positive target
-margin.  The C++ frontier enumeration is independently replayed record by
-record by Python for every excluded-lift ladder certificate.
+against CST.  Through length 34, all wrapped edges have independently replayed
+positive target-margin certificates; the additional depth-36 C++ check finds
+the same conclusion under its stated single-implementation trust boundary.
 
 ### Proof
 
@@ -651,12 +758,13 @@ python3 -m unittest -v test_swap_cocycle.py
 python3 audit_swap_cocycle.py --max-length 26
 python3 audit_wrap_defect.py --max-length 26
 python3 audit_phase_lag.py --max-length 16
-python3 audit_split_barrier.py --max-length 26
+python3 audit_split_barrier.py --max-length 27
 ruby audit_swap_cocycle.rb 20
 ruby audit_phase_lag.rb 16
 /opt/homebrew/bin/g++-16 -std=c++20 -O3 -Wall -Wextra -Werror \
   audit_split_barrier.cpp -o /tmp/audit_split_barrier
 /tmp/audit_split_barrier 34
+/tmp/audit_split_barrier 36
 /tmp/audit_split_barrier 34 | rg '^shadow_prefix' | shasum -a 256
 /tmp/audit_split_barrier 34 --emit-ladder \
   > /tmp/collatz_excluded_lift_ladder_34.txt
@@ -721,7 +829,9 @@ certificate for the minimal length-five strict defect.  It also proves the
 division-free split-barrier identity, exact equal-lift suffix transport, and
 the direct and shadow-forced lower-bound certificates used by the Python and
 C++ audits.  It now also proves candidate-class mismatch exclusion, the
-ranked excluded-lift lower bound, and the excluded-lift barrier certificate.
+ranked excluded-lift lower bound, the excluded-lift barrier certificate, the
+suffix-rank equation, the candidate-shadow difference identity, and the exact
+ranked-barrier equivalence.
 
 The emitted depth-34 ladder stream contains 737,571 certificate records and
 has canonical SHA-256
@@ -752,6 +862,9 @@ coupling of that classical principle to the split barrier and the forced
 next-lift inequality.  The excluded-lift ladder is likewise claimed only as
 an apparently new barrier-coupled packaging of parity-class exclusions; no
 historical priority is asserted for parity-vector congruence itself.
+The valuation law (VL) is a direct consequence of the classical 2-adic
+isometry/parity-vector correspondence; only its coupling to the split barrier
+and the rank normal form (RN)--(RB) are presented as apparently new.
 
 The apparently new pieces, relative to the sources searched below, are the
 explicit coupling of this adjacent exchange to the *canonical least residue*,
@@ -795,17 +908,19 @@ jump orbit: from a zero-index base, `W<=C` is already the equality target
 rather than an available one-sided estimate.  The split identity makes the
 remaining target local, and the excluded-lift ladder closes its entire exact
 depth-34 frontier, including the former 48,982-case remainder.  What remains
-unproved is a bound valid for arbitrary length: the required rank `N` and the
-first parity-mismatch depth could in principle grow with the suffix.
+unproved is a bound valid for arbitrary length: the required rank `N` could
+in principle grow with the suffix, while (VL) shows that an individual
+mismatch can occur as late as the suffix length.
 
-The next target is to analyze the arithmetic progression of shadow starts
+The next target is now the explicit modular inequality
 
 ```text
-y_k = y_0 + P0*k
+[P0^(-1)*(r_s-y_0)]_(2^h)
+  >= floor(-(d*chi+Q)/(4*d))+1.
 ```
 
-and prove a uniform or controlled mismatch theorem against every
-coefficient-safe suffix before the barrier rank.  Equivalently, one must
+One must exploit coefficient-prefix safety to lower-bound this least
+representative without reconstructing all of `r_s`.  Equivalently, one must
 exclude the exact one-edge barrier uniformly,
 
 ```text

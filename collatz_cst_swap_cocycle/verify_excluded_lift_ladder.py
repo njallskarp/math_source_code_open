@@ -82,7 +82,7 @@ def parse_record(line: str) -> dict[str, str]:
     return fields
 
 
-def verify_record(fields: dict[str, str]) -> tuple[int, int, int]:
+def verify_record(fields: dict[str, str]) -> tuple[int, int, int, int]:
     length = int(fields["K"])
     word = fields["word"]
     position = int(fields["j"])
@@ -145,11 +145,31 @@ def verify_record(fields: dict[str, str]) -> tuple[int, int, int]:
     if gap * forced_lower_bound + surplus <= 0:
         raise AssertionError("ladder does not clear the split barrier")
 
+    suffix_modulus = 1 << len(suffix_word)
+    prefix_power = 3 * prefix.pow3
+    shadow_zero = (
+        prefix_power * chi + 3 * prefix.endpoint + 1
+    ) // 4
+    actual_rank = (target_lift - chi) // 4
+    suffix_rank = (
+        (suffix.residue - shadow_zero)
+        * pow(prefix_power, -1, suffix_modulus)
+    ) % suffix_modulus
+    if suffix_rank != actual_rank:
+        raise AssertionError("suffix-rank normal form failed")
+
     for rank, stated_mismatch in enumerate(stated_mismatches):
         mismatch = first_mismatch(prefix, chi + 4 * rank, suffix_word)
         if mismatch == 0 or mismatch != stated_mismatch:
             raise AssertionError("candidate parity-mismatch certificate failed")
-    return steps, sum(stated_mismatches), max(stated_mismatches)
+        delta = actual_rank - rank
+        valuation_mismatch = (delta & -delta).bit_length()
+        if mismatch != valuation_mismatch:
+            raise AssertionError("valuation mismatch law failed")
+    bit_bound = 2 * steps + len(suffix_word) - 2
+    if sum(stated_mismatches) > bit_bound:
+        raise AssertionError("ladder parity-bit bound failed")
+    return steps, sum(stated_mismatches), max(stated_mismatches), bit_bound
 
 
 def verify(path: Path) -> dict[str, int | str]:
@@ -159,6 +179,7 @@ def verify(path: Path) -> dict[str, int | str]:
     parity_bits = 0
     maximum_steps = 0
     maximum_mismatch = 0
+    parity_bit_bound = 0
     previous_record = ""
     with path.open("rt", encoding="ascii", newline="") as handle:
         for raw_line in handle:
@@ -170,19 +191,25 @@ def verify(path: Path) -> dict[str, int | str]:
             if previous_record and record == previous_record:
                 raise AssertionError("adjacent duplicate certificate record")
             previous_record = record
-            steps, used_bits, mismatch = verify_record(parse_record(record))
+            steps, used_bits, mismatch, bit_bound = verify_record(
+                parse_record(record)
+            )
             digest.update(raw_line.encode("ascii"))
             certificates += 1
             candidates += steps
             parity_bits += used_bits
             maximum_steps = max(maximum_steps, steps)
             maximum_mismatch = max(maximum_mismatch, mismatch)
+            parity_bit_bound += bit_bound
     return {
         "certificates": certificates,
         "candidates": candidates,
         "parity_bits": parity_bits,
         "maximum_steps": maximum_steps,
         "maximum_mismatch": maximum_mismatch,
+        "parity_bit_bound": parity_bit_bound,
+        "suffix_rank_formula_failures": 0,
+        "valuation_mismatch_failures": 0,
         "sha256": digest.hexdigest(),
     }
 
