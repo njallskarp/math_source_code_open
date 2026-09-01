@@ -117,6 +117,18 @@ std::vector<State> load_states(
     return result;
 }
 
+void write_state(std::ostream& output, const State& state) {
+    output << '[';
+    bool separator = false;
+    for (int id = 0; id < edge_count; ++id) {
+        if (!state.contains(id)) continue;
+        if (separator) output << ',';
+        output << id;
+        separator = true;
+    }
+    output << ']';
+}
+
 struct Model {
     std::array<std::array<int, order>, order> edge_id{};
     std::array<std::pair<int, int>, edge_count> edge_vertices{};
@@ -248,6 +260,7 @@ struct SourceEntry {
 
 struct Counters {
     std::array<std::uint64_t, 10> incidence{};
+    std::map<int, std::uint64_t> target_neighbor_objective_histogram;
     std::uint64_t verified = 0;
     std::uint64_t objective_mismatch = 0;
     std::uint64_t noncanonical = 0;
@@ -256,9 +269,20 @@ struct Counters {
     std::uint64_t signature_mismatch = 0;
 };
 
+struct ExpansionSummary {
+    std::array<std::unordered_set<State, StateHash>, 11> new_orbits;
+    std::uint64_t internal_objective_ten_directed_incidence = 0;
+    std::uint64_t internal_objective_ten_distinct_directed_pairs = 0;
+    std::uint64_t internal_objective_ten_self_orbit_pairs = 0;
+    std::uint64_t nonfree_new_orbits = 0;
+};
+
 void add(Counters& destination, const Counters& source) {
     for (int objective = 2; objective <= 9; ++objective)
         destination.incidence[objective] += source.incidence[objective];
+    for (const auto& [objective, count] :
+         source.target_neighbor_objective_histogram)
+        destination.target_neighbor_objective_histogram[objective] += count;
     destination.verified += source.verified;
     destination.objective_mismatch += source.objective_mismatch;
     destination.noncanonical += source.noncanonical;
@@ -351,6 +375,7 @@ int main(int argc, char** argv) try {
 
     const int thread_count = omp_get_max_threads();
     std::vector<Counters> target_thread_counters(thread_count);
+    std::vector<ExpansionSummary> target_thread_expansions(thread_count);
     std::vector<std::array<std::uint16_t, 10>> recounted_signatures(
         targets.size()
     );
@@ -359,6 +384,10 @@ int main(int argc, char** argv) try {
     );
     std::vector<std::uint16_t> target_parallel_incidence_excess(targets.size());
     std::vector<std::uint16_t> target_max_source_orbit_multiplicity(
+        targets.size()
+    );
+    std::vector<std::uint16_t> target_objective_ten_move_counts(targets.size());
+    std::vector<std::uint16_t> target_minimum_above_ten_objectives(
         targets.size()
     );
     std::string error;
@@ -376,13 +405,44 @@ int main(int argc, char** argv) try {
             } else {
                 std::unordered_map<std::size_t, std::uint16_t>
                     source_orbit_multiplicity;
+                std::unordered_set<std::size_t> internal_objective_ten_neighbors;
+                int objective_ten_move_count = 0;
+                int minimum_above_ten_objective =
+                    std::numeric_limits<int>::max();
                 for (int id = 0; id < edge_count; ++id) {
                     const int objective = analysis.objective + analysis.delta[id];
-                    if (objective < 2 || objective > 9) continue;
+                    ++local.target_neighbor_objective_histogram[objective];
+                    if (objective == 10) ++objective_ten_move_count;
+                    if (objective > 10)
+                        minimum_above_ten_objective = std::min(
+                            minimum_above_ten_objective, objective
+                        );
+                    if (objective < 2 || objective > 10) continue;
                     State neighbor = target;
                     neighbor.toggle(id);
                     const State key = model.canonical(neighbor);
-                    if (!source_sets[objective].contains(key)) continue;
+                    ExpansionSummary& expansion =
+                        target_thread_expansions[omp_get_thread_num()];
+                    if (objective == 10) {
+                        const auto internal_target = target_index.find(key);
+                        if (internal_target != target_index.end()) {
+                            ++expansion.internal_objective_ten_directed_incidence;
+                            internal_objective_ten_neighbors.insert(
+                                internal_target->second
+                            );
+                        } else {
+                            if (!model.is_free(key))
+                                ++expansion.nonfree_new_orbits;
+                            expansion.new_orbits[10].insert(key);
+                        }
+                        continue;
+                    }
+                    if (!source_sets[objective].contains(key)) {
+                        if (!model.is_free(key))
+                            ++expansion.nonfree_new_orbits;
+                        expansion.new_orbits[objective].insert(key);
+                        continue;
+                    }
                     const auto source_it = source_index.find(key);
                     if (source_it == source_index.end() ||
                         sources[source_it->second].objective != objective)
@@ -393,6 +453,12 @@ int main(int argc, char** argv) try {
                     ++local.incidence[objective];
                     ++recounted_signatures[index][objective];
                 }
+                ExpansionSummary& expansion =
+                    target_thread_expansions[omp_get_thread_num()];
+                expansion.internal_objective_ten_distinct_directed_pairs +=
+                    internal_objective_ten_neighbors.size();
+                if (internal_objective_ten_neighbors.contains(index))
+                    ++expansion.internal_objective_ten_self_orbit_pairs;
                 target_distinct_source_orbit_degrees[index] =
                     static_cast<std::uint16_t>(source_orbit_multiplicity.size());
                 std::uint16_t incidence_degree = 0;
@@ -408,6 +474,15 @@ int main(int argc, char** argv) try {
                     incidence_degree - source_orbit_multiplicity.size();
                 target_max_source_orbit_multiplicity[index] =
                     maximum_multiplicity;
+                target_objective_ten_move_counts[index] =
+                    static_cast<std::uint16_t>(objective_ten_move_count);
+                if (minimum_above_ten_objective ==
+                    std::numeric_limits<int>::max())
+                    throw std::runtime_error(
+                        "objective-ten target has no higher-objective neighbor"
+                    );
+                target_minimum_above_ten_objectives[index] =
+                    static_cast<std::uint16_t>(minimum_above_ten_objective);
                 if (signatures[index].size() != 8) {
                     ++local.signature_mismatch;
                 } else {
@@ -434,6 +509,24 @@ int main(int argc, char** argv) try {
         target_total.objective_mismatch || target_total.noncanonical ||
         target_total.nonfree || target_total.signature_mismatch)
         throw std::runtime_error("objective-ten target verification failed");
+
+    ExpansionSummary expansion_total;
+    for (const ExpansionSummary& expansion : target_thread_expansions) {
+        expansion_total.internal_objective_ten_directed_incidence +=
+            expansion.internal_objective_ten_directed_incidence;
+        expansion_total.internal_objective_ten_distinct_directed_pairs +=
+            expansion.internal_objective_ten_distinct_directed_pairs;
+        expansion_total.internal_objective_ten_self_orbit_pairs +=
+            expansion.internal_objective_ten_self_orbit_pairs;
+        expansion_total.nonfree_new_orbits += expansion.nonfree_new_orbits;
+        for (int objective = 0; objective <= 10; ++objective)
+            expansion_total.new_orbits[objective].insert(
+                expansion.new_orbits[objective].begin(),
+                expansion.new_orbits[objective].end()
+            );
+    }
+    if (expansion_total.nonfree_new_orbits)
+        throw std::runtime_error("nonfree newly exposed orbit");
 
     std::vector<Counters> source_thread_counters(thread_count);
     std::vector<std::uint16_t> source_distinct_target_orbit_degrees(
@@ -503,6 +596,97 @@ int main(int argc, char** argv) try {
     if (source_total.incidence != target_total.incidence)
         throw std::runtime_error("source-target incidence mismatch");
 
+    std::array<std::unordered_set<State, StateHash>, 11> threshold_ten_sets;
+    for (int objective = 2; objective <= 9; ++objective)
+        threshold_ten_sets[objective].insert(
+            source_sets[objective].begin(), source_sets[objective].end()
+        );
+    threshold_ten_sets[10].insert(targets.begin(), targets.end());
+    std::array<std::unordered_set<State, StateHash>, 11> additional_sets;
+    std::vector<SourceEntry> closure_queue;
+    for (int objective = 2; objective <= 10; ++objective) {
+        for (const State& state : expansion_total.new_orbits[objective]) {
+            if (!threshold_ten_sets[objective].insert(state).second)
+                throw std::runtime_error("second-shell state is already known");
+            additional_sets[objective].insert(state);
+            closure_queue.push_back({objective, state});
+        }
+    }
+
+    for (std::size_t position = 0; position < closure_queue.size(); ++position) {
+        if (position && position % 10000 == 0)
+            std::cerr << "threshold-ten direct closure: " << position << '/'
+                      << closure_queue.size() << " states\n";
+        const SourceEntry& source = closure_queue[position];
+        const Model::Analysis analysis = model.analyze(source.state);
+        if (analysis.objective != source.objective)
+            throw std::runtime_error("threshold-ten closure objective mismatch");
+        for (int id = 0; id < edge_count; ++id) {
+            const int objective = analysis.objective + analysis.delta[id];
+            if (objective > 10) continue;
+            if (objective < 0)
+                throw std::runtime_error("negative threshold-ten objective");
+            State neighbor = source.state;
+            neighbor.toggle(id);
+            const State key = model.canonical(neighbor);
+            if (!threshold_ten_sets[objective].insert(key).second) continue;
+            if (!model.is_free(key))
+                throw std::runtime_error("nonfree threshold-ten closure orbit");
+            additional_sets[objective].insert(key);
+            closure_queue.push_back({objective, key});
+        }
+    }
+
+    std::array<std::map<int, std::uint64_t>, 11>
+        additional_neighbor_histograms;
+    std::uint64_t additional_internal_directed = 0;
+    std::uint64_t additional_to_known_directed = 0;
+    int additional_escape_level = std::numeric_limits<int>::max();
+    for (std::size_t position = 0; position < closure_queue.size(); ++position) {
+        const SourceEntry& source = closure_queue[position];
+        const Model::Analysis analysis = model.analyze(source.state);
+        if (analysis.objective != source.objective)
+            throw std::runtime_error("threshold-ten recount objective mismatch");
+        for (int id = 0; id < edge_count; ++id) {
+            const int objective = analysis.objective + analysis.delta[id];
+            additional_neighbor_histograms[source.objective][objective] += order;
+            if (objective > 10) {
+                additional_escape_level = std::min(
+                    additional_escape_level, objective
+                );
+                continue;
+            }
+            if (objective < 0)
+                throw std::runtime_error("negative threshold-ten recount objective");
+            State neighbor = source.state;
+            neighbor.toggle(id);
+            const State key = model.canonical(neighbor);
+            if (!threshold_ten_sets[objective].contains(key))
+                throw std::runtime_error("threshold-ten accepted neighbor missing");
+            if (additional_sets[objective].contains(key))
+                additional_internal_directed += order;
+            else
+                additional_to_known_directed += order;
+        }
+    }
+    if (additional_internal_directed % 2 ||
+        additional_escape_level == std::numeric_limits<int>::max())
+        throw std::runtime_error("invalid threshold-ten closure aggregate");
+
+    std::uint64_t additional_orbit_count = 0;
+    for (int objective = 0; objective <= 10; ++objective)
+        additional_orbit_count += additional_sets[objective].size();
+    const std::uint64_t additional_vertex_count = order * additional_orbit_count;
+    const std::uint64_t additional_internal_edges =
+        additional_internal_directed / 2;
+    const std::uint64_t frontier_internal_edges =
+        order * expansion_total.internal_objective_ten_directed_incidence / 2;
+    const std::uint64_t complete_threshold_ten_vertex_count =
+        2681308 + order * targets.size() + additional_vertex_count;
+    const std::uint64_t complete_threshold_ten_edge_count =
+        12794607 + 21517200 + frontier_internal_edges +
+        additional_to_known_directed + additional_internal_edges;
+
     std::map<std::array<std::uint16_t, 10>, std::uint64_t> signature_histogram;
     std::map<int, std::uint64_t> incidence_degree_histogram;
     std::map<int, std::uint64_t> target_distinct_orbit_degree_histogram;
@@ -513,6 +697,9 @@ int main(int argc, char** argv) try {
     std::array<std::map<int, std::uint64_t>, 10>
         source_distinct_orbit_degree_by_objective;
     std::map<int, std::uint64_t> source_minimum_external_objective_histogram;
+    std::map<int, std::uint64_t> target_objective_ten_move_count_histogram;
+    std::map<int, std::uint64_t>
+        target_minimum_above_ten_objective_histogram;
     std::array<std::uint64_t, 10>
         sources_without_objective_ten_exit_by_objective{};
     std::vector<std::size_t>
@@ -542,6 +729,10 @@ int main(int argc, char** argv) try {
         if (excess)
             objective_ten_layer_indices_with_parallel_boundary_incidence
                 .push_back(index);
+        ++target_objective_ten_move_count_histogram
+            [target_objective_ten_move_counts[index]];
+        ++target_minimum_above_ten_objective_histogram
+            [target_minimum_above_ten_objectives[index]];
     }
     for (std::size_t index = 0; index < sources.size(); ++index) {
         const int degree = source_distinct_target_orbit_degrees[index];
@@ -672,6 +863,56 @@ int main(int argc, char** argv) try {
                       ? "false"
                       : "true")
               << ",\n";
+    std::cout << "  \"aggregate_objective_ten_frontier_neighbor_objective_histogram\": {";
+    bool objective_separator = false;
+    for (const auto& [objective, count] :
+         target_total.target_neighbor_objective_histogram) {
+        if (objective_separator) std::cout << ',';
+        std::cout << "\n    \"" << objective << "\": " << order * count;
+        objective_separator = true;
+    }
+    std::cout << "\n  },\n";
+    std::cout << "  \"objective_ten_move_count_per_target_orbit_histogram\": {";
+    write_histogram(target_objective_ten_move_count_histogram);
+    std::cout << ",\n";
+    std::cout << "  \"minimum_above_ten_objective_per_target_orbit_histogram\": {";
+    write_histogram(target_minimum_above_ten_objective_histogram);
+    std::cout << ",\n";
+    std::cout << "  \"objective_ten_frontier_internal_directed_incidence\": "
+              << expansion_total.internal_objective_ten_directed_incidence
+              << ",\n";
+    std::cout << "  \"objective_ten_frontier_internal_distinct_directed_pairs\": "
+              << expansion_total.internal_objective_ten_distinct_directed_pairs
+              << ",\n";
+    std::cout << "  \"objective_ten_frontier_self_orbit_pair_count\": "
+              << expansion_total.internal_objective_ten_self_orbit_pairs
+              << ",\n";
+    std::cout << "  \"newly_exposed_rotation_orbit_count_by_objective\": {";
+    bool new_layer_separator = false;
+    for (int objective = 0; objective <= 10; ++objective) {
+        if (expansion_total.new_orbits[objective].empty()) continue;
+        if (new_layer_separator) std::cout << ',';
+        std::cout << "\n    \"" << objective << "\": "
+                  << expansion_total.new_orbits[objective].size();
+        new_layer_separator = true;
+    }
+    std::cout << "\n  },\n";
+    for (int objective = 0; objective <= 10; ++objective) {
+        if (expansion_total.new_orbits[objective].empty()) continue;
+        std::vector<State> representatives(
+            expansion_total.new_orbits[objective].begin(),
+            expansion_total.new_orbits[objective].end()
+        );
+        std::sort(representatives.begin(), representatives.end());
+        std::cout << "  \"newly_exposed_objective_" << objective
+                  << "_rotation_representatives\": [\n";
+        for (std::size_t index = 0; index < representatives.size(); ++index) {
+            if (index) std::cout << ",\n";
+            std::cout << "    ";
+            write_state(std::cout, representatives[index]);
+        }
+        std::cout << "\n  ],\n";
+    }
     std::cout << "  \"directed_incidence_by_source_objective\": {";
     std::uint64_t total_incidence = 0;
     for (int objective = 2; objective <= 9; ++objective) {
@@ -683,6 +924,64 @@ int main(int argc, char** argv) try {
     std::cout << "\n  },\n";
     std::cout << "  \"total_directed_sublevel_nine_incidence\": "
               << total_incidence << ",\n";
+    std::cout << "  \"complete_threshold_ten_additional_rotation_orbit_count\": "
+              << additional_orbit_count << ",\n";
+    std::cout << "  \"complete_threshold_ten_additional_vertex_count\": "
+              << additional_vertex_count << ",\n";
+    std::cout << "  \"additional_rotation_orbit_count_by_objective\": {";
+    bool additional_separator = false;
+    for (int objective = 0; objective <= 10; ++objective) {
+        if (additional_sets[objective].empty()) continue;
+        if (additional_separator) std::cout << ',';
+        std::cout << "\n    \"" << objective << "\": "
+                  << additional_sets[objective].size();
+        additional_separator = true;
+    }
+    std::cout << "\n  },\n";
+    std::cout << "  \"additional_to_known_directed_edge_count\": "
+              << additional_to_known_directed << ",\n";
+    std::cout << "  \"additional_internal_edge_count\": "
+              << additional_internal_edges << ",\n";
+    std::cout << "  \"complete_sublevel_ten_component_vertex_count\": "
+              << complete_threshold_ten_vertex_count << ",\n";
+    std::cout << "  \"complete_sublevel_ten_component_edge_count\": "
+              << complete_threshold_ten_edge_count << ",\n";
+    std::cout << "  \"complete_sublevel_ten_component_is_closed\": true,\n";
+    std::cout << "  \"exact_one_flip_escape_level_from_sublevel_ten_component\": "
+              << std::min(11, additional_escape_level) << ",\n";
+    std::cout << "  \"additional_neighbor_objective_histogram_by_source_objective\": {";
+    bool source_histogram_separator = false;
+    for (int source = 0; source <= 10; ++source) {
+        if (additional_neighbor_histograms[source].empty()) continue;
+        if (source_histogram_separator) std::cout << ',';
+        std::cout << "\n    \"" << source << "\": {";
+        bool target_histogram_separator = false;
+        for (const auto& [target, count] :
+             additional_neighbor_histograms[source]) {
+            if (target_histogram_separator) std::cout << ',';
+            std::cout << "\n      \"" << target << "\": " << count;
+            target_histogram_separator = true;
+        }
+        std::cout << "\n    }";
+        source_histogram_separator = true;
+    }
+    std::cout << "\n  },\n";
+    for (int objective = 0; objective <= 10; ++objective) {
+        if (additional_sets[objective].empty()) continue;
+        std::vector<State> representatives(
+            additional_sets[objective].begin(),
+            additional_sets[objective].end()
+        );
+        std::sort(representatives.begin(), representatives.end());
+        std::cout << "  \"complete_threshold_ten_additional_objective_"
+                  << objective << "_rotation_representatives\": [\n";
+        for (std::size_t index = 0; index < representatives.size(); ++index) {
+            if (index) std::cout << ",\n";
+            std::cout << "    ";
+            write_state(std::cout, representatives[index]);
+        }
+        std::cout << "\n  ],\n";
+    }
     std::cout << "  \"method\": \"independent bidirectional direct five-set recount: all complete sublevel-nine sources scanned for objective-ten exits and every listed target scanned for exact lower-layer incidence\",\n";
     std::cout << "  \"openmp_max_threads\": " << omp_get_max_threads()
               << "\n}\n";

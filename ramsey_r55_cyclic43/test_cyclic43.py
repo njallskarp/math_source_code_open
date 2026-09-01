@@ -1301,6 +1301,74 @@ class DirectVerifierTests(unittest.TestCase):
         )
         self.assertEqual(boundary["distinct_source_objective_support_patterns"], 49)
 
+    def test_complete_sublevel_ten_component(self) -> None:
+        fast = json.loads(
+            (HERE / "objective-ten-component-fast.json").read_text()
+        )
+        independent = json.loads(
+            (HERE / "objective-ten-component-independent.json").read_text()
+        )
+
+        self.assertEqual(fast["objective_ten_first_frontier_rotation_orbit_count"], 128_184)
+        self.assertEqual(fast["complete_objective_ten_rotation_orbit_count"], 128_711)
+        self.assertEqual(fast["additional_objective_ten_rotation_orbit_count"], 527)
+        self.assertEqual(fast["additional_objective_at_most_nine_rotation_orbit_count"], 0)
+        self.assertEqual(fast["complete_objective_ten_vertex_count"], 5_534_573)
+        self.assertEqual(
+            fast["objective_ten_to_primary_sublevel_nine_directed_edge_count"],
+            21_517_200,
+        )
+        self.assertEqual(fast["objective_ten_component_internal_edge_count"], 8_009_008)
+        self.assertEqual(fast["complete_sublevel_ten_component_vertex_count"], 8_215_881)
+        self.assertEqual(fast["complete_sublevel_ten_component_edge_count"], 42_320_815)
+        self.assertTrue(fast["complete_sublevel_ten_component_is_closed"])
+        self.assertEqual(fast["exact_one_flip_escape_level_from_sublevel_ten_component"], 11)
+
+        self.assertEqual(
+            independent["objective_ten_move_count_per_target_orbit_histogram"],
+            {
+                "0": 4_366, "1": 22_497, "2": 39_071, "3": 21_565,
+                "4": 16_775, "5": 12_958, "6": 6_601, "7": 3_003,
+                "8": 1_041, "9": 251, "10": 52, "11": 4,
+            },
+        )
+        self.assertEqual(
+            independent["minimum_above_ten_objective_per_target_orbit_histogram"],
+            {"11": 127_836, "12": 348},
+        )
+        self.assertEqual(
+            independent["objective_ten_frontier_internal_directed_incidence"],
+            367_744,
+        )
+        self.assertEqual(
+            independent["newly_exposed_rotation_orbit_count_by_objective"],
+            {"10": 376},
+        )
+        self.assertEqual(
+            independent["complete_threshold_ten_additional_rotation_orbit_count"],
+            527,
+        )
+        self.assertEqual(independent["additional_rotation_orbit_count_by_objective"], {"10": 527})
+        self.assertEqual(independent["additional_to_known_directed_edge_count"], 54_094)
+        self.assertEqual(independent["additional_internal_edge_count"], 48_418)
+        self.assertEqual(
+            independent["complete_sublevel_ten_component_vertex_count"],
+            fast["complete_sublevel_ten_component_vertex_count"],
+        )
+        self.assertEqual(
+            independent["complete_sublevel_ten_component_edge_count"],
+            fast["complete_sublevel_ten_component_edge_count"],
+        )
+        self.assertTrue(independent["complete_sublevel_ten_component_is_closed"])
+        self.assertEqual(
+            independent["exact_one_flip_escape_level_from_sublevel_ten_component"],
+            fast["exact_one_flip_escape_level_from_sublevel_ten_component"],
+        )
+        self.assertEqual(
+            independent["complete_threshold_ten_additional_objective_10_rotation_representatives"],
+            fast["additional_objective_10_rotation_representatives"],
+        )
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

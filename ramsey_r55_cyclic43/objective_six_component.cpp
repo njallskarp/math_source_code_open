@@ -170,7 +170,7 @@ struct Search {
     std::array<int, edge_count> single_flip_delta{};
     int monochromatic_count = 0;
 
-    std::array<std::unordered_set<State, StateHash>, 10> orbit_states;
+    std::array<std::unordered_set<State, StateHash>, 11> orbit_states;
     std::unordered_set<State, StateHash> first_objective_six_frontier;
     std::unordered_map<State, std::array<std::uint16_t, 7>, StateHash>
         first_objective_seven_incidence;
@@ -1431,6 +1431,160 @@ struct Search {
         output << "}\n";
     }
 
+    void write_objective_ten_component(const std::string& path) {
+        if (first_objective_ten_incidence.size() != 128184)
+            throw std::runtime_error(
+                "objective-ten closure requires the complete first frontier"
+            );
+
+        std::array<std::unordered_set<State, StateHash>, 11> new_orbits;
+        std::array<std::unordered_set<State, StateHash>, 11> additional_orbits;
+        std::vector<std::pair<int, State>> queue;
+        queue.reserve(first_objective_ten_incidence.size() + 1024);
+        for (const auto& [target, incidence] : first_objective_ten_incidence) {
+            (void)incidence;
+            if (!orbit_states[10].insert(target).second)
+                throw std::runtime_error("duplicate objective-ten frontier state");
+            new_orbits[10].insert(target);
+            queue.push_back({10, target});
+        }
+        const std::uint64_t first_frontier_orbits = queue.size();
+
+        for (std::size_t position = 0; position < queue.size(); ++position) {
+            if (position && position % 10000 == 0)
+                std::cerr << "threshold-ten closure: " << position << '/'
+                          << queue.size() << " queued orbit representatives\n";
+            const auto [objective, source] = queue[position];
+            move_to(source);
+            if (monochromatic_count != objective)
+                throw std::runtime_error("threshold-ten queue objective mismatch");
+            for (int id = 0; id < edge_count; ++id) {
+                const int target_objective = resulting_count(id);
+                if (target_objective > 10) continue;
+                if (target_objective < 0)
+                    throw std::runtime_error("negative objective");
+                State neighbor = state;
+                neighbor.toggle(id);
+                const State key = canonical(neighbor);
+                if (!orbit_states[target_objective].insert(key).second) continue;
+                require_free_orbit(neighbor);
+                new_orbits[target_objective].insert(key);
+                additional_orbits[target_objective].insert(key);
+                queue.push_back({target_objective, key});
+            }
+        }
+
+        std::array<std::map<int, std::uint64_t>, 11> histograms;
+        std::uint64_t new_to_known_directed = 0;
+        std::uint64_t new_internal_directed = 0;
+        int escape_level = -1;
+        for (std::size_t position = 0; position < queue.size(); ++position) {
+            if (position && position % 10000 == 0)
+                std::cerr << "threshold-ten recount: " << position << '/'
+                          << queue.size() << " orbit representatives\n";
+            const auto& [objective, source] = queue[position];
+            move_to(source);
+            if (monochromatic_count != objective)
+                throw std::runtime_error("threshold-ten recount objective mismatch");
+            for (int id = 0; id < edge_count; ++id) {
+                const int target_objective = resulting_count(id);
+                histograms[objective][target_objective] += orbit_size;
+                if (target_objective > 10) {
+                    if (escape_level < 0 || target_objective < escape_level)
+                        escape_level = target_objective;
+                    continue;
+                }
+                State neighbor = state;
+                neighbor.toggle(id);
+                const State key = canonical(neighbor);
+                if (!orbit_states[target_objective].contains(key))
+                    throw std::runtime_error("accepted threshold-ten neighbor missing");
+                if (new_orbits[target_objective].contains(key))
+                    new_internal_directed += orbit_size;
+                else
+                    new_to_known_directed += orbit_size;
+            }
+        }
+        if (new_internal_directed % 2 || escape_level < 0)
+            throw std::runtime_error("invalid objective-ten closure aggregate");
+
+        std::uint64_t new_orbit_count = 0;
+        std::uint64_t additional_orbit_count = 0;
+        std::uint64_t additional_lower_orbit_count = 0;
+        for (int objective = 0; objective <= 10; ++objective) {
+            new_orbit_count += new_orbits[objective].size();
+            additional_orbit_count += additional_orbits[objective].size();
+            if (objective < 10)
+                additional_lower_orbit_count +=
+                    additional_orbits[objective].size();
+        }
+        const std::uint64_t new_vertex_count = orbit_size * new_orbit_count;
+        const std::uint64_t new_internal_edges = new_internal_directed / 2;
+        const std::uint64_t complete_vertices = 2681308 + new_vertex_count;
+        const std::uint64_t complete_edges =
+            12794607 + new_to_known_directed + new_internal_edges;
+
+        std::ofstream output(path);
+        if (!output) throw std::runtime_error("cannot write " + path);
+        output << "{\n  \"order\": 43,\n  \"edge_count\": 903,\n";
+        output << "  \"objective_ten_first_frontier_rotation_orbit_count\": "
+               << first_frontier_orbits << ",\n";
+        output << "  \"complete_objective_ten_rotation_orbit_count\": "
+               << new_orbits[10].size() << ",\n";
+        output << "  \"additional_objective_ten_rotation_orbit_count\": "
+               << additional_orbits[10].size() << ",\n";
+        output << "  \"additional_objective_at_most_nine_rotation_orbit_count\": "
+               << additional_lower_orbit_count << ",\n";
+        output << "  \"complete_objective_ten_vertex_count\": "
+               << orbit_size * new_orbits[10].size() << ",\n";
+        output << "  \"objective_ten_to_primary_sublevel_nine_directed_edge_count\": "
+               << new_to_known_directed << ",\n";
+        output << "  \"objective_ten_component_internal_edge_count\": "
+               << new_internal_edges << ",\n";
+        output << "  \"complete_sublevel_ten_component_vertex_count\": "
+               << complete_vertices << ",\n";
+        output << "  \"complete_sublevel_ten_component_edge_count\": "
+               << complete_edges << ",\n";
+        output << "  \"complete_sublevel_ten_component_is_closed\": true,\n";
+        output << "  \"exact_one_flip_escape_level_from_sublevel_ten_component\": "
+               << escape_level << ",\n";
+        output << "  \"objective_ten_rotation_representative_neighbor_checks\": "
+               << new_orbit_count * edge_count << ",\n";
+        output << "  \"objective_ten_symmetry_lifted_neighbor_checks\": "
+               << new_vertex_count * edge_count << ",\n";
+        output << "  \"objective_ten_neighbor_objective_histogram\": {";
+        bool target_separator = false;
+        for (const auto& [target, count] : histograms[10]) {
+            if (target_separator) output << ',';
+            output << "\n    \"" << target << "\": " << count;
+            target_separator = true;
+        }
+        output << "\n  },\n";
+        bool layer_separator = false;
+        for (int objective = 0; objective <= 10; ++objective) {
+            if (additional_orbits[objective].empty()) continue;
+            if (layer_separator) output << ",\n";
+            output << "  \"additional_objective_" << objective
+                   << "_rotation_representatives\": [\n";
+            std::vector<State> representatives(
+                additional_orbits[objective].begin(),
+                additional_orbits[objective].end()
+            );
+            std::sort(representatives.begin(), representatives.end());
+            for (std::size_t index = 0; index < representatives.size(); ++index) {
+                if (index) output << ",\n";
+                output << "    ";
+                write_state(output, representatives[index]);
+            }
+            output << "\n  ]";
+            layer_separator = true;
+        }
+        if (layer_separator) output << ",\n";
+        output << "  \"method\": \"independent optimized orbit-canonical closure under every one-edge move with objective at most ten\",\n";
+        output << "  \"scope_note\": \"Complete connected threshold-ten component through the certified Cyclic(43) optimum; disconnected components remain out of scope.\"\n";
+        output << "}\n";
+    }
+
     void write_external_objective_eight_components(
         const std::string& seed_path, const std::string& output_path
     ) {
@@ -1703,7 +1857,7 @@ struct Search {
 }  // namespace
 
 int main(int argc, char** argv) try {
-    if (argc < 3 || argc > 23 || argc % 2 == 0) {
+    if (argc < 3 || argc > 25 || argc % 2 == 0) {
         std::cerr
             << "usage: objective_six_component CERTIFICATE.json defect-cycle.json "
                "[--representatives OUTPUT.json] "
@@ -1714,6 +1868,7 @@ int main(int argc, char** argv) try {
                "[--objective-nine-frontier OUTPUT.json] "
                "[--objective-nine-component OUTPUT.json] "
                "[--objective-ten-frontier OUTPUT.json] "
+               "[--objective-ten-component OUTPUT.json] "
                "[--external-objective-eight-seeds INPUT.json] "
                "[--external-objective-eight-components OUTPUT.json]\n";
         return 2;
@@ -1726,6 +1881,7 @@ int main(int argc, char** argv) try {
     std::string objective_nine_frontier_path;
     std::string objective_nine_component_path;
     std::string objective_ten_frontier_path;
+    std::string objective_ten_component_path;
     std::string external_objective_eight_seed_path;
     std::string external_objective_eight_component_path;
     for (int argument = 3; argument < argc; argument += 2) {
@@ -1746,6 +1902,8 @@ int main(int argc, char** argv) try {
             objective_nine_component_path = argv[argument + 1];
         else if (option == "--objective-ten-frontier")
             objective_ten_frontier_path = argv[argument + 1];
+        else if (option == "--objective-ten-component")
+            objective_ten_component_path = argv[argument + 1];
         else if (option == "--external-objective-eight-seeds")
             external_objective_eight_seed_path = argv[argument + 1];
         else if (option == "--external-objective-eight-components")
@@ -1799,6 +1957,13 @@ int main(int argc, char** argv) try {
                 "objective-ten frontier requires objective-nine closure"
             );
         search.write_objective_ten_frontier(objective_ten_frontier_path);
+    }
+    if (!objective_ten_component_path.empty()) {
+        if (objective_ten_frontier_path.empty())
+            throw std::runtime_error(
+                "objective-ten component requires objective-ten frontier"
+            );
+        search.write_objective_ten_component(objective_ten_component_path);
     }
     if (!external_objective_eight_component_path.empty()) {
         if (objective_eight_component_path.empty() ||
