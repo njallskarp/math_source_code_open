@@ -116,6 +116,53 @@ The first expands to ranks and labeled counts
 and the second says that only the two constant length-23 axes have rank zero;
 all other `8,388,606` labeled axes have rank 11.
 
+## Exact surjectivity and image-size corollaries
+
+The output space of `D_b` has dimension `m=(n-1)/2`.  The total of all
+positive orbit increments in (1) is exactly `m`, because
+
+```text
+n-1 = sum_{reciprocal pairs} 2d + sum_{self-reciprocal factors} d.
+```
+
+Consequently `D_b` is surjective exactly when `b` is nonzero on every
+nontrivial reciprocal-factor orbit.  The numbers of surjective labeled axes
+are therefore
+
+```text
+all axes:
+  2 product_{pairs of degree d}(2^(2d)-1)
+    product_{self factors of degree d}(2^d-1),
+
+even axes:
+  product_{pairs of degree d}(2^(2d)-1)
+    product_{self factors of degree d}(2^d-1).                 (4)
+```
+
+At the other extreme, (1) shows that `D_b` has rank zero exactly for the two
+constant axes, at every odd length.
+
+The rank enumerator also counts the total number of image points without any
+matrix enumeration:
+
+```text
+sum_b |image(D_b)| = P_n(2).                                  (5)
+```
+
+For even axes the total is `P_n(2)/2`.  In particular:
+
+| length | surjective even axes | total `(b,t)` with even `b`, `t in image(D_b)` |
+|---:|---:|---:|
+| 21 | 773,955 | 926,456,335 |
+| 23 | 4,194,303 | 8,589,932,545 |
+
+For a uniformly random axis, the CRT components are independent.  Thus the
+mean rank and variance are also explicit sums of independent Bernoulli
+contributions.  A reciprocal pair contributes a rank increment `d` with
+probability `1-2^(-2d)`; a self-reciprocal factor contributes `d/2` with
+probability `1-2^(-d)`.  This gives exact complexity statistics as well as an
+individual-axis classification.
+
 ## Independent computational certificate
 
 `verify_rank_formula.py` uses only the Python standard library.  It:
@@ -126,7 +173,10 @@ all other `8,388,606` labeled axes have rank 11.
 4. for every one of the 174,760 labeled axes at odd `n <= 17`, builds the
    binary matrix `D_b` directly and checks its row rank against (1);
 5. independently checks `D_b=D_(b+1)` for every such axis; and
-6. matches the previously published complete spectra at `n=21` and `n=23`.
+6. matches the previously published complete spectra at `n=21` and `n=23`;
+   and
+7. checks the surjective-axis and total-image-point corollaries at those two
+   lengths.
 
 The exhaustive direct-record stream has SHA-256
 

@@ -200,6 +200,16 @@ def format_histogram(histogram: dict[int, int]) -> str:
     return ",".join(f"{rank}:{count}" for rank, count in sorted(histogram.items()))
 
 
+def surjective_even_axis_count(
+    orbits: list[tuple[str, int, tuple[int, ...]]]
+) -> int:
+    result = 1
+    for orbit_type, d, _ in orbits:
+        component_dimension = d if orbit_type == "S" else 2 * d
+        result *= (1 << component_dimension) - 1
+    return result
+
+
 def main() -> None:
     direct_digest = hashlib.sha256()
     tested_axes = 0
@@ -249,13 +259,25 @@ def main() -> None:
 
         if n == 21:
             assert all_histogram == expected_n21
+            assert surjective_even_axis_count(orbits) == 773955
+            assert sum(
+                count * (1 << rank) for rank, count in even_histogram.items()
+            ) == 926456335
         if n == 23:
             assert all_histogram == expected_n23
+            assert surjective_even_axis_count(orbits) == 4194303
+            assert sum(
+                count * (1 << rank) for rank, count in even_histogram.items()
+            ) == 8589932545
 
     print(f"exhaustive_axes_n_le_17={tested_axes}")
     print(f"direct_record_sha256={direct_digest.hexdigest()}")
     print("n21_published_spectrum_match=yes")
     print("n23_prime_dichotomy_match=yes")
+    print("n21_surjective_even_axes=773955")
+    print("n21_total_even_image_points=926456335")
+    print("n23_surjective_even_axes=4194303")
+    print("n23_total_even_image_points=8589932545")
     print("status=PASS")
 
 
