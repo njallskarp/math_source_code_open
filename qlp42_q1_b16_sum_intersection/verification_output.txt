@@ -1,0 +1,12 @@
+dependency_sha256=a5f616a19e241bcdced0962a2843631d1bb13a30de41cfbc05a2c0999e74bacf
+fourth_order_surviving_orbits=32
+direct_local_phase_checks=5376
+exact_reachability_tables=128
+case=0;b_masks=18;labeled=672;orbits=32
+case=1;b_masks=18;labeled=672;orbits=32
+case=2;b_masks=18;labeled=672;orbits=32
+case=3;b_masks=18;labeled=672;orbits=32
+case=4;b_masks=18;labeled=672;orbits=32
+case=5;b_masks=18;labeled=588;orbits=28
+case5_excluded_orbits=4
+certificate=verified

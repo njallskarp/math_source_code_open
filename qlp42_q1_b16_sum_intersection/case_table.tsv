@@ -1,0 +1,7 @@
+case	representative	surviving_b_masks	surviving_labeled_pairs	surviving_a_rotation_orbits	eliminated_labeled_pairs	eliminated_a_rotation_orbits
+0	(1,0,5,0)	18	672	32	0	0
+1	(3,0,4,1)	18	672	32	0	0
+2	(3,0,3,-2)	18	672	32	0	0
+3	(3,2,3,2)	18	672	32	0	0
+4	(3,2,2,3)	18	672	32	0	0
+5	(4,1,2,-1)	18	588	28	84	4
