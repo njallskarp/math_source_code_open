@@ -1,0 +1,573 @@
+{
+  "addition_component_count": 61,
+  "addition_component_profiles": [
+    {
+      "cycle_rank": 23,
+      "edges": 58,
+      "final_shell_vertices": 0,
+      "seed_vertices": 36,
+      "vertices": 36
+    },
+    {
+      "cycle_rank": 4,
+      "edges": 14,
+      "final_shell_vertices": 0,
+      "seed_vertices": 11,
+      "vertices": 11
+    },
+    {
+      "cycle_rank": 4,
+      "edges": 14,
+      "final_shell_vertices": 0,
+      "seed_vertices": 11,
+      "vertices": 11
+    },
+    {
+      "cycle_rank": 9,
+      "edges": 18,
+      "final_shell_vertices": 7,
+      "seed_vertices": 3,
+      "vertices": 10
+    },
+    {
+      "cycle_rank": 3,
+      "edges": 10,
+      "final_shell_vertices": 0,
+      "seed_vertices": 8,
+      "vertices": 8
+    },
+    {
+      "cycle_rank": 3,
+      "edges": 10,
+      "final_shell_vertices": 0,
+      "seed_vertices": 8,
+      "vertices": 8
+    },
+    {
+      "cycle_rank": 2,
+      "edges": 8,
+      "final_shell_vertices": 0,
+      "seed_vertices": 7,
+      "vertices": 7
+    },
+    {
+      "cycle_rank": 2,
+      "edges": 8,
+      "final_shell_vertices": 0,
+      "seed_vertices": 7,
+      "vertices": 7
+    },
+    {
+      "cycle_rank": 1,
+      "edges": 6,
+      "final_shell_vertices": 0,
+      "seed_vertices": 6,
+      "vertices": 6
+    },
+    {
+      "cycle_rank": 1,
+      "edges": 6,
+      "final_shell_vertices": 0,
+      "seed_vertices": 6,
+      "vertices": 6
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 4,
+      "final_shell_vertices": 1,
+      "seed_vertices": 4,
+      "vertices": 5
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 4,
+      "final_shell_vertices": 1,
+      "seed_vertices": 4,
+      "vertices": 5
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 4,
+      "final_shell_vertices": 0,
+      "seed_vertices": 5,
+      "vertices": 5
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 4,
+      "final_shell_vertices": 0,
+      "seed_vertices": 5,
+      "vertices": 5
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 4,
+      "final_shell_vertices": 0,
+      "seed_vertices": 5,
+      "vertices": 5
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 4,
+      "final_shell_vertices": 0,
+      "seed_vertices": 5,
+      "vertices": 5
+    },
+    {
+      "cycle_rank": 1,
+      "edges": 4,
+      "final_shell_vertices": 0,
+      "seed_vertices": 4,
+      "vertices": 4
+    },
+    {
+      "cycle_rank": 1,
+      "edges": 4,
+      "final_shell_vertices": 0,
+      "seed_vertices": 4,
+      "vertices": 4
+    },
+    {
+      "cycle_rank": 1,
+      "edges": 4,
+      "final_shell_vertices": 0,
+      "seed_vertices": 4,
+      "vertices": 4
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 3,
+      "final_shell_vertices": 0,
+      "seed_vertices": 4,
+      "vertices": 4
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 3,
+      "final_shell_vertices": 0,
+      "seed_vertices": 4,
+      "vertices": 4
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 3,
+      "final_shell_vertices": 0,
+      "seed_vertices": 4,
+      "vertices": 4
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 3,
+      "final_shell_vertices": 0,
+      "seed_vertices": 4,
+      "vertices": 4
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 2,
+      "final_shell_vertices": 0,
+      "seed_vertices": 3,
+      "vertices": 3
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 1,
+      "final_shell_vertices": 0,
+      "seed_vertices": 2,
+      "vertices": 2
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 1,
+      "final_shell_vertices": 0,
+      "seed_vertices": 2,
+      "vertices": 2
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 1,
+      "final_shell_vertices": 0,
+      "seed_vertices": 2,
+      "vertices": 2
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 1,
+      "final_shell_vertices": 0,
+      "seed_vertices": 2,
+      "vertices": 2
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 1,
+      "final_shell_vertices": 0,
+      "seed_vertices": 2,
+      "vertices": 2
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 1,
+      "final_shell_vertices": 0,
+      "seed_vertices": 2,
+      "vertices": 2
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 1,
+      "final_shell_vertices": 0,
+      "seed_vertices": 2,
+      "vertices": 2
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 1,
+      "final_shell_vertices": 0,
+      "seed_vertices": 2,
+      "vertices": 2
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    },
+    {
+      "cycle_rank": 0,
+      "edges": 0,
+      "final_shell_vertices": 0,
+      "seed_vertices": 1,
+      "vertices": 1
+    }
+  ],
+  "addition_total_cycle_rank": 55,
+  "all_numpy_closure_checks_pass": true,
+  "asymmetric_inside_pair_errors": 0,
+  "canonical_errors": 0,
+  "component_sha256": "4803b2e40dba06c0f82c3d23cbd5ae0a9127da0db24e5655971fff179fb68ec3",
+  "components_meeting_final_shell": 3,
+  "directed_above_twelve": 213143,
+  "directed_inside_addition": 464,
+  "directed_neighbor_objective_histogram": {
+    "12": 1771,
+    "13": 1924,
+    "14": 2761,
+    "15": 5268,
+    "16": 3576,
+    "17": 6181,
+    "18": 7887,
+    "19": 10176,
+    "20": 13733,
+    "21": 16435,
+    "22": 16462,
+    "23": 10869,
+    "24": 7102,
+    "25": 2897,
+    "26": 4763,
+    "27": 20854,
+    "28": 5726,
+    "29": 2133,
+    "30": 10411,
+    "31": 1870,
+    "32": 8585,
+    "33": 11168,
+    "34": 1186,
+    "35": 2670,
+    "36": 4012,
+    "37": 2114,
+    "38": 3657,
+    "39": 3601,
+    "40": 1753,
+    "41": 3032,
+    "42": 4258,
+    "43": 1804,
+    "44": 3104,
+    "45": 1034,
+    "46": 4430,
+    "47": 2254,
+    "48": 720,
+    "49": 54,
+    "50": 1379,
+    "51": 16,
+    "52": 219,
+    "53": 158,
+    "54": 298,
+    "55": 398,
+    "56": 211
+  },
+  "directed_to_first_frontier": 1307,
+  "distinct_directed_pairs_inside_addition": 460,
+  "distinct_undirected_pairs_inside_addition": 230,
+  "edge_count": 903,
+  "external_minimum_objective_histogram": {
+    "13": 238
+  },
+  "final_shell_addition_degree_histogram": {
+    "2": 2,
+    "4": 7
+  },
+  "final_shell_equals_zero_frontier_sources": true,
+  "final_shell_q13_exit_degree_histogram": {
+    "3": 2,
+    "8": 7
+  },
+  "first_expansion_sha256": "5b44b4a670e991dfd30c4c19c1f532702a50c42b8bc8bc26e77f7ebae00cca53",
+  "five_set_count": 962598,
+  "frontier_candidate_target_count": 1196,
+  "frontier_certificate_sha256": "e4390990fad91c8f9d7e584a7a4dbbc35d02d86b5971139376bee3895c51b5f1",
+  "frontier_strictly_sorted_and_unique": true,
+  "frontier_target_count_streamed": 1041887,
+  "frontier_target_degree_histogram": {
+    "1": 1095,
+    "2": 93,
+    "3": 6,
+    "4": 2
+  },
+  "frontier_targets_sha256": "653d1068c456d228c12d640a50eca409fceaf570dbb6040b66bebef296b2615c",
+  "lower_neighbor_count": 0,
+  "method": "independent Python/NumPy enumeration of all K5 edge sets, vectorized exact monochromatic-count deltas, separately built C43 rotation maps and canonical words, streamed frontier membership, and reachability from the 229 certified seeds",
+  "minimum_neighbor_objective_histogram": {
+    "12": 238
+  },
+  "missing_frontier_target_count": 0,
+  "newly_reached_after_seeds": 9,
+  "nonfree_errors": 0,
+  "objective_errors": 0,
+  "omitted_sublevel_neighbor_count": 0,
+  "order": 43,
+  "q13_exit_degree_histogram": {
+    "1": 2,
+    "10": 36,
+    "11": 21,
+    "12": 2,
+    "13": 4,
+    "14": 2,
+    "2": 6,
+    "3": 2,
+    "4": 3,
+    "5": 6,
+    "6": 35,
+    "7": 32,
+    "8": 50,
+    "9": 37
+  },
+  "reachable_addition_count": 238,
+  "scope_note": "This independently checks every move from the persisted 238 closure representatives and proves their reachability from the 229 seeds; it relies on the hash-pinned complete frontier array and the persisted representative lists.",
+  "self_orbit_directed_moves_inside_addition": 0,
+  "source_addition_degree_histogram": {
+    "0": 18,
+    "1": 78,
+    "2": 77,
+    "3": 36,
+    "4": 22,
+    "5": 6,
+    "6": 1
+  },
+  "source_frontier_degree_histogram": {
+    "0": 9,
+    "1": 23,
+    "10": 23,
+    "11": 4,
+    "2": 3,
+    "3": 22,
+    "4": 38,
+    "5": 25,
+    "6": 24,
+    "7": 30,
+    "8": 26,
+    "9": 11
+  },
+  "undirected_edges_inside_addition_with_multiplicity": 232,
+  "undirected_parallel_edge_excess_inside_addition": 2,
+  "verified_addition_source_count": 238,
+  "verified_seed_count": 229
+}
