@@ -1,13 +1,17 @@
 import unittest
 
 from audit_phase_lag import audit as audit_phase_lag
+from audit_prefix_rank_generator import (
+    complete_audit as audit_prefix_rank_complete,
+)
+from audit_prefix_rank_generator import (
+    targeted_rank_search,
+)
 from audit_split_barrier import (
     audit as audit_split_barrier,
 )
 from audit_split_barrier import (
     first_suffix_parity_mismatch,
-)
-from audit_split_barrier import (
     relative_coefficient_crossing,
 )
 from audit_swap_cocycle import (
@@ -21,6 +25,26 @@ from audit_swap_cocycle import (
 
 
 class SwapCocycleTests(unittest.TestCase):
+    def test_prefix_rank_generator_complete_depth_14(self) -> None:
+        report = audit_prefix_rank_complete(14)
+        self.assertEqual(report["dfs_wrapped_edges"], 88)
+        self.assertEqual(report["generated_wrapped_edges"], 88)
+        self.assertEqual(report["missing_edges"], 0)
+        self.assertEqual(report["extra_edges"], 0)
+        self.assertEqual(
+            report["edge_sha256"],
+            "31e92e2031f455c21a4127f8683f2bc0a040ab7f97754730365ea722444cc5ca",
+        )
+
+    def test_prefix_rank_small_target(self) -> None:
+        report = targeted_rank_search(10, 5, 10_000)
+        self.assertEqual(report["rank_trajectories"], 762)
+        self.assertEqual(report["wrapped_edges"], 541)
+        self.assertEqual(report["capped_trajectories"], 0)
+        self.assertEqual(report["descent_failures"], 0)
+        self.assertEqual(report["maximum_generated_length"], 105)
+        self.assertEqual(report["minimum_margin"], 1)
+
     def test_affine_numerator_identity(self) -> None:
         source = Cylinder.empty()
         for bit in (1, 1, 0, 1, 1, 0, 0):

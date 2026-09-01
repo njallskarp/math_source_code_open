@@ -397,6 +397,24 @@ theorem rankedBarrier_iff
           Int.mul_nonpos_of_nonneg_of_nonpos hL0 hM
         omega
 
+/-- Once the low-two-bit class `chi` is chosen, the post-`p10` endpoint is
+an affine function of the nonnegative rank `t`.  This division-free identity
+is the algebraic core of the prefix-rank trajectory generator. -/
+theorem prefixRankEndpoint
+    (P c chi t y₀ : Int)
+    (hbase : P * chi + c = 4 * y₀) :
+    P * (chi + 4 * t) + c = 4 * (y₀ + P * t) := by
+  grind
+
+/-- The canonical local lift box `0 <= x < 4H` is exactly the rank box
+`0 <= t < H` when `x=chi+4t` and `chi` is canonical modulo four. -/
+theorem canonicalLift_iff_rankBox
+    (x chi t H : Int)
+    (hx : x = chi + 4 * t)
+    (hchi0 : 0 ≤ chi) (hchi4 : chi < 4) :
+    (0 ≤ x ∧ x < 4 * H) ↔ (0 ≤ t ∧ t < H) := by
+  omega
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -422,5 +440,7 @@ theorem rankedBarrier_iff
 #print axioms suffixRankEquation
 #print axioms candidateShadowDifference
 #print axioms rankedBarrier_iff
+#print axioms prefixRankEndpoint
+#print axioms canonicalLift_iff_rankBox
 
 end CollatzSwapCocycle

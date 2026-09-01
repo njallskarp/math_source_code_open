@@ -547,6 +547,88 @@ identity, and the barrier equivalence (RB).  The valuation/parity bridge uses
 the classical parity-vector theorem and is checked exactly by both audit
 implementations; it is not yet formalized in Lean.
 
+### Prefix-rank trajectory generator
+
+The rank normal form can eliminate suffix DFS altogether.  Fix an
+all-prefix coefficient-safe prefix `p`, with cylinder `(rho,eta)`, length
+`j`, `F=2^j`, and `P=3^a`.  Require `p0` to remain coefficient-safe, i.e.
+
+```text
+P >= 2F.                                                   (PS)
+```
+
+Put `P0=3P` and `c=3eta+1`.  Since `P0` is odd, there is a unique
+`chi in {0,1,2,3}` such that `P0*chi+c` is divisible by four.  For every
+rank `t>=0`, define
+
+```text
+x_t = chi+4t,
+y_t = (P0*x_t+c)/4 = y_0+P0*t.                            (PG)
+```
+
+Starting at `y_t`, follow its ordinary Collatz trajectory and let `s_t` be
+the parity word through the first `h_t>=1` for which
+
+```text
+P0 * 3^(number of ones in s_t) < 4F * 2^h_t.              (FC)
+```
+
+If this crossing is finite, `x_t<4*2^h_t`, and
+
+```text
+x_t < [P0^(-1)]_(4*2^h_t),                               (WR)
+```
+
+then `p10s_t` is a coefficient-first-crossing target and the reverse
+`p01s_t -> p10s_t` adjacent exchange is wrapped.  Conversely, every
+admissible wrapped target `p10s` arises from exactly one such pair `(p,t)`.
+Indeed, target integrality fixes `chi=x mod 4`; the canonical local lift box
+fixes `0<=t<2^h`; the endpoint after `p10` is (PG); deterministic iteration
+then forces every suffix bit and (FC) is precisely first coefficient
+crossing.  Prefix safety and (PS) verify all prefixes before the forced
+suffix, while (WR) is the exact prefix-lift wrap criterion.
+
+This is a lossless symbolic reduction, not a proof of descent.  It replaces
+the binary suffix tree by one ordinary trajectory for each coefficient-safe
+prefix and integer rank.  Lean proves the affine endpoint identity and the
+equivalence between the canonical lift box and `0<=t<2^h`; deterministic
+suffix forcing is checked by exact reconstruction in the executable audit.
+
+`audit_prefix_rank_generator.py` contains an implementation independent of
+the parity-word DFS used as its reference.  A complete comparison through
+total length 24 gives
+
+```text
+dfs_wrapped_edges=165184
+generated_wrapped_edges=165184
+missing_edges=0
+extra_edges=0
+edge_sha256=a0f2cf8512cf6cb5aec8a2cd0ba089835c72eccc24d7b853b767c1b7637b0a74
+```
+
+The same generator then tests every `t in {0,...,5}` over every safe prefix
+through length 24, without suffix enumeration:
+
+```text
+safe_prefixes=654280
+eligible_prefixes=573161
+rank_trajectories=3438966
+coefficient_crossings=3438966
+wrapped_edges=2807883
+capped_trajectories=0
+descent_failures=0
+maximum_generated_length=395
+maximum_barrier_rank=1
+minimum_margin=1
+target_sha256=481092a89817d6a0e8908ba174c05add2046f0105b177b7ea9da6122e668c29d
+```
+
+The rank cap is strategically motivated but remains conditional: on any
+edge whose barrier rank satisfies the observed frontier bound `N<=6`, a
+nonpositive margin would force `t<N` and therefore `t<=5`.  The new search
+finds no such edge across the stated prefix range and reaches total length
+395, but there is no proof that `N<=6` persists at arbitrary depth.
+
 ### Exact finite audit and fixed-bit obstruction
 
 Two implementations independently enumerate coefficient-first-crossing
@@ -759,6 +841,8 @@ python3 audit_swap_cocycle.py --max-length 26
 python3 audit_wrap_defect.py --max-length 26
 python3 audit_phase_lag.py --max-length 16
 python3 audit_split_barrier.py --max-length 27
+python3 audit_prefix_rank_generator.py --complete-depth 24 \
+  --target-prefix-depth 24 --target-rank-cap 5 --suffix-cap 10000
 ruby audit_swap_cocycle.rb 20
 ruby audit_phase_lag.rb 16
 /opt/homebrew/bin/g++-16 -std=c++20 -O3 -Wall -Wextra -Werror \
