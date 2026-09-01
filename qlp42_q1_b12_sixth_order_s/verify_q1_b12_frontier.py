@@ -16,7 +16,7 @@ HASHES = {
     "prototype_numpy.py": "89badfca8170e0830336b4b7d1e823095966b473b7bf418935e9bae0c5b5af88",
     "prototype_seventh_s.py": "ef2ff2f6efcb269c41dfc81423124893ac154d543ab87089abcc25f63931689f",
     "prototype_eighth_s.py": "bf03d1ee7b96e9ff67c83735d5c59b3570a1337319d56a331705417f80b5e907",
-    "independent_cpp.cpp": "31eb9386649ba375464ae99f657c0aef55d50744dea25798c31e7b12e8d477e4",
+    "independent_cpp.cpp": "d8995d341e111c329191d3e9fef9e777c186c50ebb80db8d08e7d503283749cf",
 }
 B14_CPP_SHA256 = "a861b0275d259d2f687d5aa9cd28a2a167cc05222ea1b4439f933e43a2ef6cb1"
 EXPECTED_A_PHASES = [15_876, 7_056, 7_056, 4_536, 4_536, 3_024]
@@ -40,7 +40,7 @@ def compiler_command(source: Path, output: Path) -> list[str]:
     compiler = os.environ.get("CXX") or shutil.which("c++")
     assert compiler is not None, "a C++20 compiler is required"
     command = [compiler]
-    if platform.system() == "Darwin":
+    if platform.system() == "Darwin" and "g++" not in Path(compiler).name:
         sdk = subprocess.run(
             ["xcrun", "--show-sdk-path"], check=True, text=True, capture_output=True
         ).stdout.strip()

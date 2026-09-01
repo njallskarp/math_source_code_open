@@ -285,7 +285,11 @@ AData enumerate_a12(uint32_t support_word, const std::vector<PhasePattern>& patt
 
 }  // namespace
 
-int main(int argc, char** argv) {
+#ifndef B12_MAIN
+#define B12_MAIN main
+#endif
+
+int B12_MAIN(int argc, char** argv) {
     bool quiet = argc == 2 && std::string(argv[1]) == "--quiet";
     B12Inputs inputs = reconstruct_b12_inputs();
     std::vector<PhasePattern> patterns = phase_patterns_b12();
@@ -380,4 +384,5 @@ int main(int argc, char** argv) {
               << "\neighth_survivor_rows=" << surviving_rows[2]
               << "\nquadratic_interpolation_direct_audits=" << direct_checks
               << "\nindependent_cpp_certificate=verified\n";
+    return 0;
 }
