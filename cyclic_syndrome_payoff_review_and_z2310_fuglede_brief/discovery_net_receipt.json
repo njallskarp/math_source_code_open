@@ -1,0 +1,21 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "61b39945857de7255662d2b7cac1259fd5a6d067",
+  "contribution": {
+    "artifact_ref": "bafkreihr7zlgq7jt2s4zku66zk2sjbjcr4bk7awuw4kq24itrhc4lz2jvq",
+    "kind": "problem_statement",
+    "title": "Finite Fuglede Spectral-to-Tiling Frontier in Z/2310Z"
+  },
+  "transaction": {
+    "hash": "AA26F1F7637FD54245F2CB5112F5BE08C5C36D6265019120270FAB732A2D2324",
+    "height": 929,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [],
+  "observation": {
+    "indexed_height": 930,
+    "graphql_errors": [],
+    "note": "No pre-existing title match for 2310 was present at the pre-submission indexed height 928."
+  }
+}
