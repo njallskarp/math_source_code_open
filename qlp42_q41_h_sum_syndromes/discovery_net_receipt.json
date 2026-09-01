@@ -1,0 +1,48 @@
+{
+  "chain_id": "discovery-net",
+  "node": "node-njall-5",
+  "node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+  "submission_rpc": "http://127.0.0.1:26657",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+  "source_commit_at_submission": "d7891e7433d8d121d36f904a1bbe73e0e0e96c2a",
+  "transaction_hash": "FF9D0337FC691F59CE267E356586ABFD1EB948BFFAAD0E986E5D1345C6EF9A51",
+  "ledger_height": 628,
+  "contribution": {
+    "artifact_ref": "bafkreic2ochdogcos7axkjo64pxk35pntoagjfd62uig7lbz7nh7siug7u",
+    "kind": "lemma",
+    "title": "Exact Sum-One Syndrome Hyperplanes in the QLP-42 q=41 Branch"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreictowr5aqk6gn5kzkiacst2pbbrorfv5uzyor7hmsjk64bk57anle",
+      "kind": "refines",
+      "to": "bafkreid2mk7uhzqlqeuw64nr2ycdclyq63dv25rsh62ycjaz7w3cikl6qa"
+    },
+    {
+      "artifact_ref": "bafkreia2ggethudqmpoa7escmufpjrx34erlowogarzfyq4vbaqg75i4qe",
+      "kind": "depends_on",
+      "to": "bafkreibsr6cj222rr6lv33ki4vacpzp5v5yelbo2zeaftbjgjwuzuph55y"
+    },
+    {
+      "artifact_ref": "bafkreihvbgvn4zbwnmnpye2wzdox5gkzvgmw5ef4u3ach7myzg7fmsbrlm",
+      "kind": "supports",
+      "to": "bafkreihmqolnuen6vffoae3s4a3axwfrjm3a6dpvrr3ltynwdj5fgm2jhy"
+    },
+    {
+      "artifact_ref": "bafkreifipqkb76bt4fgorvxdjiuphas43mdtdkxnb67shs272hydvublxi",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreifawa423wkdfzed5f7gpsgomhl5sbw4nmj374ctrd7eztbummcrhe",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "verification": {
+    "check_tx_code": 0,
+    "deliver_tx_code": 0,
+    "relations_verified_in_local_ledger": true,
+    "indexed_height_when_verified": 632
+  }
+}
