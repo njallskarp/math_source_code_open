@@ -1,0 +1,12 @@
+input_fifth_s_a_rotation_orbits=16
+input_fifth_s_b_masks=11
+exact_b_s_phase_assignments_per_mask=804968
+direct_quadratic_interpolation_and_audit_checks=475904
+direct_full_witness_checks=0
+sixth_s_surviving_a_rotation_orbits=0
+sixth_s_surviving_labeled_pairs=0
+sixth_s_surviving_b_masks=0
+sixth_s_eliminated_a_rotation_orbits=16
+sixth_s_eliminated_labeled_pairs=336
+sixth_s_eliminated_b_masks=11
+certificate=verified
