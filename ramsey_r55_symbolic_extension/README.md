@@ -21,6 +21,20 @@ The same identities give exact incidence constraints for nonnegative
 rational LP certificates and a local graph-theoretic cloning criterion for
 one-vertex extendibility.  No computation is required to check the proof.
 
+## One-flip clone identities and near-\(K_5\) witnesses
+
+The proof note `one-flip-clone-defect-identities.md` reverses one coordinate
+of a clone assignment and classifies every violated clause.  The resulting
+identities expose selected one-edge-defect cliques and force a complementary
+near-\(K_5\) witness whenever all selected clique links through a vertex
+share a common neighbor.
+
+For a signed-\(K_4\) obstruction on 42 vertices, a vertex belonging to a
+unique selected red \(K_4\) forces three distinct selected blue
+one-red-edge defects; the complementary statement also holds.  Global
+double counting gives exact rational inequalities whose defect terms are
+the creation terms in monochromatic-\(K_5\) edge-flip derivatives.
+
 ## Reproduce
 
 ```bash

@@ -147,7 +147,7 @@ Evaluation only on the \(2n\) clone assignments gives
 \qquad(w\in V(G)).                                    \tag{9}
 \]
 
-Summing and using (4) yields the exact lower bounds
+Summing and using (4) yields the universal lower bounds
 
 \[
 \sum_R\alpha_R\geq\frac{n}{s-1},
@@ -241,9 +241,9 @@ symbolic constraint that the earlier unsigned lemma loses.
 - The theorem is symbolic and holds for every valid Ramsey
   \((s,t,n)\)-core; it does not assume completeness of any catalog.
 - Conditions (5)--(14) are necessary, not sufficient, for nonextension.
-- The rational-LP result concerns nonnegative clause-violation weights. It
-  does not claim that such a fractional cover alone proves CNF
-  unsatisfiability.
+- The full pointwise inequality (8) is sufficient for CNF unsatisfiability;
+  the clone-derived incidence relaxation (9)--(10) alone is only necessary
+  and does not prove unsatisfiability.
 - The \(R(5,5)\) specialization does not prove that all order-42 colorings are
   known, exclude an order-43 coloring, or determine \(R(5,5)\).
 - The only external theorem used is Tarsi's clause-count bound in (12); the
