@@ -3,6 +3,9 @@
   "complete_objective_eleven_frontier_rotation_orbit_count": 372974,
   "complete_objective_eleven_frontier_quotient_incidence": 1557119,
   "optimized_and_independent_global_frontiers_agree": true,
+  "preaddition_objective_eleven_frontier_rotation_orbit_count": 370581,
+  "preaddition_objective_eleven_quotient_incidence": 1552780,
+  "preaddition_objective_eleven_labeled_incidence": 66769540,
   "objective_ten_addition_source_rotation_orbit_count": 527,
   "addition_touched_objective_eleven_target_rotation_orbit_count": 3393,
   "addition_objective_eleven_quotient_incidence": 4339,
@@ -86,6 +89,11 @@
   "targets_incident_to_multiple_addition_components": 738,
   "addition_component_intersection_simple_edge_count": 29,
   "addition_component_intersection_connected_component_count": 9,
+  "addition_component_intersection_component_size_histogram": {
+    "1": 8,
+    "13": 1
+  },
+  "addition_component_intersection_cycle_rank": 17,
   "addition_component_pair_shared_target_count": {
     "0-1": 266,
     "0-2": 214,

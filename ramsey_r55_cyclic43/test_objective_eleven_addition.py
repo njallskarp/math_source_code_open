@@ -27,6 +27,17 @@ class ObjectiveElevenAdditionTests(unittest.TestCase):
         )
         self.assertTrue(data["optimized_and_independent_global_frontiers_agree"])
         self.assertEqual(
+            data["preaddition_objective_eleven_frontier_rotation_orbit_count"],
+            370_581,
+        )
+        self.assertEqual(
+            data["preaddition_objective_eleven_quotient_incidence"], 1_552_780
+        )
+        self.assertEqual(
+            data["preaddition_objective_eleven_labeled_incidence"],
+            43 * 1_552_780,
+        )
+        self.assertEqual(
             data["objective_ten_addition_source_rotation_orbit_count"], 527
         )
         self.assertEqual(
@@ -96,6 +107,11 @@ class ObjectiveElevenAdditionTests(unittest.TestCase):
             data["addition_component_intersection_connected_component_count"],
             9,
         )
+        self.assertEqual(
+            data["addition_component_intersection_component_size_histogram"],
+            {"1": 8, "13": 1},
+        )
+        self.assertEqual(data["addition_component_intersection_cycle_rank"], 17)
         profiles = data["addition_component_objective_eleven_profiles"]
         self.assertEqual(len(profiles), 21)
         self.assertEqual(sum(item["source_orbit_count"] for item in profiles), 527)

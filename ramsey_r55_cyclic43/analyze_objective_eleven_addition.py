@@ -250,6 +250,7 @@ def main() -> None:
             component_intersection[first].add(second)
             component_intersection[second].add(first)
             component_pair_target_counts[(first, second)] += 1
+    intersection_components = components(component_intersection)
 
     component_profiles = []
     for index, component in enumerate(component_list):
@@ -304,6 +305,14 @@ def main() -> None:
         ),
         "complete_objective_eleven_frontier_quotient_incidence": global_incidence,
         "optimized_and_independent_global_frontiers_agree": independent_global_agreement,
+        "preaddition_objective_eleven_frontier_rotation_orbit_count": len(
+            eleven_states
+        )
+        - len(exclusive_targets),
+        "preaddition_objective_eleven_quotient_incidence": global_incidence
+        - quotient_incidence,
+        "preaddition_objective_eleven_labeled_incidence": ORDER
+        * (global_incidence - quotient_incidence),
         "objective_ten_addition_source_rotation_orbit_count": len(added_states),
         "addition_touched_objective_eleven_target_rotation_orbit_count": len(
             touched_targets
@@ -345,6 +354,15 @@ def main() -> None:
         "addition_component_intersection_connected_component_count": connected_component_count(
             component_intersection
         ),
+        "addition_component_intersection_component_size_histogram": histogram(
+            len(component) for component in intersection_components
+        ),
+        "addition_component_intersection_cycle_rank": sum(
+            len(value) for value in component_intersection
+        )
+        // 2
+        - len(component_intersection)
+        + len(intersection_components),
         "addition_component_pair_shared_target_count": {
             f"{first}-{second}": count
             for (first, second), count in sorted(
