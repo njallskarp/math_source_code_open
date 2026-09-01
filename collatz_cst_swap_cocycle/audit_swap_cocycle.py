@@ -62,6 +62,56 @@ class Cylinder:
         return self.residue - self.endpoint
 
 
+def cylinder_from_bits(bits: int, length: int) -> Cylinder:
+    """Construct a cylinder from a chronological low-bit-first encoding."""
+    state = Cylinder.empty()
+    for position in range(length):
+        state = state.extend((bits >> position) & 1)
+    return state
+
+
+def verify_split_coordinate(
+    length: int,
+    bits: int,
+    position: int,
+    source: Cylinder,
+    target: Cylinder,
+) -> None:
+    """Check the exact prefix-lift and suffix-residue description of a swap."""
+    if ((bits >> position) & 3) != 2:
+        raise ValueError("the selected pair is not 01")
+    prefix = cylinder_from_bits(bits, position)
+    suffix_length = length - position - 2
+    suffix = cylinder_from_bits(bits >> (position + 2), suffix_length)
+    scale = 1 << position
+    local_modulus = 1 << (length - position)
+    if (source.residue - prefix.residue) % scale:
+        raise AssertionError("source does not lift the common prefix")
+    if (target.residue - prefix.residue) % scale:
+        raise AssertionError("target does not lift the common prefix")
+    source_lift = (source.residue - prefix.residue) // scale
+    target_lift = (target.residue - prefix.residue) // scale
+    prefix_power = 3 ** (prefix.odd_count + 1)
+    inverse = pow(prefix_power, -1, local_modulus)
+    complement = local_modulus - inverse
+
+    # After the common prefix and 01 pair, the input to the suffix is
+    # (prefix_power*t + 3*prefix.endpoint + 2)/4.
+    suffix_congruence = (
+        prefix_power * source_lift
+        + 3 * prefix.endpoint
+        + 2
+        - 4 * suffix.residue
+    )
+    if suffix_congruence % local_modulus:
+        raise AssertionError("suffix-coordinate congruence failed")
+    if target_lift != (source_lift + inverse) % local_modulus:
+        raise AssertionError("prefix-lift rotation failed")
+    full_wrap = source.residue + scale * inverse >= 1 << length
+    if full_wrap != (source_lift >= complement):
+        raise AssertionError("global and prefix-lift wrap tests disagree")
+
+
 def first_crossing_cylinders(max_length: int) -> dict[int, dict[int, Cylinder]]:
     """Enumerate words whose coefficient first becomes <1 at their last bit.
 

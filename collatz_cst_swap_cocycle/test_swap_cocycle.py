@@ -1,6 +1,11 @@
 import unittest
 
-from audit_swap_cocycle import Cylinder, audit, first_crossing_cylinders
+from audit_swap_cocycle import (
+    Cylinder,
+    audit,
+    first_crossing_cylinders,
+    verify_split_coordinate,
+)
 
 
 class SwapCocycleTests(unittest.TestCase):
@@ -32,6 +37,15 @@ class SwapCocycleTests(unittest.TestCase):
             report["sha256"],
             "54b943055b0867d15f3eef4a234c4d8ddff7aa3d75f5a13b2e0778c6a80602d5",
         )
+
+    def test_split_coordinates_exhaustively(self) -> None:
+        for length, states in first_crossing_cylinders(16).items():
+            for bits, source in states.items():
+                for position in range(length - 1):
+                    if ((bits >> position) & 3) != 2:
+                        continue
+                    target = states[bits ^ (3 << position)]
+                    verify_split_coordinate(length, bits, position, source, target)
 
 
 if __name__ == "__main__":

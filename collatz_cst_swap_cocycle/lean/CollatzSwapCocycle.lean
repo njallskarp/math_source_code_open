@@ -96,6 +96,31 @@ theorem wrappedGapChange (oldGap newGap J d : Int)
     newGap < oldGap := by
   omega
 
+/-- Writing a canonical full residue as `rho + F*t`, adding the swap
+displacement `F*u` wraps modulo `F*L` exactly when the local lift coordinate
+`t+u` wraps modulo `L`. -/
+theorem fullWrap_iff_liftWrap (rho F t u L : Int)
+    (hF : 0 < F) (hrho0 : 0 ≤ rho) (hrhoF : rho < F) :
+    F * L ≤ rho + F * t + F * u ↔ L ≤ t + u := by
+  constructor
+  · intro hfull
+    have hcases : L ≤ t + u ∨ t + u ≤ L - 1 := by omega
+    cases hcases with
+    | inl hlocal => exact hlocal
+    | inr htu =>
+        have hmul : F * (t + u) ≤ F * (L - 1) :=
+          Int.mul_le_mul_of_nonneg_left htu (by omega)
+        have hsmall : rho + F * (t + u) < F * L := by grind
+        have heq : rho + F * t + F * u = rho + F * (t + u) := by
+          grind
+        rw [heq] at hfull
+        omega
+  · intro hlocal
+    have hmul : F * L ≤ F * (t + u) :=
+      Int.mul_le_mul_of_nonneg_left hlocal (by omega)
+    have hsum : F * L ≤ rho + F * (t + u) := by omega
+    grind
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -105,5 +130,6 @@ theorem wrappedGapChange (oldGap newGap J d : Int)
 #print axioms shortMultiple_positive
 #print axioms unwrappedGapChange
 #print axioms wrappedGapChange
+#print axioms fullWrap_iff_liftWrap
 
 end CollatzSwapCocycle

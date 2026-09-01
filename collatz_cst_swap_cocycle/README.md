@@ -97,6 +97,39 @@ where `epsilon` is exactly the canonical-residue wrap indicator.  Thus each
 edge is a nonzero rotation modulo the odd circumference `d`; its lift to an
 integer margin rises at an unwrapped edge and falls at a wrapped edge.
 
+### Prefix/suffix coordinates for the wrap
+
+Let the common prefix cylinder have least residue `rho` and endpoint `eta`,
+and write
+
+```text
+r(w) = rho + 2^j t,       0 <= t < L.
+```
+
+If `r(s)` is the least residue of the suffix word `s`, then `t` is determined
+without replaying the full word by
+
+```text
+3^(a+1) t + 3 eta + 2 == 4 r(s) (mod L).
+```
+
+The exchange acts locally by
+
+```text
+t' = (t+u) mod L,
+```
+
+and its full-residue wrap condition is exactly
+
+```text
+t >= L-u.
+```
+
+Thus the obstruction can be queried from composable prefix/suffix cylinder
+data.  The Python unit test checks this split-coordinate formula on every
+admissible edge through length 16, and Lean proves the abstract equivalence
+between full-residue wrap and prefix-lift wrap.
+
 ### Proof
 
 The numerator formula follows by comparing the contribution of the exchanged
@@ -182,8 +215,9 @@ counts and on canonical record digest
 for 4,404 cylinders and 14,938 edges.
 
 Lean proves the scaled cocycle identities, jump complementarity, modular
-divisibility witness, short-multiple sign lemma, and strict gap-change
-consequences without `sorry`, `admit`, custom axioms, Mathlib, or
+divisibility witness, short-multiple sign lemma, strict gap-change
+consequences, and full-wrap/prefix-lift-wrap equivalence without `sorry`,
+`admit`, custom axioms, Mathlib, or
 `native_decide`.  `#print axioms` reports only Lean's standard logical axioms
 (`propext`, `Quot.sound`, and for the `grind` algebraic normalization proofs,
 `Classical.choice`).  The Collatz-specific decoding, enumeration, and the
