@@ -44,6 +44,7 @@ class Model:
         self.edge_id = np.full((ORDER, ORDER), -1, dtype=np.int16)
         edge_vertices: list[tuple[int, int]] = []
         seed_red = np.zeros(EDGE_COUNT, dtype=np.bool_)
+        edge_distance = np.zeros(EDGE_COUNT, dtype=np.uint8)
         next_edge = 0
         for left in range(ORDER):
             for right in range(left + 1, ORDER):
@@ -51,11 +52,13 @@ class Model:
                 self.edge_id[right, left] = next_edge
                 edge_vertices.append((left, right))
                 distance = min(right - left, ORDER - (right - left))
+                edge_distance[next_edge] = distance
                 seed_red[next_edge] = distance in SEED_DISTANCES
                 next_edge += 1
         if next_edge != EDGE_COUNT:
             raise AssertionError("edge count mismatch")
         self.seed_red = seed_red
+        self.edge_distance = edge_distance
 
         self.rotation = np.empty((ORDER, EDGE_COUNT), dtype=np.uint16)
         for offset in range(ORDER):
@@ -146,6 +149,21 @@ def toggled_edges(state: list[int], edge: int) -> list[int]:
     return sorted(neighbor)
 
 
+def support_family(model: Model, state: list[int]) -> str:
+    noncycle = Counter(
+        int(model.edge_distance[edge])
+        for edge in state
+        if model.edge_distance[edge] != 1
+    )
+    if not noncycle:
+        return "cycle_only"
+    if noncycle == Counter({17: 2, 21: 1}):
+        return "two_17_one_21"
+    if noncycle == Counter({16: 2, 5: 1}):
+        return "two_16_one_5"
+    return "other"
+
+
 def scan_frontier(
     path: Path, wanted: set[tuple[int, ...]]
 ) -> tuple[int, set[tuple[int, ...]], bool]:
@@ -218,6 +236,10 @@ def main() -> None:
         raise ValueError("duplicate closure representatives")
     if not seed_keys <= addition_keys:
         raise ValueError("first-expansion seeds are not contained in closure")
+    family_by_key = {
+        state_key(state): support_family(model, state) for state in additions
+    }
+    state_size_by_key = {state_key(state): len(state) for state in additions}
 
     canonical_errors = 0
     nonfree_errors = 0
@@ -336,6 +358,13 @@ def main() -> None:
         if source != target:
             undirected_adjacency[source].add(target)
             undirected_adjacency[target].add(source)
+    cross_family_edges = sum(
+        multiplicity
+        for (source, target), multiplicity in (
+            undirected_pair_multiplicity.items()
+        )
+        if family_by_key[source] != family_by_key[target]
+    )
 
     component_profiles = []
     unvisited = set(addition_keys)
@@ -358,6 +387,7 @@ def main() -> None:
             )
             if source in vertices and target in vertices
         )
+        families = {family_by_key[vertex] for vertex in vertices}
         component_profiles.append(
             {
                 "vertices": len(vertices),
@@ -365,6 +395,11 @@ def main() -> None:
                 "cycle_rank": edges - len(vertices) + 1,
                 "seed_vertices": len(vertices & seed_keys),
                 "final_shell_vertices": len(vertices - seed_keys),
+                "support_family": (
+                    next(iter(families))
+                    if len(families) == 1
+                    else "mixed"
+                ),
             }
         )
     component_profiles.sort(
@@ -373,6 +408,7 @@ def main() -> None:
             profile["edges"],
             profile["final_shell_vertices"],
             profile["seed_vertices"],
+            profile["support_family"],
         ),
         reverse=True,
     )
@@ -386,6 +422,31 @@ def main() -> None:
         if source_frontier_degrees.get(source, 0) == 0
     }
     final_shell_equals_zero_frontier = final_shell_keys == zero_frontier_keys
+    family_summaries = {}
+    for family in sorted(set(family_by_key.values())):
+        vertices = {
+            vertex
+            for vertex in addition_keys
+            if family_by_key[vertex] == family
+        }
+        family_profiles = [
+            profile
+            for profile in component_profiles
+            if profile["support_family"] == family
+        ]
+        family_summaries[family] = {
+            "vertices": len(vertices),
+            "seed_vertices": len(vertices & seed_keys),
+            "final_shell_vertices": len(vertices - seed_keys),
+            "components": len(family_profiles),
+            "edges": sum(profile["edges"] for profile in family_profiles),
+            "cycle_rank": sum(
+                profile["cycle_rank"] for profile in family_profiles
+            ),
+            "state_size_histogram": histogram(
+                Counter(state_size_by_key[vertex] for vertex in vertices)
+            ),
+        }
 
     reached = set(seed_keys)
     queue = deque(seed_keys)
@@ -416,6 +477,11 @@ def main() -> None:
         and undirected_edges_with_multiplicity
         == component["undirected_inside_addition_quotient_edges"]
         and asymmetric_pair_errors == 0
+        and cross_family_edges == 0
+        and family_summaries["cycle_only"]["vertices"] == 190
+        and family_summaries["two_17_one_21"]["vertices"] == 10
+        and family_summaries["two_16_one_5"]["vertices"] == 38
+        and "other" not in family_summaries
         and expected_above_twelve
         == component["directed_outside_above_twelve_from_addition"]
         and histogram(minimum_neighbors)
@@ -462,6 +528,8 @@ def main() -> None:
             for profile in component_profiles
         ),
         "addition_component_profiles": component_profiles,
+        "support_family_summaries": family_summaries,
+        "cross_support_family_edges": cross_family_edges,
         "final_shell_equals_zero_frontier_sources": (
             final_shell_equals_zero_frontier
         ),

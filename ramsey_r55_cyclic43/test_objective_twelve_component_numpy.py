@@ -93,7 +93,51 @@ class ObjectiveTwelveComponentNumPyTest(unittest.TestCase):
                 "cycle_rank": 23,
                 "seed_vertices": 36,
                 "final_shell_vertices": 0,
+                "support_family": "two_16_one_5",
             },
+        )
+
+    def test_three_exact_support_families(self) -> None:
+        data = self.data
+        families = data["support_family_summaries"]
+        self.assertEqual(data["cross_support_family_edges"], 0)
+        self.assertEqual(set(families), {
+            "cycle_only",
+            "two_16_one_5",
+            "two_17_one_21",
+        })
+        self.assertEqual(
+            (
+                families["cycle_only"]["vertices"],
+                families["cycle_only"]["seed_vertices"],
+                families["cycle_only"]["final_shell_vertices"],
+                families["cycle_only"]["components"],
+                families["cycle_only"]["edges"],
+                families["cycle_only"]["cycle_rank"],
+            ),
+            (190, 183, 7, 56, 166, 32),
+        )
+        self.assertEqual(
+            (
+                families["two_16_one_5"]["vertices"],
+                families["two_16_one_5"]["seed_vertices"],
+                families["two_16_one_5"]["final_shell_vertices"],
+                families["two_16_one_5"]["components"],
+                families["two_16_one_5"]["edges"],
+                families["two_16_one_5"]["cycle_rank"],
+            ),
+            (38, 38, 0, 3, 58, 23),
+        )
+        self.assertEqual(
+            (
+                families["two_17_one_21"]["vertices"],
+                families["two_17_one_21"]["seed_vertices"],
+                families["two_17_one_21"]["final_shell_vertices"],
+                families["two_17_one_21"]["components"],
+                families["two_17_one_21"]["edges"],
+                families["two_17_one_21"]["cycle_rank"],
+            ),
+            (10, 8, 2, 2, 8, 0),
         )
 
     def test_sparse_frontier_interface(self) -> None:
