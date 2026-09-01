@@ -1,0 +1,60 @@
+{
+  "order": 43,
+  "edge_count": 903,
+  "direct_five_set_recount_target_count": 2823,
+  "distinct_objective_eleven_bridge_rotation_orbit_count": 8696,
+  "bridge_in_first_objective_eleven_frontier_rotation_orbit_count": 8696,
+  "bridge_outside_first_objective_eleven_frontier_rotation_orbit_count": 0,
+  "objective_twelve_to_eleven_quotient_incidence": 11243,
+  "distinct_objective_twelve_eleven_pairs": 11243,
+  "objective_twelve_eleven_parallel_edge_excess": 0,
+  "target_distinct_bridge_degree_histogram": {
+    "1": 160,
+    "2": 62,
+    "3": 446,
+    "4": 1160,
+    "5": 989,
+    "6": 6
+  },
+  "target_first_frontier_bridge_degree_histogram": {
+    "1": 160,
+    "2": 62,
+    "3": 446,
+    "4": 1160,
+    "5": 989,
+    "6": 6
+  },
+  "target_outside_first_frontier_bridge_degree_histogram": {
+    "0": 2823
+  },
+  "bridge_distinct_target_degree_histogram": {
+    "1": 6149,
+    "2": 2547
+  },
+  "first_frontier_bridge_minimum_p10_source_objective_histogram": {
+    "6": 120,
+    "7": 1600,
+    "8": 6027,
+    "9": 941,
+    "10": 8
+  },
+  "first_frontier_bridge_p10_incidence_degree_histogram": {
+    "2": 134,
+    "3": 52,
+    "4": 216,
+    "5": 2394,
+    "6": 4908,
+    "7": 906,
+    "8": 72,
+    "9": 14
+  },
+  "bridge_bipartite_component_count": 985,
+  "bridge_bipartite_cycle_rank": 709,
+  "target_objective_errors": 0,
+  "missing_claimed_bridge_states": 0,
+  "target_aligned_array_errors": 0,
+  "bridge_aligned_array_errors": 0,
+  "direct_bridge_array_agrees_entry_for_entry": true,
+  "all_direct_checks_pass": true,
+  "method": "independent direct recount of all 962598 five-vertex sets at every objective-twelve target, followed by exact cyclic canonicalization, bridge reconstruction, and first-frontier set intersection"
+}
