@@ -1,0 +1,14 @@
+even_axis_words=1048576
+even_axis_rotation_orbits=49940
+rank_strata=8
+word_syndrome_pairs=463228168
+orbit_syndrome_pairs=22058510
+exact_sum_one_sign_words=124408576656
+all_supports_affine=verified
+codimension_one_for_positive_rank=verified
+rank_syndrome_table=verified
+certificate=verified
+direct_subset_axis_words=256
+rank_coverage=0,1,3,4,6,7,9,10
+direct_affine_supports=verified
+independent_sample_check=verified
