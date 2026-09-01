@@ -1,0 +1,8 @@
+{
+  "arb_certificate": true,
+  "precision_bits": 512,
+  "lower_endpoint_margin": "[2.65348111816085203254112e-18 +/- 1.65e-42]",
+  "upper_endpoint_margin": "[8.13321457603969330697661e-18 +/- 3.90e-42]",
+  "simplex_volume_fraction": "[5.56449877889872276104165e-26 +/- 6.72e-51]",
+  "squared_l2_radius": "[3.24903427489275893457850e-5 +/- 8.86e-31]"
+}

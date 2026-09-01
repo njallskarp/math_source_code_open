@@ -54,6 +54,79 @@ stationary point over the whole ordered-angle domain, the global maximizer
 for this code, the best code, or the unrestricted longest small
 hexadecagon.
 
+## Boundary-exclusion theorem
+
+The second certificate supplies a global reduction before any interval
+subdivision.  Let `delta_1,...,delta_16 >= 0`, with sum `pi`, be the angle
+gaps of any code-restricted zonogon NLP, and put
+
+```text
+p(delta) = 2 sum_j sin(delta_j/2),
+p0 = 3.1365477164866073860859670319412282272981367658092326927892182035777457554738176289058573625428211593.
+```
+
+The local Arb certificate proves that the fixed-code candidate has perimeter
+strictly greater than `p0`.  The following code-independent implications are
+then certified for every `delta` with `p(delta) >= p0`:
+
+```text
+0.1908839833334 < delta_j < 0.2017683188778       for every j,
+sum_j (delta_j-pi/16)^2 < 0.000032491.
+```
+
+Consequently, every point that can match the candidate lies in an open
+capped simplex whose 15-dimensional volume is less than
+`5.565e-26` times that of the original gap simplex.
+
+The proof is short.  If one gap is fixed at `x`, Jensen's inequality applied
+to the other 15 gaps gives
+
+```text
+p(delta) <= B(x) = 2 sin(x/2) + 30 sin((pi-x)/30).
+```
+
+Direct differentiation shows that `B` is strictly increasing before
+`pi/16`, strictly decreasing afterwards, and strictly concave.  The two
+rational cut points above satisfy `B(x)<p0`, so monotonicity excludes both
+outer intervals.  On the resulting band, `h(x)=2 sin(x/2)` has
+`h''(x) <= -sin(0.1908839833334/2)/2`; strong concavity and cancellation of
+the linear terms at `pi/16` give the stated squared-distance bound.  Finally,
+inclusion-exclusion for the capped simplex gives the volume ratio
+
+```text
+pi^(-15) sum_{k=0}^8 (-1)^k binom(16,k)
+  (pi - 16 alpha - k(beta-alpha))^15.
+```
+
+This theorem applies to the angle-gap model independently of the chosen
+code.  It does not bridge the unproved structural reduction from arbitrary
+small hexadecagons to the full-diameter zonogon NLP.
+
+### Relationship to the August 2026 proof candidate
+
+A post-selection novelty sweep found Guo and Luo's very recent public
+computer-assisted proof candidate for the `n=16,32,64` cases.  Its status is
+explicitly non-peer-reviewed and its review request identifies near-regular
+localization as a high-priority analytic bridge for independent checking.
+Lemma 7.1 of its `n=16` audit uses the same one-gap Jensen mechanism with the
+coarser threshold `L0=3.1365475`, band `(0.189,0.204)`, and Euclidean radius
+`0.0065`.
+
+Accordingly, the boundary theorem here should be read as an independent
+machine-checked strengthening and audit of that bridge, not as an independent
+discovery of the Jensen mechanism and not as validation of the proof
+candidate's remaining geometric reductions.  It replaces the coarse
+constants by the candidate-level threshold, the band
+`(0.1908839833334,0.2017683188778)`, Euclidean radius below
+`sqrt(0.000032491) < 0.005701`, and a certified simplex-volume reduction.
+The source inspected was commit
+`a45ff036f9dcd5b297fb4f77a3dea347b8debaac` of the
+[proof-candidate repository](https://github.com/aster2024/reinhardt-powers-of-two-proof-candidates),
+especially its
+[`n=16` audit](https://github.com/aster2024/reinhardt-powers-of-two-proof-candidates/blob/main/cases/n16/reinhardt_n16_proof_audit.md)
+and
+[`review request`](https://github.com/aster2024/reinhardt-powers-of-two-proof-candidates/blob/main/docs/REVIEW_REQUEST.md).
+
 ## Reproduction
 
 Python 3.12 was used for the recorded run.
@@ -63,7 +136,11 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python reconstruct_candidate.py
 .venv/bin/python verify_local_certificate.py
+.venv/bin/python verify_boundary_identities.py
+.venv/bin/python verify_boundary_band_symbolic.py
+.venv/bin/python verify_boundary_band_arb.py
 .venv/bin/python -m unittest -v test_local_certificate.py
+.venv/bin/python -m unittest -v test_boundary_band.py
 shasum -a 256 -c SHA256SUMS
 ```
 
@@ -73,6 +150,15 @@ the published perimeter.  `verify_local_certificate.py` reimplements the
 system with Arb balls, uses a fixed exact-dyadic approximate inverse in the
 Krawczyk operator, and performs the interval inertia check.  The verifier
 does not import the reconstruction formulas.
+
+The boundary theorem has two independent numerical checkers.  The first is
+dependency-free: it uses exact `Fraction` arithmetic, derives a rational
+interval for `pi` from Machin's formula, and bounds every sine by alternating
+Taylor partial sums.  The second evaluates the same obligations with
+512-bit Arb balls.  `verify_boundary_identities.py` separately checks the
+derivative and concavity identities exactly in SymPy.  The analytic Jensen,
+strong-concavity, and capped-simplex arguments remain the human-readable
+interpretation layer.
 
 ## Formula audit
 
@@ -90,6 +176,10 @@ the two implementations use different arithmetic libraries.
   small polygons of maximum perimeter*, Mathematical Programming (2025),
   [journal article](https://doi.org/10.1007/s10107-025-02244-x),
   [author preprint and source](https://arxiv.org/abs/2404.01841).
+
+The journal also published a
+[production correction](https://doi.org/10.1007/s10107-025-02257-6), which
+does not concern the objective/Hessian formulas audited here.
 
 The quarter code is Table 4 of the paper; the fixed-code NLP and the authors'
 statement that uniqueness was not proved appear in Sections 4--5.

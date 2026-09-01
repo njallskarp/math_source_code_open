@@ -187,6 +187,8 @@ def verify() -> dict[str, object]:
         raise AssertionError("high-precision center perimeter is outside the enclosure")
     if not data["center_perimeter"].startswith(data["published_perimeter"]):
         raise AssertionError("high-precision value does not extend the published digits")
+    if not perimeter > arb(data["published_perimeter"]):
+        raise AssertionError("certified perimeter does not exceed the boundary threshold")
 
     krawczyk_ratios = [
         (krawczyk[i, 0] - center[i]).abs_upper() / radius
@@ -203,6 +205,7 @@ def verify() -> dict[str, object]:
         "ldl_pivot_signs": "".join(signs_of_pivots),
         "angle_gaps_strictly_positive": True,
         "minimum_angle_gap": min_gap.str(30),
+        "perimeter_strictly_exceeds_threshold": True,
         "perimeter_enclosure": perimeter.str(125),
     }
 

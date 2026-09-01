@@ -17,6 +17,7 @@ class LocalCertificateTests(unittest.TestCase):
         self.assertTrue(result["krawczyk_strict_inclusion"])
         self.assertEqual(result["ldl_pivot_signs"], "+" * 15 + "--")
         self.assertTrue(result["angle_gaps_strictly_positive"])
+        self.assertTrue(result["perimeter_strictly_exceeds_threshold"])
 
 
 if __name__ == "__main__":

@@ -1,0 +1,6 @@
+{
+  "exact_symbolic_identities": true,
+  "coefficient_domain": "QQ(pi) with analytic sin/cos",
+  "envelope_stationary_point": "pi/16",
+  "envelope_strict_concavity_on_open_simplex": true
+}

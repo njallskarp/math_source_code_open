@@ -1,0 +1,11 @@
+{
+  "n": 16,
+  "perimeter_threshold": "3.1365477164866073860859670319412282272981367658092326927892182035777457554738176289058573625428211593",
+  "gap_lower": "0.1908839833334",
+  "gap_upper": "0.2017683188778",
+  "squared_l2_radius_upper": "0.000032491",
+  "simplex_volume_fraction_upper": "5.565e-26",
+  "machin_arctan_pairs": 24,
+  "sine_series_pairs": 20,
+  "arb_precision_bits": 512
+}

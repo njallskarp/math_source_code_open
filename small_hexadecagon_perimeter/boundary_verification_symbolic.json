@@ -1,0 +1,8 @@
+{
+  "rational_certificate": true,
+  "pi_interval_width_upper": "1.02436412140E-70",
+  "lower_endpoint_margin_lower": "2.65348111816085203E-18",
+  "upper_endpoint_margin_lower": "8.13321457603969331E-18",
+  "simplex_volume_fraction_upper": "5.56449877889872276E-26",
+  "squared_l2_radius_upper": "0.0000324903427489275893"
+}
