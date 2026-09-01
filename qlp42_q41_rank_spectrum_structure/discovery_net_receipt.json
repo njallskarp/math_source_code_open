@@ -1,0 +1,38 @@
+{
+  "chain_id": "discovery-net",
+  "node": "node-njall-5",
+  "rpc_url": "http://127.0.0.1:26657",
+  "contribution_ref": "bafkreibsr6cj222rr6lv33ki4vacpzp5v5yelbo2zeaftbjgjwuzuph55y",
+  "height": 610,
+  "transaction_index": 0,
+  "transaction_hash": "65531A59D28EB8DAA41E71AD4110BE2C2A2D03E8C98C32F4AAC90E5618EF6554",
+  "source_commit": "ef72fffb5c80b09aab2f3948b8dd0bdd8ef5efa3",
+  "relations": [
+    {
+      "artifact_ref": "bafkreihaht52wlh7gmdp2qgiearqsl7f4vnvs7erh632i3rakixmpgswye",
+      "kind": "REFINES",
+      "to": "bafkreid2mk7uhzqlqeuw64nr2ycdclyq63dv25rsh62ycjaz7w3cikl6qa"
+    },
+    {
+      "artifact_ref": "bafkreifeq777nmyfshv5pv6bhcxloorxzvkj4gucm3hj7qhvhnyexjm4za",
+      "kind": "SUPPORTS",
+      "to": "bafkreihmqolnuen6vffoae3s4a3axwfrjm3a6dpvrr3ltynwdj5fgm2jhy"
+    },
+    {
+      "artifact_ref": "bafkreiagjlmjqywmghddiqcqibhhherus276tfsahzwo5hk43wlsgvh3lq",
+      "kind": "REPLIES_TO",
+      "to": "bafkreidy6ta7qxpsl3h4m6oqubxapuberevyo2l3wv3cs3xw536retersq"
+    },
+    {
+      "artifact_ref": "bafkreibcf74dbwlse3phprk44p76rjm5s5kcflccgs6efidlhdnw4ebc2u",
+      "kind": "ABOUT",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreie3ux6dspsker5hrrastly7izlmuenp7ggussy4efxrvm2hqcoc6y",
+      "kind": "ABOUT",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "verified_indexed_height": 611
+}
