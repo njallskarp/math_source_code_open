@@ -31,12 +31,20 @@ The Lean development checks:
 
 - `three_positive_parts_sq_identity`;
 - `threeSegmentSupport_sq_add_reflection_sq`;
+- `inner_le_positivePart_of_mem_segment`;
+- `exists_mem_segment_inner_eq_positivePart`;
+- `inner_le_threeSegmentSupport_of_mem`;
+- `exists_mem_threeSegmentZonotope_inner_eq_support`;
+- `setSupportFunction_threeSegmentZonotope`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
 - `normalized_area_formula_lt_bound`.
 
-The actual planar area calculation remains in the human proof; this is
+In particular, the support theorem is set-level: for the actual Minkowski
+sum `[0,u]+[0,v]+[0,w]`, the subtype-indexed supremum of `inner x ξ` is the
+sum of the three positive generator pairings.  The planar normal form, area
+calculation, and sector integrations remain in the human proof; this is
 reported explicitly rather than hidden behind the checked final algebra.
 
 Pinned environment:

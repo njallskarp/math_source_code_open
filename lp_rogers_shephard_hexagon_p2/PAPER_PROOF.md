@@ -156,8 +156,9 @@ hexagon degenerates to a parallelogram.
 
 ## Trust boundary
 
-The geometric proof above is presently a human proof.  Lean checks the
-three-generator squared-support identity, the angle bounds, the algebraic
-deficit identity, and strict positivity of the final expression.  Lean does
-not yet check the normal-form theorem, the support-function area formula,
-or the three sector integrations.
+The geometric proof above is presently a human proof.  Lean checks that the
+actual set `[0,u]+[0,v]+[0,w]` has support equal to the sum of the positive
+generator pairings, the resulting three-generator squared-support identity,
+the angle bounds, the algebraic deficit identity, and strict positivity of
+the final expression.  Lean does not yet check the normal-form theorem, the
+support-function area formula, or the three sector integrations.
