@@ -1,0 +1,83 @@
+{
+  "order": 43,
+  "exceptional_objective_nine_source_orbit_count": 65,
+  "all_sources_are_canonical_free_objective_nine": true,
+  "all_sources_have_zero_objective_ten_neighbors": true,
+  "all_sources_have_minimum_external_objective_eleven": true,
+  "objective_eleven_shadow_target_orbit_count": 427,
+  "objective_eleven_shadow_target_vertex_count": 18361,
+  "all_targets_are_canonical_free_objective_eleven": true,
+  "quotient_shadow_incidence_count": 528,
+  "labeled_shadow_incidence_count": 22704,
+  "simple_shadow_quotient_edge_count": 528,
+  "parallel_shadow_incidence_excess": 0,
+  "source_objective_eleven_incidence_degree_histogram": {
+    "6": 6,
+    "7": 20,
+    "8": 16,
+    "9": 20,
+    "14": 1,
+    "15": 2
+  },
+  "source_distinct_target_orbit_degree_histogram": {
+    "6": 6,
+    "7": 20,
+    "8": 16,
+    "9": 20,
+    "14": 1,
+    "15": 2
+  },
+  "source_target_orbit_pair_multiplicity_histogram": {
+    "1": 528
+  },
+  "target_shadow_incidence_degree_histogram": {
+    "1": 336,
+    "2": 83,
+    "3": 6,
+    "4": 2
+  },
+  "target_distinct_shadow_source_degree_histogram": {
+    "1": 336,
+    "2": 83,
+    "3": 6,
+    "4": 2
+  },
+  "target_primary_objective_nine_incidence_histogram": {
+    "1": 174,
+    "2": 149,
+    "3": 88,
+    "4": 16
+  },
+  "target_distinct_primary_objective_nine_source_histogram": {
+    "1": 174,
+    "2": 149,
+    "3": 88,
+    "4": 16
+  },
+  "targets_with_nonshadow_primary_objective_nine_source": 196,
+  "total_primary_objective_nine_incidence_to_shadow_targets": 800,
+  "shadow_incidence_bipartite_component_count": 8,
+  "shadow_incidence_bipartite_cycle_rank": 44,
+  "shadow_incidence_bipartite_component_profiles": [
+    {"source_orbits":28,"target_orbits":156,"edges":212},
+    {"source_orbits":18,"target_orbits":108,"edges":136},
+    {"source_orbits":4,"target_orbits":32,"edges":36},
+    {"source_orbits":4,"target_orbits":32,"edges":36},
+    {"source_orbits":4,"target_orbits":28,"edges":32},
+    {"source_orbits":4,"target_orbits":28,"edges":32},
+    {"source_orbits":2,"target_orbits":29,"edges":30},
+    {"source_orbits":1,"target_orbits":14,"edges":14}
+  ],
+  "component_reflection_partner_indices": [0,1,3,2,5,4,6,7],
+  "reflection_fixed_component_count": 4,
+  "reflection_paired_component_pair_count": 2,
+  "reflection_fixed_source_orbit_count": 3,
+  "reflection_fixed_target_orbit_count": 7,
+  "dihedral_shadow_source_orbit_count": 34,
+  "dihedral_shadow_target_orbit_count": 217,
+  "sorted_target_state_fnv1a64": "2774385fead7734e",
+  "bidirectional_shadow_incidence_totals_agree": true,
+  "method": "independent direct five-set recount at all 65 shadow sources and every deduplicated objective-eleven target, with cyclic canonicalization and bidirectional incidence comparison",
+  "scope_note": "Exact first objective-eleven neighborhood of the 65 certified level-ten-shadow source orbits only; not the complete objective-eleven frontier of the threshold-ten component.",
+  "openmp_max_threads": 6
+}
