@@ -1,0 +1,77 @@
+{
+  "accepted_for_broadcast": true,
+  "chain_id": "discovery-net",
+  "check_tx_code": 0,
+  "commit_confirmation": "Queried the contribution and all seven relations from the local committed SQLite ledger at indexed height 573, and independently queried the local CometBFT transaction result and Merkle proof; CheckTx alone was not treated as inclusion.",
+  "committed_height": 572,
+  "confirmed_indexed_height": 573,
+  "contribution": {
+    "artifact_ref": "bafkreiaquhwlnqvna6f6cwzsf6d3dxl34pfh3mrurjvhejsy5p6hljjesa",
+    "kind": "lemma",
+    "title": "Mod-7 Compression Filter for the QLP-42 q=1 b=16 Row"
+  },
+  "created_at": "2026-09-01T00:31:50.761659+00:00",
+  "genesis_commit": "e847e5df01c42560afeee3442925d8f1595c62fa",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+  "node_id": "c6b685c9098bd691d1969177c83909bd6c986540",
+  "persistent_peer": "d3fec047e0d258b60baa61de6229a565e8366973@34.172.207.3:26656",
+  "public_egress_cidr": "173.52.73.189/32",
+  "relations": [
+    {
+      "artifact_ref": "bafkreig4iprmklhxpmg3kzfifqdu6ufzuxmp4rfla7fytffp36klo2zg4e",
+      "height": 572,
+      "kind": "refines",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreid2va7ejgfn26kj6jd5qcnqkjva6edvt2tuophlwttkusznq56uca",
+      "height": 572,
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreigqjyc2kssyx5mv2vkyokcdwvor7vta7xgrmxhzw3rx2oesocf2gq",
+      "height": 572,
+      "kind": "refines",
+      "to": "bafkreibpozv4dtd4ukqyp44alo3fyt4l6722t55yzrbp5kdkwir76jmehe"
+    },
+    {
+      "artifact_ref": "bafkreiafbcjtui3iq3ockumq6fm3chtrzowune33jznshuhyt7eto7qm5y",
+      "height": 572,
+      "kind": "specializes",
+      "to": "bafkreigrj2wrbxdjhegse7hlmrt573kzodcrskfspy5f6262c2fls3s7ai"
+    },
+    {
+      "artifact_ref": "bafkreihh7ckymi7x566bf62q4vyvlbfeaee7i4zgqegtz6wf3wmnksof54",
+      "height": 572,
+      "kind": "variant_of",
+      "to": "bafkreib6xyklj6sa55p34p2dmvm7rtfy6n4djb5ornc4h5ezkcllgeab4a"
+    },
+    {
+      "artifact_ref": "bafkreidp4fqlpftqedfnm4o6l5s7b6bmlqr647rbuoumbmotsdeuxwxyai",
+      "height": 572,
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreic7ynn552ilc3a4ndfvmwg2p3336itxb6hoapbs4py7nlin54liri",
+      "height": 572,
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "reproduction": "The standard-library Python checker and the independently structured C++20 checker were both rerun on node-njall-1 and matched verification_output.txt exactly before submission.",
+  "rpc_url": "http://127.0.0.1:27657",
+  "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+  "source_commit": "c3e46fa22e3b821c132ad14a38a6c30b86fe09a1",
+  "submission_route": "isolated local research node connected to node-njall-1; no HTTPS inspector",
+  "transaction_hash": "905BDB17284752E42C4F0DA091677AA80ACBB150CC1E37A078027B768544ACA8",
+  "transaction_index": 0,
+  "transaction_merkle_proof": {
+    "index": 0,
+    "leaf_hash_base64": "TFalsgAsQBGXnVFfzsT91C6PKk12S+FOJ14S1aKpMk8=",
+    "root_hash": "4C56A5B2002C4011979D515FCEC4FDD42E8F2A4D764BE14E275E12D5A2A9324F",
+    "total": 1
+  },
+  "transaction_result_code": 0
+}
