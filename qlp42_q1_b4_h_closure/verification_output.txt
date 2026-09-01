@@ -1,0 +1,17 @@
+source_hashes=verified
+reflected_b_masks=10
+labeled_type_pairs=420
+input_rotation_orbit_pairs=20
+distinct_a_supports=16
+h_b_positive_center_assignments=1317824
+h_b_negative_center_assignments=0
+h_a_zero_sum_assignments_per_support=36
+sixth_frontier_sha256=f01c86ad920564b299e4423f4268e059615156e7bdb544e79ed39f7865e77a79
+sixth_order_h_pairs=2
+seventh_order_h_pairs=0
+q1_b4_shell=excluded
+scalar_cpp_seconds=4.74
+definition_numpy_seconds=90.94
+dual_implementation_certificate=verified
+sanitizers=address,undefined:passed
+sanitized_scalar_seconds=21.92
