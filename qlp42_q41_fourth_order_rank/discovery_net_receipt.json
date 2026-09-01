@@ -6,7 +6,7 @@
   "height": 544,
   "transaction_index": 0,
   "transaction_hash": "4FBAC5CCD144C050051CF78AA7B3A2FF2D9DA0AA5D984298069976DE40BD89E5",
-  "source_commit": "9bd0ce8fe0c420c2dfe1ff1bce351f4e015e71e6",
+  "source_commit": "9bd0ce88dda27de07a56f6e4226954552ebe3134",
   "relations": [
     {
       "artifact_ref": "bafkreiatwwa623zq6wrpahq4d7p6nv4knawp7eozzivlsw77rzepkbkdoe",
