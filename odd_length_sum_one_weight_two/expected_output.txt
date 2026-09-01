@@ -1,0 +1,15 @@
+odd-length weight-two sum-one fiber certificate
+n= 3 allowed_syndromes=1 min_fiber=2 max_fiber=2 sign_words=2
+n= 5 allowed_syndromes=2 min_fiber=2 max_fiber=4 sign_words=6
+n= 7 allowed_syndromes=4 min_fiber=4 max_fiber=8 sign_words=20
+n= 9 allowed_syndromes=8 min_fiber=6 max_fiber=16 sign_words=70
+n=11 allowed_syndromes=16 min_fiber=12 max_fiber=32 sign_words=252
+n=13 allowed_syndromes=32 min_fiber=20 max_fiber=64 sign_words=924
+n=15 allowed_syndromes=64 min_fiber=40 max_fiber=128 sign_words=3432
+n=17 allowed_syndromes=128 min_fiber=70 max_fiber=256 sign_words=12870
+n=19 allowed_syndromes=256 min_fiber=140 max_fiber=512 sign_words=48620
+n=21 allowed_syndromes=512 min_fiber=252 max_fiber=1024 sign_words=184756
+unit_decimations_checked=94
+total_exact_sign_words_checked=250952
+fiber_record_sha256=79fcac50bed5e4455f1504de4782818870aad6f417cd8e6e8bf27e3623b8e717
+status=PASS
