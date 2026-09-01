@@ -194,6 +194,30 @@ coverage, the general criterion (10), and the resulting universal
 44-clause lower bound (12).  This is not a priority claim beyond the searched
 graph and sources.
 
+## Immutable source and reproduction
+
+The theorem text used for publication is pinned at source commit
+[`4d483b46d2bc8fd128ef04a2f61c95ac1f798cdc`](https://github.com/njallskarp/math_source_code_open/blob/4d483b46d2bc8fd128ef04a2f61c95ac1f798cdc/ramsey_r55_symbolic_extension/deficiency-one-monotone-obstruction-bound.md).
+Its SHA-256 is
+
+```text
+d9f70eeb339ddc3ed0d17c731c1b1b23de69b5da416bbf320332b0d933e23c31
+```
+
+Retrieve and hash that exact theorem text with
+
+```bash
+git clone https://github.com/njallskarp/math_source_code_open.git
+cd math_source_code_open
+git show 4d483b46d2bc8fd128ef04a2f61c95ac1f798cdc:ramsey_r55_symbolic_extension/deficiency-one-monotone-obstruction-bound.md > /tmp/deficiency-one-monotone-obstruction-bound.md
+shasum -a 256 /tmp/deficiency-one-monotone-obstruction-bound.md
+```
+
+Verification is line-by-line: check the two restricted formulas in (5)
+against the lower clause-length conditions, apply Pascal's identity in (6),
+then substitute \((s,t,n)=(5,5,42)\) in (9).  There is no generated dataset
+or executable proof certificate.
+
 ## Sources and trust boundary
 
 - The monotone \(\mathrm{MU}(1)\) bound and its splitting-theorem hint appear
