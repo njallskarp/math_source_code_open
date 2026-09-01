@@ -1,8 +1,9 @@
 # Audit note on the claimed coefficient-stopping induction
 
 Laurore, *On the Link Between Stopping Time and Non-Trivial Cycles in the
-Collatz Problem* (2025), Theorem 4.6, claims to propagate equality of ordinary
-and coefficient stopping times by strong induction. The proof assumes a
+Collatz Problem* (2025), DOI `10.4236/apm.2025.156018`, Theorem 4.7, claims to
+propagate equality of ordinary and coefficient stopping times by strong
+induction. The proof assumes a
 counterexample `s` with coefficient stopping time `k` and writes
 
 ```text
@@ -33,7 +34,7 @@ T^k(s') - s' >= (2^k-3^q)m >= 0.
 All proper-prefix coefficients are at least one by the definition of the
 coefficient stopping time, so `s'` has not descended earlier either. Thus the
 deduction available from the stated premises is `sigma(s')>k`, not
-`sigma(s')=k`. Theorem 4.6 therefore does not prove the coefficient
+`sigma(s')=k`. Theorem 4.7 therefore does not prove the coefficient
 stopping-time conjecture. This diagnoses a proof gap; it is not a
 counterexample to the conjecture itself.
 

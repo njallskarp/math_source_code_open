@@ -104,4 +104,4 @@ lean lean/CollatzCSTCylinder.lean
 - C. Fernández and S. Ibáñez, “Christoffel words as extremal structures in
   Collatz dynamics,” arXiv:2607.24844.
 - L. Laurore, “On the Link Between Stopping Time and Non-Trivial Cycles in the
-  Collatz Problem” (2025), DOI 10.4236/apm.2025.159046.
+  Collatz Problem” (2025), DOI 10.4236/apm.2025.156018.
