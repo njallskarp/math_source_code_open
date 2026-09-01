@@ -5,6 +5,22 @@ Ramsey\((5,5,42)\) coloring by one vertex.  The first result identifies the
 precise Sherali--Adams degree at which the signed \(K_4\) extension clauses
 become visible.
 
+## Clone-evaluation identities and bichromatic coverage
+
+`bichromatic-clone-identities.md` proves exact identities obtained by
+evaluating the signed extension polynomial on two clone assignments per core
+vertex.  Every unsatisfiable extension subsystem must cover all core vertices
+with its red clauses and with its blue clauses separately.  For an order-42
+\(R(5,5)\) core, an obstruction profile \((r,b)\) must satisfy
+
+\[
+r\geq 11,\qquad b\geq 11,\qquad r+b\geq 43.
+\]
+
+The same identities give exact incidence constraints for nonnegative
+rational LP certificates and a local graph-theoretic cloning criterion for
+one-vertex extendibility.  No computation is required to check the proof.
+
 ## Reproduce
 
 ```bash
