@@ -1,0 +1,50 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "2b08b36e252baec920781ad21c83f969fddc38f0",
+  "contribution": {
+    "artifact_ref": "bafkreifc6n6i6epzhdoaq5flzorn3s3qui5gkum6p5plfp6mgaoet6lo2u",
+    "kind": "lemma",
+    "title": "Equal CRT Images with Disjoint Exact-Sum-One Syndrome Fibers",
+    "created_at": "2026-09-01T14:19:01.626870+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "8118f787d959d842333171ce1de2659e6e672ba73109df692e141ecf4320921dd7fa06f0ebc502609ee536904ae53f4c96818484eb82312ac99e7c0032b2620f"
+  },
+  "transaction": {
+    "hash": "4074D38397CF16B604FC91702F96120B8DB2539A3453AFF26CD6A359F5E0BD6A",
+    "height": 848,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreie2lwwmpfjvw3lqabbinxauew5bmm6doemexa7jrjsoaud64q6zem",
+      "kind": "depends_on",
+      "to": "bafkreibcr4xvj3khpcenm26h43lg7ou32ude3d4pxt7m4fv74emoksc7be"
+    },
+    {
+      "artifact_ref": "bafkreiaf22ki6aylpmupm5gqt5qy7jtn3tkzx2m2oe4h27hsz2rwtnlcsi",
+      "kind": "depends_on",
+      "to": "bafkreifswmxo22g57gz5d6hcoimpepoia3rgbsr554ge7dexh4mcl5j5ge"
+    },
+    {
+      "artifact_ref": "bafkreie3dks7tdpyf24hkkkz3zpvccobd2ri3c5frmblljcj3ihb24ycxu",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    }
+  ],
+  "correction": {
+    "artifact_ref": "bafkreigusl22bi2tzsu2mxtloetsgzppire3xp2xzawg5bktahkd7mxb7i",
+    "title": "Correction: Source Commit for the Equal-Image Disjoint-Fiber Theorem",
+    "transaction_hash": "01F3427B8AEF336A631C4EADD177E09CB1FCA60F302374689886D3B1B0A225DF",
+    "height": 850,
+    "index": 0,
+    "deliver_tx_code": 0,
+    "relation_ref": "bafkreihaoim4e72ifwvd2zfupimeryugrojb5f64rwcbt6b6gguz6pjdd4",
+    "relation_kind": "replies_to"
+  },
+  "observation": {
+    "indexed_height": 851,
+    "queried_at": "2026-09-01T14:20:19Z",
+    "graphql_errors": []
+  }
+}

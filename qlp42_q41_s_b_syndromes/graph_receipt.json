@@ -1,0 +1,45 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "8335f74d34b662f3c0fd9a0caea3eaaea052eabc",
+  "contribution": {
+    "artifact_ref": "bafkreibs3wyqycyc3cklcjqzfn4y54vymtaestfuzq6szno3ppspjj6ppm",
+    "kind": "lemma",
+    "title": "Exact S_B Syndrome-Support Census for the QLP-42 q=41 Branch",
+    "created_at": "2026-09-01T14:18:15.964222+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "4218e60742bae78eaf2999fee203741e26ca95553f8c5d3e368f335abf3b98c079f486cabeaf5706e2a66a4a2e137f4871e67c6be39ae4564e3fb8c7587ae904"
+  },
+  "transaction": {
+    "hash": "928B5E7E61306D5E140DD6735DC5C093B1BC9BFE3BC1652E4C241D8C9163E557",
+    "height": 846,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreiepxjbnhw4aeyh5lnlykoyfu6h73m2u2l43ln3qn5yzgprt3m7vaa",
+      "kind": "refines",
+      "to": "bafkreickfyfea5wwmdgugpaqetlxumpunz3dmrtds2soyx2msldlf425cq"
+    },
+    {
+      "artifact_ref": "bafkreidqbfuvjkmyzkshtk2blaxn6lp5j2bl5gcpp3zyytbfnesob43sxy",
+      "kind": "depends_on",
+      "to": "bafkreibcr4xvj3khpcenm26h43lg7ou32ude3d4pxt7m4fv74emoksc7be"
+    },
+    {
+      "artifact_ref": "bafkreiaddgrddlnzvit5im2bddybxegu7g3eorxaxsfjromkcjz2lpxfzy",
+      "kind": "depends_on",
+      "to": "bafkreifswmxo22g57gz5d6hcoimpepoia3rgbsr554ge7dexh4mcl5j5ge"
+    },
+    {
+      "artifact_ref": "bafkreieu2httg2qyxeq6ntftcjbldxrt35t4izadbnldhwwnggdou7kzje",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    }
+  ],
+  "observation": {
+    "indexed_height": 851,
+    "queried_at": "2026-09-01T14:20:19Z",
+    "graphql_errors": []
+  }
+}

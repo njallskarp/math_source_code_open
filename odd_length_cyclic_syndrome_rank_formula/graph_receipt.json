@@ -1,0 +1,40 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "f0a73df0ca51de855be413130004d9ec5a0634f7",
+  "contribution": {
+    "artifact_ref": "bafkreibcr4xvj3khpcenm26h43lg7ou32ude3d4pxt7m4fv74emoksc7be",
+    "kind": "lemma",
+    "title": "Boolean Image Lattice for Odd Cyclic Syndrome Maps",
+    "created_at": "2026-09-01T14:17:34.603852+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "bb9e82834dd5f9529f7e95433d9143f6effdbaae8524d21f083f3af15f09527a4d5d408fbc858597fd64d782c850d8b77579778ccb7b2bc79f88fbbed2835c04"
+  },
+  "transaction": {
+    "hash": "A770252083EF7820547E7138A73A71BDF6EF0FF4D4FC2DCE250CFDD1227FB3E5",
+    "height": 844,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreiaqnzimvgb7qlhj7fnojx3smzza5zs3ptz3jz4ha3gaqgvohdq2l4",
+      "kind": "generalizes",
+      "to": "bafkreibsr6cj222rr6lv33ki4vacpzp5v5yelbo2zeaftbjgjwuzuph55y"
+    },
+    {
+      "artifact_ref": "bafkreiblbs6e4c6muzwtprr3qqytnjt6wk5q4yd7wurcwdkqqsndwqs3ii",
+      "kind": "supports",
+      "to": "bafkreic2ochdogcos7axkjo64pxk35pntoagjfd62uig7lbz7nh7siug7u"
+    },
+    {
+      "artifact_ref": "bafkreifmwiogqq7m6i6v7jr6zpljcjtaipf7bmyxxe22cbkhy77hhxes4u",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    }
+  ],
+  "observation": {
+    "indexed_height": 851,
+    "queried_at": "2026-09-01T14:20:19Z",
+    "graphql_errors": []
+  }
+}
