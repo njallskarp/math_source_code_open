@@ -3,6 +3,19 @@
   "all_representatives_have_claimed_objective": true,
   "all_representatives_are_canonical_and_free": true,
   "first_objective_nine_frontier_is_contained": true,
+  "all_new_rotation_orbits_reachable_from_first_frontier": true,
+  "independent_reachable_rotation_orbit_count": 42815,
+  "unreachable_rotation_orbit_count": 0,
+  "maximum_quotient_distance_from_first_frontier": 6,
+  "quotient_distance_from_first_frontier_histogram": {
+    "0": 42661,
+    "1": 34,
+    "2": 53,
+    "3": 20,
+    "4": 22,
+    "5": 16,
+    "6": 9
+  },
   "missing_objective_at_most_nine_neighbor_count": 0,
   "complete_threshold_nine_new_rotation_orbit_count": 42815,
   "new_rotation_orbit_count_by_objective": {
@@ -155,6 +168,6 @@
       "56": 946
     }
   },
-  "method": "parallel independent direct five-set recount with fresh per-representative deltas, first-frontier containment, and full threshold-nine membership checks",
+  "method": "parallel independent direct five-set recount with fresh per-representative deltas, full threshold-nine membership checks, and explicit quotient BFS from the first frontier",
   "openmp_max_threads": 10
 }

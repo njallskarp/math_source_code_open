@@ -10,6 +10,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <unordered_map>
 #include <unordered_set>
 #include <utility>
 #include <vector>
@@ -1409,6 +1410,7 @@ struct Verifier {
 
     struct ObjectiveNineComponentSummary {
         std::array<std::map<int, std::uint64_t>, 10> histograms;
+        std::vector<std::uint32_t> new_neighbor_indices;
         std::uint64_t verified_representatives = 0;
         std::uint64_t noncanonical_representatives = 0;
         std::uint64_t nonfree_representatives = 0;
@@ -1423,7 +1425,9 @@ struct Verifier {
         int expected_objective,
         const State& state,
         const std::array<std::unordered_set<State, StateHash>, 10>& primary_sets,
-        const std::array<std::unordered_set<State, StateHash>, 10>& new_sets
+        const std::array<
+            std::unordered_map<State, std::uint32_t, StateHash>, 10
+        >& new_indices
     ) const {
         ObjectiveNineComponentSummary result;
         result.verified_representatives = 1;
@@ -1476,9 +1480,11 @@ struct Verifier {
             State neighbor = state;
             neighbor.toggle(id);
             const State key = canonical(neighbor);
-            if (new_sets[target_objective].contains(key))
+            const auto new_neighbor = new_indices[target_objective].find(key);
+            if (new_neighbor != new_indices[target_objective].end()) {
                 ++result.new_internal_directed;
-            else if (primary_sets[target_objective].contains(key))
+                result.new_neighbor_indices.push_back(new_neighbor->second);
+            } else if (primary_sets[target_objective].contains(key))
                 ++result.new_to_primary_directed;
             else
                 ++result.missing_accepted_neighbors;
@@ -1544,6 +1550,17 @@ struct Verifier {
             new_sets[9].size() != 42781 || new_states.size() != 42815)
             throw std::runtime_error("new threshold-nine layer count mismatch");
 
+        std::array<
+            std::unordered_map<State, std::uint32_t, StateHash>, 10
+        > new_indices;
+        for (std::size_t index = 0; index < new_states.size(); ++index) {
+            const auto& [objective, state] = new_states[index];
+            if (!new_indices[objective]
+                     .emplace(state, static_cast<std::uint32_t>(index))
+                     .second)
+                throw std::runtime_error("duplicate indexed new representative");
+        }
+
         const std::vector<State> first_frontier = load_representatives(
             frontier_path, "objective_nine_rotation_representatives"
         );
@@ -1555,14 +1572,15 @@ struct Verifier {
 
         const int thread_count = omp_get_max_threads();
         std::vector<ObjectiveNineComponentSummary> thread_summaries(thread_count);
+        std::vector<std::vector<std::uint32_t>> new_adjacency(new_states.size());
         std::string error;
 #pragma omp parallel for schedule(dynamic, 1)
         for (std::size_t index = 0; index < new_states.size(); ++index) {
             try {
                 const auto& [objective, state] = new_states[index];
-                const ObjectiveNineComponentSummary local =
+                ObjectiveNineComponentSummary local =
                     verify_objective_nine_component_one(
-                        objective, state, primary_sets, new_sets
+                        objective, state, primary_sets, new_indices
                     );
                 ObjectiveNineComponentSummary& destination =
                     thread_summaries[omp_get_thread_num()];
@@ -1586,6 +1604,7 @@ struct Verifier {
                     (destination.escape_level < 0 ||
                      local.escape_level < destination.escape_level))
                     destination.escape_level = local.escape_level;
+                new_adjacency[index] = std::move(local.new_neighbor_indices);
             } catch (const std::exception& exception) {
 #pragma omp critical
                 {
@@ -1631,12 +1650,60 @@ struct Verifier {
             total.escape_level != 10)
             throw std::runtime_error("objective-nine component aggregate mismatch");
 
+        std::vector<int> frontier_distance(new_states.size(), -1);
+        std::vector<std::uint32_t> reachability_queue;
+        reachability_queue.reserve(new_states.size());
+        for (const State& state : first_frontier) {
+            const auto found = new_indices[9].find(state);
+            if (found == new_indices[9].end())
+                throw std::runtime_error("indexed first-frontier state missing");
+            if (frontier_distance[found->second] < 0) {
+                frontier_distance[found->second] = 0;
+                reachability_queue.push_back(found->second);
+            }
+        }
+        for (std::size_t position = 0; position < reachability_queue.size();
+             ++position) {
+            const std::uint32_t source = reachability_queue[position];
+            for (const std::uint32_t target : new_adjacency[source]) {
+                if (frontier_distance[target] >= 0) continue;
+                frontier_distance[target] = frontier_distance[source] + 1;
+                reachability_queue.push_back(target);
+            }
+        }
+        if (reachability_queue.size() != new_states.size())
+            throw std::runtime_error(
+                "new threshold-nine state is unreachable from first frontier"
+            );
+        std::map<int, std::uint64_t> reachability_distance_histogram;
+        for (const int distance : frontier_distance) {
+            if (distance < 0)
+                throw std::runtime_error("negative final frontier distance");
+            ++reachability_distance_histogram[distance];
+        }
+        const int maximum_frontier_distance =
+            reachability_distance_histogram.rbegin()->first;
+
         output << "{\n";
         output << "  \"independent_direct_recount_representative_count\": "
                << total.verified_representatives << ",\n";
         output << "  \"all_representatives_have_claimed_objective\": true,\n";
         output << "  \"all_representatives_are_canonical_and_free\": true,\n";
         output << "  \"first_objective_nine_frontier_is_contained\": true,\n";
+        output << "  \"all_new_rotation_orbits_reachable_from_first_frontier\": true,\n";
+        output << "  \"independent_reachable_rotation_orbit_count\": "
+               << reachability_queue.size() << ",\n";
+        output << "  \"unreachable_rotation_orbit_count\": 0,\n";
+        output << "  \"maximum_quotient_distance_from_first_frontier\": "
+               << maximum_frontier_distance << ",\n";
+        output << "  \"quotient_distance_from_first_frontier_histogram\": {";
+        bool distance_separator = false;
+        for (const auto& [distance, count] : reachability_distance_histogram) {
+            if (distance_separator) output << ',';
+            output << "\n    \"" << distance << "\": " << count;
+            distance_separator = true;
+        }
+        output << "\n  },\n";
         output << "  \"missing_objective_at_most_nine_neighbor_count\": 0,\n";
         output << "  \"complete_threshold_nine_new_rotation_orbit_count\": "
                << new_states.size() << ",\n";
@@ -1671,7 +1738,7 @@ struct Verifier {
             source_separator = true;
         }
         output << "\n  },\n";
-        output << "  \"method\": \"parallel independent direct five-set recount with fresh per-representative deltas, first-frontier containment, and full threshold-nine membership checks\",\n";
+        output << "  \"method\": \"parallel independent direct five-set recount with fresh per-representative deltas, full threshold-nine membership checks, and explicit quotient BFS from the first frontier\",\n";
         output << "  \"openmp_max_threads\": " << omp_get_max_threads()
                << "\n}\n";
     }

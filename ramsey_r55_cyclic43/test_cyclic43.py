@@ -1037,6 +1037,30 @@ class DirectVerifierTests(unittest.TestCase):
         self.assertTrue(independent["all_representatives_have_claimed_objective"])
         self.assertTrue(independent["all_representatives_are_canonical_and_free"])
         self.assertTrue(independent["first_objective_nine_frontier_is_contained"])
+        self.assertTrue(
+            independent[
+                "all_new_rotation_orbits_reachable_from_first_frontier"
+            ]
+        )
+        self.assertEqual(
+            independent["independent_reachable_rotation_orbit_count"], 42_815
+        )
+        self.assertEqual(independent["unreachable_rotation_orbit_count"], 0)
+        self.assertEqual(
+            independent["maximum_quotient_distance_from_first_frontier"], 6
+        )
+        self.assertEqual(
+            independent["quotient_distance_from_first_frontier_histogram"],
+            {
+                "0": 42_661,
+                "1": 34,
+                "2": 53,
+                "3": 20,
+                "4": 22,
+                "5": 16,
+                "6": 9,
+            },
+        )
         self.assertEqual(
             independent["missing_objective_at_most_nine_neighbor_count"], 0
         )

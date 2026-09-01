@@ -492,12 +492,33 @@ OMP_NUM_THREADS=10 ./verify_objective_six_component \
   > objective-nine-component-independent.json
 ```
 
-The ten-thread checker took 27.05 seconds. For all 42,815 representatives it
+The reachability-enabled ten-thread checker took 21.28 seconds in a fresh run.
+For all 42,815 representatives it
 reconstructed the coloring, recounted all 962,598 five-sets, rebuilt all 903
 single-flip deltas, checked canonicality and freeness, and tested every accepted
 neighbor against the union of the old and new strata. It found zero objective,
 canonicality, frontier-containment, or closure discrepancies and independently
 reproduced every edge count, objective histogram, and escape level.
+
+The checker now also materializes the independently reconstructed quotient
+adjacency and performs an explicit BFS seeded by all 42,661 first-frontier
+orbits. It reaches every one of the 42,815 new-part orbits, closing the
+reachability caveat identified in the graph review. The exact quotient-distance
+histogram from the first frontier is
+
+```text
+distance 0: 42,661 orbits
+distance 1:     34 orbits
+distance 2:     53 orbits
+distance 3:     20 orbits
+distance 4:     22 orbits
+distance 5:     16 orbits
+distance 6:      9 orbits
+```
+
+Thus the farthest added representatives are exactly six quotient edges beyond
+the certified first frontier. This BFS is part of the direct-recount verifier;
+it does not rely on the optimized generator's queue or discovery order.
 
 The 34 newly attached lower orbits have additional exact structure. Recount
 and classify their quotient and labeled lifts with:
@@ -532,17 +553,18 @@ of scope.
 The results above were regenerated with Homebrew GCC 16.2.0 and Python
 3.12.12. The complete regression suite passed 25/25 tests. The threshold-nine
 optimized closure and aggregate recount took 408.60 seconds; its independent
-ten-thread direct recount took 27.05 seconds, and the lower-island direct
+ten-thread direct recount with explicit reachability BFS took 21.28 seconds,
+and the lower-island direct
 recount plus two independent lift-connectivity checks took 14.61 seconds.
 
 SHA-256:
 
 ```text
 30cf95dc602ed8dc896f6fa0c3a5bec1e71b19cdfe4c87735a6240bed534f278  objective_six_component.cpp
-653814991888928db6f189d351e59b9c60bef237afb911959109b88e4219909e  verify_objective_six_component.cpp
+59e92ad51ec89bc4de2c8bb7bc326b1000cfdab444fb30301adf1a3cc9d3de19  verify_objective_six_component.cpp
 216a3726bf3e842731cadee81181a762dbdb9f0ec4f9aba46b7e73d22c8e688c  verify_external_objective_eight_components.py
 885d86d8fa5dac7864c322101bdccb5d28231cc6b431a4b59b9da4148d9944ea  verify_threshold_nine_lower_islands.py
-67dfb691d45e400bf79f3e6f067fc054eb0c7d357a0aad630835abee837f40a3  test_cyclic43.py
+21307cf7aa66aa4905624592bc51f59c3996dcba84270ca5541dfbbeab1166d9  test_cyclic43.py
 740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
 b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
 ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
@@ -550,7 +572,7 @@ ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine
 dee76687683f480bb3eeb788608bf0420c8d61fe5378558adb961acc42f160ff  external-objective-eight-components-fast.json
 319f92ea07c57edf4a94a1fc89c60ab177a3bd4d02f73f4127f29c2c7979db78  external-objective-eight-components-independent.json
 e04e0f20b5e2f696658e8e4258f437c31d29e928f531b3e951d42caa3daeefaa  objective-nine-component-fast.json
-73407f74e324429f405b2b4cdaf4bbf4c6cb981b96f21a0ae794cf6fc8d24838  objective-nine-component-independent.json
+aaf8d1a2e054d8d448a38b97a63a4ba09d31c4ed7336d21afe26546452729c3e  objective-nine-component-independent.json
 fe3a66d5d937bc109920e45b2c105e5cfa2dbdebbb56a3b25adf8f0686650c88  threshold-nine-lower-islands-independent.json
 ```
 
