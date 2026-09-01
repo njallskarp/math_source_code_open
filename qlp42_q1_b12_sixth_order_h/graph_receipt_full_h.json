@@ -1,0 +1,80 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "f323c5003a41e3c7f2ddee754d161f8185c821c3",
+  "contribution": {
+    "artifact_ref": "bafkreihwx5fr4xtj7cfv2bdqdiktvfheozlkiuq7qwwhdfccbz7auirw4q",
+    "kind": "lemma",
+    "title": "Full Sixth-Order H Scan Leaves 77 Rows in the QLP-42 q=1 b=12 Frontier",
+    "created_at": "2026-09-01T10:45:08.220188+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "c7c7ceb5db9d83e247e69c39b989af5849ef9077092299e1fc7df242bbe47632f19f5a00e2c80335b349083c94bb18e77b63fe033a417d8bd0e99c43c22cc10f"
+  },
+  "transaction": {
+    "hash": "02D2B017CB5B6F1DF5F3BDFE95C3B12F9D6260553ADAC369F1E9A31DA227B709",
+    "height": 767,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreih5grab5wjznwventoun4f6xtldmor7lamwxcbd33svovx5ajjqq4",
+      "kind": "refines",
+      "to": "bafkreih75uznb2wromkdqin7cvdbcxoxasd65gic53tjt2fd45rxalo62i"
+    },
+    {
+      "artifact_ref": "bafkreibxdli3gl7yieqz3he4yemsbqiuvntdk42imkyd6xoloxog2zh4tm",
+      "kind": "depends_on",
+      "to": "bafkreih75uznb2wromkdqin7cvdbcxoxasd65gic53tjt2fd45rxalo62i"
+    },
+    {
+      "artifact_ref": "bafkreidwhrihu5254h24quhk33qxm4byi6fvr4mdyxqjdxmxbcdwn4dexy",
+      "kind": "depends_on",
+      "to": "bafkreicnp5z435wzuohax5l5w3zwo2ddwppu6chf26s3wyov6xl65bfglm"
+    },
+    {
+      "artifact_ref": "bafkreibtvxzfflacuem4rm6cdc5bqx4bxazs5op4bzrflfnfe542az7jci",
+      "kind": "depends_on",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreibqb3rtvylg63h4weq4d2skgb5tpdmbdxl4nuyxhazzyjmkcug2pq",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreid7hpzc4alvukd2i5ycsvasdb574hylcrfy3ab3fvp7huqx54vdke",
+      "kind": "specializes",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreie5cxc3cv5wlwckw4hb5rsmnbp3xdw7injlpuyn4nyxe33qvihcqe",
+      "kind": "variant_of",
+      "to": "bafkreiekm7zww266v43itzyryt5oovmmlirmjadlkzq4nmffjiyujhpy44"
+    },
+    {
+      "artifact_ref": "bafkreibgbtohgdjddnl6265mytpyhfbr5f4rgh3h2vdc3r4oi56rcdvqjq",
+      "kind": "variant_of",
+      "to": "bafkreiami2ubtcu42ykule36klgia43pstqbrxmxhzg4lhyprxvwv66kfe"
+    },
+    {
+      "artifact_ref": "bafkreid4tvg7z753iehwar7t4et2juesbolm7tamgblyinx5jdzzisokie",
+      "kind": "cites",
+      "to": "bafkreicpox4i527nqs4hfhgracmr2dialfe55lq52nuap6tacsptva24qq"
+    },
+    {
+      "artifact_ref": "bafkreigo2bernisopxit7uns2gab3q4nnsyvdxu6j3aoqulxtyk626o4hi",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreif732zakym3yevtoelry27wsmny6gevsrj26dwkcymyu345lyerpi",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 768,
+    "queried_at": "2026-09-01T10:45:56Z",
+    "graphql_errors": []
+  }
+}
