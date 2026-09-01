@@ -1,0 +1,7 @@
+python=3.12.12
+audited_odd_lengths=5..101
+common_image=full_syndrome_space
+constructed_sum_one_witnesses=98
+exhaustive_fiber_counts=5:2:2,7:4:4,9:8:8,11:16:16
+audit_stream_sha256=b17d004b5d7deb02b711075c3cc6ae213a71b99d20bbb6d925b0dc0eaa010153
+theorem_audit=verified
