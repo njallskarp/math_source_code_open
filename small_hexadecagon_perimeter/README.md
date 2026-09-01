@@ -1,4 +1,4 @@
-# Certified local maximum for the small-hexadecagon fixed code
+# Certified global maximum for the small-hexadecagon fixed code
 
 This directory independently reconstructs and locally certifies the `n=16`
 candidate reported by Bernd Mulansky and Andreas Potschka for their fixed-code
@@ -102,6 +102,81 @@ This theorem applies to the angle-gap model independently of the chosen
 code.  It does not bridge the unproved structural reduction from arbitrary
 small hexadecagons to the full-diameter zonogon NLP.
 
+## Fixed-code global-uniqueness theorem
+
+Combining the boundary theorem with a separate certificate upgrades the
+local result to a global theorem for the displayed fixed code.  Among all
+ordered half-circle angles satisfying that code's two closure equations,
+the Arb-enclosed KKT point is the unique global perimeter maximizer.
+
+Here is the complete two-point argument.  Write
+
+```text
+r = pi/16,
+x_j = delta_j-r,
+s_j = phi_j-j*r = sum_{k<j} x_k,
+f = -P.
+```
+
+Every point capable of matching the candidate has `||x||_2^2 < 0.000032491`
+and all gaps in the certified band.  The Hessian of `f` is a weighted
+Dirichlet path Laplacian, so throughout this convex region
+
+```text
+nabla^2 f >= m I,
+m = 2 sin(alpha/2) sin^2(pi/32) > 0.0018311081.
+```
+
+For this code the nonzero closure coefficients occur at
+
+```text
+S = {1,3,4,5,7,8,9,11,12,13,15}.
+```
+
+They all have magnitude two, and the regular root sum is exactly
+`sum_{j in S} exp(2*pi*i*j/16)=-1`.  The Dirichlet inequality and the sharp
+radius give
+
+```text
+||s||_2 < 0.02907699459226224,
+|sum_{j in S} exp(2*i*phi_j)| < 1.192874962187454,
+sigma_min(Dg) > 4.4287978.
+```
+
+The full-negative-perimeter gradient satisfies
+
+```text
+||nabla f||_2 < sin(beta/2) sqrt(0.000032491) < 0.000574074,
+```
+
+and hence every KKT multiplier has `||y||_2 < 0.0001296231`.
+
+Finally, if `u` and `v` are two feasible KKT points in this region and
+`d=u-v`, the closure map has second directional derivative bounded by
+`2||d||_2^2`.  Taylor's formula, including its factor `1/2`, and feasibility
+at both endpoints give
+
+```text
+||Dg(u)d||_2 <= ||d||_2^2,
+||Dg(v)d||_2 <= ||d||_2^2.
+```
+
+Strong convexity and the two stationarity equations would therefore require
+`m <= ||y_u||_2+||y_v||_2`, whereas the independently certified margin is
+
+```text
+m - 2(0.0001296231) > 0.0015718618.
+```
+
+Thus the two KKT points coincide.  A fixed-code global maximizer exists by
+compactness, has perimeter at least that of the certified candidate, lies in
+the strict-gap region by the boundary theorem, and is a regular KKT point by
+the singular-value bound.  It must therefore be the Arb-enclosed candidate.
+
+This independently audits and sharpens Guo--Luo Lemmas 9.1--9.3.  It does
+**not** establish unrestricted `n=16` optimality: their geometric saturation,
+difference-body, and competing-code bridges remain outside the theorem.
+
 ### Relationship to the August 2026 proof candidate
 
 A post-selection novelty sweep found Guo and Luo's very recent public
@@ -141,6 +216,10 @@ python3 -m venv .venv
 .venv/bin/python verify_boundary_band_arb.py
 .venv/bin/python -m unittest -v test_local_certificate.py
 .venv/bin/python -m unittest -v test_boundary_band.py
+.venv/bin/python verify_uniqueness_identities.py
+.venv/bin/python verify_uniqueness_bridge_symbolic.py
+.venv/bin/python verify_uniqueness_bridge_arb.py
+.venv/bin/python -m unittest -v test_uniqueness_bridge.py
 shasum -a 256 -c SHA256SUMS
 ```
 
@@ -159,6 +238,16 @@ Taylor partial sums.  The second evaluates the same obligations with
 derivative and concavity identities exactly in SymPy.  The analytic Jensen,
 strong-concavity, and capped-simplex arguments remain the human-readable
 interpretation layer.
+
+The global-uniqueness bridge has the same three-way separation.
+`verify_uniqueness_bridge_symbolic.py` proves every numerical inequality with
+only integer and `Fraction` arithmetic.  It encloses square roots by integer
+square roots rather than importing a numerical library.
+`verify_uniqueness_bridge_arb.py` independently recomputes the constants in
+512-bit Arb balls.  `verify_uniqueness_identities.py` checks the full-objective
+derivatives, complex closure derivatives, root-of-unity sum, and the Taylor
+factor exactly in SymPy.  Neither numerical checker imports or runs the
+Guo--Luo verifier.
 
 ## Formula audit
 

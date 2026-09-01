@@ -1,0 +1,8 @@
+{
+  "exact_symbolic_identities": true,
+  "objective_normalization": "f=-P",
+  "objective_curvature": "sin(delta/2)/2",
+  "regular_switch_root_sum": "-1",
+  "closure_second_derivative_coefficient_bound": "2",
+  "taylor_remainder_factor": "1/2"
+}

@@ -1,0 +1,23 @@
+{
+  "rational_certificate": true,
+  "switch_set": [
+    1,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    15
+  ],
+  "strong_convexity_lower": "0.00183110816998497269249555",
+  "path_coordinate_norm_upper": "0.0290769945922622349570224",
+  "z_modulus_upper": "1.19287496218745366026014",
+  "constraint_singular_value_lower": "4.42879781381190314092811",
+  "gradient_norm_upper": "0.000574073617475156304331600",
+  "multiplier_norm_upper": "0.000129622900301480767652424",
+  "uniqueness_margin_lower": "0.00157186236938201115719070"
+}
