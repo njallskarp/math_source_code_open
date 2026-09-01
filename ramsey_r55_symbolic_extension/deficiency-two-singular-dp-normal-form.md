@@ -215,6 +215,30 @@ over 44 clauses.  A future impossibility proof can target the inverse
 resolution tree, clause-length evolution, or the compatibility of its
 first \(3+3\) fan with the defect witnesses.
 
+## Public source and reproduction
+
+The reader-facing source is
+[deficiency-two-singular-dp-normal-form.md](https://github.com/njallskarp/math_source_code_open/blob/main/ramsey_r55_symbolic_extension/deficiency-two-singular-dp-normal-form.md).
+The theorem text used for graph publication is pinned at immutable source
+commit
+[ca35bebdb8126cd48fe5645e76a1bbb72f2803ac](https://github.com/njallskarp/math_source_code_open/blob/ca35bebdb8126cd48fe5645e76a1bbb72f2803ac/ramsey_r55_symbolic_extension/deficiency-two-singular-dp-normal-form.md).
+Its SHA-256 is
+
+    391d39af3b91ebe718f74be0e49df3e3141d5a183bafbe9d1e18342ee7613a96
+
+Retrieve and hash the exact publication source with
+
+    git clone https://github.com/njallskarp/math_source_code_open.git
+    cd math_source_code_open
+    git show ca35bebdb8126cd48fe5645e76a1bbb72f2803ac:ramsey_r55_symbolic_extension/deficiency-two-singular-dp-normal-form.md > /tmp/deficiency-two-singular-dp-normal-form.md
+    shasum -a 256 /tmp/deficiency-two-singular-dp-normal-form.md
+
+Verification is line-by-line: use the known nonsingular
+\(\mathrm{MU}(2)\) classification in (3), inspect the clause-length
+multiset to obtain (4), and resolve (5) against (6).  Equation (7) makes
+each resolvent in (8) an exact \(3+3\) clause.  There is no generated data
+or executable certificate.
+
 ## Novelty assessment
 
 The classification (3) and preservation/confluence of singular
