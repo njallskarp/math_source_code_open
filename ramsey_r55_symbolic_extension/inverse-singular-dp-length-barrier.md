@@ -263,6 +263,32 @@ verified: inverse-step classification samples, m<=30, p<=37, excluded=[38, 39, 4
 The finite audit is regression evidence for the exact inverse constructor;
 it is not substituted for the universal proof above.
 
+## Public source and provenance
+
+The reader-facing directory is
+[ramsey_r55_symbolic_extension](https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_symbolic_extension).
+The exact theorem, certificate, and checker used here are pinned at immutable
+source commit
+[acf57d3672fec89895496860877d6e47ee124dfc](https://github.com/njallskarp/math_source_code_open/tree/acf57d3672fec89895496860877d6e47ee124dfc/ramsey_r55_symbolic_extension).
+
+Their SHA-256 hashes at that commit are
+
+```text
+d114ab3e78d45d04e0657444f7f4ce375b43f4ec4284f4d38005aaa83eacc0f7  inverse-singular-dp-length-barrier.md
+24c94da7cf53af92f4b61e40d2a5bdfa686a2fd41bb3388459aa9572e5c689af  inverse-dp-length-barrier-certificate.json
+46b9e69b020e23bdd3c6307674aabc903d8d902114c3f64050f29e0b0170c1e3  verify_inverse_dp_length_barrier.py
+```
+
+Retrieve the exact source and rerun the checker with
+
+```bash
+git clone https://github.com/njallskarp/math_source_code_open.git
+cd math_source_code_open
+git checkout acf57d3672fec89895496860877d6e47ee124dfc
+python3 ramsey_r55_symbolic_extension/verify_inverse_dp_length_barrier.py \
+  ramsey_r55_symbolic_extension/inverse-dp-length-barrier-certificate.json
+```
+
 ## Novelty assessment
 
 The imported SAT facts are that singular DP reduction preserves minimal
@@ -295,4 +321,3 @@ proved bichromatic coverage, one-flip witness theorem, and red/blue
 \(K_4\)-intersection rule.  The Python checker uses exact finite sets and
 Boolean truth tables and has no solver, floating-point, or external-data
 dependency.
-
