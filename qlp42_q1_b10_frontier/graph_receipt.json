@@ -1,0 +1,65 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "caef6512fdd6154f16987e2d6948d9615a8151a0",
+  "contribution": {
+    "artifact_ref": "bafkreicrhtzdeawy673n7k5hpnolo6422oeywro4elcrskdennuyxna3qu",
+    "kind": "lemma",
+    "title": "Sixth-Order H Frontier for the QLP-42 q=1 b=10 Shell",
+    "created_at": "2026-09-01T12:49:31.728320+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "bfa69569a209c1171cd4c329fcedaa1cf095d83ab3e50dba24e6baf3dff95b528c6da78326fce752e4fb8d76e4be91953c57db808396b631efd51f315050e707"
+  },
+  "transaction": {
+    "hash": "26DABDA06089C0A716F71F0BF5E880FD4D57A969680B4789F991FC67F2680189",
+    "height": 811,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreibhfnou6tvg457cbsxpl42sa6dzafmtsedke5yakafzsh5opealma",
+      "kind": "refines",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreid6ktjapcek6hu3rd5t3rrk6x5f4cv3cksj5z64iu7jgm6nebhhey",
+      "kind": "depends_on",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreiaqba5wtlnftkmrug5v6tlp4fr2poxyhdgoi4wekjs3i46i42hq4e",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreia5sm2cn6kjqcgu4zywggjbj6h75cixshxzteybjovzlfppfrdhgm",
+      "kind": "depends_on",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreiegy7rdifm2khjqel23bunf3zphcha26uaigzbig3wft4xzme6lwa",
+      "kind": "specializes",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreig3ketsjswngy6cvezmbxppgs2ud2jniirm2mksoyjzaivckczlo4",
+      "kind": "variant_of",
+      "to": "bafkreihwx5fr4xtj7cfv2bdqdiktvfheozlkiuq7qwwhdfccbz7auirw4q"
+    },
+    {
+      "artifact_ref": "bafkreifw7nfwtgt3udgdcke2cyzv6zyefvqdfoiip7ivrx7fd75z3rvcga",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreigprsinswoleqryggwglxkb5geta2bhzpz2nso5gwb4tkavkylccu",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 811,
+    "queried_at": "2026-09-01T12:49:59Z",
+    "graphql_errors": []
+  }
+}
