@@ -222,7 +222,113 @@ Equivalently, these jumps follow the canonical inverse-doubling orbit modulo
 `d`.  Lean proves the underlying identity `2J'=J+d*epsilon` for the two
 possible inverse lifts.  The path audit checks every consecutive pair in all
 single-odd insertion blocks through length 26.  This recurrence supplies a
-deterministic block skeleton for the next attempt to prove `W<=C`.
+deterministic block skeleton; the next section proves the exact limitation on
+using that skeleton alone to compare `W` and `C`.
+
+## Normalized phase-lag theorem and obstruction to `W <= C`
+
+The inverse-doubling skeleton does not by itself give the proposed winding
+dominance.  There is an exact cancellation that is easiest to see before
+either residue is reduced.
+
+For edge `i`, let
+
+```text
+Delta_i = 2^j u                       (positive 2^K-residue displacement),
+E_i     = B_i-B_(i+1) = 2^j 3^b      (affine-numerator drop),
+J_i     = positive coefficient-gap jump.
+```
+
+Writing `A=2^K`, the edge cocycle gives the normalized identity
+
+```text
+A J_i = d Delta_i + E_i.
+```
+
+Consequently, along any adjacent-swap path, with
+
+```text
+D = sum_i Delta_i,       S = sum_i J_i,
+```
+
+the numerator drops telescope:
+
+```text
+A S = d D + B_0-B_m.
+```
+
+The starting coefficient-gap coordinates satisfy
+
+```text
+d r_0 = A(mu_0-d kappa_0)+B_0.
+```
+
+Combining these equations leaves the exact endpoint phase lag
+
+```text
+d(r_0+D) = A(mu_0+S-d kappa_0)+B_m,
+
+(mu_0+S)/d = (r_0+D)/A + kappa_0 - B_m/(A d).
+```
+
+Thus all dependence on the inverse sequence `u_i` is shared by the two
+phases.  The only difference after a whole block is the *final* positive
+numerator `B_m`; the larger coefficient-circle increments merely reduce the
+initial lag from `B_0/(A d)` to `B_m/(A d)`.
+
+Put
+
+```text
+X = (r_0+D)/A,       beta_m = B_m/(A d).
+```
+
+Then the cumulative wrap counts have the floor normal form
+
+```text
+W = floor(X),
+C = kappa_0 + floor(X-beta_m),
+kappa_m = floor(X)-floor(X-beta_m).
+```
+
+In particular, from a zero-index source (`kappa_0=0`) and with `B_m>0`,
+
+```text
+C <= W.
+```
+
+This is the reverse weak inequality from the proposed proof target.  For one
+edge, `W` is zero or one, so `kappa_m=W-C` is also zero or one.  Therefore
+proving `W<=C` from a zero-index source is not a loose dominance estimate: it must
+prove the exact equality `W=C`, which is precisely the missing stopping-time
+statement.  A jump-only or inverse-doubling-only argument cannot do this,
+because its entire `u_i` contribution cancels from the phase lag.  Prefix
+safety has to control the remaining endpoint barrier `B_m/(A d)`.
+
+### Smallest unrestricted strict defect
+
+The reverse inequality can be strict once coefficient-first-crossing prefix
+safety is removed.  The lexicographically first adjacent edge is at length
+five (words are written chronologically):
+
+```text
+01101 -> 10101.
+```
+
+Its exact data are
+
+```text
+A=32, P=27, d=5,
+source: B=46, r=22, z=20, M=2,  mu=2, kappa=0,
+target: B=37, r=1,  z=2,  M=-1, mu=4, kappa=1,
+Delta=11, E=9, J=2, W=1, C=0.
+```
+
+Indeed `32*2=5*11+9`, while the full phase wraps (`22+11=33`) and
+the gap-five phase does not (`2+2=4`).  The source already crosses its
+coefficient threshold at its first bit, and the target crosses at its second,
+so neither is a coefficient-first-crossing word of length five.  This is not
+a counterexample to CST; it is a minimal exact counterexample to any attempt
+to prove `W<=C` from contraction and the swap algebra alone.
 
 ### Proof
 
@@ -287,7 +393,9 @@ Run with Python 3.12.12, Ruby 2.6.10, and Lean 4.33.1:
 python3 -m unittest -v test_swap_cocycle.py
 python3 audit_swap_cocycle.py --max-length 26
 python3 audit_wrap_defect.py --max-length 26
+python3 audit_phase_lag.py --max-length 16
 ruby audit_swap_cocycle.rb 20
+ruby audit_phase_lag.rb 16
 lean lean/CollatzSwapCocycle.lean
 ```
 
@@ -317,6 +425,18 @@ counts, verifies the one-edge window-defect law, and agrees on record digest
 `d5ba814280e73c44b5d4b113820ccc3ab59432eabb1ffa725373ae01d2d4b0f3`
 for 4,404 cylinders and 14,938 edges.
 
+The normalized phase-lag audit deliberately ranges over every contracting
+word, including words without first-crossing prefix safety.  Python and the
+independently written direct-affine Ruby implementation agree through length
+16 on all 112,907 contracting words, all 404,360 adjacent edges, the minimal
+length-five strict defect above, and record digest
+`c2dd4accfc16abecb7d0bdc40e383133642fb8e66c7b2cf00e869b1133a9b436`.
+There are zero phase-lag, window-identity, or zero-index-source antidominance
+failures.  Of the edges, 404,284 have `W=C`, 38 have `W<C`, and 38 have
+`W>C`; every one of the 38 `W>C` cases starts at `kappa=0`, while the 38
+reverse cases undo those defects.  The maximum window index in this range is
+one.
+
 Lean proves the scaled cocycle identities, jump complementarity, modular
 divisibility witness, short-multiple sign lemma, strict gap-change
 consequences, full-wrap/prefix-lift-wrap equivalence, and the cumulative
@@ -327,6 +447,10 @@ custom axioms, Mathlib, or
 `Classical.choice`).  The Collatz-specific decoding, enumeration, and the
 prefix-safety argument in the displayed theorem remain in the exact external
 checker and written proof; Lean does not certify the enumeration.
+
+Lean additionally proves the division-free path phase-lag identity, the
+zero-index-source one-edge antidominance consequence, and the complete arithmetic
+certificate for the minimal length-five strict defect.
 
 ## Relation to prior work and novelty boundary
 
@@ -339,10 +463,13 @@ parity-vector/residue bijection.
 The apparently new pieces, relative to the sources searched below, are the
 explicit coupling of this adjacent exchange to the *canonical least residue*,
 the complementary jump pair `(J+,J-)`, the dual-modulus margin window, and the
-path-independent full-wrap-minus-winding defect.  This is a negative
-literature search, not a priority claim.  The denominator `2^K-3^q` is of
-course classical in cycle equations; novelty is claimed only for this margin
-window/cocycle packaging.
+path-independent full-wrap-minus-winding defect.  The normalized phase-lag
+telescoping and its antidominance consequence are new within this artifact and
+were not found in the targeted source search; they are best viewed as a
+rigorous obstruction/clarification of the proposed proof strategy, not as a
+historical priority claim.  The denominator `2^K-3^q` and the affine endpoint
+equation are classical; novelty is claimed only for this margin/cocycle/phase
+packaging.
 
 Primary sources checked:
 
@@ -360,8 +487,19 @@ Primary sources checked:
 
 ## Limitations and next target
 
-The theorem identifies but does not bound the defect `W-C`.  The next target
-is a blockwise inequality forcing `W<=C` (hence `kappa=0` from a safe base),
-using the split-coordinate wrap criterion over Sturmian/Christoffel intervals.
-Any such inequality must also exclude a terminal coefficient-circle residue
-of zero, which is the exact cycle boundary.
+The theorem identifies but does not eliminate the defect `W-C`.  The phase-lag
+normal form rules out a proof based only on the inverse-doubling jump orbit:
+from a zero-index base, `W<=C` is already the equality target rather than an
+available one-sided estimate.  The next target is therefore to use
+coefficient-first-crossing prefix safety in the split coordinates to prove
+that a full-residue wrap also forces a coefficient-circle wrap.  Equivalently,
+one must exclude the exact one-edge barrier
+
+```text
+A <= r+Delta < A+B'/d
+```
+
+(with integer endpoints understood after clearing denominators), or find a
+stronger prefix potential that controls it.  A terminal coefficient-circle
+residue of zero must still be excluded separately; it is the exact cycle
+boundary.

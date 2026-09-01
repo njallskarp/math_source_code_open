@@ -151,6 +151,43 @@ theorem liftedJumpHalving
     grind
   exact Int.eq_of_mul_eq_mul_left hL hproduct
 
+/-- The normalized full-residue displacement and coefficient-gap jump differ
+only by the affine-numerator decrement.  This is the division-free path form:
+`A*S = d*D + (B₀-B₁)` transports the starting phase equation to an endpoint
+phase lag of exactly `B₁`. -/
+theorem pathPhaseLag
+    (A d r μ κ D S B₀ B₁ : Int)
+    (hsource : d * r = A * (μ - d * κ) + B₀)
+    (hincrements : A * S = d * D + (B₀ - B₁)) :
+    d * (r + D) = A * (μ + S - d * κ) + B₁ := by
+  grind
+
+/-- From a zero-window-index source, the wrap-defect identity forces the
+opposite weak inequality from the hoped-for dominance: full-residue wraps
+cannot be fewer than coefficient-circle wraps.  Across one residue addition,
+the target index is consequently either zero or one. -/
+theorem zeroIndexSourceWrapAntidominance
+    (fullWraps circleWraps κ₁ : Int)
+    (hwindow : κ₁ = fullWraps - circleWraps)
+    (hκ₁ : 0 ≤ κ₁) (hfull0 : 0 ≤ fullWraps) (hfull1 : fullWraps ≤ 1)
+    (hcircle : 0 ≤ circleWraps) :
+    circleWraps ≤ fullWraps ∧ κ₁ ≤ 1 := by
+  omega
+
+/-- Exact arithmetic certificate for the smallest unrestricted strict defect.
+The chronological words are `01101 -> 10101`: their affine equations are
+`32z=27r+46` and `32z'=27r'+37`; the full phase wraps (`22+11=33`)
+while the gap-five phase does not (`2+2=4`). -/
+theorem lengthFiveStrictDefectCertificate :
+    32 * 20 = 27 * 22 + 46 ∧
+    32 * 2 = 27 * 1 + 37 ∧
+    32 * 2 = 5 * 11 + 9 ∧
+    22 + 11 = 1 + 32 ∧
+    4 = 2 + 2 ∧
+    22 - 20 = 2 ∧
+    1 - 2 = 4 - 5 := by
+  omega
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -163,5 +200,8 @@ theorem liftedJumpHalving
 #print axioms fullWrap_iff_liftWrap
 #print axioms wrapDefectIdentity
 #print axioms liftedJumpHalving
+#print axioms pathPhaseLag
+#print axioms zeroIndexSourceWrapAntidominance
+#print axioms lengthFiveStrictDefectCertificate
 
 end CollatzSwapCocycle

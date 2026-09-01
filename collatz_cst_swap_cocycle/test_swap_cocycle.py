@@ -8,6 +8,7 @@ from audit_swap_cocycle import (
     first_crossing_cylinders,
     verify_split_coordinate,
 )
+from audit_phase_lag import audit as audit_phase_lag
 
 
 class SwapCocycleTests(unittest.TestCase):
@@ -62,6 +63,19 @@ class SwapCocycleTests(unittest.TestCase):
         state = cylinder_from_bits(21, 5)
         self.assertEqual(state.margin, -1)
         self.assertEqual(coefficient_gap_coordinates(state), (5, 4, 1))
+
+    def test_phase_lag_and_minimal_unrestricted_defect(self) -> None:
+        report = audit_phase_lag(10)
+        self.assertEqual(report["phase_lag_failures"], 0)
+        self.assertEqual(report["window_failures"], 0)
+        self.assertEqual(report["zero_index_source_antidominance_failures"], 0)
+        self.assertEqual(
+            report["first_zero_index_source_strict_defect"],
+            "K=5;source=01101;target=10101;j=0;q=3;d=5;"
+            "source_r=22;source_z=20;source_B=46;source_mu=2;"
+            "source_kappa=0;target_r=1;target_z=2;target_B=37;"
+            "target_mu=4;target_kappa=1;delta=11;E=9;J=2;W=1;C=0",
+        )
 
 
 if __name__ == "__main__":
