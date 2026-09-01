@@ -1,0 +1,24 @@
+{
+  "order": 43,
+  "edge_count": 903,
+  "direct_five_set_recount_seed_count": 229,
+  "direct_closure_addition_rotation_orbit_count": 238,
+  "discovered_after_first_expansion": 9,
+  "added_to_primary_quotient_incidence": 0,
+  "added_to_first_frontier_quotient_incidence": 1307,
+  "directed_inside_addition_quotient_incidence": 464,
+  "directed_outside_above_twelve_from_addition": 213143,
+  "added_source_minimum_neighbor_objective_histogram": {
+    "12": 238
+  },
+  "added_source_external_minimum_objective_histogram": {
+    "13": 238
+  },
+  "omitted_expected_states": 0,
+  "unexpected_states": 0,
+  "omitted_sublevel_neighbors": 0,
+  "objective_errors": 0,
+  "canonical_or_orbit_errors": 0,
+  "all_direct_checks_pass": true,
+  "method": "independent direct enumeration of all 962,598 five-sets at every closure-addition source, followed by a separately implemented exact cyclic breadth-first closure and complete representative-set comparison"
+}
