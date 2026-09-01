@@ -4,14 +4,19 @@
 from __future__ import annotations
 
 import hashlib
+import os
+import platform
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 HASHES = {
     "prototype_numpy.py": "96d919fa3170b55ca61c14099a31deefe41ff7063d85f315e25c9d6f6a48d3d2",
     "prototype_seventh_s.py": "9c14edb8072390892b900f6d7594bc2e6edb8902efedc55c093ea96d86dcfc2e",
     "prototype_eighth_s.py": "2f6855befcc100f95286fa0453a7833f4d1e755a44e29e1894ed29a4628b274f",
+    "independent_cpp.cpp": "a861b0275d259d2f687d5aa9cd28a2a167cc05222ea1b4439f933e43a2ef6cb1",
 }
 EXPECTED_A_PHASES = [1225, 441, 441, 245, 245, 147]
 EXPECTED_B_PHASES = [31750, 93498, 50760, 93498, 93498, 164728]
@@ -29,6 +34,23 @@ def run(directory: Path, name: str) -> str:
         text=True,
         capture_output=True,
     ).stdout
+
+
+def compiler_command(source: Path, output: Path) -> list[str]:
+    compiler = os.environ.get("CXX") or shutil.which("c++")
+    assert compiler is not None, "a C++20 compiler is required"
+    command = [compiler]
+    if platform.system() == "Darwin":
+        sdk = subprocess.run(
+            ["xcrun", "--show-sdk-path"], check=True, text=True, capture_output=True
+        ).stdout.strip()
+        sdk_cpp = Path(sdk) / "usr" / "include" / "c++" / "v1"
+        if sdk_cpp.is_dir():
+            command += ["-isysroot", sdk, f"-I{sdk_cpp}", "-stdlib=libc++"]
+    return command + [
+        "-O3", "-std=c++20", "-Wall", "-Wextra", "-pedantic",
+        str(source), "-o", str(output),
+    ]
 
 
 def table(output: str) -> list[list[str]]:
@@ -79,6 +101,32 @@ def main() -> None:
     assert "eighth_order_surviving_orbits=0\n" in eighth_output
     assert eighth_output.endswith("prototype_certificate=verified\n")
 
+    with tempfile.TemporaryDirectory(prefix="qlp42-b14-") as temporary:
+        executable = Path(temporary) / "independent_cpp"
+        subprocess.run(
+            compiler_command(directory / "independent_cpp.cpp", executable), check=True
+        )
+        independent_output = subprocess.run(
+            [str(executable), "--quiet"],
+            cwd=directory,
+            check=True,
+            text=True,
+            capture_output=True,
+        ).stdout
+    assert independent_output == (
+        "input_b_masks=56\n"
+        "input_labeled_type_pairs=6762\n"
+        "input_rotation_orbits_per_case=322\n"
+        "sixth_order_surviving_orbits=24,29,7,32,32,12\n"
+        "seventh_order_surviving_orbits=0,0,0,2,2,0\n"
+        "eighth_order_surviving_orbits=0,0,0,0,0,0\n"
+        "quadratic_interpolation_direct_audits=974848\n"
+        "cached_a_supports=284\n"
+        "seventh_survivor_b_equal=5,6,10,11,15,16\n"
+        "eighth_order_surviving_orbits=0\n"
+        "independent_cpp_certificate=verified\n"
+    )
+
     print("input_b_masks=56")
     print("input_labeled_type_pairs=6762")
     print("input_rotation_orbits_per_case=322")
@@ -87,6 +135,8 @@ def main() -> None:
     print("eighth_order_surviving_orbits=0,0,0,0,0,0")
     print("q1_b14_shell=excluded")
     print("direct_numpy_certificate=verified")
+    print("independent_cpp_certificate=verified")
+    print("two_implementation_certificate=verified")
 
 
 if __name__ == "__main__":

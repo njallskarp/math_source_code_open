@@ -1,6 +1,6 @@
 # Sixth-through-eighth-order obstruction for QLP-42 `q=1`, `b=14`
 
-## Computational finding
+## Theorem
 
 In the coupled norm-32 QLP-42 shell with `q=1`, `b=14` and canonical
 order-two compression, the complete third-order classification contains 56
@@ -25,8 +25,7 @@ A supports:         0,2,3,5,7,9,14
 ```
 
 The eighth-order equations eliminate all four case/support combinations.
-Subject to the trust boundary below, the entire `q=1`, `b=14` shell is
-therefore excluded.
+Therefore the entire `q=1`, `b=14` shell is excluded.
 
 ## Exact finite computation
 
@@ -59,17 +58,25 @@ Install NumPy and run:
 python3 verify_q1_b14_shell.py
 ```
 
-The driver pins all three order-specific programs by SHA-256. Those programs
-in turn pin the complete third-order classifier, reconstruct its 56 masks
-and 322 rotation types, and directly reproduce the displayed cascade.
+The driver pins all three direct NumPy programs and `independent_cpp.cpp` by
+SHA-256. The NumPy route pins the complete third-order classifier,
+reconstructs its 56 masks and 322 rotation types, and directly reproduces the
+displayed cascade.
 
-This is a strong reproducible computational finding, but the three programs
-share the same NumPy autocorrelation kernel and phase conventions. An
-independent implementation using quotient arithmetic and a different
-enumeration strategy is still needed before treating the exclusion as a
-two-implementation certificate or making a graph submission. Apparent
-novelty is relative to a targeted primary-source and committed-graph search,
-not a claim of historical priority.
+The independent C++20 route does not import the Python classifier or any
+generated support table. It reconstructs every weight-seven cyclic orbit and
+every compatible reflected mask, interpolates the full quadratic periodic-
+autocorrelation map modulo 16, audits that interpolation against 974,848
+direct PAF evaluations, and reduces the resulting residues to orders six and
+seven. It independently reproduces all 18 per-case survivor counts, the
+unique seventh-order mask, its two supports, and the empty eighth-order
+frontier.
+
+The two routes share the stated mathematical phase conventions and exact-sum
+representatives, but use different languages, support reconstruction, residue
+representations, and enumeration strategies. Apparent novelty is relative to
+a targeted primary-source and committed-graph search, not a claim of
+historical priority.
 
 Primary context: Kotsireas--Koutschan--Winterhof, *Quaternary Legendre pairs
 II*, <https://arxiv.org/abs/2408.16318>; Kotsireas--Winterhof, *Quaternary
