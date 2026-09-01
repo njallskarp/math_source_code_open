@@ -1406,12 +1406,282 @@ struct Verifier {
         output << "  \"openmp_max_threads\": " << omp_get_max_threads()
                << "\n}\n";
     }
+
+    struct ObjectiveNineComponentSummary {
+        std::array<std::map<int, std::uint64_t>, 10> histograms;
+        std::uint64_t verified_representatives = 0;
+        std::uint64_t noncanonical_representatives = 0;
+        std::uint64_t nonfree_representatives = 0;
+        std::uint64_t objective_mismatches = 0;
+        std::uint64_t missing_accepted_neighbors = 0;
+        std::uint64_t new_internal_directed = 0;
+        std::uint64_t new_to_primary_directed = 0;
+        int escape_level = -1;
+    };
+
+    ObjectiveNineComponentSummary verify_objective_nine_component_one(
+        int expected_objective,
+        const State& state,
+        const std::array<std::unordered_set<State, StateHash>, 10>& primary_sets,
+        const std::array<std::unordered_set<State, StateHash>, 10>& new_sets
+    ) const {
+        ObjectiveNineComponentSummary result;
+        result.verified_representatives = 1;
+        if (!(canonical(state) == state)) ++result.noncanonical_representatives;
+        if (rotate(state, 1) == state) ++result.nonfree_representatives;
+
+        std::array<bool, edge_count> red{};
+        for (int id = 0; id < edge_count; ++id)
+            red[id] = seed_red[id] != state.contains(id);
+        std::array<int, edge_count> delta{};
+        int monochromatic = 0;
+        for (const FiveSet& five : five_sets) {
+            int count = 0;
+            for (int id : five.edges) count += red[id];
+            if (count == 0 || count == 10) {
+                ++monochromatic;
+                for (int id : five.edges) --delta[id];
+            } else if (count == 1) {
+                for (int id : five.edges) {
+                    if (red[id]) {
+                        ++delta[id];
+                        break;
+                    }
+                }
+            } else if (count == 9) {
+                for (int id : five.edges) {
+                    if (!red[id]) {
+                        ++delta[id];
+                        break;
+                    }
+                }
+            }
+        }
+        if (monochromatic != expected_objective) {
+            ++result.objective_mismatches;
+            return result;
+        }
+
+        for (int id = 0; id < edge_count; ++id) {
+            const int target_objective = monochromatic + delta[id];
+            ++result.histograms[expected_objective][target_objective];
+            if (target_objective > 9) {
+                if (result.escape_level < 0 ||
+                    target_objective < result.escape_level)
+                    result.escape_level = target_objective;
+                continue;
+            }
+            if (target_objective < 0)
+                throw std::runtime_error("negative target objective");
+            State neighbor = state;
+            neighbor.toggle(id);
+            const State key = canonical(neighbor);
+            if (new_sets[target_objective].contains(key))
+                ++result.new_internal_directed;
+            else if (primary_sets[target_objective].contains(key))
+                ++result.new_to_primary_directed;
+            else
+                ++result.missing_accepted_neighbors;
+        }
+        return result;
+    }
+
+    void write_objective_nine_component_json(
+        const std::string& component_path,
+        const std::string& frontier_path,
+        const std::string& objective_eight_path,
+        const std::string& objective_seven_path,
+        const std::string& lower_path,
+        std::ostream& output
+    ) const {
+        std::array<std::unordered_set<State, StateHash>, 10> primary_sets;
+        for (int objective = 2; objective <= 6; ++objective) {
+            const auto states = load_representatives(
+                lower_path,
+                "objective_" + std::to_string(objective) +
+                    "_rotation_representatives"
+            );
+            for (const State& state : states)
+                if (!primary_sets[objective].insert(state).second)
+                    throw std::runtime_error("duplicate primary lower representative");
+        }
+        for (const State& state : load_representatives(
+                 objective_seven_path,
+                 "objective_seven_component_rotation_representatives"
+             ))
+            if (!primary_sets[7].insert(state).second)
+                throw std::runtime_error("duplicate primary objective-seven representative");
+        for (const State& state : load_representatives(
+                 objective_eight_path,
+                 "objective_eight_component_rotation_representatives"
+             ))
+            if (!primary_sets[8].insert(state).second)
+                throw std::runtime_error("duplicate primary objective-eight representative");
+        const std::array<std::size_t, 9> expected_primary_counts = {
+            0, 0, 2, 17, 78, 306, 1183, 4217, 13738
+        };
+        for (int objective = 2; objective <= 8; ++objective)
+            if (primary_sets[objective].size() != expected_primary_counts[objective])
+                throw std::runtime_error("primary layer representative count mismatch");
+
+        std::array<std::unordered_set<State, StateHash>, 10> new_sets;
+        std::vector<std::pair<int, State>> new_states;
+        for (int objective = 7; objective <= 9; ++objective) {
+            const auto states = load_representatives(
+                component_path,
+                "new_objective_" + std::to_string(objective) +
+                    "_rotation_representatives"
+            );
+            for (const State& state : states) {
+                if (!new_sets[objective].insert(state).second)
+                    throw std::runtime_error("duplicate new representative");
+                if (primary_sets[objective].contains(state))
+                    throw std::runtime_error("new representative is already primary");
+                new_states.push_back({objective, state});
+            }
+        }
+        if (new_sets[7].size() != 1 || new_sets[8].size() != 33 ||
+            new_sets[9].size() != 42781 || new_states.size() != 42815)
+            throw std::runtime_error("new threshold-nine layer count mismatch");
+
+        const std::vector<State> first_frontier = load_representatives(
+            frontier_path, "objective_nine_rotation_representatives"
+        );
+        if (first_frontier.size() != 42661)
+            throw std::runtime_error("objective-nine first frontier count mismatch");
+        for (const State& state : first_frontier)
+            if (!new_sets[9].contains(state))
+                throw std::runtime_error("first-frontier state missing from closure");
+
+        const int thread_count = omp_get_max_threads();
+        std::vector<ObjectiveNineComponentSummary> thread_summaries(thread_count);
+        std::string error;
+#pragma omp parallel for schedule(dynamic, 1)
+        for (std::size_t index = 0; index < new_states.size(); ++index) {
+            try {
+                const auto& [objective, state] = new_states[index];
+                const ObjectiveNineComponentSummary local =
+                    verify_objective_nine_component_one(
+                        objective, state, primary_sets, new_sets
+                    );
+                ObjectiveNineComponentSummary& destination =
+                    thread_summaries[omp_get_thread_num()];
+                for (int source = 0; source <= 9; ++source)
+                    for (const auto& [target, count] : local.histograms[source])
+                        destination.histograms[source][target] += count;
+                destination.verified_representatives +=
+                    local.verified_representatives;
+                destination.noncanonical_representatives +=
+                    local.noncanonical_representatives;
+                destination.nonfree_representatives +=
+                    local.nonfree_representatives;
+                destination.objective_mismatches += local.objective_mismatches;
+                destination.missing_accepted_neighbors +=
+                    local.missing_accepted_neighbors;
+                destination.new_internal_directed +=
+                    local.new_internal_directed;
+                destination.new_to_primary_directed +=
+                    local.new_to_primary_directed;
+                if (local.escape_level >= 0 &&
+                    (destination.escape_level < 0 ||
+                     local.escape_level < destination.escape_level))
+                    destination.escape_level = local.escape_level;
+            } catch (const std::exception& exception) {
+#pragma omp critical
+                {
+                    if (error.empty()) error = exception.what();
+                }
+            }
+        }
+        if (!error.empty()) throw std::runtime_error(error);
+
+        ObjectiveNineComponentSummary total;
+        for (const ObjectiveNineComponentSummary& source_summary : thread_summaries) {
+            for (int source = 0; source <= 9; ++source)
+                for (const auto& [target, count] : source_summary.histograms[source])
+                    total.histograms[source][target] += count;
+            total.verified_representatives +=
+                source_summary.verified_representatives;
+            total.noncanonical_representatives +=
+                source_summary.noncanonical_representatives;
+            total.nonfree_representatives +=
+                source_summary.nonfree_representatives;
+            total.objective_mismatches += source_summary.objective_mismatches;
+            total.missing_accepted_neighbors +=
+                source_summary.missing_accepted_neighbors;
+            total.new_internal_directed +=
+                source_summary.new_internal_directed;
+            total.new_to_primary_directed +=
+                source_summary.new_to_primary_directed;
+            if (source_summary.escape_level >= 0 &&
+                (total.escape_level < 0 ||
+                 source_summary.escape_level < total.escape_level))
+                total.escape_level = source_summary.escape_level;
+        }
+        if (total.verified_representatives != new_states.size() ||
+            total.noncanonical_representatives || total.nonfree_representatives ||
+            total.objective_mismatches || total.missing_accepted_neighbors)
+            throw std::runtime_error("objective-nine component verification failed");
+        const std::uint64_t internal_edges =
+            order * total.new_internal_directed / 2;
+        const std::uint64_t to_primary_edges =
+            order * total.new_to_primary_directed;
+        if (order * total.new_internal_directed % 2 ||
+            internal_edges != 2514167 || to_primary_edges != 6603854 ||
+            total.escape_level != 10)
+            throw std::runtime_error("objective-nine component aggregate mismatch");
+
+        output << "{\n";
+        output << "  \"independent_direct_recount_representative_count\": "
+               << total.verified_representatives << ",\n";
+        output << "  \"all_representatives_have_claimed_objective\": true,\n";
+        output << "  \"all_representatives_are_canonical_and_free\": true,\n";
+        output << "  \"first_objective_nine_frontier_is_contained\": true,\n";
+        output << "  \"missing_objective_at_most_nine_neighbor_count\": 0,\n";
+        output << "  \"complete_threshold_nine_new_rotation_orbit_count\": "
+               << new_states.size() << ",\n";
+        output << "  \"new_rotation_orbit_count_by_objective\": {\n"
+               << "    \"7\": " << new_sets[7].size() << ",\n"
+               << "    \"8\": " << new_sets[8].size() << ",\n"
+               << "    \"9\": " << new_sets[9].size() << "\n  },\n";
+        output << "  \"new_to_primary_sublevel_eight_directed_edge_count\": "
+               << to_primary_edges << ",\n";
+        output << "  \"new_threshold_nine_internal_edge_count\": "
+               << internal_edges << ",\n";
+        output << "  \"complete_sublevel_nine_component_vertex_count\": "
+               << 840263 + order * new_states.size() << ",\n";
+        output << "  \"complete_sublevel_nine_component_edge_count\": "
+               << 3676586 + to_primary_edges + internal_edges << ",\n";
+        output << "  \"exact_one_flip_escape_level\": " << total.escape_level
+               << ",\n";
+        output << "  \"aggregate_neighbor_objective_histogram_by_source_objective\": {";
+        bool source_separator = false;
+        for (int source = 0; source <= 9; ++source) {
+            if (total.histograms[source].empty()) continue;
+            if (source_separator) output << ',';
+            output << "\n    \"" << source << "\": {";
+            bool target_separator = false;
+            for (const auto& [target, count] : total.histograms[source]) {
+                if (target_separator) output << ',';
+                output << "\n      \"" << target << "\": "
+                       << order * count;
+                target_separator = true;
+            }
+            output << "\n    }";
+            source_separator = true;
+        }
+        output << "\n  },\n";
+        output << "  \"method\": \"parallel independent direct five-set recount with fresh per-representative deltas, first-frontier containment, and full threshold-nine membership checks\",\n";
+        output << "  \"openmp_max_threads\": " << omp_get_max_threads()
+               << "\n}\n";
+    }
 };
 
 }  // namespace
 
 int main(int argc, char** argv) try {
-    if (argc != 3 && argc != 5 && argc != 6 && argc != 7 && argc != 8) {
+    if (argc != 3 && argc != 5 && argc != 6 && argc != 7 && argc != 8 &&
+        argc != 9) {
         std::cerr << "usage: verify_objective_six_component CERTIFICATE.json "
                      "objective-six-component-representatives.json "
                      "[--objective-seven-frontier FRONTIER.json | "
@@ -1423,7 +1693,10 @@ int main(int argc, char** argv) try {
                      "OBJECTIVE-SEVEN.json LOWER-REPRESENTATIVES.json | "
                      "--objective-nine-frontier OBJECTIVE-NINE.json "
                      "OBJECTIVE-EIGHT.json OBJECTIVE-SEVEN.json "
-                     "LOWER-REPRESENTATIVES.json]\n";
+                     "LOWER-REPRESENTATIVES.json | "
+                     "--objective-nine-component COMPONENT.json "
+                     "OBJECTIVE-NINE-FRONTIER.json OBJECTIVE-EIGHT.json "
+                     "OBJECTIVE-SEVEN.json LOWER-REPRESENTATIVES.json]\n";
         return 2;
     }
     Verifier verifier(
@@ -1454,11 +1727,17 @@ int main(int argc, char** argv) try {
             );
         else
             throw std::runtime_error("unexpected verification mode");
-    } else {
+    } else if (argc == 8) {
         if (std::string(argv[3]) != "--objective-nine-frontier")
             throw std::runtime_error("expected --objective-nine-frontier");
         verifier.write_objective_nine_frontier_json(
             argv[4], argv[5], argv[6], argv[7], std::cout
+        );
+    } else {
+        if (std::string(argv[3]) != "--objective-nine-component")
+            throw std::runtime_error("expected --objective-nine-component");
+        verifier.write_objective_nine_component_json(
+            argv[4], argv[5], argv[6], argv[7], argv[8], std::cout
         );
     }
     return 0;

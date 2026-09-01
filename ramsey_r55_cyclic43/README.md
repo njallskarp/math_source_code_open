@@ -418,12 +418,14 @@ Classify every threshold-eight component meeting those 20 exposed seeds with:
   > /tmp/objective-six-regression.json
 ```
 
-All 20 seeds lie in one complete external sublevel-eight component. Exact
-closure adds one rotation orbit, so the island consists of 21 free rotation
-orbits, or 903 labeled colorings, all with objective exactly eight. Its induced
-one-flip graph has 1,376 edges, its exact escape level is nine, and its
-objective-nine boundary contains 115 rotation orbits reached by 5,633 directed
-full-state incidences. The optimized closure run took 100.39 seconds.
+All 20 seeds lie in one complete connected component of the **rotation
+quotient** of the external sublevel-eight graph. Exact closure adds one
+rotation orbit, so the quotient island consists of 21 free rotation orbits,
+or 903 labeled colorings in total, all with objective exactly eight. Across all
+903 colorings there are 1,376 induced one-flip edges, the exact escape level is
+nine, and the objective-nine boundary contains 115 rotation orbits reached by
+5,633 directed labeled-state incidences. The optimized closure run took 100.39
+seconds.
 
 Independently verify the claim by direct five-set recount and a fresh rotation
 canonicalizer:
@@ -438,30 +440,118 @@ python3 verify_external_objective_eight_components.py \
 The independent run took 9.00 seconds and found zero wrong objectives,
 noncanonical or non-free representatives, or missing objective-at-most-eight
 neighbors. It reproduced the vertex, edge, escape, and objective-nine-boundary
-counts exactly. This classifies all threshold-eight components meeting the 20
-exposed seeds; it does not rule out components that have no incidence with the
-certified primary objective-nine frontier.
+counts exactly. That original checker verified quotient closure but did not
+test connectivity of the 43-fold labeled lift. A later explicit BFS over all
+903 labeled states corrected the connectivity interpretation: the quotient
+island lifts to **43 pairwise-disjoint, rotation-equivalent components**, each
+with 21 vertices and 32 edges. Thus the aggregate counts above remain exact,
+but the 903 labeled colorings do not form one connected component.
+
+Close the primary component through objective nine with:
+
+```bash
+./objective_six_component certificate.json defect-cycle.json \
+  --objective-seven-component /tmp/objective-seven-regression.json \
+  --objective-eight-component /tmp/objective-eight-regression.json \
+  --objective-nine-component objective-nine-component-fast.json \
+  > /tmp/objective-six-regression.json
+```
+
+The first objective-nine frontier is not closed. Exact orbit expansion finds
+120 further objective-nine orbits and also pulls in 34 lower-objective orbits
+that were disconnected at threshold eight: one orbit at objective seven and
+33 at objective eight. In total the new part of the closure has 42,815 free
+rotation orbits, split as
+
+```text
+objective 7:      1 orbit
+objective 8:     33 orbits
+objective 9: 42,781 orbits
+```
+
+It has 2,514,167 internal edges and 6,603,854 edges back to the previously
+certified primary sublevel-eight component. Consequently the complete
+connected sublevel-nine component through the primary optimum has
+
+```text
+2,681,308 vertices and 12,794,607 edges,
+```
+
+and its exact one-flip escape level is ten. The optimized search checks every
+one of 903 reversals at all 42,815 new orbit representatives, corresponding to
+1,662,463,635 labeled-state checks after the free-orbit lift.
+
+Independently verify the complete new part with fresh direct five-set recounts:
+
+```bash
+OMP_NUM_THREADS=10 ./verify_objective_six_component \
+  certificate.json objective-six-component-representatives.json \
+  --objective-nine-component objective-nine-component-fast.json \
+  objective-nine-frontier-fast.json objective-eight-component-fast.json \
+  objective-seven-component-fast.json objective-seven-frontier-fast.json \
+  > objective-nine-component-independent.json
+```
+
+The ten-thread checker took 27.05 seconds. For all 42,815 representatives it
+reconstructed the coloring, recounted all 962,598 five-sets, rebuilt all 903
+single-flip deltas, checked canonicality and freeness, and tested every accepted
+neighbor against the union of the old and new strata. It found zero objective,
+canonicality, frontier-containment, or closure discrepancies and independently
+reproduced every edge count, objective histogram, and escape level.
+
+The 34 newly attached lower orbits have additional exact structure. Recount
+and classify their quotient and labeled lifts with:
+
+```bash
+python3 verify_threshold_nine_lower_islands.py \
+  objective-nine-component-fast.json \
+  external-objective-eight-components-fast.json \
+  objective-eight-component-fast.json objective-seven-component-fast.json \
+  objective-seven-frontier-fast.json \
+  > threshold-nine-lower-islands-independent.json
+```
+
+There are exactly two closed threshold-eight quotient components. The first is
+the previously exposed 21-orbit objective-eight quotient island; an explicit
+labeled-state BFS and an independent \(\mathbb Z/43\mathbb Z\) voltage check
+both show that it lifts to 43 components of 21 vertices and 32 edges each. The
+second is new: it contains one objective-seven orbit and 12 objective-eight
+orbits, has a nonzero cycle voltage, and therefore lifts to one connected
+component of 559 labeled colorings and 688 edges. Its exact escape level is
+nine; its objective-nine boundary has 56 rotation orbits and 4,042 directed
+labeled-state incidences. The direct Python classification took 14.61 seconds.
+
+These are finite local classifications of the Cyclic(43) perturbation
+landscape, not a determination of \(R(5,5)\) and not a global classification of
+all low-objective colorings. Searches of the committed Discovery Net graph and
+the cited primary R(5,5) sources found no prior threshold-nine closure or these
+two lift classifications. That is a novelty assessment, not a priority claim;
+unrelated disconnected sublevel-eight or sublevel-nine components remain out
+of scope.
 
 The results above were regenerated with Homebrew GCC 16.2.0 and Python
-3.12.12. The complete regression suite passed 23/23 tests. A clean optimized
-rerun took 207.46 seconds and reproduced both theorem-bearing certificates
-byte-for-byte; clean independent recounts took 10.72 seconds for the complete
-eighth layer and 25.79 seconds for the objective-nine frontier, again producing
-byte-identical outputs.
+3.12.12. The complete regression suite passed 25/25 tests. The threshold-nine
+optimized closure and aggregate recount took 408.60 seconds; its independent
+ten-thread direct recount took 27.05 seconds, and the lower-island direct
+recount plus two independent lift-connectivity checks took 14.61 seconds.
 
 SHA-256:
 
 ```text
-6c5a40601b0d2bf7498bdf4059562386cc35728eab3e192fc97e3f6b17c1d19e  objective_six_component.cpp
-6d269c153d48cc15b2ac443fe2b3808ecdcb7c447fb94419e2c0687a3f5edbde  verify_objective_six_component.cpp
+30cf95dc602ed8dc896f6fa0c3a5bec1e71b19cdfe4c87735a6240bed534f278  objective_six_component.cpp
+653814991888928db6f189d351e59b9c60bef237afb911959109b88e4219909e  verify_objective_six_component.cpp
 216a3726bf3e842731cadee81181a762dbdb9f0ec4f9aba46b7e73d22c8e688c  verify_external_objective_eight_components.py
-94b5cd50f50503e5fefa223b53f006be5db6e7e3356429c7e484d8e49c3918e6  test_cyclic43.py
+885d86d8fa5dac7864c322101bdccb5d28231cc6b431a4b59b9da4148d9944ea  verify_threshold_nine_lower_islands.py
+67dfb691d45e400bf79f3e6f067fc054eb0c7d357a0aad630835abee837f40a3  test_cyclic43.py
 740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
 b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
 ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
 892e1990095bfb0d714e1ce1dabd9a51b37bda8c114559ed5e67d353c482a295  objective-nine-frontier-independent.json
 dee76687683f480bb3eeb788608bf0420c8d61fe5378558adb961acc42f160ff  external-objective-eight-components-fast.json
 319f92ea07c57edf4a94a1fc89c60ab177a3bd4d02f73f4127f29c2c7979db78  external-objective-eight-components-independent.json
+e04e0f20b5e2f696658e8e4258f437c31d29e928f531b3e951d42caa3daeefaa  objective-nine-component-fast.json
+73407f74e324429f405b2b4cdaf4bbf4c6cb981b96f21a0ae794cf6fc8d24838  objective-nine-component-independent.json
+fe3a66d5d937bc109920e45b2c105e5cfa2dbdebbb56a3b25adf8f0686650c88  threshold-nine-lower-islands-independent.json
 ```
 
 Certify a radius-five tube around all 38 vertices of that defect orbit:

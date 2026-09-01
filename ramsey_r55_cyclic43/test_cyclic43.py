@@ -954,6 +954,161 @@ class DirectVerifierTests(unittest.TestCase):
             independent["external_component_induced_edge_count"], 1_376
         )
 
+    def test_complete_sublevel_nine_component_and_independent_recount(self) -> None:
+        component = json.loads(
+            (HERE / "objective-nine-component-fast.json").read_text()
+        )
+        independent = json.loads(
+            (HERE / "objective-nine-component-independent.json").read_text()
+        )
+        objective_seven = component[
+            "new_objective_7_rotation_representatives"
+        ]
+        objective_eight = component[
+            "new_objective_8_rotation_representatives"
+        ]
+        objective_nine = component[
+            "new_objective_9_rotation_representatives"
+        ]
+        first_frontier = json.loads(
+            (HERE / "objective-nine-frontier-fast.json").read_text()
+        )["objective_nine_rotation_representatives"]
+
+        self.assertEqual(
+            component["objective_nine_first_frontier_rotation_orbit_count"],
+            42_661,
+        )
+        self.assertEqual(
+            component["complete_threshold_nine_new_rotation_orbit_count"],
+            42_815,
+        )
+        self.assertEqual(
+            component["complete_objective_nine_rotation_orbit_count"], 42_781
+        )
+        self.assertEqual(
+            component["additional_objective_nine_rotation_orbit_count"], 120
+        )
+        self.assertEqual(
+            component["new_objective_at_most_eight_rotation_orbit_count"], 34
+        )
+        self.assertEqual(len(objective_seven), 1)
+        self.assertEqual(len(objective_eight), 33)
+        self.assertEqual(len(objective_nine), 42_781)
+        self.assertEqual(
+            len({tuple(item) for item in objective_nine}), len(objective_nine)
+        )
+        self.assertTrue(
+            {tuple(item) for item in first_frontier}
+            <= {tuple(item) for item in objective_nine}
+        )
+        self.assertEqual(
+            component["new_to_primary_sublevel_eight_directed_edge_count"],
+            6_603_854,
+        )
+        self.assertEqual(
+            component["new_threshold_nine_internal_edge_count"], 2_514_167
+        )
+        self.assertTrue(component["complete_sublevel_nine_component_is_closed"])
+        self.assertEqual(
+            component["complete_sublevel_nine_component_vertex_count"],
+            2_681_308,
+        )
+        self.assertEqual(
+            component["complete_sublevel_nine_component_edge_count"],
+            12_794_607,
+        )
+        self.assertEqual(
+            component["exact_one_flip_escape_level_from_sublevel_nine_component"],
+            10,
+        )
+        self.assertEqual(
+            840_263 + 43 * 42_815,
+            component["complete_sublevel_nine_component_vertex_count"],
+        )
+        self.assertEqual(
+            3_676_586 + 6_603_854 + 2_514_167,
+            component["complete_sublevel_nine_component_edge_count"],
+        )
+
+        self.assertEqual(
+            independent["independent_direct_recount_representative_count"],
+            42_815,
+        )
+        self.assertTrue(independent["all_representatives_have_claimed_objective"])
+        self.assertTrue(independent["all_representatives_are_canonical_and_free"])
+        self.assertTrue(independent["first_objective_nine_frontier_is_contained"])
+        self.assertEqual(
+            independent["missing_objective_at_most_nine_neighbor_count"], 0
+        )
+        self.assertEqual(
+            independent["new_rotation_orbit_count_by_objective"],
+            {"7": 1, "8": 33, "9": 42_781},
+        )
+        self.assertEqual(
+            independent["aggregate_neighbor_objective_histogram_by_source_objective"],
+            component["new_state_neighbor_objective_histogram_by_source_objective"],
+        )
+        self.assertEqual(independent["exact_one_flip_escape_level"], 10)
+
+    def test_threshold_nine_lower_island_lifts(self) -> None:
+        payload = json.loads(
+            (HERE / "threshold-nine-lower-islands-independent.json").read_text()
+        )
+        self.assertEqual(
+            payload["independent_direct_recount_lower_rotation_orbit_count"], 34
+        )
+        self.assertEqual(
+            payload["lower_rotation_orbit_count_by_objective"],
+            {"7": 1, "8": 33},
+        )
+        self.assertEqual(payload["primary_sublevel_eight_incidence_count"], 0)
+        self.assertEqual(
+            payload["missing_objective_at_most_eight_neighbor_count"], 0
+        )
+        self.assertEqual(payload["complete_rotation_quotient_component_count"], 2)
+
+        known, newly_exposed = payload["components"]
+        self.assertEqual(known["known_21_orbit_island_overlap"], 21)
+        self.assertEqual(known["rotation_quotient_component_orbit_count"], 21)
+        self.assertEqual(known["rotation_orbit_count_by_objective"], {"8": 21})
+        self.assertEqual(known["lifted_labeled_component_count"], 43)
+        self.assertFalse(known["nonzero_cycle_voltage_found"])
+        self.assertEqual(
+            known["explicit_labeled_component_vertex_counts"], [21] * 43
+        )
+        self.assertEqual(
+            known["explicit_labeled_component_edge_counts"], [32] * 43
+        )
+        self.assertEqual(known["total_labeled_vertex_count"], 903)
+        self.assertEqual(known["total_induced_edge_count"], 1_376)
+
+        self.assertEqual(newly_exposed["known_21_orbit_island_overlap"], 0)
+        self.assertEqual(
+            newly_exposed["rotation_quotient_component_orbit_count"], 13
+        )
+        self.assertEqual(
+            newly_exposed["rotation_orbit_count_by_objective"],
+            {"7": 1, "8": 12},
+        )
+        self.assertEqual(newly_exposed["lifted_labeled_component_count"], 1)
+        self.assertTrue(newly_exposed["nonzero_cycle_voltage_found"])
+        self.assertEqual(
+            newly_exposed["explicit_labeled_component_vertex_counts"], [559]
+        )
+        self.assertEqual(
+            newly_exposed["explicit_labeled_component_edge_counts"], [688]
+        )
+        self.assertEqual(newly_exposed["exact_one_flip_escape_level"], 9)
+        self.assertEqual(
+            newly_exposed["objective_nine_boundary_rotation_orbit_count"], 56
+        )
+        self.assertEqual(
+            newly_exposed[
+                "objective_nine_boundary_directed_labeled_incidence"
+            ],
+            4_042,
+        )
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()
