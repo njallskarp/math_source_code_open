@@ -3,6 +3,8 @@ import unittest
 from audit_swap_cocycle import (
     Cylinder,
     audit,
+    coefficient_gap_coordinates,
+    cylinder_from_bits,
     first_crossing_cylinders,
     verify_split_coordinate,
 )
@@ -46,6 +48,20 @@ class SwapCocycleTests(unittest.TestCase):
                         continue
                     target = states[bits ^ (3 << position)]
                     verify_split_coordinate(length, bits, position, source, target)
+
+    def test_coefficient_gap_coordinates(self) -> None:
+        for states in first_crossing_cylinders(16).values():
+            for state in states.values():
+                gap, margin_residue, window_index = coefficient_gap_coordinates(state)
+                self.assertEqual(state.margin, margin_residue - gap * window_index)
+                self.assertGreaterEqual(margin_residue, 0)
+                self.assertLess(margin_residue, gap)
+
+        # A contracting word outside the first-crossing family exercises a
+        # genuinely nonzero window index and a negative descent margin.
+        state = cylinder_from_bits(21, 5)
+        self.assertEqual(state.margin, -1)
+        self.assertEqual(coefficient_gap_coordinates(state), (5, 4, 1))
 
 
 if __name__ == "__main__":

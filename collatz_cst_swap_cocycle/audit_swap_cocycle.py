@@ -112,6 +112,32 @@ def verify_split_coordinate(
         raise AssertionError("global and prefix-lift wrap tests disagree")
 
 
+def coefficient_gap_coordinates(state: Cylinder) -> tuple[int, int, int]:
+    """Return ``(d, mu, kappa)`` for the canonical coefficient-gap window.
+
+    Here ``d=2^K-3^q``, ``mu`` is the least nonnegative solution of
+    ``3^q*mu+B == 0 (mod d)``, and ``margin=mu-d*kappa``.
+    """
+    gap = state.pow2 - state.pow3
+    if gap <= 0:
+        raise ValueError("coefficient-gap coordinates require contraction")
+    margin_residue = (
+        0
+        if gap == 1
+        else (-state.numerator * pow(state.pow3, -1, gap)) % gap
+    )
+    window_numerator = state.pow2 * margin_residue + state.numerator
+    window_denominator = state.pow2 * gap
+    kappa, remainder = divmod(window_numerator, window_denominator)
+    if remainder != state.residue * gap:
+        raise AssertionError("coefficient-gap window did not reconstruct residue")
+    if state.margin != margin_residue - gap * kappa:
+        raise AssertionError("coefficient-gap window did not reconstruct margin")
+    if kappa < 0:
+        raise AssertionError("canonical window index must be nonnegative")
+    return gap, margin_residue, kappa
+
+
 def first_crossing_cylinders(max_length: int) -> dict[int, dict[int, Cylinder]]:
     """Enumerate words whose coefficient first becomes <1 at their last bit.
 
@@ -146,10 +172,20 @@ def audit(max_length: int = 26) -> dict[str, int | str]:
     unwrapped = 0
     minimum_jump = None
     maximum_jump = 0
+    maximum_window_index = 0
+    wrap_defect_failures = 0
 
     for length in sorted(groups):
         states = groups[length]
         modulus = 1 << length
+        gap_coordinates = {
+            bits: coefficient_gap_coordinates(state)
+            for bits, state in states.items()
+        }
+        maximum_window_index = max(
+            maximum_window_index,
+            max(kappa for _, _, kappa in gap_coordinates.values()),
+        )
         for bits in sorted(states):
             source = states[bits]
             for position in range(length - 1):
@@ -189,6 +225,19 @@ def audit(max_length: int = 26) -> dict[str, int | str]:
                 actual_margin_delta = target.margin - source.margin
                 if actual_margin_delta != expected_margin_delta:
                     raise AssertionError("margin cocycle identity failed")
+
+                _, margin_residue, window_index = gap_coordinates[bits]
+                _, target_margin_residue, target_window_index = gap_coordinates[
+                    target_bits
+                ]
+                circle_wrap = margin_residue + positive_jump >= gap
+                if target_margin_residue != (margin_residue + positive_jump) % gap:
+                    raise AssertionError("coefficient-gap rotation failed")
+                if (
+                    target_window_index - window_index
+                    != int(wrapped_here) - int(circle_wrap)
+                ):
+                    wrap_defect_failures += 1
 
                 negative_jump_numerator = gap * complement - suffix_power
                 if negative_jump_numerator % local_modulus:
@@ -230,6 +279,8 @@ def audit(max_length: int = 26) -> dict[str, int | str]:
         "wrapped_edges": wrapped,
         "minimum_jump": minimum_jump or 0,
         "maximum_jump": maximum_jump,
+        "maximum_window_index": maximum_window_index,
+        "wrap_defect_failures": wrap_defect_failures,
         "sha256": digest.hexdigest(),
     }
 

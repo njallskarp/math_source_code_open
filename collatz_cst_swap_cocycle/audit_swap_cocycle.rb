@@ -69,6 +69,22 @@ def first_crossings(max_length)
   groups
 end
 
+def coefficient_gap_coordinates(state)
+  gap = state.pow2 - state.pow3
+  raise "noncontracting" unless gap.positive?
+  margin_residue = if gap == 1
+                     0
+                   else
+                     (-state.numerator * inverse_mod(state.pow3, gap)) % gap
+                   end
+  window_numerator = state.pow2 * margin_residue + state.numerator
+  window_denominator = state.pow2 * gap
+  window_index, remainder = window_numerator.divmod(window_denominator)
+  raise "window residue" unless remainder == state.residue * gap
+  raise "window margin" unless state.margin == margin_residue - gap * window_index
+  [gap, margin_residue, window_index]
+end
+
 def audit(max_length)
   groups = first_crossings(max_length)
   digest = Digest::SHA256.new
@@ -78,10 +94,17 @@ def audit(max_length)
   unwrapped = 0
   minimum_jump = nil
   maximum_jump = 0
+  maximum_window_index = 0
+  wrap_defect_failures = 0
 
   groups.keys.sort.each do |length|
     states = groups[length]
     modulus = 1 << length
+    gap_coordinates = states.transform_values do |state|
+      coefficient_gap_coordinates(state)
+    end
+    maximum_window_index = [maximum_window_index,
+                            gap_coordinates.values.map(&:last).max].max
     states.keys.sort.each do |bits|
       source = states.fetch(bits)
       (0...(length - 1)).each do |position|
@@ -105,6 +128,17 @@ def audit(max_length)
         wrapped_here = source.residue + residue_delta >= modulus
         expected = positive_jump - (wrapped_here ? gap : 0)
         raise "cocycle" unless target.margin - source.margin == expected
+        _, margin_residue, window_index = gap_coordinates.fetch(bits)
+        _, target_margin_residue, target_window_index =
+          gap_coordinates.fetch(bits ^ (3 << position))
+        circle_wrap = margin_residue + positive_jump >= gap
+        unless target_margin_residue == (margin_residue + positive_jump) % gap
+          raise "coefficient-gap rotation"
+        end
+        unless target_window_index - window_index ==
+               (wrapped_here ? 1 : 0) - (circle_wrap ? 1 : 0)
+          wrap_defect_failures += 1
+        end
         negative_numerator = gap * complement - suffix_power
         raise "negative integrality" unless (negative_numerator % local_modulus).zero?
         negative_jump = negative_numerator / local_modulus
@@ -130,6 +164,8 @@ def audit(max_length)
     wrapped_edges: wrapped,
     minimum_jump: minimum_jump || 0,
     maximum_jump: maximum_jump,
+    maximum_window_index: maximum_window_index,
+    wrap_defect_failures: wrap_defect_failures,
     sha256: digest.hexdigest
   }
 end

@@ -121,6 +121,22 @@ theorem fullWrap_iff_liftWrap (rho F t u L : Int)
     have hsum : F * L ≤ rho + F * (t + u) := by omega
     grind
 
+/-- The cumulative full-wrap count minus the coefficient-gap winding number
+is the change in canonical-window index.  This is the path-independent
+wrap-defect identity. -/
+theorem wrapDefectIdentity
+    (M0 M1 μ0 μ1 d S fullWraps circleWindings κ0 κ1 : Int)
+    (hmargin : M1 = M0 + S - d * fullWraps)
+    (hcircle : μ1 = μ0 + S - d * circleWindings)
+    (hwindow0 : μ0 - M0 = d * κ0)
+    (hwindow1 : μ1 - M1 = d * κ1)
+    (hd : d ≠ 0) :
+    κ1 - κ0 = fullWraps - circleWindings := by
+  have hproduct :
+      d * (κ1 - κ0) = d * (fullWraps - circleWindings) := by
+    grind
+  exact Int.eq_of_mul_eq_mul_left hd hproduct
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -131,5 +147,6 @@ theorem fullWrap_iff_liftWrap (rho F t u L : Int)
 #print axioms unwrappedGapChange
 #print axioms wrappedGapChange
 #print axioms fullWrap_iff_liftWrap
+#print axioms wrapDefectIdentity
 
 end CollatzSwapCocycle

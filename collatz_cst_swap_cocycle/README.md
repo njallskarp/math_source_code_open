@@ -130,6 +130,81 @@ data.  The Python unit test checks this split-coordinate formula on every
 admissible edge through length 16, and Lean proves the abstract equivalence
 between full-residue wrap and prefix-lift wrap.
 
+## Dual-modulus margin theorem
+
+There is a second, smaller canonical modulus.  For any contracting word, let
+
+```text
+A = 2^K,       P = 3^q,       d = A-P > 0,
+B = B(w),      M = r(w)-z(w).
+```
+
+Let `mu` be the least residue in `[0,d)` satisfying
+
+```text
+P mu + B == 0 (mod d).
+```
+
+Then there is a unique nonnegative integer `kappa` such that
+
+```text
+M = mu-d*kappa,
+kappa = floor((A*mu+B)/(A*d)).
+```
+
+Moreover the least `2^K`-residue is reconstructed exactly by
+
+```text
+r(w) = (A*M+B)/d.
+```
+
+This follows by substituting `z=r-M` into `A z=P r+B`, which yields
+`d r=A M+B`.  The canonical condition `0<=r<A` is precisely the interval
+
+```text
+-B/A <= M < d-B/A.
+```
+
+That interval has length `d` and hence contains exactly one representative
+of the congruence class `mu (mod d)`.  In particular,
+
+```text
+M>0  iff  kappa=0 and mu>0
+     iff  0<mu and A*mu+B<A*d.
+```
+
+Thus the CST target is an exact modular-barrier problem on the coefficient
+gap `d`, not only a residue problem modulo `2^K`.
+
+## Cumulative wrap-defect theorem
+
+For a path of adjacent `01 -> 10` exchanges at fixed `(K,q)`, let `J_e` be
+the positive coefficient-gap jump on edge `e`, and put
+
+```text
+S = sum_e J_e,
+W = number of full 2^K-residue wraps,
+C = floor((mu_start+S)/d).
+```
+
+Here `C` is the winding number of the lifted walk around the coefficient-gap
+circle.  Telescoping the two cocycles gives the exact identity
+
+```text
+kappa_end-kappa_start = W-C.
+```
+
+The right side is therefore path-independent even though `W`, `C`, and the
+integer lift `S` can depend on the chosen exchange path.  Starting from a
+word with `kappa=0`, cumulative wrapped loss creates a non-descending least
+residue exactly when full-residue wrapping outruns coefficient-circle winding
+(or when the final circle residue is zero, the cycle boundary).
+
+Lean proves this wrap-defect identity abstractly.  The Python path checker
+constructs a canonical insertion path from the mechanical extremizer to every
+first-crossing word through length 26 and verifies both the winding equation
+and the endpoint window index exactly.
+
 ### Proof
 
 The numerator formula follows by comparing the contribution of the exchanged
@@ -163,7 +238,7 @@ Final contraction and prefix safety at `p0` imply
 Because `d v-e` is a multiple of `L` and is greater than `-L`, it is
 nonnegative.  Equality would force `d=1`; then `2^K-3^q=1`, which modulo `8`
 forces `K=2,q=1`, incompatible with prefix safety of a word beginning with the
-relevant `01`.  Hence `d v-e>0`, so `J->0`.  The complementary identity
+relevant `01`.  Hence `d v-e>0`, so `J- > 0`.  The complementary identity
 `J+ + J-=d` then yields `0<J+<d` as well.
 
 ## Structural CST reduction
@@ -192,6 +267,7 @@ Run with Python 3.12.12, Ruby 2.6.10, and Lean 4.33.1:
 ```bash
 python3 -m unittest -v test_swap_cocycle.py
 python3 audit_swap_cocycle.py --max-length 26
+python3 audit_wrap_defect.py --max-length 26
 ruby audit_swap_cocycle.rb 20
 lean lean/CollatzSwapCocycle.lean
 ```
@@ -206,18 +282,25 @@ unwrapped_edges=543334
 wrapped_edges=383583
 minimum_jump=2
 maximum_jump=23686172
+maximum_window_index=0
+wrap_defect_failures=0
 sha256=29e07fbf05de09bc0c414b50adf9e2bd80b92e077cdacf78f527b480e1ed7bef
 ```
 
+The canonical path audit traverses 3,787,863 adjacent moves on 190,066 paths,
+with at most 63 inversions and 31 full/circle wraps.  It finds no wrap-defect
+identity failure and no positive window index; its record digest is
+`fe62dae02d3c96b43a5760f931fdf3b652d2de3444f8d6837009b50b9eada2bf`.
+
 The independently implemented Ruby checker agrees through length 20 on all
-counts and on canonical record digest
+counts, verifies the one-edge window-defect law, and agrees on record digest
 `d5ba814280e73c44b5d4b113820ccc3ab59432eabb1ffa725373ae01d2d4b0f3`
 for 4,404 cylinders and 14,938 edges.
 
 Lean proves the scaled cocycle identities, jump complementarity, modular
 divisibility witness, short-multiple sign lemma, strict gap-change
-consequences, and full-wrap/prefix-lift-wrap equivalence without `sorry`,
-`admit`, custom axioms, Mathlib, or
+consequences, full-wrap/prefix-lift-wrap equivalence, and the cumulative
+wrap-defect identity without `sorry`, `admit`, custom axioms, Mathlib, or
 `native_decide`.  `#print axioms` reports only Lean's standard logical axioms
 (`propext`, `Quot.sound`, and for the `grind` algebraic normalization proofs,
 `Classical.choice`).  The Collatz-specific decoding, enumeration, and the
@@ -232,11 +315,13 @@ it gives the local numerator difference used above.  That result is prior art,
 not new here.  Classical work of Terras, Everett, and Lagarias supplies the
 parity-vector/residue bijection.
 
-The apparently new piece, relative to the sources searched below, is the
+The apparently new pieces, relative to the sources searched below, are the
 explicit coupling of this adjacent exchange to the *canonical least residue*,
-the complementary jump pair `(J+,J-)`, and the exact wrap/no-wrap sign law for
-the least-residue descent margin.  This is a negative literature search, not a
-priority claim.
+the complementary jump pair `(J+,J-)`, the dual-modulus margin window, and the
+path-independent full-wrap-minus-winding defect.  This is a negative
+literature search, not a priority claim.  The denominator `2^K-3^q` is of
+course classical in cycle equations; novelty is claimed only for this margin
+window/cocycle packaging.
 
 Primary sources checked:
 
@@ -254,8 +339,8 @@ Primary sources checked:
 
 ## Limitations and next target
 
-The theorem does not bound how often wraps occur, nor how a source margin
-compares to its edge-specific `J-`.  The next target is to express the wrap
-indicator and boundary inequality in prefix/suffix cylinder coordinates, then
-seek a path-independent or blockwise bound on cumulative wrapped loss over
-Sturmian/Christoffel intervals.
+The theorem identifies but does not bound the defect `W-C`.  The next target
+is a blockwise inequality forcing `W<=C` (hence `kappa=0` from a safe base),
+using the split-coordinate wrap criterion over Sturmian/Christoffel intervals.
+Any such inequality must also exclude a terminal coefficient-circle residue
+of zero, which is the exact cycle boundary.
