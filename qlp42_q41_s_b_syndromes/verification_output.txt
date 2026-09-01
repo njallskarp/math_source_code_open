@@ -1,0 +1,71 @@
+Apple clang version 17.0.0 (clang-1700.6.3.2)
+Python 3.12.12
+arm64
+
+$ ./classify_s_b_syndromes
+b_words_wt_0_mod_4=523776
+b_rotation_orbits_wt_0_mod_4=24946
+support_strata=164
+case_0_full_orbits=23410
+case_0_full_words=491540
+case_0_defective_orbits=1534
+case_0_defective_words=32214
+case_0_empty_orbits=2
+case_0_empty_words=22
+case_0_max_defect=385
+case_1_full_orbits=24284
+case_1_full_words=509894
+case_1_defective_orbits=660
+case_1_defective_words=13860
+case_1_empty_orbits=2
+case_1_empty_words=22
+case_1_max_defect=257
+case_2_full_orbits=6511
+case_2_full_words=136641
+case_2_defective_orbits=18434
+case_2_defective_words=387114
+case_2_empty_orbits=1
+case_2_empty_words=21
+case_2_max_defect=384
+case_3_full_orbits=6546
+case_3_full_words=137396
+case_3_defective_orbits=18399
+case_3_defective_words=386379
+case_3_empty_orbits=1
+case_3_empty_words=1
+case_3_max_defect=256
+case_4_full_orbits=6546
+case_4_full_words=137396
+case_4_defective_orbits=18399
+case_4_defective_words=386379
+case_4_empty_orbits=1
+case_4_empty_words=1
+case_4_max_defect=256
+case_5_full_orbits=6550
+case_5_full_words=137460
+case_5_defective_orbits=18395
+case_5_defective_words=386295
+case_5_empty_orbits=1
+case_5_empty_words=21
+case_5_max_defect=128
+all_supports_in_even_parity_half_image=verified
+case_3_case_4_support_identity=verified
+certificate=verified
+
+$ ./classify_s_b_syndromes --table | shasum -a 256
+41add1db832de25488805a33a85935d92792ea0b336d5e17894050b345f23cb4  -
+
+$ ./classify_s_b_syndromes --stream | shasum -a 256
+1e0d2790039844e52c0fb93fd008b6420d7476691676552c5140da22bc90696b  -
+
+$ ./classify_s_b_syndromes --sample-stream | shasum -a 256
+12124e91beecd8b4607b9bd54d080318b7b41c1212532fa3cbb8d6633b8bc2f2  -
+
+$ python3 independent_sample_check.py
+sampled_orbits=516
+sampled_cases=3096
+sampled_ranks=0,3,4,6,7,9,10
+direct_subset_xor_matches_primary_sample_stream=verified
+even_parity_containment=verified
+case_3_case_4_support_identity=verified
+sample_stream_sha256=12124e91beecd8b4607b9bd54d080318b7b41c1212532fa3cbb8d6633b8bc2f2
