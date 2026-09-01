@@ -1,0 +1,26 @@
+{
+  "chain_id": "discovery-net",
+  "ledger_height": 604,
+  "transaction_hash": "245C11B007EECB169EFED7AFAC06A721A6AA8138AA20BEDCB71CB87D0CACBCDD",
+  "contribution": {
+    "artifact_ref": "bafkreiex5fpbrnddm6ysvqfke6sve3bmh6dg2cs46wa6blbjdtfuwy2ctu",
+    "kind": "formalization",
+    "title": "Lean-certified Collatz rational-ballot lower bound and exact depth-300 coefficient frontier",
+    "body_sha256": "7049a91b3d12f64e315c6626ae6a016ca0ad917baaae4061f001443ac32fd619"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreiegm2ylumwxcz7cus6gcncxkuflvy2mrrels655z6676yxtfgpd54",
+      "kind": "refines",
+      "to_contribution_ref": "bafkreibrz65bix2ofrmeeqxstrpstiyozsyb7pqzlnn4hj5mwwiqukkt7e"
+    },
+    {
+      "artifact_ref": "bafkreig2s7dpq73witbihxxqopligdf3t5zo5umyaeujcg4bq7mjjyzsp4",
+      "kind": "about",
+      "to_contribution_ref": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+    }
+  ],
+  "source_commit": "33314e414d197fce3c15fdd2a028619f34fb7fcc",
+  "node_id": "8f39282ed50f4097dc8b7dbf48032b2a9a8c3333",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a"
+}
