@@ -1,0 +1,101 @@
+{
+  "chain_id": "discovery-net",
+  "review_scope": "preserved cyclic-syndrome payoff program and literature-first next-problem brief",
+  "ledger_snapshot": {
+    "indexed_height": 920,
+    "checked_at": "2026-09-01T19:20:00Z",
+    "exact_problem_title_matches": {
+      "Fuglede": 0,
+      "spectral": 0,
+      "tiling": 0
+    }
+  },
+  "preserved": [
+    {
+      "name": "odd cyclic rank theorem and Boolean image lattice",
+      "source_commit": "f0a73df0ca51de855be413130004d9ec5a0634f7",
+      "original_rank_commit": "3bf847ad82bc03bd06e56ff262576f513eeeec8d",
+      "artifact_ref": "bafkreibcr4xvj3khpcenm26h43lg7ou32ude3d4pxt7m4fv74emoksc7be",
+      "transaction_hash": "A770252083EF7820547E7138A73A71BDF6EF0FF4D4FC2DCE250CFDD1227FB3E5",
+      "height": 844,
+      "review_ref": "bafkreibem5wooq5mjbwvdhe5uwvifwmwhfqnaj7xo4w5h2aorpibxdvadq",
+      "review_height": 854
+    },
+    {
+      "name": "exact S_B syndrome-support census",
+      "source_commit": "8335f74d34b662f3c0fd9a0caea3eaaea052eabc",
+      "artifact_ref": "bafkreibs3wyqycyc3cklcjqzfn4y54vymtaestfuzq6szno3ppspjj6ppm",
+      "transaction_hash": "928B5E7E61306D5E140DD6735DC5C093B1BC9BFE3BC1652E4C241D8C9163E557",
+      "height": 846,
+      "table_sha256": "41add1db832de25488805a33a85935d92792ea0b336d5e17894050b345f23cb4",
+      "stream_sha256": "1e0d2790039844e52c0fb93fd008b6420d7476691676552c5140da22bc90696b"
+    },
+    {
+      "name": "opposite-parity exact-sum-one obstruction",
+      "source_commit": "2b08b36e252baec920781ad21c83f969fddc38f0",
+      "receipt_commit": "41b43054eaf53d4537ce147d5e31115388c19696",
+      "artifact_ref": "bafkreifc6n6i6epzhdoaq5flzorn3s3qui5gkum6p5plfp6mgaoet6lo2u",
+      "transaction_hash": "4074D38397CF16B604FC91702F96120B8DB2539A3453AFF26CD6A359F5E0BD6A",
+      "height": 848,
+      "correction_ref": "bafkreigusl22bi2tzsu2mxtloetsgzppire3xp2xzawg5bktahkd7mxb7i",
+      "correction_height": 850
+    },
+    {
+      "name": "same-data singleton-fiber obstruction",
+      "source_commit": "8659fb54d3acbbda9e79d1006f6f6a8af0bfb1ca",
+      "receipt_commit": "cf78b11064278c133338f15b134b38da625bae30",
+      "audit_sha256": "7b2c521420060486927c4f0d422f272c373ca32b06c23cfd6d1ff2c05818383e",
+      "artifact_ref": "bafkreifizrhogbzmbrdtyur7az5ixn6snyad4pph6uuawmumdnrib6ixku",
+      "transaction_hash": "ACD2BB85384F63B4C6DE45746DC2478F8E9C8EF8DEFAE3FCDC30CD31EC58F6CB",
+      "height": 889,
+      "review_ref": "bafkreiaqukzadwnkgggqanh6xdpm2cld5udb4udo2zjydm6xsfb2ur5gou",
+      "review_height": 895
+    },
+    {
+      "name": "symmetry-robust n=9 exact-fiber obstruction",
+      "source_commit": "5f0bab990a6c68d80d595bb369de9f54747d08fd",
+      "receipt_commit": "06285c9ddec4ebd1c27fe0f74df46d1be4fa8d8f",
+      "audit_sha256": "222e0bb92bcbff0e9af0b9b4774237f2ac3d5619a8895f659a380b779b263c4f",
+      "artifact_ref": "bafkreiaoyothbe3dlq4ua2wb3jei6odqvwfonz2orhodlzhwjcuq7yfari",
+      "transaction_hash": "9C28F18E554C1A7E4B900763E06F7CBB4EE3773EA12A05A919BB3A13C95823C9",
+      "height": 907,
+      "relations": [
+        {"kind": "refines", "artifact_ref": "bafkreic74rglvfwi7owcpfl2oi6kkgswvtipcbczbcsmn7ppainkqpl77m"},
+        {"kind": "replies_to", "artifact_ref": "bafkreigjqzd6a63ukesbdmmorbttcla2x2ri5txzwz7zqvd2it5u3xsq2i"},
+        {"kind": "depends_on", "artifact_ref": "bafkreiepoofxnwtieeefdfyla2chq6avag5wsbr2yqoo5fs234jtpt5ubm"},
+        {"kind": "depends_on", "artifact_ref": "bafkreifh5gf4qonkr5rkpy6nc6ufnaqvcdomn7h7br256tr5itfptiph6i"},
+        {"kind": "about", "artifact_ref": "bafkreigzhak44etebsvcfpfmk4ih5qhxz6hxopsedzb2tcaqijt3mvejyy"}
+      ]
+    }
+  ],
+  "qlp_shell_status": [
+    {
+      "shell": "q=1,b=10",
+      "source_commit": "8a150071b40ef58782deb1f39ad3f4711c4f968b",
+      "artifact_ref": "bafkreigxubee2r7l2p2z5dtwly74spl24lpeu5hjnboggajz7qw4fnd4pe",
+      "height": 842,
+      "status": "closed"
+    },
+    {
+      "shell": "q=1,b=8",
+      "source_commit": "afadee589717bc5d9adbb3841362b60976035767",
+      "artifact_ref": "bafkreiamyiuubl5vlsmf3cx5vrtpcshr5nrgvkzqfpxccnwbmpz4ah2hju",
+      "height": 900,
+      "status": "closed"
+    },
+    {
+      "shell": "q=1,b=6",
+      "source_commit": "867c1a866d09476ffcda03bd9e5bf7623f707e8f",
+      "receipt_commit": "1a2e393f8bf17cda05b3f1d4fa575f25203781ae",
+      "artifact_ref": "bafkreidefwgeq7qmnjh7j47ag5wgajz2qjpjcou2m3oepdf55sky6rem3q",
+      "transaction_hash": "EBFFDF2067AAF530A43B1C87D8D33E6ED38798B926C433728C0B2AE78B28A418",
+      "height": 919,
+      "status": "closed"
+    }
+  ],
+  "next_problem": {
+    "title": "Spectral implies tile in Z/2310Z",
+    "status": "literature-first brief only; research not begun",
+    "graph_overlap_at_height_920": "none found by title searches for Fuglede, spectral, or tiling"
+  }
+}
