@@ -163,6 +163,62 @@ probability `1-2^(-2d)`; a self-reciprocal factor contributes `d/2` with
 probability `1-2^(-d)`.  This gives exact complexity statistics as well as an
 individual-axis classification.
 
+## Factorization-free arithmetic formula
+
+Formula (3) can be computed directly from the divisors of `n`, without
+factoring `x^n-1`.  For each divisor `q>1` of `n`, put
+
+```text
+o_q = ord_q(2).
+```
+
+The primitive `q`-th roots produce `phi(q)/o_q` irreducible factors of degree
+`o_q`.  They are self-reciprocal exactly when
+
+```text
+2^(o_q/2) = -1 (mod q),                                      (6)
+```
+
+which necessarily requires even `o_q`.  If (6) holds, the contribution of
+this divisor to the even-axis enumerator is
+
+```text
+(1 + (2^o_q-1) z^(o_q/2))^(phi(q)/o_q).                      (7)
+```
+
+Otherwise its irreducible factors form reciprocal pairs and contribute
+
+```text
+(1 + (2^(2o_q)-1) z^o_q)^(phi(q)/(2o_q)).                    (8)
+```
+
+Multiplying (7) or (8) over all `q|n`, `q>1`, gives the complete even-axis
+rank enumerator.  The all-axis enumerator is twice this product.
+
+### Exact rank-dichotomy classification
+
+For odd `n>=3`, every nonconstant axis has full rank `(n-1)/2` if and only if
+
+```text
+n is prime and either
+  ord_n(2) = n-1, or
+  ord_n(2) = (n-1)/2 with (n-1)/2 odd.                        (9)
+```
+
+Proof: the enumerator has only ranks zero and `(n-1)/2` precisely when there
+is one nontrivial reciprocal-factor orbit.  More than one divisor `q>1` gives
+more than one orbit, so `n` must be prime.  For prime `n`, a single orbit is
+either one self-reciprocal factor of degree `n-1`, giving the first condition,
+or one reciprocal pair of degree `(n-1)/2`.  The latter pair is reciprocal
+rather than two self-reciprocal factors exactly when its degree is odd,
+giving the second condition.  Both conditions plainly produce one orbit.
+
+`verify_arithmetic_formula.py` checks the divisor/order schema against actual
+polynomial factorization for every odd length through 23.  It then verifies
+the dimension, enumerator total, constant-axis kernel, full-rank coefficient,
+and dichotomy criterion for all 499 odd lengths from 3 through 999.  This is
+an exact finite audit of the general proof, not the source of the theorem.
+
 ## Independent computational certificate
 
 `verify_rank_formula.py` uses only the Python standard library.  It:
@@ -178,6 +234,10 @@ individual-axis classification.
 7. checks the surjective-axis and total-image-point corollaries at those two
    lengths.
 
+The separate arithmetic checker validates formulas (6)--(9) and records a
+SHA-256 digest of all 499 complete even-axis rank spectra in its expected
+output.
+
 The exhaustive direct-record stream has SHA-256
 
 ```text
@@ -190,8 +250,11 @@ Tested with Python 3.12.12 on arm64 macOS.
 
 ```sh
 python3 verify_rank_formula.py
+python3 verify_arithmetic_formula.py
 python3 verify_rank_formula.py > /tmp/rank-formula-output.txt
 diff -u expected_output.txt /tmp/rank-formula-output.txt
+python3 verify_arithmetic_formula.py > /tmp/arithmetic-output.txt
+diff -u expected_arithmetic_output.txt /tmp/arithmetic-output.txt
 shasum -a 256 -c SHA256SUMS
 ```
 
