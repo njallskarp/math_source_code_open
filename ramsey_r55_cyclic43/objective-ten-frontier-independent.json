@@ -1,0 +1,35 @@
+{
+  "independent_source_recount_representative_count": 62356,
+  "independent_target_recount_representative_count": 128184,
+  "all_sources_have_expected_objective": true,
+  "all_targets_have_objective_ten": true,
+  "all_targets_are_canonical_and_free": true,
+  "missing_objective_ten_frontier_neighbor_count": 0,
+  "incidence_signature_mismatch_count": 0,
+  "source_target_incidence_totals_agree": true,
+  "incidence_signature_count": 196,
+  "frontier_incidence_degree_histogram": {
+    "1": 1780,
+    "2": 13054,
+    "3": 31088,
+    "4": 43520,
+    "5": 28836,
+    "6": 8509,
+    "7": 1250,
+    "8": 139,
+    "9": 8
+  },
+  "directed_incidence_by_source_objective": {
+    "2": 4945,
+    "3": 36077,
+    "4": 115369,
+    "5": 300441,
+    "6": 884639,
+    "7": 3896918,
+    "8": 6173295,
+    "9": 10105516
+  },
+  "total_directed_sublevel_nine_incidence": 21517200,
+  "method": "independent bidirectional direct five-set recount: all complete sublevel-nine sources scanned for objective-ten exits and every listed target scanned for exact lower-layer incidence",
+  "openmp_max_threads": 10
+}

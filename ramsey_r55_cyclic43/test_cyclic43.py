@@ -1158,6 +1158,86 @@ class DirectVerifierTests(unittest.TestCase):
             4_042,
         )
 
+    def test_objective_ten_first_frontier(self) -> None:
+        frontier = json.loads(
+            (HERE / "objective-ten-frontier-fast.json").read_text()
+        )
+        independent = json.loads(
+            (HERE / "objective-ten-frontier-independent.json").read_text()
+        )
+        self.assertEqual(
+            frontier["complete_sublevel_nine_source_rotation_orbit_count"],
+            62_356,
+        )
+        self.assertEqual(
+            frontier["complete_sublevel_nine_source_vertex_count"],
+            2_681_308,
+        )
+        self.assertEqual(
+            frontier["objective_ten_first_frontier_rotation_orbit_count"],
+            128_184,
+        )
+        self.assertEqual(
+            frontier["objective_ten_first_frontier_vertex_count"],
+            5_511_912,
+        )
+        self.assertEqual(frontier["incidence_signature_count"], 196)
+        self.assertEqual(
+            frontier["total_directed_sublevel_nine_incidence"], 21_517_200
+        )
+        self.assertEqual(
+            len(frontier["objective_ten_rotation_representatives"]), 128_184
+        )
+        self.assertEqual(
+            len(frontier["objective_ten_incidence_signatures_2_through_9"]),
+            128_184,
+        )
+        self.assertEqual(
+            sum(
+                row["orbit_count"]
+                for row in frontier["incidence_signature_histogram"]
+            ),
+            128_184,
+        )
+        self.assertEqual(
+            independent["independent_source_recount_representative_count"],
+            62_356,
+        )
+        self.assertEqual(
+            independent["independent_target_recount_representative_count"],
+            128_184,
+        )
+        self.assertTrue(independent["all_sources_have_expected_objective"])
+        self.assertTrue(independent["all_targets_have_objective_ten"])
+        self.assertTrue(independent["all_targets_are_canonical_and_free"])
+        self.assertEqual(
+            independent["missing_objective_ten_frontier_neighbor_count"], 0
+        )
+        self.assertEqual(independent["incidence_signature_mismatch_count"], 0)
+        self.assertTrue(independent["source_target_incidence_totals_agree"])
+        self.assertEqual(
+            independent["frontier_incidence_degree_histogram"],
+            {
+                "1": 1_780,
+                "2": 13_054,
+                "3": 31_088,
+                "4": 43_520,
+                "5": 28_836,
+                "6": 8_509,
+                "7": 1_250,
+                "8": 139,
+                "9": 8,
+            },
+        )
+        self.assertEqual(
+            independent["directed_incidence_by_source_objective"],
+            frontier["directed_incidence_by_source_objective"],
+        )
+        self.assertEqual(
+            independent["total_directed_sublevel_nine_incidence"],
+            frontier["total_directed_sublevel_nine_incidence"],
+        )
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

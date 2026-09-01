@@ -566,21 +566,146 @@ two lift classifications. That is a novelty assessment, not a priority claim;
 unrelated disconnected sublevel-eight or sublevel-nine components remain out
 of scope.
 
+## Complete first objective-ten frontier of the primary threshold-nine component
+
+Let \(M(x)\) be the number of monochromatic copies of \(K_5\) in the
+two-coloring obtained by applying the perturbation state \(x\) to the fixed
+Cyclic(43) seed. Let \(P_9\) be the complete connected one-flip component
+through the primary optimum induced by states with \(M\leq 9\), as certified
+above, and quotient states by cyclic rotation. Define its first objective-ten
+frontier by
+
+\[
+F_{10}=\left\{[z]:M(z)=10,\ \exists [x]\in P_9\text{ with }
+                  d_H(x,z)=1\right\}.
+\]
+
+### Exact frontier theorem
+
+An exhaustive orbit-canonical scan of every one of the 903 edge reversals at
+all 62,356 rotation representatives of \(P_9\) gives
+
+\[
+|F_{10}|=128{,}184\quad\text{rotation orbits},\qquad
+43|F_{10}|=5{,}511{,}912\quad\text{labeled colorings}.
+\]
+
+Every source and target orbit is free. The complete directed labeled incidence
+from source objective \(j\) into \(F_{10}\) is
+
+\[
+\begin{array}{c|rrrrrrrr}
+j&2&3&4&5&6&7&8&9\\ \hline
+I_j&4{,}945&36{,}077&115{,}369&300{,}441&884{,}639&
+3{,}896{,}918&6{,}173{,}295&10{,}105{,}516.
+\end{array}
+\]
+
+Thus \(\sum_{j=2}^{9}I_j=21{,}517{,}200\). For each target orbit \([z]\),
+the certificate stores the exact incidence signature
+
+\[
+\sigma(z)=\bigl(i_2(z),i_3(z),\ldots,i_9(z)\bigr),
+\qquad
+i_j(z)=\#\{e:\,[z\triangle\{e\}]\in P_9\cap M^{-1}(j)\}.
+\]
+
+Exactly 196 signatures occur. The boundary degree
+\(\deg_{P_9}(z)=\sum_{j=2}^{9}i_j(z)\) lies between one and nine, with exact
+orbit distribution
+
+\[
+\begin{array}{c|rrrrrrrrr}
+d&1&2&3&4&5&6&7&8&9\\ \hline
+\#\{[z]:\deg_{P_9}(z)=d\}&
+1{,}780&13{,}054&31{,}088&43{,}520&28{,}836&8{,}509&1{,}250&139&8.
+\end{array}
+\]
+
+### Reproduction and independent verification
+
+Build and regenerate the full lower closure and frontier with:
+
+```bash
+g++-16 -std=c++20 -O3 -march=native -fopenmp -DNDEBUG \
+  objective_six_component.cpp -o objective_six_component
+./objective_six_component certificate.json defect-cycle.json \
+  --objective-seven-component /tmp/objective-seven-regression.json \
+  --objective-eight-component /tmp/objective-eight-regression.json \
+  --objective-nine-component /tmp/objective-nine-regression.json \
+  --objective-ten-frontier objective-ten-frontier-fast.json \
+  > /tmp/objective-six-regression.json
+```
+
+The regenerated threshold-nine output was byte-for-byte identical to
+`objective-nine-component-fast.json` before the new scan began. A separately
+implemented checker then proves the frontier in both directions: it directly
+recounts all \(\binom{43}{5}=962{,}598\) five-sets at every listed objective-ten
+target and reconstructs each stored incidence signature; independently, it
+recounts every source in \(P_9\) and verifies that every objective-ten exit is
+present in the listed frontier. Run it with:
+
+```bash
+g++-16 -std=c++20 -O3 -march=native -fopenmp -DNDEBUG \
+  verify_objective_ten_frontier.cpp -o verify_objective_ten_frontier
+OMP_NUM_THREADS=10 ./verify_objective_ten_frontier \
+  objective-seven-frontier-fast.json \
+  objective-seven-component-fast.json \
+  objective-eight-component-fast.json \
+  objective-nine-component-fast.json \
+  objective-ten-frontier-fast.json \
+  > objective-ten-frontier-independent.json
+```
+
+The independent checker found zero omitted frontier neighbors, zero wrong
+objectives, zero noncanonical or nonfree targets, and zero signature
+mismatches. Its source-side and target-side incidence totals agree in every
+objective layer, and it independently reproduces all 196 signatures and the
+degree spectrum above.
+
+### Novelty assessment, scope, and trust boundary
+
+The committed Discovery Net graph was searched through indexed height 625 for
+objective-ten, threshold-ten, Cyclic(43), and `R(5,5)` frontier classifications;
+no overlapping objective-ten result was found. The authoritative McKay data
+page records the known 42-vertex Ramsey(5,5) graphs, while the current primary
+upper-bound paper proves \(R(5,5)\leq 46\); neither source classifies this finite
+perturbation frontier
+([McKay data](https://users.cecs.anu.edu.au/~bdm/data/ramsey.html),
+[Angeltveit--McKay, 2024](https://arxiv.org/abs/2409.15709)). This supports a
+novelty assessment within the searched graph and sources, not a claim of
+priority over all unpublished computation.
+
+The theorem is an exact finite computational classification conditional on the
+programs and persisted certificates. It does **not** determine \(R(5,5)\), does
+not close the objective-ten layer, and does not exclude disconnected
+sublevel-nine components outside \(P_9\). The generator and verifier use
+separate state enumerations and bidirectional incidence checks but share C++,
+the Cyclic(43) seed convention, and the same persisted lower certificates;
+these are the remaining common-mode trust boundaries. The complete sorted
+representative and per-target signature arrays are retained so future
+threshold-ten closure, formal checking, and alternative-language verification
+do not need to trust aggregate prose.
+
 The results above were regenerated with Homebrew GCC 16.2.0 and Python
-3.12.12. The complete regression suite passed 25/25 tests. The threshold-nine
+3.12.12. The complete regression suite passed 26/26 tests. The threshold-nine
 optimized closure and aggregate recount took 408.60 seconds; its independent
 ten-thread direct recount with explicit reachability BFS took 32.79 seconds,
 and the lower-island direct
 recount plus two independent lift-connectivity checks took 14.61 seconds.
+The combined regenerated lower closures and objective-ten frontier scan took
+1,505.77 seconds under concurrent load; the independent ten-thread
+bidirectional direct recount took 155.72 seconds.
 
 SHA-256:
 
 ```text
-30cf95dc602ed8dc896f6fa0c3a5bec1e71b19cdfe4c87735a6240bed534f278  objective_six_component.cpp
+92c8b60c68ce737a8d9c217b4f4cafc966198950650f2b723fb9e0504e6e1263  objective_six_component.cpp
 d963ccaabefd5838bbdf96632dfc3f767a903ee401e0d98c5dd1c936093fc79a  verify_objective_six_component.cpp
+274b8eed5c83034e99d708617fcfc6c85e8c5830408b444fb63938750d1f73a0  verify_objective_ten_frontier.cpp
 216a3726bf3e842731cadee81181a762dbdb9f0ec4f9aba46b7e73d22c8e688c  verify_external_objective_eight_components.py
 885d86d8fa5dac7864c322101bdccb5d28231cc6b431a4b59b9da4148d9944ea  verify_threshold_nine_lower_islands.py
-347ff5416ab2186fcdcc2a6c47b7ce8e9fee4fd8019fa9b81f97ce651da96938  test_cyclic43.py
+3615d3c51beb1e176f8db76391e98278b0d58513eeef5a0a77f9e58af964153a  test_cyclic43.py
 740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
 b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
 ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
@@ -590,6 +715,8 @@ dee76687683f480bb3eeb788608bf0420c8d61fe5378558adb961acc42f160ff  external-objec
 e04e0f20b5e2f696658e8e4258f437c31d29e928f531b3e951d42caa3daeefaa  objective-nine-component-fast.json
 25fb32b4cfaf67130bdc9644c2cfa5448f604adc603855df7e39eb8953f8c0cb  objective-nine-component-independent.json
 fe3a66d5d937bc109920e45b2c105e5cfa2dbdebbb56a3b25adf8f0686650c88  threshold-nine-lower-islands-independent.json
+9b5b3b4747fedfba8b0191f052c9e6d2847aa9c910465f6c29358c2336977df4  objective-ten-frontier-fast.json
+5add68f5775a499dc85000a72dc3940f0b5c4ad2596c39476a00cef28baebcc3  objective-ten-frontier-independent.json
 ```
 
 Certify a radius-five tube around all 38 vertices of that defect orbit:
