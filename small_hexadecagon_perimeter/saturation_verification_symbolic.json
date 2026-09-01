@@ -1,0 +1,11 @@
+{
+  "rational_certificate": true,
+  "difference_body_deficit_upper": "0.00000154811866375545658202499",
+  "lower_cone_cut_margin_lower": "0.00000503228771317145008226715",
+  "upper_cone_cut_margin_lower": "0.00000327052226041482466855949",
+  "radial_exclusion_margin_lower": "2.49452320204764411800089E-7",
+  "angular_exclusion_margin_lower": "3.73207589233728804322634E-8",
+  "projective_separation_lower": "0.1716",
+  "tangent_ratio_upper": "0.00489759590971755787284034",
+  "kkt_projective_distance_upper": "0.0118931256651100500353456"
+}

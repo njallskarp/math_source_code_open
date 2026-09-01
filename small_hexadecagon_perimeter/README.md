@@ -173,9 +173,115 @@ compactness, has perimeter at least that of the certified candidate, lies in
 the strict-gap region by the boundary theorem, and is a regular KKT point by
 the singular-value bound.  It must therefore be the Arb-enclosed candidate.
 
-This independently audits and sharpens Guo--Luo Lemmas 9.1--9.3.  It does
-**not** establish unrestricted `n=16` optimality: their geometric saturation,
-difference-body, and competing-code bridges remain outside the theorem.
+This independently audits and sharpens Guo--Luo Lemmas 9.1--9.3.  By itself
+it does **not** establish unrestricted `n=16` optimality.  The next section
+audits the geometric saturation bridge separately; competing-code and final
+symmetry-quotient claims remain outside the combined result.
+
+## Difference-body reconstruction and saturation theorem
+
+The fourth certificate independently audits Guo--Luo Lemmas 3.1, 4.1, and
+6.1.  It proves the following geometric bridge.  Let `P` be a
+perimeter-maximizing convex small hexadecagon and let `Z=P-P`.  Once the
+standard strict-32-edge reduction is made, every vertex of `Z` lies on the
+unit circle.  The prior Arb-enclosed fixed-code point and the reconstruction
+lemma supply a rigorous feasible perimeter above `p0`, so the sharper
+candidate-level deficit can be used instead of the proof candidate's rounded
+lower bound.
+
+### Reconstruction and perturbation
+
+Label half of the vertices of a strict centrally symmetric 32-gon by
+`z_0,...,z_15`, put `z_16=-z_0`, and define `e_j=z_{j+1}-z_j`.  For a sign
+code `c_j` the exact closure condition is
+
+```text
+sum_j c_j e_j = sum_j a_j z_j = 0,
+a_0 = -(c_0+c_15),
+a_j = c_{j-1}-c_j  for 1 <= j <= 15.
+```
+
+Selecting `f_j=c_j e_j`, sorting by polar direction, and taking cumulative
+sums reconstructs a strictly convex 16-gon.  Zero sum rules out an angular
+gap of at least `pi`, while strictness of `Z` makes all 32 directions
+`{f_j,-f_j}` distinct.  The cyclic edge merge of the reconstructed polygon
+and its negative is exactly the edge list of `Z`; therefore its difference
+body is `Z`, and the polygon is unique up to translation.  Since `Z` lies in
+the unit disk, the reconstructed polygon has diameter at most one.
+
+If two half-vertices `r,s` lie inside the disk, the closure-preserving
+velocities are
+
+```text
+v_r = a_s h, v_s = -a_r h                 if a_r a_s != 0,
+v_r = h                                   if a_r = 0,
+v_s = h                                   if a_s = 0 and a_r != 0.
+```
+
+Strict cyclic order and genuine-vertex inequalities are open.  The exact
+incidence checker proves that one of the 16 half edges changes in every
+coefficient, adjacency, and endpoint case.  Choosing `h` outside the finite
+set of affected edge directions makes at least one norm strictly convex, so
+a local perimeter maximum has at most one interior half-vertex; if it has
+one, its closure coefficient is nonzero.
+
+The checker first verifies the summation-by-parts formula for all 32,768
+codes normalized by `c_0=+1`.  The motion depends only on the two positions
+and two coefficient values in `{-2,0,2}`, reducing the complete perturbation
+audit to `120*9=1080` exact cases.  This includes 261 cyclic-endpoint and 144
+adjacent-pair cases.  No solver is used.
+
+### Sharper saturation contradiction
+
+Cauchy's perimeter formula over the 32 normal cones and the candidate-level
+lower bound give
+
+```text
+64 sin(pi/32)-p(Z) < 0.000001549.
+```
+
+Jensen localization and the nonnegative deficit decomposition then imply
+
+```text
+0.18 < omega_j < 0.21,
+r_j > 0.99999,
+|eta_j-phi_j| < 0.0042,
+d_RP1(phi_j,phi_k) > 0.1716  for distinct half-vertices.
+```
+
+Suppose one interior vertex `z_r` remained.  Uniform radial contraction
+`d_j=-z_j` preserves the homogeneous closure equation and has active disk
+derivative `-2`; the block `a_r I_2` has determinant four.  This gives MFCQ
+without an auxiliary linear solve.  At the interior vertex the KKT equation
+fixes the projective multiplier direction as `eta_r`.  At a second index
+`j` with `a_j!=0`, tangent projection eliminates the disk multiplier and
+gives
+
+```text
+|sin(eta_r-phi_j)|
+  = sin(omega_j/2)/sin(omega_r/2) * |sin(eta_j-phi_j)|
+  < 0.0049.
+```
+
+Using `sin d >= 2d/pi` on the projective interval yields
+
+```text
+d_RP1(phi_r,phi_j) < 0.0119,
+```
+
+contradicting the certified separation above.  Hence every difference-body
+vertex is saturated.
+
+The dependency-free verifier proves all scalar bounds with `Fraction`, a
+Machin interval for `pi`, and alternating Taylor enclosures.  A separate
+512-bit Arb implementation obtains the same margins.  Exact SymPy checks
+cover the cyclic summation by parts, normal-cone integral, perimeter
+gradient, tangent projection, radial MFCQ derivative, and rank block.
+
+This does not yet prove the unrestricted optimum.  It validates the
+reconstruction, perturbation-feasibility, and saturation bridges, but it does
+not independently audit the finite competing-code exclusion or the final
+dihedral/congruence quotient.
 
 ### Relationship to the August 2026 proof candidate
 
@@ -220,6 +326,11 @@ python3 -m venv .venv
 .venv/bin/python verify_uniqueness_bridge_symbolic.py
 .venv/bin/python verify_uniqueness_bridge_arb.py
 .venv/bin/python -m unittest -v test_uniqueness_bridge.py
+.venv/bin/python verify_saturation_cases.py
+.venv/bin/python verify_saturation_identities.py
+.venv/bin/python verify_saturation_bounds_symbolic.py
+.venv/bin/python verify_saturation_bounds_arb.py
+.venv/bin/python -m unittest -v test_saturation_bridge.py
 shasum -a 256 -c SHA256SUMS
 ```
 
@@ -248,6 +359,16 @@ square roots rather than importing a numerical library.
 derivatives, complex closure derivatives, root-of-unity sum, and the Taylor
 factor exactly in SymPy.  Neither numerical checker imports or runs the
 Guo--Luo verifier.
+
+The saturation bridge adds a fourth separation of responsibilities.
+`verify_saturation_cases.py` is an exact integer incidence checker;
+`verify_saturation_bounds_symbolic.py` and
+`verify_saturation_bounds_arb.py` independently certify the quantitative
+inequalities; and `verify_saturation_identities.py` checks the analytic
+identities in SymPy.  The human-readable geometric interpretation uses
+standard planar Minkowski edge merging, Cauchy's perimeter formula, openness
+of strict convexity, and the KKT theorem under MFCQ.  These are the remaining
+non-formalized mathematical trust boundary.
 
 ## Formula audit
 

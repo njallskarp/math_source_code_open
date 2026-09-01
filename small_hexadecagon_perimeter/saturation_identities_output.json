@@ -1,0 +1,9 @@
+{
+  "exact_symbolic_identities": true,
+  "coefficient_domain": "QQ with analytic sin/cos identities",
+  "cyclic_endpoint": "z_16=-z_0",
+  "perimeter_gradient": "incoming unit tangent minus outgoing unit tangent",
+  "mfcq_direction": "d_j=-z_j for every half-vertex",
+  "active_disk_directional_derivative": "-2",
+  "equality_rank_block_determinant": "a_r^2=4"
+}

@@ -1,0 +1,11 @@
+{
+  "exact_incidence_certificate": true,
+  "normalization": "c_0=+1 modulo global sign reversal",
+  "normalized_codes_checked": 32768,
+  "two_interior_vertex_cases_checked": 1080,
+  "endpoint_pair_cases_checked": 261,
+  "adjacent_pair_cases_checked": 144,
+  "single_zero_coefficient_cases_checked": 16,
+  "nonzero_equality_rank_blocks_checked": 32,
+  "half_edge_derivative_map_injective": true
+}

@@ -1,0 +1,18 @@
+{
+  "n": 16,
+  "perimeter_threshold": "3.1365477164866073860859670319412282272981367658092326927892182035777457554738176289058573625428211593",
+  "difference_body_deficit_upper": "0.000001549",
+  "normal_cone_width_lower": "0.18",
+  "normal_cone_width_upper": "0.21",
+  "radius_lower": "0.99999",
+  "normal_radial_offset_upper": "0.0042",
+  "projective_separation_lower": "0.17159",
+  "tangent_ratio_upper": "0.0049",
+  "kkt_projective_distance_upper": "0.0119",
+  "normalized_code_count": 32768,
+  "two_vertex_case_count": 1080,
+  "machin_arctan_pairs": 24,
+  "sine_series_pairs": 20,
+  "arb_precision_bits": 512,
+  "proof_candidate_commit_audited": "a45ff036f9dcd5b297fb4f77a3dea347b8debaac"
+}
