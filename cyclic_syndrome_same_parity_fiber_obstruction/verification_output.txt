@@ -1,0 +1,7 @@
+python=3.12.12
+audited_odd_lengths=5..101
+shared_data=full_image,weight_2,target_n_minus_2,odd_parity_coset
+direct_exact_witness_checks=196
+exhaustive_fiber_counts=5:1:1,7:1:1,9:1:1,11:1:1,13:1:1
+audit_stream_sha256=7b2c521420060486927c4f0d422f272c373ca32b06c23cfd6d1ff2c05818383e
+same_parity_obstruction=verified
