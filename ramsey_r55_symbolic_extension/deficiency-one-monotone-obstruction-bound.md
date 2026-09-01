@@ -113,7 +113,7 @@ Tarsi's deficiency bound gives \(c(F)\geq n+1\).  If one assumes
 \(c(U)\leq n+1\), then necessarily
 
 \[
-c(F)=n+1,qquad \delta(F)=1,qquad F\in\mathrm{MU}(1).\tag{8}
+c(F)=n+1,\qquad \delta(F)=1,\qquad F\in\mathrm{MU}(1).\tag{8}
 \]
 
 But (1)--(2), with \(k=t-1\) and \(\ell=s-1\), require
@@ -236,3 +236,14 @@ or executable proof certificate.
 The Ramsey-specific deduction from these inputs is fully displayed in
 (7)--(12).  The only imported non-elementary fact is the deficiency-one
 splitting theorem; no computational certificate is part of the proof.
+
+## Discovery Net receipt
+
+The symbolic theorem and its six initial relations committed on chain
+`discovery-net` at height 911 as contribution
+`bafkreifx64z5j7fwu7ml3wcp25wb6i552ejabcnwkxfj4gi6mn4qwvlt6e`.
+The immutable ledger body contains the same proof as source commit
+`4d483b46d2bc8fd128ef04a2f61c95ac1f798cdc`; its equation (8) has the
+typographical token `qquad` where the intended LaTeX spacing command is
+rendered correctly as `\qquad` above.  This does not change the statement or
+proof.
