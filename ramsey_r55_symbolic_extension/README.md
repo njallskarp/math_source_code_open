@@ -53,6 +53,19 @@ uses all 42 variables, a hypothetical 43-clause obstruction would belong to
 every such obstruction has at least 44 clauses; together with the certified
 74-clause core for graph 0 this gives \(44\leq\mu(G_0)\leq74\).
 
+## Deficiency-two singular normal form
+
+The note deficiency-two-singular-dp-normal-form.md proves that every
+hypothetical 44-clause obstruction is a minimally unsatisfiable CNF of
+deficiency two and must contain a singular variable.  Its first singular
+Davis--Putnam reduction replaces the clauses through that variable by exact
+mixed six-literal resolvents with sign profile \(3+3\).  Complete singular
+reduction reaches a uniquely determined canonical deficiency-two formula
+\(\mathcal F_p\), while the one-flip theorem simultaneously forces
+near-\(K_5\) defect witnesses at the first reduction variable.  This turns
+the unresolved 44-clause case into a constrained inverse-resolution
+problem rather than an arbitrary clause search.
+
 ## Reproduce
 
 ```bash
