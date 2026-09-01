@@ -1623,6 +1623,162 @@ class DirectVerifierTests(unittest.TestCase):
         ):
             self.assertEqual(direct[key], 0)
 
+    def test_objective_eleven_first_expansion_and_direct_recount(self) -> None:
+        fast = json.loads(
+            (HERE / "objective-eleven-first-expansion-fast.json").read_text()
+        )
+        direct = json.loads(
+            (HERE / "objective-eleven-first-expansion-direct.json").read_text()
+        )
+        self.assertEqual(
+            fast["objective_eleven_first_frontier_rotation_orbit_count"],
+            372_974,
+        )
+        self.assertEqual(fast["first_expansion_new_rotation_orbit_count"], 148)
+        self.assertEqual(fast["first_expansion_new_vertex_count"], 6_364)
+        self.assertEqual(fast["new_rotation_orbit_count_by_objective"], {"11": 148})
+        self.assertEqual(fast["directed_quotient_moves_to_new_states"], 772)
+        self.assertEqual(
+            fast["directed_quotient_moves_to_new_lower_states"], 0
+        )
+        self.assertEqual(
+            fast["directed_quotient_moves_to_new_objective_eleven_states"],
+            772,
+        )
+        self.assertEqual(fast["distinct_source_target_pairs"], 772)
+        self.assertEqual(
+            fast["directed_quotient_moves_inside_first_frontier"],
+            2 * fast["undirected_quotient_edges_inside_first_frontier"],
+        )
+        self.assertEqual(
+            sum(fast["directed_neighbor_objective_histogram"].values()),
+            372_974 * 903,
+        )
+        self.assertEqual(
+            sum(fast["source_minimum_neighbor_objective_histogram"].values()),
+            372_974,
+        )
+        self.assertEqual(
+            sum(fast["source_distinct_new_target_degree_histogram"].values()),
+            372_974,
+        )
+        self.assertEqual(
+            sum(
+                int(degree) * count
+                for degree, count in fast[
+                    "source_distinct_new_target_degree_histogram"
+                ].items()
+            ),
+            772,
+        )
+        self.assertEqual(
+            sum(
+                int(degree) * count
+                for degree, count in fast[
+                    "target_distinct_first_frontier_source_degree_histogram"
+                ].items()
+            ),
+            772,
+        )
+        self.assertEqual(
+            len(fast["new_objective_11_rotation_representatives"]), 148
+        )
+        self.assertTrue(direct["all_direct_checks_pass"])
+        for key in (
+            "first_expansion_new_rotation_orbit_count",
+            "new_rotation_orbit_count_by_objective",
+            "directed_quotient_moves_to_primary_sublevel_ten",
+            "directed_quotient_moves_inside_first_frontier",
+            "directed_quotient_moves_to_new_states",
+            "directed_quotient_moves_to_new_lower_states",
+            "directed_quotient_moves_to_new_objective_eleven_states",
+            "directed_neighbor_objective_histogram",
+            "source_minimum_neighbor_objective_histogram",
+            "source_distinct_new_target_degree_histogram",
+            "source_new_target_incidence_histogram",
+            "target_distinct_first_frontier_source_degree_histogram",
+            "target_first_frontier_incidence_histogram",
+        ):
+            self.assertEqual(fast[key], direct[key])
+        for key in (
+            "omitted_expected_targets",
+            "unexpected_targets",
+            "objective_mismatches",
+            "canonical_or_orbit_errors",
+        ):
+            self.assertEqual(direct[key], 0)
+
+    def test_complete_objective_eleven_component_and_direct_closure(self) -> None:
+        fast = json.loads(
+            (HERE / "objective-eleven-component-fast.json").read_text()
+        )
+        direct = json.loads(
+            (HERE / "objective-eleven-component-direct.json").read_text()
+        )
+        self.assertEqual(fast["initial_first_expansion_rotation_orbit_count"], 148)
+        self.assertEqual(
+            fast["additional_discoveries_after_first_expansion_by_objective"],
+            {"11": 2},
+        )
+        self.assertEqual(
+            fast["complete_closure_addition_rotation_orbit_count_by_objective"],
+            {"11": 150},
+        )
+        self.assertEqual(
+            fast["complete_objective_eleven_rotation_orbit_count"], 373_124
+        )
+        self.assertEqual(fast["complete_objective_eleven_vertex_count"], 16_044_332)
+        self.assertEqual(
+            fast["complete_primary_sublevel_eleven_vertex_count"], 24_260_213
+        )
+        self.assertEqual(
+            fast["complete_primary_sublevel_eleven_edge_count"], 133_822_192
+        )
+        self.assertEqual(fast["added_to_primary_quotient_incidence"], 0)
+        self.assertEqual(fast["added_to_first_frontier_quotient_incidence"], 772)
+        self.assertEqual(fast["directed_inside_addition_quotient_incidence"], 452)
+        self.assertEqual(fast["undirected_inside_addition_quotient_edges"], 226)
+        self.assertEqual(fast["exact_escape_objective"], 12)
+        self.assertEqual(
+            len(fast["complete_additional_objective_11_rotation_representatives"]),
+            150,
+        )
+        self.assertTrue(direct["all_direct_checks_pass"])
+        self.assertEqual(direct["direct_closure_addition_rotation_orbit_count"], 150)
+        self.assertEqual(direct["discovered_after_first_expansion"], 2)
+        for fast_key, direct_key in (
+            ("added_to_primary_quotient_incidence", "added_to_primary_quotient_incidence"),
+            (
+                "added_to_first_frontier_quotient_incidence",
+                "added_to_first_frontier_quotient_incidence",
+            ),
+            (
+                "directed_inside_addition_quotient_incidence",
+                "directed_inside_addition_quotient_incidence",
+            ),
+            (
+                "directed_outside_above_eleven_from_addition",
+                "directed_outside_above_eleven_from_addition",
+            ),
+            (
+                "added_source_minimum_neighbor_objective_histogram",
+                "added_source_minimum_neighbor_objective_histogram",
+            ),
+            (
+                "added_source_external_minimum_objective_histogram",
+                "added_source_external_minimum_objective_histogram",
+            ),
+        ):
+            self.assertEqual(fast[fast_key], direct[direct_key])
+        for key in (
+            "omitted_expected_states",
+            "unexpected_states",
+            "omitted_sublevel_neighbors",
+            "objective_errors",
+            "canonical_or_orbit_errors",
+        ):
+            self.assertEqual(direct[key], 0)
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

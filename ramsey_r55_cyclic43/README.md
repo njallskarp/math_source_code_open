@@ -832,6 +832,92 @@ canonical SHA-256 digests of both arrays and of every aligned
 representative/signature pair; both full files are deterministically
 regenerable by the commands below.
 
+### Exact first expansion of the objective-eleven frontier
+
+Scan all (372{,}974\cdot903=336{,}895{,}522) one-edge moves from the
+complete first frontier (F_{11}).  After cyclic canonicalization, the moves
+of objective at most eleven split exactly as follows:
+
+\[
+\begin{array}{c|r}
+\text{endpoint class}&\text{quotient incidences}\\ \hline
+P_{10}&1{,}557{,}119\\
+F_{11}&1{,}139{,}644\\
+\text{new objective-eleven orbits}&772\\
+\text{new orbits of objective at most ten}&0.
+\end{array}
+\]
+
+The 772 outward incidences expose exactly 148 new free rotation orbits, or
+6,364 labeled colorings.  Every source--target pair has multiplicity one.
+Only 642 frontier orbits touch the addition: 526 have one new neighbor, 104
+have two, ten have three, and two have four.  On the target side, the exact
+numbers with source degrees (1,\ldots,9) are
+
+\[
+(2,3,18,25,24,48,24,2,2).
+\]
+
+In particular, this complete scan exposes no lower-objective island across
+the first objective-eleven layer.  A direct OpenMP implementation independently
+recounts all \(\binom{43}{5}=962{,}598\) five-sets for every frontier source
+and agrees on the complete 148-representative target set and all thirteen
+shared mathematical fields.
+
+### Complete primary sublevel-eleven component
+
+Starting from the 148-orbit first expansion and continuing exact breadth-first
+closure under every move with (M\leq11) discovers one final shell of exactly
+two objective-eleven orbits.  Those two expose no further sublevel-eleven
+state.  Thus the objective-eleven layer of the connected primary component is
+
+\[
+372{,}974+148+2=373{,}124
+\]
+
+free rotation orbits, representing 16,044,332 labeled colorings.  Combining
+this layer with the already closed (P_{10}) gives
+
+\[
+\boxed{|V(P_{11})|=24{,}260{,}213},\qquad
+\boxed{|E(P_{11})|=133{,}822{,}192}.
+\]
+
+The 150-orbit addition has 772 quotient incidences back to (F_{11}), zero
+to (P_{10}), and 226 induced quotient edges.  Every added orbit has an
+external objective-twelve neighbor, and the complete frontier scan already
+contains objective-twelve exits.  Therefore the exact one-flip escape level
+of (P_{11}) is twelve.  A separately implemented direct five-set recount
+reconstructs the final two-orbit shell, all 150 representatives, and the
+complete reverse-incidence counts with zero omissions or mismatches.  This is
+a component classification through the primary optimum; it does not exclude
+disconnected sublevel-eleven components elsewhere in the (2^{903}) search
+space.
+
+Reproduce the expansion and closure with:
+
+```bash
+g++-16 -std=c++20 -O3 -march=native -DNDEBUG \
+  scan_objective_eleven_first_expansion.cpp \
+  -o scan_objective_eleven_first_expansion
+./scan_objective_eleven_first_expansion \
+  certificate.json objective-seven-frontier-fast.json \
+  objective-seven-component-fast.json objective-eight-component-fast.json \
+  objective-nine-component-fast.json objective-ten-frontier-fast.json \
+  objective-ten-component-fast.json /tmp/objective-eleven-frontier-fast.json \
+  objective-eleven-first-expansion-fast.json
+
+g++-16 -std=c++20 -O3 -march=native -DNDEBUG \
+  close_objective_eleven_component.cpp -o close_objective_eleven_component
+./close_objective_eleven_component \
+  certificate.json objective-seven-frontier-fast.json \
+  objective-seven-component-fast.json objective-eight-component-fast.json \
+  objective-nine-component-fast.json objective-ten-frontier-fast.json \
+  objective-ten-component-fast.json /tmp/objective-eleven-frontier-fast.json \
+  objective-eleven-first-expansion-fast.json \
+  objective-eleven-component-fast.json
+```
+
 ### The objective-twelve boundary of the objective-ten shadow
 
 The objective-eleven exit census isolates a finite ``shadow''
