@@ -137,6 +137,20 @@ theorem wrapDefectIdentity
     grind
   exact Int.eq_of_mul_eq_mul_left hd hproduct
 
+/-- When an inverse modulo `L` lifts to `u' = u + ε*L` modulo `2L`, the
+associated coefficient-gap jump obeys `2J' = J+dε`.  For `ε=0,1`, this is the
+inverse-doubling recurrence `J/2` or `(J+d)/2`. -/
+theorem liftedJumpHalving
+    (d u u' e L J J' ε : Int)
+    (hjump : L * J = d * u + e)
+    (hjump' : (2 * L) * J' = d * u' + e)
+    (hlift : u' = u + ε * L)
+    (hL : L ≠ 0) :
+    2 * J' = J + d * ε := by
+  have hproduct : L * (2 * J') = L * (J + d * ε) := by
+    grind
+  exact Int.eq_of_mul_eq_mul_left hL hproduct
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -148,5 +162,6 @@ theorem wrapDefectIdentity
 #print axioms wrappedGapChange
 #print axioms fullWrap_iff_liftWrap
 #print axioms wrapDefectIdentity
+#print axioms liftedJumpHalving
 
 end CollatzSwapCocycle

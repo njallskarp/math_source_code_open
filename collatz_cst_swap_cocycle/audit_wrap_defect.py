@@ -42,6 +42,8 @@ def audit(max_length: int = 26) -> dict[str, int | str]:
     maximum_circle_winding = 0
     maximum_window_index = 0
     failures = 0
+    halving_checks = 0
+    halving_failures = 0
 
     for length in sorted(groups):
         states = groups[length]
@@ -61,6 +63,7 @@ def audit(max_length: int = 26) -> dict[str, int | str]:
             full_wraps = 0
 
             for odd_index in range(len(current_positions)):
+                previous_jump = None
                 while current_positions[odd_index] > target_positions[odd_index]:
                     position = current_positions[odd_index] - 1
                     current, jump, wrapped = edge_data(
@@ -70,6 +73,16 @@ def audit(max_length: int = 26) -> dict[str, int | str]:
                     jump_sum += jump
                     full_wraps += int(wrapped)
                     moves += 1
+                    if previous_jump is not None:
+                        expected_jump = (
+                            previous_jump // 2
+                            if previous_jump % 2 == 0
+                            else (previous_jump + gap) // 2
+                        )
+                        halving_checks += 1
+                        if jump != expected_jump:
+                            halving_failures += 1
+                    previous_jump = jump
 
             if current != target:
                 raise AssertionError("canonical insertion path missed its target")
@@ -109,6 +122,8 @@ def audit(max_length: int = 26) -> dict[str, int | str]:
         "maximum_circle_winding": maximum_circle_winding,
         "maximum_window_index": maximum_window_index,
         "identity_failures": failures,
+        "inverse_doubling_checks": halving_checks,
+        "inverse_doubling_failures": halving_failures,
         "sha256": digest.hexdigest(),
     }
 

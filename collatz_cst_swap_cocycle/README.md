@@ -205,6 +205,25 @@ constructs a canonical insertion path from the mechanical extremizer to every
 first-crossing word through length 26 and verifies both the winding equation
 and the endpoint window index exactly.
 
+### Single-odd block recurrence
+
+On the canonical insertion path, fix one odd bit and move it left repeatedly.
+Its prefix and suffix weights stay constant while the local modulus doubles
+from one move to the next.  If `J` is the current coefficient-gap jump and
+`J'` the next one, lifting the relevant odd inverse from modulus `L` to `2L`
+gives
+
+```text
+J' = J/2       if J is even,
+J' = (J+d)/2   if J is odd.
+```
+
+Equivalently, these jumps follow the canonical inverse-doubling orbit modulo
+`d`.  Lean proves the underlying identity `2J'=J+d*epsilon` for the two
+possible inverse lifts.  The path audit checks every consecutive pair in all
+single-odd insertion blocks through length 26.  This recurrence supplies a
+deterministic block skeleton for the next attempt to prove `W<=C`.
+
 ### Proof
 
 The numerator formula follows by comparing the contribution of the exchanged
@@ -289,7 +308,8 @@ sha256=29e07fbf05de09bc0c414b50adf9e2bd80b92e077cdacf78f527b480e1ed7bef
 
 The canonical path audit traverses 3,787,863 adjacent moves on 190,066 paths,
 with at most 63 inversions and 31 full/circle wraps.  It finds no wrap-defect
-identity failure and no positive window index; its record digest is
+identity failure, no inverse-doubling failure across 1,732,441 consecutive
+jump pairs, and no positive window index.  Its record digest is
 `fe62dae02d3c96b43a5760f931fdf3b652d2de3444f8d6837009b50b9eada2bf`.
 
 The independently implemented Ruby checker agrees through length 20 on all
@@ -300,7 +320,8 @@ for 4,404 cylinders and 14,938 edges.
 Lean proves the scaled cocycle identities, jump complementarity, modular
 divisibility witness, short-multiple sign lemma, strict gap-change
 consequences, full-wrap/prefix-lift-wrap equivalence, and the cumulative
-wrap-defect identity without `sorry`, `admit`, custom axioms, Mathlib, or
+wrap-defect and lifted-jump-halving identities without `sorry`, `admit`,
+custom axioms, Mathlib, or
 `native_decide`.  `#print axioms` reports only Lean's standard logical axioms
 (`propext`, `Quot.sound`, and for the `grind` algebraic normalization proofs,
 `Classical.choice`).  The Collatz-specific decoding, enumeration, and the
