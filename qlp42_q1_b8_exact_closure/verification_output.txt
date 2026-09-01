@@ -1,0 +1,15 @@
+source_hashes=verified
+exact_h_frontier_sha256=0e3fa74a39e7a5ff91ef3d56a33a5f1a62a9528839f6facfdd47e2b789418cfd
+input_rotation_orbits_per_case=2350
+sixth_h_orbit_pairs=739
+seventh_h_orbit_pairs=54
+exact_h_orbit_pairs=40
+exact_s_surviving_case_incidences=0
+exact_s_surviving_orbit_pairs=0
+q1_b8_shell=excluded
+scalar_cpp_seconds=11.52
+definition_numpy_seconds=384.77
+dual_implementation_certificate=verified
+sanitized_scalar_cpp_seconds=46.88
+sanitized_scalar_cpp_peak_resident_bytes=11911168
+gcc_address_undefined_sanitizers=passed
