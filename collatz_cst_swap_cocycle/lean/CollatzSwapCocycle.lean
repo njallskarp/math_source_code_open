@@ -266,6 +266,58 @@ theorem shadowForcedBarrierCertificate
   exact splitBarrierCertificate
     L d M x (chi + R) Q hmargin hL hd hlower hcertificate
 
+/-- If an induced candidate endpoint lies outside every lift of the prescribed
+suffix residue, the candidate cannot equal the true split lift.  A concrete
+parity mismatch within the suffix is an executable certificate of the
+hypothesis `∀ k, y ≠ rs + H*k`. -/
+theorem candidateClassMismatch_excludesLift
+    (P₀ c x candidate y rs H : Int)
+    (hcandidate : P₀ * candidate + c = 4 * y)
+    (hcompat : ∃ k : Int, P₀ * x + c = 4 * rs + 4 * H * k)
+    (hmismatch : ∀ k : Int, y ≠ rs + H * k) :
+    x ≠ candidate := by
+  intro hequal
+  obtain ⟨k, hk⟩ := hcompat
+  exact hmismatch k
+    (equalLift_shadowsSuffix P₀ c x candidate y rs H k
+      hcandidate hk hequal)
+
+/-- Excluding the first `N` nonnegative ranks in a congruence class forces
+the true lift above the corresponding ranked-lift threshold. -/
+theorem excludedLiftLadderLowerBound
+    (x chi R t N : Int)
+    (hlift : x = chi + R * t)
+    (hR : 0 ≤ R) (ht : 0 ≤ t)
+    (hexcluded : ∀ k : Int, 0 ≤ k → k < N → x ≠ chi + R * k) :
+    chi + R * N ≤ x := by
+  have htN : N ≤ t := by
+    have hcases : N ≤ t ∨ t < N := by omega
+    cases hcases with
+    | inl hle => exact hle
+    | inr hlt => exact False.elim ((hexcluded t ht hlt) hlift)
+  have hmul : R * N ≤ R * t :=
+    Int.mul_le_mul_of_nonneg_left htN hR
+  rw [hlift]
+  exact Int.add_le_add_left hmul chi
+
+/-- The excluded-lift ladder certificate: parity mismatches (or any other
+exact exclusions) for ranks `0,...,N-1` produce a lower bound that proves the
+split margin positive once it clears the affine barrier. -/
+theorem excludedLiftLadderBarrierCertificate
+    (L d M x chi R Q t N : Int)
+    (hmargin : L * M = d * x + Q)
+    (hlift : x = chi + R * t)
+    (hL : 0 < L) (hd : 0 ≤ d) (hR : 0 ≤ R)
+    (ht : 0 ≤ t)
+    (hexcluded : ∀ k : Int, 0 ≤ k → k < N → x ≠ chi + R * k)
+    (hcertificate : 0 < d * (chi + R * N) + Q) :
+    0 < M := by
+  have hlower : chi + R * N ≤ x :=
+    excludedLiftLadderLowerBound x chi R t N
+      hlift hR ht hexcluded
+  exact splitBarrierCertificate
+    L d M x (chi + R * N) Q hmargin hL hd hlower hcertificate
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -285,5 +337,8 @@ theorem shadowForcedBarrierCertificate
 #print axioms splitBarrierCertificate
 #print axioms equalLift_shadowsSuffix
 #print axioms shadowForcedBarrierCertificate
+#print axioms candidateClassMismatch_excludesLift
+#print axioms excludedLiftLadderLowerBound
+#print axioms excludedLiftLadderBarrierCertificate
 
 end CollatzSwapCocycle

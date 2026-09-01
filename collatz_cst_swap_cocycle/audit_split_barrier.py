@@ -45,6 +45,24 @@ def relative_coefficient_crossing(prefix, candidate_lift: int) -> int:
     raise AssertionError("relative coefficient crossing exceeded audit cap")
 
 
+def first_suffix_parity_mismatch(
+    prefix, candidate_lift: int, suffix_bits: int, suffix_length: int
+) -> int:
+    """Return the one-based first mismatch with the prescribed suffix."""
+    prefix_power = 3 * prefix.pow3
+    numerator = prefix_power * candidate_lift + 3 * prefix.endpoint + 1
+    value, remainder = divmod(numerator, 4)
+    if remainder:
+        raise AssertionError("the p10 candidate lift is not integral")
+    for index in range(suffix_length):
+        observed = value & 1
+        expected = (suffix_bits >> index) & 1
+        if observed != expected:
+            return index + 1
+        value = value // 2 if observed == 0 else (3 * value + 1) // 2
+    return 0
+
+
 def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
     groups = first_crossing_cylinders(max_length)
     digest = hashlib.sha256()
@@ -57,6 +75,11 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
     base_shadow_certificates = 0
     unresolved_after_base_shadow = 0
     adaptive_shadow_certificates = 0
+    excluded_lift_ladder_certificates = 0
+    excluded_lift_ladder_candidates = 0
+    excluded_lift_ladder_parity_bits = 0
+    maximum_excluded_lift_ladder_steps = 0
+    maximum_excluded_lift_mismatch_depth = 0
     descent_failures = 0
     certificate_bits: Counter[int] = Counter()
     symbolic_certificate_bits: Counter[int] = Counter()
@@ -155,6 +178,42 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
                             f"word:{chronological_word(bits, length)}"
                         )
                     lift_mod_four = target_lift & 3
+                    base_barrier = gap * lift_mod_four + prefix_surplus
+                    if base_barrier <= 0:
+                        step_gain = 4 * gap
+                        ladder_steps = (-base_barrier) // step_gain + 1
+                        forced_lower_bound = lift_mod_four + 4 * ladder_steps
+                        if forced_lower_bound > target_lift:
+                            raise AssertionError(
+                                "excluded-lift ladder overshot the true lift"
+                            )
+                        if gap * forced_lower_bound + prefix_surplus <= 0:
+                            raise AssertionError(
+                                "excluded-lift ladder did not clear the barrier"
+                            )
+                        suffix_length = length - position - 2
+                        suffix_bits = bits >> (position + 2)
+                        for rank in range(ladder_steps):
+                            candidate_lift = lift_mod_four + 4 * rank
+                            mismatch = first_suffix_parity_mismatch(
+                                prefix,
+                                candidate_lift,
+                                suffix_bits,
+                                suffix_length,
+                            )
+                            if mismatch == 0:
+                                raise AssertionError(
+                                    "a lower candidate matched the full suffix"
+                                )
+                            excluded_lift_ladder_candidates += 1
+                            excluded_lift_ladder_parity_bits += mismatch
+                            maximum_excluded_lift_mismatch_depth = max(
+                                maximum_excluded_lift_mismatch_depth, mismatch
+                            )
+                        excluded_lift_ladder_certificates += 1
+                        maximum_excluded_lift_ladder_steps = max(
+                            maximum_excluded_lift_ladder_steps, ladder_steps
+                        )
                     base_shadow_certified = False
                     if gap * lift_mod_four + prefix_surplus > 0:
                         low_two_bit_certificates += 1
@@ -242,6 +301,19 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
         "base_shadow_prefixes": len(crossing_cache),
         "unresolved_after_base_shadow": unresolved_after_base_shadow,
         "adaptive_shadow_certificates": adaptive_shadow_certificates,
+        "excluded_lift_ladder_certificates": (
+            excluded_lift_ladder_certificates
+        ),
+        "excluded_lift_ladder_candidates": excluded_lift_ladder_candidates,
+        "excluded_lift_ladder_parity_bits": (
+            excluded_lift_ladder_parity_bits
+        ),
+        "maximum_excluded_lift_ladder_steps": (
+            maximum_excluded_lift_ladder_steps
+        ),
+        "maximum_excluded_lift_mismatch_depth": (
+            maximum_excluded_lift_mismatch_depth
+        ),
         "descent_failures": descent_failures,
         "minimum_margin": minimum_margin or 0,
         "minimum_margin_length": minimum_margin_length,

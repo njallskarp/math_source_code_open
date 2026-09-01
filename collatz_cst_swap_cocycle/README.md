@@ -441,6 +441,46 @@ formalize extraction of the suffix parity word or the computation of
 `sigma_p`; those bridges are checked by the exact Python and C++ programs and
 use the classical parity-vector/residue correspondence.
 
+### Excluded-lift ladder theorem
+
+The coefficient crossing in (SF) is sufficient but not necessary for ruling
+out a truncated lift.  The full suffix word supplies an exact logical test.
+Fix the base class `chi=x mod 4` and list its nonnegative lifts
+
+```text
+x_k = chi+4*k,
+y_k = (P0*x_k+3*eta+1)/4,             k=0,1,2,... .
+```
+
+If `x=x_k`, the equal-lift transport theorem forces `y_k` to realize the
+prescribed suffix parity word `s` for all `h` steps.  Therefore any parity
+mismatch between the ordinary shortcut-Collatz orbit of `y_k` and `s` proves
+`x!=x_k`.  More generally, if exact mismatches exclude ranks
+`k=0,...,N-1`, then the congruence `x=chi+4*t`, `t>=0`, forces
+
+```text
+x >= chi+4*N.                          (EL)
+```
+
+The least rank that can clear the split barrier is computed without knowing
+the true lift:
+
+```text
+N = floor(-(d*chi+Q)/(4*d))+1          when d*chi+Q <= 0.
+```
+
+Consequently, mismatches for precisely the first `N` candidate shadows prove
+`d*x+Q>0`.  This is a finite logical certificate over ordinary integer
+trajectories, not a search over all suffix completions.  Unlike the original
+one-shadow rule, it still works when the smallest shadow remains
+coefficient-safe for the full suffix, and it can skip several insufficient
+congruent lifts.
+
+Lean proves candidate-class mismatch exclusion, the ranked lower bound (EL),
+and the resulting barrier certificate.  The executable bridge from a stated
+parity mismatch to candidate-class mismatch is checked independently by the
+C++ generator and a separate arbitrary-precision Python verifier.
+
 ### Exact finite audit and fixed-bit obstruction
 
 Two implementations independently enumerate coefficient-first-crossing
@@ -458,6 +498,11 @@ low_two_bit_certificates=14171
 base_shadow_certificates=3320
 base_shadow_prefixes=2
 unresolved_after_base_shadow=0
+excluded_lift_ladder_certificates=3320
+excluded_lift_ladder_candidates=3320
+excluded_lift_ladder_parity_bits=6399
+maximum_excluded_lift_ladder_steps=1
+maximum_excluded_lift_mismatch_depth=3
 descent_failures=0
 certificate_bits={0:366092, 2:14171, 3:707, 4:2147, 5:466}
 symbolic_certificate_bits={0:366092, 2:17491}
@@ -483,6 +528,11 @@ base_shadow_certificates=688589
 base_shadow_prefixes=24
 unresolved_after_base_shadow=48982
 adaptive_shadow_certificates=697630
+excluded_lift_ladder_certificates=737571
+excluded_lift_ladder_candidates=764967
+excluded_lift_ladder_parity_bits=1661756
+maximum_excluded_lift_ladder_steps=6
+maximum_excluded_lift_mismatch_depth=18
 descent_failures=0
 minimum_margin=1 (word 1100)
 maximum_certificate_bits=20
@@ -492,8 +542,12 @@ maximum_symbolic_certificate_bits=20
 At depth 34, base shadowing certifies 688,589 of the 737,571 cases missed by
 the direct two-bit test.  Allowing (SF) at later truncation depths yields
 697,630 shadow-forced certificates in total, but does not reduce the worst
-certificate depth below 20.  The method is therefore a large exact
-compression of the finite frontier, not a uniform proof.
+raw certificate depth below 20.  The excluded-lift ladder certifies all
+737,571 cases, including all 48,982 missed by the base shadow.  Across the
+whole frontier it excludes 764,967 candidates, needs at most six candidates
+on one edge, and observes each mismatch within at most 18 suffix steps.  This
+is a complete symbolic compression of this finite frontier, not a uniform
+proof of CST.
 
 The base-shadow remainder is itself highly compressed: all cases occur over
 24 prefix states, and their `y_2` values belong to the ten-element set
@@ -518,12 +572,20 @@ For this edge, `chi_m=1` through `m=19`, so
 `d*chi_m+Q=-524288`; at `m=20`, `chi_m=524289` and the certificate becomes
 positive.  Its two-bit shadow integer is `y_2=91`, whose relative coefficient
 crossing is 47, later than the suffix length 20, so (SF) correctly cannot
-force an earlier bit.  Hence no certificate restricted to at most 19 low lift
-bits can be universal.  This is a concrete obstruction to the simplest
-fixed-small-state proof strategies, not evidence against CST.  Through length
-34, all wrapped edges still have positive target margin; the depth-34 claim
-rests on the C++ exhaustive audit, while independent implementation agreement
-is limited to depth 26.
+force an earlier bit.  Nevertheless, the ordinary orbit of `y_2=91` first
+disagrees with the prescribed suffix at step 18.  This excludes `x=1`, forces
+`x>=5`, and already gives
+
+```text
+d*5+Q = 19785972 > 0.
+```
+
+Hence no certificate restricted to at most 19 low lift bits can be universal,
+but the symbolic parity-mismatch certificate avoids exposing those bits.
+This is a concrete obstruction to fixed-small-residue proofs, not evidence
+against CST.  Through length 34, all wrapped edges have positive target
+margin.  The C++ frontier enumeration is independently replayed record by
+record by Python for every excluded-lift ladder certificate.
 
 ### Proof
 
@@ -596,6 +658,11 @@ ruby audit_phase_lag.rb 16
   audit_split_barrier.cpp -o /tmp/audit_split_barrier
 /tmp/audit_split_barrier 34
 /tmp/audit_split_barrier 34 | rg '^shadow_prefix' | shasum -a 256
+/tmp/audit_split_barrier 34 --emit-ladder \
+  > /tmp/collatz_excluded_lift_ladder_34.txt
+python3 verify_excluded_lift_ladder.py \
+  /tmp/collatz_excluded_lift_ladder_34.txt
+rg '^ladder=' /tmp/collatz_excluded_lift_ladder_34.txt | shasum -a 256
 lean lean/CollatzSwapCocycle.lean
 ```
 
@@ -653,7 +720,17 @@ zero-index-source one-edge antidominance consequence, and the complete arithmeti
 certificate for the minimal length-five strict defect.  It also proves the
 division-free split-barrier identity, exact equal-lift suffix transport, and
 the direct and shadow-forced lower-bound certificates used by the Python and
-C++ audits.
+C++ audits.  It now also proves candidate-class mismatch exclusion, the
+ranked excluded-lift lower bound, and the excluded-lift barrier certificate.
+
+The emitted depth-34 ladder stream contains 737,571 certificate records and
+has canonical SHA-256
+`899376e9decc302c8faa69d1da6f99e6d911c81c41cfecaa3621d910d8c0d4f5`.
+The independent Python verifier reconstructs every target cylinder and split
+barrier, checks every candidate parity mismatch, and reproduces 764,967
+excluded candidates, 1,661,756 inspected parity bits, maximum ladder length
+six, and maximum mismatch depth 18.  The generated 80.5 MB stream is not
+committed; the repository contains its deterministic generator and verifier.
 
 ## Relation to prior work and novelty boundary
 
@@ -672,7 +749,9 @@ graph formulation already imply that congruence modulo `2^m` fixes an
 `m`-step parity prefix.  That finite shadowing principle is also prior art.
 The coefficient-shadow rule (SF) is claimed only as an apparently new
 coupling of that classical principle to the split barrier and the forced
-next-lift inequality.
+next-lift inequality.  The excluded-lift ladder is likewise claimed only as
+an apparently new barrier-coupled packaging of parity-class exclusions; no
+historical priority is asserted for parity-vector congruence itself.
 
 The apparently new pieces, relative to the sources searched below, are the
 explicit coupling of this adjacent exchange to the *canonical least residue*,
@@ -710,19 +789,24 @@ Primary sources checked:
 
 ## Limitations and next target
 
-The theorems identify but do not eliminate the defect `W-C`.  The phase-lag
-normal form rules out a proof based only on the inverse-doubling jump orbit:
-from a zero-index base, `W<=C` is already the equality target rather than an
-available one-sided estimate.  The split identity makes the remaining target
-more local, but the length-27 example rules out a uniform bound of 19 or fewer
-low lift bits.  Coefficient shadows supply such bounds for most of the exact
-frontier, but long-lived shadows such as `y=91` remain.  The next target is to
-classify the 48,982 depth-34 cases left by the base shadow test and derive a
-quantitative relation between the ten observed shadow integers, shadow
-lifetime, the negative surplus `-Q`, and the forced size of `x`, strong enough
-to prove `d*x+Q>0` without exposing an unbounded number of suffix bits.
-Equivalently,
-one must exclude the exact one-edge barrier
+The theorems identify but do not eliminate the defect `W-C` uniformly.  The
+phase-lag normal form rules out a proof based only on the inverse-doubling
+jump orbit: from a zero-index base, `W<=C` is already the equality target
+rather than an available one-sided estimate.  The split identity makes the
+remaining target local, and the excluded-lift ladder closes its entire exact
+depth-34 frontier, including the former 48,982-case remainder.  What remains
+unproved is a bound valid for arbitrary length: the required rank `N` and the
+first parity-mismatch depth could in principle grow with the suffix.
+
+The next target is to analyze the arithmetic progression of shadow starts
+
+```text
+y_k = y_0 + P0*k
+```
+
+and prove a uniform or controlled mismatch theorem against every
+coefficient-safe suffix before the barrier rank.  Equivalently, one must
+exclude the exact one-edge barrier uniformly,
 
 ```text
 A <= r+Delta < A+B'/d

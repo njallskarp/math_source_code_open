@@ -87,6 +87,7 @@ std::string chronological_word(u64 bits, unsigned length) {
 }
 
 struct Counts {
+  bool emit_ladder = false;
   u64 first_crossings = 0;
   u64 candidate_edges = 0;
   u64 wrapped_edges = 0;
@@ -96,6 +97,17 @@ struct Counts {
   u64 base_shadow_certificates = 0;
   u64 unresolved_after_base_shadow = 0;
   u64 adaptive_shadow_certificates = 0;
+  u64 excluded_lift_ladder_certificates = 0;
+  u64 excluded_lift_ladder_candidates = 0;
+  u64 excluded_lift_ladder_parity_bits = 0;
+  u64 maximum_excluded_lift_ladder_steps = 0;
+  unsigned maximum_excluded_lift_mismatch_depth = 0;
+  unsigned maximum_excluded_lift_ladder_length = 0;
+  unsigned maximum_excluded_lift_ladder_position = 0;
+  std::string maximum_excluded_lift_ladder_word;
+  unsigned maximum_excluded_lift_mismatch_length = 0;
+  unsigned maximum_excluded_lift_mismatch_position = 0;
+  std::string maximum_excluded_lift_mismatch_word;
   u64 descent_failures = 0;
   std::map<unsigned, u64> residual_by_prefix_length;
   std::map<unsigned, u64> wrapped_by_prefix_length;
@@ -118,6 +130,21 @@ struct Counts {
   std::map<std::pair<unsigned, u64>, unsigned> shadow_crossing_cache;
   std::map<std::pair<unsigned, u64>, ShadowPrefixStats> shadow_prefix_stats;
 };
+
+std::string signed_decimal(i128 value) {
+  if (value == 0) return "0";
+  const bool negative = value < 0;
+  u128 magnitude = negative ? static_cast<u128>(-value)
+                            : static_cast<u128>(value);
+  std::string digits;
+  while (magnitude != 0) {
+    digits.push_back(static_cast<char>('0' + magnitude % 10));
+    magnitude /= 10;
+  }
+  if (negative) digits.push_back('-');
+  std::reverse(digits.begin(), digits.end());
+  return digits;
+}
 
 unsigned relative_coefficient_crossing(const Cylinder &prefix,
                                        u64 candidate_lift) {
@@ -142,6 +169,26 @@ unsigned relative_coefficient_crossing(const Cylinder &prefix,
     if (right > maximum / 2) return 0;
     right *= 2;
     if (left < right) return length;
+  }
+  return 0;
+}
+
+unsigned first_suffix_parity_mismatch(const Cylinder &prefix,
+                                      u64 candidate_lift, u64 suffix_bits,
+                                      unsigned suffix_length) {
+  const u64 prefix_power = 3 * prefix.pow3;
+  const u128 numerator = static_cast<u128>(prefix_power) * candidate_lift +
+                         3 * static_cast<u128>(prefix.endpoint) + 1;
+  if (numerator % 4 != 0) {
+    throw std::runtime_error("the p10 candidate lift is not integral");
+  }
+  u128 value = numerator / 4;
+  for (unsigned index = 0; index < suffix_length; ++index) {
+    const unsigned observed = static_cast<unsigned>(value & 1U);
+    const unsigned expected =
+        static_cast<unsigned>((suffix_bits >> index) & 1U);
+    if (observed != expected) return index + 1;
+    value = observed == 0 ? value / 2 : (3 * value + 1) / 2;
   }
   return 0;
 }
@@ -237,6 +284,67 @@ void analyze_word(u64 bits, unsigned length, Counts &counts) {
         throw std::runtime_error("full split coordinate did not certify descent");
       }
       const u64 lift_mod_four = target_lift & 3U;
+      const i128 base_barrier =
+          static_cast<i128>(gap) * lift_mod_four + prefix_surplus;
+      if (base_barrier <= 0) {
+        const i128 step_gain = 4 * static_cast<i128>(gap);
+        const u64 ladder_steps =
+            static_cast<u64>((-base_barrier) / step_gain + 1);
+        const u64 forced_lower_bound = lift_mod_four + 4 * ladder_steps;
+        if (forced_lower_bound > target_lift) {
+          throw std::runtime_error(
+              "excluded-lift ladder overshot the true lift");
+        }
+        if (static_cast<i128>(gap) * forced_lower_bound + prefix_surplus <=
+            0) {
+          throw std::runtime_error(
+              "excluded-lift ladder did not clear the barrier");
+        }
+        const unsigned suffix_length = length - position - 2;
+        const u64 suffix_bits = bits >> (position + 2);
+        std::vector<unsigned> mismatch_depths;
+        mismatch_depths.reserve(static_cast<std::size_t>(ladder_steps));
+        for (u64 rank = 0; rank < ladder_steps; ++rank) {
+          const u64 candidate_lift = lift_mod_four + 4 * rank;
+          const unsigned mismatch = first_suffix_parity_mismatch(
+              prefix, candidate_lift, suffix_bits, suffix_length);
+          if (mismatch == 0) {
+            throw std::runtime_error(
+                "a strictly lower candidate matched the full suffix");
+          }
+          ++counts.excluded_lift_ladder_candidates;
+          counts.excluded_lift_ladder_parity_bits += mismatch;
+          mismatch_depths.push_back(mismatch);
+          if (mismatch > counts.maximum_excluded_lift_mismatch_depth) {
+            counts.maximum_excluded_lift_mismatch_depth = mismatch;
+            counts.maximum_excluded_lift_mismatch_length = length;
+            counts.maximum_excluded_lift_mismatch_position = position;
+            counts.maximum_excluded_lift_mismatch_word =
+                chronological_word(bits, length);
+          }
+        }
+        if (counts.emit_ladder) {
+          std::cout << "ladder=K:" << length
+                    << ",word:" << chronological_word(bits, length)
+                    << ",j:" << position << ",gap:" << gap
+                    << ",Q:" << signed_decimal(prefix_surplus)
+                    << ",chi2:" << lift_mod_four
+                    << ",steps:" << ladder_steps << ",mismatches:";
+          for (std::size_t index = 0; index < mismatch_depths.size(); ++index) {
+            if (index != 0) std::cout << ';';
+            std::cout << mismatch_depths[index];
+          }
+          std::cout << '\n';
+        }
+        ++counts.excluded_lift_ladder_certificates;
+        if (ladder_steps > counts.maximum_excluded_lift_ladder_steps) {
+          counts.maximum_excluded_lift_ladder_steps = ladder_steps;
+          counts.maximum_excluded_lift_ladder_length = length;
+          counts.maximum_excluded_lift_ladder_position = position;
+          counts.maximum_excluded_lift_ladder_word =
+              chronological_word(bits, length);
+        }
+      }
       bool base_shadow_certified = false;
       if (static_cast<i128>(gap) * lift_mod_four + prefix_surplus > 0) {
         ++counts.low_two_bit_certificates;
@@ -353,6 +461,13 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
   Counts counts;
+  if (argc > 2) {
+    if (std::string(argv[2]) != "--emit-ladder") {
+      std::cerr << "second argument, when present, must be --emit-ladder\n";
+      return EXIT_FAILURE;
+    }
+    counts.emit_ladder = true;
+  }
   enumerate(0, Cylinder{}, max_length, counts);
   std::cout << "max_length=" << max_length << '\n'
             << "first_crossings=" << counts.first_crossings << '\n'
@@ -370,6 +485,24 @@ int main(int argc, char **argv) {
             << counts.unresolved_after_base_shadow << '\n'
             << "adaptive_shadow_certificates="
             << counts.adaptive_shadow_certificates << '\n'
+            << "excluded_lift_ladder_certificates="
+            << counts.excluded_lift_ladder_certificates << '\n'
+            << "excluded_lift_ladder_candidates="
+            << counts.excluded_lift_ladder_candidates << '\n'
+            << "excluded_lift_ladder_parity_bits="
+            << counts.excluded_lift_ladder_parity_bits << '\n'
+            << "maximum_excluded_lift_ladder_steps="
+            << counts.maximum_excluded_lift_ladder_steps << '\n'
+            << "maximum_excluded_lift_ladder_example=K:"
+            << counts.maximum_excluded_lift_ladder_length
+            << ",j:" << counts.maximum_excluded_lift_ladder_position
+            << ",word:" << counts.maximum_excluded_lift_ladder_word << '\n'
+            << "maximum_excluded_lift_mismatch_depth="
+            << counts.maximum_excluded_lift_mismatch_depth << '\n'
+            << "maximum_excluded_lift_mismatch_example=K:"
+            << counts.maximum_excluded_lift_mismatch_length
+            << ",j:" << counts.maximum_excluded_lift_mismatch_position
+            << ",word:" << counts.maximum_excluded_lift_mismatch_word << '\n'
             << "descent_failures=" << counts.descent_failures << '\n'
             << "minimum_margin=" << counts.minimum_margin << '\n'
             << "minimum_margin_length=" << counts.minimum_margin_length << '\n'

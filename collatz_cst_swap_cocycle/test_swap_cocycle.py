@@ -5,6 +5,9 @@ from audit_split_barrier import (
     audit as audit_split_barrier,
 )
 from audit_split_barrier import (
+    first_suffix_parity_mismatch,
+)
+from audit_split_barrier import (
     relative_coefficient_crossing,
 )
 from audit_swap_cocycle import (
@@ -95,6 +98,11 @@ class SwapCocycleTests(unittest.TestCase):
         self.assertEqual(report["base_shadow_prefixes"], 2)
         self.assertEqual(report["unresolved_after_base_shadow"], 0)
         self.assertEqual(report["adaptive_shadow_certificates"], 62)
+        self.assertEqual(report["excluded_lift_ladder_certificates"], 62)
+        self.assertEqual(report["excluded_lift_ladder_candidates"], 62)
+        self.assertEqual(report["excluded_lift_ladder_parity_bits"], 127)
+        self.assertEqual(report["maximum_excluded_lift_ladder_steps"], 1)
+        self.assertEqual(report["maximum_excluded_lift_mismatch_depth"], 3)
         self.assertEqual(report["descent_failures"], 0)
         self.assertEqual(
             report["certificate_bits"], {0: 737, 2: 31, 3: 9, 4: 41, 5: 12}
@@ -121,6 +129,14 @@ class SwapCocycleTests(unittest.TestCase):
 
         self.assertEqual((gap, local_modulus), (5_077_565, 4_194_304))
         self.assertEqual(relative_coefficient_crossing(prefix, 1), 47)
+        suffix_bits = bits >> (position + 2)
+        suffix_length = len(word) - position - 2
+        self.assertEqual(
+            first_suffix_parity_mismatch(
+                prefix, 1, suffix_bits, suffix_length
+            ),
+            18,
+        )
         self.assertEqual((target_lift, prefix_surplus), (2_621_441, -5_601_853))
         self.assertEqual(target_lift % (1 << 19), 1)
         self.assertEqual(gap + prefix_surplus, -524_288)
