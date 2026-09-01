@@ -1,2 +1,3 @@
 import BezierBernstein.DifferenceIdentity
+import BezierBernstein.GaussianAbs
 import BezierBernstein.OrderStatistic

@@ -6,7 +6,8 @@ problem on the asymptotic behavior of Bernstein operators of Bezier type.
 
 Important status correction: Kenta Kitamura published a complete Lean proof
 of the more general positive-`alpha` theorem in July 2026.  The associated
-Formal Conjectures status-change pull request is open.  This project therefore
+Formal Conjectures status-change pull request remained open when rechecked on
+2026-09-01.  This project therefore
 does not claim to solve a currently open problem or claim priority.  Its
 remaining formal target is the explicit specialization
 `mu(2) = -1/sqrt(pi)` and a compact independent proof route.
@@ -65,6 +66,24 @@ probability proof of the asymptotic and its explicit uniform-integrability and
 Taylor-remainder bounds.  The full asymptotic has not yet been formalized in
 this package.
 
+`BezierBernstein/GaussianAbs.lean` checks the explicit Gaussian constant by an
+independent analytic route.  Its exported theorems include:
+
+```text
+integral_abs_gaussianReal_zero_two:
+  integral |x| against N(0,2) = 2 / sqrt(pi)
+
+map_sub_standardGaussian_prod:
+  law(G1 - G2) = N(0,2)
+
+integral_min_standardGaussian_prod:
+  E[min(G1,G2)] = -1 / sqrt(pi)
+```
+
+Here `G1,G2` are the coordinate variables on the product of two standard
+Gaussian probability spaces.  The calculation uses Mathlib's exact half-line
+primitive for `x * exp (-b*x^2)`, not numerical integration.
+
 ## Verification
 
 Pinned versions:
@@ -107,8 +126,16 @@ https://github.com/google-deepmind/formal-conjectures/pull/4646
 
 ## Scope and next step
 
-The next formal layer is the explicit Gaussian order-statistic evaluation
-`mu(2) = -1/sqrt(pi)`, followed by alignment of the finite product-mass theorem
-with Mathlib probability integrals.  Convergence in distribution alone remains
-insufficient for the expectation limit; `PAPER_PROOF.md` records the required
-uniform-integrability bridge.
+The Gaussian/order-statistic value `-1/sqrt(pi)` is now checked.  The remaining
+alignment gap is to prove that Kitamura's literal CDF-tail definition
+
+```text
+muAlpha 2 = integral_0^infinity (1-Phi(t))^2 dt
+          - integral_0^infinity (1-Phi(t)^2) dt
+```
+
+equals the checked product-space expectation of `min(G1,G2)`.  This is a
+layer-cake/product-measure bridge, not a missing evaluation of the Gaussian
+integral.  Convergence in distribution alone remains insufficient for the
+expectation limit; `PAPER_PROOF.md` records the required uniform-integrability
+bridge.
