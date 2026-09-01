@@ -1165,6 +1165,9 @@ class DirectVerifierTests(unittest.TestCase):
         independent = json.loads(
             (HERE / "objective-ten-frontier-independent.json").read_text()
         )
+        boundary = json.loads(
+            (HERE / "objective-ten-boundary-structure.json").read_text()
+        )
         self.assertEqual(
             frontier["complete_sublevel_nine_source_rotation_orbit_count"],
             62_356,
@@ -1237,6 +1240,66 @@ class DirectVerifierTests(unittest.TestCase):
             independent["total_directed_sublevel_nine_incidence"],
             frontier["total_directed_sublevel_nine_incidence"],
         )
+        self.assertEqual(
+            independent["simple_quotient_boundary_edge_count"], 500_397
+        )
+        self.assertEqual(
+            independent["quotient_boundary_incidence_count"], 500_400
+        )
+        self.assertEqual(independent["parallel_quotient_incidence_excess"], 3)
+        self.assertEqual(
+            independent[
+                "objective_ten_layer_indices_with_parallel_boundary_incidence"
+            ],
+            [12_845, 26_794, 128_182],
+        )
+        self.assertEqual(
+            independent["source_minimum_external_objective_histogram"],
+            {"10": 62_291, "11": 65},
+        )
+        self.assertEqual(
+            independent["sources_without_objective_ten_exit_by_objective"],
+            {"9": 65},
+        )
+        self.assertEqual(
+            len(
+                independent[
+                    "objective_nine_layer_indices_without_objective_ten_exit"
+                ]
+            ),
+            65,
+        )
+        self.assertFalse(independent["all_source_orbits_have_objective_ten_exit"])
+        self.assertEqual(
+            sum(independent["source_distinct_target_orbit_degree_histogram"].values()),
+            62_356,
+        )
+        self.assertEqual(
+            sum(independent["target_distinct_source_orbit_degree_histogram"].values()),
+            128_184,
+        )
+        self.assertEqual(
+            boundary["objective_nine_sources_without_objective_ten_exit"], 65
+        )
+        self.assertTrue(
+            boundary[
+                "all_exceptional_sources_are_in_first_objective_nine_frontier"
+            ]
+        )
+        self.assertEqual(
+            boundary["objective_ten_targets_by_minimum_source_objective"],
+            {
+                "2": 115,
+                "3": 839,
+                "4": 2_683,
+                "5": 6_941,
+                "6": 19_996,
+                "7": 67_747,
+                "8": 26_564,
+                "9": 3_299,
+            },
+        )
+        self.assertEqual(boundary["distinct_source_objective_support_patterns"], 49)
 
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(

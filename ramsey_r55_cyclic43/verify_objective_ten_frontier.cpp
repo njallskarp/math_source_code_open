@@ -4,12 +4,14 @@
 #include <cstdint>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <regex>
 #include <set>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <unordered_map>
 #include <unordered_set>
 #include <utility>
 #include <vector>
@@ -279,12 +281,18 @@ int main(int argc, char** argv) try {
     Model model;
     std::array<std::unordered_set<State, StateHash>, 10> source_sets;
     std::vector<SourceEntry> sources;
+    std::unordered_map<State, std::size_t, StateHash> source_index;
+    source_index.reserve(130000);
     auto add_source_layer = [&](int objective, const std::vector<State>& states) {
         for (const State& state : states) {
             if (!(model.canonical(state) == state) || !model.is_free(state))
                 throw std::runtime_error("noncanonical or nonfree source");
             if (!source_sets[objective].insert(state).second)
                 throw std::runtime_error("duplicate source representative");
+            if (!source_index.emplace(state, sources.size()).second)
+                throw std::runtime_error(
+                    "source representative occurs in multiple layers"
+                );
             sources.push_back({objective, state});
         }
     };
@@ -335,15 +343,22 @@ int main(int argc, char** argv) try {
     );
     if (targets.size() != 128184 || signatures.size() != targets.size())
         throw std::runtime_error("objective-ten frontier count mismatch");
-    std::unordered_set<State, StateHash> target_set;
-    target_set.reserve(2 * targets.size());
-    for (const State& target : targets)
-        if (!target_set.insert(target).second)
+    std::unordered_map<State, std::size_t, StateHash> target_index;
+    target_index.reserve(2 * targets.size());
+    for (std::size_t index = 0; index < targets.size(); ++index)
+        if (!target_index.emplace(targets[index], index).second)
             throw std::runtime_error("duplicate objective-ten representative");
 
     const int thread_count = omp_get_max_threads();
     std::vector<Counters> target_thread_counters(thread_count);
     std::vector<std::array<std::uint16_t, 10>> recounted_signatures(
+        targets.size()
+    );
+    std::vector<std::uint16_t> target_distinct_source_orbit_degrees(
+        targets.size()
+    );
+    std::vector<std::uint16_t> target_parallel_incidence_excess(targets.size());
+    std::vector<std::uint16_t> target_max_source_orbit_multiplicity(
         targets.size()
     );
     std::string error;
@@ -359,6 +374,8 @@ int main(int argc, char** argv) try {
             if (analysis.objective != 10) {
                 ++local.objective_mismatch;
             } else {
+                std::unordered_map<std::size_t, std::uint16_t>
+                    source_orbit_multiplicity;
                 for (int id = 0; id < edge_count; ++id) {
                     const int objective = analysis.objective + analysis.delta[id];
                     if (objective < 2 || objective > 9) continue;
@@ -366,9 +383,31 @@ int main(int argc, char** argv) try {
                     neighbor.toggle(id);
                     const State key = model.canonical(neighbor);
                     if (!source_sets[objective].contains(key)) continue;
+                    const auto source_it = source_index.find(key);
+                    if (source_it == source_index.end() ||
+                        sources[source_it->second].objective != objective)
+                        throw std::runtime_error(
+                            "source index disagrees with objective layer"
+                        );
+                    ++source_orbit_multiplicity[source_it->second];
                     ++local.incidence[objective];
                     ++recounted_signatures[index][objective];
                 }
+                target_distinct_source_orbit_degrees[index] =
+                    static_cast<std::uint16_t>(source_orbit_multiplicity.size());
+                std::uint16_t incidence_degree = 0;
+                std::uint16_t maximum_multiplicity = 0;
+                for (const auto& [source_index, multiplicity] :
+                     source_orbit_multiplicity) {
+                    (void)source_index;
+                    incidence_degree += multiplicity;
+                    maximum_multiplicity =
+                        std::max(maximum_multiplicity, multiplicity);
+                }
+                target_parallel_incidence_excess[index] =
+                    incidence_degree - source_orbit_multiplicity.size();
+                target_max_source_orbit_multiplicity[index] =
+                    maximum_multiplicity;
                 if (signatures[index].size() != 8) {
                     ++local.signature_mismatch;
                 } else {
@@ -397,6 +436,12 @@ int main(int argc, char** argv) try {
         throw std::runtime_error("objective-ten target verification failed");
 
     std::vector<Counters> source_thread_counters(thread_count);
+    std::vector<std::uint16_t> source_distinct_target_orbit_degrees(
+        sources.size()
+    );
+    std::vector<std::uint16_t> source_minimum_external_objectives(
+        sources.size()
+    );
 #pragma omp parallel for schedule(dynamic, 1)
     for (std::size_t index = 0; index < sources.size(); ++index) {
         try {
@@ -407,17 +452,37 @@ int main(int argc, char** argv) try {
             if (analysis.objective != source.objective) {
                 ++local.objective_mismatch;
             } else {
+                std::unordered_set<std::size_t> distinct_target_orbits;
+                int minimum_external_objective =
+                    std::numeric_limits<int>::max();
                 for (int id = 0; id < edge_count; ++id) {
-                    if (analysis.objective + analysis.delta[id] != 10) continue;
+                    const int neighbor_objective =
+                        analysis.objective + analysis.delta[id];
+                    if (neighbor_objective > 9)
+                        minimum_external_objective = std::min(
+                            minimum_external_objective, neighbor_objective
+                        );
+                    if (neighbor_objective != 10) continue;
                     State neighbor = source.state;
                     neighbor.toggle(id);
                     const State key = model.canonical(neighbor);
-                    if (!target_set.contains(key)) {
+                    const auto target_it = target_index.find(key);
+                    if (target_it == target_index.end()) {
                         ++local.missing_frontier;
                         continue;
                     }
+                    distinct_target_orbits.insert(target_it->second);
                     ++local.incidence[source.objective];
                 }
+                source_distinct_target_orbit_degrees[index] =
+                    static_cast<std::uint16_t>(distinct_target_orbits.size());
+                if (minimum_external_objective ==
+                    std::numeric_limits<int>::max())
+                    throw std::runtime_error(
+                        "source has no external one-flip neighbor"
+                    );
+                source_minimum_external_objectives[index] =
+                    static_cast<std::uint16_t>(minimum_external_objective);
             }
             add(source_thread_counters[omp_get_thread_num()], local);
         } catch (const std::exception& exception) {
@@ -440,6 +505,23 @@ int main(int argc, char** argv) try {
 
     std::map<std::array<std::uint16_t, 10>, std::uint64_t> signature_histogram;
     std::map<int, std::uint64_t> incidence_degree_histogram;
+    std::map<int, std::uint64_t> target_distinct_orbit_degree_histogram;
+    std::map<int, std::uint64_t> source_distinct_orbit_degree_histogram;
+    std::map<int, std::uint64_t> target_parallel_incidence_excess_histogram;
+    std::map<int, std::uint64_t>
+        target_max_source_orbit_multiplicity_histogram;
+    std::array<std::map<int, std::uint64_t>, 10>
+        source_distinct_orbit_degree_by_objective;
+    std::map<int, std::uint64_t> source_minimum_external_objective_histogram;
+    std::array<std::uint64_t, 10>
+        sources_without_objective_ten_exit_by_objective{};
+    std::vector<std::size_t>
+        objective_nine_layer_indices_without_objective_ten_exit;
+    std::vector<std::size_t>
+        objective_ten_layer_indices_with_parallel_boundary_incidence;
+    std::array<std::size_t, 10> source_layer_indices{};
+    std::uint64_t target_distinct_orbit_edge_total = 0;
+    std::uint64_t source_distinct_orbit_edge_total = 0;
     for (const auto& signature : recounted_signatures) {
         ++signature_histogram[signature];
         int degree = 0;
@@ -447,6 +529,45 @@ int main(int argc, char** argv) try {
             degree += signature[objective];
         ++incidence_degree_histogram[degree];
     }
+    std::uint64_t parallel_incidence_excess_total = 0;
+    for (std::size_t index = 0; index < targets.size(); ++index) {
+        const int degree = target_distinct_source_orbit_degrees[index];
+        ++target_distinct_orbit_degree_histogram[degree];
+        target_distinct_orbit_edge_total += degree;
+        const int excess = target_parallel_incidence_excess[index];
+        ++target_parallel_incidence_excess_histogram[excess];
+        ++target_max_source_orbit_multiplicity_histogram
+            [target_max_source_orbit_multiplicity[index]];
+        parallel_incidence_excess_total += excess;
+        if (excess)
+            objective_ten_layer_indices_with_parallel_boundary_incidence
+                .push_back(index);
+    }
+    for (std::size_t index = 0; index < sources.size(); ++index) {
+        const int degree = source_distinct_target_orbit_degrees[index];
+        const int objective = sources[index].objective;
+        const std::size_t layer_index = source_layer_indices[objective]++;
+        ++source_distinct_orbit_degree_histogram[degree];
+        ++source_distinct_orbit_degree_by_objective[objective][degree];
+        ++source_minimum_external_objective_histogram
+            [source_minimum_external_objectives[index]];
+        if (degree == 0) {
+            ++sources_without_objective_ten_exit_by_objective[objective];
+            if (objective == 9)
+                objective_nine_layer_indices_without_objective_ten_exit.push_back(
+                    layer_index
+                );
+        }
+        source_distinct_orbit_edge_total += degree;
+    }
+    if (source_distinct_orbit_edge_total != target_distinct_orbit_edge_total)
+        throw std::runtime_error("simple quotient boundary edge mismatch");
+    std::uint64_t quotient_incidence_total = 0;
+    for (int objective = 2; objective <= 9; ++objective)
+        quotient_incidence_total += source_total.incidence[objective];
+    if (quotient_incidence_total !=
+        source_distinct_orbit_edge_total + parallel_incidence_excess_total)
+        throw std::runtime_error("quotient boundary multiplicity mismatch");
 
     std::cout << "{\n";
     std::cout << "  \"independent_source_recount_representative_count\": "
@@ -469,6 +590,88 @@ int main(int argc, char** argv) try {
         degree_separator = true;
     }
     std::cout << "\n  },\n";
+    auto write_histogram = [](const std::map<int, std::uint64_t>& histogram) {
+        bool separator = false;
+        for (const auto& [degree, count] : histogram) {
+            if (separator) std::cout << ',';
+            std::cout << "\n    \"" << degree << "\": " << count;
+            separator = true;
+        }
+        std::cout << "\n  }";
+    };
+    std::cout << "  \"target_distinct_source_orbit_degree_histogram\": {";
+    write_histogram(target_distinct_orbit_degree_histogram);
+    std::cout << ",\n";
+    std::cout << "  \"source_distinct_target_orbit_degree_histogram\": {";
+    write_histogram(source_distinct_orbit_degree_histogram);
+    std::cout << ",\n";
+    std::cout << "  \"source_distinct_target_orbit_degree_by_objective\": {";
+    for (int objective = 2; objective <= 9; ++objective) {
+        if (objective != 2) std::cout << ',';
+        std::cout << "\n    \"" << objective << "\": {";
+        bool separator = false;
+        for (const auto& [degree, count] :
+             source_distinct_orbit_degree_by_objective[objective]) {
+            if (separator) std::cout << ',';
+            std::cout << "\n      \"" << degree << "\": " << count;
+            separator = true;
+        }
+        std::cout << "\n    }";
+    }
+    std::cout << "\n  },\n";
+    std::cout << "  \"simple_quotient_boundary_edge_count\": "
+              << source_distinct_orbit_edge_total << ",\n";
+    std::cout << "  \"quotient_boundary_incidence_count\": "
+              << quotient_incidence_total << ",\n";
+    std::cout << "  \"parallel_quotient_incidence_excess\": "
+              << parallel_incidence_excess_total << ",\n";
+    std::cout << "  \"target_parallel_incidence_excess_histogram\": {";
+    write_histogram(target_parallel_incidence_excess_histogram);
+    std::cout << ",\n";
+    std::cout
+        << "  \"target_max_source_orbit_multiplicity_histogram\": {";
+    write_histogram(target_max_source_orbit_multiplicity_histogram);
+    std::cout << ",\n";
+    std::cout
+        << "  \"objective_ten_layer_indices_with_parallel_boundary_incidence\": [";
+    for (std::size_t index = 0;
+         index <
+         objective_ten_layer_indices_with_parallel_boundary_incidence.size();
+         ++index) {
+        if (index) std::cout << ',';
+        std::cout << objective_ten_layer_indices_with_parallel_boundary_incidence
+                         [index];
+    }
+    std::cout << "],\n";
+    std::cout << "  \"source_minimum_external_objective_histogram\": {";
+    write_histogram(source_minimum_external_objective_histogram);
+    std::cout << ",\n";
+    std::cout << "  \"sources_without_objective_ten_exit_by_objective\": {";
+    bool missing_separator = false;
+    for (int objective = 2; objective <= 9; ++objective) {
+        if (!sources_without_objective_ten_exit_by_objective[objective])
+            continue;
+        if (missing_separator) std::cout << ',';
+        std::cout << "\n    \"" << objective << "\": "
+                  << sources_without_objective_ten_exit_by_objective[objective];
+        missing_separator = true;
+    }
+    std::cout << "\n  },\n";
+    std::cout
+        << "  \"objective_nine_layer_indices_without_objective_ten_exit\": [";
+    for (std::size_t index = 0;
+         index < objective_nine_layer_indices_without_objective_ten_exit.size();
+         ++index) {
+        if (index) std::cout << ',';
+        if (index % 12 == 0) std::cout << "\n    ";
+        std::cout << objective_nine_layer_indices_without_objective_ten_exit[index];
+    }
+    std::cout << "\n  ],\n";
+    std::cout << "  \"all_source_orbits_have_objective_ten_exit\": "
+              << (source_distinct_orbit_degree_histogram.contains(0)
+                      ? "false"
+                      : "true")
+              << ",\n";
     std::cout << "  \"directed_incidence_by_source_objective\": {";
     std::uint64_t total_incidence = 0;
     for (int objective = 2; objective <= 9; ++objective) {

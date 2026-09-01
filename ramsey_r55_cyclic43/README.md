@@ -622,6 +622,55 @@ d&1&2&3&4&5&6&7&8&9\\ \hline
 \end{array}
 \]
 
+### Exact quotient-boundary structure and the level-ten shadow
+
+Form the simple bipartite quotient boundary with the 62,356 source orbits of
+\(P_9\) on one side and the 128,184 target orbits of \(F_{10}\) on the other,
+joining two orbits when some representatives differ by one edge. An independent
+bidirectional reconstruction gives exactly
+
+\[
+500{,}397
+\]
+
+simple quotient edges. The multiplicity-weighted quotient incidence count is
+500,400. The excess consists of exactly three source--target orbit pairs of
+multiplicity two; every other pair has multiplicity one. In the sorted
+objective-ten certificate, the three exceptional target indices are
+12,845, 26,794, and 128,182.
+
+The source-side boundary degrees range from zero to 59. Exactly 65 source
+orbits have degree zero, all have objective nine, and all 65 already belong to
+the complete first objective-nine frontier of the sublevel-eight component.
+Direct scans of all 903 reversals show that their minimum objective outside
+\(P_9\) is 11. Every other source orbit has minimum external objective 10:
+
+\[
+\begin{array}{c|rr}
+\text{minimum external objective}&10&11\\ \hline
+\text{source rotation orbits}&62{,}291&65.
+\end{array}
+\]
+
+Thus the level-ten frontier does not touch all of \(P_9\): it leaves an exact
+65-orbit *level-ten shadow* whose one-flip exits jump over objective ten.
+
+The objective-ten targets also admit an exact partition by the minimum
+objective among their neighbors in \(P_9\):
+
+\[
+\begin{array}{c|rrrrrrrr}
+\min M(x)&2&3&4&5&6&7&8&9\\ \hline
+\#\text{ target orbits}&115&839&2{,}683&6{,}941&19{,}996&
+67{,}747&26{,}564&3{,}299.
+\end{array}
+\]
+
+The 128,184 targets realize 49 distinct supports across the eight source
+objective layers; 6,784 meet one layer, 62,589 meet two, 58,347 meet three,
+and 464 meet four. These are exact certificate corollaries, not evidence that
+the objective-ten layer is closed.
+
 ### Reproduction and independent verification
 
 Build and regenerate the full lower closure and frontier with:
@@ -655,6 +704,13 @@ OMP_NUM_THREADS=10 ./verify_objective_ten_frontier \
   objective-nine-component-fast.json \
   objective-ten-frontier-fast.json \
   > objective-ten-frontier-independent.json
+
+python3 analyze_objective_ten_boundary.py \
+  objective-nine-frontier-fast.json \
+  objective-nine-component-fast.json \
+  objective-ten-frontier-fast.json \
+  objective-ten-frontier-independent.json \
+  > objective-ten-boundary-structure.json
 ```
 
 The independent checker found zero omitted frontier neighbors, zero wrong
@@ -694,18 +750,19 @@ ten-thread direct recount with explicit reachability BFS took 32.79 seconds,
 and the lower-island direct
 recount plus two independent lift-connectivity checks took 14.61 seconds.
 The combined regenerated lower closures and objective-ten frontier scan took
-1,505.77 seconds under concurrent load; the independent ten-thread
-bidirectional direct recount took 155.72 seconds.
+1,505.77 seconds under concurrent load. A fresh ten-thread expanded
+bidirectional boundary recount took 221.78 seconds; the deterministic
+certificate-intersection analysis took 0.90 seconds.
 
 SHA-256:
 
 ```text
 92c8b60c68ce737a8d9c217b4f4cafc966198950650f2b723fb9e0504e6e1263  objective_six_component.cpp
 d963ccaabefd5838bbdf96632dfc3f767a903ee401e0d98c5dd1c936093fc79a  verify_objective_six_component.cpp
-274b8eed5c83034e99d708617fcfc6c85e8c5830408b444fb63938750d1f73a0  verify_objective_ten_frontier.cpp
+46d42e826814f64a5d9e037eb6b845147c21578e27fe53e1c07950840bb9ebe4  verify_objective_ten_frontier.cpp
 216a3726bf3e842731cadee81181a762dbdb9f0ec4f9aba46b7e73d22c8e688c  verify_external_objective_eight_components.py
 885d86d8fa5dac7864c322101bdccb5d28231cc6b431a4b59b9da4148d9944ea  verify_threshold_nine_lower_islands.py
-3615d3c51beb1e176f8db76391e98278b0d58513eeef5a0a77f9e58af964153a  test_cyclic43.py
+c43a8c3224bb28569c3f4dbcbd4e5f9c7bb349891be4954664067e70884f9349  test_cyclic43.py
 740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
 b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
 ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
@@ -716,7 +773,9 @@ e04e0f20b5e2f696658e8e4258f437c31d29e928f531b3e951d42caa3daeefaa  objective-nine
 25fb32b4cfaf67130bdc9644c2cfa5448f604adc603855df7e39eb8953f8c0cb  objective-nine-component-independent.json
 fe3a66d5d937bc109920e45b2c105e5cfa2dbdebbb56a3b25adf8f0686650c88  threshold-nine-lower-islands-independent.json
 9b5b3b4747fedfba8b0191f052c9e6d2847aa9c910465f6c29358c2336977df4  objective-ten-frontier-fast.json
-5add68f5775a499dc85000a72dc3940f0b5c4ad2596c39476a00cef28baebcc3  objective-ten-frontier-independent.json
+977ddfaa5ab06d43e28a0f2a1d13606d571d12e1a7fca06751651a719cefae56  objective-ten-frontier-independent.json
+2a8eb47b4204801169ecae8f0734643d091455124ee2ee09ccba9698e9236551  analyze_objective_ten_boundary.py
+a6fc7029bd7ec7d79fd5d50ea629db88878ea7f3e0b14d4a89aff354fe72bb72  objective-ten-boundary-structure.json
 ```
 
 Certify a radius-five tube around all 38 vertices of that defect orbit:
