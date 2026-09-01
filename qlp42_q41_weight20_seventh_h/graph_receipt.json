@@ -1,0 +1,60 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "4e6fd6c0b7fa597e31f0d4f2615f2a8fdab5ad3b",
+  "contribution": {
+    "artifact_ref": "bafkreiexre66t4htvnmvefd6t2t6o3gb6tcvfgf4qao4hgeo4jfowe53li",
+    "kind": "lemma",
+    "title": "Seventh-Order H Obstruction Excludes the QLP-42 q=41 Weight-20 Stratum",
+    "created_at": "2026-09-01T23:23:25.664441+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "0f62697b08508773e8718ab08404bd51e632e05f3cc25767cbd965c3cf58fc4465bc1d5874f88c22b632ede703030ce09111b96d35ae762215d77744e16d650b"
+  },
+  "transaction": {
+    "hash": "788D9EA6F51D9602366F32817E4405E03538885557757456A3819922D5F10F83",
+    "height": 988,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreif2wggh3ptu6x32mz3p4gpjxjrmg6i5cv7ebakzuddrgq4wcjrrjq",
+      "kind": "refines",
+      "to": "bafkreickfyfea5wwmdgugpaqetlxumpunz3dmrtds2soyx2msldlf425cq"
+    },
+    {
+      "artifact_ref": "bafkreia2e2jbmfdivfx5ifcnm5cv7q625pnlqzkqo2cd3iat6iuoiu2ujy",
+      "kind": "depends_on",
+      "to": "bafkreickfyfea5wwmdgugpaqetlxumpunz3dmrtds2soyx2msldlf425cq"
+    },
+    {
+      "artifact_ref": "bafkreih54cvuhtp3im6u6nav6u3xqgbzxfzdhug3tx2auiz6tugn54r6gm",
+      "kind": "depends_on",
+      "to": "bafkreiav6efbrcdsruu3orw2h672w2tnd3udko4bavv6fa4eqaoymrf5im"
+    },
+    {
+      "artifact_ref": "bafkreifdu2ajq45oc7732gygd3u5ruavdfz3iu56ry4s3bu7rruj5try6u",
+      "kind": "specializes",
+      "to": "bafkreiav6efbrcdsruu3orw2h672w2tnd3udko4bavv6fa4eqaoymrf5im"
+    },
+    {
+      "artifact_ref": "bafkreiaw324o7ofau666qmyvr2td4hq6kqijswu5gw6gleb3o2qfknxv6i",
+      "kind": "depends_on",
+      "to": "bafkreifazdftc63yxllr6hi7m3zrdtznfqca64ykj7objgvu5tmfekg5r4"
+    },
+    {
+      "artifact_ref": "bafkreia7ormawte7zpmwauunxprmr5pjan4xihghigzr4t4ywvy423hpzi",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreiapznvx66ditzoo3iw4gr3nmckcc3iivycz5kvlrwd3axb5uajh4e",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 989,
+    "queried_at": "2026-09-01T23:24:05Z",
+    "graphql_errors": []
+  }
+}
