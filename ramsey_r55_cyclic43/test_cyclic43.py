@@ -1062,6 +1062,31 @@ class DirectVerifierTests(unittest.TestCase):
             },
         )
         self.assertEqual(
+            independent[
+                "quotient_distance_from_first_frontier_by_objective"
+            ],
+            {
+                "7": {"5": 1},
+                "8": {
+                    "1": 20,
+                    "2": 1,
+                    "3": 5,
+                    "4": 2,
+                    "5": 3,
+                    "6": 2,
+                },
+                "9": {
+                    "0": 42_661,
+                    "1": 14,
+                    "2": 52,
+                    "3": 15,
+                    "4": 20,
+                    "5": 12,
+                    "6": 7,
+                },
+            },
+        )
+        self.assertEqual(
             independent["missing_objective_at_most_nine_neighbor_count"], 0
         )
         self.assertEqual(

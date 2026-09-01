@@ -492,7 +492,7 @@ OMP_NUM_THREADS=10 ./verify_objective_six_component \
   > objective-nine-component-independent.json
 ```
 
-The reachability-enabled ten-thread checker took 21.28 seconds in a fresh run.
+The reachability-enabled ten-thread checker took 32.79 seconds in a fresh run.
 For all 42,815 representatives it
 reconstructed the coloring, recounted all 962,598 five-sets, rebuilt all 903
 single-flip deltas, checked canonicality and freeness, and tested every accepted
@@ -519,6 +519,22 @@ distance 6:      9 orbits
 Thus the farthest added representatives are exactly six quotient edges beyond
 the certified first frontier. This BFS is part of the direct-recount verifier;
 it does not rely on the optimized generator's queue or discovery order.
+
+Resolving the shells by objective gives a less naive attachment picture:
+
+```text
+objective \ distance      0      1    2    3    4    5    6
+7                         0      0    0    0    0    1    0
+8                         0     20    1    5    2    3    2
+9                    42,661     14   52   15   20   12    7
+```
+
+The 20 previously exposed external objective-eight seeds account for the
+objective-eight part of shell one, but 14 additional objective-nine orbits are
+also directly adjacent to the first frontier. The second lower quotient island
+is genuinely deeper: its unique objective-seven orbit occurs at distance five.
+Thus the tempting hypothesis that every added objective-nine orbit requires an
+initial downward move is false.
 
 The 34 newly attached lower orbits have additional exact structure. Recount
 and classify their quotient and labeled lifts with:
@@ -553,7 +569,7 @@ of scope.
 The results above were regenerated with Homebrew GCC 16.2.0 and Python
 3.12.12. The complete regression suite passed 25/25 tests. The threshold-nine
 optimized closure and aggregate recount took 408.60 seconds; its independent
-ten-thread direct recount with explicit reachability BFS took 21.28 seconds,
+ten-thread direct recount with explicit reachability BFS took 32.79 seconds,
 and the lower-island direct
 recount plus two independent lift-connectivity checks took 14.61 seconds.
 
@@ -561,10 +577,10 @@ SHA-256:
 
 ```text
 30cf95dc602ed8dc896f6fa0c3a5bec1e71b19cdfe4c87735a6240bed534f278  objective_six_component.cpp
-59e92ad51ec89bc4de2c8bb7bc326b1000cfdab444fb30301adf1a3cc9d3de19  verify_objective_six_component.cpp
+d963ccaabefd5838bbdf96632dfc3f767a903ee401e0d98c5dd1c936093fc79a  verify_objective_six_component.cpp
 216a3726bf3e842731cadee81181a762dbdb9f0ec4f9aba46b7e73d22c8e688c  verify_external_objective_eight_components.py
 885d86d8fa5dac7864c322101bdccb5d28231cc6b431a4b59b9da4148d9944ea  verify_threshold_nine_lower_islands.py
-21307cf7aa66aa4905624592bc51f59c3996dcba84270ca5541dfbbeab1166d9  test_cyclic43.py
+347ff5416ab2186fcdcc2a6c47b7ce8e9fee4fd8019fa9b81f97ce651da96938  test_cyclic43.py
 740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
 b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
 ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
@@ -572,7 +588,7 @@ ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine
 dee76687683f480bb3eeb788608bf0420c8d61fe5378558adb961acc42f160ff  external-objective-eight-components-fast.json
 319f92ea07c57edf4a94a1fc89c60ab177a3bd4d02f73f4127f29c2c7979db78  external-objective-eight-components-independent.json
 e04e0f20b5e2f696658e8e4258f437c31d29e928f531b3e951d42caa3daeefaa  objective-nine-component-fast.json
-aaf8d1a2e054d8d448a38b97a63a4ba09d31c4ed7336d21afe26546452729c3e  objective-nine-component-independent.json
+25fb32b4cfaf67130bdc9644c2cfa5448f604adc603855df7e39eb8953f8c0cb  objective-nine-component-independent.json
 fe3a66d5d937bc109920e45b2c105e5cfa2dbdebbb56a3b25adf8f0686650c88  threshold-nine-lower-islands-independent.json
 ```
 

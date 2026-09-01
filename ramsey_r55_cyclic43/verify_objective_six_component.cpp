@@ -1676,10 +1676,14 @@ struct Verifier {
                 "new threshold-nine state is unreachable from first frontier"
             );
         std::map<int, std::uint64_t> reachability_distance_histogram;
-        for (const int distance : frontier_distance) {
+        std::array<std::map<int, std::uint64_t>, 10>
+            reachability_distance_by_objective;
+        for (std::size_t index = 0; index < frontier_distance.size(); ++index) {
+            const int distance = frontier_distance[index];
             if (distance < 0)
                 throw std::runtime_error("negative final frontier distance");
             ++reachability_distance_histogram[distance];
+            ++reachability_distance_by_objective[new_states[index].first][distance];
         }
         const int maximum_frontier_distance =
             reachability_distance_histogram.rbegin()->first;
@@ -1702,6 +1706,23 @@ struct Verifier {
             if (distance_separator) output << ',';
             output << "\n    \"" << distance << "\": " << count;
             distance_separator = true;
+        }
+        output << "\n  },\n";
+        output << "  \"quotient_distance_from_first_frontier_by_objective\": {";
+        bool objective_distance_separator = false;
+        for (int objective = 0; objective <= 9; ++objective) {
+            if (reachability_distance_by_objective[objective].empty()) continue;
+            if (objective_distance_separator) output << ',';
+            output << "\n    \"" << objective << "\": {";
+            bool within_objective_separator = false;
+            for (const auto& [distance, count] :
+                 reachability_distance_by_objective[objective]) {
+                if (within_objective_separator) output << ',';
+                output << "\n      \"" << distance << "\": " << count;
+                within_objective_separator = true;
+            }
+            output << "\n    }";
+            objective_distance_separator = true;
         }
         output << "\n  },\n";
         output << "  \"missing_objective_at_most_nine_neighbor_count\": 0,\n";
