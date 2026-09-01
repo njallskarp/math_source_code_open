@@ -1,0 +1,55 @@
+Apple clang version 17.0.0 (clang-1700.6.3.2)
+Python 3.12.12
+arm64
+
+$ python3 classify_all_sums.py --s-b-binary /tmp/classify_s_b_syndromes
+fourth_order_dependency_sha256=cefc2f614980396aaecc9894733e3e8840658966b5d33e1ae6811a7bcc4b3d69
+s_b_source_sha256=066d6eccfc32041a99eb8b2b095f7f4614d9c2f3be7be5ff54824dd694a6e22e
+s_b_stream_sha256=1e0d2790039844e52c0fb93fd008b6420d7476691676552c5140da22bc90696b
+b_words_wt_0_mod_4=523776
+b_rotation_orbits_wt_0_mod_4=24946
+a_zero_direction_checks=1048576
+a_center_residual_identity_checks=524288
+case_0_labeled_axis_pairs=217261758
+case_0_b_rotation_axis_orbits=10345798
+case_0_rank_counts=9:20489616:975696,10:196772142:9370102
+case_0_weight_counts=4:2378334:113254,8:84712152:4033912,12:122151204:5816724,16:8020068:381908
+case_1_labeled_axis_pairs=193424322
+case_1_b_rotation_axis_orbits=9210682
+case_1_rank_counts=9:20546736:978416,10:172877586:8232266
+case_1_weight_counts=4:2147082:102242,8:75123300:3577300,12:108742536:5178216,16:7411404:352924
+case_2_labeled_axis_pairs=192720234
+case_2_b_rotation_axis_orbits=9177154
+case_2_rank_counts=9:20510028:976668,10:172210206:8200486
+case_2_weight_counts=4:2226084:106004,8:75004944:3571664,12:108350550:5159550,16:7138656:339936
+case_3_labeled_axis_pairs=159187665
+case_3_b_rotation_axis_orbits=7580365
+case_3_rank_counts=9:11258688:536128,10:147928977:7044237
+case_3_weight_counts=4:1791153:85293,8:61754154:2940674,12:89498682:4261842,16:6135528:292168,20:8148:388
+case_4_labeled_axis_pairs=159187665
+case_4_b_rotation_axis_orbits=7580365
+case_4_rank_counts=9:11258688:536128,10:147928977:7044237
+case_4_weight_counts=4:1791153:85293,8:61754154:2940674,12:89498682:4261842,16:6135528:292168,20:8148:388
+case_5_labeled_axis_pairs=146998278
+case_5_b_rotation_axis_orbits=6999918
+case_5_rank_counts=9:11261376:536256,10:135736902:6463662
+case_5_weight_counts=4:1730988:82428,8:56999838:2714278,12:82675236:3936916,16:5592216:266296
+canonical_axis_survivor_stream_sha256=238ad24721f4f92d397b201adb8b604a2f04d0dcc222f78970ce271f8ec862a2
+sampled_b_rotation_orbits=132
+sample_axis_survivor_stream_sha256=995c6c17c07e81575f0fcd51db8dc786ec7d9172c93b03903a30550e7af48290
+rank_at_most_7_elimination=verified
+case_3_case_4_identity=verified
+case_rank_table=verified
+case_weight_table=verified
+certificate=verified
+
+$ python3 independent_sample_check.py
+sampled_b_rotation_orbits=132
+sampled_axis_pairs=135168
+direct_zero_direction_pair_audits=640
+direct_center_residual_audits=96
+brute_a_sum_domain_audits=32
+direct_fixed_cardinality_b_supports=924
+all_six_survivor_masks_match=verified
+case_3_case_4_identity=verified
+sample_axis_survivor_stream_sha256=995c6c17c07e81575f0fcd51db8dc786ec7d9172c93b03903a30550e7af48290
