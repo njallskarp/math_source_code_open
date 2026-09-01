@@ -1430,6 +1430,92 @@ class DirectVerifierTests(unittest.TestCase):
         self.assertEqual(len(partners), 21)
         self.assertTrue(all(partners[partners[index]] == index for index in range(21)))
 
+    def test_objective_eleven_first_frontier_compact_certificate(self) -> None:
+        payload = json.loads(
+            (HERE / "objective-eleven-frontier-certificate.json").read_text()
+        )
+        self.assertEqual(
+            payload["complete_sublevel_ten_source_rotation_orbit_count"],
+            191_067,
+        )
+        self.assertEqual(
+            payload["complete_sublevel_ten_source_vertex_count"], 8_215_881
+        )
+        self.assertEqual(
+            payload["objective_eleven_first_frontier_rotation_orbit_count"],
+            372_974,
+        )
+        self.assertEqual(
+            payload["objective_eleven_first_frontier_vertex_count"],
+            16_037_882,
+        )
+        self.assertEqual(
+            payload["directed_labeled_incidence_by_source_objective"],
+            {
+                "2": 5_246,
+                "3": 41_366,
+                "4": 174_666,
+                "5": 460_143,
+                "6": 1_153_776,
+                "7": 3_093_377,
+                "8": 12_722_023,
+                "9": 18_994_777,
+                "10": 30_310_743,
+            },
+        )
+        self.assertEqual(payload["total_directed_labeled_incidence"], 66_956_117)
+        self.assertEqual(payload["incidence_signature_count"], 324)
+        self.assertEqual(
+            payload["incidence_degree_histogram"],
+            {
+                "1": 5_933,
+                "2": 25_539,
+                "3": 75_930,
+                "4": 118_397,
+                "5": 96_350,
+                "6": 40_281,
+                "7": 9_302,
+                "8": 1_014,
+                "9": 212,
+                "10": 16,
+            },
+        )
+        self.assertEqual(
+            sum(payload["incidence_degree_histogram"].values()), 372_974
+        )
+        self.assertEqual(
+            payload["source_orbits_without_objective_eleven_exit_by_objective"],
+            {"10": 348},
+        )
+        self.assertEqual(
+            payload["source_minimum_above_ten_histogram_by_objective"]["10"],
+            {"11": 128_363, "12": 348},
+        )
+        self.assertEqual(
+            sum(
+                sum(histogram.values())
+                for histogram in payload[
+                    "source_minimum_above_ten_histogram_by_objective"
+                ].values()
+            ),
+            191_067,
+        )
+        self.assertTrue(payload["independent_mathematical_fields_agree"])
+        self.assertTrue(
+            payload["independent_representative_arrays_agree_entry_for_entry"]
+        )
+        self.assertTrue(
+            payload["independent_signature_arrays_agree_entry_for_entry"]
+        )
+        for key in (
+            "representative_array_sha256_canonical_json",
+            "signature_array_sha256_canonical_json",
+            "aligned_representative_signature_pairs_sha256_json_lines",
+            "direct_full_output_sha256",
+            "optimized_full_output_sha256",
+        ):
+            self.assertEqual(len(payload[key]), 64)
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

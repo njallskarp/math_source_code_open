@@ -6,6 +6,7 @@
 #include <iostream>
 #include <limits>
 #include <map>
+#include <numeric>
 #include <regex>
 #include <set>
 #include <sstream>
@@ -277,6 +278,20 @@ struct ExpansionSummary {
     std::uint64_t nonfree_new_orbits = 0;
 };
 
+using FrontierIncidence = std::array<std::uint16_t, 11>;
+using FrontierMap =
+    std::unordered_map<State, FrontierIncidence, StateHash>;
+
+void record_frontier_neighbor(
+    FrontierMap& frontier, const State& target, int source_objective
+) {
+    auto& incidence = frontier[target];
+    if (incidence[source_objective] ==
+        std::numeric_limits<std::uint16_t>::max())
+        throw std::runtime_error("frontier incidence overflow");
+    ++incidence[source_objective];
+}
+
 void add(Counters& destination, const Counters& source) {
     for (int objective = 2; objective <= 9; ++objective)
         destination.incidence[objective] += source.incidence[objective];
@@ -294,11 +309,12 @@ void add(Counters& destination, const Counters& source) {
 }  // namespace
 
 int main(int argc, char** argv) try {
-    if (argc != 6) {
+    if (argc != 6 && argc != 8) {
         std::cerr
             << "usage: verify_objective_ten_frontier LOWER-SIX.json "
                "OBJECTIVE-SEVEN-COMPONENT.json OBJECTIVE-EIGHT-COMPONENT.json "
-               "OBJECTIVE-NINE-COMPONENT.json OBJECTIVE-TEN-FRONTIER.json\n";
+               "OBJECTIVE-NINE-COMPONENT.json OBJECTIVE-TEN-FRONTIER.json "
+               "[OBJECTIVE-TEN-COMPONENT.json OBJECTIVE-ELEVEN-FRONTIER.json]\n";
         return 2;
     }
 
@@ -376,6 +392,7 @@ int main(int argc, char** argv) try {
     const int thread_count = omp_get_max_threads();
     std::vector<Counters> target_thread_counters(thread_count);
     std::vector<ExpansionSummary> target_thread_expansions(thread_count);
+    std::vector<FrontierMap> target_thread_objective_eleven(thread_count);
     std::vector<std::array<std::uint16_t, 10>> recounted_signatures(
         targets.size()
     );
@@ -417,6 +434,15 @@ int main(int argc, char** argv) try {
                         minimum_above_ten_objective = std::min(
                             minimum_above_ten_objective, objective
                         );
+                    if (objective == 11) {
+                        State neighbor = target;
+                        neighbor.toggle(id);
+                        record_frontier_neighbor(
+                            target_thread_objective_eleven
+                                [omp_get_thread_num()],
+                            model.canonical(neighbor), 10
+                        );
+                    }
                     if (objective < 2 || objective > 10) continue;
                     State neighbor = target;
                     neighbor.toggle(id);
@@ -529,10 +555,14 @@ int main(int argc, char** argv) try {
         throw std::runtime_error("nonfree newly exposed orbit");
 
     std::vector<Counters> source_thread_counters(thread_count);
+    std::vector<FrontierMap> source_thread_objective_eleven(thread_count);
     std::vector<std::uint16_t> source_distinct_target_orbit_degrees(
         sources.size()
     );
     std::vector<std::uint16_t> source_minimum_external_objectives(
+        sources.size()
+    );
+    std::vector<std::uint16_t> source_minimum_above_ten_objectives(
         sources.size()
     );
 #pragma omp parallel for schedule(dynamic, 1)
@@ -548,6 +578,8 @@ int main(int argc, char** argv) try {
                 std::unordered_set<std::size_t> distinct_target_orbits;
                 int minimum_external_objective =
                     std::numeric_limits<int>::max();
+                int minimum_above_ten_objective =
+                    std::numeric_limits<int>::max();
                 for (int id = 0; id < edge_count; ++id) {
                     const int neighbor_objective =
                         analysis.objective + analysis.delta[id];
@@ -555,6 +587,19 @@ int main(int argc, char** argv) try {
                         minimum_external_objective = std::min(
                             minimum_external_objective, neighbor_objective
                         );
+                    if (neighbor_objective > 10)
+                        minimum_above_ten_objective = std::min(
+                            minimum_above_ten_objective, neighbor_objective
+                        );
+                    if (neighbor_objective == 11) {
+                        State neighbor = source.state;
+                        neighbor.toggle(id);
+                        record_frontier_neighbor(
+                            source_thread_objective_eleven
+                                [omp_get_thread_num()],
+                            model.canonical(neighbor), source.objective
+                        );
+                    }
                     if (neighbor_objective != 10) continue;
                     State neighbor = source.state;
                     neighbor.toggle(id);
@@ -576,6 +621,13 @@ int main(int argc, char** argv) try {
                     );
                 source_minimum_external_objectives[index] =
                     static_cast<std::uint16_t>(minimum_external_objective);
+                if (minimum_above_ten_objective ==
+                    std::numeric_limits<int>::max())
+                    throw std::runtime_error(
+                        "source has no neighbor above objective ten"
+                    );
+                source_minimum_above_ten_objectives[index] =
+                    static_cast<std::uint16_t>(minimum_above_ten_objective);
             }
             add(source_thread_counters[omp_get_thread_num()], local);
         } catch (const std::exception& exception) {
@@ -639,6 +691,10 @@ int main(int argc, char** argv) try {
 
     std::array<std::map<int, std::uint64_t>, 11>
         additional_neighbor_histograms;
+    FrontierMap additional_objective_eleven;
+    std::vector<std::uint16_t> additional_minimum_above_ten_objectives(
+        closure_queue.size()
+    );
     std::uint64_t additional_internal_directed = 0;
     std::uint64_t additional_to_known_directed = 0;
     int additional_escape_level = std::numeric_limits<int>::max();
@@ -647,9 +703,23 @@ int main(int argc, char** argv) try {
         const Model::Analysis analysis = model.analyze(source.state);
         if (analysis.objective != source.objective)
             throw std::runtime_error("threshold-ten recount objective mismatch");
+        int minimum_above_ten_objective =
+            std::numeric_limits<int>::max();
         for (int id = 0; id < edge_count; ++id) {
             const int objective = analysis.objective + analysis.delta[id];
             additional_neighbor_histograms[source.objective][objective] += order;
+            if (objective > 10)
+                minimum_above_ten_objective = std::min(
+                    minimum_above_ten_objective, objective
+                );
+            if (objective == 11) {
+                State neighbor = source.state;
+                neighbor.toggle(id);
+                record_frontier_neighbor(
+                    additional_objective_eleven,
+                    model.canonical(neighbor), source.objective
+                );
+            }
             if (objective > 10) {
                 additional_escape_level = std::min(
                     additional_escape_level, objective
@@ -668,6 +738,13 @@ int main(int argc, char** argv) try {
             else
                 additional_to_known_directed += order;
         }
+        if (minimum_above_ten_objective ==
+            std::numeric_limits<int>::max())
+            throw std::runtime_error(
+                "additional source has no neighbor above objective ten"
+            );
+        additional_minimum_above_ten_objectives[position] =
+            static_cast<std::uint16_t>(minimum_above_ten_objective);
     }
     if (additional_internal_directed % 2 ||
         additional_escape_level == std::numeric_limits<int>::max())
@@ -686,6 +763,193 @@ int main(int argc, char** argv) try {
     const std::uint64_t complete_threshold_ten_edge_count =
         12794607 + 21517200 + frontier_internal_edges +
         additional_to_known_directed + additional_internal_edges;
+
+    if (argc == 8) {
+        const std::vector<State> persisted_additional = load_states(
+            argv[6], "additional_objective_10_rotation_representatives"
+        );
+        std::unordered_set<State, StateHash> persisted_additional_set(
+            persisted_additional.begin(), persisted_additional.end()
+        );
+        if (persisted_additional_set.size() != 527 ||
+            persisted_additional_set != additional_sets[10])
+            throw std::runtime_error(
+                "persisted objective-ten addition disagrees with direct closure"
+            );
+
+        FrontierMap objective_eleven;
+        objective_eleven.reserve(1000000);
+        auto merge_frontier = [&](const FrontierMap& partial) {
+            for (const auto& [state, incidence] : partial) {
+                auto& total = objective_eleven[state];
+                for (int source = 2; source <= 10; ++source) {
+                    if (std::numeric_limits<std::uint16_t>::max() -
+                            total[source] <
+                        incidence[source])
+                        throw std::runtime_error(
+                            "merged objective-eleven incidence overflow"
+                        );
+                    total[source] += incidence[source];
+                }
+            }
+        };
+        for (const FrontierMap& partial : source_thread_objective_eleven)
+            merge_frontier(partial);
+        for (const FrontierMap& partial : target_thread_objective_eleven)
+            merge_frontier(partial);
+        merge_frontier(additional_objective_eleven);
+        if (objective_eleven.empty())
+            throw std::runtime_error("empty objective-eleven frontier");
+
+        std::vector<State> frontier;
+        frontier.reserve(objective_eleven.size());
+        std::array<std::uint64_t, 11> directed_by_source{};
+        std::map<FrontierIncidence, std::uint64_t> signatures;
+        std::map<int, std::uint64_t> incidence_degree_histogram;
+        std::map<int, std::uint64_t> minimum_source_objective_histogram;
+        std::array<std::map<int, std::uint64_t>, 11>
+            source_minimum_above_ten_by_objective;
+        for (std::size_t index = 0; index < sources.size(); ++index)
+            ++source_minimum_above_ten_by_objective
+                [sources[index].objective]
+                [source_minimum_above_ten_objectives[index]];
+        for (std::size_t index = 0; index < targets.size(); ++index)
+            ++source_minimum_above_ten_by_objective[10]
+                [target_minimum_above_ten_objectives[index]];
+        for (std::size_t index = 0; index < closure_queue.size(); ++index)
+            ++source_minimum_above_ten_by_objective
+                [closure_queue[index].objective]
+                [additional_minimum_above_ten_objectives[index]];
+        for (const auto& [target, incidence] : objective_eleven) {
+            if (!(model.canonical(target) == target) || !model.is_free(target))
+                throw std::runtime_error(
+                    "noncanonical or nonfree objective-eleven target"
+                );
+            frontier.push_back(target);
+            ++signatures[incidence];
+            int degree = 0;
+            int minimum_source = 11;
+            for (int source = 2; source <= 10; ++source) {
+                directed_by_source[source] +=
+                    static_cast<std::uint64_t>(order) * incidence[source];
+                degree += incidence[source];
+                if (incidence[source]) minimum_source = std::min(minimum_source, source);
+            }
+            if (degree == 0 || minimum_source == 11)
+                throw std::runtime_error(
+                    "empty objective-eleven incidence signature"
+                );
+            ++incidence_degree_histogram[degree];
+            ++minimum_source_objective_histogram[minimum_source];
+        }
+        std::sort(frontier.begin(), frontier.end());
+        const std::uint64_t total_directed_incidence = std::accumulate(
+            directed_by_source.begin(), directed_by_source.end(),
+            std::uint64_t{0}
+        );
+
+        std::ofstream output(argv[7]);
+        if (!output)
+            throw std::runtime_error(
+                "cannot write objective-eleven frontier output"
+            );
+        output << "{\n  \"order\": 43,\n  \"edge_count\": 903,\n";
+        output << "  \"complete_sublevel_ten_source_rotation_orbit_count\": "
+               << 191067 << ",\n";
+        output << "  \"complete_sublevel_ten_source_vertex_count\": "
+               << complete_threshold_ten_vertex_count << ",\n";
+        output << "  \"objective_eleven_first_frontier_rotation_orbit_count\": "
+               << frontier.size() << ",\n";
+        output << "  \"objective_eleven_first_frontier_vertex_count\": "
+               << order * frontier.size() << ",\n";
+        output << "  \"directed_labeled_incidence_by_source_objective\": {";
+        for (int source = 2; source <= 10; ++source) {
+            if (source != 2) output << ',';
+            output << "\n    \"" << source << "\": "
+                   << directed_by_source[source];
+        }
+        output << "\n  },\n";
+        output << "  \"total_directed_labeled_incidence\": "
+               << total_directed_incidence << ",\n";
+        output << "  \"incidence_signature_count\": "
+               << signatures.size() << ",\n";
+        auto write_map = [&](const std::map<int, std::uint64_t>& histogram) {
+            bool separator = false;
+            for (const auto& [value, count] : histogram) {
+                if (separator) output << ',';
+                output << "\n    \"" << value << "\": " << count;
+                separator = true;
+            }
+            output << "\n  }";
+        };
+        output << "  \"incidence_degree_histogram\": {";
+        write_map(incidence_degree_histogram);
+        output << ",\n  \"minimum_incident_source_objective_histogram\": {";
+        write_map(minimum_source_objective_histogram);
+        output << ",\n  \"source_minimum_above_ten_histogram_by_objective\": {";
+        for (int source = 2; source <= 10; ++source) {
+            if (source != 2) output << ',';
+            output << "\n    \"" << source << "\": {";
+            bool separator = false;
+            for (const auto& [level, count] :
+                 source_minimum_above_ten_by_objective[source]) {
+                if (separator) output << ',';
+                output << "\n      \"" << level << "\": " << count;
+                separator = true;
+            }
+            output << "\n    }";
+        }
+        output << "\n  },\n";
+        output << "  \"source_orbits_without_objective_eleven_exit_by_objective\": {";
+        bool shadow_separator = false;
+        for (int source = 2; source <= 10; ++source) {
+            std::uint64_t count = 0;
+            for (const auto& [level, level_count] :
+                 source_minimum_above_ten_by_objective[source])
+                if (level > 11) count += level_count;
+            if (!count) continue;
+            if (shadow_separator) output << ',';
+            output << "\n    \"" << source << "\": " << count;
+            shadow_separator = true;
+        }
+        output << "\n  },\n";
+        output << "  \"incidence_signature_histogram\": [\n";
+        bool signature_separator = false;
+        for (const auto& [signature, count] : signatures) {
+            if (signature_separator) output << ",\n";
+            output << "    {\"signature_2_through_10\":[";
+            for (int source = 2; source <= 10; ++source) {
+                if (source != 2) output << ',';
+                output << signature[source];
+            }
+            output << "],\"orbit_count\":" << count << '}';
+            signature_separator = true;
+        }
+        output << "\n  ],\n";
+        output << "  \"objective_eleven_rotation_representatives\": [\n";
+        for (std::size_t index = 0; index < frontier.size(); ++index) {
+            if (index) output << ",\n";
+            output << "    ";
+            write_state(output, frontier[index]);
+        }
+        output << "\n  ],\n";
+        output << "  \"objective_eleven_incidence_signatures_2_through_10\": [\n";
+        for (std::size_t index = 0; index < frontier.size(); ++index) {
+            if (index) output << ",\n";
+            const FrontierIncidence& incidence =
+                objective_eleven.at(frontier[index]);
+            output << "    [";
+            for (int source = 2; source <= 10; ++source) {
+                if (source != 2) output << ',';
+                output << incidence[source];
+            }
+            output << ']';
+        }
+        output << "\n  ],\n";
+        output << "  \"method\": \"independent direct five-set recount of every representative in the complete primary sublevel-ten component, followed by exact cyclic canonicalization of every objective-eleven one-flip exit\",\n";
+        output << "  \"scope_note\": \"Complete first objective-eleven frontier of the certified primary threshold-ten component only; it does not assert threshold-eleven closure or classify disconnected sublevel-ten components.\"\n";
+        output << "}\n";
+    }
 
     std::map<std::array<std::uint16_t, 10>, std::uint64_t> signature_histogram;
     std::map<int, std::uint64_t> incidence_degree_histogram;

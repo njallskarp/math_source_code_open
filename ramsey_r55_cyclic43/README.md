@@ -771,6 +771,67 @@ rotation orbits are reflection-fixed, so the addition has 282 dihedral orbits.
 All three depth-four orbits are reflection-fixed.  This decomposition supplies
 small, symmetry-stable pieces for subsequent objective-eleven boundary scans.
 
+### Complete first objective-eleven frontier
+
+Let \(F_{11}\) be the set of cyclic rotation orbits of objective-eleven
+colorings one edge from the complete primary component \(P_{10}\):
+
+\[
+F_{11}=\{[z]:M(z)=11,\ \exists [x]\in P_{10},\ d_H(x,z)=1\}.
+\]
+
+An exhaustive scan of all \(191{,}067\cdot903=172{,}233{,}501\)
+source-representative moves gives
+
+\[
+\boxed{|F_{11}|=372{,}974\text{ free rotation orbits}}
+\]
+
+and hence exactly \(16{,}037{,}882\) labeled frontier colorings. There are 324
+distinct incidence signatures across source objectives 2 through 10. The
+directed labeled incidence vector is
+
+\[
+\begin{array}{c|rrrrrrrrr}
+j&2&3&4&5&6&7&8&9&10\\ \hline
+I_j&
+5{,}246&41{,}366&174{,}666&460{,}143&1{,}153{,}776&
+3{,}093{,}377&12{,}722{,}023&18{,}994{,}777&30{,}310{,}743.
+\end{array}
+\]
+
+Thus \(\sum_{j=2}^{10}I_j=66{,}956{,}117\). The boundary-incidence degree
+of an objective-eleven target ranges from one through ten, with exact
+distribution
+
+\[
+\begin{array}{c|rrrrrrrrrr}
+d&1&2&3&4&5&6&7&8&9&10\\ \hline
+N_d&5{,}933&25{,}539&75{,}930&118{,}397&96{,}350&
+40{,}281&9{,}302&1{,}014&212&16.
+\end{array}
+\]
+
+Every source orbit of objectives 2 through 9 has an objective-eleven exit.
+Among the 128,711 objective-ten source orbits, exactly 128,363 have minimum
+outside-\(P_{10}\) objective 11, while exactly 348 have minimum 12. Therefore
+the primary threshold-ten component has an exact 348-orbit
+*level-eleven shadow*:
+
+\[
+\begin{array}{c|rr}
+\min\{M(y):d_H(x,y)=1,\ M(y)>10\}&11&12\\ \hline
+\#\text{ objective-ten source orbits}&128{,}363&348.
+\end{array}
+\]
+
+The complete 372,974-representative array and its aligned signature array were
+independently regenerated entry for entry. To avoid committing two large
+derived JSON files, the repository retains a compact certificate containing
+canonical SHA-256 digests of both arrays and of every aligned
+representative/signature pair; both full files are deterministically
+regenerable by the commands below.
+
 ### Reproduction and independent verification
 
 Build and regenerate the full lower closure and frontier with:
@@ -818,6 +879,27 @@ python3 analyze_objective_ten_component_structure.py \
   objective-ten-component-fast.json \
   objective-ten-component-independent.json \
   > objective-ten-component-structure.json
+
+OMP_NUM_THREADS=10 ./verify_objective_ten_frontier \
+  objective-seven-frontier-fast.json objective-seven-component-fast.json \
+  objective-eight-component-fast.json objective-nine-component-fast.json \
+  objective-ten-frontier-fast.json objective-ten-component-fast.json \
+  /tmp/objective-eleven-frontier-direct.json \
+  > /tmp/objective-ten-component-regenerated.json
+
+g++-16 -std=c++20 -O3 -march=native -DNDEBUG \
+  scan_objective_eleven_frontier.cpp -o scan_objective_eleven_frontier
+./scan_objective_eleven_frontier \
+  certificate.json objective-seven-frontier-fast.json \
+  objective-seven-component-fast.json objective-eight-component-fast.json \
+  objective-nine-component-fast.json objective-ten-frontier-fast.json \
+  objective-ten-component-fast.json \
+  /tmp/objective-eleven-frontier-fast.json
+
+python3 summarize_objective_eleven_frontier.py \
+  /tmp/objective-eleven-frontier-direct.json \
+  /tmp/objective-eleven-frontier-fast.json \
+  > objective-eleven-frontier-certificate.json
 ```
 
 The independent checker found zero omitted frontier neighbors, zero wrong
@@ -827,13 +909,18 @@ objective layer, and it independently reproduces all 196 signatures and the
 degree spectrum above. It then performs its own direct five-set-recount closure
 from the 376 first-expansion orbits. Its sorted list of all 527 added orbits and
 every component aggregate agrees exactly with the separately implemented
-optimized generator.
+optimized generator. For objective eleven, the same direct five-set engine and
+a separate incremental persisted-certificate scanner agree on every one of the
+372,974 sorted representatives, every aligned incidence signature, all 324
+signature classes, and the complete source exit-level profile. The compact
+certificate binds the regenerated full arrays by SHA-256.
 
 ### Novelty assessment, scope, and trust boundary
 
 The committed Discovery Net graph was searched through indexed height 644 for
-objective-ten, threshold-ten, Cyclic(43), and `R(5,5)` frontier classifications;
-no overlapping objective-ten result was found. The authoritative McKay data
+objective-ten, objective-eleven, threshold-ten, Cyclic(43), and `R(5,5)`
+frontier classifications; no overlapping objective-ten or objective-eleven
+result was found. The authoritative McKay data
 page records the known 42-vertex Ramsey(5,5) graphs, while the current primary
 upper-bound paper proves \(R(5,5)\leq 46\); neither source classifies this finite
 perturbation frontier
@@ -845,15 +932,17 @@ priority over all unpublished computation.
 These theorems are exact finite computational classifications conditional on
 the programs and persisted certificates. They do **not** determine \(R(5,5)\),
 do not exclude disconnected sublevel-ten components outside \(P_{10}\), and do
-not improve the global numerical bounds on \(R(5,5)\). The optimized generator
-and direct verifier use separate closure implementations and independently
-recount the objective, but share C++, the Cyclic(43) seed convention, and the
-same persisted lower certificates; these are the remaining common-mode trust
-boundaries. Complete sorted representatives are retained so a future formal or
-alternative-language verifier does not need to trust aggregate prose.
+not improve the global numerical bounds on \(R(5,5)\). The objective-eleven
+frontier is complete relative to \(P_{10}\), but no threshold-eleven closure is
+claimed. The optimized generator and direct verifier use separate closure and
+objective-evaluation implementations, but share C++, the Cyclic(43) seed
+convention, and the same persisted lower certificates; these are the remaining
+common-mode trust boundaries. Canonical array digests and reproducible full
+outputs allow a future formal or alternative-language verifier to check more
+than aggregate prose.
 
 The results above were regenerated with Homebrew GCC 16.2.0 and Python
-3.12.12. The complete regression suite passed 28/28 tests. The threshold-nine
+3.12.12. The complete regression suite passed 29/29 tests. The threshold-nine
 optimized closure and aggregate recount took 408.60 seconds; its independent
 ten-thread direct recount with explicit reachability BFS took 32.79 seconds,
 and the lower-island direct
@@ -864,17 +953,20 @@ bidirectional boundary recount took 221.78 seconds; the deterministic
 certificate-intersection analysis took 0.90 seconds. The expanded ten-thread
 direct verifier and complete threshold-ten closure took 228.94 seconds; the
 independent optimized regeneration and closure took 2,030.69 seconds under
-concurrent load.  The quotient-geometry scan took 4.90 seconds.
+concurrent load. The quotient-geometry scan took 4.90 seconds. The ten-thread
+direct objective-eleven scan took 207.42 seconds; the independent single-thread
+incremental scan took 207.61 seconds alone and 333.73 seconds when rerun
+concurrently with the direct checker.
 
 SHA-256:
 
 ```text
-b86f2c065b004e6407e8e5f2a975817288915e91bdf69dbac7ed66e5e2c906ac  objective_six_component.cpp
+1afeeb35cffb8995b293833855d76aa9e2ea56e5c3d10feb531e1b1fe736063b  objective_six_component.cpp
 d963ccaabefd5838bbdf96632dfc3f767a903ee401e0d98c5dd1c936093fc79a  verify_objective_six_component.cpp
-cb66b314063d1fdc21ee965e0efd94e55a67b48ccf527253553f20b126e30e65  verify_objective_ten_frontier.cpp
+0913516c58ad591f51ef90862b185ee05f308613077ee9335df880946d015c48  verify_objective_ten_frontier.cpp
 216a3726bf3e842731cadee81181a762dbdb9f0ec4f9aba46b7e73d22c8e688c  verify_external_objective_eight_components.py
 885d86d8fa5dac7864c322101bdccb5d28231cc6b431a4b59b9da4148d9944ea  verify_threshold_nine_lower_islands.py
-e784e45d07e227b83d9e92beab1de51db70a2e5fc82b1bf4fd5c085cc1ade25d  test_cyclic43.py
+0f7c3c647e62007bcdefc4ba6e3bec732ec63b2a0a7055945c78e331961d1bbc  test_cyclic43.py
 740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
 b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
 ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
@@ -892,6 +984,9 @@ a6fc7029bd7ec7d79fd5d50ea629db88878ea7f3e0b14d4a89aff354fe72bb72  objective-ten-
 6a26775e85ad7a09574074e9fd615ca39f56f3508f85e12625c6ac2b4a34e076  objective-ten-component-structure.json
 389a31ddb2546fd62da112b138757ee4cbd54577520e54d7d8e8d3cc0991b996  objective-ten-component-fast.json
 ea791e04c6928dbd083afd428652ba1d9dbc895647d5f5f4961c1d22a95d4a14  objective-ten-component-independent.json
+52b23b9f1c9b4be757b5f8fa011286ceb93a819af9f4006ec893d026b0e5438d  scan_objective_eleven_frontier.cpp
+920a18275c90564d19b96653899f17dd77ae452c11b9f6383d39fab336f31ba6  summarize_objective_eleven_frontier.py
+09f3046c6ed743c9523e8c6fcc6b0edf696b4d641761bed4ad745bacd65c41f4  objective-eleven-frontier-certificate.json
 ```
 
 Certify a radius-five tube around all 38 vertices of that defect orbit:

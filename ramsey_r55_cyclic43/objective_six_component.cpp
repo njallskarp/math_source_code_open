@@ -1585,6 +1585,276 @@ struct Search {
         output << "}\n";
     }
 
+    void write_objective_eleven_frontier_from_certificates(
+        const std::string& lower_six_path,
+        const std::string& objective_seven_path,
+        const std::string& objective_eight_path,
+        const std::string& objective_nine_path,
+        const std::string& objective_ten_frontier_path,
+        const std::string& objective_ten_component_path,
+        const std::string& output_path
+    ) {
+        using Incidence = std::array<std::uint16_t, 11>;
+        std::array<std::unordered_set<State, StateHash>, 11> source_sets;
+        std::vector<std::pair<int, State>> sources;
+        sources.reserve(191067);
+        auto add_layer = [&](int objective, const std::vector<State>& states) {
+            for (const State& source : states) {
+                if (!(canonical(source) == source))
+                    throw std::runtime_error(
+                        "noncanonical objective-eleven source"
+                    );
+                require_free_orbit(source);
+                if (!source_sets[objective].insert(source).second)
+                    throw std::runtime_error(
+                        "duplicate objective-eleven source"
+                    );
+                sources.push_back({objective, source});
+            }
+        };
+        for (int objective = 2; objective <= 6; ++objective)
+            add_layer(
+                objective,
+                load_state_array(
+                    lower_six_path,
+                    "objective_" + std::to_string(objective) +
+                        "_rotation_representatives"
+                )
+            );
+        add_layer(
+            7,
+            load_state_array(
+                objective_seven_path,
+                "objective_seven_component_rotation_representatives"
+            )
+        );
+        add_layer(
+            8,
+            load_state_array(
+                objective_eight_path,
+                "objective_eight_component_rotation_representatives"
+            )
+        );
+        add_layer(
+            7,
+            load_state_array(
+                objective_nine_path,
+                "new_objective_7_rotation_representatives"
+            )
+        );
+        add_layer(
+            8,
+            load_state_array(
+                objective_nine_path,
+                "new_objective_8_rotation_representatives"
+            )
+        );
+        add_layer(
+            9,
+            load_state_array(
+                objective_nine_path,
+                "new_objective_9_rotation_representatives"
+            )
+        );
+        add_layer(
+            10,
+            load_state_array(
+                objective_ten_frontier_path,
+                "objective_ten_rotation_representatives"
+            )
+        );
+        add_layer(
+            10,
+            load_state_array(
+                objective_ten_component_path,
+                "additional_objective_10_rotation_representatives"
+            )
+        );
+        const std::array<std::size_t, 11> expected = {
+            0, 0, 2, 17, 78, 306, 1183, 4218, 13771, 42781, 128711
+        };
+        for (int objective = 2; objective <= 10; ++objective)
+            if (source_sets[objective].size() != expected[objective])
+                throw std::runtime_error(
+                    "objective-eleven source layer mismatch"
+                );
+        if (sources.size() != 191067)
+            throw std::runtime_error(
+                "objective-eleven complete source count mismatch"
+            );
+
+        std::unordered_map<State, Incidence, StateHash> frontier;
+        frontier.reserve(500000);
+        std::array<std::map<int, std::uint64_t>, 11>
+            source_minimum_above_ten_by_objective;
+        for (std::size_t index = 0; index < sources.size(); ++index) {
+            if (index && index % 10000 == 0)
+                std::cerr << "objective-eleven persisted scan: " << index
+                          << '/' << sources.size()
+                          << " source orbit representatives\n";
+            const auto& [objective, source] = sources[index];
+            move_to(source);
+            if (monochromatic_count != objective)
+                throw std::runtime_error(
+                    "objective-eleven optimized source objective mismatch"
+                );
+            int minimum_above_ten_objective =
+                std::numeric_limits<int>::max();
+            for (int id = 0; id < edge_count; ++id) {
+                if (resulting_count(id) > 10)
+                    minimum_above_ten_objective = std::min(
+                        minimum_above_ten_objective, resulting_count(id)
+                    );
+                if (resulting_count(id) != 11) continue;
+                State neighbor = state;
+                neighbor.toggle(id);
+                const State key = canonical(neighbor);
+                require_free_orbit(neighbor);
+                auto& incidence = frontier[key];
+                if (incidence[objective] ==
+                    std::numeric_limits<std::uint16_t>::max())
+                    throw std::runtime_error(
+                        "objective-eleven optimized incidence overflow"
+                    );
+                ++incidence[objective];
+            }
+            if (minimum_above_ten_objective ==
+                std::numeric_limits<int>::max())
+                throw std::runtime_error(
+                    "optimized source has no neighbor above objective ten"
+                );
+            ++source_minimum_above_ten_by_objective[objective]
+                [minimum_above_ten_objective];
+        }
+        if (frontier.empty())
+            throw std::runtime_error("empty objective-eleven frontier");
+
+        std::vector<State> representatives;
+        representatives.reserve(frontier.size());
+        std::array<std::uint64_t, 11> directed_by_source{};
+        std::map<Incidence, std::uint64_t> signatures;
+        std::map<int, std::uint64_t> degree_histogram;
+        std::map<int, std::uint64_t> minimum_source_histogram;
+        for (const auto& [target, incidence] : frontier) {
+            representatives.push_back(target);
+            ++signatures[incidence];
+            int degree = 0;
+            int minimum_source = 11;
+            for (int source = 2; source <= 10; ++source) {
+                directed_by_source[source] +=
+                    orbit_size * incidence[source];
+                degree += incidence[source];
+                if (incidence[source])
+                    minimum_source = std::min(minimum_source, source);
+            }
+            ++degree_histogram[degree];
+            ++minimum_source_histogram[minimum_source];
+        }
+        std::sort(representatives.begin(), representatives.end());
+        const std::uint64_t total_directed_incidence = std::accumulate(
+            directed_by_source.begin(), directed_by_source.end(),
+            std::uint64_t{0}
+        );
+
+        std::ofstream output(output_path);
+        if (!output) throw std::runtime_error("cannot write " + output_path);
+        output << "{\n  \"order\": 43,\n  \"edge_count\": 903,\n";
+        output << "  \"complete_sublevel_ten_source_rotation_orbit_count\": "
+               << sources.size() << ",\n";
+        output << "  \"complete_sublevel_ten_source_vertex_count\": 8215881,\n";
+        output << "  \"objective_eleven_first_frontier_rotation_orbit_count\": "
+               << representatives.size() << ",\n";
+        output << "  \"objective_eleven_first_frontier_vertex_count\": "
+               << orbit_size * representatives.size() << ",\n";
+        output << "  \"directed_labeled_incidence_by_source_objective\": {";
+        for (int source = 2; source <= 10; ++source) {
+            if (source != 2) output << ',';
+            output << "\n    \"" << source << "\": "
+                   << directed_by_source[source];
+        }
+        output << "\n  },\n";
+        output << "  \"total_directed_labeled_incidence\": "
+               << total_directed_incidence << ",\n";
+        output << "  \"incidence_signature_count\": "
+               << signatures.size() << ",\n";
+        auto write_histogram =
+            [&](const std::map<int, std::uint64_t>& histogram) {
+                bool separator = false;
+                for (const auto& [value, count] : histogram) {
+                    if (separator) output << ',';
+                    output << "\n    \"" << value << "\": " << count;
+                    separator = true;
+                }
+                output << "\n  }";
+            };
+        output << "  \"incidence_degree_histogram\": {";
+        write_histogram(degree_histogram);
+        output << ",\n  \"minimum_incident_source_objective_histogram\": {";
+        write_histogram(minimum_source_histogram);
+        output << ",\n  \"source_minimum_above_ten_histogram_by_objective\": {";
+        for (int source = 2; source <= 10; ++source) {
+            if (source != 2) output << ',';
+            output << "\n    \"" << source << "\": {";
+            bool separator = false;
+            for (const auto& [level, count] :
+                 source_minimum_above_ten_by_objective[source]) {
+                if (separator) output << ',';
+                output << "\n      \"" << level << "\": " << count;
+                separator = true;
+            }
+            output << "\n    }";
+        }
+        output << "\n  },\n";
+        output << "  \"source_orbits_without_objective_eleven_exit_by_objective\": {";
+        bool shadow_separator = false;
+        for (int source = 2; source <= 10; ++source) {
+            std::uint64_t count = 0;
+            for (const auto& [level, level_count] :
+                 source_minimum_above_ten_by_objective[source])
+                if (level > 11) count += level_count;
+            if (!count) continue;
+            if (shadow_separator) output << ',';
+            output << "\n    \"" << source << "\": " << count;
+            shadow_separator = true;
+        }
+        output << "\n  },\n";
+        output << "  \"incidence_signature_histogram\": [\n";
+        bool signature_separator = false;
+        for (const auto& [signature, count] : signatures) {
+            if (signature_separator) output << ",\n";
+            output << "    {\"signature_2_through_10\":[";
+            for (int source = 2; source <= 10; ++source) {
+                if (source != 2) output << ',';
+                output << signature[source];
+            }
+            output << "],\"orbit_count\":" << count << '}';
+            signature_separator = true;
+        }
+        output << "\n  ],\n";
+        output << "  \"objective_eleven_rotation_representatives\": [\n";
+        for (std::size_t index = 0; index < representatives.size(); ++index) {
+            if (index) output << ",\n";
+            output << "    ";
+            write_state(output, representatives[index]);
+        }
+        output << "\n  ],\n";
+        output << "  \"objective_eleven_incidence_signatures_2_through_10\": [\n";
+        for (std::size_t index = 0; index < representatives.size(); ++index) {
+            if (index) output << ",\n";
+            output << "    [";
+            const Incidence& incidence = frontier.at(representatives[index]);
+            for (int source = 2; source <= 10; ++source) {
+                if (source != 2) output << ',';
+                output << incidence[source];
+            }
+            output << ']';
+        }
+        output << "\n  ],\n";
+        output << "  \"method\": \"optimized persisted-certificate scan with incrementally maintained exact monochromatic-five-set deltas and exact cyclic canonicalization\",\n";
+        output << "  \"scope_note\": \"Complete first objective-eleven frontier of the certified primary threshold-ten component only; it does not assert threshold-eleven closure or classify disconnected sublevel-ten components.\"\n";
+        output << "}\n";
+    }
+
     void write_external_objective_eight_components(
         const std::string& seed_path, const std::string& output_path
     ) {

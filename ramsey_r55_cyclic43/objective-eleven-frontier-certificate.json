@@ -1,0 +1,4629 @@
+{
+  "order": 43,
+  "edge_count": 903,
+  "complete_sublevel_ten_source_rotation_orbit_count": 191067,
+  "complete_sublevel_ten_source_vertex_count": 8215881,
+  "objective_eleven_first_frontier_rotation_orbit_count": 372974,
+  "objective_eleven_first_frontier_vertex_count": 16037882,
+  "directed_labeled_incidence_by_source_objective": {
+    "2": 5246,
+    "3": 41366,
+    "4": 174666,
+    "5": 460143,
+    "6": 1153776,
+    "7": 3093377,
+    "8": 12722023,
+    "9": 18994777,
+    "10": 30310743
+  },
+  "total_directed_labeled_incidence": 66956117,
+  "incidence_signature_count": 324,
+  "incidence_degree_histogram": {
+    "1": 5933,
+    "2": 25539,
+    "3": 75930,
+    "4": 118397,
+    "5": 96350,
+    "6": 40281,
+    "7": 9302,
+    "8": 1014,
+    "9": 212,
+    "10": 16
+  },
+  "minimum_incident_source_objective_histogram": {
+    "2": 122,
+    "3": 962,
+    "4": 4062,
+    "5": 10682,
+    "6": 26424,
+    "7": 67065,
+    "8": 198109,
+    "9": 57069,
+    "10": 8479
+  },
+  "source_minimum_above_ten_histogram_by_objective": {
+    "2": {
+      "11": 2
+    },
+    "3": {
+      "11": 17
+    },
+    "4": {
+      "11": 78
+    },
+    "5": {
+      "11": 306
+    },
+    "6": {
+      "11": 1183
+    },
+    "7": {
+      "11": 4218
+    },
+    "8": {
+      "11": 13771
+    },
+    "9": {
+      "11": 42781
+    },
+    "10": {
+      "11": 128363,
+      "12": 348
+    }
+  },
+  "source_orbits_without_objective_eleven_exit_by_objective": {
+    "10": 348
+  },
+  "incidence_signature_histogram": [
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 2139
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 2548
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 1655
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "orbit_count": 1026
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      "orbit_count": 688
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6
+      ],
+      "orbit_count": 366
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7
+      ],
+      "orbit_count": 57
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 398
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 2675
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 3236
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3
+      ],
+      "orbit_count": 4596
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4
+      ],
+      "orbit_count": 5300
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        5
+      ],
+      "orbit_count": 1846
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        6
+      ],
+      "orbit_count": 256
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        7
+      ],
+      "orbit_count": 34
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 247
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1
+      ],
+      "orbit_count": 3253
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "orbit_count": 5682
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3
+      ],
+      "orbit_count": 6506
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        4
+      ],
+      "orbit_count": 3495
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        5
+      ],
+      "orbit_count": 770
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        6
+      ],
+      "orbit_count": 92
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "orbit_count": 486
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1
+      ],
+      "orbit_count": 2580
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        2
+      ],
+      "orbit_count": 3910
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        3
+      ],
+      "orbit_count": 3148
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        4
+      ],
+      "orbit_count": 1642
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "orbit_count": 200
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        6
+      ],
+      "orbit_count": 12
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0
+      ],
+      "orbit_count": 355
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        1
+      ],
+      "orbit_count": 1048
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        2
+      ],
+      "orbit_count": 2089
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        3
+      ],
+      "orbit_count": 1316
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        4
+      ],
+      "orbit_count": 208
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        5
+      ],
+      "orbit_count": 66
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0
+      ],
+      "orbit_count": 200
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        1
+      ],
+      "orbit_count": 530
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        2
+      ],
+      "orbit_count": 536
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        3
+      ],
+      "orbit_count": 112
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        4
+      ],
+      "orbit_count": 44
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        5
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0
+      ],
+      "orbit_count": 47
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        1
+      ],
+      "orbit_count": 62
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        2
+      ],
+      "orbit_count": 38
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        3
+      ],
+      "orbit_count": 36
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        1
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        2
+      ],
+      "orbit_count": 8
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        1
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "orbit_count": 2150
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "orbit_count": 2716
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "orbit_count": 17081
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        3
+      ],
+      "orbit_count": 7820
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        4
+      ],
+      "orbit_count": 1661
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        5
+      ],
+      "orbit_count": 1022
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        6
+      ],
+      "orbit_count": 234
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "orbit_count": 5504
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "orbit_count": 6840
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2
+      ],
+      "orbit_count": 18828
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        3
+      ],
+      "orbit_count": 7760
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        4
+      ],
+      "orbit_count": 6676
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        5
+      ],
+      "orbit_count": 944
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        0
+      ],
+      "orbit_count": 3814
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        1
+      ],
+      "orbit_count": 8336
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        2
+      ],
+      "orbit_count": 19402
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3
+      ],
+      "orbit_count": 8972
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        4
+      ],
+      "orbit_count": 1407
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        5
+      ],
+      "orbit_count": 44
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        0
+      ],
+      "orbit_count": 2444
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        1
+      ],
+      "orbit_count": 7582
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        2
+      ],
+      "orbit_count": 4918
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        3
+      ],
+      "orbit_count": 888
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        4
+      ],
+      "orbit_count": 82
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        5
+      ],
+      "orbit_count": 8
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        6
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        0
+      ],
+      "orbit_count": 886
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        1
+      ],
+      "orbit_count": 1028
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        2
+      ],
+      "orbit_count": 408
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        3
+      ],
+      "orbit_count": 104
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        4
+      ],
+      "orbit_count": 14
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        5
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        5,
+        0
+      ],
+      "orbit_count": 66
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        5,
+        1
+      ],
+      "orbit_count": 74
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        5,
+        2
+      ],
+      "orbit_count": 38
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        5,
+        3
+      ],
+      "orbit_count": 10
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        5,
+        4
+      ],
+      "orbit_count": 8
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        6,
+        0
+      ],
+      "orbit_count": 19
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        6,
+        1
+      ],
+      "orbit_count": 24
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0
+      ],
+      "orbit_count": 1249
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1
+      ],
+      "orbit_count": 4488
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        2
+      ],
+      "orbit_count": 2884
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        3
+      ],
+      "orbit_count": 12980
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        0
+      ],
+      "orbit_count": 1914
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        1
+      ],
+      "orbit_count": 18464
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        2
+      ],
+      "orbit_count": 6778
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        3
+      ],
+      "orbit_count": 768
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        4
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        0
+      ],
+      "orbit_count": 2709
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        1
+      ],
+      "orbit_count": 2592
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2
+      ],
+      "orbit_count": 604
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        3
+      ],
+      "orbit_count": 50
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        4
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3,
+        0
+      ],
+      "orbit_count": 296
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3,
+        1
+      ],
+      "orbit_count": 170
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3,
+        2
+      ],
+      "orbit_count": 80
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3,
+        3
+      ],
+      "orbit_count": 22
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3,
+        4
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        4,
+        0
+      ],
+      "orbit_count": 62
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        4,
+        1
+      ],
+      "orbit_count": 36
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        4,
+        2
+      ],
+      "orbit_count": 12
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        4,
+        3
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0
+      ],
+      "orbit_count": 1789
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        1
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        2
+      ],
+      "orbit_count": 24
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        3
+      ],
+      "orbit_count": 36
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1,
+        0
+      ],
+      "orbit_count": 188
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1,
+        1
+      ],
+      "orbit_count": 12
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1,
+        2
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        2,
+        0
+      ],
+      "orbit_count": 46
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        2,
+        1
+      ],
+      "orbit_count": 10
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        2,
+        2
+      ],
+      "orbit_count": 1
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0
+      ],
+      "orbit_count": 3
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        1,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 288
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 3161
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 2234
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 1376
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        4
+      ],
+      "orbit_count": 552
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        5
+      ],
+      "orbit_count": 306
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        6
+      ],
+      "orbit_count": 28
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 860
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 4558
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 2132
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        3
+      ],
+      "orbit_count": 5236
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        4
+      ],
+      "orbit_count": 1266
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        5
+      ],
+      "orbit_count": 86
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 746
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        1
+      ],
+      "orbit_count": 4460
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        2
+      ],
+      "orbit_count": 4104
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        3
+      ],
+      "orbit_count": 1448
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        4
+      ],
+      "orbit_count": 160
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        3,
+        0
+      ],
+      "orbit_count": 922
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        3,
+        1
+      ],
+      "orbit_count": 1336
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        3,
+        2
+      ],
+      "orbit_count": 460
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        3,
+        3
+      ],
+      "orbit_count": 106
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        4,
+        0
+      ],
+      "orbit_count": 142
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        4,
+        1
+      ],
+      "orbit_count": 188
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        4,
+        2
+      ],
+      "orbit_count": 10
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        5,
+        0
+      ],
+      "orbit_count": 10
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "orbit_count": 1332
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "orbit_count": 1342
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        2
+      ],
+      "orbit_count": 14092
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        3
+      ],
+      "orbit_count": 448
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        4
+      ],
+      "orbit_count": 10
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        5
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "orbit_count": 4254
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "orbit_count": 3774
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2
+      ],
+      "orbit_count": 1270
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        3
+      ],
+      "orbit_count": 26
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        4
+      ],
+      "orbit_count": 20
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        0
+      ],
+      "orbit_count": 840
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        1
+      ],
+      "orbit_count": 288
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3
+      ],
+      "orbit_count": 26
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        3,
+        0
+      ],
+      "orbit_count": 76
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        3,
+        1
+      ],
+      "orbit_count": 12
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        4,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        0,
+        1
+      ],
+      "orbit_count": 16
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        0,
+        2
+      ],
+      "orbit_count": 12
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        1,
+        1
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 114
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 1916
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 164
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 26
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        4
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        5
+      ],
+      "orbit_count": 5
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 344
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 216
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 28
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        3
+      ],
+      "orbit_count": 20
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        4
+      ],
+      "orbit_count": 26
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 18
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        2,
+        1
+      ],
+      "orbit_count": 59
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        2,
+        2
+      ],
+      "orbit_count": 16
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        2,
+        3
+      ],
+      "orbit_count": 25
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        3,
+        1
+      ],
+      "orbit_count": 38
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        4,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        0,
+        0
+      ],
+      "orbit_count": 1
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        0,
+        1
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        1,
+        0
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        2,
+        0
+      ],
+      "orbit_count": 14
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 628
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 468
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 713
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 892
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        4
+      ],
+      "orbit_count": 1160
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        5
+      ],
+      "orbit_count": 74
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 766
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 1102
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 5432
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        3
+      ],
+      "orbit_count": 1210
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        4
+      ],
+      "orbit_count": 164
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 1103
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2,
+        1
+      ],
+      "orbit_count": 1194
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2,
+        2
+      ],
+      "orbit_count": 1411
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2,
+        3
+      ],
+      "orbit_count": 100
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        3,
+        0
+      ],
+      "orbit_count": 348
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        3,
+        1
+      ],
+      "orbit_count": 154
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        3,
+        2
+      ],
+      "orbit_count": 50
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        4,
+        0
+      ],
+      "orbit_count": 41
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "orbit_count": 458
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "orbit_count": 5952
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        2
+      ],
+      "orbit_count": 288
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        3
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "orbit_count": 250
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "orbit_count": 576
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        2
+      ],
+      "orbit_count": 60
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        2,
+        0
+      ],
+      "orbit_count": 88
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        2,
+        1
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        1,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 806
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 40
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 252
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 14
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 206
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 20
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 90
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 28
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        2,
+        1
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 254
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 8
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 48
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 410
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 496
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 1936
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "orbit_count": 280
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      "orbit_count": 64
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 110
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 2326
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 1678
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        3
+      ],
+      "orbit_count": 316
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        4
+      ],
+      "orbit_count": 44
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        5
+      ],
+      "orbit_count": 24
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 563
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        1
+      ],
+      "orbit_count": 364
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "orbit_count": 74
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        3
+      ],
+      "orbit_count": 64
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "orbit_count": 56
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        3,
+        1
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        3,
+        2
+      ],
+      "orbit_count": 16
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "orbit_count": 790
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "orbit_count": 412
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "orbit_count": 108
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        3
+      ],
+      "orbit_count": 42
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "orbit_count": 28
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "orbit_count": 124
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        2
+      ],
+      "orbit_count": 48
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        2,
+        0
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        2,
+        1
+      ],
+      "orbit_count": 14
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2,
+        0,
+        0
+      ],
+      "orbit_count": 38
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 20
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 12
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        4
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        3
+      ],
+      "orbit_count": 12
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 16
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 66
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 38
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 15
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 124
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 80
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 1570
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 536
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "orbit_count": 72
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      "orbit_count": 18
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 424
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 376
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 250
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3
+      ],
+      "orbit_count": 10
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 108
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1
+      ],
+      "orbit_count": 56
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "orbit_count": 50
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "orbit_count": 24
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "orbit_count": 18
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        2,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 228
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 52
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 14
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 14
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 72
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 714
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 66
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "orbit_count": 42
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "orbit_count": 30
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      "orbit_count": 8
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 4
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 12
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3
+      ],
+      "orbit_count": 8
+    },
+    {
+      "signature_2_through_10": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "orbit_count": 86
+    },
+    {
+      "signature_2_through_10": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "orbit_count": 24
+    },
+    {
+      "signature_2_through_10": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "orbit_count": 6
+    },
+    {
+      "signature_2_through_10": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "orbit_count": 2
+    },
+    {
+      "signature_2_through_10": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "orbit_count": 2
+    }
+  ],
+  "scope_note": "Compact digest certificate for the complete first objective-eleven frontier of the certified primary threshold-ten component; full arrays are deterministically regenerated by the two source programs.",
+  "complete_representative_array_retained_in_regenerable_full_output": true,
+  "complete_aligned_signature_array_retained_in_regenerable_full_output": true,
+  "independent_mathematical_fields_agree": true,
+  "independent_representative_arrays_agree_entry_for_entry": true,
+  "independent_signature_arrays_agree_entry_for_entry": true,
+  "representative_array_sha256_canonical_json": "dc511e995f503e19a43f244b011fd78f705b475106326c1ac3f6588ac8fdabee",
+  "signature_array_sha256_canonical_json": "5b56f80a4d1c56961cde36ac04fa9d851b4a952116e7027d5c15287219dbfbd9",
+  "aligned_representative_signature_pairs_sha256_json_lines": "353a5153c5a75bf884201a1b2fbb4a4963a15af6f1ba5d5bcd14a4013c51a63e",
+  "direct_full_output_sha256": "0fc958dbc17ada20115679851c4c1406e24fa630a92f0eb2f44e797ead1bbd86",
+  "optimized_full_output_sha256": "9678d90da7d53da6efee8f659563bb65f0f08a6a90a27e601f5bd4d62bbe20cd",
+  "direct_method": "independent direct five-set recount of every representative in the complete primary sublevel-ten component, followed by exact cyclic canonicalization of every objective-eleven one-flip exit",
+  "optimized_method": "optimized persisted-certificate scan with incrementally maintained exact monochromatic-five-set deltas and exact cyclic canonicalization",
+  "hash_encoding": "Arrays use ASCII JSON with separators ',' and ':' and sorted object keys. The aligned-pair digest hashes one compact JSON [representative,signature] pair plus newline per sorted orbit."
+}
