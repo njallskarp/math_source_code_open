@@ -1,0 +1,10 @@
+{
+  "krawczyk_strict_inclusion": true,
+  "box_radius": "1e-110",
+  "max_krawczyk_radius_ratio": "[4.70888413732e-22 +/- 2.97e-35]",
+  "jacobian_defect_infinity_norm_upper": "[6.24327926395e-107 +/- 2.19e-119]",
+  "ldl_pivot_signs": "+++++++++++++++--",
+  "angle_gaps_strictly_positive": true,
+  "minimum_angle_gap": "[0.194503346493199574908552892611 +/- 8.03e-32]",
+  "perimeter_enclosure": "[3.136547716486607386085967031941228227298136765809232692789218203577745755473817628905857362542821159391634981 +/- 6.62e-109]"
+}
