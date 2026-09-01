@@ -1516,6 +1516,113 @@ class DirectVerifierTests(unittest.TestCase):
         ):
             self.assertEqual(len(payload[key]), 64)
 
+    def test_objective_twelve_shadow_boundary_and_direct_recount(self) -> None:
+        fast = json.loads(
+            (HERE / "objective-twelve-shadow-fast.json").read_text()
+        )
+        direct = json.loads(
+            (HERE / "objective-twelve-shadow-direct.json").read_text()
+        )
+        self.assertEqual(
+            fast["source_minimum_above_ten_objective_histogram"],
+            {"11": 128_363, "12": 348},
+        )
+        self.assertEqual(
+            fast["objective_ten_shadow_source_rotation_orbit_count"], 348
+        )
+        self.assertEqual(
+            fast["objective_twelve_shadow_frontier_rotation_orbit_count"],
+            2_823,
+        )
+        self.assertEqual(
+            fast["shadow_to_objective_twelve_quotient_incidence"], 3_384
+        )
+        self.assertEqual(
+            fast["shadow_to_objective_twelve_labeled_incidence"], 145_512
+        )
+        self.assertEqual(fast["distinct_shadow_source_target_pairs"], 3_384)
+        self.assertEqual(fast["source_target_parallel_edge_excess"], 0)
+        self.assertEqual(
+            sum(fast["source_distinct_objective_twelve_degree_histogram"].values()),
+            348,
+        )
+        self.assertEqual(
+            sum(
+                int(degree) * count
+                for degree, count in fast[
+                    "source_distinct_objective_twelve_degree_histogram"
+                ].items()
+            ),
+            3_384,
+        )
+        self.assertEqual(
+            fast["target_distinct_shadow_source_degree_histogram"],
+            {"1": 2_262, "2": 561},
+        )
+        self.assertEqual(
+            sum(
+                int(degree) * count
+                for degree, count in fast[
+                    "target_distinct_shadow_source_degree_histogram"
+                ].items()
+            ),
+            3_384,
+        )
+        self.assertEqual(
+            fast["target_minimum_one_flip_objective_histogram"],
+            {"7": 40, "8": 603, "9": 1_943, "10": 237},
+        )
+        self.assertEqual(
+            fast["distinct_objective_eleven_neighbor_rotation_orbit_count"],
+            8_696,
+        )
+        self.assertEqual(
+            fast[
+                "distinct_primary_nonshadow_objective_ten_neighbor_rotation_orbit_count"
+            ],
+            718,
+        )
+        self.assertEqual(
+            fast["distinct_external_objective_ten_neighbor_rotation_orbit_count"],
+            0,
+        )
+        self.assertEqual(fast["shadow_boundary_bipartite_component_count"], 30)
+        self.assertEqual(fast["shadow_boundary_bipartite_cycle_rank"], 243)
+        components = fast["shadow_boundary_bipartite_components"]
+        self.assertEqual(sum(item["source_orbits"] for item in components), 348)
+        self.assertEqual(sum(item["target_orbits"] for item in components), 2_823)
+        self.assertEqual(sum(item["distinct_edges"] for item in components), 3_384)
+        self.assertEqual(sum(item["cycle_rank"] for item in components), 243)
+        self.assertEqual(
+            len(fast["objective_ten_shadow_rotation_representatives"]), 348
+        )
+        self.assertEqual(
+            len(fast["objective_twelve_shadow_frontier_rotation_representatives"]),
+            2_823,
+        )
+        self.assertTrue(fast["all_targets_reverse_verified"])
+        self.assertTrue(direct["all_direct_checks_pass"])
+        for key in (
+            "shadow_to_objective_twelve_quotient_incidence",
+            "source_distinct_objective_twelve_degree_histogram",
+            "target_distinct_shadow_source_degree_histogram",
+            "target_minimum_one_flip_objective_histogram",
+            "target_distinct_objective_ten_neighbor_degree_histogram",
+            "target_distinct_primary_objective_ten_neighbor_degree_histogram",
+            "target_distinct_objective_eleven_neighbor_degree_histogram",
+            "distinct_objective_eleven_neighbor_rotation_orbit_count",
+            "distinct_primary_nonshadow_objective_ten_neighbor_rotation_orbit_count",
+            "distinct_external_objective_ten_neighbor_rotation_orbit_count",
+        ):
+            self.assertEqual(fast[key], direct[key])
+        for key in (
+            "omitted_objective_twelve_targets",
+            "source_aligned_array_errors",
+            "target_aligned_array_errors",
+            "reverse_adjacency_errors",
+        ):
+            self.assertEqual(direct[key], 0)
+
     def test_defect_orbit_tube_certificate_and_union_size(self) -> None:
         payload = json.loads(
             (HERE / "defect-orbit-tube-radius5.json").read_text()

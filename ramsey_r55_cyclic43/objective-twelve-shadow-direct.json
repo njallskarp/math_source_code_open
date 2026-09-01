@@ -1,0 +1,64 @@
+{
+  "order": 43,
+  "edge_count": 903,
+  "direct_five_set_recount_source_count": 348,
+  "direct_five_set_recount_target_count": 2823,
+  "shadow_to_objective_twelve_quotient_incidence": 3384,
+  "source_distinct_objective_twelve_degree_histogram": {
+    "4": 5,
+    "5": 2,
+    "6": 9,
+    "7": 40,
+    "8": 146,
+    "9": 24,
+    "10": 11,
+    "11": 26,
+    "12": 5,
+    "13": 16,
+    "14": 9,
+    "15": 38,
+    "16": 13,
+    "17": 4
+  },
+  "target_distinct_shadow_source_degree_histogram": {
+    "1": 2262,
+    "2": 561
+  },
+  "target_minimum_one_flip_objective_histogram": {
+    "7": 40,
+    "8": 603,
+    "9": 1943,
+    "10": 237
+  },
+  "target_distinct_objective_ten_neighbor_degree_histogram": {
+    "1": 1552,
+    "2": 1069,
+    "3": 162,
+    "4": 36,
+    "5": 4
+  },
+  "target_distinct_primary_objective_ten_neighbor_degree_histogram": {
+    "1": 1552,
+    "2": 1069,
+    "3": 162,
+    "4": 36,
+    "5": 4
+  },
+  "target_distinct_objective_eleven_neighbor_degree_histogram": {
+    "1": 160,
+    "2": 62,
+    "3": 446,
+    "4": 1160,
+    "5": 989,
+    "6": 6
+  },
+  "distinct_objective_eleven_neighbor_rotation_orbit_count": 8696,
+  "distinct_primary_nonshadow_objective_ten_neighbor_rotation_orbit_count": 718,
+  "distinct_external_objective_ten_neighbor_rotation_orbit_count": 0,
+  "omitted_objective_twelve_targets": 0,
+  "source_aligned_array_errors": 0,
+  "target_aligned_array_errors": 0,
+  "reverse_adjacency_errors": 0,
+  "all_direct_checks_pass": true,
+  "method": "independent direct recount of all 962598 five-vertex sets at every shadow source and every listed objective-twelve target, with exact cyclic canonicalization and bidirectional adjacency reconstruction"
+}

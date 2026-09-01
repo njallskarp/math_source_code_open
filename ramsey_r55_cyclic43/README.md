@@ -832,6 +832,61 @@ canonical SHA-256 digests of both arrays and of every aligned
 representative/signature pair; both full files are deterministically
 regenerable by the commands below.
 
+### The objective-twelve boundary of the objective-ten shadow
+
+The objective-eleven exit census isolates a finite ``shadow''
+
+\[
+S_{10}=\{x\in P_{10}:M(x)=10,\;N(x)\cap M^{-1}(11)=\varnothing\}
+\]
+
+of 348 cyclic rotation orbits.  An exact scan of all 903 one-edge moves from
+every member gives the complete objective-twelve boundary
+
+\[
+B_{12}=N(S_{10})\cap M^{-1}(12),\qquad |B_{12}/C_{43}|=2{,}823.
+\]
+
+There are 3,384 quotient incidences, hence 145,512 labeled incidences after
+lifting the free cyclic action.  All 3,384 source--target pairs are distinct:
+there is no parallel quotient-edge excess.  The exact source-degree spectrum
+is
+
+\[
+\begin{array}{c|rrrrrrrrrrrrrr}
+d&4&5&6&7&8&9&10&11&12&13&14&15&16&17\\\hline
+\#&5&2&9&40&146&24&11&26&5&16&9&38&13&4,
+\end{array}
+\]
+
+while 2,262 target orbits have one incident shadow source and 561 have two.
+The resulting simple bipartite quotient graph has 30 connected components and
+cycle rank 243.  Its largest component has 112 source orbits, 676 target
+orbits, 896 edges, and cycle rank 109.
+
+The target-side reverse scan supplies a useful closure check and a bridge to
+the next layers.  Every objective-ten neighbor of every target in (B_{12})
+belongs to the certified primary component (P_{10}): no external
+objective-ten orbit appears.  Besides the 348 shadow sources, these targets
+meet 718 distinct nonshadow objective-ten orbits.  They also meet 8,696
+distinct objective-eleven orbits.  Their minimum one-flip objective has exact
+histogram
+
+\[
+\begin{array}{c|rrrr}
+\min_{y\sim x}M(y)&7&8&9&10\\\hline
+\#\{x\in B_{12}/C_{43}\}&40&603&1{,}943&237.
+\end{array}
+\]
+
+A second implementation directly recounts all 962,598 five-vertex sets at
+each of the 348 sources and 2,823 targets.  It independently reconstructs the
+same target set and bidirectional incidences, agrees on all ten shared
+aggregate fields, and reports zero omissions, aligned-array errors, and
+reverse-adjacency errors.  This theorem classifies only the one-edge
+objective-twelve boundary of (S_{10}); it does not claim threshold-eleven or
+threshold-twelve closure.
+
 ### Reproduction and independent verification
 
 Build and regenerate the full lower closure and frontier with:
@@ -900,6 +955,18 @@ python3 summarize_objective_eleven_frontier.py \
   /tmp/objective-eleven-frontier-direct.json \
   /tmp/objective-eleven-frontier-fast.json \
   > objective-eleven-frontier-certificate.json
+
+g++-16 -std=c++20 -O3 -march=native -DNDEBUG \
+  scan_objective_twelve_shadow.cpp -o scan_objective_twelve_shadow
+./scan_objective_twelve_shadow \
+  certificate.json objective-ten-frontier-fast.json \
+  objective-ten-component-fast.json objective-twelve-shadow-fast.json
+
+g++-16 -std=c++20 -O3 -march=native -fopenmp -DNDEBUG \
+  verify_objective_twelve_shadow.cpp -o verify_objective_twelve_shadow
+OMP_NUM_THREADS=10 ./verify_objective_twelve_shadow \
+  objective-ten-frontier-fast.json objective-ten-component-fast.json \
+  objective-twelve-shadow-fast.json objective-twelve-shadow-direct.json
 ```
 
 The independent checker found zero omitted frontier neighbors, zero wrong
