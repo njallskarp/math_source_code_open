@@ -586,6 +586,1815 @@
   "objective_errors": 0,
   "omitted_sublevel_neighbor_count": 0,
   "order": 43,
+  "q13_bipartite_component_count": 164,
+  "q13_bipartite_component_profiles": [
+    {
+      "distinct_pairs": 59,
+      "multigraph_cycle_rank": 5,
+      "raw_incidences": 59,
+      "simple_cycle_rank": 5,
+      "source_families": {
+        "cycle_only": 7
+      },
+      "sources": 7,
+      "targets": 48
+    },
+    {
+      "distinct_pairs": 59,
+      "multigraph_cycle_rank": 5,
+      "raw_incidences": 59,
+      "simple_cycle_rank": 5,
+      "source_families": {
+        "cycle_only": 7
+      },
+      "sources": 7,
+      "targets": 48
+    },
+    {
+      "distinct_pairs": 53,
+      "multigraph_cycle_rank": 4,
+      "raw_incidences": 53,
+      "simple_cycle_rank": 4,
+      "source_families": {
+        "two_16_one_5": 5
+      },
+      "sources": 5,
+      "targets": 45
+    },
+    {
+      "distinct_pairs": 40,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 40,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 5
+      },
+      "sources": 5,
+      "targets": 36
+    },
+    {
+      "distinct_pairs": 47,
+      "multigraph_cycle_rank": 9,
+      "raw_incidences": 47,
+      "simple_cycle_rank": 9,
+      "source_families": {
+        "cycle_only": 6
+      },
+      "sources": 6,
+      "targets": 33
+    },
+    {
+      "distinct_pairs": 47,
+      "multigraph_cycle_rank": 9,
+      "raw_incidences": 47,
+      "simple_cycle_rank": 9,
+      "source_families": {
+        "cycle_only": 6
+      },
+      "sources": 6,
+      "targets": 33
+    },
+    {
+      "distinct_pairs": 30,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 30,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 27
+    },
+    {
+      "distinct_pairs": 30,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 30,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 27
+    },
+    {
+      "distinct_pairs": 28,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 28,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 25
+    },
+    {
+      "distinct_pairs": 28,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 28,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 25
+    },
+    {
+      "distinct_pairs": 26,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 26,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 25
+    },
+    {
+      "distinct_pairs": 26,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 26,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 25
+    },
+    {
+      "distinct_pairs": 27,
+      "multigraph_cycle_rank": 2,
+      "raw_incidences": 27,
+      "simple_cycle_rank": 2,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 23
+    },
+    {
+      "distinct_pairs": 27,
+      "multigraph_cycle_rank": 2,
+      "raw_incidences": 27,
+      "simple_cycle_rank": 2,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 23
+    },
+    {
+      "distinct_pairs": 26,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 26,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 24
+    },
+    {
+      "distinct_pairs": 26,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 26,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 24
+    },
+    {
+      "distinct_pairs": 24,
+      "multigraph_cycle_rank": 2,
+      "raw_incidences": 24,
+      "simple_cycle_rank": 2,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 20
+    },
+    {
+      "distinct_pairs": 24,
+      "multigraph_cycle_rank": 2,
+      "raw_incidences": 24,
+      "simple_cycle_rank": 2,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 20
+    },
+    {
+      "distinct_pairs": 23,
+      "multigraph_cycle_rank": 3,
+      "raw_incidences": 24,
+      "simple_cycle_rank": 2,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 19
+    },
+    {
+      "distinct_pairs": 20,
+      "multigraph_cycle_rank": 2,
+      "raw_incidences": 20,
+      "simple_cycle_rank": 2,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 16
+    },
+    {
+      "distinct_pairs": 20,
+      "multigraph_cycle_rank": 2,
+      "raw_incidences": 20,
+      "simple_cycle_rank": 2,
+      "source_families": {
+        "cycle_only": 3
+      },
+      "sources": 3,
+      "targets": 16
+    },
+    {
+      "distinct_pairs": 18,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 18,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 17
+    },
+    {
+      "distinct_pairs": 18,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 18,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 17
+    },
+    {
+      "distinct_pairs": 18,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 18,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 17
+    },
+    {
+      "distinct_pairs": 18,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 18,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 17
+    },
+    {
+      "distinct_pairs": 17,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 17,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 15
+    },
+    {
+      "distinct_pairs": 17,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 17,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 15
+    },
+    {
+      "distinct_pairs": 17,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 17,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 15
+    },
+    {
+      "distinct_pairs": 17,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 17,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 15
+    },
+    {
+      "distinct_pairs": 17,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 17,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 15
+    },
+    {
+      "distinct_pairs": 17,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 17,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 15
+    },
+    {
+      "distinct_pairs": 16,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 16,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 14
+    },
+    {
+      "distinct_pairs": 16,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 16,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 14
+    },
+    {
+      "distinct_pairs": 13,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 13,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 13,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 13,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 12,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 12,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 12,
+      "multigraph_cycle_rank": 1,
+      "raw_incidences": 12,
+      "simple_cycle_rank": 1,
+      "source_families": {
+        "cycle_only": 2
+      },
+      "sources": 2,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 11,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 11,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 11
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 10,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 10,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 10
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_16_one_5": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 9,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 9,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 9
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 8,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 8,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 8
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 7,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 7,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 7
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 6,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 6,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 6
+    },
+    {
+      "distinct_pairs": 5,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 5,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 5
+    },
+    {
+      "distinct_pairs": 5,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 5,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 5
+    },
+    {
+      "distinct_pairs": 5,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 5,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 5
+    },
+    {
+      "distinct_pairs": 5,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 5,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 5
+    },
+    {
+      "distinct_pairs": 4,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 4,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_17_one_21": 2
+      },
+      "sources": 2,
+      "targets": 3
+    },
+    {
+      "distinct_pairs": 4,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 4,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_17_one_21": 2
+      },
+      "sources": 2,
+      "targets": 3
+    },
+    {
+      "distinct_pairs": 4,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 4,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 4
+    },
+    {
+      "distinct_pairs": 4,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 4,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 4
+    },
+    {
+      "distinct_pairs": 4,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 4,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "cycle_only": 1
+      },
+      "sources": 1,
+      "targets": 4
+    },
+    {
+      "distinct_pairs": 3,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 3,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_17_one_21": 1
+      },
+      "sources": 1,
+      "targets": 3
+    },
+    {
+      "distinct_pairs": 3,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 3,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_17_one_21": 1
+      },
+      "sources": 1,
+      "targets": 3
+    },
+    {
+      "distinct_pairs": 2,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 2,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_17_one_21": 1
+      },
+      "sources": 1,
+      "targets": 2
+    },
+    {
+      "distinct_pairs": 2,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 2,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_17_one_21": 1
+      },
+      "sources": 1,
+      "targets": 2
+    },
+    {
+      "distinct_pairs": 1,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 1,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_17_one_21": 1
+      },
+      "sources": 1,
+      "targets": 1
+    },
+    {
+      "distinct_pairs": 1,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 1,
+      "simple_cycle_rank": 0,
+      "source_families": {
+        "two_17_one_21": 1
+      },
+      "sources": 1,
+      "targets": 1
+    }
+  ],
+  "q13_distinct_source_target_pairs": 1923,
+  "q13_distinct_targets": 1785,
   "q13_exit_degree_histogram": {
     "1": 2,
     "10": 36,
@@ -601,6 +2410,181 @@
     "7": 32,
     "8": 50,
     "9": 37
+  },
+  "q13_family_component_summaries": {
+    "cycle_only": {
+      "components": 122,
+      "distinct_pairs": 1509,
+      "multigraph_cycle_rank": 61,
+      "raw_incidences": 1510,
+      "simple_cycle_rank": 60,
+      "sources": 190,
+      "targets": 1381
+    },
+    "two_16_one_5": {
+      "components": 34,
+      "distinct_pairs": 394,
+      "multigraph_cycle_rank": 4,
+      "raw_incidences": 394,
+      "simple_cycle_rank": 4,
+      "sources": 38,
+      "targets": 386
+    },
+    "two_17_one_21": {
+      "components": 8,
+      "distinct_pairs": 20,
+      "multigraph_cycle_rank": 0,
+      "raw_incidences": 20,
+      "simple_cycle_rank": 0,
+      "sources": 10,
+      "targets": 18
+    }
+  },
+  "q13_family_summaries": {
+    "cycle_only": {
+      "distinct_source_target_pairs": 1509,
+      "distinct_targets": 1381,
+      "parallel_incidence_excess": 1,
+      "raw_incidences": 1510,
+      "source_distinct_target_degree_histogram": {
+        "10": 18,
+        "11": 4,
+        "12": 2,
+        "13": 4,
+        "14": 2,
+        "4": 3,
+        "5": 6,
+        "6": 35,
+        "7": 33,
+        "8": 49,
+        "9": 34
+      },
+      "source_raw_degree_histogram": {
+        "10": 18,
+        "11": 4,
+        "12": 2,
+        "13": 4,
+        "14": 2,
+        "4": 3,
+        "5": 6,
+        "6": 35,
+        "7": 32,
+        "8": 50,
+        "9": 34
+      },
+      "sources": 190,
+      "target_support_signature_histogram": {
+        "cycle_only": 1381
+      }
+    },
+    "two_16_one_5": {
+      "distinct_source_target_pairs": 394,
+      "distinct_targets": 386,
+      "parallel_incidence_excess": 0,
+      "raw_incidences": 394,
+      "source_distinct_target_degree_histogram": {
+        "10": 18,
+        "11": 17,
+        "9": 3
+      },
+      "source_raw_degree_histogram": {
+        "10": 18,
+        "11": 17,
+        "9": 3
+      },
+      "sources": 38,
+      "target_support_signature_histogram": {
+        "5,16": 76,
+        "5,16,16": 310
+      }
+    },
+    "two_17_one_21": {
+      "distinct_source_target_pairs": 20,
+      "distinct_targets": 18,
+      "parallel_incidence_excess": 0,
+      "raw_incidences": 20,
+      "source_distinct_target_degree_histogram": {
+        "1": 2,
+        "2": 6,
+        "3": 2
+      },
+      "source_raw_degree_histogram": {
+        "1": 2,
+        "2": 6,
+        "3": 2
+      },
+      "sources": 10,
+      "target_support_signature_histogram": {
+        "17,17,21": 6,
+        "17,21": 12
+      }
+    }
+  },
+  "q13_family_target_intersections": {
+    "cycle_only|two_16_one_5": 0,
+    "cycle_only|two_17_one_21": 0,
+    "two_16_one_5|two_17_one_21": 0
+  },
+  "q13_mixed_source_family_component_count": 0,
+  "q13_pair_multiplicity_histogram": {
+    "1": 1922,
+    "2": 1
+  },
+  "q13_parallel_incidence_excess": 1,
+  "q13_raw_incidences": 1924,
+  "q13_source_distinct_target_degree_histogram": {
+    "1": 2,
+    "10": 36,
+    "11": 21,
+    "12": 2,
+    "13": 4,
+    "14": 2,
+    "2": 6,
+    "3": 2,
+    "4": 3,
+    "5": 6,
+    "6": 35,
+    "7": 33,
+    "8": 49,
+    "9": 37
+  },
+  "q13_target_canonical_errors": 0,
+  "q13_target_distinct_source_degree_histogram": {
+    "1": 1655,
+    "2": 122,
+    "3": 8
+  },
+  "q13_target_nonfree_errors": 0,
+  "q13_target_objective_errors": 0,
+  "q13_target_raw_degree_histogram": {
+    "1": 1654,
+    "2": 123,
+    "3": 8
+  },
+  "q13_target_source_family_set_histogram": {
+    "cycle_only": 1381,
+    "two_16_one_5": 386,
+    "two_17_one_21": 18
+  },
+  "q13_target_state_size_histogram": {
+    "12": 99,
+    "13": 400,
+    "14": 396,
+    "15": 328,
+    "16": 150,
+    "17": 22,
+    "18": 4,
+    "19": 68,
+    "20": 180,
+    "21": 136,
+    "22": 2
+  },
+  "q13_target_support_signature_histogram": {
+    "17,17,21": 6,
+    "17,21": 12,
+    "5,16": 76,
+    "5,16,16": 310,
+    "cycle_only": 1381
   },
   "reachable_addition_count": 238,
   "scope_note": "This independently checks every move from the persisted 238 closure representatives and proves their reachability from the 229 seeds; it relies on the hash-pinned complete frontier array and the persisted representative lists.",

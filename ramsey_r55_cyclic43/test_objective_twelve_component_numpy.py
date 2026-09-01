@@ -160,6 +160,75 @@ class ObjectiveTwelveComponentNumPyTest(unittest.TestCase):
         )
         self.assertEqual(data["source_frontier_degree_histogram"]["0"], 9)
 
+    def test_complete_objective_thirteen_exit_boundary(self) -> None:
+        data = self.data
+        self.assertEqual(data["q13_raw_incidences"], 1_924)
+        self.assertEqual(data["q13_distinct_targets"], 1_785)
+        self.assertEqual(data["q13_distinct_source_target_pairs"], 1_923)
+        self.assertEqual(data["q13_parallel_incidence_excess"], 1)
+        self.assertEqual(
+            data["q13_pair_multiplicity_histogram"], {"1": 1_922, "2": 1}
+        )
+        self.assertEqual(
+            data["q13_target_distinct_source_degree_histogram"],
+            {"1": 1_655, "2": 122, "3": 8},
+        )
+        self.assertEqual(
+            data["q13_target_support_signature_histogram"],
+            {
+                "17,17,21": 6,
+                "17,21": 12,
+                "5,16": 76,
+                "5,16,16": 310,
+                "cycle_only": 1_381,
+            },
+        )
+        self.assertEqual(
+            data["q13_family_target_intersections"],
+            {
+                "cycle_only|two_16_one_5": 0,
+                "cycle_only|two_17_one_21": 0,
+                "two_16_one_5|two_17_one_21": 0,
+            },
+        )
+        self.assertEqual(data["q13_bipartite_component_count"], 164)
+        self.assertEqual(data["q13_mixed_source_family_component_count"], 0)
+        self.assertEqual(
+            data["q13_family_component_summaries"],
+            {
+                "cycle_only": {
+                    "components": 122,
+                    "distinct_pairs": 1_509,
+                    "multigraph_cycle_rank": 61,
+                    "raw_incidences": 1_510,
+                    "simple_cycle_rank": 60,
+                    "sources": 190,
+                    "targets": 1_381,
+                },
+                "two_16_one_5": {
+                    "components": 34,
+                    "distinct_pairs": 394,
+                    "multigraph_cycle_rank": 4,
+                    "raw_incidences": 394,
+                    "simple_cycle_rank": 4,
+                    "sources": 38,
+                    "targets": 386,
+                },
+                "two_17_one_21": {
+                    "components": 8,
+                    "distinct_pairs": 20,
+                    "multigraph_cycle_rank": 0,
+                    "raw_incidences": 20,
+                    "simple_cycle_rank": 0,
+                    "sources": 10,
+                    "targets": 18,
+                },
+            },
+        )
+        self.assertEqual(data["q13_target_objective_errors"], 0)
+        self.assertEqual(data["q13_target_canonical_errors"], 0)
+        self.assertEqual(data["q13_target_nonfree_errors"], 0)
+
     def test_hash_pins(self) -> None:
         data = self.data
         self.assertEqual(

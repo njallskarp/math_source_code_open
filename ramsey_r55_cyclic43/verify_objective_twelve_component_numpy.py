@@ -39,6 +39,20 @@ def state_key(edges: Iterable[int]) -> tuple[int, ...]:
     return tuple(words)
 
 
+def edges_from_key(key: tuple[int, ...]) -> list[int]:
+    edges = []
+    for word_index, word in enumerate(key):
+        remaining = int(word)
+        while remaining:
+            low_bit = remaining & -remaining
+            bit_index = low_bit.bit_length() - 1
+            edge = 64 * word_index + bit_index
+            if edge < EDGE_COUNT:
+                edges.append(edge)
+            remaining ^= low_bit
+    return edges
+
+
 class Model:
     def __init__(self) -> None:
         self.edge_id = np.full((ORDER, ORDER), -1, dtype=np.int16)
@@ -164,6 +178,15 @@ def support_family(model: Model, state: list[int]) -> str:
     return "other"
 
 
+def support_signature(model: Model, state: list[int]) -> str:
+    noncycle = sorted(
+        int(model.edge_distance[edge])
+        for edge in state
+        if model.edge_distance[edge] != 1
+    )
+    return "cycle_only" if not noncycle else ",".join(map(str, noncycle))
+
+
 def scan_frontier(
     path: Path, wanted: set[tuple[int, ...]]
 ) -> tuple[int, set[tuple[int, ...]], bool]:
@@ -250,6 +273,7 @@ def main() -> None:
     external_minimums: Counter[int] = Counter()
     q13_exit_degrees: Counter[int] = Counter()
     q13_degree_by_source: dict[tuple[int, ...], int] = {}
+    q13_moves: list[tuple[tuple[int, ...], tuple[int, ...]]] = []
     q12_moves: list[tuple[tuple[int, ...], tuple[int, ...]]] = []
 
     for source_index, source in enumerate(additions):
@@ -273,6 +297,11 @@ def main() -> None:
         q13_exit_degrees[q13_degree] += 1
         q13_degree_by_source[source_key] = q13_degree
 
+        for edge in np.flatnonzero(objectives == 13):
+            neighbor = toggled_edges(source, int(edge))
+            target_key = model.canonical_key(neighbor)
+            q13_moves.append((source_key, target_key))
+
         for edge in np.flatnonzero(objectives <= 12):
             neighbor_objective = int(objectives[edge])
             if neighbor_objective < 12:
@@ -289,6 +318,211 @@ def main() -> None:
                 f"sources in {elapsed:.1f}s",
                 flush=True,
             )
+
+    q13_pair_multiplicity = Counter(q13_moves)
+    q13_target_keys = {target for _, target in q13_moves}
+    q13_source_targets: dict[
+        tuple[int, ...], set[tuple[int, ...]]
+    ] = {source: set() for source in addition_keys}
+    q13_target_sources: dict[
+        tuple[int, ...], set[tuple[int, ...]]
+    ] = {target: set() for target in q13_target_keys}
+    q13_target_raw_degree: Counter[tuple[int, ...]] = Counter()
+    for (source, target), multiplicity in q13_pair_multiplicity.items():
+        q13_source_targets[source].add(target)
+        q13_target_sources[target].add(source)
+        q13_target_raw_degree[target] += multiplicity
+
+    q13_target_objective_errors = 0
+    q13_target_canonical_errors = 0
+    q13_target_nonfree_errors = 0
+    q13_target_state_sizes: Counter[int] = Counter()
+    q13_target_support_signatures: Counter[str] = Counter()
+    for target_index, target_key in enumerate(sorted(q13_target_keys)):
+        target = edges_from_key(target_key)
+        target_objective, _ = model.analyze(target)
+        if target_objective != 13:
+            q13_target_objective_errors += 1
+        if model.canonical_key(target) != target_key:
+            q13_target_canonical_errors += 1
+        if model.rotate_one_key(target) == target_key:
+            q13_target_nonfree_errors += 1
+        q13_target_state_sizes[len(target)] += 1
+        q13_target_support_signatures[support_signature(model, target)] += 1
+        if (target_index + 1) % 250 == 0:
+            elapsed = time.perf_counter() - started
+            print(
+                f"NumPy q13 target verification: {target_index + 1}/"
+                f"{len(q13_target_keys)} targets in {elapsed:.1f}s",
+                flush=True,
+            )
+
+    q13_family_targets: dict[str, set[tuple[int, ...]]] = {}
+    q13_family_summaries = {}
+    for family in sorted(set(family_by_key.values())):
+        sources = {
+            source
+            for source in addition_keys
+            if family_by_key[source] == family
+        }
+        targets = set().union(*(q13_source_targets[source] for source in sources))
+        q13_family_targets[family] = targets
+        family_pairs = {
+            pair: multiplicity
+            for pair, multiplicity in q13_pair_multiplicity.items()
+            if pair[0] in sources
+        }
+        q13_family_summaries[family] = {
+            "sources": len(sources),
+            "raw_incidences": sum(family_pairs.values()),
+            "distinct_source_target_pairs": len(family_pairs),
+            "distinct_targets": len(targets),
+            "parallel_incidence_excess": (
+                sum(family_pairs.values()) - len(family_pairs)
+            ),
+            "target_support_signature_histogram": {
+                signature: sum(
+                    support_signature(model, edges_from_key(target))
+                    == signature
+                    for target in targets
+                )
+                for signature in sorted(
+                    {
+                        support_signature(model, edges_from_key(target))
+                        for target in targets
+                    }
+                )
+            },
+            "source_raw_degree_histogram": histogram(
+                Counter(q13_degree_by_source[source] for source in sources)
+            ),
+            "source_distinct_target_degree_histogram": histogram(
+                Counter(len(q13_source_targets[source]) for source in sources)
+            ),
+        }
+
+    q13_family_target_intersections = {}
+    q13_families = sorted(q13_family_targets)
+    for left_index, left_family in enumerate(q13_families):
+        for right_family in q13_families[left_index + 1 :]:
+            q13_family_target_intersections[
+                f"{left_family}|{right_family}"
+            ] = len(
+                q13_family_targets[left_family]
+                & q13_family_targets[right_family]
+            )
+
+    q13_target_source_family_sets: Counter[str] = Counter()
+    for target, sources in q13_target_sources.items():
+        family_set = sorted({family_by_key[source] for source in sources})
+        q13_target_source_family_sets["|".join(family_set)] += 1
+
+    q13_component_profiles = []
+    unvisited_q13_sources = set(addition_keys)
+    unvisited_q13_targets = set(q13_target_keys)
+    while unvisited_q13_sources or unvisited_q13_targets:
+        if unvisited_q13_sources:
+            source_start = next(iter(unvisited_q13_sources))
+            source_vertices = {source_start}
+            target_vertices: set[tuple[int, ...]] = set()
+            unvisited_q13_sources.remove(source_start)
+            queue_q13 = [(True, source_start)]
+        else:
+            target_start = next(iter(unvisited_q13_targets))
+            source_vertices = set()
+            target_vertices = {target_start}
+            unvisited_q13_targets.remove(target_start)
+            queue_q13 = [(False, target_start)]
+        while queue_q13:
+            is_source, vertex = queue_q13.pop()
+            if is_source:
+                for target in q13_source_targets[vertex]:
+                    if target in unvisited_q13_targets:
+                        unvisited_q13_targets.remove(target)
+                        target_vertices.add(target)
+                        queue_q13.append((False, target))
+            else:
+                for source in q13_target_sources[vertex]:
+                    if source in unvisited_q13_sources:
+                        unvisited_q13_sources.remove(source)
+                        source_vertices.add(source)
+                        queue_q13.append((True, source))
+        pair_count = sum(
+            target in target_vertices
+            for source in source_vertices
+            for target in q13_source_targets[source]
+        )
+        raw_incidences = sum(
+            multiplicity
+            for (source, target), multiplicity in q13_pair_multiplicity.items()
+            if source in source_vertices and target in target_vertices
+        )
+        family_counts = Counter(
+            family_by_key[source] for source in source_vertices
+        )
+        q13_component_profiles.append(
+            {
+                "sources": len(source_vertices),
+                "targets": len(target_vertices),
+                "distinct_pairs": pair_count,
+                "raw_incidences": raw_incidences,
+                "simple_cycle_rank": (
+                    pair_count
+                    - len(source_vertices)
+                    - len(target_vertices)
+                    + 1
+                ),
+                "multigraph_cycle_rank": (
+                    raw_incidences
+                    - len(source_vertices)
+                    - len(target_vertices)
+                    + 1
+                ),
+                "source_families": {
+                    family: family_counts[family]
+                    for family in sorted(family_counts)
+                },
+            }
+        )
+    q13_component_profiles.sort(
+        key=lambda profile: (
+            profile["sources"] + profile["targets"],
+            profile["raw_incidences"],
+            profile["sources"],
+            profile["targets"],
+        ),
+        reverse=True,
+    )
+    q13_mixed_source_family_components = sum(
+        len(profile["source_families"]) != 1
+        for profile in q13_component_profiles
+    )
+    q13_family_component_summaries = {}
+    for family in q13_families:
+        profiles = [
+            profile
+            for profile in q13_component_profiles
+            if profile["source_families"] == {
+                family: profile["sources"]
+            }
+        ]
+        q13_family_component_summaries[family] = {
+            "components": len(profiles),
+            "sources": sum(profile["sources"] for profile in profiles),
+            "targets": sum(profile["targets"] for profile in profiles),
+            "distinct_pairs": sum(
+                profile["distinct_pairs"] for profile in profiles
+            ),
+            "raw_incidences": sum(
+                profile["raw_incidences"] for profile in profiles
+            ),
+            "simple_cycle_rank": sum(
+                profile["simple_cycle_rank"] for profile in profiles
+            ),
+            "multigraph_cycle_rank": sum(
+                profile["multigraph_cycle_rank"] for profile in profiles
+            ),
+        }
 
     frontier_candidates = {
         target for _, target in q12_moves if target not in addition_keys
@@ -468,6 +702,18 @@ def main() -> None:
         and canonical_errors == 0
         and nonfree_errors == 0
         and objective_errors == 0
+        and len(q13_moves) == 1_924
+        and q13_target_objective_errors == 0
+        and q13_target_canonical_errors == 0
+        and q13_target_nonfree_errors == 0
+        and q13_mixed_source_family_components == 0
+        and sum(q13_pair_multiplicity.values()) == len(q13_moves)
+        and sum(q13_target_raw_degree.values()) == len(q13_moves)
+        and sum(
+            summary["raw_incidences"]
+            for summary in q13_family_summaries.values()
+        )
+        == len(q13_moves)
         and lower_neighbor_count == 0
         and omitted_sublevel == 0
         and to_frontier
@@ -559,6 +805,46 @@ def main() -> None:
         ),
         "directed_above_twelve": expected_above_twelve,
         "q13_exit_degree_histogram": histogram(q13_exit_degrees),
+        "q13_raw_incidences": len(q13_moves),
+        "q13_distinct_targets": len(q13_target_keys),
+        "q13_distinct_source_target_pairs": len(q13_pair_multiplicity),
+        "q13_parallel_incidence_excess": (
+            len(q13_moves) - len(q13_pair_multiplicity)
+        ),
+        "q13_pair_multiplicity_histogram": histogram(
+            Counter(q13_pair_multiplicity.values())
+        ),
+        "q13_source_distinct_target_degree_histogram": histogram(
+            Counter(len(targets) for targets in q13_source_targets.values())
+        ),
+        "q13_target_raw_degree_histogram": histogram(
+            Counter(q13_target_raw_degree.values())
+        ),
+        "q13_target_distinct_source_degree_histogram": histogram(
+            Counter(len(sources) for sources in q13_target_sources.values())
+        ),
+        "q13_target_state_size_histogram": histogram(
+            q13_target_state_sizes
+        ),
+        "q13_target_support_signature_histogram": {
+            signature: q13_target_support_signatures[signature]
+            for signature in sorted(q13_target_support_signatures)
+        },
+        "q13_family_summaries": q13_family_summaries,
+        "q13_family_target_intersections": q13_family_target_intersections,
+        "q13_target_source_family_set_histogram": {
+            family_set: q13_target_source_family_sets[family_set]
+            for family_set in sorted(q13_target_source_family_sets)
+        },
+        "q13_bipartite_component_count": len(q13_component_profiles),
+        "q13_mixed_source_family_component_count": (
+            q13_mixed_source_family_components
+        ),
+        "q13_family_component_summaries": q13_family_component_summaries,
+        "q13_bipartite_component_profiles": q13_component_profiles,
+        "q13_target_objective_errors": q13_target_objective_errors,
+        "q13_target_canonical_errors": q13_target_canonical_errors,
+        "q13_target_nonfree_errors": q13_target_nonfree_errors,
         "directed_neighbor_objective_histogram": histogram(
             neighbor_objectives
         ),
