@@ -1,0 +1,29 @@
+n=3 even_axis_words=4 even_axis_rotation_orbits=2 labeled_syndromes=4 orbit_syndromes=2
+n=5 even_axis_words=16 even_axis_rotation_orbits=4 labeled_syndromes=31 orbit_syndromes=7
+n=7 even_axis_words=64 even_axis_rotation_orbits=10 labeled_syndromes=253 orbit_syndromes=37
+n=9 even_axis_words=256 even_axis_rotation_orbits=30 labeled_syndromes=1768 orbit_syndromes=198
+n=11 even_axis_words=1024 even_axis_rotation_orbits=94 labeled_syndromes=16369 orbit_syndromes=1489
+n=13 even_axis_words=4096 even_axis_rotation_orbits=316 labeled_syndromes=131041 orbit_syndromes=10081
+n=15 even_axis_words=16384 even_axis_rotation_orbits=1096 labeled_syndromes=871294 orbit_syndromes=58092
+n=17 even_axis_words=65536 even_axis_rotation_orbits=3856 labeled_syndromes=8327281 orbit_syndromes=489841
+n=19 even_axis_words=262144 even_axis_rotation_orbits=13798 labeled_syndromes=67108609 orbit_syndromes=3532033
+n=21 even_axis_words=1048576 even_axis_rotation_orbits=49940 labeled_syndromes=463228168 orbit_syndromes=22058510
+odd_lengths_verified=3,5,7,9,11,13,15,17,19,21
+q41_direct_subset_xor_orbits=49940
+q41_exact_support_equation=verified
+certificate=verified
+q41_canonical_stream_sha256=03494099cbe4c7baff54bb27ebb1808af123badc133cf24d6b544bb441d9b2e7
+
+n=3 target_fibers=44 equal_slices=44 failing_slices=0
+n=5 target_fibers=352 equal_slices=192 failing_slices=160
+n=7 target_fibers=2368 equal_slices=884 failing_slices=1484
+n=9 target_fibers=14336 equal_slices=5516 failing_slices=8820
+n=11 target_fibers=80896 equal_slices=23212 failing_slices=57684
+minimal_full_slice_failure_n=5
+counterexample_axis_word=00001
+counterexample_target=4+1i
+counterexample_support=00
+counterexample_parity_slice=00,11
+axis_sign_assignments_checked=4473920
+general_exact_target_parity_law=verified
+certificate=verified
