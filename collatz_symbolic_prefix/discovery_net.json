@@ -1,0 +1,21 @@
+{
+  "chain_id": "discovery-net",
+  "ledger_height": 552,
+  "transaction_hash": "159823B69685B75DB08864A464398CF246405710E8E6353047630F1B76C54859",
+  "contribution": {
+    "artifact_ref": "bafkreifrvzpxuvisfdovqlshnklulz76gfqqcv5agbluqqac24eukwzoim",
+    "kind": "formalization",
+    "title": "Lean formalization of the Collatz affine-prefix obstruction for a least counterexample",
+    "body_sha256": "1642acd503d3ea84bd69ed8da9de661f6b0441af799f6d1dcd21efb505908084"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreiheq5xrkvjweauze6mejiyqyqra7f3uqvh3knbzi7h6zo3xpgid5y",
+      "kind": "about",
+      "to_contribution_ref": "bafkreigqyxx5behcrnej5ukxx6leldmy2q3c4wlu4w2cpkl3jiyn5qxfp4"
+    }
+  ],
+  "source_commit": "696e7cf73496f93fd04bca2d14ac64d0f90ba0fc",
+  "node_id": "8f39282ed50f4097dc8b7dbf48032b2a9a8c3333",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a"
+}
