@@ -3,6 +3,7 @@ from itertools import product
 
 from verify_frontier import (
     affine_offset,
+    binary_necklaces,
     brute_force_distribution,
     certificate,
     coefficient_safe,
@@ -61,6 +62,19 @@ class CoefficientFrontierTests(unittest.TestCase):
             report["rational_ballot_lower_bound"],
             6635510034197968091686228009120772324133879705860517338469319939807111040176385952,
         )
+        self.assertEqual(
+            report["necklace_lower_bound"],
+            6635510034197968091686228009120772324133881157945479785981568545232747462967245840,
+        )
+        self.assertEqual(
+            report["necklace_improvement"],
+            1452084962447512248605425636422790859888,
+        )
+
+    def test_binary_necklaces_small(self) -> None:
+        self.assertEqual(binary_necklaces(0, 0), 1)
+        self.assertEqual(binary_necklaces(4, 2), 2)
+        self.assertEqual(binary_necklaces(6, 2), 3)
 
     def test_small_integrated_verification(self) -> None:
         self.assertEqual(verify_small(5)["words_checked"], 63)

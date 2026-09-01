@@ -16,7 +16,7 @@ import hashlib
 import json
 from collections.abc import Iterable, Iterator, Sequence
 from itertools import product
-from math import comb
+from math import comb, gcd
 
 Word = tuple[int, ...]
 Distribution = dict[int, int]
@@ -93,6 +93,57 @@ def canonical_distribution(frontier: Distribution) -> bytes:
     return json.dumps(payload, separators=(",", ":")).encode("ascii")
 
 
+def divisors(value: int) -> Iterator[int]:
+    """Yield the positive divisors of ``value`` in increasing order."""
+    if value < 1:
+        raise ValueError("value must be positive")
+    small: list[int] = []
+    large: list[int] = []
+    candidate = 1
+    while candidate * candidate <= value:
+        if value % candidate == 0:
+            small.append(candidate)
+            if candidate * candidate != value:
+                large.append(value // candidate)
+        candidate += 1
+    yield from small
+    yield from reversed(large)
+
+
+def euler_phi(value: int) -> int:
+    """Return Euler's totient using exact trial division."""
+    if value < 1:
+        raise ValueError("value must be positive")
+    result = value
+    remaining = value
+    prime = 2
+    while prime * prime <= remaining:
+        if remaining % prime == 0:
+            result -= result // prime
+            while remaining % prime == 0:
+                remaining //= prime
+        prime += 1
+    if remaining > 1:
+        result -= result // remaining
+    return result
+
+
+def binary_necklaces(length: int, weight: int) -> int:
+    """Count fixed-length, fixed-weight binary necklaces by Burnside's lemma."""
+    if length < 0 or not 0 <= weight <= length:
+        raise ValueError("require length >= 0 and 0 <= weight <= length")
+    if length == 0:
+        return 1
+    numerator = sum(
+        euler_phi(divisor) * comb(length // divisor, weight // divisor)
+        for divisor in divisors(gcd(length, weight))
+    )
+    quotient, remainder = divmod(numerator, length)
+    if remainder:
+        raise AssertionError((length, weight, numerator, remainder))
+    return quotient
+
+
 def brute_force_distribution(depth: int) -> Distribution:
     """Enumerate all words at a small depth as an independent local oracle."""
     if depth < 0:
@@ -146,6 +197,7 @@ def certificate(depth: int) -> dict[str, int | str]:
     rational_ballot_lower_bound = (
         1 if depth == 0 else (ballot_numerator + depth - 1) // depth
     )
+    necklace_lower_bound = binary_necklaces(depth, rational_ballot_weight)
     return {
         "depth": depth,
         "safe_words": sum(final_frontier.values()),
@@ -157,6 +209,8 @@ def certificate(depth: int) -> dict[str, int | str]:
         "cumulative_first_crossings": cumulative_first_crossings,
         "rational_ballot_weight": rational_ballot_weight,
         "rational_ballot_lower_bound": rational_ballot_lower_bound,
+        "necklace_lower_bound": necklace_lower_bound,
+        "necklace_improvement": necklace_lower_bound - rational_ballot_lower_bound,
         "distribution_sha256": hashlib.sha256(encoded).hexdigest(),
     }
 

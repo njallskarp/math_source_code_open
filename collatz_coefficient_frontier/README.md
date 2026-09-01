@@ -75,6 +75,25 @@ distinct universally non-descending residue cylinders.  More generally, with
 `2^H(log(2)/log(3)) = 1.9318...` per step, up to polynomial factors.  The
 decimal is explanatory only and is not used by the certificate.
 
+An independent Discovery Net review observed that the same proof supplies one
+safe representative per binary rotation orbit, so the exact fixed-weight
+necklace count sharpens the coarse division-by-`N` bound.  Burnside's lemma
+gives
+
+```text
+(1/N) * sum_{d | gcd(N,p)} phi(d) * binomial(N/d,p/d).
+```
+
+At `(N,p)=(300,190)` this is
+
+```text
+6635510034197968091686228009120772324133881157945479785981568545232747462967245840,
+```
+
+an exact improvement of
+`1452084962447512248605425636422790859888`.  Both independent implementations
+now compute this refinement directly.
+
 ## What this establishes—and what it does not
 
 - **Exact verified computation:** the displayed counts follow from the stated

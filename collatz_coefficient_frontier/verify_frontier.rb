@@ -10,6 +10,54 @@ def binomial(n, k)
   (1..k).reduce(1) { |value, index| value * (n - k + index) / index }
 end
 
+def divisors(value)
+  raise ArgumentError, "value must be positive" if value < 1
+
+  small = []
+  large = []
+  candidate = 1
+  while candidate * candidate <= value
+    if (value % candidate).zero?
+      small << candidate
+      large << value / candidate if candidate * candidate != value
+    end
+    candidate += 1
+  end
+  small + large.reverse
+end
+
+def euler_phi(value)
+  raise ArgumentError, "value must be positive" if value < 1
+
+  result = value
+  remaining = value
+  prime = 2
+  while prime * prime <= remaining
+    if (remaining % prime).zero?
+      result -= result / prime
+      remaining /= prime while (remaining % prime).zero?
+    end
+    prime += 1
+  end
+  result -= result / remaining if remaining > 1
+  result
+end
+
+def binary_necklaces(length, weight)
+  unless length >= 0 && weight.between?(0, length)
+    raise ArgumentError, "require length >= 0 and 0 <= weight <= length"
+  end
+  return 1 if length.zero?
+
+  numerator = divisors(length.gcd(weight)).sum do |divisor|
+    euler_phi(divisor) * binomial(length / divisor, weight / divisor)
+  end
+  quotient, remainder = numerator.divmod(length)
+  raise "nonintegral Burnside average" unless remainder.zero?
+
+  quotient
+end
+
 depth = Integer(ARGV.fetch(0, "300"), 10)
 raise ArgumentError, "depth must be nonnegative" if depth.negative?
 
@@ -46,6 +94,7 @@ rational_ballot_lower_bound = if depth.zero?
                               else
                                 (ballot_numerator + depth - 1) / depth
                               end
+necklace_lower_bound = binary_necklaces(depth, rational_ballot_weight)
 
 puts "depth=#{depth}"
 puts "safe_words=#{safe_words}"
@@ -57,5 +106,7 @@ puts "first_crossings_at_depth=#{crossings_at_depth}"
 puts "cumulative_first_crossings=#{cumulative_crossings}"
 puts "rational_ballot_weight=#{rational_ballot_weight}"
 puts "rational_ballot_lower_bound=#{rational_ballot_lower_bound}"
+puts "necklace_lower_bound=#{necklace_lower_bound}"
+puts "necklace_improvement=#{necklace_lower_bound - rational_ballot_lower_bound}"
 puts "distribution_sha256=#{Digest::SHA256.hexdigest(encoded)}"
 puts "status=all exact checks passed"
