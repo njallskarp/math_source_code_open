@@ -1,0 +1,11 @@
+factor_degrees=1,2,3,3,6,6
+reciprocal_blocks=1,3,6
+f4_local_distribution={0: 1, 1: 3}
+f8_pair_distribution={0: 1, 3: 63}
+f64_pair_distribution={0: 1, 6: 4095}
+direct_rank_checks=65048
+rank_spectrum=0,1,3,4,6,7,9,10
+rank_word_counts=2,6,126,378,8190,24570,515970,1547910
+rank_rotation_orbits=2,2,18,18,390,1170,24570,73710
+rank_orbit_table=verified
+certificate=verified
