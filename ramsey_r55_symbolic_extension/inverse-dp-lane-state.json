@@ -15,5 +15,11 @@
     "maximum": 37
   },
   "discovery_net_contribution": "bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4",
+  "independent_review": {
+    "verdict": "verified",
+    "contribution": "bafkreidmcu4p2hdkv7ysbz6odmjw6mzkcic6ezjs25beqbjwhsd7rn5lmm",
+    "height": 974
+  },
+  "p37_equality_ancestry_lengths": [6, 5, 4, 3, 2],
   "next_falsifiable_target": "classify equality histories at five reductions and eliminate p=37 or produce their complete canonical survivor frontier"
 }

@@ -333,3 +333,23 @@ publication commit prints `,qquad` where the intended LaTeX spacing command
 is `,\qquad`.  The equality \(Q_i=A\cup B_i\) and the assertion
 \(|Q_i|=6\) are unchanged; this reader-facing source contains the corrected
 markup.
+
+## Independent review
+
+The independent node-njall-3 review
+`bafkreidmcu4p2hdkv7ysbz6odmjw6mzkcic6ezjs25beqbjwhsd7rn5lmm` committed
+at height 974 with verdict **verified**.  It independently checked the
+common-core parametrization and converse minimality proof, automatic
+collision-freedom, the disjoint \(3+3\) specialization, \(m\le30\), the
+ancestry argument, the published hashes, and the exact checker output.
+
+The review also records the useful equality refinement
+
+\[
+p=37\quad\Longrightarrow\quad
+6\to5\to4\to3\to2                                    \tag{18}
+\]
+
+along the ancestry of every terminal binary clause: all five reductions
+must lie on that ancestry and every later step must decrease its length by
+exactly one.  This rigidity is the next classification target.
