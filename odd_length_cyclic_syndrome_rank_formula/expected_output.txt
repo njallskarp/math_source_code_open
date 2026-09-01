@@ -1,0 +1,17 @@
+odd-length CRT rank-formula certificate
+n= 3 orbit_schema=S2              all_ranks=0:2,1:6
+n= 5 orbit_schema=S4              all_ranks=0:2,2:30
+n= 7 orbit_schema=P3              all_ranks=0:2,3:126
+n= 9 orbit_schema=S2+S6           all_ranks=0:2,1:6,3:126,4:378
+n=11 orbit_schema=S10             all_ranks=0:2,5:2046
+n=13 orbit_schema=S12             all_ranks=0:2,6:8190
+n=15 orbit_schema=S2+P4+S4        all_ranks=0:2,1:6,2:30,3:90,4:510,5:1530,6:7650,7:22950
+n=17 orbit_schema=S8+S8           all_ranks=0:2,4:1020,8:130050
+n=19 orbit_schema=S18             all_ranks=0:2,9:524286
+n=21 orbit_schema=S2+P3+P6        all_ranks=0:2,1:6,3:126,4:378,6:8190,7:24570,9:515970,10:1547910
+n=23 orbit_schema=P11             all_ranks=0:2,11:8388606
+exhaustive_axes_n_le_17=174760
+direct_record_sha256=55828a93fa8766183891e460f56806acc8e7b4a677e235666ae90934a2b987b4
+n21_published_spectrum_match=yes
+n23_prime_dichotomy_match=yes
+status=PASS
