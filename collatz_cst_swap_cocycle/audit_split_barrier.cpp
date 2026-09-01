@@ -53,6 +53,18 @@ struct Cylinder {
   }
 };
 
+struct ShadowPrefixStats {
+  unsigned position = 0;
+  u64 prefix_bits = 0;
+  u64 lift_mod_four = 0;
+  u64 shadow_value = 0;
+  unsigned crossing = 0;
+  u64 edges = 0;
+  u64 certified = 0;
+  u64 unresolved = 0;
+  unsigned maximum_raw_bits = 0;
+};
+
 u64 inverse_odd_mod_power_two(u64 odd, u64 modulus) {
   if ((odd & 1U) == 0 || modulus == 0 || (modulus & (modulus - 1)) != 0) {
     throw std::runtime_error("invalid inverse modulus");
@@ -80,21 +92,59 @@ struct Counts {
   u64 wrapped_edges = 0;
   u64 nonpositive_prefix_surplus = 0;
   u64 positive_prefix_surplus = 0;
+  u64 low_two_bit_certificates = 0;
+  u64 base_shadow_certificates = 0;
+  u64 unresolved_after_base_shadow = 0;
+  u64 adaptive_shadow_certificates = 0;
   u64 descent_failures = 0;
   std::map<unsigned, u64> residual_by_prefix_length;
   std::map<unsigned, u64> wrapped_by_prefix_length;
   std::map<unsigned, u64> certificate_bits;
+  std::map<unsigned, u64> symbolic_certificate_bits;
   unsigned maximum_certificate_bits = 0;
   unsigned maximum_certificate_length = 0;
   unsigned maximum_certificate_position = 0;
   std::string maximum_certificate_word;
+  unsigned maximum_symbolic_certificate_bits = 0;
+  unsigned maximum_symbolic_certificate_length = 0;
+  unsigned maximum_symbolic_certificate_position = 0;
+  std::string maximum_symbolic_certificate_word;
   unsigned first_residual_prefix_at_least_six_length = 0;
   unsigned first_residual_prefix_at_least_six_position = 0;
   std::string first_residual_prefix_at_least_six_word;
   std::int64_t minimum_margin = std::numeric_limits<std::int64_t>::max();
   unsigned minimum_margin_length = 0;
   std::string minimum_margin_word;
+  std::map<std::pair<unsigned, u64>, unsigned> shadow_crossing_cache;
+  std::map<std::pair<unsigned, u64>, ShadowPrefixStats> shadow_prefix_stats;
 };
+
+unsigned relative_coefficient_crossing(const Cylinder &prefix,
+                                       u64 candidate_lift) {
+  const u64 prefix_power = 3 * prefix.pow3;
+  const u128 numerator = static_cast<u128>(prefix_power) * candidate_lift +
+                         3 * static_cast<u128>(prefix.endpoint) + 1;
+  if (numerator % 4 != 0) {
+    throw std::runtime_error("the p10 base lift is not integral");
+  }
+  u128 value = numerator / 4;
+  u128 left = prefix_power;
+  u128 right = 4 * static_cast<u128>(prefix.pow2);
+  constexpr u128 maximum = ~u128{0};
+  for (unsigned length = 1; length <= 80; ++length) {
+    if ((value & 1U) != 0) {
+      if (value > (maximum - 1) / 3 || left > maximum / 3) return 0;
+      value = (3 * value + 1) / 2;
+      left *= 3;
+    } else {
+      value /= 2;
+    }
+    if (right > maximum / 2) return 0;
+    right *= 2;
+    if (left < right) return length;
+  }
+  return 0;
+}
 
 void analyze_word(u64 bits, unsigned length, Counts &counts) {
   ++counts.first_crossings;
@@ -162,6 +212,7 @@ void analyze_word(u64 bits, unsigned length, Counts &counts) {
     if (prefix_surplus > 0) {
       ++counts.positive_prefix_surplus;
       ++counts.certificate_bits[0];
+      ++counts.symbolic_certificate_bits[0];
     } else {
       ++counts.nonpositive_prefix_surplus;
       ++counts.residual_by_prefix_length[position];
@@ -185,7 +236,91 @@ void analyze_word(u64 bits, unsigned length, Counts &counts) {
       if (required_bits == 0) {
         throw std::runtime_error("full split coordinate did not certify descent");
       }
+      const u64 lift_mod_four = target_lift & 3U;
+      bool base_shadow_certified = false;
+      if (static_cast<i128>(gap) * lift_mod_four + prefix_surplus > 0) {
+        ++counts.low_two_bit_certificates;
+      } else {
+        const auto cache_key = std::make_pair(
+            position, (bits & ((u64{1} << position) - 1)) |
+                          (lift_mod_four << position));
+        auto crossing_iterator = counts.shadow_crossing_cache.find(cache_key);
+        if (crossing_iterator == counts.shadow_crossing_cache.end()) {
+          crossing_iterator = counts.shadow_crossing_cache
+                                  .emplace(cache_key,
+                                           relative_coefficient_crossing(
+                                               prefix, lift_mod_four))
+                                  .first;
+        }
+        const unsigned crossing = crossing_iterator->second;
+        auto &prefix_stats = counts.shadow_prefix_stats[cache_key];
+        prefix_stats.position = position;
+        prefix_stats.prefix_bits = bits & ((u64{1} << position) - 1);
+        prefix_stats.lift_mod_four = lift_mod_four;
+        prefix_stats.shadow_value =
+            (3 * prefix.pow3 * lift_mod_four + 3 * prefix.endpoint + 1) / 4;
+        prefix_stats.crossing = crossing;
+        ++prefix_stats.edges;
+        prefix_stats.maximum_raw_bits =
+            std::max(prefix_stats.maximum_raw_bits, required_bits);
+        const unsigned suffix_length = length - position - 2;
+        const u64 forced_lower_bound = lift_mod_four + 4;
+        if (crossing != 0 && suffix_length > crossing) {
+          if (forced_lower_bound > target_lift) {
+            throw std::runtime_error(
+                "shadow forcing did not lower-bound the lift");
+          }
+          if (static_cast<i128>(gap) * forced_lower_bound + prefix_surplus >
+              0) {
+            ++counts.base_shadow_certificates;
+            ++prefix_stats.certified;
+            base_shadow_certified = true;
+          } else {
+            ++counts.unresolved_after_base_shadow;
+            ++prefix_stats.unresolved;
+          }
+        } else {
+          ++counts.unresolved_after_base_shadow;
+          ++prefix_stats.unresolved;
+        }
+      }
+      unsigned symbolic_bits = required_bits;
+      if (required_bits == 2) {
+        symbolic_bits = 2;
+      } else if (base_shadow_certified) {
+        symbolic_bits = 2;
+        ++counts.adaptive_shadow_certificates;
+      } else {
+        const unsigned suffix_length = length - position - 2;
+        for (unsigned bits_used = 3; bits_used < required_bits; ++bits_used) {
+          const u64 mask = (u64{1} << bits_used) - 1;
+          const u64 lift_lower_bound = target_lift & mask;
+          const unsigned crossing =
+              relative_coefficient_crossing(prefix, lift_lower_bound);
+          const u64 forced_lower_bound =
+              lift_lower_bound + (u64{1} << bits_used);
+          if (crossing != 0 && suffix_length > crossing &&
+              static_cast<i128>(gap) * forced_lower_bound + prefix_surplus >
+                  0) {
+            if (forced_lower_bound > target_lift) {
+              throw std::runtime_error(
+                  "adaptive shadow forcing did not lower-bound the lift");
+            }
+            symbolic_bits = bits_used;
+            ++counts.adaptive_shadow_certificates;
+            break;
+          }
+        }
+      }
       ++counts.certificate_bits[required_bits];
+      ++counts.symbolic_certificate_bits[symbolic_bits];
+      if (symbolic_bits > counts.maximum_symbolic_certificate_bits) {
+        counts.maximum_symbolic_certificate_bits = symbolic_bits;
+        counts.maximum_symbolic_certificate_length = length;
+        counts.maximum_symbolic_certificate_position = position;
+        counts.maximum_symbolic_certificate_word =
+            chronological_word(bits, length);
+      }
       if (required_bits > counts.maximum_certificate_bits) {
         counts.maximum_certificate_bits = required_bits;
         counts.maximum_certificate_length = length;
@@ -225,6 +360,16 @@ int main(int argc, char **argv) {
             << "wrapped_edges=" << counts.wrapped_edges << '\n'
             << "positive_prefix_surplus=" << counts.positive_prefix_surplus << '\n'
             << "nonpositive_prefix_surplus=" << counts.nonpositive_prefix_surplus << '\n'
+            << "low_two_bit_certificates="
+            << counts.low_two_bit_certificates << '\n'
+            << "base_shadow_certificates="
+            << counts.base_shadow_certificates << '\n'
+            << "base_shadow_prefixes="
+            << counts.shadow_crossing_cache.size() << '\n'
+            << "unresolved_after_base_shadow="
+            << counts.unresolved_after_base_shadow << '\n'
+            << "adaptive_shadow_certificates="
+            << counts.adaptive_shadow_certificates << '\n'
             << "descent_failures=" << counts.descent_failures << '\n'
             << "minimum_margin=" << counts.minimum_margin << '\n'
             << "minimum_margin_length=" << counts.minimum_margin_length << '\n'
@@ -232,12 +377,22 @@ int main(int argc, char **argv) {
   for (const auto &[bits_used, count] : counts.certificate_bits) {
     std::cout << "certificate_bits=" << bits_used << ",edges=" << count << '\n';
   }
+  for (const auto &[bits_used, count] : counts.symbolic_certificate_bits) {
+    std::cout << "symbolic_certificate_bits=" << bits_used
+              << ",edges=" << count << '\n';
+  }
   std::cout << "maximum_certificate_bits=" << counts.maximum_certificate_bits
             << '\n'
             << "maximum_certificate_example=K:"
             << counts.maximum_certificate_length
             << ",j:" << counts.maximum_certificate_position
             << ",word:" << counts.maximum_certificate_word << '\n';
+  std::cout << "maximum_symbolic_certificate_bits="
+            << counts.maximum_symbolic_certificate_bits << '\n'
+            << "maximum_symbolic_certificate_example=K:"
+            << counts.maximum_symbolic_certificate_length
+            << ",j:" << counts.maximum_symbolic_certificate_position
+            << ",word:" << counts.maximum_symbolic_certificate_word << '\n';
   for (const auto &[position, count] : counts.wrapped_by_prefix_length) {
     std::cout << "prefix_j=" << position << ",wrapped=" << count
               << ",residual=" << counts.residual_by_prefix_length[position] << '\n';
@@ -249,6 +404,19 @@ int main(int argc, char **argv) {
               << counts.first_residual_prefix_at_least_six_length
               << ",j:" << counts.first_residual_prefix_at_least_six_position
               << ",word:" << counts.first_residual_prefix_at_least_six_word << '\n';
+  }
+  for (const auto &[key, stats] : counts.shadow_prefix_stats) {
+    static_cast<void>(key);
+    std::cout << "shadow_prefix=j:" << stats.position
+              << ",word:"
+              << chronological_word(stats.prefix_bits, stats.position)
+              << ",chi2:" << stats.lift_mod_four
+              << ",y2:" << stats.shadow_value
+              << ",sigma:" << stats.crossing
+              << ",edges:" << stats.edges
+              << ",certified:" << stats.certified
+              << ",unresolved:" << stats.unresolved
+              << ",maximum_raw_bits:" << stats.maximum_raw_bits << '\n';
   }
   std::cout << "status=exact split-barrier audit passed\n";
 }

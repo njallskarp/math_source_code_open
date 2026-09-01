@@ -228,6 +228,44 @@ theorem splitBarrierCertificate
         Int.mul_nonpos_of_nonneg_of_nonpos hL0 hM
       omega
 
+/-- If the full lift equals a truncated candidate lift, the ordinary integer
+reached after `p10` is a lift of the suffix cylinder.  An independently
+verified earlier coefficient crossing for `y` therefore rules out `x = chi`.
+This theorem certifies the algebraic transport used by that shadowing test. -/
+theorem equalLift_shadowsSuffix
+    (P₀ c x chi y rs H k : Int)
+    (hcandidate : P₀ * chi + c = 4 * y)
+    (hcompat : P₀ * x + c = 4 * rs + 4 * H * k)
+    (hequal : x = chi) :
+    y = rs + H * k := by
+  grind
+
+/-- Once a shadowing test rules out equality with the truncated lift `chi`,
+the next full lift is at least `chi + R`.  If that forced lower bound clears
+the split barrier, the target margin is positive. -/
+theorem shadowForcedBarrierCertificate
+    (L d M x chi R Q t : Int)
+    (hmargin : L * M = d * x + Q)
+    (hlift : x = chi + R * t)
+    (hL : 0 < L) (hd : 0 ≤ d) (hR : 0 < R) (ht : 0 ≤ t)
+    (hne : x ≠ chi)
+    (hcertificate : 0 < d * (chi + R) + Q) :
+  0 < M := by
+  have htne : t ≠ 0 := by
+    intro htzero
+    apply hne
+    rw [hlift, htzero]
+    simp
+  have htone : 1 ≤ t := by omega
+  have hRnonneg : 0 ≤ R := by omega
+  have hRt : R * 1 ≤ R * t :=
+    Int.mul_le_mul_of_nonneg_left htone hRnonneg
+  have hlower : chi + R ≤ x := by
+    rw [hlift]
+    simpa using Int.add_le_add_left hRt chi
+  exact splitBarrierCertificate
+    L d M x (chi + R) Q hmargin hL hd hlower hcertificate
+
 #print axioms scaledMargin_eq_mul_gap
 #print axioms unwrappedScaledCocycle
 #print axioms wrappedScaledCocycle
@@ -245,5 +283,7 @@ theorem splitBarrierCertificate
 #print axioms lengthFiveStrictDefectCertificate
 #print axioms splitTargetMargin
 #print axioms splitBarrierCertificate
+#print axioms equalLift_shadowsSuffix
+#print axioms shadowForcedBarrierCertificate
 
 end CollatzSwapCocycle

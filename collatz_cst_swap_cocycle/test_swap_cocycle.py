@@ -1,5 +1,12 @@
 import unittest
 
+from audit_phase_lag import audit as audit_phase_lag
+from audit_split_barrier import (
+    audit as audit_split_barrier,
+)
+from audit_split_barrier import (
+    relative_coefficient_crossing,
+)
 from audit_swap_cocycle import (
     Cylinder,
     audit,
@@ -8,8 +15,6 @@ from audit_swap_cocycle import (
     first_crossing_cylinders,
     verify_split_coordinate,
 )
-from audit_phase_lag import audit as audit_phase_lag
-from audit_split_barrier import audit as audit_split_barrier
 
 
 class SwapCocycleTests(unittest.TestCase):
@@ -85,10 +90,16 @@ class SwapCocycleTests(unittest.TestCase):
         self.assertEqual(report["wrapped_edges"], 830)
         self.assertEqual(report["positive_prefix_surplus"], 737)
         self.assertEqual(report["nonpositive_prefix_surplus"], 93)
+        self.assertEqual(report["low_two_bit_certificates"], 31)
+        self.assertEqual(report["base_shadow_certificates"], 62)
+        self.assertEqual(report["base_shadow_prefixes"], 2)
+        self.assertEqual(report["unresolved_after_base_shadow"], 0)
+        self.assertEqual(report["adaptive_shadow_certificates"], 62)
         self.assertEqual(report["descent_failures"], 0)
         self.assertEqual(
             report["certificate_bits"], {0: 737, 2: 31, 3: 9, 4: 41, 5: 12}
         )
+        self.assertEqual(report["symbolic_certificate_bits"], {0: 737, 2: 93})
 
     def test_length_27_fixed_bit_obstruction(self) -> None:
         word = "111101011011101111010011000"
@@ -109,6 +120,7 @@ class SwapCocycleTests(unittest.TestCase):
         )
 
         self.assertEqual((gap, local_modulus), (5_077_565, 4_194_304))
+        self.assertEqual(relative_coefficient_crossing(prefix, 1), 47)
         self.assertEqual((target_lift, prefix_surplus), (2_621_441, -5_601_853))
         self.assertEqual(target_lift % (1 << 19), 1)
         self.assertEqual(gap + prefix_surplus, -524_288)

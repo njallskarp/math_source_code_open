@@ -385,6 +385,62 @@ successively more suffix bits give a monotone family of exact certificates.
 Lean proves both the division-free identity (SB) and the abstract lower-bound
 certificate.
 
+### Coefficient-shadow forcing theorem
+
+Prefix safety can strengthen a truncated lift without revealing its next
+binary digit.  For any `2 <= m <= h+2`, put
+
+```text
+chi_m = x mod 2^m,
+y_m = (P0*chi_m + 3*eta + 1)/4.
+```
+
+The quotient is integral because `chi_m` and `x` agree modulo four.  Define
+the relative coefficient crossing of an ordinary integer `y` by
+
+```text
+sigma_p(y) = min { ell >= 1 :
+  P0 * 3^q_ell(y) < 4*F * 2^ell },
+```
+
+where `q_ell(y)` counts odd terms in the first `ell` shortcut-Collatz steps
+from `y`.  The full suffix has length `h` and is coefficient-safe at every
+proper prefix, so its corresponding inequality is weakly reversed for every
+`ell<h`.
+
+If `x=chi_m`, suffix compatibility in (SB) becomes
+
+```text
+y_m = r_s + H*k
+```
+
+for a nonnegative integer `k`.  Thus `y_m` realizes the entire suffix word
+and cannot have `sigma_p(y_m)<h`.  Taking the contrapositive gives the exact
+forcing rule
+
+```text
+sigma_p(y_m) < h  ==>  x != chi_m
+                    ==>  x >= chi_m + 2^m.        (SF)
+```
+
+Consequently
+
+```text
+d*(chi_m+2^m)+Q > 0
+```
+
+certifies descent whenever the shadow crossing in (SF) occurs.  This is an
+ordinary-integer stopping-time calculation coupled to the symbolic barrier,
+not a search over completions of the suffix.  It also generalizes: after
+exposing any `m-2` suffix bits, the corresponding integer shadow either lasts
+through the suffix or forces at least one further lift bit.
+
+Lean proves the algebraic shadow transport and proves that a certified shadow
+mismatch plus the forced next-lift bound implies positive margin.  It does not
+formalize extraction of the suffix parity word or the computation of
+`sigma_p`; those bridges are checked by the exact Python and C++ programs and
+use the classical parity-vector/residue correspondence.
+
 ### Exact finite audit and fixed-bit obstruction
 
 Two implementations independently enumerate coefficient-first-crossing
@@ -398,10 +454,21 @@ candidate_edges=926917
 wrapped_edges=383583
 positive_prefix_surplus=366092
 nonpositive_prefix_surplus=17491
+low_two_bit_certificates=14171
+base_shadow_certificates=3320
+base_shadow_prefixes=2
+unresolved_after_base_shadow=0
 descent_failures=0
 certificate_bits={0:366092, 2:14171, 3:707, 4:2147, 5:466}
+symbolic_certificate_bits={0:366092, 2:17491}
 sha256=457b622b4bb9a69e5cc7c690bec7bedc5418d83f7c92bf7e8c3094fdf77d9569
 ```
+
+Thus, through depth 26, all 17,491 wrapped targets missed by `Q>0` are
+certified using only `chi_2`: 14,171 directly and the remaining 3,320 by one
+coefficient-shadow exclusion.  This compresses what the raw low-bit hierarchy
+records as certificates of depths two through five into a uniform two-bit
+symbolic certificate on this range.
 
 The C++ audit extends the exact frontier through length 34:
 
@@ -411,10 +478,34 @@ candidate_edges=151493135
 wrapped_edges=73268220
 positive_prefix_surplus=70778481
 nonpositive_prefix_surplus=2489739
+low_two_bit_certificates=1752168
+base_shadow_certificates=688589
+base_shadow_prefixes=24
+unresolved_after_base_shadow=48982
+adaptive_shadow_certificates=697630
 descent_failures=0
 minimum_margin=1 (word 1100)
 maximum_certificate_bits=20
+maximum_symbolic_certificate_bits=20
 ```
+
+At depth 34, base shadowing certifies 688,589 of the 737,571 cases missed by
+the direct two-bit test.  Allowing (SF) at later truncation depths yields
+697,630 shadow-forced certificates in total, but does not reduce the worst
+certificate depth below 20.  The method is therefore a large exact
+compression of the finite frontier, not a uniform proof.
+
+The base-shadow remainder is itself highly compressed: all cases occur over
+24 prefix states, and their `y_2` values belong to the ten-element set
+
+```text
+{13, 40, 76, 91, 103, 121, 175, 334, 364, 445}.
+```
+
+The C++ checker prints the complete per-prefix table, including `sigma`, edge
+count, certified count, unresolved count, and maximum raw certificate depth.
+The canonical 24-line table has SHA-256
+`96c801390a4cd0bd1b04d89277637dd0f973bba28f3f6a975409312894e9b7f0`.
 
 The maximum is attained already at length 27 by
 
@@ -425,12 +516,14 @@ d=5077565, L=4194304, x=2621441, Q=-5601853.
 
 For this edge, `chi_m=1` through `m=19`, so
 `d*chi_m+Q=-524288`; at `m=20`, `chi_m=524289` and the certificate becomes
-positive.  Hence no certificate restricted to at most 19 low lift bits can
-be universal.  This is a concrete obstruction to the simplest fixed-small-
-state proof strategies, not evidence against CST.  Through length 34, all
-wrapped edges still have positive target margin; the depth-34 claim rests on
-the C++ exhaustive audit, while independent implementation agreement is
-limited to depth 26.
+positive.  Its two-bit shadow integer is `y_2=91`, whose relative coefficient
+crossing is 47, later than the suffix length 20, so (SF) correctly cannot
+force an earlier bit.  Hence no certificate restricted to at most 19 low lift
+bits can be universal.  This is a concrete obstruction to the simplest
+fixed-small-state proof strategies, not evidence against CST.  Through length
+34, all wrapped edges still have positive target margin; the depth-34 claim
+rests on the C++ exhaustive audit, while independent implementation agreement
+is limited to depth 26.
 
 ### Proof
 
@@ -502,6 +595,7 @@ ruby audit_phase_lag.rb 16
 /opt/homebrew/bin/g++-16 -std=c++20 -O3 -Wall -Wextra -Werror \
   audit_split_barrier.cpp -o /tmp/audit_split_barrier
 /tmp/audit_split_barrier 34
+/tmp/audit_split_barrier 34 | rg '^shadow_prefix' | shasum -a 256
 lean lean/CollatzSwapCocycle.lean
 ```
 
@@ -557,8 +651,9 @@ checker and written proof; Lean does not certify the enumeration.
 Lean additionally proves the division-free path phase-lag identity, the
 zero-index-source one-edge antidominance consequence, and the complete arithmetic
 certificate for the minimal length-five strict defect.  It also proves the
-division-free split-barrier identity and the lower-bound certificate used by
-the new Python and C++ audits.
+division-free split-barrier identity, exact equal-lift suffix transport, and
+the direct and shadow-forced lower-bound certificates used by the Python and
+C++ audits.
 
 ## Relation to prior work and novelty boundary
 
@@ -571,6 +666,13 @@ the same affine numerator via rotations and adjacent transformations and
 prove a Christoffel-word extremality theorem.  Christoffel/mechanical
 extremality and numerator ordering are therefore explicitly not novelty
 claims of this artifact.
+
+Bernstein--Lagarias's 2-adic conjugacy and Laarhoven--de Weger's De Bruijn
+graph formulation already imply that congruence modulo `2^m` fixes an
+`m`-step parity prefix.  That finite shadowing principle is also prior art.
+The coefficient-shadow rule (SF) is claimed only as an apparently new
+coupling of that classical principle to the split barrier and the forced
+next-lift inequality.
 
 The apparently new pieces, relative to the sources searched below, are the
 explicit coupling of this adjacent exchange to the *canonical least residue*,
@@ -600,6 +702,11 @@ Primary sources checked:
   Collatz map,” arXiv:2605.13886 (2026).
 - A. Fernández and M. Ibáñez, “Christoffel Words as Extremal Structures in
   Collatz Dynamics,” arXiv:2607.24844 (2026).
+- D. J. Bernstein and J. C. Lagarias, “The 3x+1 conjugacy map,” *Canadian
+  Journal of Mathematics* 48 (1996), 1154--1169.
+- T. Laarhoven and B. de Weger, “The Collatz conjecture and De Bruijn
+  graphs,” *Indagationes Mathematicae* 24 (2013), 971--983;
+  arXiv:1209.3495.
 
 ## Limitations and next target
 
@@ -608,9 +715,13 @@ normal form rules out a proof based only on the inverse-doubling jump orbit:
 from a zero-index base, `W<=C` is already the equality target rather than an
 available one-sided estimate.  The split identity makes the remaining target
 more local, but the length-27 example rules out a uniform bound of 19 or fewer
-low lift bits.  The next target is to derive an analytic lower bound on `x` from
-coefficient-first-crossing constraints on the suffix, strong enough to prove
-`d*x+Q>0` without exposing an unbounded number of suffix bits.  Equivalently,
+low lift bits.  Coefficient shadows supply such bounds for most of the exact
+frontier, but long-lived shadows such as `y=91` remain.  The next target is to
+classify the 48,982 depth-34 cases left by the base shadow test and derive a
+quantitative relation between the ten observed shadow integers, shadow
+lifetime, the negative surplus `-Q`, and the forced size of `x`, strong enough
+to prove `d*x+Q>0` without exposing an unbounded number of suffix bits.
+Equivalently,
 one must exclude the exact one-edge barrier
 
 ```text

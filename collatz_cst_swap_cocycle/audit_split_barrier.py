@@ -18,6 +18,33 @@ def chronological_word(bits: int, length: int) -> str:
     return "".join(str((bits >> position) & 1) for position in range(length))
 
 
+def relative_coefficient_crossing(prefix, candidate_lift: int) -> int:
+    """First suffix length that contracts from the post-``p10`` lift.
+
+    The returned computation is exact.  It is used only as a certificate: a
+    candidate suffix that remains coefficient-safe longer than this orbit
+    cannot have the full local lift equal to ``candidate_lift``.
+    """
+    prefix_power = 3 * prefix.pow3
+    numerator = prefix_power * candidate_lift + 3 * prefix.endpoint + 1
+    quotient, remainder = divmod(numerator, 4)
+    if remainder:
+        raise AssertionError("the p10 base lift is not integral")
+    value = quotient
+    suffix_power = 1
+    suffix_modulus = 1
+    for length in range(1, 10_001):
+        if value & 1:
+            value = (3 * value + 1) // 2
+            suffix_power *= 3
+        else:
+            value //= 2
+        suffix_modulus *= 2
+        if prefix_power * suffix_power < 4 * prefix.pow2 * suffix_modulus:
+            return length
+    raise AssertionError("relative coefficient crossing exceeded audit cap")
+
+
 def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
     groups = first_crossing_cylinders(max_length)
     digest = hashlib.sha256()
@@ -26,16 +53,24 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
     wrapped_edges = 0
     positive_prefix_surplus = 0
     nonpositive_prefix_surplus = 0
+    low_two_bit_certificates = 0
+    base_shadow_certificates = 0
+    unresolved_after_base_shadow = 0
+    adaptive_shadow_certificates = 0
     descent_failures = 0
     certificate_bits: Counter[int] = Counter()
+    symbolic_certificate_bits: Counter[int] = Counter()
     wrapped_by_prefix: Counter[int] = Counter()
     residual_by_prefix: Counter[int] = Counter()
     maximum_certificate_bits = 0
     maximum_certificate_example = ""
+    maximum_symbolic_certificate_bits = 0
+    maximum_symbolic_certificate_example = ""
     first_residual_prefix_at_least_six = "none"
     minimum_margin: int | None = None
     minimum_margin_length = 0
     minimum_margin_word = ""
+    crossing_cache: dict[tuple[int, int, int], int] = {}
 
     for length in sorted(groups):
         states = groups[length]
@@ -91,6 +126,7 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
                 if prefix_surplus > 0:
                     positive_prefix_surplus += 1
                     required_bits = 0
+                    symbolic_bits = 0
                 else:
                     nonpositive_prefix_surplus += 1
                     residual_by_prefix[position] += 1
@@ -118,7 +154,74 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
                             f"K:{length},j:{position},"
                             f"word:{chronological_word(bits, length)}"
                         )
+                    lift_mod_four = target_lift & 3
+                    base_shadow_certified = False
+                    if gap * lift_mod_four + prefix_surplus > 0:
+                        low_two_bit_certificates += 1
+                    else:
+                        cache_key = (
+                            bits & ((1 << position) - 1),
+                            position,
+                            lift_mod_four,
+                        )
+                        crossing = crossing_cache.get(cache_key)
+                        if crossing is None:
+                            crossing = relative_coefficient_crossing(
+                                prefix, lift_mod_four
+                            )
+                            crossing_cache[cache_key] = crossing
+                        suffix_length = length - position - 2
+                        forced_lower_bound = lift_mod_four + 4
+                        if suffix_length > crossing:
+                            if forced_lower_bound > target_lift:
+                                raise AssertionError(
+                                    "shadow forcing did not lower-bound the lift"
+                                )
+                            if gap * forced_lower_bound + prefix_surplus > 0:
+                                base_shadow_certificates += 1
+                                base_shadow_certified = True
+                            else:
+                                unresolved_after_base_shadow += 1
+                        else:
+                            unresolved_after_base_shadow += 1
+                    symbolic_bits = required_bits
+                    if required_bits == 2:
+                        symbolic_bits = 2
+                    elif base_shadow_certified:
+                        symbolic_bits = 2
+                        adaptive_shadow_certificates += 1
+                    else:
+                        suffix_length = length - position - 2
+                        for bits_used in range(3, required_bits):
+                            lift_lower_bound = target_lift & (
+                                (1 << bits_used) - 1
+                            )
+                            crossing = relative_coefficient_crossing(
+                                prefix, lift_lower_bound
+                            )
+                            forced_lower_bound = (
+                                lift_lower_bound + (1 << bits_used)
+                            )
+                            if (
+                                suffix_length > crossing
+                                and gap * forced_lower_bound + prefix_surplus > 0
+                            ):
+                                if forced_lower_bound > target_lift:
+                                    raise AssertionError(
+                                        "adaptive shadow forcing did not "
+                                        "lower-bound the lift"
+                                    )
+                                symbolic_bits = bits_used
+                                adaptive_shadow_certificates += 1
+                                break
                 certificate_bits[required_bits] += 1
+                symbolic_certificate_bits[symbolic_bits] += 1
+                if symbolic_bits > maximum_symbolic_certificate_bits:
+                    maximum_symbolic_certificate_bits = symbolic_bits
+                    maximum_symbolic_certificate_example = (
+                        f"K:{length},j:{position},"
+                        f"word:{chronological_word(bits, length)}"
+                    )
                 digest.update(
                     (
                         f"{length},{bits:x},{position},{target.residue},"
@@ -134,15 +237,27 @@ def audit(max_length: int = 26) -> dict[str, int | str | dict[int, int]]:
         "wrapped_edges": wrapped_edges,
         "positive_prefix_surplus": positive_prefix_surplus,
         "nonpositive_prefix_surplus": nonpositive_prefix_surplus,
+        "low_two_bit_certificates": low_two_bit_certificates,
+        "base_shadow_certificates": base_shadow_certificates,
+        "base_shadow_prefixes": len(crossing_cache),
+        "unresolved_after_base_shadow": unresolved_after_base_shadow,
+        "adaptive_shadow_certificates": adaptive_shadow_certificates,
         "descent_failures": descent_failures,
         "minimum_margin": minimum_margin or 0,
         "minimum_margin_length": minimum_margin_length,
         "minimum_margin_word": minimum_margin_word,
         "certificate_bits": dict(sorted(certificate_bits.items())),
+        "symbolic_certificate_bits": dict(
+            sorted(symbolic_certificate_bits.items())
+        ),
         "wrapped_by_prefix": dict(sorted(wrapped_by_prefix.items())),
         "residual_by_prefix": dict(sorted(residual_by_prefix.items())),
         "maximum_certificate_bits": maximum_certificate_bits,
         "maximum_certificate_example": maximum_certificate_example,
+        "maximum_symbolic_certificate_bits": maximum_symbolic_certificate_bits,
+        "maximum_symbolic_certificate_example": (
+            maximum_symbolic_certificate_example
+        ),
         "first_residual_prefix_at_least_six": (
             first_residual_prefix_at_least_six
         ),
