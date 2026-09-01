@@ -1,4 +1,4 @@
-# Sixth/seventh-order S frontier for QLP-42 `q=1`, `b=12`
+# Sixth-through-eighth-order S frontier for QLP-42 `q=1`, `b=12`
 
 ## Computational finding
 
@@ -13,12 +13,16 @@ case                                0     1     2    3    4   5
 sixth-order A-rotation types      1686  1398  1427  850  850 304
 seventh-order A-rotation types     303   180    92    5    5   0
 seventh-order B masks               29    27    20    3    3   0
+eighth-order A-rotation types      303   178    92    1    1   0
+eighth-order B masks                29    26    20    1    1   0
 ```
 
-Across cases, 2,523 distinct mask/support rows survive sixth order and only
-499 survive seventh order. In particular, the exact-sum case 5 branch is
-excluded by the seventh-order `S` equations alone. This is a strict
-intermediate reduction, not an exclusion of the complete `b=12` row.
+Across cases, 2,523 distinct mask/support rows survive sixth order, 499
+survive seventh order, and 493 survive eighth order. In particular, the
+exact-sum case 5 branch is excluded by the seventh-order `S` equations alone,
+while cases 3 and 4 each collapse to one eighth-order orbit incidence over a
+single mask. This is a strict intermediate reduction, not an exclusion of the
+complete `b=12` row.
 
 ## Exact finite computation
 
@@ -38,6 +42,8 @@ Z[i]/(pi^7) -> Z/8 x Z/16,
 r+si         -> (r mod 8, r+s mod 16).
 ```
 
+Eighth order is coordinatewise reduction modulo 16 because `pi^8=16`.
+
 All arithmetic is integral. No floating point, randomized step, solver,
 heuristic pruning, or time limit is used.
 
@@ -49,16 +55,18 @@ Install NumPy and run:
 python3 verify_q1_b12_frontier.py
 ```
 
-The driver pins both programs by SHA-256. They pin the preceding third-order
-classifier, reconstruct the 98 masks, 2,802 unique support-orbit
-representatives and 3,637 mask/support orbit types, and reproduce every
-displayed count.
+The driver pins three direct NumPy programs, the independent C++20 program,
+and the C++ residue primitive it imports. Both routes reconstruct the 98
+masks, 2,802 unique support-orbit representatives and 3,637 mask/support orbit
+types, and reproduce every displayed count.
 
-This result currently has one direct NumPy implementation. An independent
-quotient-arithmetic implementation is required before promoting it to a
-two-implementation graph theorem. The strongest next computation is the
-eighth-order `S` lift of the 499-row seventh-order frontier, beginning with
-the ten case-3/4 orbit incidences on six masks. Apparent novelty is relative
+The NumPy route directly evaluates vectorized autocorrelations. The C++ route
+independently reconstructs every support and mask, performs exact Gaussian-sum
+joins, interpolates the full quadratic PAF map modulo 16, and checks 671,104
+interpolated values against direct PAF evaluation. They use different phase
+enumeration and residue implementations. The strongest next computation is a
+sixth-order `H` scan of the 493-row eighth-order frontier; advancing to higher
+`S` order removed only six seventh-order rows. Apparent novelty is relative
 to a targeted primary-source and committed-graph search, not a claim of
 historical priority.
 
