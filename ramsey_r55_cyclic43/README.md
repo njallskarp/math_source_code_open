@@ -406,6 +406,25 @@ component closure: those external states are reached only after passing through
 objective nine. Their representatives are included in the independent JSON for
 follow-up classification of the newly exposed low-objective islands.
 
+The results above were regenerated with Homebrew GCC 16.2.0 and Python
+3.12.12. The complete regression suite passed 22/22 tests. A clean optimized
+rerun took 207.46 seconds and reproduced both theorem-bearing certificates
+byte-for-byte; clean independent recounts took 10.72 seconds for the complete
+eighth layer and 25.79 seconds for the objective-nine frontier, again producing
+byte-identical outputs.
+
+SHA-256:
+
+```text
+c74525b3b9faa3ffce4bc2b5186821d59f68afff83f561e4b4ff9bfe54c19a1b  objective_six_component.cpp
+6d269c153d48cc15b2ac443fe2b3808ecdcb7c447fb94419e2c0687a3f5edbde  verify_objective_six_component.cpp
+1d4586d889071ef76921ab1ee6aece7d0fc23c03b8240b3facec6bd7ecb62d1c  test_cyclic43.py
+740c10a6cc72d148ce949749aa8d8f132aa70f9bb0b797ee3e2fbe5ba84fdc1a  objective-eight-component-fast.json
+b3f361462d07ff2d01d766515f81ebab3a6fa48a7b34af40089a13d24544dd11  objective-eight-component-independent.json
+ed95024d463512eb0ade0af77725dd8031ffc712e258283499cff6c06144a693  objective-nine-frontier-fast.json
+892e1990095bfb0d714e1ce1dabd9a51b37bda8c114559ed5e67d353c482a295  objective-nine-frontier-independent.json
+```
+
 Certify a radius-five tube around all 38 vertices of that defect orbit:
 
 ```bash
