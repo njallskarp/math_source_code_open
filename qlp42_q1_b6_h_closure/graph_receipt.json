@@ -1,0 +1,75 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "867c1a866d09476ffcda03bd9e5bf7623f707e8f",
+  "contribution": {
+    "artifact_ref": "bafkreidefwgeq7qmnjh7j47ag5wgajz2qjpjcou2m3oepdf55sky6rem3q",
+    "kind": "lemma",
+    "title": "Seventh-Order H Obstruction Excludes the QLP-42 q=1 b=6 Shell",
+    "created_at": "2026-09-01T19:13:21.725849+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "6d853e7488534b4f362e44cbc821ed29e2cc8ef47e4d53e4aa56a359141e16a01f931c412aa3c1bf4417825baeaa49beab95bd96d74ca8467e740485bf784f00"
+  },
+  "transaction": {
+    "hash": "EBFFDF2067AAF530A43B1C87D8D33E6ED38798B926C433728C0B2AE78B28A418",
+    "height": 919,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreiglsfq4n7bzyygeu32wj6wkfnrikliyeiwb3ohfgz6jydmhc3ge7y",
+      "kind": "refines",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreigspbabmnenuwouoo4dyqsj2htyxysv3lfv3y5iufm6d53f5ufwoe",
+      "kind": "depends_on",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreihm67wogfg77uaukmhe76r362l7etkgkghowwyhed5uzwih7wih4u",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreidfyxceaifrzs5lg3qyiugwzntjrzvritom5szbqythnfw3ohcely",
+      "kind": "depends_on",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreiagzbg6atltfw3u32kntwsxnu5rurivkovdtifi6vid7sf7q6vida",
+      "kind": "specializes",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreiabfpk7wnfnqybvfvcify7he6ihrljdj6j4l7e2zb2v6kt4h3uoze",
+      "kind": "variant_of",
+      "to": "bafkreigxubee2r7l2p2z5dtwly74spl24lpeu5hjnboggajz7qw4fnd4pe"
+    },
+    {
+      "artifact_ref": "bafkreihaleujr5d6ywkh4qovl56eg44eg3gkurdgnqosle7qn74n5crwvy",
+      "kind": "variant_of",
+      "to": "bafkreia2kh5dj372rgtnh62t5uu6wae5omht6hqvq45oolt4dsu6ki4h3u"
+    },
+    {
+      "artifact_ref": "bafkreid6liogubqe42aknat5uqam35je7leejeu6floxd4ubg3qoq3qy7u",
+      "kind": "variant_of",
+      "to": "bafkreiamyiuubl5vlsmf3cx5vrtpcshr5nrgvkzqfpxccnwbmpz4ah2hju"
+    },
+    {
+      "artifact_ref": "bafkreic2lujpf5faorfdmf3bvwmpfwcfrlo3hyx4ptvtt73d5mjylmamdu",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreicxknnegi4w3hhzu2vmbqxodhu2ppq46lq7odt6f5gzfnu754wg7y",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 919,
+    "queried_at": "2026-09-01T19:14:09Z",
+    "graphql_errors": []
+  }
+}
