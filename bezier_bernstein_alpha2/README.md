@@ -9,8 +9,8 @@ of the more general positive-`alpha` theorem in July 2026.  The associated
 Formal Conjectures status-change pull request remained open when rechecked on
 2026-09-01.  This project therefore
 does not claim to solve a currently open problem or claim priority.  Its
-remaining formal target is the explicit specialization
-`mu(2) = -1/sqrt(pi)` and a compact independent proof route.
+contribution is the explicit specialization `muAlpha 2 = -1/sqrt(pi)`, a
+compact independent proof route, and reusable formal layer-cake lemmas.
 
 For
 
@@ -84,6 +84,29 @@ Here `G1,G2` are the coordinate variables on the product of two standard
 Gaussian probability spaces.  The calculation uses Mathlib's exact half-line
 primitive for `x * exp (-b*x^2)`, not numerical integration.
 
+`BezierBernstein/MuAlphaTwo.lean` closes the literal-definition alignment gap.
+It reproduces Kitamura's definition under the local descriptive name
+`poweredGaussianMomentConstant`, proves the two exact product-space tail laws,
+and uses Mathlib's layer-cake theorem only after proving integrability.  Its
+main exported theorems are:
+
+```text
+integral_min_standardGaussian_prod_eq_cdf_tails:
+  E[min(G1,G2)]
+    = integral_0^infinity (1-Phi(t))^2 dt
+      - integral_0^infinity (1-Phi(t)^2) dt
+
+poweredGaussianMomentConstant_two_eq_integral_min:
+  poweredGaussianMomentConstant 2 = E[min(G1,G2)]
+
+poweredGaussianMomentConstant_two:
+  poweredGaussianMomentConstant 2 = -1 / sqrt(pi)
+```
+
+The second integrand above is exactly `1 - (cdf ... t)^2`, matching the
+parsing of the immutable upstream definition.  At exponent `2`, Lean's
+`Real.rpow_two` bridges the real-power convention to ordinary squaring.
+
 ## Verification
 
 Pinned versions:
@@ -124,18 +147,20 @@ Formal Conjectures status-change pull request:
 
 https://github.com/google-deepmind/formal-conjectures/pull/4646
 
-## Scope and next step
+## Scope and status
 
-The Gaussian/order-statistic value `-1/sqrt(pi)` is now checked.  The remaining
-alignment gap is to prove that Kitamura's literal CDF-tail definition
+The Gaussian/order-statistic value and the literal CDF-tail alignment are now
+checked.  In particular, the project proves
 
 ```text
 muAlpha 2 = integral_0^infinity (1-Phi(t))^2 dt
           - integral_0^infinity (1-Phi(t)^2) dt
+          = E[min(G1,G2)]
+          = -1/sqrt(pi).
 ```
 
-equals the checked product-space expectation of `min(G1,G2)`.  This is a
-layer-cake/product-measure bridge, not a missing evaluation of the Gaussian
-integral.  Convergence in distribution alone remains insufficient for the
-expectation limit; `PAPER_PROOF.md` records the required uniform-integrability
-bridge.
+This does not reprove or supersede Kitamura's general theorem.  It supplies a
+checked explicit constant evaluation and independent product-space route for
+its `alpha = 2` specialization.  Convergence in distribution alone remains
+insufficient for the expectation limit; `PAPER_PROOF.md` records the required
+uniform-integrability bridge.
