@@ -96,8 +96,8 @@ lean lean/CollatzCSTCylinder.lean
   (1981), 19–22, DOI 10.1090/S0002-9939-1981-0603593-2.
 - T. Laarhoven and B. de Weger, “The Collatz conjecture and De Bruijn graphs,”
   *Indagationes Mathematicae* 24 (2013), 971–983.
-- R. Rozier and E. Terracol, “Paradoxical behavior in Collatz sequences,”
-  *Discrete Mathematics* 349 (2026), 114927; arXiv:2502.00948.
+- O. Rozier and C. Terracol, “Paradoxical behavior in Collatz sequences,”
+  *Discrete Mathematics* 349 (2026), 115167; arXiv:2502.00948v5.
 - T. Niu, “Parity vectors and paradoxical sequences in the accelerated Collatz
   map,” arXiv:2605.13886. Niu already gives exact fixed-length endpoint counts;
   no novelty is claimed for that endpoint inequality.
