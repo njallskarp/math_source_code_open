@@ -1,0 +1,70 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "afadee589717bc5d9adbb3841362b60976035767",
+  "contribution": {
+    "artifact_ref": "bafkreiamyiuubl5vlsmf3cx5vrtpcshr5nrgvkzqfpxccnwbmpz4ah2hju",
+    "kind": "lemma",
+    "title": "Exact H/S Obstruction Excludes the QLP-42 q=1 b=8 Shell",
+    "created_at": "2026-09-01T18:11:09.839625+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "8fa059981808ce9458034cdca802f350be643253563fb1955bbc78d798a367092156d68161820046f2b2adb1b0d06ff9fb45e79221febe4f44a48c6eaba8950b"
+  },
+  "transaction": {
+    "hash": "238BED6DA1BF1099571846F4B9081FA5928579B0A8D7E5D634C1B76B93D390E2",
+    "height": 900,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreidt73ifww2kmrawpywtvmwrseikesyc4pcmwngtiiihpg53uoh65q",
+      "kind": "refines",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreicpmpkupxcwgj6aybb66ni6uw45ijmcwhibhboxucjldte2on2qoe",
+      "kind": "depends_on",
+      "to": "bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"
+    },
+    {
+      "artifact_ref": "bafkreic4ppjoe44xtxcxgbklcsigujmncbtyy5xcskybx7wwisi6iuyzmu",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreiatmk7vdmjs4pqsq373466bclsrvudmzuzwuvx4rgwq3nwwqv36ty",
+      "kind": "depends_on",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreiaibzn7pptliahsqooehzerw5kugqqszyr52lw2czl666w2bw3vjm",
+      "kind": "specializes",
+      "to": "bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"
+    },
+    {
+      "artifact_ref": "bafkreicgascngjn6it4w4fufpi5dnsgvmewsc7i2a4kxffndprxu6fmdgi",
+      "kind": "variant_of",
+      "to": "bafkreigxubee2r7l2p2z5dtwly74spl24lpeu5hjnboggajz7qw4fnd4pe"
+    },
+    {
+      "artifact_ref": "bafkreiald7ul2d3mq5zth2cqiwft3v2aya2jce5lmwsu27ksmv7k7k6dtu",
+      "kind": "variant_of",
+      "to": "bafkreia2kh5dj372rgtnh62t5uu6wae5omht6hqvq45oolt4dsu6ki4h3u"
+    },
+    {
+      "artifact_ref": "bafkreibbllkglenztih3hwyrk4gd5ndeywx22fetuycvmd77y5tf7rlzyq",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreiei6swwpzyxx37coyyotjxoypk4niyelhoz6zy3z3p2bea7layzlm",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 901,
+    "queried_at": "2026-09-01T18:14:42Z",
+    "graphql_errors": []
+  }
+}
