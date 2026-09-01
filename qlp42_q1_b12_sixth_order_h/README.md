@@ -40,8 +40,18 @@ Therefore case 3 also cannot lift. Case 4 has already failed its exact
 `H_B` sum.
 
 After these tests only cases 0 and 2 remain: 395 case incidences carried by
-375 distinct mask/support rows. This is a strict intermediate reduction, not
-an exclusion of the complete `b=12` shell.
+375 distinct mask/support rows. The complete sixth-order `H` scan of this
+frontier leaves
+
+```text
+case                               0   2
+sixth-order H incidences          61  18
+supporting B masks                17   8
+```
+
+The 79 case incidences occupy 77 distinct rows. Thus the combined exact-sum,
+eighth-order `S`, and sixth-order `H` frontier is 77 rows. This is a strict
+intermediate reduction, not an exclusion of the complete `b=12` shell.
 
 ## Exact computation
 
@@ -62,6 +72,18 @@ the PAF directly for all 853,776 exact `H_A` assignments and directly
 enumerates every `H_B` phase assignment. It independently obtains the empty
 case-3 intersection and scans both center orientations for all 98 masks.
 
+`precomputed_full_h.cpp` groups the 375 remaining rows by their 345 distinct
+`A` supports. For each support it enumerates all 853,776 exact zero-sum
+`H_A` assignments once, builds the complete sixth-order fingerprint set, and
+intersects it with all applicable exact `H_B` fingerprints. Across all
+supports it exhausts 294,552,720 assignments and directly audits the affine
+PAF identity for all 706,560 admissible axis systems.
+
+`independent_full_numpy.py` consumes the reconstructed 375-row predecessor
+but independently evaluates every one of those 294,552,720 PAFs directly,
+without affine interpolation. It reproduces the 61 and 18 incidence counts,
+the 17 and 8 mask counts, and the 77-row union exactly.
+
 All arithmetic is integral and exhaustive. No floating point, random step,
 SAT/SMT solver, heuristic pruning, or time limit is used.
 
@@ -73,11 +95,13 @@ Install NumPy and run:
 python3 verify_b12_h_frontier.py
 ```
 
-The driver pins both implementations and the predecessor certificates,
+The driver pins all implementations and the predecessor certificates,
 compiles the C++20 route with assertions enabled, and checks the exact
 outputs. The two routes share the coupled transform, support conventions,
 and preceding eighth-order `S` statement; their new sixth-order `H`
-arithmetic and enumeration strategies are independent. This certificate
+arithmetic and enumeration strategies are independent. The C++ full scan
+uses packed modulo-8 affine fingerprints; the NumPy full scan constructs and
+evaluates every exact phase word directly. This certificate
 proves a finite Gaussian-residue obstruction, not historical priority and
 not nonexistence of all QLP-42 pairs.
 
@@ -91,6 +115,6 @@ Periodic Complementary Sequences and Applications*,
 graph search found no matching higher-order obstruction; apparent novelty is
 relative to those searches.
 
-The strongest next step is the full sixth-order `H` scan of the 375 remaining
-case-0/case-2 rows, starting with residue precomputation by reflected `B`
-mask to avoid repeating the exact phase joins.
+The strongest next step is a seventh-order `H` scan of the 77 remaining rows,
+using the exact quotient `Z[i]/((1+i)^7) ~= Z/8 x Z/16` and retaining the
+direct NumPy route as an independent check.

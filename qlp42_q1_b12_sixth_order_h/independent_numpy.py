@@ -127,8 +127,8 @@ def sign_masks(indices: list[int], negatives: int) -> list[int]:
     return [sum(1 << index for index in choice) for choice in combinations(indices, negatives)]
 
 
-def enumerate_h_a_needed():
-    positions = [position for position in range(N) if position not in A_S_SUPPORT]
+def enumerate_h_a_needed(a_s_support=A_S_SUPPORT):
+    positions = [position for position in range(N) if position not in a_s_support]
     assert len(positions) == 12
     needed = set()
     exact_assignments = 0

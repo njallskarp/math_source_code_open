@@ -209,7 +209,11 @@ struct HCacheKeyHash {
 
 }  // namespace
 
-int main(int argc, char** argv) {
+#ifndef B12_H_MAIN
+#define B12_H_MAIN main
+#endif
+
+int B12_H_MAIN(int argc, char** argv) {
     bool quiet = false;
     bool singleton_only = true;
     for (int j = 1; j < argc; ++j) {
@@ -234,6 +238,9 @@ int main(int argc, char** argv) {
     int eighth_rows = 0;
     int h_rows = 0;
     int remaining_case02_rows = 0;
+    std::set<uint32_t> remaining_case02_a_supports;
+    std::set<uint32_t> remaining_case02_b_masks;
+    std::set<uint64_t> remaining_case02_pairs;
 
     int entry_number = 0;
     for (const B12Entry& entry : inputs.entries) {
@@ -266,7 +273,14 @@ int main(int argc, char** argv) {
                 if (!eighth_feasible) continue;
                 ++eighth_orbits[case_number];
                 row_eighth = true;
-                if (case_number == 0 || case_number == 2) row_case02 = true;
+                if (case_number == 0 || case_number == 2) {
+                    row_case02 = true;
+                    remaining_case02_a_supports.insert(a_word);
+                    remaining_case02_b_masks.insert(entry.b_word);
+                    remaining_case02_pairs.insert(
+                        uint64_t(a_word) | (uint64_t(entry.b_word) << 21)
+                    );
+                }
                 if (singleton_only && case_number < 3) continue;
                 int orientation = H_CENTER_NEGATIVE[case_number];
                 HCacheKey key{a_word, entry.b_word, uint8_t(orientation)};
@@ -322,6 +336,12 @@ int main(int argc, char** argv) {
                   << "case4_sixth_h_surviving_orbits=" << h_orbits[4] << "\n"
                   << "remaining_case02_orbit_incidences=395\n"
                   << "remaining_case02_rows=" << remaining_case02_rows << "\n"
+                  << "remaining_case02_unique_a_supports="
+                  << remaining_case02_a_supports.size() << "\n"
+                  << "remaining_case02_unique_b_masks="
+                  << remaining_case02_b_masks.size() << "\n"
+                  << "remaining_case02_unique_pairs="
+                  << remaining_case02_pairs.size() << "\n"
                   << "h_classifications=" << h_cache.size() << "\n"
                   << "h_axes_examined=" << axes_examined << "\n"
                   << "h_affine_direct_audits=" << affine_audits << "\n"
