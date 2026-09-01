@@ -1,0 +1,22 @@
+$ ./verify_hyperplane_equation
+even_axis_words=1048576
+even_axis_rotation_orbits=49940
+rhs_zero_orbits=24946
+rhs_one_orbits=24994
+universal_normal=3ff
+row_xor_equals_axis_word=verified
+exact_support_equation=verified
+canonical_stream_records=49940
+certificate=verified
+
+$ ./verify_hyperplane_equation --stream | shasum -a 256
+03494099cbe4c7baff54bb27ebb1808af123badc133cf24d6b544bb441d9b2e7  -
+
+$ python3 independent_digest_check.py
+canonical_stream_sha256=03494099cbe4c7baff54bb27ebb1808af123badc133cf24d6b544bb441d9b2e7
+canonical_stream_records=49940
+rhs_zero_orbits=24946
+rhs_one_orbits=24994
+direct_subset_axis_words=256
+rank_coverage=0,1,3,4,6,7,9,10
+independent_digest_and_support_check=verified
