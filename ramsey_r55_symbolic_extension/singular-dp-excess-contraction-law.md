@@ -269,6 +269,9 @@ checker. Its source is pinned below.
 
 ## Provenance
 
+- Signed-\(K_4\) 44-clause starting point and opposite-color support
+  intersection: Discovery Net
+  `bafkreifx64z5j7fwu7ml3wcp25wb6i552ejabcnwkxfj4gi6mn4qwvlt6e`.
 - MU(2) terminal normal form: Discovery Net
   `bafkreieknunurio6rogct3cb7esf2nzeqopzv3o6bcy4expkrpzvo324s4`.
 - First-fan normalization \(m\le10\): Discovery Net
