@@ -1,0 +1,6 @@
+independent rho=21 matching-cover audit: PASS
+{"case": "exceptional_vertex_in_A", "kernel": "q=0 two-link representative", "matching_count": 40106, "max_cross_intersection": 1, "system_sha256": "dc9c6f924cf99691ce05ffa46f5bec1079a75b76995afe7a9d7011d5db6c3621"}
+{"case": "exceptional_vertex_outside_A", "kernel": "q=0 two-link representative", "matching_count": 40106, "max_cross_intersection": 1, "system_sha256": "e929ec3ac85bc34b1f5b5d028e23c7ae022c665170e1a30f752e4681d14e2cfd"}
+{"case": "exceptional_vertex_in_A", "kernel": "q=1 two-link representative", "matching_count": 40086, "max_cross_intersection": 1, "system_sha256": "2dbbd4b08c6674949ad51932e53b187a919c9a3c48ba1e9b8d53fcfca48d566c"}
+{"case": "exceptional_vertex_outside_A", "kernel": "q=1 two-link representative", "matching_count": 40086, "max_cross_intersection": 1, "system_sha256": "f4f019f0db6162f578c5eee423cb6928a8dc8030a609215af9d6341d4b8fd6b8"}
+negative_self_tests=2
