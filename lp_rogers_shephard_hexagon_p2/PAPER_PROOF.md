@@ -285,6 +285,24 @@ Lean consequently proves
 
 This completes the exact classification of all three upper-half jump faces.
 
+For literature calibration, Kotrbatý--Mouamine's general theorem
+(arXiv:2607.20387, Theorem 1.2) does not imply the strict inequality proved
+here.  When `n=p=q=2`, their coefficient is
+
+```text
+1 + 4 / binom(1,1/2) + 1 = pi+2,
+```
+
+because `binom(1,1/2)=4/pi`.  The improved symmetric-body coefficient of
+Fradelizi--Manui--Meyer--Ndiaye Corollary 29 is instead
+
+```text
+2 Gamma(3/2)^2 / Gamma(2) + 2 = pi/2+2.
+```
+
+Thus the simplex equality classification for the larger general bound does
+not decide equality at the smaller symmetric-body bound.
+
 The pinned Mathlib has curve-integral infrastructure but no planar Green/Jordan
 theorem, no convex support-function or mixed-area API, and no theorem
 identifying the closed oriented integral of this piecewise smooth convex

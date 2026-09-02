@@ -349,6 +349,15 @@ settles equality for a different planar `L_p` Rogers--Shephard inequality;
 its simplex equality cases do not resolve the symmetric-body conjecture
 studied here.
 
+Likewise, Kotrbatý--Mouamine
+[arXiv:2607.20387](https://arxiv.org/abs/2607.20387), Theorem 1.2, proves the
+general Firey `L_p` Rogers--Shephard inequality and its simplex equality
+cases.  That theorem does not subsume Corollary 29's improved symmetric-body
+bound.  In the planar `p=q=2` case its constant is `pi+2`, whereas Corollary
+29 has the strictly smaller constant `pi/2+2`.  This exact constant comparison
+corrects a Discovery Net review that suggested the general theorem implied
+the strict symmetric-hexagon result.
+
 The later paper
 [arXiv:2608.24081](https://arxiv.org/abs/2608.24081) studies volume-to-projection
 inequalities for `L_p`-sums and determinant-power analogues.  Its statement and
