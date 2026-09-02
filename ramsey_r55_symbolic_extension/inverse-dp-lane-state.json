@@ -184,5 +184,19 @@
       "method": "independent derivation, separate simple witnesses, and joint-gluing audit"
     }
   },
-  "next_falsifiable_target": "enumerate the two small marked kernel alphabets up to isomorphism and impose actual blue-clique, red/blue K5-free, and link-graph constraints with a completeness-proved decoding"
+  "rho21_global_blue_k5_kernel_criterion": {
+    "status": "proved with finite local-pattern audit; awaiting source publication and graph submission",
+    "global_clause_nodes": 23,
+    "ordinary_edge_vertices": 41,
+    "side_nodes": 10,
+    "forbidden_patterns": [
+      "any weighted triangle of total multiplicity at least 5",
+      "any weighted triangle of total multiplicity at least 4 with at least two side nodes",
+      "any non-side node with four incident edges into the side set"
+    ],
+    "criterion_quantifier": "necessary and sufficient for the selected blue supports to force no blue K5",
+    "abstract_survivors": "explicit q=0 and q=1 kernels both pass",
+    "scope": "selected-blue forced graph only; full red/blue completion and singular-DP ancestry unresolved"
+  },
+  "next_falsifiable_target": "add red K4-freeness, selected-red supports, and unspecified-edge completion to the role-marked global kernel with a completeness-proved projection"
 }

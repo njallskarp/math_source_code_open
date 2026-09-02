@@ -1,0 +1,45 @@
+{
+  "claim": "For the rho=21 global blue-clause kernel, selected supports force a blue K5 exactly through one of three weighted-kernel obstructions.",
+  "clause_nodes": 23,
+  "side_nodes": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+  "ordinary_edge_vertices": 41,
+  "pivot_hyperedge_size": 10,
+  "side_node_ordinary_degree": 3,
+  "non_side_node_ordinary_degree": 4,
+  "maximum_edge_multiplicity": 3,
+  "k5_free_criterion": {
+    "all_triangle_weight_maximum": 4,
+    "triangle_with_at_least_two_side_nodes_weight_maximum": 3,
+    "non_side_to_side_degree_maximum": 3
+  },
+  "local_pattern_enumeration_labels": 6,
+  "representatives": [
+    {
+      "name": "q=0 two-link representative",
+      "mixed_triangle_meets_A": false,
+      "edges": [
+        [4, 5], [4, 6], [4, 7], [4, 8], [9, 0], [9, 1],
+        [9, 2], [9, 3], [5, 6], [5, 7], [5, 8], [0, 1],
+        [0, 2], [3, 6], [3, 7], [8, 1], [8, 2], [6, 7],
+        [11, 12], [11, 13], [11, 14], [15, 16], [15, 17], [15, 18],
+        [19, 20], [19, 21], [19, 22], [10, 12], [10, 13], [14, 16],
+        [14, 17], [18, 20], [18, 21], [22, 12], [22, 13], [16, 17],
+        [20, 21], [1, 20], [2, 21], [3, 22], [0, 10]
+      ]
+    },
+    {
+      "name": "q=1 two-link representative",
+      "mixed_triangle_meets_A": true,
+      "edges": [
+        [3, 4], [3, 5], [3, 6], [3, 7], [8, 9], [8, 1],
+        [8, 2], [8, 4], [5, 6], [5, 7], [5, 9], [0, 1],
+        [0, 2], [4, 6], [4, 7], [9, 1], [9, 2], [6, 7],
+        [11, 12], [11, 13], [11, 14], [15, 16], [15, 17], [15, 18],
+        [19, 20], [19, 21], [19, 22], [10, 12], [10, 13], [14, 16],
+        [14, 17], [18, 20], [18, 21], [22, 12], [22, 13], [16, 17],
+        [20, 21], [0, 20], [1, 21], [2, 22], [0, 10]
+      ]
+    }
+  ],
+  "scope": "Exact for blue K5s forced by the 23 selected blue K4 supports. It neither supplies a full red/blue completion nor checks red K4-freeness or singular-DP ancestry."
+}

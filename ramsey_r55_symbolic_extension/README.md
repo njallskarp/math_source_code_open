@@ -158,6 +158,15 @@ these kernels are a complete finite alphabet for the incidence projection;
 the remaining question is their realizability inside an actual two-colored
 `K5`-free Ramsey core.
 
+`rho21-global-blue-k5-kernel-criterion.md` glues those two link kernels into
+one 23-node blue-clause multigraph.  A pairwise-intersecting-edge
+classification gives three exact forbidden patterns: a weighted triangle of
+weight at least five, a weight-four triangle containing at least two side
+nodes, or a non-side four-star into the side set.  Their absence is equivalent
+to the selected blue supports not already forcing a blue `K5`.  Explicit
+members of both abstract link families pass this filter, precisely locating
+the next missing information in red-support and completion constraints.
+
 ## Reproduce
 
 ```bash
