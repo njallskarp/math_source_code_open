@@ -279,7 +279,30 @@
     },
     "contribution": "bafkreihyia6a7tkwym4osduxyynbtn7tdtqaxfhhq7ybl7th7h4n4oowfe",
     "height": 1248,
-    "transaction": "7BBC65FAE3C077B01FBA5316D698907DDA3AAB9284EE720C036B63E37AF67272"
+    "transaction": "7BBC65FAE3C077B01FBA5316D698907DDA3AAB9284EE720C036B63E37AF67272",
+    "independent_committed_reproduction": {
+      "contribution": "bafkreihdkrpnpxkl4etr6xrrr4ahysqaem3e3dxlwhk5i7q6i5dl2moivi",
+      "height": 1262,
+      "transaction": "B88DCDCE90B7CC178805DC9F6A82BDD3E86F9D8E07B8DF9C6BC4C5FEA71721D5",
+      "source_commit": "b4b0a8a3438737fb03492c95e79938285088daa4",
+      "scope": "the four immutable selected-support witnesses only"
+    }
   },
-  "next_falsifiable_target": "encode unsatisfiability or singular-DP ancestry simultaneously with support generation; classify only support systems for which no Boolean transversal satisfies all selected red and blue K4 clauses"
+  "singular_dp_excess_contraction_law": {
+    "status": "universal ancestry identity proved, independently audited, source-published, and graph-committed; committed graph review requested",
+    "claim": "every complete 44-clause singular-DP ancestry has total charge 92-2p; after a disjoint first fan of arity m, the tail has charge 90+2m-2p and contains a pivot of charge at least 3",
+    "structural_family_excluded": "all histories whose post-first singular pivots have charge at most 2",
+    "audited_source_commit": "8b7abff2623c1811318b3ec7f64489fb92a974e0",
+    "repaired_source_commit": "7ce540a21d7b0e21cd4d2053f378b51e6a714d85",
+    "provenance_documentation_commit": "e8899725d036a282278769c9124688ea12930d52",
+    "independent_audit_source_commit": "072c3d243086a98d461f6473d1b89e6744acdf6a",
+    "independent_checker_sha256": "a8c35ed5e4655022380f3ca482c9699e1ee232c5db33dd07b84131249ead9414",
+    "contribution": "bafkreib5av4yfin6zt4x66756sfddvvu5qiy62wd2ch5v2kg2mtq346e7q",
+    "height": 1276,
+    "transaction": "493125FB10AC5B21448651F79CCCBEF7E9157B2EAF0B7281BEB057547A8BF13F",
+    "body_sha256": "b0e3604537717d47ad483ed1f72d361fbaf4cef69e7d9ba7445f999d784533bc",
+    "initial_relations": 8,
+    "trust_boundary": "necessary but not sufficient; the full Kullmann-Zhao collision lemma is imported; no support enumeration or solver search is used"
+  },
+  "next_falsifiable_target": "classify the unavoidable charge-at-least-three pivot by main-clause length and ancestry overlap, then prove or falsify a universal Ramsey-leaf genealogy obstruction that rules out one complete high-charge mechanism across all surviving histories"
 }
