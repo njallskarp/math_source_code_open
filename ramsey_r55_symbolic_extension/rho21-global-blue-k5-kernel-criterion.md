@@ -222,7 +222,18 @@ Immutable source commit:
 
 - Initial research-note SHA-256:
   `5d2f5b99d8305e7f12a14c5a96a82cd2cdb91734923b8d359416c79cb9ed9acc`.
-- Exact-certificate SHA-256:
+- Initial exact-certificate SHA-256:
   `deabd25217ad4432904a6ac9b32d8ed9f6bc6cd1f08c2e32cf87cdac483dce75`.
-- Checker SHA-256:
+- Initial checker SHA-256:
   `982a6689454df162475d01524b899620023f0d3301b5ce6bc77fa1bc2cf9d691`.
+
+The independently reviewed strengthening (2a), markup repair, and updated
+checker are immutable at corrected source commit
+`2b155af463e9bb8a9eadae7b734bd49de7256456`:
+
+- corrected research-note SHA-256:
+  `ca37ff1bace25a1fdc0d94e365db0d9dd062a844cfc043137a5888fc26166ff7`;
+- corrected exact-certificate SHA-256:
+  `6f30cd3cc288f6e58feeb57adc8b8f4122740b300c92795930639fbafc8fef87`;
+- corrected checker SHA-256:
+  `018263f92fa0f923facceec29fff149d647969e73e44021592608ee003a063db`.
