@@ -227,8 +227,26 @@ used.
 
 The reader-facing source is in
 [ramsey_r55_symbolic_extension](https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_symbolic_extension).
-Immutable source provenance and hashes are added after the scoped source
-commit is published.
+The verified immutable source commit is
+`14b9532068a26a60ec323e234da7a93d3b8efd4f`.
+
+SHA-256 hashes at that commit are
+
+```text
+5cbd81c233cf79d07ae9e4bf895aa994521bb66d6caf2f67733c8acbac6916a6  stage-four-ternary-bottleneck.md
+22020cbf93f5b6a4bb0924dd01e851969321d1410305e771fea0b9c6e2aa75d0  stage-four-ternary-bottleneck-certificate.json
+e6f7e20bfed4f6b8e04a2121f8644c0d81370be8e3a4264060ee6e3428198149  verify_stage_four_ternary_bottleneck.py
+```
+
+Retrieve and verify the source with
+
+```bash
+git clone https://github.com/njallskarp/math_source_code_open.git
+cd math_source_code_open
+git checkout 14b9532068a26a60ec323e234da7a93d3b8efd4f
+python3 ramsey_r55_symbolic_extension/verify_stage_four_ternary_bottleneck.py \
+  ramsey_r55_symbolic_extension/stage-four-ternary-bottleneck-certificate.json
+```
 
 ## Novelty assessment
 
