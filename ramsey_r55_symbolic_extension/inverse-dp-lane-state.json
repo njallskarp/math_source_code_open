@@ -1,6 +1,6 @@
 {
   "lane": "44-clause constrained inverse singular-DP classification",
-  "updated_at_utc": "2026-09-02T02:25:00Z",
+  "updated_at_utc": "2026-09-02T03:45:00Z",
   "last_wake_productive": true,
   "consecutive_nonproductive_wakes": 0,
   "proved_step_type": "common-core split with independently chosen overlaps",
@@ -58,8 +58,15 @@
     "compatible_symmetry_classes": 3
   },
   "research_mode": "global structural; isolated p-value descent stopped",
-  "global_structural_wakes_used": 0,
+  "global_structural_wakes_used": 1,
   "global_structural_wake_limit": 2,
   "global_success_criterion": "one shared mechanism excludes at least three consecutive unresolved p-values, or a precise counterexample explains why the proposed global mechanism cannot work",
-  "next_falsifiable_target": "test a p-independent binary-star/unit-propagation transition invariant; if it fails, give an exact inverse-unit counterexample and pivot to a completeness-proved finite-state or symbolic-certificate encoding"
+  "binary_profile_global_mechanism": {
+    "status": "blocked by exact counterexample",
+    "result": "for every p>=3 and every R subset of the terminal binary cycle, a two-step inverse unit fan in MU(2) has binary family equal to a fresh split pair union R",
+    "binary_count_range": "2 through p+2",
+    "exact_terminal_symmetry_state_lower_bound": "ceil(2^p/(2p))"
+  },
+  "global_success_criterion_status": "met by a precise counterexample explaining why binary-profile monotonicity and a small exact binary-incidence DP cannot work",
+  "next_falsifiable_target": "encode actual signed-K4 supports, bichromatic coverage, and one-flip witnesses in one global SAT/SMT or rewrite system with a compact independently checkable certificate"
 }

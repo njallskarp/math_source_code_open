@@ -1,0 +1,33 @@
+{
+  "claim": "unit-fan universality defeats binary-profile monotonicity",
+  "terminal_p_minimum": 3,
+  "construction": {
+    "selected_when_binary_subset_is_proper": "Z_p minus R",
+    "selected_when_binary_subset_is_full_cycle": "{L+}",
+    "first_new_variable": "u",
+    "second_new_variable": "x",
+    "binary_family_formula": "{{x,u},{-x,u}} union R"
+  },
+  "universal_consequences": {
+    "binary_count_range": "2 through p+2 inclusive",
+    "terminal_automorphism_group_order": "2p",
+    "canonical_binary_subset_state_lower_bound": "ceil(2^p/(2p))"
+  },
+  "exhaustive_check_range": {
+    "minimum_p": 3,
+    "maximum_p": 12
+  },
+  "binary_subset_orbits_under_terminal_symmetry": {
+    "3": 4,
+    "4": 6,
+    "5": 8,
+    "6": 13,
+    "7": 18,
+    "8": 30,
+    "9": 46,
+    "10": 78,
+    "11": 126,
+    "12": 224
+  },
+  "scope": "abstract collision-free inverse singular-DP lifts of F_p in MU(2); Ramsey-core realizability is not asserted"
+}

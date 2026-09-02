@@ -110,6 +110,15 @@ optional, yielding exactly four labeled fans and three isomorphism classes.
 The new checker derives completeness, verifies deletion witnesses and both DP
 steps, and checks the complement-reversal symmetry.
 
+`unit-fan-universality-counterexample.md` then stops the one-value-at-a-time
+descent and tests the proposed global binary-profile mechanism. For every
+`p >= 3` and every subset `R` of the terminal binary cycle it constructs a
+two-step inverse singular lift in `MU(2)` whose binaries are exactly a fresh
+two-clause unit split together with `R`. Binary count is therefore
+nonmonotone, the global-star flag is arbitrary, and an exact incidence state
+space modulo terminal symmetry has at least `ceil(2^p/(2p))` states. The
+result redirects the program to Ramsey-support-aware symbolic certificates.
+
 ## Reproduce
 
 ```bash
