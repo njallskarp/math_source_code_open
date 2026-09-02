@@ -1,0 +1,71 @@
+{
+  "claim": "There is no spectral pair of cardinality 12 in Z/2310Z.",
+  "modulus": {
+    "N": 2310,
+    "base_n": 210,
+    "boundary_prime_p": 11,
+    "crt": "Z/2310Z = Z/210Z x Z/11Z"
+  },
+  "hypothetical_cardinality": 12,
+  "imported_results": [
+    {
+      "name": "spectral-to-tiling in Z/210Z",
+      "source": "arXiv:2011.09578",
+      "use": "A projected spectral 12-set would tile, impossible since 12 does not divide 210."
+    },
+    {
+      "name": "levelwise cuboid lemma",
+      "source": "arXiv:2607.26534; arXiv:2202.07555",
+      "use": "A failed Phi_(11d)-to-Phi_d descent makes a cuboid evaluation a nonzero multiple of 11."
+    },
+    {
+      "name": "spectral mask-zero characterization",
+      "source": "standard finite cyclic Fourier characterization",
+      "use": "Differences in either member force cyclotomic zeros of the opposite mask."
+    }
+  ],
+  "proof_map": [
+    {
+      "id": "phi11_absent",
+      "statement": "Phi_11 divides neither mask because Phi_11(1)=11 does not divide 12."
+    },
+    {
+      "id": "injective_projections",
+      "depends_on": ["phi11_absent"],
+      "statement": "Both projections to Z/210Z are injective; a collision creates an order-11 difference and forces Phi_11 in the opposite mask."
+    },
+    {
+      "id": "descent_failure",
+      "depends_on": ["injective_projections"],
+      "statement": "For each mask, projected spectrality must fail, yielding d|210 with Phi_(11d) present and Phi_d absent."
+    },
+    {
+      "id": "section_pattern",
+      "depends_on": ["descent_failure"],
+      "statement": "The levelwise cuboid identity and 11 <= |evaluation| <= 12 force all 11 levels nonempty, hence the exact pattern (2,1^10), for both masks."
+    },
+    {
+      "id": "coefficient_equality",
+      "depends_on": ["section_pattern"],
+      "statement": "For every cross-level spectrum difference, irreducibility of Phi_11 over Q(zeta_d) forces all eleven section Fourier sums of A to be equal."
+    },
+    {
+      "id": "cube_root_constraint",
+      "depends_on": ["coefficient_equality"],
+      "statement": "The double section is a sum of two unit phases with unit modulus, so their ratio is a primitive cube root."
+    },
+    {
+      "id": "capacity_contradiction",
+      "depends_on": ["cube_root_constraint", "section_pattern"],
+      "statement": "Relative to a singleton spectrum level, eleven remaining phases lie in two classes; cross-level equality is forbidden and the unique double level permits at most three points."
+    }
+  ],
+  "conclusion": "The hypothetical spectral pair cannot exist.",
+  "computation": {
+    "subset_enumeration": false,
+    "solver": false,
+    "floating_point": false,
+    "certificate_role": "dependency audit only"
+  },
+  "novelty": "search-relative application; no historical priority claim"
+}
