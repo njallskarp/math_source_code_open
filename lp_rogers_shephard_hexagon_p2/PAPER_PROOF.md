@@ -174,14 +174,21 @@ so normalized near-equality is equivalent to
 The geometric proof above is presently a human proof.  Lean checks that the
 actual set `[0,u]+[0,v]+[0,w]` has support equal to the sum of the positive
 generator pairings and checks the resulting three-generator squared-support
-identity.  For Sector II it also checks `h=√F`, its derivative, the
+identity.  For the normalized set it proves that this literal support and its
+reflection restrict to the displayed Sector II and Sector III support squares
+on the corresponding closed angular intervals.  For Sector II it also checks
+`h=√F`, its derivative, the
 determinant decomposition (4), both endpoint values, and the exact integral
 reduction to the curvature integral minus `ab`.  It proves that the phase
 denominator `U=a cos θ+(1+b) sin θ` stays positive on the closed sector,
 differentiates the branch-correct primitive
 `-(1+b) arctan(cos θ/U)`, checks both endpoint phases, and therefore proves
-the complete Sector II integral `(1+b)φ-ab`.  Lean additionally checks the
-angle bounds, the algebraic deficit identity, and strict positivity of the
-final expression.  Lean does not yet check the normal-form theorem, the
-planar support-function area formula, or the complete Sector I and III
-integrals.
+the complete Sector II integral `(1+b)φ-ab`.  It then proves the exact
+reflection identity under `η=3π/2-θ`, the complementary-angle formula
+`arctan(a/b)=π/2-arctan(b/a)`, and derives the complete Sector III integral
+`(1+a)(π/2-φ)-ab` by interval substitution and parameter exchange.  Lean
+additionally checks the angle bounds, the algebraic deficit identity, and
+strict positivity of the final expression.  Lean does not yet check the
+normal-form theorem, the planar support-function/Lebesgue-area formula, the
+Sector I integral, or the end-to-end assembly of the checked sector formulas
+into an area theorem.

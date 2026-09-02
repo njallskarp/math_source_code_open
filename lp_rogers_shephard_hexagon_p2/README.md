@@ -50,6 +50,14 @@ The Lean development checks:
 - `sectorTwoBoundary_change`;
 - `integral_sectorTwoDensity_eq_curvature_sub`;
 - `integral_sectorTwoDensity`;
+- `sectorThreeSq_reflect`;
+- `sectorThreeBoundary_reflect`;
+- `sectorThreeDensity_reflect`;
+- `arctan_div_swap`;
+- `integral_sectorThreeDensity`;
+- `normalizedFireySupportSq_eq_positiveParts`;
+- `normalizedFireySupportSq_eq_sectorTwoSq_on_sector`;
+- `normalizedFireySupportSq_eq_sectorThreeSq_on_sector`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -57,9 +65,11 @@ The Lean development checks:
 
 The support theorem is set-level: for the actual Minkowski sum
 `[0,u]+[0,v]+[0,w]`, the subtype-indexed supremum of `inner x ξ` is the sum
-of the three positive generator pairings.  Lean also checks the Sector II
-square-root derivative, the pointwise determinant decomposition, and the
-exact integral reduction
+of the three positive generator pairings.  In the normalized Euclidean plane,
+Lean now specializes this literal set support and its reflection to the exact
+Sector II and Sector III squared-support formulas on their closed angular
+intervals.  Lean also checks the Sector II square-root derivative, the
+pointwise determinant decomposition, and the exact integral reduction
 
 ```text
 ∫ (h²-(h')²) = ∫ (1+b)²/F - ab,
@@ -75,6 +85,18 @@ full exact contribution
 ```text
 ∫_{π/2}^{π/2+φ} (h²-(h')²) = (1+b)φ-ab.
 ```
+
+The orientation-reversing substitution `η=3π/2-θ`, together with the checked
+identity `arctan(a/b)=π/2-arctan(b/a)`, transports that theorem without
+duplicating its calculus and proves the full third-sector contribution
+
+```text
+∫_{π/2+φ}^{π} (h²-(h')²) = (1+a)(π/2-φ)-ab.
+```
+
+The set-level support restriction and the scalar integral evaluations are
+separate checked theorems; a planar support-area theorem is still required to
+assemble them into a Lebesgue-area statement.
 
 Pinned environment:
 
