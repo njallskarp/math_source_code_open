@@ -94,6 +94,14 @@ sixth-stage alternative. This excludes `F_35` and leaves `2 <= p <= 34`.
 The accompanying JSON certificate and standard-library checker audit the
 finite cycle-incidence and arithmetic layer.
 
+`stage-four-ternary-bottleneck.md` pushes the exact inverse chain one step
+further. The common-tail rule allows at most one ternary clause in `G_4`, but
+the independently verified `p=34` unit chain has two exhaustive sixth-step
+parent shapes and either one pulls back to four distinct ternaries in `G_4`.
+This contradiction excludes `F_34`, leaving `2 <= p <= 33`. A compact exact
+checker constructs both parent patterns, replays their DP reductions, and
+audits all four labeled terminal unit-fan choices.
+
 ## Reproduce
 
 ```bash

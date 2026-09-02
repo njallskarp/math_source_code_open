@@ -1,0 +1,41 @@
+{
+  "claim": "stage-four ternary bottleneck excludes F_34",
+  "core_variables": 42,
+  "terminal_p": 34,
+  "singular_steps": 8,
+  "stage_floor_through_five": [4, 4, 4, 4, 3, 2],
+  "maximum_ternary_clauses_after_step_four": 1,
+  "maximum_binary_clauses_after_step_four": 0,
+  "maximum_binary_clauses_after_step_five": 1,
+  "forced_stage_six_binaries": [[2, 1], [-2, 1]],
+  "forced_stage_seven_unit": [1],
+  "sixth_step_parent_patterns": [
+    {
+      "name": "singleton-main-tail",
+      "stage_four_forced_ternaries": [
+        [4, 3, 1],
+        [-4, 3, 1],
+        [-3, 1, 2],
+        [-3, 1, -2]
+      ],
+      "step_five_pivot": 4,
+      "step_six_pivot": 3
+    },
+    {
+      "name": "two-literal-main-tail",
+      "stage_four_forced_ternaries": [
+        [4, -2, 1],
+        [-4, -2, 1],
+        [3, 2, 1],
+        [-3, 2, 1]
+      ],
+      "step_five_pivot": 4,
+      "step_six_pivot": 3
+    }
+  ],
+  "labeled_final_unit_fan_choices": 4,
+  "excluded_p": [34],
+  "previously_excluded_p": [35, 36, 37, 38, 39, 40, 41],
+  "surviving_p_minimum": 2,
+  "surviving_p_maximum": 33
+}
