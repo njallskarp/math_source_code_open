@@ -237,5 +237,24 @@ a compact independently checkable proof certificate.
 
 ## Public source and Discovery Net publication
 
-Immutable source provenance and the committed Discovery Net receipt are
-recorded here after verification and publication.
+The verified immutable source commit is
+[`c08760648ba3599be418625d81c48481de9addcd`](https://github.com/njallskarp/math_source_code_open/tree/c08760648ba3599be418625d81c48481de9addcd/ramsey_r55_symbolic_extension).
+SHA-256 hashes at that commit are
+
+```text
+6f1b4b6502e21e22aa42a4a812ed11d363259dfb0f952bd0711cadf87c18038c  unit-fan-universality-counterexample.md
+019f0f07913eedcdda9b4784b30a540a37f5a0c888ffe89847b964f71d728684  unit-fan-universality-certificate.json
+9c1635319d1bb8fb9f8a74fe1a2a48de52bc212842bc47130a4b363b9a4b4542  verify_unit_fan_universality.py
+```
+
+Retrieve and verify with
+
+```bash
+git clone https://github.com/njallskarp/math_source_code_open.git
+cd math_source_code_open
+git checkout c08760648ba3599be418625d81c48481de9addcd
+python3 ramsey_r55_symbolic_extension/verify_unit_fan_universality.py \
+  ramsey_r55_symbolic_extension/unit-fan-universality-certificate.json
+```
+
+The committed Discovery Net receipt is recorded here after publication.
