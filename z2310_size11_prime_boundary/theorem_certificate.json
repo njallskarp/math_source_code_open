@@ -1,0 +1,61 @@
+{
+  "title": "Prime-boundary lifting for square-free cyclic groups",
+  "status": "proved theorem",
+  "hypotheses": {
+    "n": "square-free positive integer",
+    "p": "prime with gcd(n,p)=1",
+    "base_case": "every spectral subset of Z/nZ tiles",
+    "spectral_pair": "(A,Lambda) in Z/(np)Z",
+    "cardinality": "|A|=|Lambda|=p"
+  },
+  "conclusion": {
+    "mask_zeros": [
+      "Phi_p divides m_A",
+      "Phi_p divides m_Lambda"
+    ],
+    "structure": "A and Lambda have one point on every p-level",
+    "tiling": "both tile by Z/nZ x {0}"
+  },
+  "imported_results": [
+    "spectral-pair symmetry",
+    "prime cyclotomic zero is equivalent to equal p-level cardinalities",
+    "square-free levelwise cube rule",
+    "spectral-to-tiling in Z/nZ"
+  ],
+  "proof_steps": [
+    {
+      "name": "equality-case descent",
+      "claim": "If |E|=p and Phi_p does not divide m_E, then Phi_(dp)|m_E implies Phi_d|m_E",
+      "mechanism": "A nonzero cuboid evaluation is a multiple of p and bounded by p; equality forces every p-level to be nonempty, hence singleton, contradicting the missing Phi_p zero"
+    },
+    {
+      "name": "both-absent exclusion",
+      "claim": "Phi_p cannot be absent from both masks",
+      "mechanism": "Both projections are injective; equality-case descent makes the p-image spectral in Z/nZ with forbidden cardinality p"
+    },
+    {
+      "name": "one-sided exclusion",
+      "claim": "Phi_p absent from m_A and present in m_Lambda is impossible",
+      "mechanism": "Lambda is injective over Z/nZ and has one point per p-level; levelwise descent makes its projection p pairwise orthogonal characters on every nonempty A-level, forcing a size-p spectral set in Z/nZ"
+    },
+    {
+      "name": "conclusion",
+      "claim": "Both masks contain Phi_p",
+      "mechanism": "The preceding alternatives exhaust the spectral-pair cases; apply symmetry"
+    }
+  ],
+  "specialization": {
+    "n": 210,
+    "p": 11,
+    "N": 2310,
+    "base_theorem": "Fuglede holds for cyclic groups of order pqrs",
+    "result": "every 11-point spectral subset of Z/2310Z tiles"
+  },
+  "trust_boundary": {
+    "formal_proof": false,
+    "solver": false,
+    "enumeration": false,
+    "floating_point": false,
+    "role": "machine-readable audit map of the human-checkable proof"
+  }
+}
