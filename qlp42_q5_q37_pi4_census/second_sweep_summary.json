@@ -1,7 +1,7 @@
 {
   "claim_scope": "bounded search-method result only; no unsatisfiability claim",
   "input_certificate": {
-    "path": "qlp42_q5_q37_pi4_census/pi4_witnesses.tsv",
+    "path": "qlp42_q5_q37_pi4_census/first_sweep_witnesses.tsv",
     "sha256": "5a538b693c46ebdee94a2b8d5999d06072b8a3fe4ab5f1a78a36cb49616f76cf",
     "witnesses": 4
   },

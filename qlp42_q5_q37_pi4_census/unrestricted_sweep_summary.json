@@ -1,0 +1,45 @@
+{
+  "claim_scope": "positive witness lower bound only; no unsatisfiability claim",
+  "certificate": {
+    "path": "qlp42_q5_q37_pi4_census/pi4_witnesses.tsv",
+    "sha256": "87db049b4e4cf7e52245c3e1ac4eb1340768c6216786abb632ca4b842c176767",
+    "witnesses": 67
+  },
+  "coverage": {
+    "q37_case_counts": {"0": 6, "1": 2, "2": 0, "3": 6, "4": 9, "5": 6},
+    "q37_rows": 29,
+    "q37_support_orbits": [0, 1, 2, 4, 6, 7, 8, 9, 10, 11, 13, 14, 16],
+    "q5_case_counts": {"0": 6, "1": 6, "2": 9, "3": 8, "4": 6, "5": 3},
+    "q5_rows": 38,
+    "q5_support_orbits": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  },
+  "encoding": {
+    "cnf_clause_range": [262531, 301075],
+    "cnf_variable_range": [70543, 80155],
+    "decoder_sha256": "00b14d497c86a3c4e395b5afaee11c51bbc76aa37d806921d2e04ecc84ec1773",
+    "encoder_sha256": "26fcf3b5d1e6859c5a1b5285c0a5bbcc0194e2c367639cab1a6979c70c192024",
+    "exporter_sha256": "3f2f15ca7c7113f2aee0ee94b4c09ade68d1c7dd462f137eeceebb4dd306a112",
+    "runner_sha256": "b22dac2016f12d988d2c62846d8c95f6d8087e730e441d1eb22c82479ad3b907",
+    "unique_cnf_hashes": 211
+  },
+  "execution": {
+    "cadical_commit": "c60730422e758ef1cebe7aeddf2dda31c996bf04",
+    "cadical_version": "3.0.1",
+    "completed": 211,
+    "evidence_checkpoint_sha256": "37d885ebfc9c60884306181d70ac42a8dcd12d2f93c3d5f4d467395c7564bdea",
+    "new_sat_witnesses": 62,
+    "python_version": "3.12.12",
+    "sat_wall_seconds_range": [9.974146, 59.993383],
+    "scheduled": 211,
+    "solver_unsat": 0,
+    "time_limit_seconds_per_cell": 60,
+    "unknown_time_limited": 149,
+    "worker_processes": 8
+  },
+  "initial_manifest": {
+    "path": "qlp42_q5_q37_pi4_census/unrestricted_initial_witnesses.tsv",
+    "sha256": "90f601ba1e3b178398064dbb4f24b34f94763df030c800de91a3e04cea5479d9",
+    "witnesses": 5
+  },
+  "interpretation": "All 18 q=5 support orbits have a pi^4 witness. The q=37 branch has witnesses on 13 of 18 support orbits. Every remaining cell is unknown; no timeout or missing case is an exclusion."
+}

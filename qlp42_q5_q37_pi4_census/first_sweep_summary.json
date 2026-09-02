@@ -13,7 +13,7 @@
     "qlp42_q5_q37_pi3_witnesses/verify_pi3_witnesses.py": "951fab9d89dbca39a70b1585cfe5dc2f52db5e16aa132134d3d1b07faef056fa"
   },
   "output_manifest": {
-    "path": "qlp42_q5_q37_pi4_census/pi4_witnesses.tsv",
+    "path": "qlp42_q5_q37_pi4_census/first_sweep_witnesses.tsv",
     "sha256": "5a538b693c46ebdee94a2b8d5999d06072b8a3fe4ab5f1a78a36cb49616f76cf",
     "witnesses": 4
   },

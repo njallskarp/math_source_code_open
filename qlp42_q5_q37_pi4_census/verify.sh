@@ -9,6 +9,7 @@ build=$(mktemp -d "${TMPDIR:-/tmp}/qlp42-pi4-verify.XXXXXX")
 trap 'rm -rf "$build"' EXIT
 
 python3 "$directory/verify_pi4_witnesses.py" "$manifest"
+python3 "$directory/verify_pi4_manifest_stats.py"
 
 if command -v g++-16 >/dev/null 2>&1; then
   compiler=$(command -v g++-16)
