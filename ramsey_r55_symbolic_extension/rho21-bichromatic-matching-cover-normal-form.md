@@ -241,10 +241,13 @@ enumeration is promoted to a universal theorem.
 The reader-facing source is
 [rho21-bichromatic-matching-cover-normal-form.md](https://github.com/njallskarp/math_source_code_open/blob/main/ramsey_r55_symbolic_extension/rho21-bichromatic-matching-cover-normal-form.md).
 
-Immutable source commit: `SOURCE_COMMIT_PLACEHOLDER`.
+Immutable source commit: `0cdc0f5c50b75898d2cf5a4f7a5a4fe8b3560711`.
 
-- initial research-note SHA-256: `NOTE_SHA256_PLACEHOLDER`;
-- exact-certificate SHA-256: `CERTIFICATE_SHA256_PLACEHOLDER`;
-- checker SHA-256: `CHECKER_SHA256_PLACEHOLDER`.
+- initial research-note SHA-256:
+  `4ef075c151470aeb29225e40603022e33eff45e7623680521010831b448358f1`;
+- exact-certificate SHA-256:
+  `01f6b874013d4a85e86b408dbedd04c56e9f03f87da34fff24d3e2b0972e9424`;
+- checker SHA-256:
+  `6a91b363c4903a342518b9989bf2e8a53d75b85fc577f5e3127964dc5fe82ac1`.
 
 Discovery Net publication status: pending independent prepublication review.
