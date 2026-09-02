@@ -362,12 +362,30 @@ Together these are precisely the two open curved pairs, the two opposite
 Sector I vertices, and all six classified jump segments.  Frontier coverage
 is therefore no longer an assumption.
 
+`CyclicBoundaryPath.lean` packages that atlas as a genuine bundled topological
+path rather than a set-valued boundary description.  It proves continuity of
+the two canonical curved parametrizations from the already checked coordinate
+derivatives, defines a five-piece path from the Sector I vertex to its
+negative (first jump, Sector II arc, middle jump, Sector III arc, closing
+jump), and concatenates it with its pointwise negative.  The resulting
+`normalizedCyclicBoundaryPath` is closed by construction.  The final theorem
+`range_normalizedCyclicBoundaryPath` proves the exact set identity
+
+```text
+Set.range (normalizedCyclicBoundaryPath a b ha hb)
+  = frontier (normalizedLpSumTwo a b).
+```
+
+Thus endpoint matching, global continuity, and image equality with the actual
+halfspace body's topological frontier are now checked.  No area or desired
+formula is hidden in the path definition.
+
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
-area.  The smallest remaining analytic-geometry bridge is now to package the
-explicit frontier atlas as one cyclic piecewise path, prove its endpoint,
-orientation, and injectivity properties, and identify its already checked
+area.  The smallest remaining analytic-geometry bridge is now to prove that
+the checked cyclic path is injective except at its common initial/final
+endpoint, establish positive orientation, and identify its already checked
 oriented integral with twice Lebesgue area.  The present development supplies
 exact halfspace membership, support equality, compactness, supporting normals,
 the complete normal-chamber partition and frontier coverage, all six jump-face

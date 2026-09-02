@@ -15,3 +15,4 @@ import L2Hexagon.ClosingExposedFace
 import L2Hexagon.LowerFacesAndCurvedUniqueness
 import L2Hexagon.FrontierSupport
 import L2Hexagon.FrontierAtlas
+import L2Hexagon.CyclicBoundaryPath
