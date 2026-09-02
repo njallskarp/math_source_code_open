@@ -189,8 +189,27 @@ status or enumeration.
 
 The reader-facing directory is
 [ramsey_r55_symbolic_extension](https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_symbolic_extension).
-Immutable source provenance and SHA-256 hashes are inserted after the scoped
-source commit is published.
+The theorem source, compact certificate, and checker are pinned at immutable
+source commit
+[320b52ec363b48643337e88192a340477b792fa6](https://github.com/njallskarp/math_source_code_open/tree/320b52ec363b48643337e88192a340477b792fa6/ramsey_r55_symbolic_extension).
+
+Their SHA-256 hashes at that commit are
+
+```text
+8de28e13cbdb0494035441597f660afa0c158e2a4db6ec98156bb83d35550b48  binary-star-unit-barrier.md
+340690673291b4470e7175fc5d33db55095f5da576cd2bc10de28e77e7e100e8  binary-star-unit-certificate.json
+ff6aefa0368eac7da0a2d29512d3e93ad70236ad79159c11738f9d311e1088f4  verify_binary_star_unit_barrier.py
+```
+
+Retrieve and verify the source with
+
+```bash
+git clone https://github.com/njallskarp/math_source_code_open.git
+cd math_source_code_open
+git checkout 320b52ec363b48643337e88192a340477b792fa6
+python3 ramsey_r55_symbolic_extension/verify_binary_star_unit_barrier.py \
+  ramsey_r55_symbolic_extension/binary-star-unit-certificate.json
+```
 
 ## Novelty assessment
 
