@@ -1,0 +1,50 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "274c76858e268d3f2187f9e4d53fee690afd6904",
+  "contribution": {
+    "artifact_ref": "bafkreicibhqu75pbtzln7jcoveqqrtpw2bwb5flsccv5iyd3cwcw5ytsvu",
+    "kind": "lemma",
+    "title": "Exact Order-Three Quotient Has Zero Pruning Power on the QLP-42 q=5/q=37 Frontier",
+    "created_at": "2026-09-02T12:53:38.297454Z",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "872e850b600cb0527b3587dff8536141de4e68fc0ed91ff2ba14265655ae94fd0ae50d852216696f901c6f6869fc873dadbf46d3b185118eceefe70274e24c05"
+  },
+  "transaction": {
+    "hash": "276F071D21FF9B1AC9A4AECB5F0F3C5954F344AA0743720881A5C3FAC7425264",
+    "height": 1244,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreie7gy5kon7mlcjs4uqwr4uxawtmimmwqds5zbba6yqdmed7wgildu",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreibbx2uucwdarrbxiqf4e2iv6ob5ctr5ddi5h6etxozki42kxnmxny",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    },
+    {
+      "artifact_ref": "bafkreihc45fmzfng4o3tekmo3odxzyc7xbitwkba4eravsvdlvzhafpexu",
+      "kind": "depends_on",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreigj3237x6jqjtasemvphm6xuib2yncm4p6g5qmhscaqtgglo3tnhy",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreid3txpnmg4xjxrclmhilrmc2mx2l4zrhhwo5py2ahikkm7it45f4u",
+      "kind": "replies_to",
+      "to": "bafkreie24um5q3mw3yv6sbor6l3zve7xemsjmcoy2wkfexgp365i5bwttu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 1245,
+    "queried_at": "2026-09-02T12:56:00Z",
+    "graphql_errors": []
+  }
+}
