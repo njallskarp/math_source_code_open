@@ -1,0 +1,29 @@
+{
+  "claim": "Every one of the four published rho=21 bichromatic matching-cover witnesses is satisfiable as a signed-K4 extension CNF, so selected-support incidence, cross-color intersection, bichromatic degree, and absence of a K5 forced by selected supports do not imply an extension obstruction.",
+  "base_certificate": "rho21-bichromatic-matching-cover-certificate.json",
+  "base_certificate_sha256": "01f6b874013d4a85e86b408dbedd04c56e9f03f87da34fff24d3e2b0972e9424",
+  "variable_convention": "x_v=1 means the prospective vertex-edge to v is red; a selected red K4 gives the clause OR_{v in R} not x_v and a selected blue K4 gives OR_{v in B} x_v.",
+  "witnesses": [
+    {
+      "kernel_representative": "q=0 two-link representative",
+      "demand_case": "exceptional_vertex_in_A",
+      "assignment_bits_v0_through_v41": "000100010010000001000000000000000010011011"
+    },
+    {
+      "kernel_representative": "q=0 two-link representative",
+      "demand_case": "exceptional_vertex_outside_A",
+      "assignment_bits_v0_through_v41": "000100010010000001000000000000000010011011"
+    },
+    {
+      "kernel_representative": "q=1 two-link representative",
+      "demand_case": "exceptional_vertex_in_A",
+      "assignment_bits_v0_through_v41": "000100010010000001000000000000000000101111"
+    },
+    {
+      "kernel_representative": "q=1 two-link representative",
+      "demand_case": "exceptional_vertex_outside_A",
+      "assignment_bits_v0_through_v41": "000100010010000001000000000000000000101111"
+    }
+  ],
+  "scope": "This exactly refutes sufficiency of the published finite witness systems as extension obstructions. It neither proves that every matching-cover solution is satisfiable nor refutes the hypothetical existence of a different 44-clause minimally unsatisfiable signed-K4 system."
+}
