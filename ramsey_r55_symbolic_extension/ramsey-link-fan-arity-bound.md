@@ -232,5 +232,24 @@ all 44-clause obstructions, or claim realizability of any surviving fan.
 
 ## Public source and Discovery Net publication
 
-Immutable source provenance and the committed Discovery Net receipt are
-recorded here after verification and publication.
+The verified immutable source commit is
+[ef64763ae01946b7422a14c020f2c2ef128d09e9](https://github.com/njallskarp/math_source_code_open/tree/ef64763ae01946b7422a14c020f2c2ef128d09e9/ramsey_r55_symbolic_extension).
+SHA-256 hashes at that commit are
+
+~~~text
+db5bdc0803c48824cdc06beb9fd04f564b39f9c5994122194e6bd65dfbb4841f  ramsey-link-fan-arity-bound.md
+b4cc562d1ccf001254e129c460fe6dc0de134cf496f17f7c0d6986b90a858495  ramsey-link-fan-arity-certificate.json
+36777e6392b8a625d13fc3404954c418859c216ac3a82e273b87df23c33f14e7  verify_ramsey_link_fan_arity.py
+~~~
+
+Retrieve and verify with CPython 3.12.12:
+
+~~~bash
+git clone https://github.com/njallskarp/math_source_code_open.git
+cd math_source_code_open
+git checkout ef64763ae01946b7422a14c020f2c2ef128d09e9
+python3 ramsey_r55_symbolic_extension/verify_ramsey_link_fan_arity.py \
+  ramsey_r55_symbolic_extension/ramsey-link-fan-arity-certificate.json
+~~~
+
+The committed Discovery Net receipt is recorded here after publication.
