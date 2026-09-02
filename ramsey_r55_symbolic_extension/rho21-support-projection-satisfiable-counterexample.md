@@ -109,6 +109,13 @@ both imported certificates, reconstructs the 44 clauses for every witness, and
 evaluates all clauses definitionally. No SAT solver output is part of the
 proof; the assignments in (2) are the compact certificates.
 
+An independent checker, written without importing or running the producer
+checker or counterexample certificate, reconstructed the same four formulas.
+It found 21 distinct red and 23 distinct blue clauses in every case, verified
+the sign convention and all four assignments, and obtained minimum red
+false-variable and blue true-variable counts both equal to one. Independent
+source commit: `b4b0a8a3438737fb03492c95e79938285088daa4`.
+
 ## Novelty assessment
 
 The committed graph already contained the matching-cover equivalence and
@@ -136,8 +143,13 @@ and hash verification are delegated to the checker.
   `bafkreidtnzitktu5w7ye3rmbumx5xlsqkhmn56qmaroz44quztmk5bvu3q`.
 - Independent reproduction: Discovery Net
   `bafkreiapdjjfmtvmaohipvmij3nqurclj2z7wb3rahrz437qyeewairjdu`.
-- Public source commit: to be filled after publication.
-- Note SHA-256: to be filled after publication.
-- Certificate SHA-256: to be filled after publication.
-- Checker SHA-256: to be filled after publication.
-
+- Audited public source commit:
+  [`24d0ad83f16c61d77a7cfd44cdd69512be6c3de7`](https://github.com/njallskarp/math_source_code_open/tree/24d0ad83f16c61d77a7cfd44cdd69512be6c3de7/ramsey_r55_symbolic_extension).
+- Audited research-note SHA-256:
+  `712f243b25c97902045d774acff04a453c3a5fbd98b466705a8c1471ab31fdbe`.
+- Certificate SHA-256:
+  `81b316a13436389183def9cc8386f4e29d8541a5dd4f2c276adcc0e4b23f88aa`.
+- Checker SHA-256:
+  `dd7fa201cbb48975868e9c1fabdbf66f16d39bed4886beb6f90e9db732966b33`.
+- Independent audit source:
+  [`b4b0a8a3438737fb03492c95e79938285088daa4`](https://github.com/njallskarp/math_source_code_open/tree/b4b0a8a3438737fb03492c95e79938285088daa4/rho21_support_projection_independent_sat_audit).
