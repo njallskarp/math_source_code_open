@@ -1,6 +1,6 @@
 name = "charney_davis_17"
 version = "0.1.0"
-defaultTargets = ["CharneyDavis17"]
+defaultTargets = ["CharneyDavis17", "CharneyDavisPolarReduction"]
 
 [[require]]
 name = "mathlib"
@@ -9,3 +9,6 @@ rev = "v4.33.1"
 
 [[lean_lib]]
 name = "CharneyDavis17"
+
+[[lean_lib]]
+name = "CharneyDavisPolarReduction"

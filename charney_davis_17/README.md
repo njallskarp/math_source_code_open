@@ -38,6 +38,16 @@ The Lean development proves:
 - `not_exists_admissibleEdge_iff_contractionIrreducible`;
 - `negative_gammaThree_forces_contractionIrreducible`.
 
+The follow-up file `CharneyDavisPolarReduction.lean` proves the next exact
+reduction.  A hypothetical negative 17-vertex counterexample has polar size
+exactly three, satisfies `1 <= gamma_2 <= 5` and `-6 <= gamma_3 <= -1`, and
+has at least eight vertices with exactly three antipodes.  Each corresponding
+13-vertex link is a nonsuspension flag homology 4-sphere with
+`gamma_1 = 3` and `0 <= gamma_2 <= 2`.  See
+[`POLAR_REDUCTION.md`](POLAR_REDUCTION.md) for the proof dependencies and the
+exact third-antipode escape which blocks a direct reuse of the published
+two-antipode contraction argument.
+
 The cross-neighborhood theorem gives an exact local criterion: an edge `uv`
 lies in an induced four-cycle precisely when the exclusive neighborhoods of
 `u` and `v` contain an adjacent cross-pair.
