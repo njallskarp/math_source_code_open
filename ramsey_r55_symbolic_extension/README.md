@@ -131,6 +131,16 @@ m <= 30 - ceil((rho - 3)/4) <= 26.
 Thus all first-fan arities 27 through 30 are eliminated simultaneously,
 independently of the terminal parameter and inverse-DP history.
 
+`incidence-budget-first-fan-normalization.md` supplies a complementary
+global compression with a stronger existential quantifier. The exact 176
+signed-literal occurrences, bichromatic coverage, singular existence, and
+divisibility of each color-incidence sum by four prove that some legal first
+pivot has `m <= 10`. If no pivot has `m <= 9`, the incidence relaxation has
+only one profile up to color exchange: one vertex of degrees `(1,10)`, one
+of degrees `(3,2)`, forty of degrees `(2,2)`, and clause split `(21,23)`.
+The standard-library checker exhausts every possible placement of the single
+incidence slack; it does not assert Ramsey-support realizability.
+
 ## Reproduce
 
 ```bash

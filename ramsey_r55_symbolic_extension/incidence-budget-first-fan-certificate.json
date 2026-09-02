@@ -1,0 +1,22 @@
+{
+  "claim": "every 44-clause signed-K4 obstruction admits a first singular pivot of arity at most 10; if no pivot has arity at most 9, the signed-incidence profile is unique up to color exchange",
+  "variables": 42,
+  "clauses": 44,
+  "clause_size": 4,
+  "total_literal_occurrences": 176,
+  "bichromatic_minimum_per_variable": [1, 1],
+  "nonsingular_minimum_total_degree": 4,
+  "high_arity_singular_minimum_total_degree": 11,
+  "normalized_first_fan_maximum_arity": 10,
+  "sharp_dichotomy": {
+    "ordinary_maximum_arity": 9,
+    "exceptional_profile_up_to_color_exchange": {
+      "unique_singular_vertex_degrees": [1, 10],
+      "red_blue_clause_counts": [21, 23],
+      "one_other_vertex_degrees": [3, 2],
+      "remaining_vertex_count": 40,
+      "remaining_vertex_degrees": [2, 2]
+    }
+  },
+  "scope": "exact for the signed-incidence relaxation; no realizability by K5-free Ramsey supports is asserted"
+}

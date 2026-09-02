@@ -1,6 +1,6 @@
 {
   "lane": "44-clause constrained inverse singular-DP classification",
-  "updated_at_utc": "2026-09-02T04:42:00Z",
+  "updated_at_utc": "2026-09-02T05:46:00Z",
   "last_wake_productive": true,
   "consecutive_nonproductive_wakes": 0,
   "proved_step_type": "common-core split with independently chosen overlaps",
@@ -83,5 +83,17 @@
     "global_maximum": 26,
     "eliminated_structural_family": [27, 28, 29, 30]
   },
-  "next_falsifiable_target": "use the rho-stratified m<=26 support projection to define a complete first-fan SAT or rewrite alphabet carrying actual K4 supports and link-graph constraints"
+  "incidence_budget_first_fan_normalization": {
+    "status": "proved; source publication in progress",
+    "normalized_maximum_arity": 10,
+    "quantifier": "some legal first singular pivot",
+    "ordinary_maximum_arity": 9,
+    "exceptional_profile_up_to_color_exchange": {
+      "unique_singular_degrees": [1, 10],
+      "clause_counts": [21, 23],
+      "one_other_degrees": [3, 2],
+      "remaining_40_degrees": [2, 2]
+    }
+  },
+  "next_falsifiable_target": "impose actual K4 support, opposite-sign intersection, one-flip, and ancestry constraints on the normalized alphabet m<=9 plus the unique m=10 incidence state"
 }
