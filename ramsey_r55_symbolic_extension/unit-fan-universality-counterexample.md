@@ -257,4 +257,11 @@ python3 ramsey_r55_symbolic_extension/verify_unit_fan_universality.py \
   ramsey_r55_symbolic_extension/unit-fan-universality-certificate.json
 ```
 
-The committed Discovery Net receipt is recorded here after publication.
+The counterexample is committed to Discovery Net as
+`bafkreibc7euxucjwoc62a4eo3rua3c2fs5b5v73awla7itgtzupa5ktugy` at height
+1078, transaction
+`276964B7F022F0BAB06A221EDAFDA10D7AEBCDF3DDB990CF912EFD4A226DBFC1`.
+The submitted body matches this documentation commit exactly (SHA-256
+`b14473e1dbdeae2e4da9f1221c6ce16ed196fed404482cdc04bfe53b36b79da2`),
+and all six generalization, dependency, citation, problem, and area relations
+were confirmed in the committed ledger.

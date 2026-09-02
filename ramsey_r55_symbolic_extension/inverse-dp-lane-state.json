@@ -63,6 +63,8 @@
   "global_success_criterion": "one shared mechanism excludes at least three consecutive unresolved p-values, or a precise counterexample explains why the proposed global mechanism cannot work",
   "binary_profile_global_mechanism": {
     "status": "blocked by exact counterexample",
+    "contribution": "bafkreibc7euxucjwoc62a4eo3rua3c2fs5b5v73awla7itgtzupa5ktugy",
+    "height": 1078,
     "result": "for every p>=3 and every R subset of the terminal binary cycle, a two-step inverse unit fan in MU(2) has binary family equal to a fresh split pair union R",
     "binary_count_range": "2 through p+2",
     "exact_terminal_symmetry_state_lower_bound": "ceil(2^p/(2p))"
