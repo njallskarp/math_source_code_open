@@ -102,6 +102,11 @@ The Lean development checks:
 - `normalizedFireySupportVecSq_neg_small`;
 - `le_firstCoord_of_mem_of_vertical_support`;
 - `exposedFace_planeE2_eq_sectorOneTwoJump`;
+- `normalizedFireySupportVecSq_middlePlus_expansion` and
+  `normalizedFireySupportVecSq_middleMinus_expansion`;
+- `inner_middleTangent_le_of_middle_support` and
+  `neg_b_mul_middleRadius_le_inner_middleTangent_of_middle_support`;
+- `exposedFace_middleNormal_eq_sectorTwoThreeJump`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -242,18 +247,39 @@ first coordinate below `a`, the defining halfspace in a small direction
 whose square is contradictory after choosing
 `0<t<=a-x₀` and `a*t<=b/2`.  The module also proves support attainment by the
 fixed Sector I vertex, assembles literal support equality over all of
-`[0,pi]`, and proves central symmetry of the exact halfspace body.  The two
-remaining transition-face classifications and full boundary exhaustion are
+`[0,pi]`, and proves central symmetry of the exact halfspace body.
+
+`MiddleExposedFace.lean` closes the second transition face.  At the generator
+sign-change normal `n=(-b,a)`, put `v=(a,b)` and
+`s=sqrt(a^2+b^2)`.  Lean derives the exact adjacent-chamber expansions
+
+```text
+H(n+t v)^2=(s+a*s*t)^2+t^2*(a^2+b^2)*(1+b)^2,
+H(n-t v)^2=(s+b*s*t)^2+t^2*(a^2+b^2)*(1+a)^2.
+```
+
+Explicit small positive perturbations force every point on the supporting
+line to satisfy `-b*s <= inner(x,v) <= a*s`.  The one-sided canonical boundary
+points attain these endpoint values, and equality of the normal and tangent
+pairings determines a planar point.  Consequently Lean proves
+
+```text
+{x in normalizedLpSumTwo(a,b) : inner(x,(-b,a))=s}
+  = sectorTwoThreeJump(a,b).
+```
+
+This uses neither a support derivative limit nor a hidden area definition.
+The closing transition-face classification and full boundary exhaustion are
 still open formal bridges.
 
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
-area.  The smallest remaining analytic-geometry bridge is therefore the two
-remaining transition-face classifications, followed by exhaustion of the
+area.  The smallest remaining analytic-geometry bridge is therefore the
+closing transition-face classification, followed by exhaustion of the
 boundary and identification of its closed oriented integral with twice
 Lebesgue area.  The present development supplies exact halfspace membership,
-support equality on the complete upper half-circle, one complete exposed-face
+support equality on the complete upper half-circle, two complete exposed-face
 classification, central symmetry, coordinatewise differentiability,
 oriented-density, endpoint, jump, integral, and periodicity precursors but does
 not assume the missing Green/Jordan-area theorem.

@@ -240,11 +240,34 @@ limit.  Lean also proves support attainment throughout Sector I, literal
 support equality on the complete upper half-circle, evenness of the prescribed
 support, and central symmetry of the exact halfspace body.
 
+The middle transition face is also classified exactly.  With
+`n=(-b,a)`, `v=(a,b)`, and `s=sqrt(a^2+b^2)`, Lean proves the two exact
+adjacent-chamber expansions
+
+```text
+H(n+t*v)^2=(s+a*s*t)^2+t^2*(a^2+b^2)*(1+b)^2,
+H(n-t*v)^2=(s+b*s*t)^2+t^2*(a^2+b^2)*(1+a)^2.
+```
+
+For a body point satisfying `inner(x,n)=s`, explicit positive choices of `t`
+rule out `inner(x,v)>a*s` and `inner(x,v)<-b*s` by squaring the corresponding
+halfspace inequalities.  The Sector II and III one-sided canonical points
+have tangent pairings `a*s` and `-b*s`, respectively, and both have normal
+pairing `s`.  Since these two pairings determine a planar point, Lean concludes
+
+```text
+{x in normalizedLpSumTwo(a,b) : inner(x,n)=s}
+  = sectorTwoThreeJump(a,b).
+```
+
+This second exposed-face theorem is finite algebra and does not use an
+unformalized one-sided derivative or limiting argument.
+
 The pinned Mathlib has curve-integral infrastructure but no planar Green/Jordan
 theorem, no convex support-function or mixed-area API, and no theorem
 identifying the closed oriented integral of this piecewise smooth convex
-boundary with twice its Lebesgue area.  Classification of the two remaining
-transition faces and full boundary coverage for the checked arcs and jump
+boundary with twice its Lebesgue area.  Classification of the closing
+transition face and full boundary coverage for the checked arcs and jump
 segments, followed by that boundary-to-area identification, is now the precise
 smallest analytic-geometry bridge.  Lean still does not check that bridge, the affine
 normal-form theorem, the source-level Firey-sum/set equivalence, or the
