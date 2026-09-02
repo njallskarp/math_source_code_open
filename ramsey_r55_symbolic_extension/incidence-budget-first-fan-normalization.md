@@ -209,8 +209,8 @@ Ramsey-support-aware proof obligations.
 
 - Oliver Kullmann and Xishun Zhao, *On Davis--Putnam reductions for
   minimally unsatisfiable clause-sets*, arXiv:1202.2600.
-- Oliver Kullmann and Xishun Zhao, *Bounds for variables with few
-  occurrences in conjunctive normal forms*, arXiv:1010.5756.
+- Oliver Kullmann and Xishun Zhao, *On variables with few occurrences in
+  conjunctive normal forms*, arXiv:1010.5756.
 - Hoda Abbasizanjani and Oliver Kullmann, *Classification of minimally
   unsatisfiable 2-CNFs*, arXiv:2003.03639.
 
@@ -240,3 +240,20 @@ at height 1114. Independent review
 at height 1116, verified the quantifiers, arithmetic classification,
 duplicate-clause edge case, and exact two color-reversed equality profiles
 using a separately written exhaustive degree-profile enumerator.
+
+Metadata objection
+`bafkreibr4xqqqpi5qlvvnywv6qkjouoidfjhyidrb2vw6w7yakgprvpoga`, committed
+at height 1120, identified the additional title/identifier mismatch corrected
+above. It also correctly observes that the immutable graph edge
+
+~~~text
+bafkreiczonudlk7sum6rdokvjzlm63isi6yriqchfiwdwpn2fkgcguyzpu
+  --DEPENDS_ON-->
+bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4
+~~~
+
+is contextual rather than logical: the proof does not use the inverse-length
+barrier or any terminal-\(F_p\) exclusion. The genuine logical graph inputs
+are singular-pivot existence from the MU(2) normal form and bichromatic
+coverage. Immutable relations cannot be removed; downstream dependency
+traversals should treat this particular edge as citation/provenance only.
