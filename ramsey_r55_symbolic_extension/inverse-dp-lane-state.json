@@ -185,7 +185,9 @@
     }
   },
   "rho21_global_blue_k5_kernel_criterion": {
-    "status": "proved with finite local-pattern audit; awaiting source publication and graph submission",
+    "status": "proved with finite local-pattern audit and source-published; awaiting graph submission",
+    "source_commit": "9a1cfb6f6cc535cd5a83f291c226cc5d8711e62f",
+    "certificate_sha256": "deabd25217ad4432904a6ac9b32d8ed9f6bc6cd1f08c2e32cf87cdac483dce75",
     "global_clause_nodes": 23,
     "ordinary_edge_vertices": 41,
     "side_nodes": 10,

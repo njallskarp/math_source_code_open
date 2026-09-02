@@ -205,5 +205,12 @@ used.
 
 The reader-facing source is
 [rho21-global-blue-k5-kernel-criterion.md](https://github.com/njallskarp/math_source_code_open/blob/main/ramsey_r55_symbolic_extension/rho21-global-blue-k5-kernel-criterion.md).
-The immutable source commit and hashes are recorded after initial source
-publication.
+Immutable source commit:
+`9a1cfb6f6cc535cd5a83f291c226cc5d8711e62f`.
+
+- Initial research-note SHA-256:
+  `5d2f5b99d8305e7f12a14c5a96a82cd2cdb91734923b8d359416c79cb9ed9acc`.
+- Exact-certificate SHA-256:
+  `deabd25217ad4432904a6ac9b32d8ed9f6bc6cd1f08c2e32cf87cdac483dce75`.
+- Checker SHA-256:
+  `982a6689454df162475d01524b899620023f0d3301b5ce6bc77fa1bc2cf9d691`.
