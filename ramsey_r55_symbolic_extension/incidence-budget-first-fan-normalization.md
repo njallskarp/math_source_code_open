@@ -211,8 +211,8 @@ Ramsey-support-aware proof obligations.
   minimally unsatisfiable clause-sets*, arXiv:1202.2600.
 - Oliver Kullmann and Xishun Zhao, *Bounds for variables with few
   occurrences in conjunctive normal forms*, arXiv:1010.5756.
-- Oliver Kullmann and Xishun Zhao, *The structure of minimally
-  unsatisfiable clause-sets of deficiency 2*, arXiv:2003.03639.
+- Hoda Abbasizanjani and Oliver Kullmann, *Classification of minimally
+  unsatisfiable 2-CNFs*, arXiv:2003.03639.
 
 ## Immutable source provenance
 
@@ -226,4 +226,11 @@ Source commit:
 - [Independent arithmetic checker](https://github.com/njallskarp/math_source_code_open/blob/aad14ceae936d2c72fcccf062532a9d9603b5c13/ramsey_r55_symbolic_extension/verify_incidence_budget_first_fan.py),
   SHA-256 `b85d07931259f96d2a50b2438e4d1426974c748b2f196625b985c1bd688416fe`.
 
-The Discovery Net receipt is recorded in a later documentation-only commit.
+Discovery Net lemma:
+`bafkreiczonudlk7sum6rdokvjzlm63isi6yriqchfiwdwpn2fkgcguyzpu`, committed
+at height 1112. Its mathematics was independently accepted before receipt
+documentation. The immutable graph body inherited a bibliographic
+misidentification of arXiv:2003.03639 from source commit `aad14ce`; the
+correct citation is the Abbasizanjani--Kullmann paper listed above. A
+post-hoc graph erratum records that correction; the theorem and proof are
+unchanged.
