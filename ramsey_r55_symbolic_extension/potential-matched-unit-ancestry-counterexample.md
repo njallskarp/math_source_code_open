@@ -9,7 +9,7 @@ singular-DP excess law.** The target tested here was:
 > singular-DP ancestry compel a nonunit pivot with repeated nonpivot literal
 > ancestry?
 
-The answer is **no at the abstract ​\(\mathrm{MU}(2)\) level**, even if one
+The answer is **no at the abstract \(\mathrm{MU}(2)\) level**, even if one
 retains the exact variable count, clause count, deficiency, endpoint
 potential, terminal formula, complete charge sum, a complete singular-DP
 chain, and the exact disjoint \(3+3\) shape of the first forward fan. For
@@ -276,7 +276,7 @@ telescoping data as a hypothetical 42-variable, 44-clause signed-
 
 Consequently, no argument whose state consists only of variable count,
 clause count, deficiency, \(\Phi\), terminal \(p\), and the contraction
-charges can force repeated signed-​\(K_4\) leaf ancestry. The missing
+charges can force repeated signed-\(K_4\) leaf ancestry. The missing
 universal statistic must retain at least the clause-length distribution—or a
 strictly stronger genealogy invariant that sees the pure length-four leaves.
 This is a rigorous reduction of the next proof obligation: exclude unit-main
@@ -307,6 +307,32 @@ The checker is an audit of the construction, not the universal proof. The
 proof is Lemma 1, the binary-split argument, and the exact schedule
 (13)--(22).
 
+## Independent reproduction
+
+The node-njall-3 reviewer accepted the theorem after writing a clean-room
+checker that imports neither the producer checker nor its certificate. Its
+construction deliberately selects the canonically last eligible clauses at
+every filler step, rather than the first. It independently transported all
+deletion witnesses, checked every reverse DP identity, and exhibited the
+global variable-complementation map for all \(31\) parameters and \(744\)
+steps. Its independently generated family has SHA-256
+
+```text
+d719df16b58e0fe8437858028390254d769ccfb8e1bb1a64b6942af570a273f3
+```
+
+Reproduce it with
+
+```bash
+python3 ramsey_r55_unit_tail_independent_audit/independent_unit_tail_audit.py
+```
+
+The expected terminal line is
+
+```text
+independent_unit_tail_audit=PASS
+```
+
 ## Novelty assessment
 
 Kullmann and Zhao establish singular-DP preservation and its collision
@@ -334,7 +360,7 @@ Primary source:
 The theorem is universal in \(p\) over the complete currently surviving
 range \(3\le p\le33\) and constructs full abstract \(\mathrm{MU}(2)\)
 ancestries. It realizes the required first forward fan up to signed-variable
-renaming, but it does not claim that \(H_p\) is a signed-​\(K_4\) extension
+renaming, but it does not claim that \(H_p\) is a signed-\(K_4\) extension
 formula: its other initial clauses are not all length four and need not be
 pure by sign. It therefore
 does not prove or disprove the existence of a 44-clause Ramsey extension
@@ -356,6 +382,8 @@ the universal quantifier.
   `bafkreieknunurio6rogct3cb7esf2nzeqopzv3o6bcy4expkrpzvo324s4`.
 - Earlier unit-fan universality counterexample: Discovery Net
   `bafkreibc7euxucjwoc62a4eo3rua3c2fs5b5v73awla7itgtzupa5ktugy`.
+- Public contribution directory:
+  [ramsey_r55_symbolic_extension](https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_symbolic_extension).
 - Prepublication source commit:
   [`af024dbb91e92a7c21bf6459874b05ad57ff34c8`](https://github.com/njallskarp/math_source_code_open/tree/af024dbb91e92a7c21bf6459874b05ad57ff34c8/ramsey_r55_symbolic_extension).
 - Prepublication note SHA-256:
@@ -366,6 +394,12 @@ the universal quantifier.
   `357a2a2e225cebe6dae5128b3489e103cb3fe2343fb1db549589ab0e24456fa8`.
 - Test SHA-256:
   `adff824e71ae5af2c8caff951ab1517f6db51fd064b25d5aec86ab08d9b6e02c`.
+- Independent audit commit:
+  `c4aca1b802505a308c43a87b8f438248c8071b99`.
+- Independent audit directory:
+  [ramsey_r55_unit_tail_independent_audit](https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_unit_tail_independent_audit).
+- Independent checker SHA-256:
+  `2955a8c326ca368f7d368522e06747dfc8a2ad12ed801b9b24d925fb7cf5146d`.
 
 ## Discovery Net receipt
 
