@@ -1,0 +1,33 @@
+{
+  "artifact": "blockwise-Type-R lambda-permutation trichotomy",
+  "date": "2026-09-02",
+  "claims": [
+    {
+      "id": "completion-time-sandwich",
+      "status": "proved",
+      "dependencies": [
+        "bounded block number",
+        "order of positive blocks",
+        "order of nonpositive blocks"
+      ],
+      "computation": "none"
+    },
+    {
+      "id": "blockwise-type-r-trichotomy",
+      "status": "proved",
+      "dependencies": [
+        "completion-time-sandwich",
+        "Velleman bounded-block characterization",
+        "Type R substantial-property lag argument"
+      ],
+      "computation": "none"
+    }
+  ],
+  "novelty": "search-relative",
+  "primary_source": "https://arxiv.org/abs/2507.20062v2",
+  "excluded_methods": [
+    "exhaustive finite enumeration",
+    "floating-point inference",
+    "opaque solver certificate"
+  ]
+}
