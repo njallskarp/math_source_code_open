@@ -1,0 +1,2 @@
+rows=83;q5_rows=31;q37_rows=52;q5_orbits=18;q37_orbits=18
+independent_certificate=verified
