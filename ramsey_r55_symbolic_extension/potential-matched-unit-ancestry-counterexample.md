@@ -215,7 +215,7 @@ literals form a set \(A\), disjoint from \(B\), and the final descendant is
 For the fifth reserved inverse step, replace \(R\) by
 
 \[
-  \{x\}\cup A,qquad \{\neg x\}\cup B                       \tag{19}
+  \{x\}\cup A,\qquad \{\neg x\}\cup B                       \tag{19}
 \]
 
 with fresh \(x\). This is a full binary split: DP on \(x\) restores \(R\).
