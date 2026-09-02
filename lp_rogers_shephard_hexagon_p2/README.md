@@ -399,6 +399,16 @@ densities are strictly positive.  These are exact per-piece results; they do
 not yet assert cross-piece disjointness or injectivity of the full cyclic
 concatenation.
 
+`UpperPathInjectivity.lean` begins the global simple-path bridge with a
+reusable theorem: concatenating two injective paths whose ranges meet only at
+their common endpoint preserves injectivity.  It proves all three straight
+jump paths are injective, establishes the exact first-jump/Sector-II and
+Sector-II/middle-jump intersections, proves the first and middle jumps are
+disjoint, and derives `injective_firstThreeUpperPieces` for the first three
+pieces of the five-piece upper chain.  The Sector III and closing-piece
+intersection cases, and hence injectivity of the complete upper and cyclic
+paths, remain explicit downstream obligations.
+
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue

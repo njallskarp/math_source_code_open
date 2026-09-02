@@ -17,3 +17,4 @@ import L2Hexagon.FrontierSupport
 import L2Hexagon.FrontierAtlas
 import L2Hexagon.CyclicBoundaryPath
 import L2Hexagon.SimplePathOrientation
+import L2Hexagon.UpperPathInjectivity
