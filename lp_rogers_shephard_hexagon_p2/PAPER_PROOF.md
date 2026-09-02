@@ -285,6 +285,34 @@ Lean consequently proves
 
 This completes the exact classification of all three upper-half jump faces.
 
+Negation preserves the exact halfspace body and the prescribed support is
+even.  Hence, for every normal `u`, Lean proves the literal exposed-face
+transport
+
+```text
+Face(-u) = -Face(u).
+```
+
+Applying it to the preceding three identities classifies all three lower-half
+jump faces as the negatives of their upper-half partners.
+
+The curved-sector exposed faces are singletons.  Suppose `theta` lies in the
+open second sector and `x` belongs to the face supported by `n(theta)`.  On a
+neighborhood that stays in the same sector, body membership gives
+
+```text
+0 <= h(t)-inner(x,n(t)),
+```
+
+with equality at `t=theta`.  This differentiable support gap therefore has
+zero derivative at `theta`.  It follows that
+`inner(x,t(theta))=h'(theta)`.  Together with
+`inner(x,n(theta))=h(theta)`, the orthonormal normal and tangent pairings force
+`x=h n+h' t`, the checked canonical Sector II point.  The identical argument
+with the Sector III scalar support proves its singleton face theorem.  The
+open-sector hypotheses are essential: at transition normals the exposed
+faces are exactly the nontrivial segments classified above.
+
 For literature calibration, Kotrbatý--Mouamine's general theorem
 (arXiv:2607.20387, Theorem 1.2) does not imply the strict inequality proved
 here.  When `n=p=q=2`, their coefficient is
@@ -306,9 +334,9 @@ not decide equality at the smaller symmetric-body bound.
 The pinned Mathlib has curve-integral infrastructure but no planar Green/Jordan
 theorem, no convex support-function or mixed-area API, and no theorem
 identifying the closed oriented integral of this piecewise smooth convex
-boundary with twice its Lebesgue area.  Curved-point uniqueness, lower-face
-transport, and full boundary coverage for the checked arcs and jump segments,
-followed by that boundary-to-area identification, are now the precise
-smallest analytic-geometry bridges.  Lean still does not check those bridges, the affine
-normal-form theorem, the source-level Firey-sum/set equivalence, or the
+boundary with twice its Lebesgue area.  Full frontier coverage by the checked
+singleton curved faces and six jump segments, followed by that
+boundary-to-area identification, is now the precise smallest
+analytic-geometry bridge.  Lean still does not check frontier exhaustion, the
+affine normal-form theorem, the source-level Firey-sum/set equivalence, or the
 end-to-end area theorem.

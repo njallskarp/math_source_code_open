@@ -113,6 +113,16 @@ The Lean development checks:
   `closingSymmetry_mem_normalizedLpSumTwo_iff`;
 - `closingSymmetry_mem_sectorOneTwoJump_iff`;
 - `exposedFace_neg_planeE1_eq_sectorThreeOneJump`;
+- `normalizedExposedFace_neg`;
+- `exposedFace_neg_planeE2_eq_neg_sectorOneTwoJump`,
+  `exposedFace_neg_middleNormal_eq_neg_sectorTwoThreeJump`, and
+  `exposedFace_planeE1_eq_neg_sectorThreeOneJump`;
+- `normalizedFireySupportVec_eq_sectorTwoSupport` and
+  `normalizedFireySupportVec_eq_sectorThreeSupport`;
+- `sectorTwo_supportGap_isLocalMin` and
+  `sectorThree_supportGap_isLocalMin`;
+- `exposedFace_sectorTwo_eq_singleton` and
+  `exposedFace_sectorThree_eq_singleton`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -290,20 +300,36 @@ also checks the endpoint and segment maps, and proves
 ```
 
 Thus all three upper-half derivative-jump exposed faces are classified
-exactly.  Full boundary exhaustion is still an open formal bridge.
+exactly.
+
+`LowerFacesAndCurvedUniqueness.lean` packages central symmetry as the literal
+face identity `Face(-u)=-Face(u)` and transports the three upper-half
+classifications to all three lower-half jump faces.  It also proves that the
+exposed face at every interior Sector II or Sector III normal is the singleton
+containing the checked canonical point.  The proof differentiates the
+nonnegative support gap
+
+```text
+t ↦ h(t)-inner(x,n(t))
+```
+
+at its local minimum, obtains the tangent pairing, and combines that with the
+supporting normal pairing.  The two orthogonal pairings determine the planar
+point.  Transition normals are excluded explicitly and remain governed by the
+six segment-valued face theorems.
 
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
-area.  The smallest remaining analytic-geometry bridge is therefore proving
-uniqueness for the checked curved support points and exhausting the boundary
-with those points and the six exposed jump faces, followed by identification
-of its closed oriented integral with twice
+area.  The smallest remaining analytic-geometry bridge is therefore exhausting
+the frontier with the singleton curved faces and the six exposed jump faces,
+followed by identification of its closed oriented integral with twice
 Lebesgue area.  The present development supplies exact halfspace membership,
-support equality on the complete upper half-circle, three complete upper-half exposed-face
-classification, central symmetry, coordinatewise differentiability,
-oriented-density, endpoint, jump, integral, and periodicity precursors but does
-not assume the missing Green/Jordan-area theorem.
+support equality on the complete upper half-circle, all six jump-face
+classifications, curved-sector singleton faces, central symmetry,
+coordinatewise differentiability, oriented-density, endpoint, jump, integral,
+and periodicity precursors but does not assume the missing supporting-plane,
+Green/Jordan, or area theorem.
 
 Pinned environment:
 
