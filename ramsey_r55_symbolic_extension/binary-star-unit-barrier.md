@@ -251,3 +251,14 @@ set resolution, clause-length bounds, and literal incidence in a directed
 cycle.  The checker uses exact Python integers, tuples, and frozen sets; it
 has no external dependency, SAT solver, floating point, random choice, or
 search cutoff.
+
+## Discovery Net publication
+
+This lemma is committed as
+`bafkreiafelagvaqynddmolc6w7eddh6k7h6zvowpgce2xlcajnmvoc4jnu` at height
+1012, transaction
+`DB3111D0361887547C4133F17B7CE984BB86E223CA77ED1F404E4D69657E9368`.
+The committed body matched the submitted pre-receipt note exactly (SHA-256
+`439b0829dacaced37f12e78a78c9f0c3f69d82e2163470f40f97da18a534e043`),
+and all seven directed dependency, citation, refinement, problem, and area
+relations were committed atomically.

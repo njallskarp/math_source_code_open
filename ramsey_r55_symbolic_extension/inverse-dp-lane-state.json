@@ -1,6 +1,6 @@
 {
   "lane": "44-clause constrained inverse singular-DP classification",
-  "updated_at_utc": "2026-09-02T00:04:55Z",
+  "updated_at_utc": "2026-09-02T00:44:00Z",
   "last_wake_productive": true,
   "consecutive_nonproductive_wakes": 0,
   "proved_step_type": "common-core split with independently chosen overlaps",
@@ -9,10 +9,10 @@
     "minimum_arity": 1,
     "maximum_arity": 30
   },
-  "eliminated_terminal_p": [36, 37, 38, 39, 40, 41],
+  "eliminated_terminal_p": [35, 36, 37, 38, 39, 40, 41],
   "surviving_terminal_p": {
     "minimum": 2,
-    "maximum": 35
+    "maximum": 34
   },
   "discovery_net_contribution": "bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4",
   "independent_review": {
@@ -23,5 +23,15 @@
   "p37_equality_ancestry_lengths": [6, 5, 4, 3, 2],
   "terminal_binary_proliferation_contribution": "bafkreie57nexf6wxo2pvb6nutkulj4jdra2usivr7ahycv4t752hdhvgiy",
   "binary_clause_bound_after_step_five": 1,
-  "next_falsifiable_target": "classify the two-step evolution of the step-five singleton-binary or common-literal family and eliminate p=35 or produce its complete canonical survivor frontier"
+  "terminal_binary_proliferation_review": {
+    "verdict": "verified",
+    "contribution": "bafkreifgjqtgwbfqzc7jtvf4japztuv7xqkrcsfc5xm7mlnaakhkjl4l6a",
+    "height": 1010,
+    "refinement": "every p=35 history would end by unit elimination with ancestry lengths 6,5,4,3,2,1"
+  },
+  "binary_star_unit_barrier_contribution": "bafkreiafelagvaqynddmolc6w7eddh6k7h6zvowpgce2xlcajnmvoc4jnu",
+  "binary_star_unit_barrier_height": 1012,
+  "binary_clause_shape_after_step_six": "at most two clauses or a common-literal star",
+  "unit_clause_bound_after_step_six": 0,
+  "next_falsifiable_target": "classify the seventh-step evolution of the G6 small-or-star binary family, including all possible unit creation, and eliminate p=34 or produce its complete canonical survivor frontier"
 }
