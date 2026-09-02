@@ -40,9 +40,10 @@ The Lean development proves:
 
 The follow-up file `CharneyDavisPolarReduction.lean` proves the next exact
 reduction.  A hypothetical negative 17-vertex counterexample has polar size
-exactly three, satisfies `1 <= gamma_2 <= 5` and `-6 <= gamma_3 <= -1`, and
-has at least eight vertices with exactly three antipodes.  Each corresponding
-13-vertex link is a nonsuspension flag homology 4-sphere with
+exactly three.  The exact complement-triangle count then forces
+`(gamma_2, gamma_3) = (5,-6)`: its one-skeleton complement is triangle-free
+with degree sequence `3^16 4^1`, and the sum of vertex-link `gamma_2` values
+is two.  Each minimum-antipode 13-vertex link is a nonsuspension flag homology 4-sphere with
 `gamma_1 = 3` and `0 <= gamma_2 <= 2`.  See
 [`POLAR_REDUCTION.md`](POLAR_REDUCTION.md) for the proof dependencies and the
 exact third-antipode escape which blocks a direct reuse of the published

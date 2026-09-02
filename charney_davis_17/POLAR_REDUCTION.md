@@ -15,6 +15,15 @@ Let `Delta` be a flag generalized homology 5-sphere on 17 vertices.  If
    suspension.
 6. The three antipodes of `v` induce either a path or a filled 2-simplex.
 
+The complement face-count identity sharpens items 3--4 to the exact profile
+
+```text
+gamma_2(Delta) = 5,                  gamma_3(Delta) = -6,
+degrees in the complement = 3^16 4^1,
+number of complement triangles = 0,
+sum_v gamma_2(link(v)) = 2.                                      (3)
+```
+
 This is a reduction of the possible counterexample class, not a proof that
 the class is empty.
 
@@ -66,6 +75,40 @@ Every vertex with more than three antipodes contributes at least one to this
 sum.  Therefore at most nine vertices have more than three antipodes, and at
 least eight attain the minimum three.  Equation (1) and `gamma_2 <= 5` also
 give `gamma_3 >= -6`.
+
+## Exact complement rigidity
+
+Let `H` be the complement of the one-skeleton, let `q_v = iota(v)` be its
+degrees, let `m` be its number of edges, and let `T` be its number of
+triangles. Inclusion--exclusion on triples gives
+
+```text
+f_2(Delta) = C(17,3) - 15m + sum_v C(q_v,2) - T.
+```
+
+Indeed, each complement edge spoils 15 triples, pairs of complement edges in
+a triple are restored through their common vertex, and exactly the
+three-edge complement triangles must be removed once more. Comparing the
+coefficient of `t^3` in the degree-six h-polynomial with its gamma expansion,
+and using `m = 31-gamma_2`, gives
+
+```text
+2 gamma_3 = 348 + sum_v q_v(q_v-10) - 2T.                         (4)
+```
+
+For `3 <= q_v <= 6`, every summand in (4) is at most `-21`. Equation (2)
+and `gamma_2 <= 5` imply `sum q_v >= 52`, so at least one degree exceeds
+three and its summand is at most `-24`. Hence `gamma_3 <= -6`. The earlier
+lower bound makes equality compulsory. Then (1) forces `gamma_2 = 5`, so
+`sum(q_v-3)=1`: exactly one complement degree is four and the other sixteen
+are three. Their summands total `-360`; (4) forces `T=0`, and (1) leaves
+total link `gamma_2` equal to two.
+
+Lean theorem `negative_forces_rigid_complement_profile` checks this entire
+integer squeeze from the named missing-edge, vertex-link, and complement-
+triangle identities. In particular, the degree classification and the
+vanishing of `T` are kernel checked; the face-count derivation of (4) remains
+the explicit human-auditable combinatorial input.
 
 For a minimum-antipode vertex, `gamma_1(link(v)) = 3`.  The real-root
 inequality used by Zheng for four-dimensional flag homology-sphere links is
@@ -124,8 +167,9 @@ separator proof omits exactly this obligation.
 
 `CharneyDavisPolarReduction.lean` contains no `sorry`, `admit`, custom axiom,
 `unsafe`, or `native_decide`.  Lean checks the polynomial differentiation,
-integer bounds, cardinality estimate, nonsuspension implication, and path
-escape witness.  The generalized-homology-sphere theorems of Labbé--Nevo,
+integer bounds, exact complement-degree/triangle rigidity, cardinality
+estimate, nonsuspension implication, and path escape witness.  The
+generalized-homology-sphere theorems of Labbé--Nevo,
 Gal, and Davis--Okun are named hypotheses, not kernel axioms.  The final
 three-antipode path/triangle statement uses the cited Alexander-duality input
 and is documented here; Mathlib does not yet provide the required integrated

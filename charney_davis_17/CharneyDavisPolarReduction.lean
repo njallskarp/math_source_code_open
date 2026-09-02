@@ -263,6 +263,154 @@ theorem negative_counterexample_has_eight_nonsuspension_minimumLinks
     negative_forces_minimumLink_nonsuspension iota gammaThree LinkIsSuspension
       negative suspensionStep⟩
 
+/--
+The complement-graph face-count identity makes the polar-size-three reduction
+rigid.  Here `iota v` is the degree of `v` in the complement of the
+one-skeleton and `triangleCount` is the number of complement triangles.  The
+identity
+
+`2 * gammaThree = 348 + sum_v iota(v) * (iota(v) - 10) - 2 * triangleCount`
+
+is the inclusion--exclusion count of independent triples in that complement.
+Once supplied, Lean checks that any negative example has
+`(gammaTwo, gammaThree) = (5, -6)`, triangle-free complement, degree sequence
+`3^16 4^1`, and total vertex-link `gammaTwo` equal to two.
+-/
+theorem negative_forces_rigid_complement_profile
+    (iota linkGammaTwo : Fin 17 → ℤ)
+    (gammaTwo gammaThree triangleCount : ℤ)
+    (negative : gammaThree < 0)
+    (iotaBounds : ∀ v, 3 ≤ iota v ∧ iota v ≤ 6)
+    (missingEdgeIdentity : ∑ v, iota v = 62 - 2 * gammaTwo)
+    (linkGammaTwoNonnegative : ∀ v, 0 ≤ linkGammaTwo v)
+    (vertexLinkGammaIdentity :
+      ∑ v, linkGammaTwo v = 3 * gammaThree + 4 * gammaTwo)
+    (complementTriangleIdentity :
+      2 * gammaThree =
+        348 + ∑ v, iota v * (iota v - 10) - 2 * triangleCount)
+    (triangleCountNonnegative : 0 ≤ triangleCount) :
+    gammaTwo = 5 ∧ gammaThree = -6 ∧ triangleCount = 0 ∧
+      (∑ v, linkGammaTwo v) = 2 ∧
+      (∀ v, iota v = 3 ∨ iota v = 4) ∧
+      (Finset.univ.filter fun v => iota v = 3).card = 16 := by
+  have gammaBounds := gammaTwo_bounds_of_negative iota linkGammaTwo gammaTwo
+    gammaThree negative (fun v => (iotaBounds v).1) missingEdgeIdentity
+    linkGammaTwoNonnegative vertexLinkGammaIdentity
+  have gammaThreeLower := gammaThree_lower_bound_of_negative linkGammaTwo
+    gammaTwo gammaThree linkGammaTwoNonnegative vertexLinkGammaIdentity
+    gammaBounds.2
+  have existsHigh : ∃ w : Fin 17, iota w ≠ 3 := by
+    by_contra h
+    have hall : ∀ w : Fin 17, iota w = 3 := by
+      intro w
+      exact not_ne_iff.mp (not_exists.mp h w)
+    have iotaSum : ∑ v, iota v = 51 := by simp [hall]
+    omega
+  obtain ⟨w, hw⟩ := existsHigh
+  have termUpper : ∀ v : Fin 17, iota v * (iota v - 10) ≤ -21 := by
+    intro v
+    have hv := iotaBounds v
+    have hprod : (iota v - 3) * (iota v - 7) ≤ 0 :=
+      mul_nonpos_of_nonneg_of_nonpos (by omega) (by omega)
+    nlinarith
+  have specialTermUpper : iota w * (iota w - 10) ≤ -24 := by
+    have hwBounds := iotaBounds w
+    have hprod : (iota w - 4) * (iota w - 6) ≤ 0 :=
+      mul_nonpos_of_nonneg_of_nonpos (by omega) (by omega)
+    nlinarith
+  have adjustedTermUpper : ∀ v : Fin 17,
+      iota v * (iota v - 10) ≤ -21 - (if v = w then 3 else 0) := by
+    intro v
+    by_cases hv : v = w
+    · subst v
+      simpa using specialTermUpper
+    · simp [hv, termUpper v]
+  have termSumUpper : (∑ v, iota v * (iota v - 10)) ≤ -360 := by
+    have hsum := Finset.sum_le_sum fun v (_ : v ∈ Finset.univ) =>
+      adjustedTermUpper v
+    simpa [Finset.sum_sub_distrib] using hsum
+  have gammaThreeUpper : gammaThree ≤ -6 := by omega
+  have gammaThreeExact : gammaThree = -6 := by omega
+  have linkSumNonnegative : 0 ≤ ∑ v, linkGammaTwo v :=
+    Finset.sum_nonneg fun v _ => linkGammaTwoNonnegative v
+  have gammaTwoExact : gammaTwo = 5 := by omega
+  have iotaSumExact : ∑ v, iota v = 52 := by omega
+  have excessSum : (∑ v, (iota v - 3)) = 1 := by
+    calc
+      (∑ v, (iota v - 3)) = (∑ v, iota v) - ∑ _v : Fin 17, (3 : ℤ) := by
+        rw [Finset.sum_sub_distrib]
+      _ = (∑ v, iota v) - 51 := by norm_num
+      _ = 1 := by omega
+  have iotaUpperFour : ∀ v, iota v ≤ 4 := by
+    intro v
+    have singleBound : iota v - 3 ≤ ∑ u, (iota u - 3) :=
+      Finset.single_le_sum (f := fun u : Fin 17 => iota u - 3)
+        (fun u (_ : u ∈ Finset.univ) => by
+          have hu := (iotaBounds u).1
+          omega)
+        (Finset.mem_univ v)
+    omega
+  have iotaThreeOrFour : ∀ v, iota v = 3 ∨ iota v = 4 := by
+    intro v
+    have := (iotaBounds v).1
+    have := iotaUpperFour v
+    omega
+  have exactTerm : ∀ v : Fin 17,
+      iota v * (iota v - 10) = -21 - 3 * (iota v - 3) := by
+    intro v
+    rcases iotaThreeOrFour v with hv | hv <;> simp [hv]
+  have termSumExact : (∑ v, iota v * (iota v - 10)) = -360 := by
+    calc
+      (∑ v, iota v * (iota v - 10)) =
+          ∑ v, (-21 - 3 * (iota v - 3)) := by
+            apply Finset.sum_congr rfl
+            intro v _
+            exact exactTerm v
+      _ = (∑ _v : Fin 17, (-21 : ℤ)) - 3 * ∑ v, (iota v - 3) := by
+        rw [Finset.sum_sub_distrib, Finset.mul_sum]
+      _ = -360 := by rw [excessSum]; norm_num
+  have triangleCountExact : triangleCount = 0 := by omega
+  have linkSumExact : (∑ v, linkGammaTwo v) = 2 := by omega
+  let high : Finset (Fin 17) := Finset.univ.filter fun v => iota v ≠ 3
+  have highIndicator :
+      (∑ v : Fin 17, (if iota v = 3 then 0 else 1 : ℤ)) = high.card := by
+    calc
+      (∑ v : Fin 17, (if iota v = 3 then 0 else 1 : ℤ)) =
+          ∑ v : Fin 17, (if iota v ≠ 3 then 1 else 0 : ℤ) := by
+            apply Finset.sum_congr rfl
+            intro v _
+            split_ifs <;> simp_all
+      _ = high.card := by
+        simpa only [high] using
+          (Finset.natCast_card_filter (R := ℤ)
+            (fun v : Fin 17 => iota v ≠ 3)
+            (Finset.univ : Finset (Fin 17))).symm
+  have highCardUpper : high.card ≤ 1 := by
+    have indicatorBound :
+        (∑ v : Fin 17, (if iota v = 3 then 0 else 1 : ℤ)) ≤
+          ∑ v, (iota v - 3) := by
+      exact Finset.sum_le_sum fun v _ => by
+        split_ifs with hv
+        · omega
+        · have := (iotaBounds v).1
+          omega
+    rw [highIndicator, excessSum] at indicatorBound
+    exact_mod_cast indicatorBound
+  have highCardPositive : 1 ≤ high.card := by
+    apply Finset.one_le_card.mpr
+    exact ⟨w, by simp [high, hw]⟩
+  have highCardExact : high.card = 1 := by omega
+  have partition :=
+    Finset.card_filter_add_card_filter_not
+      (s := (Finset.univ : Finset (Fin 17))) (fun v => iota v = 3)
+  have minimumCard :
+      (Finset.univ.filter fun v => iota v = 3).card = 16 := by
+    dsimp [high] at highCardExact
+    have universeCard : (Finset.univ : Finset (Fin 17)).card = 17 := by simp
+    omega
+  exact ⟨gammaTwoExact, gammaThreeExact, triangleCountExact, linkSumExact,
+    iotaThreeOrFour, minimumCard⟩
+
 end PolarArithmetic
 
 section ThirdAntipodeEscape
@@ -321,6 +469,7 @@ end ThirdAntipodeEscape
 #print axioms atLeastEight_vertices_have_three_antipodes
 #print axioms negative_forces_minimumLink_nonsuspension
 #print axioms negative_counterexample_has_eight_nonsuspension_minimumLinks
+#print axioms negative_forces_rigid_complement_profile
 #print axioms pathAntipodes_force_link_escapeWitness
 
 end CharneyDavis17
