@@ -158,6 +158,17 @@ cannot contain 34 terminal clauses.  A one-literal star cannot contain even
 two members of \(Z_{35}\), by (11).  Therefore \(p\ne35\).  Combining this
 with the predecessor exclusions \(36\le p\le41\) proves (1). \(\square\)
 
+### Independent predecessor refinement
+
+After the source package was pinned, the independent review
+`bafkreifgjqtgwbfqzc7jtvf4japztuv7xqkrcsfc5xm7mlnaakhkjl4l6a` of the
+terminal-proliferation predecessor proved separately that every surviving
+\(p=35\) history would have to eliminate a unit in its seventh step, with
+ancestry lengths \(6,5,4,3,2,1\).  Lemma 2 supplies the complementary fact
+that no unit exists in \(G_6\), so those two statements give a shorter second
+derivation of the exclusion.  The direct terminal-cycle accounting above is
+retained because it exposes the binary-star obstruction explicitly.
+
 ## Compact exact certificate
 
 `binary-star-unit-certificate.json` records the imported stage floor and
