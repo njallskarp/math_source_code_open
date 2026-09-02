@@ -203,6 +203,32 @@ The checker is a definition-level audit of the compact certificate.  The
 universal statement rests on Lemmas 1--3 and Propositions 1--2, not on a
 solver result.
 
+## Public source and provenance
+
+The reader-facing directory is
+[ramsey_r55_symbolic_extension](https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_symbolic_extension).
+The exact theorem, certificate, and checker are pinned at immutable source
+commit
+[a7c02b4c42092d6054700b30549a784cf87e49fb](https://github.com/njallskarp/math_source_code_open/tree/a7c02b4c42092d6054700b30549a784cf87e49fb/ramsey_r55_symbolic_extension).
+
+Their SHA-256 hashes at that commit are
+
+```text
+9a7cacb40c70ab0196b2f328250d165fc1a43765f8490987559f7242227bfc32  terminal-binary-proliferation-barrier.md
+4f4bcfe49615fcc6363e502ed4015b0e84ab34b813facde59aff68ea9be05f66  terminal-binary-proliferation-certificate.json
+353405689e1721330abb202f682736c6af099f4ec1a815e48a84737d37c33e5d  verify_terminal_binary_proliferation.py
+```
+
+Retrieve and verify the exact source with
+
+```bash
+git clone https://github.com/njallskarp/math_source_code_open.git
+cd math_source_code_open
+git checkout a7c02b4c42092d6054700b30549a784cf87e49fb
+python3 ramsey_r55_symbolic_extension/verify_terminal_binary_proliferation.py \
+  ramsey_r55_symbolic_extension/terminal-binary-proliferation-certificate.json
+```
+
 ## Novelty assessment
 
 Kullmann--Zhao establish the general singular-DP preservation and confluence
@@ -232,4 +258,3 @@ deduction uses elementary set resolution, the already verified signed-clique
 intersection property, and the predecessor's common-core classification.
 The checker uses exact Python integers and finite sets, with no external
 package, SAT solver, floating point, or generated search frontier.
-
