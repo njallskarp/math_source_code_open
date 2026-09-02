@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "source_repository": "https://github.com/njallskarp/math_source_code_open",
+  "source_commit": "9c528277ccf06d4bc88d2c092c899140a6f2475f",
+  "source_directory": "qlp42_q5_q37_pi3_witnesses",
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreihmz7ytjxjdll7nwfsfhyuvlwx5fag5dc2qadpxg6huyl57mx7qcm",
+    "kind": "lemma",
+    "title": "Complete QLP-42 Third-Order Gaussian Census: All 216 Cells Survive",
+    "created_at": "2026-09-02T08:43:28.411943+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "6c4c52fce8778227bcb6fbf9b7a5055f37dc6c6e79c28b768bdd882778dc31b588c600c95d4b78640e08332bdcb2d633b07715fd7feaa73ee42bfad780325207"
+  },
+  "transaction": {
+    "hash": "97534EC44BDE2A322B5F3C8350F8EBB4092AACBC0D7B60C3C8267E706471DFE3",
+    "height": 1162,
+    "index": 0,
+    "deliver_tx_code": 0,
+    "block_hash": "1C6533A2ED91D5DBDD73E5043D08B5D19D8DC17942FA9CA06406B6C2CA16886A",
+    "block_time": "2026-09-02T08:39:49.328038521Z",
+    "app_hash": "4F4C0C56EAE3675BA78B6386BA63DAF2B52518E4B3713074D785EC4750C06433",
+    "data_hash": "AB660F2197868B1186CF7A550D5A709487D790981CAB974B164C28EB4BD80714"
+  },
+  "committed_graph_query": {
+    "indexed_height": 1163,
+    "artifact_found": true,
+    "outgoing_relation_count": 6
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreigdpn2b3rxkj7riwfsdnjqac7phae5flfpib75fonraunfrv5w5im",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreigjzcygbwe3caxqhdptpjrmlaonsiejrmff5hqctulgafavbayr5u",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    },
+    {
+      "artifact_ref": "bafkreicr6krd7sgtl3j2jzr556u3ecowxzztmhghwzfkxzoyf4wnrben2q",
+      "kind": "depends_on",
+      "to": "bafkreid374rfpa2sqk2nkzkpiabo5crcxkmohxwpenbkdmxv5yffe5nqri"
+    },
+    {
+      "artifact_ref": "bafkreib3tb54enoi5xrquu43usp77yl7zy7mkftnys4nzlwawpaxtwf24m",
+      "kind": "refines",
+      "to": "bafkreid374rfpa2sqk2nkzkpiabo5crcxkmohxwpenbkdmxv5yffe5nqri"
+    },
+    {
+      "artifact_ref": "bafkreifno4qdmwjqilctv67rug22ygmgupf76mdz5i5rjv3soekdxgmgze",
+      "kind": "depends_on",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreihqqzdoop4bknxf5quvgg4fuqbznqbifzoxhqfhpnamq7ewyuq2eu",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    }
+  ],
+  "verification": {
+    "witness_count": 216,
+    "q5_witness_count": 108,
+    "q37_witness_count": 108,
+    "covered_orbit_case_cells": 216,
+    "total_orbit_case_cells": 216,
+    "witness_manifest_sha256": "283779dc06d031bf2a5f333dbb32c9cfa540313db8e4a82886caf7134fe8e8eb",
+    "binary_frontier_sha256": "f1dff75420fb37a2454767a7177367045e100ab07a07a11addd5e5551407d89e",
+    "python_exact_checker": "passed",
+    "independent_cpp_exact_checker": "passed",
+    "address_sanitizer": "passed",
+    "undefined_behavior_sanitizer": "passed"
+  }
+}
