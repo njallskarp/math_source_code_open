@@ -91,10 +91,17 @@ The Lean development checks:
   `sectorThreeBoundaryPoint_supporting`;
 - `setSupportFunction_normalizedLpSumTwo_sectorTwo` and
   `setSupportFunction_normalizedLpSumTwo_sectorThree`;
+- `sectorOneVertex_supporting` and
+  `setSupportFunction_normalizedLpSumTwo_sectorOne`;
+- `setSupportFunction_normalizedLpSumTwo_upperHalf`;
+- `normalizedFireySupportVec_neg` and `neg_mem_normalizedLpSumTwo`;
 - `convex_normalizedLpSumTwo`;
 - `sectorOneTwoJump_subset_normalizedLpSumTwo`,
   `sectorTwoThreeJump_subset_normalizedLpSumTwo`, and
   `sectorThreeOneJump_subset_normalizedLpSumTwo`;
+- `normalizedFireySupportVecSq_neg_small`;
+- `le_firstCoord_of_mem_of_vertical_support`;
+- `exposedFace_planeE2_eq_sectorOneTwoJump`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -215,17 +222,41 @@ literal jump segments lies in it.  This is genuine body-level membership and
 support attainment; it does not yet assert that these paths exhaust the whole
 topological boundary or that their line integral is Lebesgue area.
 
+`ExposedFaces.lean` closes the first complete transition-face classification.
+For the vertical normal `e₂`, Lean proves the exact set equality
+
+```text
+{x in normalizedLpSumTwo(a,b) : inner(x,e₂)=1+b}
+  = segment((1+a,1+b),(a,1+b)).
+```
+
+The difficult reverse inclusion does not use an unformalized support
+derivative or a limiting argument.  If a point on the supporting line had
+first coordinate below `a`, the defining halfspace in a small direction
+`(-t,1)` would give
+
+```text
+1+b-a*t+t*(a-x₀) <= sqrt(t²+(1+b-a*t)²),
+```
+
+whose square is contradictory after choosing
+`0<t<=a-x₀` and `a*t<=b/2`.  The module also proves support attainment by the
+fixed Sector I vertex, assembles literal support equality over all of
+`[0,pi]`, and proves central symmetry of the exact halfspace body.  The two
+remaining transition-face classifications and full boundary exhaustion are
+still open formal bridges.
+
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
-area.  The smallest remaining analytic-geometry bridge is therefore full
-support-face coverage, including proving that the three jump segments are the
-complete exposed faces, followed by exhaustion of the boundary and the
-identification of its closed oriented integral with twice Lebesgue area.  The
-present development supplies exact halfspace membership, curved-sector support
-equality, coordinatewise differentiability, oriented-density, endpoint, jump,
-integral, and periodicity precursors but does not assume the missing
-Green/Jordan-area theorem.
+area.  The smallest remaining analytic-geometry bridge is therefore the two
+remaining transition-face classifications, followed by exhaustion of the
+boundary and identification of its closed oriented integral with twice
+Lebesgue area.  The present development supplies exact halfspace membership,
+support equality on the complete upper half-circle, one complete exposed-face
+classification, central symmetry, coordinatewise differentiability,
+oriented-density, endpoint, jump, integral, and periodicity precursors but does
+not assume the missing Green/Jordan-area theorem.
 
 Pinned environment:
 
@@ -270,6 +301,12 @@ The separate paper [arXiv:2606.07887](https://arxiv.org/abs/2606.07887)
 settles equality for a different planar `L_p` Rogers--Shephard inequality;
 its simplex equality cases do not resolve the symmetric-body conjecture
 studied here.
+
+The later paper
+[arXiv:2608.24081](https://arxiv.org/abs/2608.24081) studies volume-to-projection
+inequalities for `L_p`-sums and determinant-power analogues.  Its statement and
+text do not address the parallelogram uniqueness conjecture or the strict
+symmetric-hexagon regime considered here.
 
 An independent Discovery Net review
 (`bafkreig77oiopn6zq4l37ahdoqqwucmuhevkhp7uqi5v5qet37oh3x5foi`) verified

@@ -222,12 +222,30 @@ prescribed Firey support throughout both curved sectors.  The fixed Sector I
 vertex and its opposite also lie in the body; the body is convex; and all three
 checked jump segments are subsets of it.
 
+The first transition face is now classified exactly.  At the vertical normal
+`e₂`, Lean proves
+
+```text
+{x in normalizedLpSumTwo(a,b) : inner(x,e₂)=1+b}
+  = segment((1+a,1+b),(a,1+b)).
+```
+
+For the reverse inclusion it derives the lower horizontal-coordinate bound
+directly from the family of exact halfspace inequalities in directions
+`(-t,1)`.  In the relevant sign chamber the squared support is
+`t²+(1+b-a*t)²`; choosing positive `t` with `t<=a-x₀` and `a*t<=b/2` turns a
+hypothetical `x₀<a` into a strict contradiction after squaring.  This is an
+algebraic equality-case proof, not an appeal to an unformalized directional
+limit.  Lean also proves support attainment throughout Sector I, literal
+support equality on the complete upper half-circle, evenness of the prescribed
+support, and central symmetry of the exact halfspace body.
+
 The pinned Mathlib has curve-integral infrastructure but no planar Green/Jordan
 theorem, no convex support-function or mixed-area API, and no theorem
 identifying the closed oriented integral of this piecewise smooth convex
-boundary with twice its Lebesgue area.  Full exposed-face and boundary coverage
-for the checked arcs and jump segments, followed by that boundary-to-area
-identification, is now the precise smallest analytic-geometry bridge.  Lean
-still does not check that bridge, the affine
+boundary with twice its Lebesgue area.  Classification of the two remaining
+transition faces and full boundary coverage for the checked arcs and jump
+segments, followed by that boundary-to-area identification, is now the precise
+smallest analytic-geometry bridge.  Lean still does not check that bridge, the affine
 normal-form theorem, the source-level Firey-sum/set equivalence, or the
 end-to-end area theorem.
