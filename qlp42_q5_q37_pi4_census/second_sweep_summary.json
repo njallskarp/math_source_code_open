@@ -1,0 +1,25 @@
+{
+  "claim_scope": "bounded search-method result only; no unsatisfiability claim",
+  "input_certificate": {
+    "path": "qlp42_q5_q37_pi4_census/pi4_witnesses.tsv",
+    "sha256": "5a538b693c46ebdee94a2b8d5999d06072b8a3fe4ab5f1a78a36cb49616f76cf",
+    "witnesses": 4
+  },
+  "interpretation": "No additional witness was found by small local deformations. The 212 cells remain mathematically unresolved.",
+  "partition": {
+    "completed": 212,
+    "new_witnesses": 0,
+    "scheduled": 212,
+    "total_witnesses_after_run": 4,
+    "unresolved_after_run": 212
+  },
+  "schedule": {
+    "batch": 1,
+    "free_cell_counts": [2, 4, 6, 8, 10, 12, 14],
+    "seed_policy": "key-specific pi3 witness plus every pi4 witness on the same (q,orbit)",
+    "time_limit_seconds_per_attempt": 1.0,
+    "trials_per_free_cell_count": 8,
+    "worker_processes": 9
+  },
+  "serialization_note": "The completed temporary checkpoint used CSV default CRLF. Its parsed rows equal the LF certificate exactly. The writer is now fixed to explicit LF for stable future hashes."
+}

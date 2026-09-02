@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import csv
 import sys
+import tempfile
 from pathlib import Path
 
 DIRECTORY = Path(__file__).resolve().parent
@@ -18,6 +19,7 @@ from solve_pi4_mq import (  # noqa: E402
     encode_problem,
     product_coordinate_anf,
 )
+from sweep_pi4_hints import read_rows, write_rows  # noqa: E402
 from verify_pi3_witnesses import read_supports  # noqa: E402
 from verify_pi4_witnesses import verify_row  # noqa: E402
 
@@ -89,9 +91,28 @@ def check_fixed_words() -> None:
     print("fixed_word_equivalence_checks=8")
 
 
+def check_serialization() -> None:
+    row = {
+        "q": "5",
+        "orbit": "0",
+        "case": "1",
+        "a_mask_hex": "000000",
+        "b_mask_hex": "004183",
+        "states_a": "5af22d0f728a0d5fd2757",
+        "states_b": "6c882054ca522f62a2f02",
+    }
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "rows.tsv"
+        write_rows(path, {(5, 0, 1): row})
+        assert b"\r\n" not in path.read_bytes()
+        assert read_rows(path) == {(5, 0, 1): row}
+    print("lf_serialization_regression=passed")
+
+
 def main() -> None:
     check_local_anfs()
     check_fixed_words()
+    check_serialization()
     print("pi4_encoding_regression=passed")
 
 

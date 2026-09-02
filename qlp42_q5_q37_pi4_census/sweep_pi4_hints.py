@@ -40,7 +40,9 @@ def read_rows(path: Path) -> dict[tuple[int, int, int], dict[str, str]]:
 def write_rows(path: Path, rows: dict[tuple[int, int, int], dict[str, str]]) -> None:
     temporary = path.with_suffix(path.suffix + ".tmp")
     with temporary.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=FIELDS, delimiter="\t")
+        writer = csv.DictWriter(
+            handle, fieldnames=FIELDS, delimiter="\t", lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(rows[key] for key in sorted(rows))
         handle.flush()
@@ -50,7 +52,7 @@ def write_rows(path: Path, rows: dict[tuple[int, int, int], dict[str, str]]) -> 
 
 def solve_job(
     job: tuple[int, int, int],
-    hint: dict[str, str],
+    hints: tuple[dict[str, str], ...],
     free_cell_counts: tuple[int, ...],
     trials: int,
     time_limit: float,
@@ -60,9 +62,10 @@ def solve_job(
     encoding, cells, support = encode_problem(q_value, orbit, case_id)
     attempts = 0
     unknown = 0
-    words = (hint["states_a"], hint["states_b"])
     for stage, free_cell_count in enumerate(free_cell_counts):
         for trial in range(trials):
+            hint = hints[(stage * trials + trial) % len(hints)]
+            words = (hint["states_a"], hint["states_b"])
             seed = (
                 q_value * 10**12
                 + orbit * 10**9
@@ -98,6 +101,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--seed-manifest", type=Path)
     parser.add_argument("--workers", type=int, default=10)
     parser.add_argument("--time-limit", type=float, default=1.0)
     parser.add_argument("--trials", type=int, default=8)
@@ -119,6 +123,12 @@ def main() -> None:
     }
     if set(hints) != expected:
         raise RuntimeError(f"input does not cover exactly 216 cells")
+    seeds = read_rows(args.seed_manifest) if args.seed_manifest is not None else {}
+    if not set(seeds) <= expected:
+        raise RuntimeError("seed manifest contains an unexpected key")
+    seeds_by_support: dict[tuple[int, int], list[dict[str, str]]] = {}
+    for (q_value, orbit, _), row in sorted(seeds.items()):
+        seeds_by_support.setdefault((q_value, orbit), []).append(row)
     rows = read_rows(args.output)
     if not set(rows) <= expected:
         raise RuntimeError("output contains an unexpected key")
@@ -131,7 +141,9 @@ def main() -> None:
             executor.submit(
                 solve_job,
                 job,
-                hints[job],
+                tuple(
+                    [hints[job], *seeds_by_support.get((job[0], job[1]), [])]
+                ),
                 free_cell_counts,
                 args.trials,
                 args.time_limit,

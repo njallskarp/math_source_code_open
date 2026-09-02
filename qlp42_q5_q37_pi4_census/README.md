@@ -21,6 +21,13 @@ lower-bound result, not a complete fourth-layer census: the bounded first sweep
 visited all 216 cells exactly once but did not prove anything about the other
 212 cells.
 
+A second deterministic pass seeded every unresolved cell with its original
+third-layer word and, when available, every fourth-layer witness on the same
+support orbit.  It completed all 212 unresolved keys with 56 local attempts per
+key at free-cell counts `2,4,6,8,10,12,14` and found no additional witness.
+This records the exhaustion of that bounded local-deformation strategy only;
+it is not evidence that the unresolved cells are unsatisfiable.
+
 ## Files
 
 - `pi4_witnesses.tsv` is the four-row certificate.
@@ -34,6 +41,8 @@ visited all 216 cells exactly once but did not prove anything about the other
   coverage at completion.
 - `first_sweep_summary.json` records the bounded search schedule, dependency
   hashes, and the necessary trust-boundary warning.
+- `second_sweep_summary.json` records the complete support-orbit-seeded pass
+  and its zero-new-witness outcome.
 - `verify.sh` reruns the Python exact verifier plus optimized and sanitized C++
   checks.  Run `test_pi4_encoding.py` inside the pinned environment to repeat
   the SAT-encoding regression.
