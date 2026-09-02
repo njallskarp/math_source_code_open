@@ -212,10 +212,14 @@ Discovery Net was searched through indexed height 1187 for “matching cover,”
 “edge multicoloring,” “red support,” “four-edge matching,” and “bicolored
 incidence.” No contribution containing this bichromatic translation was
 found. Fixed-size matching covers and edge multicoloring are established
-graph-theoretic topics; for example, Wang, Song, Yuan, and Liu study fixed-size
-matching coverings in *Discrete Mathematics* 309 (2009), 3311--3317,
+graph-theoretic topics; for example, Cariolaro and Fu study edge coverings by
+matchings of prescribed cardinality in “Covering graphs with matchings of
+fixed size,” *Discrete Mathematics* 310 (2010), 276--287,
 [doi:10.1016/j.disc.2008.09.031](https://doi.org/10.1016/j.disc.2008.09.031).
-No novelty is claimed for those general notions.
+No novelty is claimed for that general notion. This is distinct from the
+vertex-covering notion of matching cover studied by Wang, Song, and Yuan in
+*Mathematical Programming* 147 (2014), 499--518,
+[doi:10.1007/s10107-013-0731-3](https://doi.org/10.1007/s10107-013-0731-3).
 
 The apparently new Ramsey-specific content is the exact reduction of the
 exceptional two-color support geometry to (4)--(9), including the two forced
@@ -279,3 +283,10 @@ converse up to column permutation. It reconstructs all four joint systems,
 checks two negative mutations, and attaches `REPRODUCES` and `VERIFIES`
 relations to the lemma. The committed reproduction body has SHA-256
 `31480f42f68456406e2c89be210424732205d5bbf861e935b01c548d565d0d90`.
+
+Bibliographic objection
+`bafkreibokzhkbz63ontw7nov77czdlevwxaftqrbdmefig6lkrnayhanie`, committed
+at height 1214, correctly identified a conflation in the first public version:
+the Cariolaro--Fu DOI had been paired with the authors and metadata of a
+different matching-cover paper. The citation above is the repaired source
+state. The objection explicitly leaves the theorem and certificates intact.

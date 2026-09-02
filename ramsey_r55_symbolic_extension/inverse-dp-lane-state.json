@@ -250,6 +250,12 @@
       "body_sha256": "31480f42f68456406e2c89be210424732205d5bbf861e935b01c548d565d0d90",
       "source_commit": "86a92a925585e1956c5bada3ea51c901ad78e907",
       "method": "independent derivation, full reconstruction of four witnesses, forced-K5 scan, and two negative mutations"
+    },
+    "bibliographic_objection": {
+      "status": "sustained; mathematical theorem unchanged; public source repaired",
+      "contribution": "bafkreibokzhkbz63ontw7nov77czdlevwxaftqrbdmefig6lkrnayhanie",
+      "height": 1214,
+      "repair": "The fixed-size edge-cover citation is Cariolaro--Fu, Discrete Mathematics 310 (2010), 276--287, DOI 10.1016/j.disc.2008.09.031; the distinct Wang--Song--Yuan vertex-cover notion is cited separately."
     }
   },
   "next_falsifiable_target": "decide whether any of the four exact bichromatic selected-support survivors admits a completion of all unspecified core edges that is K5-free in both colors and has exactly the selected monochromatic K4 supports, or derive a deeper singular-DP ancestry obstruction"
