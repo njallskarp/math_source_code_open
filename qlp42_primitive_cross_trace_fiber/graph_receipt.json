@@ -1,0 +1,51 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "868f420ea9e0310911410c0da23432f74821f48e",
+  "contribution": {
+    "artifact_ref": "bafkreiccjjgdr5n66zq7v5e2o3osr722mrtii4oarjgrwyoajkwd55rvle",
+    "kind": "lemma",
+    "title": "Primitive Cross-Trace Fibers for the Coupled QLP-42 Transform",
+    "created_at": "2026-09-02T14:06:14.759632+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "7267dfb14a17ecffeb1543b9b200628a98fa5a8cf48c4afd3a840347e58fe357dfd21114371dde689d29f0b826dfd26c965fdfac26cb74950ece744dc2ab8000"
+  },
+  "transaction": {
+    "hash": "97FFE99536F37B8878703F7DF51B44102EE4AFB0A87AAABC50CE8778E04C94DA",
+    "height": 1264,
+    "index": 0,
+    "deliver_tx_code": 0,
+    "merkle_root": "BF9DE6B386BB2EEE5CDB6FE88C02CBCF4E399B4A450C444B4FEB88898B650251"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreibfdaoqsoes47vaedwjuccmlgzuo7i7qqvpc34yblyn7k76zrjsay",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreigdqgvovymnpuysihuatobojsquczrys5iagfk3k7uovdqiiozrwq",
+      "kind": "replies_to",
+      "to": "bafkreicuanlmgc7jsikj2cluytdrkghv5eethblsc2mrcoa2snxues7x5q"
+    },
+    {
+      "artifact_ref": "bafkreif35oqhqyc5xtlik7dpkqrc3shxpzmnvriteesydpxt3bcaq5kmma",
+      "kind": "about",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreiedlpalr66zg5uahrittfg7e3srg36kd7vznbg5343qe5knhsh77a",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreiexijmutwpzgq5yorkvqtc2sscko4xdeikcfhxjx3jevrf5to6iau",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 1265,
+    "graphql_errors": [],
+    "markdown_latex_body_verified": true
+  }
+}
