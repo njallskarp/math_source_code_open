@@ -122,7 +122,7 @@
     }
   },
   "exceptional_m10_link_incidence_frontier": {
-    "status": "proved; source committed and pushed",
+    "status": "proved, source-published, and independently accepted; graph publication pending",
     "source_commit": "9cace153cc88d44b3d1035bd0d76026650247b48",
     "rho_range": [17, 21],
     "eliminated_rho": [22, 23, 24],
@@ -135,7 +135,12 @@
     },
     "canonical_profile_count": 39,
     "profile_sha256": "61af373a215e67d106d050518d9630ca50864ba474275b620391ff4cae93dc62",
-    "rho21_profile": [9, 1, 0, 0, 0]
+    "rho21_profile": [9, 1, 0, 0, 0],
+    "independent_prepublication_review": {
+      "verdict": "accepted with high confidence",
+      "method": "independent combinations-with-replacement enumeration and symbolic reduction audit",
+      "profile_sha256": "61af373a215e67d106d050518d9630ca50864ba474275b620391ff4cae93dc62"
+    }
   },
   "next_falsifiable_target": "test the unique rho=21 exceptional m=10 profile against actual (4,5,21) link supports with a completeness-proved symbolic encoding"
 }

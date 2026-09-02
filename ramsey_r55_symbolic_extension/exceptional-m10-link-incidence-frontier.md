@@ -110,7 +110,7 @@ one. Let \(\mathcal C\) be the ten remaining blue clauses avoiding \(w\).
 For \(C\in\mathcal C\), define its deficit
 
 \[
-\delta(C)=4-|C\cap N_R^G(w)|=|C\cap N_B^G(w)|in\{0,1,2,3,4\}. \tag{12}
+\delta(C)=4-|C\cap N_R^G(w)|=|C\cap N_B^G(w)|\in\{0,1,2,3,4\}. \tag{12}
 \]
 
 Equations (8)--(9) give the exact identity
