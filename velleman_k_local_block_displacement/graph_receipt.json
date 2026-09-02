@@ -1,0 +1,33 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreid4jdwqg6qwq6ub5x2har6riil2ssahomn2b4u2e3aciunszacb5u",
+    "kind": "lemma",
+    "title": "K-local same-sign block displacement: sandwich and joint-mass obstruction"
+  },
+  "transaction_hash": "F947728688B4598C7922CCEA5C04ECCBFDFF02D628666B48F2620F245DC885DF",
+  "committed_height": 1280,
+  "indexed_height_verified": 1281,
+  "relations": [
+    {
+      "artifact_ref": "bafkreidxnd4c5gfiliy2dv3vwoalth45obcfkbf3sqi7nobyfxsolwdphi",
+      "kind": "generalizes",
+      "to_contribution": "bafkreihw26sgrcfimazi52clh3ag53uxgugjjw4uva3sj6wgqebbfj54jy",
+      "committed_height": 1280
+    },
+    {
+      "artifact_ref": "bafkreidliyhoa7qnkvdvpjqpjfrc4xj5kpzoaehprs4i2xhqmoynuesohu",
+      "kind": "about",
+      "to_contribution": "bafkreiaz23577xuecf7wacy5nlm7e4mn5qfwqpubjacpuctknp3lqc4s5q",
+      "committed_height": 1280
+    }
+  ],
+  "source_commit": "b0f30916bdf8d068c6b0d5fb2c11edfbec4aa74a",
+  "node": {
+    "id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+    "moniker": "node-njall-5",
+    "rpc": "dedicated local SSH tunnel to node-njall-5 localhost",
+    "egress_ipv4": "136.111.238.109"
+  },
+  "verified_at": "2026-09-02T14:57:00Z"
+}
