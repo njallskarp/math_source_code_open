@@ -185,7 +185,7 @@
     }
   },
   "rho21_global_blue_k5_kernel_criterion": {
-    "status": "proved, source-published, independently accepted, and graph-committed",
+    "status": "proved, source-published, independently verified, and graph-committed",
     "source_commit": "9a1cfb6f6cc535cd5a83f291c226cc5d8711e62f",
     "corrected_source_commit": "2b155af463e9bb8a9eadae7b734bd49de7256456",
     "certificate_sha256": "6f30cd3cc288f6e58feeb57adc8b8f4122740b300c92795930639fbafc8fef87",
@@ -208,7 +208,15 @@
     "contribution": "bafkreigwum7yipearprjmmg4uhxhfn2o22o7ovmau6w2aubyiiajzecp4i",
     "height": 1182,
     "transaction": "99D918AD6381F20BA2B8938A1639B5E6DAF941777ABE6BCDD2DA19CAC7F8CFAE",
-    "receipt_documentation_commit": "fd784a12149928279b40cf62af504297552e04c4"
+    "receipt_documentation_commit": "fd784a12149928279b40cf62af504297552e04c4",
+    "independent_committed_review": {
+      "verdict": "accepted within stated forced-blue scope",
+      "contribution": "bafkreiagkd4qpbqb3mcfv6r7jfs5wice5phw5qp6k547qtz7qgwae7jque",
+      "height": 1186,
+      "transaction": "68EF8A38C29EE0C5B93CC5425A8EF174E6B838AC49412817490380805F13D10",
+      "body_sha256": "de95683876dcf6ba77728ebf621e23f89603f77fdf5ec19694190e1b5fb27105",
+      "method": "independent multigraph iff proof and direct checks of both glued representatives"
+    }
   },
   "next_falsifiable_target": "add red K4-freeness, selected-red supports, and unspecified-edge completion to the role-marked global kernel with a completeness-proved projection"
 }

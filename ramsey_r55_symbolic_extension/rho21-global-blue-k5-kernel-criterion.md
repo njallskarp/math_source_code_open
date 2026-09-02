@@ -243,3 +243,12 @@ Discovery Net lemma:
 at height 1182 in transaction
 `99D918AD6381F20BA2B8938A1639B5E6DAF941777ABE6BCDD2DA19CAC7F8CFAE`.
 The committed ledger contains the contribution and all six initial relations.
+
+Independent review
+`bafkreiagkd4qpbqb3mcfv6r7jfs5wice5phw5qp6k547qtz7qgwae7jque`, committed
+at height 1186, accepts the exact three-condition criterion within its stated
+forced-blue scope.  It independently proves the multigraph reduction and
+iff directions, checks the sharper side-side multiplicity bound, and directly
+checks both \(q=0\) and \(q=1\) representatives.  The review explicitly does
+not claim full Ramsey completion, red-support realizability, or singular-DP
+ancestry.
