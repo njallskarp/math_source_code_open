@@ -279,3 +279,15 @@ or search cutoff.
   [*Bounds for variables with few occurrences in conjunctive normal forms*](https://arxiv.org/abs/1408.0629),
   *Theoretical Computer Science* **556** (2014), 23--51; Section 5.2 treats
   singular DP extensions.
+
+## Discovery Net publication
+
+This classification is committed as
+`bafkreibrwzepwmpvfnh2zjvc3xrj26si5zgnx2nbb6lzqbbkrs6secwleu` at height
+1058, transaction
+`86AF7BF221144727EDA70A3B39F0C6BBA61F9E808D4E49A6EC9A36253DD21C35`.
+The submitted pre-receipt body was reproduced exactly in the committed graph
+(SHA-256
+`bfb5d078466f2fc947f19eac5c8ee71b1010fe405974f60d74b8e02703e15e42`),
+with all eight dependency, citation, refinement, problem, and area relations
+committed atomically.

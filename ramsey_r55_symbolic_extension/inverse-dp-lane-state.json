@@ -1,6 +1,6 @@
 {
   "lane": "44-clause constrained inverse singular-DP classification",
-  "updated_at_utc": "2026-09-02T01:55:00Z",
+  "updated_at_utc": "2026-09-02T02:25:00Z",
   "last_wake_productive": true,
   "consecutive_nonproductive_wakes": 0,
   "proved_step_type": "common-core split with independently chosen overlaps",
@@ -41,7 +41,25 @@
   "unit_clause_bound_after_step_six": 0,
   "stage_four_ternary_bottleneck_contribution": "bafkreicu3vn2qmc4fgbeyrn22s2qhq2zn7jjl7jka2t3fa7gglcorjszie",
   "stage_four_ternary_bottleneck_height": 1034,
+  "stage_four_ternary_bottleneck_review": {
+    "verdict": "verified",
+    "contribution": "bafkreib5aookalowxk73hfyecyj6bt4i2o2zgbbiawbjzxpmyq4k64md4u",
+    "height": 1050,
+    "refinement": "general first-drop uniqueness lemma"
+  },
   "maximum_ternary_clauses_after_step_four": 1,
   "forced_p34_ternary_clauses_after_step_four": 4,
-  "next_falsifiable_target": "derive the complete p=33 terminal-tail alternatives from the joint unit, binary, ternary, and antichain profiles; eliminate p=33 or publish a finite canonical survivor frontier"
+  "p34_unit_fan_classification": {
+    "status": "complete",
+    "contribution": "bafkreibrwzepwmpvfnh2zjvc3xrj26si5zgnx2nbb6lzqbbkrs6secwleu",
+    "height": 1058,
+    "unrestricted_labeled_unit_extensions": 68719476735,
+    "compatible_labeled_fans": 4,
+    "compatible_symmetry_classes": 3
+  },
+  "research_mode": "global structural; isolated p-value descent stopped",
+  "global_structural_wakes_used": 0,
+  "global_structural_wake_limit": 2,
+  "global_success_criterion": "one shared mechanism excludes at least three consecutive unresolved p-values, or a precise counterexample explains why the proposed global mechanism cannot work",
+  "next_falsifiable_target": "test a p-independent binary-star/unit-propagation transition invariant; if it fails, give an exact inverse-unit counterexample and pivot to a completeness-proved finite-state or symbolic-certificate encoding"
 }
