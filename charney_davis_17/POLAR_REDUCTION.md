@@ -1,5 +1,12 @@
 # Polar-size-three reduction at the 17-vertex boundary
 
+> **Historical derivation note.** The normative proof and its complete trust
+> boundary are now in [`AUDIT.md`](AUDIT.md). This file is retained to
+> preserve the route by which the reduction was found; where wording differs,
+> `AUDIT.md` controls. In particular, the shortest proof handles polar size
+> two directly with Labbé--Nevo Lemma 3.4 and does not require the separate
+> 16-vertex admissible-edge route.
+
 ## Exact conditional theorem
 
 Let `Delta` be a flag generalized homology 5-sphere on 17 vertices.  If

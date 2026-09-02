@@ -1,18 +1,18 @@
 import CharneyDavis17
 
 /-!
-# The polar-size-three bottleneck at 17 vertices
+# The frozen 17-vertex polar reduction and closure arithmetic
 
 This file packages a non-enumerative reduction for a hypothetical negative
 Charney--Davis counterexample among 17-vertex flag generalized homology
 5-spheres.
 
-The topology from Labbé--Nevo is kept outside the kernel as explicitly named
-hypotheses.  Lean checks the polynomial derivative identity and the finite
-arithmetic consequence: a negative counterexample has polar size exactly
-three, has `1 ≤ gammaTwo ≤ 5`, and has at least eight vertices with exactly
-three antipodes.  If the Labbé--Nevo suspension alternative is supplied, all
-of those minimum-antipode vertex links are nonsuspensions.
+The topology from Labbé--Nevo, Davis--Okun, and Gal is kept outside the kernel
+as explicitly named hypotheses. Lean checks the polynomial derivative
+identity, the finite arithmetic reduction to the unique complement profile,
+and the final degree-four-link contradiction. `AUDIT.md` is the normative
+statement of every imported theorem and unformalized bridge. This file stays
+focused on the 17-vertex theorem while it awaits qualified independent review.
 -/
 
 namespace CharneyDavis17
