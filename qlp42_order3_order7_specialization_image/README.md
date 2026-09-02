@@ -94,6 +94,11 @@ primitive order-21 component) as an indispensable ingredient of any future
 family-level theorem.  No `(1+i)`-adic layer, cellwise SAT sweep, or support
 orbit census is used here.
 
+The responsibly scoped Discovery Net lemma is
+`bafkreicuanlmgc7jsikj2cluytdrkghv5eethblsc2mrcoa2snxues7x5q`, committed at
+height 1250.  `graph_receipt.json` records its transaction and five atomic
+relations.
+
 ## Exact reproduction
 
 The standard-library checker verifies the Bezout identity, the necessity

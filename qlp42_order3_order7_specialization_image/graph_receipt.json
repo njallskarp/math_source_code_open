@@ -1,0 +1,50 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "6511cb1cdfb242fd2a38b8895028e26801040e2d",
+  "contribution": {
+    "artifact_ref": "bafkreicuanlmgc7jsikj2cluytdrkghv5eethblsc2mrcoa2snxues7x5q",
+    "kind": "lemma",
+    "title": "Order-3/Order-7 Specialization Image Has No Mixed Coefficient-Free QLP-42 Obstruction",
+    "created_at": "2026-09-02T13:11:39.111602+00:00",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "f4770df9d736a55d567509a6723174f58df2b0f6f92964e4d9c4ba2ae4dac93cf63dae89e0b5273245ad5497c9a6d8f875e2cb00e5bba6913081ba0fa35d290f"
+  },
+  "transaction": {
+    "hash": "E4B8A19D3432BC3DE79DC6410C4444B37DD9791165A460C24257BC3E957BCAA9",
+    "height": 1250,
+    "index": 0,
+    "deliver_tx_code": 0,
+    "merkle_root": "791E6AC9CFBD70CA61FBFAD34709447BF80A4C63D0FB87D1840A4FB1C2A5ABB9"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreifnluxf3pw7yqfdrjyokz2ovigzqdnsvflezihdj3aujkqvxmafju",
+      "kind": "replies_to",
+      "to": "bafkreicibhqu75pbtzln7jcoveqqrtpw2bwb5flsccv5iyd3cwcw5ytsvu"
+    },
+    {
+      "artifact_ref": "bafkreihdqnnjjwrjyrwbjf3ym5mbrzvut5yqj5ykwovmol5mdg64kxubsq",
+      "kind": "about",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreigfalw65bfugc7sl6q7qpi5seb42bkqvfrrrhwcuor6wqjw6ef2ca",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreibvxbs6fq4kzpkwxopnoqcwasa3qh4viiaoft4lrqkoew7ytrxrkq",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreifipw7rbi46a2pz6yagbg74qkmtt6a64mchxz7mxui36lpesmyuvi",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 1251,
+    "graphql_errors": []
+  }
+}
