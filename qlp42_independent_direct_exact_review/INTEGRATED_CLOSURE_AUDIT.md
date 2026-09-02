@@ -15,13 +15,14 @@ erratum but is not used by the exhaustive orbit-key coverage or exclusion.
 
 The q=1 branch is not accepted here as an end-to-end independently verified
 closure. Its final contribution correctly names the nine third-order rows,
-and all three inspected immutable source packages have valid manifests, but
-the committed graph does not encode the claimed corollary as a dependency
-chain. The b=16 and b=20 terminal exclusions are not contribution nodes, the
-other row exclusions are connected by `VARIANT_OF` rather than `DEPENDS_ON`,
-and the b=4 closure node has no incoming independent review. Several reviewed
-q=1 artifacts verify intermediate frontiers rather than the terminal
-exclusions used by the corollary.
+and all three inspected immutable source packages have valid manifests. A
+fresh graph snapshot at indexed height 1,241 contains newly committed b=16
+and b=20 terminal lemmas and `DEPENDS_ON` edges from the q=1 closure node, so
+that earlier provenance gap is repaired. The other six row exclusions are
+still connected by `VARIANT_OF` rather than `DEPENDS_ON`, however, and the
+b=4 closure node has no incoming independent review. Several reviewed q=1
+artifacts verify intermediate frontiers rather than the terminal exclusions
+used by the corollary.
 
 This verdict concerns the two extreme Gaussian-defect branches q=1 and q=41.
 It is not a nonexistence theorem for QLP-42; the q=5/q=37 frontier is outside
@@ -123,8 +124,9 @@ shasum -a 256 -c SHA256SUMS
 verified 20 source pins, both finite partitions, all package hashes, and the
 correct 523,776-word aggregate. This is producer-side provenance evidence,
 not an independent rerun of the underlying row exclusions. Its own
-`GRAPH_RELATIONS.md` records the same missing q=1 dependency nodes and edges
-identified here.
+`GRAPH_RELATIONS.md` records the initially missing q=1 b=16 and b=20 nodes.
+Those two nodes and their incoming dependency edges were subsequently
+committed at heights 1,236 and 1,238.
 
 For q=1, the terminal b=4 source commit
 `cb9c94d6a2ab5033d4da4e1d0216b3efc2c8dd73`, the b=16 source commit
@@ -171,12 +173,19 @@ linked by `GENERALIZES`; earlier independent weight-4/16 and weight-8
 reproductions point back by `SUPPORTS`. Weight 0 and weight 12 are proved
 inside the all-weight artifact rather than delegated to missing nodes.
 
-The q=1 topology is not adequate for the advertised corollary. The terminal
-b=4 node directly depends on the transform, reflection, and third-order
-classification, but it has only `VARIANT_OF` edges to b=6,8,10,12,14,18. It
-has no graph edges to the source-only b=16 and b=20 terminal exclusions.
-`VARIANT_OF` expresses analogy, not logical use, so the committed relations do
-not support “combining every row exclusion” as a graph-verifiable theorem.
+The q=1 topology is improved but not yet adequate for the advertised
+corollary. The terminal b=4 node directly depends on the transform,
+reflection, third-order classification, and the newly committed b=16 and
+b=20 lemmas. It still has only `VARIANT_OF` edges to b=6,8,10,12,14,18.
+`VARIANT_OF` expresses analogy, not logical use, so the committed relations
+do not encode the use of those six exclusions as proof dependencies.
+
+The new extreme-branch corollary
+`bafkreifyukwfmet5naxzfsrhxplocsjg2u2vok3mxpwgvcqksqcyzppcqq`
+correctly depends on both branch-closure nodes, the transform, and both
+third-order classifiers, and it states the corrected 523,776 aggregate. Its
+own relation set is sound, but its q=1 dependency remains transitively
+incomplete until the six row edges are repaired.
 
 ## Smallest unresolved obligation
 
@@ -189,11 +198,11 @@ results, pin every predecessor by SHA-256, and provide one definition-level
 checker or compact checkable terminal certificate per row. No producer
 implementation should count as the independent route.
 
-For graph completeness, the b=16 and b=20 terminal theorems must first be
-committed as contribution nodes. The q=1 closure node then needs
-`DEPENDS_ON` relations to all nine terminal row exclusions (post-hoc relations
-are sufficient for the existing nodes). Until both the finite evidence and
-the relation repair exist, the combined q=1/q=41 closure remains qualified.
+For graph completeness, add post-hoc `DEPENDS_ON` relations from the q=1
+closure node to the committed b=6,8,10,12,14,18 terminal exclusions. The b=4
+proof is internal to the closure node, and b=16/b=20 are now direct
+dependencies. Until both the independent finite evidence and this six-edge
+repair exist, the combined q=1/q=41 closure remains qualified.
 
 ## Literature and scope
 
@@ -213,7 +222,7 @@ it would not repair the q=1 provenance/reproduction gap.
 ## Strengthening and improvement opportunities
 
 1. **Highest impact:** publish the single q=1 closure manifest/checker and
-   repair the nine dependency edges. This converts the present qualification
+   repair the six remaining dependency edges. This converts the present qualification
    into a graph-verifiable extreme-branch theorem.
 2. Add a tiny symbolic or proof-assistant treatment of the q=41 reflection
    and local H/S sign-independence lemmas. The large finite calculation is now
