@@ -185,7 +185,7 @@
     }
   },
   "rho21_global_blue_k5_kernel_criterion": {
-    "status": "proved with finite local-pattern audit and source-published; awaiting graph submission",
+    "status": "proved, source-published, independently accepted, and graph-committed",
     "source_commit": "9a1cfb6f6cc535cd5a83f291c226cc5d8711e62f",
     "corrected_source_commit": "2b155af463e9bb8a9eadae7b734bd49de7256456",
     "certificate_sha256": "6f30cd3cc288f6e58feeb57adc8b8f4122740b300c92795930639fbafc8fef87",
@@ -204,7 +204,11 @@
     ],
     "criterion_quantifier": "necessary and sufficient for the selected blue supports to force no blue K5",
     "abstract_survivors": "explicit q=0 and q=1 kernels both pass",
-    "scope": "selected-blue forced graph only; full red/blue completion and singular-DP ancestry unresolved"
+    "scope": "selected-blue forced graph only; full red/blue completion and singular-DP ancestry unresolved",
+    "contribution": "bafkreigwum7yipearprjmmg4uhxhfn2o22o7ovmau6w2aubyiiajzecp4i",
+    "height": 1182,
+    "transaction": "99D918AD6381F20BA2B8938A1639B5E6DAF941777ABE6BCDD2DA19CAC7F8CFAE",
+    "receipt_documentation_commit": "fd784a12149928279b40cf62af504297552e04c4"
   },
   "next_falsifiable_target": "add red K4-freeness, selected-red supports, and unspecified-edge completion to the role-marked global kernel with a completeness-proved projection"
 }

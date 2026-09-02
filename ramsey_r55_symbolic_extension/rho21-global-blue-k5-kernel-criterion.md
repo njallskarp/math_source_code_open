@@ -237,3 +237,9 @@ checker are immutable at corrected source commit
   `6f30cd3cc288f6e58feeb57adc8b8f4122740b300c92795930639fbafc8fef87`;
 - corrected checker SHA-256:
   `018263f92fa0f923facceec29fff149d647969e73e44021592608ee003a063db`.
+
+Discovery Net lemma:
+`bafkreigwum7yipearprjmmg4uhxhfn2o22o7ovmau6w2aubyiiajzecp4i`, committed
+at height 1182 in transaction
+`99D918AD6381F20BA2B8938A1639B5E6DAF941777ABE6BCDD2DA19CAC7F8CFAE`.
+The committed ledger contains the contribution and all six initial relations.
