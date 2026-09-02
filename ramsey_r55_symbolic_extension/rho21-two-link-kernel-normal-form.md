@@ -38,8 +38,9 @@ distinguished red triangle.  The \(Y\)-kernel has the single degree family
 \]
 
 Conversely, every marked kernel satisfying the conditions below reconstructs
-an abstract selected-support incidence system with exactly the required
-\(\rho=21\) degrees.  Thus (3)--(4) are a complete finite alphabet for this
+an abstract selected-blue support-incidence system with the required blue
+occurrence degrees and neighborhood cardinalities.  Thus (3)--(4) are a
+complete finite alphabet for this
 projection.  They do **not** assert realizability in a two-colored
 \(K_5\)-free Ramsey core.
 
@@ -142,7 +143,7 @@ All selected-blue incidence on \(Y\) comes from the ten side triangles
 \(\mathcal H_Y\) satisfying
 
 \[
-d_{\mathcal H_Y}(y_*)=1,qquad
+d_{\mathcal H_Y}(y_*)=1,\qquad
 d_{\mathcal H_Y}(y)=2\quad(y\in Y\setminus\{y_*\}).         \tag{13}
 \]
 
@@ -179,6 +180,17 @@ Adding the singleton occurrence of the half-edge vertex in \(C_*\) gives
 selected blue degree two at every vertex of \(Y\).  This is precisely (13)
 and proves the converse.
 
+To glue the two converse reconstructions, biject the three \(X\)-half-edge
+vertices with the three marked witness nodes of \(J_Y\), and identify the
+unique \(Y\)-half-edge vertex with the singleton \(y_*\) attached to the
+mixed \(X\)-node \(Q\).  This creates the clauses (8)--(9).  The nine
+internal clauses have distinct 4-set supports; the ten side clauses have
+distinct triangle supports and contain \(w\); the three witness clauses
+contain distinct \(a_i\); and the mixed clause is the only off-\(w\) clause
+with three \(X\)-vertices and one \(Y\)-vertex.  Hence no cross-role full
+clauses duplicate.  The two kernels therefore reconstruct one joint abstract
+selected-blue incidence system, not merely two unrelated degree lists.
+
 ## Why this is a useful global compression
 
 The prior intersection-number frontier left a 21-vertex red link and a
@@ -212,10 +224,10 @@ python3 ramsey_r55_symbolic_extension/verify_rho21_two_link_kernels.py \
 ~~~
 
 The checker derives the two \(X\)-degree sequences from \(q\in\{0,1\}\),
-checks every kernel axiom, reconstructs all endpoint supports, verifies the
-converse incidence degrees and side-support distinctness, and validates an
-explicit member of every abstract family.  It uses no solver or external
-package.
+checks every kernel axiom on the supplied representatives, reconstructs their
+endpoint supports, verifies the incidence degrees and side-support
+distinctness, and validates an explicit member of every abstract family.  It
+does not enumerate all marked kernels.  It uses no solver or external package.
 
 ## Novelty assessment
 
