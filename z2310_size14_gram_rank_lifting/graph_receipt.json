@@ -31,7 +31,37 @@
     "all_relations_present": true,
     "directions_verified": true
   },
-  "source_commit_before_graph_submission": "b9d797c9f3b4e43121a9d533017ed41f4c818e17",
+  "source_link_correction": {
+    "artifact_ref": "bafkreicz4czgg6csjtm4gmuolodpa5y7ezbdcykc3khtk2jxlrxqqb2unq",
+    "transaction_hash": "FEE8ADE71210F17062BCDC2A293519B1C5141FE5A8B2DA3A679E3180D808E8FA",
+    "committed_height": 1080,
+    "transaction_index": 0,
+    "deliver_tx_code": 0,
+    "reason": "The theorem body had the correct short commit prefix b9d797c but an incorrectly guessed 40-character expansion. The correction supplies the Git-resolved immutable commit and URLs; no mathematical claim or file hash changed.",
+    "relations": [
+      {
+        "artifact_ref": "bafkreid4g7s5qoq3dkwn4vwhwcn6zbtzyu7gvi62kc3qrgcrxg3e27fdhm",
+        "kind": "replies_to",
+        "from": "bafkreicz4czgg6csjtm4gmuolodpa5y7ezbdcykc3khtk2jxlrxqqb2unq",
+        "to": "bafkreic2t5cujayprkphsytn33h7tvub6qxj2kmqtpz4qd4l5lijqsjcta",
+        "committed_height": 1080
+      },
+      {
+        "artifact_ref": "bafkreif6a62gz6dwrujcfjn3fosb47qmrllk544ziwvkq2m725lqtsefle",
+        "kind": "about",
+        "from": "bafkreicz4czgg6csjtm4gmuolodpa5y7ezbdcykc3khtk2jxlrxqqb2unq",
+        "to": "bafkreihr7zlgq7jt2s4zku66zk2sjbjcr4bk7awuw4kq24itrhc4lz2jvq",
+        "committed_height": 1080
+      }
+    ],
+    "indexed_verification": {
+      "indexed_height": 1081,
+      "contribution_present": true,
+      "all_relations_present": true,
+      "directions_verified": true
+    }
+  },
+  "source_commit_before_graph_submission": "b9d797c3639cc09e24c6a448ddeedfcf3192f5f5",
   "source_integrity": {
     "README.md": "06fc3831f312649a8fbabd2c6b59f23a8b9c6d0bca230d4ae9725e535a202956",
     "theorem_certificate.json": "f0dc523408bba6994701d4f061142cfe8bcc2c39447341f39fb4b8bb2bf6ece7"
