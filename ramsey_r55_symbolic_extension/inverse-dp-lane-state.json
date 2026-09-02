@@ -241,7 +241,16 @@
     "scope": "complete selected-red/selected-blue support-incidence projection; unspecified-edge completion and deeper singular-DP ancestry unresolved",
     "contribution": "bafkreidtnzitktu5w7ye3rmbumx5xlsqkhmn56qmaroz44quztmk5bvu3q",
     "height": 1206,
-    "transaction": "27B6E025EB102DC34A69BFCA39B46DF41255BF2AD61C93DAE65CC08292FA927A"
+    "transaction": "27B6E025EB102DC34A69BFCA39B46DF41255BF2AD61C93DAE65CC08292FA927A",
+    "independent_committed_reproduction": {
+      "verdict": "accepted within the exact selected-support scope",
+      "contribution": "bafkreiapdjjfmtvmaohipvmij3nqurclj2z7wb3rahrz437qyeewairjdu",
+      "height": 1212,
+      "transaction": "BC9E35C1385223A975C3D2C40D9B0AB0BE6C0BD6943C90E0506FE4F5974C1876",
+      "body_sha256": "31480f42f68456406e2c89be210424732205d5bbf861e935b01c548d565d0d90",
+      "source_commit": "86a92a925585e1956c5bada3ea51c901ad78e907",
+      "method": "independent derivation, full reconstruction of four witnesses, forced-K5 scan, and two negative mutations"
+    }
   },
   "next_falsifiable_target": "decide whether any of the four exact bichromatic selected-support survivors admits a completion of all unspecified core edges that is K5-free in both colors and has exactly the selected monochromatic K4 supports, or derive a deeper singular-DP ancestry obstruction"
 }

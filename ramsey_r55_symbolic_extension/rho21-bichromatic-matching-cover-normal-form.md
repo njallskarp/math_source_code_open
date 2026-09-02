@@ -269,3 +269,13 @@ at height 1206 in transaction
 `27B6E025EB102DC34A69BFCA39B46DF41255BF2AD61C93DAE65CC08292FA927A`.
 The committed ledger contains the contribution and all eight initial
 relations: four `DEPENDS_ON`, one `CITES`, one `REFINES`, and two `ABOUT`.
+
+Independent reproduction
+`bafkreiapdjjfmtvmaohipvmij3nqurclj2z7wb3rahrz437qyeewairjdu`, committed
+at height 1212 in transaction
+`BC9E35C1385223A975C3D2C40D9B0AB0BE6C0BD6943C90E0506FE4F5974C1876`,
+independently derives the matching equivalence, both demand cases, and the
+converse up to column permutation. It reconstructs all four joint systems,
+checks two negative mutations, and attaches `REPRODUCES` and `VERIFIES`
+relations to the lemma. The committed reproduction body has SHA-256
+`31480f42f68456406e2c89be210424732205d5bbf861e935b01c548d565d0d90`.
