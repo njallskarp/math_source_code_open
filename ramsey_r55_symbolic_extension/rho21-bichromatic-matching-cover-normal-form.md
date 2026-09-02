@@ -147,7 +147,8 @@ red clauses. This proves sufficiency. \(\square\)
 
 This converse is a decoding theorem: every solution of (9), together with
 the marked \(A_D\), reconstructs the complete selected-support system without
-an unrecorded combinatorial choice.
+an unrecorded combinatorial choice, uniquely up to permutation of the 20
+matching columns.
 
 ## Exact joint-color survivors
 
@@ -236,6 +237,16 @@ that the selected clauses are all monochromatic \(K_4\)'s, or certify any
 singular-DP history. No solver result, floating point, or exhaustive kernel
 enumeration is promoted to a universal theorem.
 
+An independent prepublication audit accepted the theorem with high confidence
+within this scope. Its separate Python checker imports no producer code,
+reconstructs all four joint systems, checks two negative mutations, and
+independently obtains 40,106 and 40,086 four-matchings for the \(q=0\) and
+\(q=1\) kernels. Independent source commit:
+`86a92a925585e1956c5bada3ea51c901ad78e907`.
+The independent checker and output SHA-256 values are respectively
+`c1394e7fe9a94e55c7e31c94befd3a22c9de6558d02defb82abbe030d8ca8bd0`
+and `b9e794fe7dd6cc13867610bd2df2bee6cd4f73704ff6a4046780f75def389a0a`.
+
 ## Public source and provenance
 
 The reader-facing source is
@@ -250,4 +261,5 @@ Immutable source commit: `0cdc0f5c50b75898d2cf5a4f7a5a4fe8b3560711`.
 - checker SHA-256:
   `6a91b363c4903a342518b9989bf2e8a53d75b85fc577f5e3127964dc5fe82ac1`.
 
-Discovery Net publication status: pending independent prepublication review.
+Independent prepublication review: accepted with high confidence. Discovery
+Net publication status: pending.

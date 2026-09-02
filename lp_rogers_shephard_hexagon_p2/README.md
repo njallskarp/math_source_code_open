@@ -318,6 +318,25 @@ supporting normal pairing.  The two orthogonal pairings determine the planar
 point.  Transition normals are excluded explicitly and remain governed by the
 six segment-valued face theorems.
 
+`FrontierSupport.lean` closes the compactness and supporting-normal bridge for
+the literal halfspace body.  It proves
+
+- `norm_sq_le_normalizedFireySupportVecSq` and
+  `ball_zero_one_subset_normalizedLpSumTwo`, hence the origin is an interior
+  point;
+- `isClosed_normalizedLpSumTwo`, `isBounded_normalizedLpSumTwo`, and
+  `isCompact_normalizedLpSumTwo`;
+- `exists_mem_inner_eq_normalizedFireySupportVec`, by an explicit split into
+  the three generator-sign chambers and central symmetry;
+- `setSupportFunction_normalizedLpSumTwo_allDirections`; and
+- `exists_nonzero_normal_mem_exposedFace_of_mem_frontier`.
+
+The last theorem applies geometric Hahn--Banach to the compact convex body
+with nonempty interior.  Thus every frontier point belongs to a literal
+exposed face for a nonzero normal.  Supporting-hyperplane existence is no
+longer an assumption: the remaining exhaustion step is the finite partition
+of such normals among the checked curved singleton and jump-segment faces.
+
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
@@ -325,11 +344,12 @@ area.  The smallest remaining analytic-geometry bridge is therefore exhausting
 the frontier with the singleton curved faces and the six exposed jump faces,
 followed by identification of its closed oriented integral with twice
 Lebesgue area.  The present development supplies exact halfspace membership,
-support equality on the complete upper half-circle, all six jump-face
+support equality in every vector direction, compactness, a nonzero supporting
+normal at every frontier point, all six jump-face
 classifications, curved-sector singleton faces, central symmetry,
 coordinatewise differentiability, oriented-density, endpoint, jump, integral,
-and periodicity precursors but does not assume the missing supporting-plane,
-Green/Jordan, or area theorem.
+and periodicity precursors but does not assume the missing normal-chamber
+partition, Green/Jordan, or area theorem.
 
 Pinned environment:
 

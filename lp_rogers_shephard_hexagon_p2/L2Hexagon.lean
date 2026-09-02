@@ -13,3 +13,4 @@ import L2Hexagon.ExposedFaces
 import L2Hexagon.MiddleExposedFace
 import L2Hexagon.ClosingExposedFace
 import L2Hexagon.LowerFacesAndCurvedUniqueness
+import L2Hexagon.FrontierSupport

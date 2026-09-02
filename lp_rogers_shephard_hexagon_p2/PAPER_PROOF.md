@@ -337,6 +337,18 @@ identifying the closed oriented integral of this piecewise smooth convex
 boundary with twice its Lebesgue area.  Full frontier coverage by the checked
 singleton curved faces and six jump segments, followed by that
 boundary-to-area identification, is now the precise smallest
-analytic-geometry bridge.  Lean still does not check frontier exhaustion, the
-affine normal-form theorem, the source-level Firey-sum/set equivalence, or the
+analytic-geometry bridge.
+
+The supporting-plane precursor needed for frontier coverage is now checked.
+The prescribed Firey support dominates the Euclidean norm, so the open unit
+ball lies in the exact halfspace body.  Coordinate support bounds and central
+symmetry make the body bounded; its halfspace definition makes it closed, so
+it is compact.  An explicit three-sign-chamber construction attains the
+prescribed support in every vector direction.  Finally, geometric
+Hahn--Banach supplies, for every frontier point, a nonzero normal whose
+functional is maximized there; support attainment identifies its maximum with
+the prescribed Firey support.  Hence every frontier point belongs to a literal
+`normalizedExposedFace` for a nonzero normal.  Lean still does not check the
+finite normal-chamber partition needed for the frontier union, the affine
+normal-form theorem, the source-level Firey-sum/set equivalence, or the
 end-to-end area theorem.
