@@ -1,0 +1,8 @@
+distinct_case_sigma_pairs=228
+branch_labeled_fiber_points=264
+positive_definite_completions=264
+nondefault_rotation_pairs=5
+direct_block_checks=12
+arithmetic=exact_rational_gaussian
+shifted_gram_mechanism=exhausted
+certificate=verified

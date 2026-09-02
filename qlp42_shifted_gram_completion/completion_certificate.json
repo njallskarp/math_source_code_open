@@ -1,0 +1,22 @@
+{
+  "length": 21,
+  "cases": [
+    [4, -5],
+    [4, -3],
+    [0, -5],
+    [4, -1],
+    [4, 1],
+    [0, -3]
+  ],
+  "branches": [5, 37],
+  "default_rotation": [0, 0],
+  "exceptional_rotations": [
+    {"case": 0, "sigma": -37, "real": 0, "imaginary": 1},
+    {"case": 0, "sigma": 37, "real": 0, "imaginary": 3},
+    {"case": 1, "sigma": -37, "real": 0, "imaginary": 1},
+    {"case": 2, "sigma": 37, "real": 0, "imaginary": 3},
+    {"case": 3, "sigma": -37, "real": 2, "imaginary": 0}
+  ],
+  "expected_distinct_case_sigma_pairs": 228,
+  "expected_branch_labeled_fiber_points": 264
+}
