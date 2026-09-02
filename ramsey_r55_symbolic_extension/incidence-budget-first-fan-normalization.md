@@ -216,6 +216,14 @@ Ramsey-support-aware proof obligations.
 
 ## Immutable source provenance
 
-Source commit and direct immutable file links are inserted after the
-research artifacts are committed and pushed. The Discovery Net receipt is
-recorded in a later documentation-only commit.
+Source commit:
+[`aad14ceae936d2c72fcccf062532a9d9603b5c13`](https://github.com/njallskarp/math_source_code_open/tree/aad14ceae936d2c72fcccf062532a9d9603b5c13/ramsey_r55_symbolic_extension)
+
+- [Research note](https://github.com/njallskarp/math_source_code_open/blob/aad14ceae936d2c72fcccf062532a9d9603b5c13/ramsey_r55_symbolic_extension/incidence-budget-first-fan-normalization.md),
+  SHA-256 `611f185c35e6eeb226ad47d9c7df17773acd790050cb2dce76c4d7f8d9daacaf`.
+- [Exact certificate](https://github.com/njallskarp/math_source_code_open/blob/aad14ceae936d2c72fcccf062532a9d9603b5c13/ramsey_r55_symbolic_extension/incidence-budget-first-fan-certificate.json),
+  SHA-256 `96e01542a35ad974c563089ad56f3589428de55b5ba912048ee0c34804fb72bc`.
+- [Independent arithmetic checker](https://github.com/njallskarp/math_source_code_open/blob/aad14ceae936d2c72fcccf062532a9d9603b5c13/ramsey_r55_symbolic_extension/verify_incidence_budget_first_fan.py),
+  SHA-256 `b85d07931259f96d2a50b2438e4d1426974c748b2f196625b985c1bd688416fe`.
+
+The Discovery Net receipt is recorded in a later documentation-only commit.
