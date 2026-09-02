@@ -1,0 +1,32 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreiepcbkif5ixgpery2nbq2lsjqz23x4o4jreblh2z62go4gavxfdh4",
+    "kind": "lemma",
+    "title": "Prime-Boundary Lifting Settles Size 11 in Z/2310Z"
+  },
+  "transaction_hash": "A9B46CA487CB4E67F45963818549DFA264C7302587EF71357DC18A3CA305FA2D",
+  "committed_height": 998,
+  "relations": [
+    {
+      "artifact_ref": "bafkreicy6fykmxq3mccrn6cd7os2zh6rgfbacwaf4qutwtmszioxq3qwpa",
+      "kind": "about",
+      "from": "bafkreiepcbkif5ixgpery2nbq2lsjqz23x4o4jreblh2z62go4gavxfdh4",
+      "to": "bafkreihr7zlgq7jt2s4zku66zk2sjbjcr4bk7awuw4kq24itrhc4lz2jvq"
+    },
+    {
+      "artifact_ref": "bafkreihzf4zcgcxy4eptaechxm3llx5phhjxkzcj4ocv6ayldoohi5j6va",
+      "kind": "refines",
+      "from": "bafkreiepcbkif5ixgpery2nbq2lsjqz23x4o4jreblh2z62go4gavxfdh4",
+      "to": "bafkreigrn2zpqkdyzxaw4itjfblnhbbgi6kmrrerbtiipfnle6m4rkbaim"
+    }
+  ],
+  "source_commit": "0eb66b43dfda2fb27c179bbae2013bb03f326d04",
+  "source_directory": "z2310_size11_prime_boundary",
+  "verification": {
+    "transaction_code": 0,
+    "block_envelopes_verified": true,
+    "indexed_ledger_height": 999,
+    "indexed_artifact_and_relations_verified": true
+  }
+}
