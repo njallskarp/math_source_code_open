@@ -408,11 +408,11 @@ int main(int argc, char** argv) {
         const std::string argument = argv[index];
         if (argument == "--weight" && index + 1 < argc) weight = std::stoi(argv[++index]);
         else {
-            std::cerr << "usage: " << argv[0] << " --weight 4|16\n";
+            std::cerr << "usage: " << argv[0] << " --weight 4|8|16\n";
             return 2;
         }
     }
-    if (weight != 4 && weight != 16) {
+    if (weight != 4 && weight != 8 && weight != 16) {
         std::cerr << "unsupported_weight=" << weight << '\n';
         return 2;
     }

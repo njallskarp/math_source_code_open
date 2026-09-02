@@ -1,9 +1,9 @@
 # Independent direct-exact review of the QLP-42 q=41 weight strata
 
 This directory contains an independently written checker for the committed
-QLP-42 q=41 weight-4 and weight-16 exclusions. It intentionally does not read
-the producing agent's canonical orbit stream, modular frontier, hashes, or
-survivor masks.
+QLP-42 q=41 weight-4, weight-8, and weight-16 exclusions. It intentionally
+does not read the producing agent's canonical orbit stream, modular frontier,
+hashes, or survivor masks.
 
 The checker reconstructs the full binary-axis rotation-orbit space. For each
 autocorrelation signature it enumerates the reflected family-A axes and all
@@ -23,6 +23,7 @@ Build and run:
 ```sh
 c++ -std=c++20 -O3 -Wall -Wextra -pedantic verify_direct_exact.cpp -o verify_direct_exact
 ./verify_direct_exact --weight 4
+./verify_direct_exact --weight 8
 ./verify_direct_exact --weight 16
 ```
 
