@@ -3,14 +3,16 @@ import L2Hexagon.SimplePathOrientation
 /-!
 # Injectivity under path concatenation and endpoint coordinates
 
-This file separates a reusable topological lemma from the remaining convex-
-geometric range-intersection problem.  Two injective paths whose ranges meet
-only at their common endpoint have injective concatenation.  We also record
-the exact Cartesian endpoints of the two curved pieces of the normalized
-boundary path.
+This file separates a reusable topological lemma from the convex-geometric
+range-intersection problem.  Two injective paths whose ranges meet only at
+their common endpoint have injective concatenation.  Exact Cartesian endpoint
+gaps and strict monotonicity of the curved first coordinates then classify all
+cross-piece intersections in the five-piece upper-normal chain.  Consequently
+the complete upper boundary path is injective.
 
-The final five-piece and cyclic-path injectivity theorems require additional
-pairwise range-intersection lemmas and are not claimed here.
+Injectivity modulo endpoints of the closed cyclic path remains a separate
+theorem: it additionally requires controlling intersections between the upper
+chain and its pointwise negative.
 -/
 
 open Real Set
@@ -407,6 +409,376 @@ theorem injective_firstThreeUpperPieces {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
       exact ⟨hxArc, hxMiddle⟩
     exact hCommon
 
+/-! ## Completing the upper five-piece path -/
+
+/-- Every point of the Sector II arc lies weakly to the right of its middle
+endpoint. -/
+theorem sectorTwoBoundaryX_middle_le_of_mem_arc {a b θ : ℝ}
+    (ha : 0 < a) (hb : 0 < b)
+    (hθ : θ ∈ Icc (π / 2) (π / 2 + arctan (b / a))) :
+    sectorTwoBoundaryX a b (π / 2 + arctan (b / a)) ≤
+      sectorTwoBoundaryX a b θ := by
+  exact (strictAntiOn_sectorTwoBoundaryX ha hb).antitoneOn hθ
+    ⟨by
+      have hφ := generatorAngle_mem_Ioo ha hb
+      have : 0 < arctan (b / a) := by
+        simpa [generatorAngle] using hφ.1
+      linarith, le_rfl⟩ hθ.2
+
+/-- Every point of the Sector III arc lies weakly to the left of its middle
+endpoint. -/
+theorem sectorThreeBoundaryX_le_middle_of_mem_arc {a b θ : ℝ}
+    (ha : 0 < a) (hb : 0 < b)
+    (hθ : θ ∈ Icc (π / 2 + arctan (b / a)) π) :
+    sectorThreeBoundaryX a b θ ≤
+      sectorThreeBoundaryX a b (π / 2 + arctan (b / a)) := by
+  exact (strictAntiOn_sectorThreeBoundaryX ha hb).antitoneOn
+    ⟨le_rfl, by
+      have hφ := generatorAngle_mem_Ioo ha hb
+      have : arctan (b / a) < π / 2 := by
+        simpa [generatorAngle] using hφ.2
+      linarith⟩ hθ hθ.1
+
+/-- The Sector III middle endpoint lies strictly to the right of its endpoint
+at angle `π`. -/
+theorem sectorThreeBoundaryX_pi_lt_middle {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    sectorThreeBoundaryX a b π <
+      sectorThreeBoundaryX a b (π / 2 + arctan (b / a)) := by
+  have hφ := generatorAngle_mem_Ioo ha hb
+  apply strictAntiOn_sectorThreeBoundaryX ha hb
+  · exact ⟨le_rfl, by
+      have : arctan (b / a) < π / 2 := by
+        simpa [generatorAngle] using hφ.2
+      linarith⟩
+  · exact ⟨by
+      have : arctan (b / a) < π / 2 := by
+        simpa [generatorAngle] using hφ.2
+      linarith, le_rfl⟩
+  · have : arctan (b / a) < π / 2 := by
+      simpa [generatorAngle] using hφ.2
+    linarith
+
+/-- The middle jump and Sector III arc meet only at the latter's initial
+endpoint. -/
+theorem range_sectorTwoThreeJumpPath_inter_sectorThreeArcPath {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    Set.range
+        (Path.segment
+          (sectorTwoBoundaryPoint a b (π / 2 + arctan (b / a)))
+          (sectorThreeBoundaryPoint a b (π / 2 + arctan (b / a)))) ∩
+      Set.range (sectorThreeArcPath a b ha) =
+      {sectorThreeBoundaryPoint a b (π / 2 + arctan (b / a))} := by
+  let θm := π / 2 + arctan (b / a)
+  have hφ := generatorAngle_mem_Ioo ha hb
+  have hθmMem : θm ∈ Icc θm π := by
+    constructor
+    · exact le_rfl
+    · have : arctan (b / a) < π / 2 := by
+        simpa [generatorAngle] using hφ.2
+      dsimp only [θm]
+      linarith
+  have hxOrder :
+      sectorThreeBoundaryX a b θm < sectorTwoBoundaryX a b θm := by
+    simpa [θm, middleSectorTwoEndpoint, middleSectorThreeEndpoint,
+      planeVector] using middleSectorThreeEndpoint_firstCoord_lt_two ha hb
+  ext x
+  constructor
+  · rintro ⟨hxJump, hxArc⟩
+    rw [Path.range_segment] at hxJump
+    rw [range_sectorThreeArcPath ha hb] at hxArc
+    rcases hxArc with ⟨θ, hθ, rfl⟩
+    rcases hxJump with ⟨c, d, hc, hd, hcd, hcombo⟩
+    have hcoord := congrArg (fun p : Plane => p 0) hcombo
+    simp [sectorTwoBoundaryPoint, sectorThreeBoundaryPoint, planeVector] at hcoord
+    have hcBound := mul_le_mul_of_nonneg_left hxOrder.le hc
+    have hge : sectorThreeBoundaryX a b θm ≤
+        sectorThreeBoundaryX a b θ := by
+      calc
+        sectorThreeBoundaryX a b θm =
+            c * sectorThreeBoundaryX a b θm +
+              d * sectorThreeBoundaryX a b θm := by
+            rw [← add_mul, hcd, one_mul]
+        _ ≤ c * sectorTwoBoundaryX a b θm +
+              d * sectorThreeBoundaryX a b θm := by
+            linarith only [hcBound]
+        _ = sectorThreeBoundaryX a b θ := by
+            simpa only [θm] using hcoord
+    have hθeq : θ = θm := by
+      apply le_antisymm
+      · by_contra hnot
+        have hlt : θm < θ := lt_of_not_ge hnot
+        have hstrict := strictAntiOn_sectorThreeBoundaryX ha hb
+          (by simpa only [θm] using hθmMem) hθ hlt
+        linarith
+      · simpa only [θm] using hθ.1
+    subst θ
+    simp [θm]
+  · intro hx
+    rw [Set.mem_singleton_iff] at hx
+    subst x
+    constructor
+    · rw [Path.range_segment]
+      exact right_mem_segment ℝ _ _
+    · rw [range_sectorThreeArcPath ha hb]
+      exact ⟨θm, by simpa only [θm] using hθmMem, by simp [θm]⟩
+
+/-- The two curved upper arcs are disjoint. -/
+theorem range_sectorTwoArcPath_inter_sectorThreeArcPath {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    Set.range (sectorTwoArcPath a b hb) ∩
+      Set.range (sectorThreeArcPath a b ha) = ∅ := by
+  ext x
+  constructor
+  · rintro ⟨hxTwo, hxThree⟩
+    rw [range_sectorTwoArcPath ha hb] at hxTwo
+    rw [range_sectorThreeArcPath ha hb] at hxThree
+    rcases hxTwo with ⟨θ, hθ, hθx⟩
+    rcases hxThree with ⟨ψ, hψ, hψx⟩
+    have hxTwoBound := sectorTwoBoundaryX_middle_le_of_mem_arc ha hb hθ
+    have hxThreeBound := sectorThreeBoundaryX_le_middle_of_mem_arc ha hb hψ
+    have hcoord := congrArg (fun p : Plane => p 0) (hθx.trans hψx.symm)
+    simp [sectorTwoBoundaryPoint, sectorThreeBoundaryPoint, planeVector] at hcoord
+    have hgap := middleSectorThreeEndpoint_firstCoord_lt_two ha hb
+    simp [middleSectorTwoEndpoint, middleSectorThreeEndpoint, planeVector] at hgap
+    simp only [Set.mem_empty_iff_false]
+    linarith
+  · simp
+
+/-- The first jump is disjoint from the Sector III curved arc. -/
+theorem range_sectorOneTwoJumpPath_inter_sectorThreeArcPath {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    Set.range
+        (Path.segment (sectorOneVertex a b)
+          (sectorTwoBoundaryPoint a b (π / 2))) ∩
+      Set.range (sectorThreeArcPath a b ha) = ∅ := by
+  ext x
+  constructor
+  · rintro ⟨hxFirst, hxThree⟩
+    rw [Path.range_segment] at hxFirst
+    rw [range_sectorThreeArcPath ha hb] at hxThree
+    rcases hxFirst with ⟨c, d, hc, hd, hcd, hFirst⟩
+    rcases hxThree with ⟨θ, hθ, hThree⟩
+    have hFirstCoord := congrArg (fun p : Plane => p 0) hFirst
+    rw [sectorTwoBoundaryPoint_pi_div_two' hb] at hFirstCoord
+    simp [sectorOneVertex, planeVector] at hFirstCoord
+    have hLower : a ≤ x 0 := by nlinarith
+    have hThreeBound := sectorThreeBoundaryX_le_middle_of_mem_arc ha hb hθ
+    have hThreeCoord := congrArg (fun p : Plane => p 0) hThree
+    simp [sectorThreeBoundaryPoint, planeVector] at hThreeCoord
+    have hMiddleLt := sectorTwoBoundaryX_middle_lt_a ha hb
+    have hgap := middleSectorThreeEndpoint_firstCoord_lt_two ha hb
+    simp [middleSectorTwoEndpoint, middleSectorThreeEndpoint, planeVector] at hgap
+    simp only [Set.mem_empty_iff_false]
+    linarith
+  · simp
+
+/-- The first four consecutive upper pieces form an injective path. -/
+theorem injective_firstFourUpperPieces {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
+    Function.Injective
+      (((((Path.segment (sectorOneVertex a b)
+        (sectorTwoBoundaryPoint a b (π / 2))).trans
+          (sectorTwoArcPath a b hb)).trans
+        (Path.segment
+          (sectorTwoBoundaryPoint a b (π / 2 + arctan (b / a)))
+          (sectorThreeBoundaryPoint a b (π / 2 + arctan (b / a))))).trans
+        (sectorThreeArcPath a b ha))) := by
+  apply Path.injective_trans_of_range_inter_subset _ _
+    (injective_firstThreeUpperPieces ha hb)
+    (injective_sectorThreeArcPath ha hb)
+  rw [Path.trans_range, Path.trans_range]
+  intro x hx
+  rcases hx with ⟨(hxFirst | hxTwo) | hxMiddle, hxThree⟩
+  · have hEmpty : x ∈ (∅ : Set Plane) := by
+      rw [← range_sectorOneTwoJumpPath_inter_sectorThreeArcPath ha hb]
+      exact ⟨hxFirst, hxThree⟩
+    exact hEmpty.elim
+  · have hEmpty : x ∈ (∅ : Set Plane) := by
+      rw [← range_sectorTwoArcPath_inter_sectorThreeArcPath ha hb]
+      exact ⟨hxTwo, hxThree⟩
+    exact hEmpty.elim
+  · have hCommon : x ∈
+        ({sectorThreeBoundaryPoint a b
+          (π / 2 + arctan (b / a))} : Set Plane) := by
+      rw [← range_sectorTwoThreeJumpPath_inter_sectorThreeArcPath ha hb]
+      exact ⟨hxMiddle, hxThree⟩
+    exact hCommon
+
+/-- The Sector III arc and closing jump meet only at their common endpoint. -/
+theorem range_sectorThreeArcPath_inter_sectorThreeOneJumpPath {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    Set.range (sectorThreeArcPath a b ha) ∩
+      Set.range
+        (Path.segment (sectorThreeBoundaryPoint a b π)
+          (-sectorOneVertex a b)) =
+      {sectorThreeBoundaryPoint a b π} := by
+  have hφ := generatorAngle_mem_Ioo ha hb
+  have hπMem : π ∈ Icc (π / 2 + arctan (b / a)) π := by
+    constructor
+    · have : arctan (b / a) < π / 2 := by
+        simpa [generatorAngle] using hφ.2
+      linarith
+    · exact le_rfl
+  ext x
+  constructor
+  · rintro ⟨hxArc, hxJump⟩
+    rw [range_sectorThreeArcPath ha hb] at hxArc
+    rw [Path.range_segment] at hxJump
+    rcases hxArc with ⟨θ, hθ, rfl⟩
+    rcases hxJump with ⟨c, d, hc, hd, hcd, hcombo⟩
+    have hcoord := congrArg (fun p : Plane => p 0) hcombo
+    have hpiPoint := sectorThreeBoundaryPoint_pi (b := b) ha
+    have hpiCoord := congrArg (fun p : Plane => p 0) hpiPoint
+    simp [sectorThreeBoundaryPoint, sectorOneVertex, planeVector] at hcoord hpiCoord
+    have hconst :
+        sectorThreeBoundaryX a b θ = sectorThreeBoundaryX a b π := by
+      rw [hpiCoord]
+      nlinarith
+    have hθeq : θ = π := by
+      exact (strictAntiOn_sectorThreeBoundaryX ha hb).injOn hθ hπMem hconst
+    subst θ
+    simp
+  · intro hx
+    rw [Set.mem_singleton_iff] at hx
+    subst x
+    constructor
+    · rw [range_sectorThreeArcPath ha hb]
+      exact ⟨π, hπMem, rfl⟩
+    · rw [Path.range_segment]
+      exact left_mem_segment ℝ _ _
+
+/-- The middle and closing jumps have disjoint ranges. -/
+theorem range_sectorTwoThreeJumpPath_inter_sectorThreeOneJumpPath {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    Set.range
+        (Path.segment
+          (sectorTwoBoundaryPoint a b (π / 2 + arctan (b / a)))
+          (sectorThreeBoundaryPoint a b (π / 2 + arctan (b / a)))) ∩
+      Set.range
+        (Path.segment (sectorThreeBoundaryPoint a b π)
+          (-sectorOneVertex a b)) = ∅ := by
+  ext x
+  constructor
+  · rintro ⟨hxMiddle, hxClosing⟩
+    rw [Path.range_segment] at hxMiddle hxClosing
+    rcases hxMiddle with ⟨c, d, hc, hd, hcd, hMiddle⟩
+    rcases hxClosing with ⟨r, s, hr, hs, hrs, hClosing⟩
+    have hxOrder :
+        sectorThreeBoundaryX a b (π / 2 + arctan (b / a)) <
+          sectorTwoBoundaryX a b (π / 2 + arctan (b / a)) := by
+      simpa [middleSectorTwoEndpoint, middleSectorThreeEndpoint, planeVector] using
+        middleSectorThreeEndpoint_firstCoord_lt_two ha hb
+    have hMiddleCoord := congrArg (fun p : Plane => p 0) hMiddle
+    simp [sectorTwoBoundaryPoint, sectorThreeBoundaryPoint, planeVector] at hMiddleCoord
+    have hcBound := mul_le_mul_of_nonneg_left hxOrder.le hc
+    have hLower :
+        sectorThreeBoundaryX a b (π / 2 + arctan (b / a)) ≤ x 0 := by
+      calc
+        _ = c * sectorThreeBoundaryX a b (π / 2 + arctan (b / a)) +
+              d * sectorThreeBoundaryX a b (π / 2 + arctan (b / a)) := by
+            rw [← add_mul, hcd, one_mul]
+        _ ≤ c * sectorTwoBoundaryX a b (π / 2 + arctan (b / a)) +
+              d * sectorThreeBoundaryX a b (π / 2 + arctan (b / a)) := by
+            linarith only [hcBound]
+        _ = x 0 := hMiddleCoord
+    have hClosingCoord := congrArg (fun p : Plane => p 0) hClosing
+    have hpiPoint := sectorThreeBoundaryPoint_pi (b := b) ha
+    have hpiCoord := congrArg (fun p : Plane => p 0) hpiPoint
+    simp [sectorThreeBoundaryPoint, sectorOneVertex, planeVector] at hClosingCoord hpiCoord
+    have hUpper : x 0 = sectorThreeBoundaryX a b π := by
+      rw [hpiCoord]
+      nlinarith
+    have hgap := sectorThreeBoundaryX_pi_lt_middle ha hb
+    simp only [Set.mem_empty_iff_false]
+    linarith
+  · simp
+
+/-- The Sector II arc and closing jump have disjoint ranges. -/
+theorem range_sectorTwoArcPath_inter_sectorThreeOneJumpPath {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    Set.range (sectorTwoArcPath a b hb) ∩
+      Set.range
+        (Path.segment (sectorThreeBoundaryPoint a b π)
+          (-sectorOneVertex a b)) = ∅ := by
+  ext x
+  constructor
+  · rintro ⟨hxTwo, hxClosing⟩
+    rw [range_sectorTwoArcPath ha hb] at hxTwo
+    rcases hxTwo with ⟨θ, hθ, hTwo⟩
+    have hTwoBound := sectorTwoBoundaryX_middle_le_of_mem_arc ha hb hθ
+    rw [Path.range_segment] at hxClosing
+    rcases hxClosing with ⟨c, d, hc, hd, hcd, hClosing⟩
+    have hClosingCoord := congrArg (fun p : Plane => p 0) hClosing
+    have hpiPoint := sectorThreeBoundaryPoint_pi (b := b) ha
+    have hpiCoord := congrArg (fun p : Plane => p 0) hpiPoint
+    simp [sectorThreeBoundaryPoint, sectorOneVertex, planeVector] at hClosingCoord hpiCoord
+    have hTwoCoord := congrArg (fun p : Plane => p 0) hTwo
+    simp [sectorTwoBoundaryPoint, planeVector] at hTwoCoord
+    have hgap23 := middleSectorThreeEndpoint_firstCoord_lt_two ha hb
+    simp [middleSectorTwoEndpoint, middleSectorThreeEndpoint, planeVector] at hgap23
+    have hgap3pi := sectorThreeBoundaryX_pi_lt_middle ha hb
+    simp only [Set.mem_empty_iff_false]
+    rw [hpiCoord] at hgap3pi
+    nlinarith
+  · simp
+
+/-- The first and closing jumps have disjoint ranges. -/
+theorem range_sectorOneTwoJumpPath_inter_sectorThreeOneJumpPath {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    Set.range
+        (Path.segment (sectorOneVertex a b)
+          (sectorTwoBoundaryPoint a b (π / 2))) ∩
+      Set.range
+        (Path.segment (sectorThreeBoundaryPoint a b π)
+          (-sectorOneVertex a b)) = ∅ := by
+  ext x
+  constructor
+  · rintro ⟨hxFirst, hxClosing⟩
+    rw [Path.range_segment] at hxFirst hxClosing
+    rcases hxFirst with ⟨c, d, hc, hd, hcd, hFirst⟩
+    rcases hxClosing with ⟨r, s, hr, hs, hrs, hClosing⟩
+    have hFirstCoord := congrArg (fun p : Plane => p 0) hFirst
+    rw [sectorTwoBoundaryPoint_pi_div_two' hb] at hFirstCoord
+    simp [sectorOneVertex, planeVector] at hFirstCoord
+    have hLower : a ≤ x 0 := by nlinarith
+    have hClosingCoord := congrArg (fun p : Plane => p 0) hClosing
+    have hpiPoint := sectorThreeBoundaryPoint_pi (b := b) ha
+    have hpiCoord := congrArg (fun p : Plane => p 0) hpiPoint
+    simp [sectorThreeBoundaryPoint, sectorOneVertex, planeVector] at hClosingCoord
+    simp [planeVector] at hpiCoord
+    have hUpper : x 0 = -(1 + a) := by nlinarith
+    simp only [Set.mem_empty_iff_false]
+    linarith
+  · simp
+
+/-- All five consecutive upper-normal pieces form an injective path. -/
+theorem injective_normalizedUpperBoundaryPath {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) :
+    Function.Injective (normalizedUpperBoundaryPath a b ha hb) := by
+  unfold normalizedUpperBoundaryPath
+  apply Path.injective_trans_of_range_inter_subset _ _
+    (injective_firstFourUpperPieces ha hb)
+    (injective_sectorThreeOneJumpPath ha)
+  rw [Path.trans_range, Path.trans_range, Path.trans_range]
+  intro x hx
+  rcases hx with ⟨((hxFirst | hxTwo) | hxMiddle) | hxThree, hxClosing⟩
+  · have hEmpty : x ∈ (∅ : Set Plane) := by
+      rw [← range_sectorOneTwoJumpPath_inter_sectorThreeOneJumpPath ha hb]
+      exact ⟨hxFirst, hxClosing⟩
+    exact hEmpty.elim
+  · have hEmpty : x ∈ (∅ : Set Plane) := by
+      rw [← range_sectorTwoArcPath_inter_sectorThreeOneJumpPath ha hb]
+      exact ⟨hxTwo, hxClosing⟩
+    exact hEmpty.elim
+  · have hEmpty : x ∈ (∅ : Set Plane) := by
+      rw [← range_sectorTwoThreeJumpPath_inter_sectorThreeOneJumpPath ha hb]
+      exact ⟨hxMiddle, hxClosing⟩
+    exact hEmpty.elim
+  · have hCommon : x ∈ ({sectorThreeBoundaryPoint a b π} : Set Plane) := by
+      rw [← range_sectorThreeArcPath_inter_sectorThreeOneJumpPath ha hb]
+      exact ⟨hxThree, hxClosing⟩
+    exact hCommon
+
 #print axioms Path.injective_trans_of_range_inter_subset
 #print axioms sectorTwoBoundaryPoint_pi_div_two'
 #print axioms injective_sectorOneTwoJumpPath
@@ -417,6 +789,16 @@ theorem injective_firstThreeUpperPieces {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
 #print axioms range_sectorTwoArcPath_inter_sectorTwoThreeJumpPath
 #print axioms range_sectorOneTwoJumpPath_inter_sectorTwoThreeJumpPath
 #print axioms injective_firstThreeUpperPieces
+#print axioms sectorThreeBoundaryX_pi_lt_middle
+#print axioms range_sectorTwoThreeJumpPath_inter_sectorThreeArcPath
+#print axioms range_sectorTwoArcPath_inter_sectorThreeArcPath
+#print axioms range_sectorOneTwoJumpPath_inter_sectorThreeArcPath
+#print axioms injective_firstFourUpperPieces
+#print axioms range_sectorThreeArcPath_inter_sectorThreeOneJumpPath
+#print axioms range_sectorTwoThreeJumpPath_inter_sectorThreeOneJumpPath
+#print axioms range_sectorTwoArcPath_inter_sectorThreeOneJumpPath
+#print axioms range_sectorOneTwoJumpPath_inter_sectorThreeOneJumpPath
+#print axioms injective_normalizedUpperBoundaryPath
 
 end
 
