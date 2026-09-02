@@ -149,10 +149,25 @@ Using (1) and (8), exact algebra gives
   = a φ+b(π/2-φ).                                          (9)
 ```
 
-Since `a,b,φ,π/2-φ` are all positive, (9) is strictly positive.  Equality
-can occur only on the parameter-space boundary `a=0` or `b=0`, precisely
-where the middle generator is parallel to an extreme generator and the
-hexagon degenerates to a parallelogram.
+Since `a,b,φ,π/2-φ` are all positive, (9) is strictly positive.  In the
+finite closure of this parameter chart, a zero deficit can occur only on
+`a=0` or `b=0`, where the middle generator is parallel to an extreme
+generator and the hexagon degenerates to a parallelogram.
+
+This finite-boundary statement must not be confused with a classification
+of affine-normalized near-equality sequences.  For example, `a→∞` with
+`b=1` gives `D(a,b)/(1+a+b)→0`; after an additional affine normalization,
+an extreme generator collapses and the limiting body is again a
+parallelogram.  More precisely, the independent review at Discovery Net
+artifact `bafkreig77oiopn6zq4l37ahdoqqwucmuhevkhp7uqi5v5qet37oh3x5foi`
+proves
+
+```text
+(π/2) min(a,b) ≤ D(a,b) < (1+π/2) min(a,b),
+```
+
+so normalized near-equality is equivalent to
+`min(a,b)/(1+a+b)→0`.
 
 ## Trust boundary
 

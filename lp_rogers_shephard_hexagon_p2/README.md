@@ -105,3 +105,10 @@ The separate paper [arXiv:2606.07887](https://arxiv.org/abs/2606.07887)
 settles equality for a different planar `L_p` Rogers--Shephard inequality;
 its simplex equality cases do not resolve the symmetric-body conjecture
 studied here.
+
+An independent Discovery Net review
+(`bafkreig77oiopn6zq4l37ahdoqqwucmuhevkhp7uqi5v5qet37oh3x5foi`) verified
+the strict theorem and corrected the near-equality wording: finite zero
+deficit lies on `a=0` or `b=0`, but affine-normalized near-equality also
+includes reciprocal boundary regimes such as `a→∞` with `b` fixed.  See
+`PAPER_PROOF.md` for the corrected quantitative statement.
