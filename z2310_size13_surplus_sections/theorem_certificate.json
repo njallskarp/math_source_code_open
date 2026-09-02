@@ -1,0 +1,69 @@
+{
+  "claim": "There is no spectral pair of cardinality 13 in Z/2310Z.",
+  "modulus": {
+    "N": 2310,
+    "base_n": 210,
+    "boundary_prime_p": 11,
+    "crt": "Z/2310Z = Z/210Z x Z/11Z"
+  },
+  "hypothetical_cardinality": 13,
+  "imported_results": [
+    {
+      "name": "spectral-to-tiling in Z/210Z",
+      "source": "arXiv:2011.09578",
+      "use": "A projected spectral 13-set would tile, impossible since 13 does not divide 210."
+    },
+    {
+      "name": "levelwise cuboid lemma",
+      "source": "arXiv:2607.26534; arXiv:2202.07555",
+      "use": "A failed Phi_(11d)-to-Phi_d descent makes a cuboid evaluation a nonzero multiple of 11."
+    },
+    {
+      "name": "spectral mask-zero characterization",
+      "source": "standard finite cyclic Fourier characterization",
+      "use": "Differences in either member force zeros of the opposite mask."
+    }
+  ],
+  "section_frontier": [
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  ],
+  "proof_map": [
+    {
+      "id": "injective_projection_and_descent_failure",
+      "statement": "Phi_11 is absent from both masks; both projections are injective; projected spectrality is forbidden in Z/210Z."
+    },
+    {
+      "id": "surplus_section_frontier",
+      "depends_on": ["injective_projection_and_descent_failure"],
+      "statement": "A nonzero cuboid evaluation has absolute value 11, forcing all levels nonempty and exactly the D or T section pattern."
+    },
+    {
+      "id": "cross_level_coefficient_equality",
+      "depends_on": ["surplus_section_frontier"],
+      "statement": "Irreducibility of Phi_11 over Q(zeta_d) forces all section Fourier sums to be equal for every cross-level spectrum difference."
+    },
+    {
+      "id": "exclude_two_double_pattern",
+      "depends_on": ["cross_level_coefficient_equality"],
+      "statement": "Two double sections give four primitive-cube-root phase cells; each cell meets at most one spectrum level, but ten levels are required."
+    },
+    {
+      "id": "four_unit_vector_lemma",
+      "statement": "Four unit complex numbers summing to zero form two antipodal pairs because their root polynomial is even."
+    },
+    {
+      "id": "exclude_triple_pattern",
+      "depends_on": ["cross_level_coefficient_equality", "four_unit_vector_lemma"],
+      "statement": "A triple section gives three branches; the quotient of two vectors in one branch belongs to no branch, so each branch meets at most one spectrum level, but ten levels are required."
+    }
+  ],
+  "conclusion": "Both possible surplus-section patterns are impossible.",
+  "computation": {
+    "subset_enumeration": false,
+    "solver": false,
+    "floating_point": false,
+    "certificate_role": "dependency and branch audit only"
+  },
+  "novelty": "search-relative application; no historical priority claim"
+}
