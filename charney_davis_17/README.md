@@ -1,4 +1,4 @@
-# The 17-vertex Charney--Davis admissible-edge obstruction
+# The 17-vertex Charney--Davis boundary
 
 This Lean project checks the exact algebraic and graph-theoretic interfaces in
 an admissible-edge approach to the first vertex-count boundary not covered by
@@ -48,6 +48,16 @@ is two.  Each minimum-antipode 13-vertex link is a nonsuspension flag homology 4
 [`POLAR_REDUCTION.md`](POLAR_REDUCTION.md) for the proof dependencies and the
 exact third-antipode escape which blocks a direct reuse of the published
 two-antipode contraction argument.
+
+The rigid profile also closes the boundary. At its unique complement-degree-
+four vertex, triangle-freeness leaves 14 complement edges among the 12 link
+vertices. The degree-five h-to-gamma transform forces the link coefficient
+`gamma_2=-2`, contradicting Gal's nonnegativity theorem in dimension four.
+Consequently every 17-vertex flag generalized homology 5-sphere satisfies
+`gamma_3 >= 0`, conditional only on the cited published topological inputs.
+Lean checks the final arithmetic and h-to-gamma bridge in
+`degreeFour_linkGammaTwo_eq_negTwo` and
+`negative_counterexample_impossible_from_degreeFour_link`.
 
 The cross-neighborhood theorem gives an exact local criterion: an edge `uv`
 lies in an induced four-cycle precisely when the exclusive neighborhoods of

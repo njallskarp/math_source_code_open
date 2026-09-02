@@ -411,6 +411,62 @@ theorem negative_forces_rigid_complement_profile
   exact ⟨gammaTwoExact, gammaThreeExact, triangleCountExact, linkSumExact,
     iotaThreeOrFour, minimumCard⟩
 
+/--
+At the unique complement-degree-four vertex, the triangle-free degree profile
+leaves fourteen complement edges among the twelve link vertices.  The
+degree-five h-to-gamma transformation then forces link `gammaTwo = -2`.
+The three equalities are kept separate so that the graph incidence count and
+the h-vector conversion can be audited independently.
+-/
+theorem degreeFour_linkGammaTwo_eq_negTwo
+    (linkComplementEdges linkEdges linkGammaTwo : ℤ)
+    (edgePartition : linkComplementEdges = 26 - 4 - 4 * (3 - 1))
+    (linkEdgesIdentity : linkEdges = 66 - linkComplementEdges)
+    (linkHtwoGammaIdentity :
+      linkEdges - 4 * 12 + 10 = 10 + 3 * 2 + linkGammaTwo) :
+    linkGammaTwo = -2 := by
+  omega
+
+/--
+There is no negative 17-vertex profile once the local degree-four incidence
+count is supplied.  All global arithmetic is inherited from
+`negative_forces_rigid_complement_profile`; the final contradiction is the
+nonnegativity of `gammaTwo` for the degree-four vertex link.
+-/
+theorem negative_counterexample_impossible_from_degreeFour_link
+    (iota linkGammaTwo : Fin 17 → ℤ)
+    (gammaTwo gammaThree triangleCount : ℤ)
+    (negative : gammaThree < 0)
+    (iotaBounds : ∀ v, 3 ≤ iota v ∧ iota v ≤ 6)
+    (missingEdgeIdentity : ∑ v, iota v = 62 - 2 * gammaTwo)
+    (linkGammaTwoNonnegative : ∀ v, 0 ≤ linkGammaTwo v)
+    (vertexLinkGammaIdentity :
+      ∑ v, linkGammaTwo v = 3 * gammaThree + 4 * gammaTwo)
+    (complementTriangleIdentity :
+      2 * gammaThree =
+        348 + ∑ v, iota v * (iota v - 10) - 2 * triangleCount)
+    (triangleCountNonnegative : 0 ≤ triangleCount)
+    (degreeFourLocalCount : ∀ v, iota v = 4 → linkGammaTwo v = -2) :
+    False := by
+  have rigid := negative_forces_rigid_complement_profile iota linkGammaTwo
+    gammaTwo gammaThree triangleCount negative iotaBounds missingEdgeIdentity
+    linkGammaTwoNonnegative vertexLinkGammaIdentity complementTriangleIdentity
+    triangleCountNonnegative
+  have iotaThreeOrFour := rigid.2.2.2.2.1
+  have existsFour : ∃ v, iota v = 4 := by
+    by_contra h
+    have noFour : ∀ v, iota v ≠ 4 := by
+      exact not_exists.mp h
+    have allThree : ∀ v, iota v = 3 := by
+      intro v
+      exact (iotaThreeOrFour v).resolve_right (noFour v)
+    have iotaSum : ∑ v, iota v = 51 := by simp [allThree]
+    omega
+  obtain ⟨v, hv⟩ := existsFour
+  have hnegativeLink := degreeFourLocalCount v hv
+  have hnonnegativeLink := linkGammaTwoNonnegative v
+  omega
+
 end PolarArithmetic
 
 section ThirdAntipodeEscape
@@ -470,6 +526,8 @@ end ThirdAntipodeEscape
 #print axioms negative_forces_minimumLink_nonsuspension
 #print axioms negative_counterexample_has_eight_nonsuspension_minimumLinks
 #print axioms negative_forces_rigid_complement_profile
+#print axioms degreeFour_linkGammaTwo_eq_negTwo
+#print axioms negative_counterexample_impossible_from_degreeFour_link
 #print axioms pathAntipodes_force_link_escapeWitness
 
 end CharneyDavis17

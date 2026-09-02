@@ -24,8 +24,10 @@ number of complement triangles = 0,
 sum_v gamma_2(link(v)) = 2.                                      (3)
 ```
 
-This is a reduction of the possible counterexample class, not a proof that
-the class is empty.
+These necessary conditions are inconsistent: the unique complement-degree-
+four vertex has a 12-vertex link with `gamma_2=-2`, contradicting the known
+nonnegativity for flag homology 4-spheres. Thus the argument closes the
+17-vertex boundary, subject only to the cited topological inputs.
 
 ## Proof and source dependencies
 
@@ -110,6 +112,37 @@ triangle identities. In particular, the degree classification and the
 vanishing of `T` are kernel checked; the face-count derivation of (4) remains
 the explicit human-auditable combinatorial input.
 
+## Closing contradiction at the degree-four vertex
+
+Let `r` be the unique vertex of degree four in `H`, and let `N=N_H(r)`.
+Triangle-freeness makes `N` independent. Every vertex in `N` has complement
+degree three, so after its edge to `r` it has exactly two edges into
+`B=V(H)\(N union {r})`. The 26 complement edges therefore split as
+
+```text
+4 edges from r to N + 4*2 edges from N to B + 14 edges within B.
+```
+
+The link of `r` in `Delta=Ind(H)` is the flag complex on the 12 vertices of
+`B`; the complement of its one-skeleton is exactly `H[B]`. It consequently
+has `C(12,2)-14=52` edges. For its degree-five h-polynomial,
+
+```text
+h_2 = 52 - 4*12 + 10 = 14,
+h_2 = 10 + 3 gamma_1 + gamma_2,
+gamma_1 = 12 - 10 = 2.
+```
+
+Hence `gamma_2(link_Delta(r))=-2`, contradicting Gal's nonnegativity theorem
+for flag generalized homology 4-spheres. Therefore no negative 17-vertex
+counterexample exists and `gamma_3(Delta)>=0`.
+
+Lean theorem `degreeFour_linkGammaTwo_eq_negTwo` checks the edge-count-to-
+gamma conversion. The theorem
+`negative_counterexample_impossible_from_degreeFour_link` combines that local
+count with the full rigid-profile theorem and the link nonnegativity premise
+to derive `False`.
+
 For a minimum-antipode vertex, `gamma_1(link(v)) = 3`.  The real-root
 inequality used by Zheng for four-dimensional flag homology-sphere links is
 
@@ -167,13 +200,20 @@ separator proof omits exactly this obligation.
 
 `CharneyDavisPolarReduction.lean` contains no `sorry`, `admit`, custom axiom,
 `unsafe`, or `native_decide`.  Lean checks the polynomial differentiation,
-integer bounds, exact complement-degree/triangle rigidity, cardinality
-estimate, nonsuspension implication, and path escape witness.  The
+integer bounds, exact complement-degree/triangle rigidity, the final
+degree-four link contradiction, cardinality estimate, nonsuspension
+implication, and path escape witness.  The
 generalized-homology-sphere theorems of Labbé--Nevo,
 Gal, and Davis--Okun are named hypotheses, not kernel axioms.  The final
 three-antipode path/triangle statement uses the cited Alexander-duality input
 and is documented here; Mathlib does not yet provide the required integrated
 homology-sphere/link/deletion API.
+
+The graph incidence facts used to obtain the displayed 14-edge link count are
+proved directly above but are passed to Lean as an equality. Thus Lean checks
+the algebraic implication and contradiction, while a future fully internal
+formalization would still need finite simplicial complexes, links, complement
+graphs, and the cited homology-sphere preservation/results inside Mathlib.
 
 ## Primary sources
 
