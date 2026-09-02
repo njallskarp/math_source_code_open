@@ -36,13 +36,15 @@ with opposite signs would make the candidate resolvent tautological, so on an
 actual surviving resolvent the same number is also the shared nonpivot-variable
 count.
 
-Singular DP removes \(m+1\) clauses and has at most \(m\) candidate resolvents.
-The standard singular-DP theorem for minimally unsatisfiable formulas says
-that deficiency is preserved. Since one variable is deleted, the clause count
-must fall by exactly one. Hence **all \(m\) candidate resolvents survive as
-distinct new clauses**. In particular, no tautology, collision between two
-resolvents, collision with an unaffected clause, or subsumption deletion can
-silently change the following count. This is the set-CNF collision guard.
+The full singular-DP lemma for minimally unsatisfiable clause-sets
+(Kullmann--Zhao, Lemma 3(a)--(c)) supplies the needed set-CNF collision guard:
+every main/side pair is resolvable only on the pivot, the \(m\) resulting
+resolvents are pairwise distinct, and none equals an unaffected clause.
+Consequently singular DP replaces the \(m+1\) pivot clauses by exactly \(m\)
+new non-tautological clauses. Standard DP is meant here without a subsequent
+subsumption-minimization pass. Preservation of minimal unsatisfiability and
+deficiency is a further consequence used to continue the complete history;
+deficiency preservation alone is not being used to prove collision-freedom.
 
 The \(i\)-th resolvent therefore has exact length
 
@@ -137,7 +139,10 @@ Consequently,
 \]
 
 This holds for every currently possible first arity \(1\le m\le10\) and
-every terminal parameter \(3\le p\le33\).
+every terminal parameter \(3\le p\le33\). Logically, the concentration
+argument only needs \(p\le40\), so that the post-first tail is nonempty;
+the sharper bound \(p\le33\) is imported solely to state the currently live
+Ramsey frontier.
 
 ### Proof
 
@@ -220,7 +225,8 @@ python3 -m unittest -v \
 
 The standard-library checker verifies the serialized endpoint potentials,
 the one-step identity on 250,000 exact integer parameter instances, all 310
-admissible \((p,m)\) pairs, the universal lower bound, and every threshold in
+currently admissible \((p,m)\) pairs, all 380 pairs in the broader logical
+range \(3\le p\le40\), the universal lower bound, and every threshold in
 (16). These checks audit conventions and arithmetic; the universal theorem is
 the algebraic proof (1)--(15), not bounded enumeration.
 
@@ -251,12 +257,15 @@ obstruction exists. It does not say that satisfying the charge budget is
 sufficient, nor does it reconstruct intermediate clauses from charges. Unit
 main clauses can contribute positive charge even with zero overlap, so
 "charge" must not be read as overlap alone. The collision guard imports the
-standard preservation of deficiency for singular DP on minimally
-unsatisfiable clause-sets; all remaining algebra is proved here.
+full no-clash and distinct-resolvent statement of Kullmann--Zhao
+Lemma 3(a)--(c), while continuation of the ancestry imports preservation of
+minimal unsatisfiability and deficiency. All remaining algebra is proved here.
 
 No SAT solver, floating point, kernel enumeration, or full-completion search
-is used. Independent review is required before this theorem is used as a
-dependency.
+is used. An independent prepublication audit accepted the theorem after
+separately checking the collision lemma, algebra, endpoint arithmetic, all
+ceiling thresholds, and Markdown/LaTeX formatting without using the producer
+checker. Its source is pinned below.
 
 ## Provenance
 
@@ -264,8 +273,24 @@ dependency.
   `bafkreieknunurio6rogct3cb7esf2nzeqopzv3o6bcy4expkrpzvo324s4`.
 - First-fan normalization \(m\le10\): Discovery Net
   `bafkreiczonudlk7sum6rdokvjzlm63isi6yriqchfiwdwpn2fkgcguyzpu`.
-- Audited source commit: to be filled after publication.
-- Note SHA-256: to be filled after publication.
-- Certificate SHA-256: to be filled after publication.
-- Checker SHA-256: to be filled after publication.
-
+- Current terminal frontier \(p\le33\): Discovery Net
+  `bafkreicu3vn2qmc4fgbeyrn22s2qhq2zn7jjl7jka2t3fa7gglcorjszie`
+  (contextual rather than logically necessary for the identity).
+- Audited source commit:
+  `8b7abff2623c1811318b3ec7f64489fb92a974e0`.
+- Audited note SHA-256:
+  `5dd3736bedab026d1a757c923b3bab1ba31d5f1f748da09d8b28c325caf9f70b`.
+- Audited certificate SHA-256:
+  `1220086a69e6fa93d07122a90a5033f551601ecf4d4bebd0ebbfefdfc3b8a5d1`.
+- Audited checker SHA-256:
+  `de08b5ddb2849627399e4f3dc3dd2c619a32a37ea7b032560b3924a82970552a`.
+- Independent audit source commit:
+  `072c3d243086a98d461f6473d1b89e6744acdf6a`.
+- Independent checker SHA-256:
+  `a8c35ed5e4655022380f3ca482c9699e1ee232c5db33dd07b84131249ead9414`.
+- Repaired publication-state certificate SHA-256:
+  `e11d5a2161b7db5e17915a97c93ce741136254c9aac36b3633dc1cb9ab9e79a1`.
+- Repaired publication-state checker SHA-256:
+  `0610d5935279b1e4fafad4e17b713a80750543e75518ed65ff750aab23eaef28`.
+- Repaired publication-state test SHA-256:
+  `f5caf1399e8030496fa920369e6cd9e292dd9f83fd28882fb5610848b8e38d6b`.

@@ -11,6 +11,7 @@
   "terminal_family": {
     "parameter_min": 3,
     "parameter_max_from_committed_frontier": 33,
+    "parameter_max_for_nonempty_post_first_tail": 40,
     "binary_clauses": "p",
     "long_clauses": 2,
     "long_clause_length": "p",
@@ -29,6 +30,6 @@
     "average_charge": "2+(2m+8)/(41-p)",
     "universal_integer_lower_bound_on_maximum_charge": 3
   },
-  "collision_guard": "Deficiency preservation and deletion of one variable force the clause count to drop by exactly one. Since a singular fan removes m+1 clauses and has at most m candidate resolvents, exactly m distinct new non-tautological resolvents survive; collisions, pre-existing resolvents, or deletions would contradict deficiency preservation.",
+  "collision_guard": "Kullmann-Zhao Lemma 3(a)-(c) gives the full set-CNF guard: every main/side pair is resolvable only on the pivot, the m resolvents are pairwise distinct, and none equals an unaffected clause. Thus standard DP, with no subsumption-minimization pass, replaces m+1 pivot clauses by exactly m new non-tautological clauses. Deficiency preservation alone is not used to prove collision-freedom.",
   "scope": "A necessary condition on every complete singular-DP ancestry of a hypothetical 44-clause obstruction. It does not assert that the charge condition is sufficient and does not by itself exclude all histories."
 }

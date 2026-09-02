@@ -62,6 +62,7 @@ def main() -> None:
     terminal = data["terminal_family"]
     first = data["first_step"]
     minimum_bound = None
+    logical_minimum_bound = None
     pair_count = 0
     refined4 = refined5 = refined6 = 0
     for p in range(terminal["parameter_min"], terminal["parameter_max_from_committed_frontier"] + 1):
@@ -91,13 +92,30 @@ def main() -> None:
             refined6 += bound >= 6
             pair_count += 1
 
+    # The current Ramsey frontier is p <= 33, but the concentration argument
+    # logically needs only a nonempty post-first tail, namely p <= 40.
+    logical_pair_count = 0
+    for p in range(terminal["parameter_min"], terminal["parameter_max_for_nonempty_post_first_tail"] + 1):
+        for fan in range(first["fan_arity_min"], first["fan_arity_max"] + 1):
+            tail_steps = 41 - p
+            tail_charge = 90 + 2 * fan - 2 * p
+            bound = ceiling_div(tail_charge, tail_steps)
+            if bound < 3:
+                raise AssertionError("logical charge-three range failed")
+            logical_minimum_bound = (
+                bound if logical_minimum_bound is None else min(logical_minimum_bound, bound)
+            )
+            logical_pair_count += 1
+
     if minimum_bound != data["tail"]["universal_integer_lower_bound_on_maximum_charge"]:
         raise AssertionError("serialized universal lower bound is wrong")
 
     print(
         "verified: singular-DP excess contraction identity; "
         f"local_integer_cases={local_cases}; parameter_pairs={pair_count}; "
+        f"logical_parameter_pairs={logical_pair_count}; "
         f"minimum_max_charge_bound={minimum_bound}; "
+        f"logical_minimum_max_charge_bound={logical_minimum_bound}; "
         f"charge4_pairs={refined4}; charge5_pairs={refined5}; charge6_pairs={refined6}; "
         f"certificate_sha256={digest}"
     )

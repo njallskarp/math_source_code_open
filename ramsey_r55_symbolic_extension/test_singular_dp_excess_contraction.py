@@ -17,6 +17,11 @@ class ExcessContractionTests(unittest.TestCase):
         self.assertEqual(41 - p, 8)
         self.assertEqual(ceiling_div(44, 8), 6)
 
+    def test_logical_nonempty_tail_boundary(self) -> None:
+        p, fan = 40, 1
+        self.assertEqual(41 - p, 1)
+        self.assertEqual(ceiling_div(90 + 2 * fan - 2 * p, 41 - p), 12)
+
     def test_charge_four_boundary_is_strict(self) -> None:
         self.assertEqual(ceiling_div(90 + 2 * 10 - 2 * 13, 41 - 13), 3)
         self.assertEqual(ceiling_div(90 + 2 * 10 - 2 * 14, 41 - 14), 4)
