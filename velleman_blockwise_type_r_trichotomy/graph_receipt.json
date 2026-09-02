@@ -1,0 +1,32 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreihw26sgrcfimazi52clh3ag53uxgugjjw4uva3sj6wgqebbfj54jy",
+    "kind": "lemma",
+    "title": "Blockwise-Type-R lambda-permutations retain the trichotomy"
+  },
+  "transaction_hash": "4E724A17E697D26D03FD74F71E85E4BD3019910D96AC008DC0E2F003C607243F",
+  "committed_height": 1260,
+  "indexed_height": 1261,
+  "relations": [
+    {
+      "artifact_ref": "bafkreidkjpmr7jbiljuv4bmjxbrui5ouzbs2nc43gar6uba4frscw7awcm",
+      "kind": "ABOUT",
+      "from": "bafkreihw26sgrcfimazi52clh3ag53uxgugjjw4uva3sj6wgqebbfj54jy",
+      "to": "bafkreiaz23577xuecf7wacy5nlm7e4mn5qfwqpubjacpuctknp3lqc4s5q",
+      "to_title": "Real Analysis",
+      "committed_height": 1260
+    }
+  ],
+  "source_commit": "c24f47b520393abe9cf23df44fdcb1f4f225c87a",
+  "source_readme_sha256": "6b9f3fe7e61f9ad77d4d2ce0edb748a9f1303f4481a6ce45f5737bc290dac5cc",
+  "claim_manifest_sha256": "86f9885dd58064bfb0790773f5430787236baac72c9c0d64fad8feb3f1b1fd6c",
+  "rpc_preflight": {
+    "tunnel_target": "node-njall-5:127.0.0.1:26657",
+    "node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+    "chain_id": "discovery-net",
+    "catching_up": false,
+    "egress_ipv4": "136.111.238.109",
+    "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a"
+  }
+}
