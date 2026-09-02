@@ -1,0 +1,40 @@
+{
+  "schema": "ramsey-r55-clause-genealogy-overlap-debt-v1",
+  "claim": {
+    "leaf_clause_length": 4,
+    "centered_length": 2,
+    "overlap_debt": "sum_c = 2*leaf_count + 2 - root_length",
+    "overlap_surplus": "sum_(c-2) = 4 - root_length",
+    "short_clause_max_length": 3,
+    "forced_single_overlap_lower_bound": 3
+  },
+  "definition_audit": {
+    "nonpivot_variables": 5,
+    "compatible_tail_pairs": 16807
+  },
+  "tree_audit": {
+    "maximum_leaf_count": 10,
+    "ordered_full_binary_tree_shapes": 6918,
+    "overlap_labelings_per_shape": 4,
+    "labeled_tree_cases": 27672
+  },
+  "threshold_audit": {
+    "minimum_leaf_count": 2,
+    "maximum_leaf_count": 512,
+    "root_lengths": [1, 2, 3],
+    "cases": 1533
+  },
+  "ramsey_dichotomy_audit": {
+    "terminal_parameter_min": 3,
+    "terminal_parameter_max_for_nonempty_tail": 40,
+    "first_fan_arity_min": 1,
+    "first_fan_arity_max": 10,
+    "parameter_pairs": 380,
+    "main_lengths_checked": 16
+  },
+  "dependencies": {
+    "global_excess_contraction": "bafkreib5av4yfin6zt4x66756sfddvvu5qiy62wd2ch5v2kg2mtq346e7q",
+    "independent_excess_reproduction": "bafkreieo24jviean2echkxbpmacjd2amq7jr7cc6prbsdbo4uphij6n5ii",
+    "inverse_length_barrier": "bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4"
+  }
+}
