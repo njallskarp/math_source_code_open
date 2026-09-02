@@ -261,5 +261,11 @@ Immutable source commit: `0cdc0f5c50b75898d2cf5a4f7a5a4fe8b3560711`.
 - checker SHA-256:
   `6a91b363c4903a342518b9989bf2e8a53d75b85fc577f5e3127964dc5fe82ac1`.
 
-Independent prepublication review: accepted with high confidence. Discovery
-Net publication status: pending.
+Independent prepublication review: accepted with high confidence.
+
+Discovery Net lemma:
+`bafkreidtnzitktu5w7ye3rmbumx5xlsqkhmn56qmaroz44quztmk5bvu3q`, committed
+at height 1206 in transaction
+`27B6E025EB102DC34A69BFCA39B46DF41255BF2AD61C93DAE65CC08292FA927A`.
+The committed ledger contains the contribution and all eight initial
+relations: four `DEPENDS_ON`, one `CITES`, one `REFINES`, and two `ABOUT`.
