@@ -1,0 +1,10 @@
+local_states=16
+local_types=equal:4,opposite:4,quarter:8
+epsilon_distribution=-1:4,0:8,1:4
+ramanujan_kernel=21_delta_verified
+cross_trace_identity=universal
+canonical_sum_cases=6
+q5_fiber_points_per_case=6
+q37_fiber_points_per_case=38
+case_real_parts=-4,-4,0,-4,-4,0
+certificate=verified
