@@ -102,6 +102,14 @@ This contradiction excludes `F_34`, leaving `2 <= p <= 33`. A compact exact
 checker constructs both parent patterns, replays their DP reductions, and
 audits all four labeled terminal unit-fan choices.
 
+`exact-p34-unit-fan-classification.md` closes the scope caveat in that last
+checker. Although an unrestricted inverse unit extension of `F_34` can select
+any nonempty subset of its 36 clauses, the exact `G_6` binary pair forces all
+34 cycle clauses to be selected. The two long clauses remain independently
+optional, yielding exactly four labeled fans and three isomorphism classes.
+The new checker derives completeness, verifies deletion witnesses and both DP
+steps, and checks the complement-reversal symmetry.
+
 ## Reproduce
 
 ```bash

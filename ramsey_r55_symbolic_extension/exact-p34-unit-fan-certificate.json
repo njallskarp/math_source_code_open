@@ -1,0 +1,20 @@
+{
+  "claim": "exact p=34 terminal unit-fan classification",
+  "terminal_p": 34,
+  "terminal_clause_count": 36,
+  "terminal_cycle_clause_count": 34,
+  "terminal_long_clause_count": 2,
+  "unrestricted_nonempty_labeled_unit_extensions": 68719476735,
+  "compatible_selection_rule": "all terminal cycle clauses selected; either long clause independently selected",
+  "compatible_labeled_fans": 4,
+  "symmetry_classes": 3,
+  "canonical_long_selection_sizes": [0, 1, 2],
+  "stage_six_binary_pair": [[36, 35], [-36, 35]],
+  "stage_seven_unit": [35],
+  "length_profiles_by_long_selection_size": {
+    "0": {"2": 2, "3": 34, "34": 2},
+    "1": {"2": 2, "3": 34, "34": 1, "35": 1},
+    "2": {"2": 2, "3": 34, "35": 2}
+  },
+  "global_status": "all four local fans are excluded as full signed-K4 histories by the stage-four ternary bottleneck"
+}
