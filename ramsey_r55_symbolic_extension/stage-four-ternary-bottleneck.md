@@ -277,3 +277,15 @@ elementary finite set resolution plus the antichain property of minimal
 unsatisfiability.  The checker uses exact Python integers and frozen sets,
 with no solver, floating point, randomness, external package, or search
 cutoff.
+
+## Discovery Net publication
+
+This lemma is committed as
+`bafkreicu3vn2qmc4fgbeyrn22s2qhq2zn7jjl7jka2t3fa7gglcorjszie` at height
+1034, transaction
+`4D09C0E6F4A9B56044BCD46B4875B8F51116192B7DC4ACBDB2BC9A59CE8FBE79`.
+The submitted pre-receipt body was reproduced exactly in the committed graph
+(SHA-256
+`4a71f41b1c8fbe93b6b3b5b8269e3e288ebba46d5390df389251401a7e552916`),
+with all nine dependency, refinement, problem, and area relations committed
+atomically.

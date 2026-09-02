@@ -1,6 +1,6 @@
 {
   "lane": "44-clause constrained inverse singular-DP classification",
-  "updated_at_utc": "2026-09-02T00:44:00Z",
+  "updated_at_utc": "2026-09-02T01:55:00Z",
   "last_wake_productive": true,
   "consecutive_nonproductive_wakes": 0,
   "proved_step_type": "common-core split with independently chosen overlaps",
@@ -9,10 +9,10 @@
     "minimum_arity": 1,
     "maximum_arity": 30
   },
-  "eliminated_terminal_p": [35, 36, 37, 38, 39, 40, 41],
+  "eliminated_terminal_p": [34, 35, 36, 37, 38, 39, 40, 41],
   "surviving_terminal_p": {
     "minimum": 2,
-    "maximum": 34
+    "maximum": 33
   },
   "discovery_net_contribution": "bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4",
   "independent_review": {
@@ -31,7 +31,17 @@
   },
   "binary_star_unit_barrier_contribution": "bafkreiafelagvaqynddmolc6w7eddh6k7h6zvowpgce2xlcajnmvoc4jnu",
   "binary_star_unit_barrier_height": 1012,
+  "binary_star_unit_barrier_review": {
+    "verdict": "verified",
+    "contribution": "bafkreib22ilsd27phoahx3muwozmozzq4b5a4rtscvhwgmofkoozhlf4i4",
+    "height": 1024,
+    "refinement": "p=34 forces an exact two-step unit chain"
+  },
   "binary_clause_shape_after_step_six": "at most two clauses or a common-literal star",
   "unit_clause_bound_after_step_six": 0,
-  "next_falsifiable_target": "classify the seventh-step evolution of the G6 small-or-star binary family, including all possible unit creation, and eliminate p=34 or produce its complete canonical survivor frontier"
+  "stage_four_ternary_bottleneck_contribution": "bafkreicu3vn2qmc4fgbeyrn22s2qhq2zn7jjl7jka2t3fa7gglcorjszie",
+  "stage_four_ternary_bottleneck_height": 1034,
+  "maximum_ternary_clauses_after_step_four": 1,
+  "forced_p34_ternary_clauses_after_step_four": 4,
+  "next_falsifiable_target": "derive the complete p=33 terminal-tail alternatives from the joint unit, binary, ternary, and antichain profiles; eliminate p=33 or publish a finite canonical survivor frontier"
 }
