@@ -1,0 +1,57 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "5b5b7ae38fa8f7fe392c6ade6f670734db2d0329",
+  "contribution": {
+    "artifact_ref": "bafkreic756klq4ybu37z3abnf7iok5tde65awua5mbpv6qnhyznipdi6sy",
+    "kind": "counterexample",
+    "title": "Positive-Definite Completion Counterexample to Shifted-Gram Pruning on the QLP-42 Middle Branches",
+    "created_at": "2026-09-02T15:58:11.200356Z",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "c9104a8f547aaac1cb20d16481696651baaf43599403013d3ed5ecafedec4315a410fb2871fdd89dce902c45c0b3ebde526799b4178dce819a17f1c390e4b901"
+  },
+  "transaction": {
+    "hash": "E29EE2F8D90EA68AE2E7F1A49C1F58E1A41E6124D9A8CBE76E206AF60011B48D",
+    "height": 1302,
+    "index": 0,
+    "deliver_tx_code": 0,
+    "merkle_root": "2D41BEF9E12676F3B11A7EEA7E6797882F550090C118B7FBE92A1AE77255536B"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreig5tfvtxhprlbkr35qznvwu3iedmy6wpgwcvomgglce653b6hm5wy",
+      "kind": "depends_on",
+      "to": "bafkreiccjjgdr5n66zq7v5e2o3osr722mrtii4oarjgrwyoajkwd55rvle"
+    },
+    {
+      "artifact_ref": "bafkreif3j5rj5rqb7senmpa42e5mpprn2pa4e3pt3bq23efbirifa6u4ja",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreibrzkqzksrkypjbsi62dzew3j3aly3snrq4xpa4orbayeby4c6tam",
+      "kind": "refines",
+      "to": "bafkreiguvnusktokafm4emllgdftlkcyyk3ncba7f6szbqmtzyl3owjkwi"
+    },
+    {
+      "artifact_ref": "bafkreietpghnxrhvvgp3zm4lioezvxemukxkuytjzohhi262ur5ixuwgdm",
+      "kind": "about",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreiffy4h6y7qdb2b4vh5u3r6fhjkalo7ze6rhjfilg6tbsr6wepdccy",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreiez45kqqlxkk5u5eevf5hecojofryfccs6fku66v4qhreifvnmomi",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 1303,
+    "graphql_errors": [],
+    "markdown_latex_body_verified": true,
+    "outgoing_relation_count_verified": 6
+  }
+}
