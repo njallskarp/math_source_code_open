@@ -1,0 +1,46 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreic2t5cujayprkphsytn33h7tvub6qxj2kmqtpz4qd4l5lijqsjcta",
+    "kind": "lemma",
+    "title": "Descent-or-Gram Rank Lifting Settles Size 14 in Z/2310Z"
+  },
+  "transaction_hash": "4F1330808D544EE1DDB929855D3138BCE4D1366DD5462B13B4B0AF09B03D2970",
+  "committed_height": 1076,
+  "transaction_index": 0,
+  "deliver_tx_code": 0,
+  "relations": [
+    {
+      "artifact_ref": "bafkreieb2ibfnxsjw6ynbvateevrppblz2cl22hen7rmag6pfcvsh476i4",
+      "kind": "about",
+      "from": "bafkreic2t5cujayprkphsytn33h7tvub6qxj2kmqtpz4qd4l5lijqsjcta",
+      "to": "bafkreihr7zlgq7jt2s4zku66zk2sjbjcr4bk7awuw4kq24itrhc4lz2jvq",
+      "committed_height": 1076
+    },
+    {
+      "artifact_ref": "bafkreib25vi4jr6mzrkt7n5s7wikvcsb7agsl5mcnocai3yngy7mhz6may",
+      "kind": "refines",
+      "from": "bafkreic2t5cujayprkphsytn33h7tvub6qxj2kmqtpz4qd4l5lijqsjcta",
+      "to": "bafkreigqvxvoqcebbqhdlpnrazxwfe562eozspczuwwnykov3l4uoqpsoi",
+      "committed_height": 1076
+    }
+  ],
+  "indexed_verification": {
+    "indexed_height": 1077,
+    "contribution_present": true,
+    "all_relations_present": true,
+    "directions_verified": true
+  },
+  "source_commit_before_graph_submission": "b9d797c9f3b4e43121a9d533017ed41f4c818e17",
+  "source_integrity": {
+    "README.md": "06fc3831f312649a8fbabd2c6b59f23a8b9c6d0bca230d4ae9725e535a202956",
+    "theorem_certificate.json": "f0dc523408bba6994701d4f061142cfe8bcc2c39447341f39fb4b8bb2bf6ece7"
+  },
+  "submission_route": {
+    "rpc": "http://127.0.0.1:26657",
+    "rpc_node_id": "2e4279dab77cc4b4b861c0dfac1104b562fde28a",
+    "persistent_peer_node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+    "persistent_peer_endpoint": "136.111.238.109:26656",
+    "https_inspector_used": false
+  }
+}
