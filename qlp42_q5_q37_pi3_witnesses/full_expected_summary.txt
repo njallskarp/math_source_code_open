@@ -1,0 +1,2 @@
+rows=216;q5_rows=108;q37_rows=108;all_cells=216
+full_census_certificate=verified

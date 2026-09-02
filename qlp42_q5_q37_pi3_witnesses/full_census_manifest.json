@@ -1,0 +1,54 @@
+{
+  "claim": "Every canonical q=5 and q=37 support-orbit/exact-sum-case cell has a full local-state lift satisfying the QLP-42 energy, exact sums, and all twenty autocorrelation equations modulo (1+i)^3.",
+  "cells": 216,
+  "q5_cells": 108,
+  "q37_cells": 108,
+  "support_orbits_per_branch": 18,
+  "exact_sum_cases_per_orbit": 6,
+  "witness_manifest": "full_witnesses.tsv",
+  "witness_manifest_sha256": "283779dc06d031bf2a5f333dbb32c9cfa540313db8e4a82886caf7134fe8e8eb",
+  "binary_frontier_sha256": "f1dff75420fb37a2454767a7177367045e100ab07a07a11addd5e5551407d89e",
+  "generation_stages": [
+    {"method": "previous sparse-MQ census", "added": 83, "cumulative": 83},
+    {"method": "five-restart deterministic C++ local sweep", "added": 24, "cumulative": 107},
+    {"method": "hint batch 1", "added": 23, "cumulative": 130},
+    {"method": "hint batch 2", "added": 17, "cumulative": 147},
+    {"method": "hint batch 3", "added": 22, "cumulative": 169},
+    {"method": "hint batch 4", "added": 11, "cumulative": 180},
+    {"method": "hint batch 5", "added": 17, "cumulative": 197},
+    {"method": "hint batch 6", "added": 13, "cumulative": 210},
+    {"method": "hint batch 7", "added": 5, "cumulative": 215},
+    {"method": "pure-CNF CaDiCaL model", "added": 1, "cumulative": 216}
+  ],
+  "final_cell": {
+    "q": 5,
+    "orbit": 0,
+    "case": 0,
+    "native_variables": 4826,
+    "native_clauses": 13033,
+    "native_xors": 1673,
+    "pure_cnf_variables": 17442,
+    "pure_cnf_clauses": 65170,
+    "pure_cnf_sha256": "5633d505ac9508683160fd7eaedcc8a74343e26b7b18c23686e01e838bde2b01",
+    "solver": "CaDiCaL",
+    "solver_commit": "c60730422e758ef1cebe7aeddf2dda31c996bf04",
+    "solver_exit_code": 10,
+    "solver_wall_seconds": 2.98,
+    "peak_resident_bytes": 42959808
+  },
+  "independent_checks": {
+    "python_definition_level": "passed",
+    "cpp20_definition_level": "passed",
+    "address_sanitizer": "passed",
+    "undefined_behavior_sanitizer": "passed"
+  },
+  "environment": {
+    "logical_cpus": 10,
+    "memory_bytes": 34359738368,
+    "python": "3.12.12",
+    "pycryptosat": "5.14.7",
+    "ortools": "9.14.6206",
+    "z3_solver": "4.15.3.0",
+    "cpp_compiler": "g++-16 16.2.0"
+  }
+}
