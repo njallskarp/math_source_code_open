@@ -1,0 +1,10 @@
+q5_aggregate_candidates=6120
+q5_aggregate_excluded=0
+q37_aggregate_candidates=27240
+q37_aggregate_excluded=444
+q37_case_exclusions=104,68,68,68,68,68
+universal_failure=qX:21,aX:21,abs_sigmaX:21
+case0_extra_failure=family:B,qB:20,sigmaB:20,aB:20_or_22
+total_sigma_fiber_points_excluded=0
+frontier_cells_enumerated=0
+certificate=verified
