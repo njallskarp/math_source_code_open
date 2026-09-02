@@ -255,8 +255,31 @@
       "status": "sustained; mathematical theorem unchanged; public source repaired",
       "contribution": "bafkreibokzhkbz63ontw7nov77czdlevwxaftqrbdmefig6lkrnayhanie",
       "height": 1214,
-      "repair": "The fixed-size edge-cover citation is Cariolaro--Fu, Discrete Mathematics 310 (2010), 276--287, DOI 10.1016/j.disc.2008.09.031; the distinct Wang--Song--Yuan vertex-cover notion is cited separately."
+      "repair": "The fixed-size edge-cover citation is Cariolaro--Fu, Discrete Mathematics 310 (2010), 276--287, DOI 10.1016/j.disc.2008.09.031; the distinct Wang--Song--Yuan vertex-cover notion is cited separately.",
+      "repair_contribution": "bafkreiafvfdsefjp5hk6rmkauve6vu7jntvkkbsd3gqrxbcvkm47sz5ygu",
+      "repair_height": 1228,
+      "repair_transaction": "BC287371334F262D4E7C9C9FD2FC195F05ED0CF54F5C6D7803E125FEFC362441",
+      "repair_source_commit": "eb05dda21773519d9a68782b219e39d605abbae8"
     }
   },
-  "next_falsifiable_target": "decide whether any of the four exact bichromatic selected-support survivors admits a completion of all unspecified core edges that is K5-free in both colors and has exactly the selected monochromatic K4 supports, or derive a deeper singular-DP ancestry obstruction"
+  "rho21_support_projection_satisfiable_counterexample": {
+    "status": "proved by explicit assignments, source-published, independently audited, and graph-committed",
+    "audited_source_commit": "24d0ad83f16c61d77a7cfd44cdd69512be6c3de7",
+    "documentation_commit": "9516626c495c5875b71ce74ce00ac5fbec088f6b",
+    "certificate_sha256": "81b316a13436389183def9cc8386f4e29d8541a5dd4f2c276adcc0e4b23f88aa",
+    "checker_sha256": "dd7fa201cbb48975868e9c1fabdbf66f16d39bed4886beb6f90e9db732966b33",
+    "exact_scope": "all four displayed q-by-demand matching-cover witnesses, not all matching-cover solutions or all rho=21 systems",
+    "satisfying_assignment_true_vertices_q0": [3, 7, 10, 17, 34, 37, 38, 40, 41],
+    "satisfying_assignment_true_vertices_q1": [3, 7, 10, 17, 36, 38, 39, 40, 41],
+    "consequence": "none of the four displayed systems is minimally unsatisfiable or has MU(2) singular-DP ancestry",
+    "independent_prepublication_review": {
+      "verdict": "accepted with no mathematical repair",
+      "source_commit": "b4b0a8a3438737fb03492c95e79938285088daa4",
+      "method": "independent clause reconstruction and direct Boolean evaluation"
+    },
+    "contribution": "bafkreihyia6a7tkwym4osduxyynbtn7tdtqaxfhhq7ybl7th7h4n4oowfe",
+    "height": 1248,
+    "transaction": "7BBC65FAE3C077B01FBA5316D698907DDA3AAB9284EE720C036B63E37AF67272"
+  },
+  "next_falsifiable_target": "encode unsatisfiability or singular-DP ancestry simultaneously with support generation; classify only support systems for which no Boolean transversal satisfies all selected red and blue K4 clauses"
 }

@@ -290,3 +290,9 @@ at height 1214, correctly identified a conflation in the first public version:
 the Cariolaro--Fu DOI had been paired with the authors and metadata of a
 different matching-cover paper. The citation above is the repaired source
 state. The objection explicitly leaves the theorem and certificates intact.
+The linked repair discussion
+`bafkreiafvfdsefjp5hk6rmkauve6vu7jntvkkbsd3gqrxbcvkm47sz5ygu` committed at
+height 1228 in transaction
+`BC287371334F262D4E7C9C9FD2FC195F05ED0CF54F5C6D7803E125FEFC362441` and
+records the corrected public source commit
+`eb05dda21773519d9a68782b219e39d605abbae8`.

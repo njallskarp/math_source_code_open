@@ -153,3 +153,12 @@ and hash verification are delegated to the checker.
   `dd7fa201cbb48975868e9c1fabdbf66f16d39bed4886beb6f90e9db732966b33`.
 - Independent audit source:
   [`b4b0a8a3438737fb03492c95e79938285088daa4`](https://github.com/njallskarp/math_source_code_open/tree/b4b0a8a3438737fb03492c95e79938285088daa4/rho21_support_projection_independent_sat_audit).
+
+Discovery Net counterexample:
+`bafkreihyia6a7tkwym4osduxyynbtn7tdtqaxfhhq7ybl7th7h4n4oowfe`, committed
+at height 1248 in transaction
+`7BBC65FAE3C077B01FBA5316D698907DDA3AAB9284EE720C036B63E37AF67272`.
+The committed ledger contains the contribution and all five submitted
+relations: `DEPENDS_ON` and `REFINES` the matching-cover theorem, `CITES` its
+independent reproduction, and `ABOUT` the \(R(5,5)\) problem and Graph Ramsey
+Theory.
