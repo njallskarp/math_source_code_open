@@ -1,0 +1,36 @@
+{
+  "claim": "the exceptional m=10 first-fan state forces 17<=rho<=21 and one of 39 canonical residual link-deficit profiles",
+  "selected_blue_clauses": 23,
+  "selected_blue_clauses_through_pivot": 10,
+  "selected_blue_clauses_avoiding_pivot": 13,
+  "forced_distinct_one_flip_witnesses": 3,
+  "residual_blue_clauses": 10,
+  "blue_selected_degree_on_red_neighborhood": 2,
+  "rho_range": [17, 21],
+  "profile_vector_convention": "[x0,x1,x2,x3,x4], where x_delta counts residual clauses having delta vertices in the blue neighborhood of the pivot",
+  "profiles_by_rho": {
+    "17": {
+      "total_deficit": 9,
+      "profiles": [[1,9,0,0,0],[2,7,1,0,0],[3,5,2,0,0],[3,6,0,1,0],[4,3,3,0,0],[4,4,1,1,0],[4,5,0,0,1],[5,1,4,0,0],[5,2,2,1,0],[5,3,0,2,0],[5,3,1,0,1],[6,0,3,1,0],[6,1,1,2,0],[6,1,2,0,1],[6,2,0,1,1],[7,0,0,3,0],[7,0,1,1,1],[7,1,0,0,2]]
+    },
+    "18": {
+      "total_deficit": 7,
+      "profiles": [[3,7,0,0,0],[4,5,1,0,0],[5,3,2,0,0],[5,4,0,1,0],[6,1,3,0,0],[6,2,1,1,0],[6,3,0,0,1],[7,0,2,1,0],[7,1,0,2,0],[7,1,1,0,1],[8,0,0,1,1]]
+    },
+    "19": {
+      "total_deficit": 5,
+      "profiles": [[5,5,0,0,0],[6,3,1,0,0],[7,1,2,0,0],[7,2,0,1,0],[8,0,1,1,0],[8,1,0,0,1]]
+    },
+    "20": {
+      "total_deficit": 3,
+      "profiles": [[7,3,0,0,0],[8,1,1,0,0],[9,0,0,1,0]]
+    },
+    "21": {
+      "total_deficit": 1,
+      "profiles": [[9,1,0,0,0]]
+    }
+  },
+  "canonical_profile_count": 39,
+  "canonical_profiles_sha256": "61af373a215e67d106d050518d9630ca50864ba474275b620391ff4cae93dc62",
+  "scope": "complete for the residual red-link intersection-number projection; actual K4-support realizability is not asserted"
+}

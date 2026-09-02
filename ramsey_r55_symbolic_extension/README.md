@@ -141,6 +141,14 @@ of degrees `(3,2)`, forty of degrees `(2,2)`, and clause split `(21,23)`.
 The standard-library checker exhausts every possible placement of the single
 incidence slack; it does not assert Ramsey-support realizability.
 
+`exceptional-m10-link-incidence-frontier.md` couples the sole `m=10`
+incidence state to the actual red/blue neighborhood partition at its pivot.
+Three forced one-flip witnesses and the remaining ten off-pivot blue clauses
+give `2*rho <= 43`, excluding `rho=22,23,24`.  The surviving strata
+`rho=17,...,21` have exactly 39 canonical residual link-deficit profiles,
+with a unique profile at `rho=21`; the compact checker independently
+enumerates and hashes the full profile list.
+
 ## Reproduce
 
 ```bash
