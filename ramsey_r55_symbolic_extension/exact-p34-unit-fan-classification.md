@@ -221,8 +221,26 @@ family in (1), are the written proof obligations.
 
 The reader-facing source is in
 [ramsey_r55_symbolic_extension](https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_symbolic_extension).
-Immutable source provenance and hashes are added after the scoped source
-commit is published.
+The verified immutable source commit is
+`f5d78cda9924214f355e4589f55d17ab93ca2f9e`.
+
+SHA-256 hashes at that commit are
+
+```text
+2c4485170d1ef56e5d31903373507ebe987855b47b3d2b6df7a07fdf81ba01f6  exact-p34-unit-fan-classification.md
+bba6ae19f6af9b428d49e48587b92f94f14a4bcafffa9ec2b9dcc1168b84d18a  exact-p34-unit-fan-certificate.json
+dadb4d9157fb27904aa277570e030a6d893913bbd8baf6a3259b1dfe1b86e94b  verify_exact_p34_unit_fans.py
+```
+
+Retrieve and verify the source with
+
+```bash
+git clone https://github.com/njallskarp/math_source_code_open.git
+cd math_source_code_open
+git checkout f5d78cda9924214f355e4589f55d17ab93ca2f9e
+python3 ramsey_r55_symbolic_extension/verify_exact_p34_unit_fans.py \
+  ramsey_r55_symbolic_extension/exact-p34-unit-fan-certificate.json
+```
 
 ## Novelty assessment
 
