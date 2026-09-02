@@ -247,5 +247,12 @@ converse are the proof above.
 
 The reader-facing source is
 [rho21-two-link-kernel-normal-form.md](https://github.com/njallskarp/math_source_code_open/blob/main/ramsey_r55_symbolic_extension/rho21-two-link-kernel-normal-form.md).
-The immutable source commit and file hashes are recorded after the initial
-source publication.
+Immutable source commit:
+[`238c34295760a13b886c2200d0ca59b55a41e890`](https://github.com/njallskarp/math_source_code_open/tree/238c34295760a13b886c2200d0ca59b55a41e890/ramsey_r55_symbolic_extension).
+
+- Initial research-note SHA-256:
+  `e5245b80b8a3b5bd37d118fef89756908fefcb004478cc6d84ba8d2dbd4fc8d3`.
+- Exact-certificate SHA-256:
+  `7add789c51f14e503297295e332fb2d3f76a4e451741fba17363a80cc15b4184`.
+- Checker SHA-256:
+  `025adfbb885cb1819f47fcd4683870ca521a9420fec61cc1aea8bde1876b4fb9`.

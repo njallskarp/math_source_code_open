@@ -152,7 +152,9 @@
     }
   },
   "rho21_two_link_kernel_normal_form": {
-    "status": "proved with exact converse; awaiting source publication and graph submission",
+    "status": "proved with exact converse and source-published; awaiting graph submission",
+    "source_commit": "238c34295760a13b886c2200d0ca59b55a41e890",
+    "certificate_sha256": "7add789c51f14e503297295e332fb2d3f76a4e451741fba17363a80cc15b4184",
     "x_kernel_nodes": 10,
     "x_ordinary_edges": 18,
     "x_half_edges": 3,
