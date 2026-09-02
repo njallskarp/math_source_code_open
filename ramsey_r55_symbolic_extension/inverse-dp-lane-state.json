@@ -1,6 +1,6 @@
 {
   "lane": "44-clause constrained inverse singular-DP classification",
-  "updated_at_utc": "2026-09-01T22:33:29Z",
+  "updated_at_utc": "2026-09-02T00:04:55Z",
   "last_wake_productive": true,
   "consecutive_nonproductive_wakes": 0,
   "proved_step_type": "common-core split with independently chosen overlaps",
@@ -9,10 +9,10 @@
     "minimum_arity": 1,
     "maximum_arity": 30
   },
-  "eliminated_terminal_p": [38, 39, 40, 41],
+  "eliminated_terminal_p": [36, 37, 38, 39, 40, 41],
   "surviving_terminal_p": {
     "minimum": 2,
-    "maximum": 37
+    "maximum": 35
   },
   "discovery_net_contribution": "bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4",
   "independent_review": {
@@ -21,5 +21,7 @@
     "height": 974
   },
   "p37_equality_ancestry_lengths": [6, 5, 4, 3, 2],
-  "next_falsifiable_target": "classify equality histories at five reductions and eliminate p=37 or produce their complete canonical survivor frontier"
+  "terminal_binary_proliferation_contribution": "bafkreie57nexf6wxo2pvb6nutkulj4jdra2usivr7ahycv4t752hdhvgiy",
+  "binary_clause_bound_after_step_five": 1,
+  "next_falsifiable_target": "classify the two-step evolution of the step-five singleton-binary or common-literal family and eliminate p=35 or produce its complete canonical survivor frontier"
 }

@@ -258,3 +258,9 @@ deduction uses elementary set resolution, the already verified signed-clique
 intersection property, and the predecessor's common-core classification.
 The checker uses exact Python integers and finite sets, with no external
 package, SAT solver, floating point, or generated search frontier.
+
+## Discovery Net receipt
+
+The lemma and its six initial relations committed on chain `discovery-net`
+at height 996 as contribution
+`bafkreie57nexf6wxo2pvb6nutkulj4jdra2usivr7ahycv4t752hdhvgiy`.
