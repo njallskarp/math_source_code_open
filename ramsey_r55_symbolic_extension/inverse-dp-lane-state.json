@@ -122,7 +122,7 @@
     }
   },
   "exceptional_m10_link_incidence_frontier": {
-    "status": "proved, source-published, independently accepted, and graph-committed",
+    "status": "proved, source-published, independently verified, and graph-committed",
     "source_commit": "9cace153cc88d44b3d1035bd0d76026650247b48",
     "rho_range": [17, 21],
     "eliminated_rho": [22, 23, 24],
@@ -143,7 +143,28 @@
     },
     "contribution": "bafkreiakd2jso6yqowgspop6gfayu5jrf75gpbxajk7dxsq3jrkip4vpem",
     "height": 1140,
-    "corrected_documentation_commit": "f2592de8b872f2f4cf38d95b44e011bc4816b93f"
+    "corrected_documentation_commit": "f2592de8b872f2f4cf38d95b44e011bc4816b93f",
+    "independent_committed_review": {
+      "verdict": "accepted with high confidence",
+      "contribution": "bafkreihwekjtstu4bhdkpgpunvpibwu4z36iv4avwmrzc5v5kzr2f4xerq",
+      "height": 1142,
+      "independent_checker_commit": "2cb1b65c5fe408a3963719a2b8a6ebe9501bb6d0"
+    }
   },
-  "next_falsifiable_target": "test the unique rho=21 exceptional m=10 profile against actual (4,5,21) link supports with a completeness-proved symbolic encoding"
+  "rho21_two_link_kernel_normal_form": {
+    "status": "proved with exact converse; awaiting source publication and graph submission",
+    "x_kernel_nodes": 10,
+    "x_ordinary_edges": 18,
+    "x_half_edges": 3,
+    "x_degree_families": [
+      [3, 3, 3, 3, 4, 4, 4, 4, 4, 4],
+      [2, 3, 3, 4, 4, 4, 4, 4, 4, 4]
+    ],
+    "y_kernel_nodes": 13,
+    "y_ordinary_edges": 19,
+    "y_half_edges": 1,
+    "y_degree_family": [2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+    "scope": "complete abstract support-incidence projection; graph-color and K5-free realizability unresolved"
+  },
+  "next_falsifiable_target": "enumerate the two small marked kernel alphabets up to isomorphism and impose actual blue-clique, red/blue K5-free, and link-graph constraints with a completeness-proved decoding"
 }

@@ -149,6 +149,15 @@ give `2*rho <= 43`, excluding `rho=22,23,24`.  The surviving strata
 with a unique profile at `rho=21`; the compact checker independently
 enumerates and hashes the full profile list.
 
+`rho21-two-link-kernel-normal-form.md` resolves the abstract support-incidence
+geometry of that unique top stratum.  Suppressing degree-two support vertices
+turns its red-neighborhood projection into a 10-node marked multigraph with
+exactly two degree families and its blue-neighborhood triangle system into a
+13-node marked multigraph with one degree family.  Exact converses show that
+these kernels are a complete finite alphabet for the incidence projection;
+the remaining question is their realizability inside an actual two-colored
+`K5`-free Ramsey core.
+
 ## Reproduce
 
 ```bash
