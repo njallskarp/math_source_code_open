@@ -1,0 +1,11 @@
+local_states=16
+q5_fiber_points=36
+q5_excluded=0
+q37_fiber_points=228
+q37_excluded=18
+q37_surviving=210
+excluded_by_case=1,3,3,4,4,3
+minimum_excluded_diagonal_budget=7
+survivor_count_manifest_sha256=d142f456f288ac7bf182365481bacbf5270cb2703f203c4840df363f24e14622
+support_or_cell_words_enumerated=0
+certificate=verified
