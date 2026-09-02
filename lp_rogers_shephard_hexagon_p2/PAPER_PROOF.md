@@ -263,12 +263,34 @@ pairing `s`.  Since these two pairings determine a planar point, Lean concludes
 This second exposed-face theorem is finite algebra and does not use an
 unformalized one-sided derivative or limiting argument.
 
+The closing transition face is obtained without repeating the perturbation
+calculus.  Let `S(x,y)=(y,x)`.  Direct expansion of the three positive-part
+terms gives
+
+```text
+H_{a,b}(S xi)=H_{b,a}(xi),
+```
+
+and preservation of the inner product proves
+`S(C(b,a))=C(a,b)` for the exact halfspace bodies.  The involution
+`T=-S` sends the vertical first face for `(b,a)` to the closing face for
+`(a,b)`, including both canonical endpoints and every convex combination.
+Lean consequently proves
+
+```text
+{x in normalizedLpSumTwo(a,b) :
+    inner(x,-e1)=normalizedFireySupportVec(a,b,-e1)}
+  = sectorThreeOneJump(a,b).
+```
+
+This completes the exact classification of all three upper-half jump faces.
+
 The pinned Mathlib has curve-integral infrastructure but no planar Green/Jordan
 theorem, no convex support-function or mixed-area API, and no theorem
 identifying the closed oriented integral of this piecewise smooth convex
-boundary with twice its Lebesgue area.  Classification of the closing
-transition face and full boundary coverage for the checked arcs and jump
-segments, followed by that boundary-to-area identification, is now the precise
-smallest analytic-geometry bridge.  Lean still does not check that bridge, the affine
+boundary with twice its Lebesgue area.  Curved-point uniqueness, lower-face
+transport, and full boundary coverage for the checked arcs and jump segments,
+followed by that boundary-to-area identification, are now the precise
+smallest analytic-geometry bridges.  Lean still does not check those bridges, the affine
 normal-form theorem, the source-level Firey-sum/set equivalence, or the
 end-to-end area theorem.

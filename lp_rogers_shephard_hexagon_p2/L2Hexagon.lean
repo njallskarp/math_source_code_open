@@ -11,3 +11,4 @@ import L2Hexagon.BoundaryAssembly
 import L2Hexagon.HalfspaceBody
 import L2Hexagon.ExposedFaces
 import L2Hexagon.MiddleExposedFace
+import L2Hexagon.ClosingExposedFace
