@@ -84,11 +84,16 @@
     "eliminated_structural_family": [27, 28, 29, 30]
   },
   "incidence_budget_first_fan_normalization": {
-    "status": "proved and graph-committed; bibliography correction pending graph erratum",
+    "status": "proved and graph-committed; bibliography corrected by graph erratum",
     "source_commit": "aad14ceae936d2c72fcccf062532a9d9603b5c13",
     "documentation_commit_before_erratum": "5419532848d796240165ebb76b4e33f71eb7d0f6",
     "contribution": "bafkreiczonudlk7sum6rdokvjzlm63isi6yriqchfiwdwpn2fkgcguyzpu",
     "height": 1112,
+    "bibliographic_erratum": {
+      "contribution": "bafkreifsdptos6w4btsijwu2vd2cr7jmpvps3xlepjieyvynge2kmyosee",
+      "height": 1114,
+      "corrected_source_commit": "d67bb1995b3d59362c0177ad3b15cb03f8a51f6b"
+    },
     "normalized_maximum_arity": 10,
     "quantifier": "some legal first singular pivot",
     "ordinary_maximum_arity": 9,

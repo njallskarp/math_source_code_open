@@ -233,4 +233,6 @@ documentation. The immutable graph body inherited a bibliographic
 misidentification of arXiv:2003.03639 from source commit `aad14ce`; the
 correct citation is the Abbasizanjani--Kullmann paper listed above. A
 post-hoc graph erratum records that correction; the theorem and proof are
-unchanged.
+unchanged. The erratum is
+`bafkreifsdptos6w4btsijwu2vd2cr7jmpvps3xlepjieyvynge2kmyosee`, committed
+at height 1114.
