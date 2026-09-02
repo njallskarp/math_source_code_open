@@ -1,6 +1,8 @@
 import L2Hexagon.NormalizedDeficit
 import L2Hexagon.NormalizedSectorSupport
+import L2Hexagon.SectorOneIntegral
 import L2Hexagon.SectorThreeIntegral
 import L2Hexagon.SectorTwoIntegral
 import L2Hexagon.SetLevelSupport
 import L2Hexagon.SupportIdentity
+import L2Hexagon.UpperHalfAssembly

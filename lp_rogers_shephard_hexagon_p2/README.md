@@ -55,9 +55,18 @@ The Lean development checks:
 - `sectorThreeDensity_reflect`;
 - `arctan_div_swap`;
 - `integral_sectorThreeDensity`;
+- `planeDirection_add_pi`;
+- `normalizedFireySupportSq_periodic`;
 - `normalizedFireySupportSq_eq_positiveParts`;
+- `normalizedFireySupportSq_eq_sectorOneSq_on_sector`;
 - `normalizedFireySupportSq_eq_sectorTwoSq_on_sector`;
 - `normalizedFireySupportSq_eq_sectorThreeSq_on_sector`;
+- `sectorOneSq_eq_sectorTwoSq_pi_div_two`;
+- `sectorTwoSq_eq_sectorThreeSq_boundary`;
+- `hasDerivAt_sectorOneSupport`;
+- `hasDerivAt_sectorOnePrimitive`;
+- `integral_sectorOneDensity`;
+- `integral_normalizedUpperDensity`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -67,17 +76,17 @@ The support theorem is set-level: for the actual Minkowski sum
 `[0,u]+[0,v]+[0,w]`, the subtype-indexed supremum of `inner x ξ` is the sum
 of the three positive generator pairings.  In the normalized Euclidean plane,
 Lean now specializes this literal set support and its reflection to the exact
-Sector II and Sector III squared-support formulas on their closed angular
-intervals.  Lean also checks the Sector II square-root derivative, the
+Sector I, II, and III squared-support formulas on their closed angular
+intervals.  It checks `π`-periodicity of the set-level squared support and
+agreement of adjacent sector squares at both sign-change endpoints.  Lean
+also checks the Sector II square-root derivative, the
 pointwise determinant decomposition, and the exact integral reduction
 
 ```text
 ∫ (h²-(h')²) = ∫ (1+b)²/F - ab,
 ```
 
-including the endpoint correction `ab`.  The planar normal form,
-support-area theorem, and the complete Sector I and III contributions remain
-in the human proof.  Lean now also proves `U>0` throughout the closed second
+including the endpoint correction `ab`.  Lean also proves `U>0` throughout the closed second
 sector, differentiates the branch-correct primitive
 `-(1+b) arctan(cos θ/U(θ))`, evaluates both endpoint phases, and closes the
 full exact contribution
@@ -94,9 +103,35 @@ duplicating its calculus and proves the full third-sector contribution
 ∫_{π/2+φ}^{π} (h²-(h')²) = (1+a)(π/2-φ)-ab.
 ```
 
+For Sector I, Lean differentiates
+`h=(1+a)cos θ+(1+b)sin θ`, checks a genuine primitive of the nonconstant
+density, and proves
+
+```text
+∫₀^{π/2} (h²-(h')²) = 2(1+a)(1+b).
+```
+
+Finally, `normalizedUpperDensity` is one explicit piecewise function on
+`[0,π]`.  Lean proves its interval integrability on all three pieces, applies
+interval additivity twice, and obtains
+
+```text
+∫₀^π normalizedUpperDensity
+  = 2(1+a+b)+(1+b)φ+(1+a)(π/2-φ).
+```
+
 The set-level support restriction and the scalar integral evaluations are
 separate checked theorems; a planar support-area theorem is still required to
 assemble them into a Lebesgue-area statement.
+
+An API audit found no support-function theory, mixed-area theory, or planar
+support-area formula in the pinned Mathlib.  The smallest remaining analytic
+geometry bridge is therefore a theorem identifying the Lebesgue area of the
+support-defined planar convex body with one half of the integral of
+`h²-(h')²` for an adequate continuous piecewise-`C¹` (or absolutely
+continuous) support function.  The present development supplies the sector
+integrability, endpoint square compatibility, and periodicity precursors but
+does not assume that missing theorem.
 
 Pinned environment:
 
@@ -132,7 +167,7 @@ The source uses no `sorry`, `admit`, custom axioms, `unsafe`, or
 
 The source paper proves the inequality for all planar centrally symmetric
 bodies and conjectures uniqueness of the parallelogram equality cases.  A
-targeted search on 2026-09-01 found no treatment of the strict centrally
+targeted search refreshed on 2026-09-02 found no treatment of the strict centrally
 symmetric hexagon subcase.  This is search-relative evidence, not a priority
 claim and not an exhaustive bibliographic review.  The result does not solve
 the authors' full equality conjecture.

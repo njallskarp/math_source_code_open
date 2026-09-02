@@ -175,8 +175,10 @@ The geometric proof above is presently a human proof.  Lean checks that the
 actual set `[0,u]+[0,v]+[0,w]` has support equal to the sum of the positive
 generator pairings and checks the resulting three-generator squared-support
 identity.  For the normalized set it proves that this literal support and its
-reflection restrict to the displayed Sector II and Sector III support squares
-on the corresponding closed angular intervals.  For Sector II it also checks
+reflection restrict to the displayed Sector I, II, and III support squares
+on the corresponding closed angular intervals.  It also checks `π`-periodicity
+of the set-level squared support and agreement of the adjacent square formulas
+at their shared endpoints.  For Sector II it checks
 `h=√F`, its derivative, the
 determinant decomposition (4), both endpoint values, and the exact integral
 reduction to the curvature integral minus `ab`.  It proves that the phase
@@ -186,9 +188,16 @@ differentiates the branch-correct primitive
 the complete Sector II integral `(1+b)φ-ab`.  It then proves the exact
 reflection identity under `η=3π/2-θ`, the complementary-angle formula
 `arctan(a/b)=π/2-arctan(b/a)`, and derives the complete Sector III integral
-`(1+a)(π/2-φ)-ab` by interval substitution and parameter exchange.  Lean
-additionally checks the angle bounds, the algebraic deficit identity, and
-strict positivity of the final expression.  Lean does not yet check the
-normal-form theorem, the planar support-function/Lebesgue-area formula, the
-Sector I integral, or the end-to-end assembly of the checked sector formulas
-into an area theorem.
+`(1+a)(π/2-φ)-ab` by interval substitution and parameter exchange.  For
+Sector I it differentiates `h=(1+a)cos θ+(1+b)sin θ`, proves an exact primitive
+of the nonconstant density, and obtains `2(1+a)(1+b)`.  It then defines one
+piecewise upper-half-circle density, proves interval integrability on all
+three pieces, applies interval additivity at both sign changes, and checks the
+complete scalar integral in (8).  Lean additionally checks the angle bounds,
+the algebraic deficit identity, and strict positivity of the final expression.
+
+The pinned Mathlib has no support-function or mixed-area API and no theorem
+identifying planar Lebesgue area with
+`(1/2)∫(h²-(h')²)`.  This is now the precise smallest missing analytic-geometry
+bridge.  Lean still does not check that bridge, the affine normal-form theorem,
+the source-level Firey-sum/set equivalence, or the end-to-end area theorem.

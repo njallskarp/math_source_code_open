@@ -6,13 +6,13 @@ import Mathlib.Analysis.InnerProductSpace.PiL2
 # Set-level support formulas for the normalized sectors
 
 This file connects the actual normalized three-segment zonotope in the
-Euclidean plane to the scalar Sector II and III support squares.  The support
+Euclidean plane to the scalar Sector I, II, and III support squares.  The support
 is the literal subtype-indexed supremum from `SetLevelSupport.lean`; no desired
 sector formula is built into its definition.
 
 The main results state the exact squared Firey-support formulas under the
-corresponding generator-sign hypotheses.  Separate interval-to-sign lemmas
-and the planar support-area theorem remain outside this module.
+corresponding generator-sign hypotheses and on the actual closed angular
+sectors.  The planar support-area theorem remains outside this module.
 -/
 
 open Real Set
@@ -37,11 +37,41 @@ noncomputable def normalizedFireySupportSq (a b θ : ℝ) : ℝ :=
   setSupportFunction (normalizedZonotope a b) (planeDirection θ) ^ 2 +
     setSupportFunction (normalizedZonotope a b) (-planeDirection θ) ^ 2
 
+/-- The positive linear support expression on Sector I. -/
+noncomputable def sectorOneSupport (a b θ : ℝ) : ℝ :=
+  (1 + a) * cos θ + (1 + b) * sin θ
+
+/-- The derivative of the Sector I support expression. -/
+noncomputable def sectorOneDerivative (a b θ : ℝ) : ℝ :=
+  -(1 + a) * sin θ + (1 + b) * cos θ
+
+/-- The literal squared support expression on Sector I. -/
+noncomputable def sectorOneSq (a b θ : ℝ) : ℝ :=
+  sectorOneSupport a b θ ^ 2
+
 /-- Coordinate inner products in the chosen Euclidean-plane model. -/
 theorem inner_planeVector (x y r s : ℝ) :
     inner ℝ (planeVector x y) (planeVector r s) = x * r + y * s := by
   rw [PiLp.inner_apply, Fin.sum_univ_two]
   simp [planeVector, mul_comm]
+
+/-- Unit directions separated by `π` are negatives in the Euclidean-plane model. -/
+theorem planeDirection_add_pi (θ : ℝ) :
+    planeDirection (θ + π) = -planeDirection θ := by
+  unfold planeDirection planeVector
+  ext i
+  fin_cases i <;> simp [Real.cos_add_pi, Real.sin_add_pi]
+
+/-- The reflected squared Firey support is `π`-periodic at the set level. -/
+theorem normalizedFireySupportSq_add_pi (a b θ : ℝ) :
+    normalizedFireySupportSq a b (θ + π) = normalizedFireySupportSq a b θ := by
+  rw [normalizedFireySupportSq, normalizedFireySupportSq, planeDirection_add_pi, neg_neg]
+  ring
+
+/-- Periodicity of the actual set-level reflected squared Firey support. -/
+theorem normalizedFireySupportSq_periodic (a b : ℝ) :
+    Function.Periodic (normalizedFireySupportSq a b) π :=
+  normalizedFireySupportSq_add_pi a b
 
 /-- The set-level support square reduces to the three signed generator pairings. -/
 theorem normalizedFireySupportSq_eq_positiveParts (a b θ : ℝ) :
@@ -55,6 +85,18 @@ theorem normalizedFireySupportSq_eq_positiveParts (a b θ : ℝ) :
     setSupportFunction_threeSegmentZonotope]
   simp only [threeSegmentSupport, planeDirection, inner_planeVector, inner_neg_right]
   congr 1 <;> ring_nf
+
+/-- Under the Sector I signs, the actual set-level Firey support square is `sectorOneSq`. -/
+theorem normalizedFireySupportSq_eq_sectorOneSq_of_signs {a b θ : ℝ}
+    (hcos : 0 ≤ cos θ) (hmiddle : 0 ≤ a * cos θ + b * sin θ)
+    (hsin : 0 ≤ sin θ) :
+    normalizedFireySupportSq a b θ = sectorOneSq a b θ := by
+  rw [normalizedFireySupportSq_eq_positiveParts]
+  unfold positivePart sectorOneSq sectorOneSupport
+  rw [max_eq_left hcos, max_eq_left hmiddle, max_eq_left hsin,
+    max_eq_right (neg_nonpos.mpr hcos), max_eq_right (neg_nonpos.mpr hmiddle),
+    max_eq_right (neg_nonpos.mpr hsin)]
+  ring
 
 /-- Under the Sector II signs, the actual set-level Firey support square is `sectorTwoSq`. -/
 theorem normalizedFireySupportSq_eq_sectorTwoSq_of_signs {a b θ : ℝ}
@@ -79,6 +121,25 @@ theorem normalizedFireySupportSq_eq_sectorThreeSq_of_signs {a b θ : ℝ}
     max_eq_left (neg_nonneg.mpr hcos),
     max_eq_left (neg_nonneg.mpr hmiddle), max_eq_right (neg_nonpos.mpr hsin)]
   ring
+
+/-- The three generator pairings are nonnegative on the closed first sector. -/
+theorem sectorOne_generator_signs {a b θ : ℝ} (ha : 0 < a) (hb : 0 < b)
+    (hθ : θ ∈ Icc 0 (π / 2)) :
+    0 ≤ cos θ ∧ 0 ≤ a * cos θ + b * sin θ ∧ 0 ≤ sin θ := by
+  have hcos : 0 ≤ cos θ :=
+    Real.cos_nonneg_of_mem_Icc ⟨by linarith [hθ.1, Real.pi_div_two_pos], hθ.2⟩
+  have hsin : 0 ≤ sin θ :=
+    Real.sin_nonneg_of_mem_Icc ⟨hθ.1, by linarith [hθ.2, Real.pi_pos]⟩
+  have hmiddle : 0 ≤ a * cos θ + b * sin θ :=
+    add_nonneg (mul_nonneg ha.le hcos) (mul_nonneg hb.le hsin)
+  exact ⟨hcos, hmiddle, hsin⟩
+
+/-- The literal set-level support square restricts to the Sector I formula. -/
+theorem normalizedFireySupportSq_eq_sectorOneSq_on_sector {a b θ : ℝ}
+    (ha : 0 < a) (hb : 0 < b) (hθ : θ ∈ Icc 0 (π / 2)) :
+    normalizedFireySupportSq a b θ = sectorOneSq a b θ := by
+  obtain ⟨hcos, hmiddle, hsin⟩ := sectorOne_generator_signs ha hb hθ
+  exact normalizedFireySupportSq_eq_sectorOneSq_of_signs hcos hmiddle hsin
 
 /-- The three generator pairings have the Sector II signs on its closed angle interval. -/
 theorem sectorTwo_generator_signs {a b θ : ℝ} (ha : 0 < a) (hb : 0 < b)
@@ -187,13 +248,43 @@ theorem normalizedFireySupportSq_eq_sectorThreeSq_on_sector {a b θ : ℝ}
   obtain ⟨hcos, hmiddle, hsin⟩ := sectorThree_generator_signs ha hb hθ
   exact normalizedFireySupportSq_eq_sectorThreeSq_of_signs hcos hmiddle hsin
 
+/-- Sector I and II squared-support expressions agree at their shared endpoint. -/
+theorem sectorOneSq_eq_sectorTwoSq_pi_div_two (a b : ℝ) :
+    sectorOneSq a b (π / 2) = sectorTwoSq a b (π / 2) := by
+  simp [sectorOneSq, sectorOneSupport, sectorTwoSq, sectorTwoU]
+
+/-- Sector II and III squared-support expressions agree at their sign-change endpoint. -/
+theorem sectorTwoSq_eq_sectorThreeSq_boundary {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
+    sectorTwoSq a b (π / 2 + arctan (b / a)) =
+      sectorThreeSq a b (π / 2 + arctan (b / a)) := by
+  have hφ := generatorAngle_mem_Ioo ha hb
+  have hφpos : 0 < arctan (b / a) := by
+    simpa [generatorAngle] using hφ.1
+  have hφlt : arctan (b / a) < π / 2 := by
+    simpa [generatorAngle] using hφ.2
+  calc
+    sectorTwoSq a b (π / 2 + arctan (b / a)) =
+        normalizedFireySupportSq a b (π / 2 + arctan (b / a)) :=
+      (normalizedFireySupportSq_eq_sectorTwoSq_on_sector ha hb
+        ⟨by linarith [hφpos], le_rfl⟩).symm
+    _ = sectorThreeSq a b (π / 2 + arctan (b / a)) :=
+      normalizedFireySupportSq_eq_sectorThreeSq_on_sector ha hb
+        ⟨le_rfl, by linarith [hφlt]⟩
+
 #print axioms inner_planeVector
+#print axioms planeDirection_add_pi
+#print axioms normalizedFireySupportSq_periodic
 #print axioms normalizedFireySupportSq_eq_positiveParts
+#print axioms normalizedFireySupportSq_eq_sectorOneSq_of_signs
+#print axioms sectorOne_generator_signs
+#print axioms normalizedFireySupportSq_eq_sectorOneSq_on_sector
 #print axioms normalizedFireySupportSq_eq_sectorTwoSq_of_signs
 #print axioms normalizedFireySupportSq_eq_sectorThreeSq_of_signs
 #print axioms sectorTwo_generator_signs
 #print axioms normalizedFireySupportSq_eq_sectorTwoSq_on_sector
 #print axioms sectorThree_generator_signs
 #print axioms normalizedFireySupportSq_eq_sectorThreeSq_on_sector
+#print axioms sectorOneSq_eq_sectorTwoSq_pi_div_two
+#print axioms sectorTwoSq_eq_sectorThreeSq_boundary
 
 end L2Hexagon
