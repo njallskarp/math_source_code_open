@@ -277,7 +277,7 @@ checker. Its source is pinned below.
   `bafkreicu3vn2qmc4fgbeyrn22s2qhq2zn7jjl7jka2t3fa7gglcorjszie`
   (contextual rather than logically necessary for the identity).
 - Audited source commit:
-  `8b7abff2623c1811318b3ec7f64489fb92a974e0`.
+  [`8b7abff2623c1811318b3ec7f64489fb92a974e0`](https://github.com/njallskarp/math_source_code_open/tree/8b7abff2623c1811318b3ec7f64489fb92a974e0/ramsey_r55_symbolic_extension).
 - Audited note SHA-256:
   `5dd3736bedab026d1a757c923b3bab1ba31d5f1f748da09d8b28c325caf9f70b`.
 - Audited certificate SHA-256:
@@ -285,7 +285,7 @@ checker. Its source is pinned below.
 - Audited checker SHA-256:
   `de08b5ddb2849627399e4f3dc3dd2c619a32a37ea7b032560b3924a82970552a`.
 - Independent audit source commit:
-  `072c3d243086a98d461f6473d1b89e6744acdf6a`.
+  [`072c3d243086a98d461f6473d1b89e6744acdf6a`](https://github.com/njallskarp/math_source_code_open/tree/072c3d243086a98d461f6473d1b89e6744acdf6a/singular_dp_excess_contraction_independent_audit).
 - Independent checker SHA-256:
   `a8c35ed5e4655022380f3ca482c9699e1ee232c5db33dd07b84131249ead9414`.
 - Repaired publication-state certificate SHA-256:
@@ -294,3 +294,5 @@ checker. Its source is pinned below.
   `0610d5935279b1e4fafad4e17b713a80750543e75518ed65ff750aab23eaef28`.
 - Repaired publication-state test SHA-256:
   `f5caf1399e8030496fa920369e6cd9e292dd9f83fd28882fb5610848b8e38d6b`.
+- Repaired publication source commit:
+  [`7ce540a21d7b0e21cd4d2053f378b51e6a714d85`](https://github.com/njallskarp/math_source_code_open/tree/7ce540a21d7b0e21cd4d2053f378b51e6a714d85/ramsey_r55_symbolic_extension).
