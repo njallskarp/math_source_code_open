@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "source_repository": "https://github.com/njallskarp/math_source_code_open",
+  "source_commit": "e20717aa7b0c5f196d41e8a8c77ca92799f6a9a0",
+  "source_directory": "qlp42_q5_q37_pi3_witnesses",
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreid374rfpa2sqk2nkzkpiabo5crcxkmohxwpenbkdmxv5yffe5nqri",
+    "kind": "lemma",
+    "title": "Full Support-Orbit Survival at the QLP-42 Third Gaussian Residue Layer",
+    "created_at": "2026-09-02T06:56:09.100134Z",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "c4fe0f156d44a700d3cd3bcd0c68f5ca09f01537d81e3014914cd222c4f5cc60460fe056e0e64a9b82d5c5567b4d888341891e09f3fabc4da6158da4951aed0"
+  },
+  "transaction": {
+    "hash": "3AC51B680C7C783F65234A4FBCCF51D8116099AB457B5ABC8FBE0115CE1BD2A7",
+    "height": 1134,
+    "index": 0,
+    "deliver_tx_code": 0,
+    "block_hash": "EBA1AE52094FD1085A2A733949CE5DF985EEA51F1D565F1D966F2CB9D71B057A",
+    "block_time": "2026-09-02T06:25:23.604422518Z",
+    "app_hash": "AE9EA77AAD51E3990F70121DA4A148D7513A9D1B7AAE699AB0EBBD1CD6E86FF6",
+    "data_hash": "A81D8CFDC5F4FE55FC250BA84FF2FCF7B2F59916FB4979F5554B15F32456D6A7"
+  },
+  "committed_graph_query": {
+    "indexed_height": 1135,
+    "artifact_found": true,
+    "outgoing_relation_count": 6
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreia4oel5f6pecft35mivdid5jhciblank4b4bcjyree4ivzrdtamvm",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreif7cz6myfiynjnmwcto52ms4altxduc7tkr7l7roqvco3g3wemo6y",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    },
+    {
+      "artifact_ref": "bafkreidhi7iogy6a3up435yda3bhdgn2wrpvzxjthlhcyx6l4rqjx6mtfu",
+      "kind": "depends_on",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreieio5ecowfnbgvoo2ihhd3jf64twh6t4jcbidykk4pkilw4zvwnqu",
+      "kind": "depends_on",
+      "to": "bafkreidxfkmo72a36ony2dsluhsbmaqzy63qxjvq6vwwg3ojgghsggwz6i"
+    },
+    {
+      "artifact_ref": "bafkreiaufsqckgxagbn4yukatkvtt7qfg5rci4hca4clmubgocvquoknc4",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreiag7u4amvbororig5csvmne3k47s5ci4xvwhbajsk4dky5yp7zfze",
+      "kind": "refines",
+      "to": "bafkreidxfkmo72a36ony2dsluhsbmaqzy63qxjvq6vwwg3ojgghsggwz6i"
+    }
+  ],
+  "verification": {
+    "witness_count": 83,
+    "q5_witness_count": 31,
+    "q37_witness_count": 52,
+    "covered_support_orbits": 36,
+    "total_support_orbits": 36,
+    "witness_manifest_sha256": "e3ddcfd764e3bd738209ff88fc52645d6593973e61b7c58a2832268833541510",
+    "binary_frontier_sha256": "f1dff75420fb37a2454767a7177367045e100ab07a07a11addd5e5551407d89e",
+    "python_exact_checker": "passed",
+    "independent_cpp_exact_checker": "passed",
+    "address_sanitizer": "passed",
+    "undefined_behavior_sanitizer": "passed"
+  }
+}
