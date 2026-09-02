@@ -1,0 +1,70 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "81a3b0ec511ed396470b3baab0f112810308bf26",
+  "contribution": {
+    "artifact_ref": "bafkreiao4m2eidyv2ksusffk333zlncutheydoo6la7eoqq7rmukyhibgy",
+    "kind": "lemma",
+    "title": "Exact H/S Obstruction Excludes the QLP-42 q=41 Weight-4 Stratum",
+    "created_at": "2026-09-02T01:06:16.747324+00:00",
+    "signer_public_key": "f9ad59520369832d11bff29c74ffa7a39da245fdb53a3cd5ce12ffa3072ab703",
+    "signature": "fa1af32e4ec1ae5493669bd1d880a2659351bb928d515a645715cb1320f03a89f43a26a9db9e4ca1093e86cd6e624e5bfaf63ebe62303bd467dd25812744890e"
+  },
+  "transaction": {
+    "hash": "10AFF89DBD050C0F6ABFF4C99CA0875D91CF323A333EE1D33C4587102EE908AD",
+    "height": 1022,
+    "index": 0,
+    "deliver_tx_code": 0
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreidwmkmtyw7onrhrvujdv33iwlyfziejpfpp6azsfpzjgrec2kyqb4",
+      "kind": "refines",
+      "to": "bafkreickfyfea5wwmdgugpaqetlxumpunz3dmrtds2soyx2msldlf425cq"
+    },
+    {
+      "artifact_ref": "bafkreifx2ogtf7iog3z2jdmkpfg26grjztj53wlmcpqhwn6ru3daogahpu",
+      "kind": "depends_on",
+      "to": "bafkreickfyfea5wwmdgugpaqetlxumpunz3dmrtds2soyx2msldlf425cq"
+    },
+    {
+      "artifact_ref": "bafkreiddepqwdjhtj2a4blfnedpx44jekuv2trqjpa52cqjh2zfxeohak4",
+      "kind": "refines",
+      "to": "bafkreibs3wyqycyc3cklcjqzfn4y54vymtaestfuzq6szno3ppspjj6ppm"
+    },
+    {
+      "artifact_ref": "bafkreidfejkmtggude7hes3ex5lt4dvxe47x23zbe6tlsylcashuju5xoi",
+      "kind": "depends_on",
+      "to": "bafkreiav6efbrcdsruu3orw2h672w2tnd3udko4bavv6fa4eqaoymrf5im"
+    },
+    {
+      "artifact_ref": "bafkreigcctbclypdbojkjpkzyf3shdp2yzxdiiy2gvipj3f3lh3fypjzeq",
+      "kind": "specializes",
+      "to": "bafkreiav6efbrcdsruu3orw2h672w2tnd3udko4bavv6fa4eqaoymrf5im"
+    },
+    {
+      "artifact_ref": "bafkreiewydzgjqf2v2gnopgsm4zumbi46z6qtxm4kemopocebr7lnog33e",
+      "kind": "depends_on",
+      "to": "bafkreifazdftc63yxllr6hi7m3zrdtznfqca64ykj7objgvu5tmfekg5r4"
+    },
+    {
+      "artifact_ref": "bafkreidjgavh4ourddx5lkxv46ddpp5ibqelbe46pa6njstaacrpebv44a",
+      "kind": "variant_of",
+      "to": "bafkreigsolqqr6hs4c3vcfe7cqyfnrdxtgummpmacydejrgermsfqgskcq"
+    },
+    {
+      "artifact_ref": "bafkreido75oxcbnn654lq4lf7g2lm3pawdfnqugxu4uaa5t3vhwvf4ambi",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreicg2rxusyhstwdyer3olbbhaqrthzxwe7huxta7zmgir3ezjhbyh4",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 1023,
+    "queried_at": "2026-09-02T01:07:57Z",
+    "graphql_errors": []
+  }
+}
