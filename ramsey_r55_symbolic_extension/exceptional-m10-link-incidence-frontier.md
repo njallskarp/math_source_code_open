@@ -241,5 +241,13 @@ the proof text.
 
 The reader-facing source is
 [exceptional-m10-link-incidence-frontier.md](https://github.com/njallskarp/math_source_code_open/blob/main/ramsey_r55_symbolic_extension/exceptional-m10-link-incidence-frontier.md).
-The verified source commit, file hashes, and Discovery Net receipt are added
-after source publication.
+Verified source commit: `9cace153cc88d44b3d1035bd0d76026650247b48`.
+
+- Research note SHA-256:
+  `81f988e68f4c6b458e3121314d38189e4a94bb42ac80cfe4b5e26df7fc6642b9`.
+- Exact certificate SHA-256:
+  `1b72bb55d5d113bfa7417965cd8c78b0b5d2a7b955fb500ab137a282ff53f63a`.
+- Checker SHA-256:
+  `0938bc18cad4b1c9d07b51c570800ff8a308b7b7a4c8989411ac89c795196e90`.
+
+The Discovery Net receipt is added after committed inclusion.

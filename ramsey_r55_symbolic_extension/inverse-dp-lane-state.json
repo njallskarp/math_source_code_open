@@ -122,7 +122,8 @@
     }
   },
   "exceptional_m10_link_incidence_frontier": {
-    "status": "proved; source publication in progress",
+    "status": "proved; source committed and pushed",
+    "source_commit": "9cace153cc88d44b3d1035bd0d76026650247b48",
     "rho_range": [17, 21],
     "eliminated_rho": [22, 23, 24],
     "profile_counts": {
