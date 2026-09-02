@@ -209,12 +209,25 @@ Lean proves that the arcs-plus-jumps oriented-boundary total is exactly the
 already checked support-density integral in (8).  This formally accounts for
 all polygonal endpoint contributions.
 
+Lean additionally reproduces the source `p=2` Firey body as the exact
+intersection of all vector halfspaces and checks that source exponent `1/2`
+is the square root.  A global consequence of the three-positive-parts identity
+shows that the full Firey support dominates the Sector II and III ellipsoidal
+quadratic supports in every direction.  A formalized two-coordinate
+Cauchy--Schwarz argument therefore places each ellipsoidal support point in the
+exact body.  Lean proves these points identical to the canonical Sector II and
+III arc points used above and proves support attainment at their normals.  The
+literal subtype-supremum support of the halfspace body consequently equals the
+prescribed Firey support throughout both curved sectors.  The fixed Sector I
+vertex and its opposite also lie in the body; the body is convex; and all three
+checked jump segments are subsets of it.
+
 The pinned Mathlib has curve-integral infrastructure but no planar Green/Jordan
 theorem, no convex support-function or mixed-area API, and no theorem
 identifying the closed oriented integral of this piecewise smooth convex
-boundary with twice its Lebesgue area.  That boundary-to-area identification,
-together with proving that the checked arcs and segments are the boundary of
-the exact halfspace-defined Firey body, is now the precise smallest
-analytic-geometry bridge.  Lean still does not check that bridge, the affine
+boundary with twice its Lebesgue area.  Full exposed-face and boundary coverage
+for the checked arcs and jump segments, followed by that boundary-to-area
+identification, is now the precise smallest analytic-geometry bridge.  Lean
+still does not check that bridge, the affine
 normal-form theorem, the source-level Firey-sum/set equivalence, or the
 end-to-end area theorem.

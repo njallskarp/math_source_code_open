@@ -79,6 +79,22 @@ The Lean development checks:
 - `sectorThreeOne_transitionDet`;
 - `normalizedUpperBoundaryOrientedTotal_eq`;
 - `integral_normalizedUpperDensity_eq_boundaryOrientedTotal`;
+- `normalizedFireySupportVec_rpow_half`;
+- `three_positive_parts_sq_ge_first_tail` and
+  `three_positive_parts_sq_ge_last_head`;
+- `inner_twoGeneratorBoundaryPoint_le`;
+- `sectorTwoEllipsoidPoint_eq_boundaryPoint` and
+  `sectorThreeEllipsoidPoint_eq_boundaryPoint`;
+- `sectorTwoBoundaryPoint_mem_normalizedLpSumTwo` and
+  `sectorThreeBoundaryPoint_mem_normalizedLpSumTwo`;
+- `sectorTwoBoundaryPoint_supporting` and
+  `sectorThreeBoundaryPoint_supporting`;
+- `setSupportFunction_normalizedLpSumTwo_sectorTwo` and
+  `setSupportFunction_normalizedLpSumTwo_sectorThree`;
+- `convex_normalizedLpSumTwo`;
+- `sectorOneTwoJump_subset_normalizedLpSumTwo`,
+  `sectorTwoThreeJump_subset_normalizedLpSumTwo`, and
+  `sectorThreeOneJump_subset_normalizedLpSumTwo`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -140,10 +156,11 @@ intersection of all halfspaces
   (supportFunction K u ^ p + supportFunction L u ^ p) ^ (1/p)}.
 ```
 
-At `p=2`, the present `normalizedFireySupportSq` is exactly the radicand on
-unit directions for `K` and `-K`.  The development does not yet claim that the
-boundary paths constructed below exhaust the boundary of that halfspace
-intersection; this is one of the remaining explicit equivalence bridges.
+At `p=2`, `normalizedFireySupportVecSq` is exactly the radicand for arbitrary
+vector directions, and `normalizedFireySupportVec_rpow_half` proves that the
+source real-power convention is exactly its square root.  Thus
+`normalizedLpSumTwo` is the literal source halfspace intersection, not an
+angular surrogate.
 
 The set-level support restriction and the scalar integral evaluations are
 separate checked theorems; a planar support-area theorem is still required to
@@ -181,15 +198,34 @@ the complete upper-half oriented-boundary total and Lean proves it equals the
 already checked `∫₀^π (h²-(h')²)`.  Thus the endpoint corrections are now
 explained as literal boundary segments, not merely algebraic cancellation.
 
+`HalfspaceBody.lean` closes the next global geometric bridge.  The
+three-positive-parts identity proves, in every vector direction, that the full
+Firey square dominates both curved-sector ellipsoidal quadratic supports.  A
+reusable two-coordinate Cauchy--Schwarz theorem therefore places each
+ellipsoidal support point in every defining halfspace.  Lean identifies these
+points exactly with the previously integrated canonical Sector II and III arc
+coordinates.  The actual arc points consequently belong to
+`normalizedLpSumTwo`, attain equality at their displayed normals, and the
+subtype-supremum support function of the literal body equals the prescribed
+Firey support on both curved sectors.
+
+The fixed Sector I vertex and its opposite are also proved to belong to the
+body.  The halfspace intersection is proved convex, so each of the three
+literal jump segments lies in it.  This is genuine body-level membership and
+support attainment; it does not yet assert that these paths exhaust the whole
+topological boundary or that their line integral is Lebesgue area.
+
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
-area.  The smallest remaining analytic-geometry bridge is therefore to prove
-that the checked arcs and jump segments trace the boundary of the exact
-halfspace-defined Firey body and to identify their closed oriented integral
-with twice its Lebesgue area.  The present development supplies the complete
-coordinatewise differentiability, oriented-density, endpoint, jump, integral,
-and periodicity precursors but does not assume that missing theorem.
+area.  The smallest remaining analytic-geometry bridge is therefore full
+support-face coverage, including proving that the three jump segments are the
+complete exposed faces, followed by exhaustion of the boundary and the
+identification of its closed oriented integral with twice Lebesgue area.  The
+present development supplies exact halfspace membership, curved-sector support
+equality, coordinatewise differentiability, oriented-density, endpoint, jump,
+integral, and periodicity precursors but does not assume the missing
+Green/Jordan-area theorem.
 
 Pinned environment:
 
