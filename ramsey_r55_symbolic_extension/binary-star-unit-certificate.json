@@ -1,0 +1,40 @@
+{
+  "claim": "binary-star and unit-clause barrier excludes F_35",
+  "core_variables": 42,
+  "terminal_p": 35,
+  "singular_steps": 7,
+  "stage_floor_through_five": [4, 4, 4, 4, 3, 2],
+  "maximum_binary_clauses_after_step_five": 1,
+  "sixth_step": {
+    "main_tail_minimum_size": 1,
+    "if_main_tail_size_at_least_two": {
+      "maximum_old_binaries": 1,
+      "maximum_new_binaries": 1,
+      "maximum_total_binaries": 2
+    },
+    "if_main_tail_size_one": {
+      "old_binary_main_is_removed": true,
+      "all_new_binaries_share_main_tail_literal": true
+    },
+    "unit_resolvent_side_tail_sizes": [0, 1],
+    "unit_resolvent_contradictions": [
+      "unit side parent violates the G5 length floor",
+      "binary side parent plus binary main parent violates the G5 one-binary bound"
+    ],
+    "unit_clauses_after_step_six": 0
+  },
+  "terminal_cycle": {
+    "clause_count": 35,
+    "clause_length": 2,
+    "maximum_clauses_containing_one_signed_literal": 1
+  },
+  "seventh_step": {
+    "main_tail_minimum_size": 1,
+    "maximum_new_terminal_cycle_binaries": 1,
+    "minimum_untouched_terminal_cycle_binaries": 34
+  },
+  "excluded_p": [35],
+  "previously_excluded_p": [36, 37, 38, 39, 40, 41],
+  "surviving_p_minimum": 2,
+  "surviving_p_maximum": 34
+}

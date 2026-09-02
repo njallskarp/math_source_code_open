@@ -85,6 +85,15 @@ This excludes `F_36` and `F_37`, leaving the exact current survivor range
 `2 <= p <= 35`. A compact JSON certificate and definition-level Python
 checker verify the stage floors and terminal-cycle incidence calculation.
 
+`binary-star-unit-barrier.md` classifies the complete binary-clause shape
+after the sixth reduction: there are at most two binary clauses, or all of
+them share one signed literal; moreover no unit clause can occur. A seventh
+singular step can therefore contribute at most one member of the terminal
+binary cycle, while the remaining 34 members cannot be inherited from either
+sixth-stage alternative. This excludes `F_35` and leaves `2 <= p <= 34`.
+The accompanying JSON certificate and standard-library checker audit the
+finite cycle-incidence and arithmetic layer.
+
 ## Reproduce
 
 ```bash
