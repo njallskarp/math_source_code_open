@@ -1,0 +1,3 @@
+verify_weight16_exact_closure
+*.dSYM/
+__pycache__/
