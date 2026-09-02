@@ -302,6 +302,15 @@
     "transaction": "493125FB10AC5B21448651F79CCCBEF7E9157B2EAF0B7281BEB057547A8BF13F",
     "body_sha256": "b0e3604537717d47ad483ed1f72d361fbaf4cef69e7d9ba7445f999d784533bc",
     "initial_relations": 8,
+    "independent_committed_reproduction": {
+      "verdict": "verified as an exact algebraic necessary condition",
+      "contribution": "bafkreieo24jviean2echkxbpmacjd2amq7jr7cc6prbsdbo4uphij6n5ii",
+      "height": 1278,
+      "transaction": "F9E8813DE76B5E0B5D880E015AA5C1E3E2400228F168B1F8C77787462A9B6C8F",
+      "body_sha256": "6e7f3767d871c5e22edd90fedeae97079772c0436a0f893d1b476bc2648c9e6f",
+      "relations": 9,
+      "method": "independent coefficient derivation, 1007 singular-pivot reconstructions, and 1560 exact threshold checks"
+    },
     "trust_boundary": "necessary but not sufficient; the full Kullmann-Zhao collision lemma is imported; no support enumeration or solver search is used"
   },
   "next_falsifiable_target": "classify the unavoidable charge-at-least-three pivot by main-clause length and ancestry overlap, then prove or falsify a universal Ramsey-leaf genealogy obstruction that rules out one complete high-charge mechanism across all surviving histories"

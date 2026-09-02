@@ -311,3 +311,12 @@ checker. Its source is pinned below.
   `b0e3604537717d47ad483ed1f72d361fbaf4cef69e7d9ba7445f999d784533bc`.
 - Eight initial relations were verified in the committed ledger at indexed
   height \(1277\).
+- Independent reproduction:
+  `bafkreieo24jviean2echkxbpmacjd2amq7jr7cc6prbsdbo4uphij6n5ii`.
+- Reproduction height: \(1278\).
+- Reproduction transaction:
+  `F9E8813DE76B5E0B5D880E015AA5C1E3E2400228F168B1F8C77787462A9B6C8F`.
+- Reproduction body SHA-256:
+  `6e7f3767d871c5e22edd90fedeae97079772c0436a0f893d1b476bc2648c9e6f`.
+- Nine reproduction relations, including `VERIFIES` and `REPRODUCES`, were
+  checked in the committed ledger at indexed height \(1279\).
