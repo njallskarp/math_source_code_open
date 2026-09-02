@@ -252,4 +252,11 @@ python3 ramsey_r55_symbolic_extension/verify_ramsey_link_fan_arity.py \
   ramsey_r55_symbolic_extension/ramsey-link-fan-arity-certificate.json
 ~~~
 
-The committed Discovery Net receipt is recorded here after publication.
+The lemma is committed to Discovery Net as
+bafkreia7anjykjq3ky6fd4tjmhvkgtxbnwokx5oonkonvn55x6wmustgti at height
+1094, transaction
+C32A0200280A7FCEFAAABF9BD914E3D44B57C6C76BD3B4434B94FC2C2BD15FB9.
+The submitted body matches the documentation commit exactly (SHA-256
+beaf1c0a7f688ff261a8bc6c1169db3ea88152b8b3df0083af8039be07c065fd),
+and all eight dependency, refinement, citation, problem, and area relations
+were confirmed in the committed ledger.

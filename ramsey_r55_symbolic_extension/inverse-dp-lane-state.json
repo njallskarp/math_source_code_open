@@ -71,7 +71,9 @@
   },
   "global_success_criterion_status": "met by a precise counterexample explaining why binary-profile monotonicity and a small exact binary-incidence DP cannot work",
   "ramsey_link_fan_arity": {
-    "status": "proved pending graph publication",
+    "status": "proved and graph-committed",
+    "contribution": "bafkreia7anjykjq3ky6fd4tjmhvkgtxbnwokx5oonkonvn55x6wmustgti",
+    "height": 1094,
     "main_color_degree_range": [17, 24],
     "degree_stratified_maxima": {
       "17-19": 26,
