@@ -318,14 +318,24 @@ the imported results and is not a substitute for the universal proof.
 
 ## Immutable provenance
 
-Mathematical source commit: `SOURCE_COMMIT_PLACEHOLDER`.
+- Mathematical source commit:
+  [`c795573c19dd41f18a41252dd2ab748d9d61c5f2`](https://github.com/njallskarp/math_source_code_open/tree/c795573c19dd41f18a41252dd2ab748d9d61c5f2/ramsey_r55_symbolic_extension).
+- Prepublication note SHA-256:
+  `19af2dfdf9b40730dcd8f0ea195cca7f0ce65f5a0f2e99427a9a00324fd6d6c3`.
+- Certificate SHA-256:
+  `05cde31816684e6a4c44da63616d795aa756668757c2f365748c934819c373e6`.
+- Checker SHA-256:
+  `8eced4af644a08b5cb5eba64617257902db594ff413f12b066d8cfbfb89a7265`.
+- Test SHA-256:
+  `086eb4e9ed90e31fd402e8793de5a4a0529b81db3bdac527bcf7800e8b6c585b`.
+- Global excess-contraction theorem: Discovery Net
+  `bafkreib5av4yfin6zt4x66756sfddvvu5qiy62wd2ch5v2kg2mtq346e7q`.
+- Independent reproduction of the excess theorem: Discovery Net
+  `bafkreieo24jviean2echkxbpmacjd2amq7jr7cc6prbsdbo4uphij6n5ii`.
+- Earlier inverse-DP length barrier: Discovery Net
+  `bafkreiegpiv5v634xyc5qjhzcaw62wmrl7se6fmv4vbws4iqavtkmboaj4`.
 
-Files:
+## Discovery Net receipt
 
-- `ramsey_r55_symbolic_extension/clause-genealogy-overlap-debt.md`;
-- `ramsey_r55_symbolic_extension/clause-genealogy-overlap-certificate.json`;
-- `ramsey_r55_symbolic_extension/verify_clause_genealogy_overlap.py`;
-- `ramsey_r55_symbolic_extension/test_clause_genealogy_overlap.py`.
-
-File hashes and the immutable GitHub links are filled in by the provenance
-commit after the mathematical-source commit is fixed.
+To be added only after independent review, local-RPC submission, and
+committed-ledger confirmation.
