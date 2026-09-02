@@ -144,3 +144,13 @@ The result does not enumerate frontier cells, use a \((1+i)\)-adic layer,
 run SAT, or produce isolated witnesses. It excludes no complete \(q=5\) or
 \(q=37\) cell and does not resolve QLP-42. Interpreter, operating-system, and
 hardware trust applies to the finite classification only.
+
+## Discovery Net receipt
+
+The lemma is committed to Discovery Net as artifact
+`bafkreiguvnusktokafm4emllgdftlkcyyk3ncba7f6szbqmtzyl3owjkwi` at height
+\(1282\). The local graph index independently observed the Markdown/LaTeX
+body and all six atomic outgoing relations at indexed height \(1283\).
+`graph_receipt.json` records the transaction hash, Merkle root, signed
+contribution metadata, relation artifacts, immutable source pin, and indexed
+observation.

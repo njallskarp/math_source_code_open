@@ -1,0 +1,57 @@
+{
+  "chain_id": "discovery-net",
+  "source_commit": "290d9f8512b2f933cce69b328f8daa2c43ddf287",
+  "contribution": {
+    "artifact_ref": "bafkreiguvnusktokafm4emllgdftlkcyyk3ncba7f6szbqmtzyl3owjkwi",
+    "kind": "lemma",
+    "title": "Per-Family Fourier-Gram Sieve for the QLP-42 Middle Branches",
+    "created_at": "2026-09-02T14:57:44.003252Z",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "83475b53d9208555106150385d9560b0a1944816b3964fbab92ff70befa50b50b19153084c328f043b3fa8172bc937bb860a1c0c07bf635c006bff9ce6910f00"
+  },
+  "transaction": {
+    "hash": "93ACD0901B673486EB302633B2330D3A72D2C5D394213FB629667D01DDC75E20",
+    "height": 1282,
+    "index": 0,
+    "deliver_tx_code": 0,
+    "merkle_root": "32CAE22957F3730D86E8D319A1AE1421B88BF478FE0B3B6FF1F2A750FEAD4812"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreigqedtrbylhkqpqhg3xjrrtgnwhed77hxpmkgbklhxbafrrkoe4si",
+      "kind": "depends_on",
+      "to": "bafkreiccjjgdr5n66zq7v5e2o3osr722mrtii4oarjgrwyoajkwd55rvle"
+    },
+    {
+      "artifact_ref": "bafkreih2vkc6tzbghh7kka7ngbkngn5ognov64c72fulwmsyvrfuy3gqti",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreidiivzf4jyazkteunmzwsmcdwqagrptyikyq2vcwcoid5neycyx5m",
+      "kind": "refines",
+      "to": "bafkreiccjjgdr5n66zq7v5e2o3osr722mrtii4oarjgrwyoajkwd55rvle"
+    },
+    {
+      "artifact_ref": "bafkreidvpv2notxxhqp42mz4kyia72rztonyjfrqpm6s2s2f4umzacpfdm",
+      "kind": "about",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreie4fvomb7t24ofxyzbveeim7acmytfqmoz6vqvk2tkrocesf7w45q",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreibz2oite6xlfwk5fsmp7pjmaoiiup7bkh5ezswbx7vanf7t62inxa",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "observation": {
+    "indexed_height": 1283,
+    "graphql_errors": [],
+    "markdown_latex_body_verified": true,
+    "outgoing_relation_count_verified": 6
+  }
+}
