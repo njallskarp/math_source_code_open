@@ -196,8 +196,25 @@ three pieces, applies interval additivity at both sign changes, and checks the
 complete scalar integral in (8).  Lean additionally checks the angle bounds,
 the algebraic deficit identity, and strict positivity of the final expression.
 
-The pinned Mathlib has no support-function or mixed-area API and no theorem
-identifying planar Lebesgue area with
-`(1/2)∫(h²-(h')²)`.  This is now the precise smallest missing analytic-geometry
-bridge.  Lean still does not check that bridge, the affine normal-form theorem,
-the source-level Firey-sum/set equivalence, or the end-to-end area theorem.
+Lean now also formalizes the canonical support-boundary construction
+`gamma=h n+h' t`.  It proves `gamma'=(h+h'')t` and
+`det(gamma,gamma')=h(h+h'')`, checks the Sector II and III second derivatives,
+and identifies their actual oriented boundary densities with the curvature
+terms in (4).  The corresponding arc integrals are `(1+b)φ` and
+`(1+a)(π/2-φ)`.  Sector I is the constant boundary point `(1+a,1+b)` and has
+zero arc density.  At the three upper-half sign boundaries, the one-sided
+canonical boundary points are joined by segments whose checked determinants
+are respectively `1+b`, `a+b`, and `1+a`.  Their sum is `2(1+a+b)`.  Hence
+Lean proves that the arcs-plus-jumps oriented-boundary total is exactly the
+already checked support-density integral in (8).  This formally accounts for
+all polygonal endpoint contributions.
+
+The pinned Mathlib has curve-integral infrastructure but no planar Green/Jordan
+theorem, no convex support-function or mixed-area API, and no theorem
+identifying the closed oriented integral of this piecewise smooth convex
+boundary with twice its Lebesgue area.  That boundary-to-area identification,
+together with proving that the checked arcs and segments are the boundary of
+the exact halfspace-defined Firey body, is now the precise smallest
+analytic-geometry bridge.  Lean still does not check that bridge, the affine
+normal-form theorem, the source-level Firey-sum/set equivalence, or the
+end-to-end area theorem.

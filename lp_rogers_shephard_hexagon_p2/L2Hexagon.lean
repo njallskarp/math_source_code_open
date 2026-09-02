@@ -6,3 +6,5 @@ import L2Hexagon.SectorTwoIntegral
 import L2Hexagon.SetLevelSupport
 import L2Hexagon.SupportIdentity
 import L2Hexagon.UpperHalfAssembly
+import L2Hexagon.BoundaryParametrization
+import L2Hexagon.BoundaryAssembly

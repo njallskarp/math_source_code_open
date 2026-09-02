@@ -67,6 +67,18 @@ The Lean development checks:
 - `hasDerivAt_sectorOnePrimitive`;
 - `integral_sectorOneDensity`;
 - `integral_normalizedUpperDensity`;
+- `hasDerivAt_supportBoundaryX` and `hasDerivAt_supportBoundaryY`;
+- `supportBoundary_normal_pairing` and `supportBoundary_tangent_pairing`;
+- `supportBoundary_orientedDensity`;
+- `sectorTwoBoundaryOrientedDensity_eq_curvature`;
+- `integral_sectorTwoBoundaryOrientedDensity`;
+- `sectorThreeBoundaryOrientedDensity_eq_curvature`;
+- `integral_sectorThreeBoundaryOrientedDensity`;
+- `sectorOneTwo_transitionDet`;
+- `sectorTwoThree_transitionDet`;
+- `sectorThreeOne_transitionDet`;
+- `normalizedUpperBoundaryOrientedTotal_eq`;
+- `integral_normalizedUpperDensity_eq_boundaryOrientedTotal`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -120,18 +132,64 @@ interval additivity twice, and obtains
   = 2(1+a+b)+(1+b)φ+(1+a)(π/2-φ).
 ```
 
+The current Formal Conjectures entry defines `lpSum` literally as the
+intersection of all halfspaces
+
+```text
+{x | forall u, inner x u <=
+  (supportFunction K u ^ p + supportFunction L u ^ p) ^ (1/p)}.
+```
+
+At `p=2`, the present `normalizedFireySupportSq` is exactly the radicand on
+unit directions for `K` and `-K`.  The development does not yet claim that the
+boundary paths constructed below exhaust the boundary of that halfspace
+intersection; this is one of the remaining explicit equivalence bridges.
+
 The set-level support restriction and the scalar integral evaluations are
 separate checked theorems; a planar support-area theorem is still required to
 assemble them into a Lebesgue-area statement.
 
-An API audit found no support-function theory, mixed-area theory, or planar
-support-area formula in the pinned Mathlib.  The smallest remaining analytic
-geometry bridge is therefore a theorem identifying the Lebesgue area of the
-support-defined planar convex body with one half of the integral of
-`h²-(h')²` for an adequate continuous piecewise-`C¹` (or absolutely
-continuous) support function.  The present development supplies the sector
-integrability, endpoint square compatibility, and periodicity precursors but
-does not assume that missing theorem.
+The new boundary modules make that remaining bridge substantially more
+geometric.  For a twice differentiable scalar support `h`, Lean defines the
+canonical normal-angle boundary point
+
+```text
+gamma(θ)=h(θ)(cos θ,sin θ)+h'(θ)(-sin θ,cos θ)
+```
+
+coordinatewise and proves
+
+```text
+gamma'(θ)=(h(θ)+h''(θ))(-sin θ,cos θ),
+det(gamma(θ),gamma'(θ))=h(θ)(h(θ)+h''(θ)).
+```
+
+It then checks the actual Sector II and Sector III square-root support
+derivatives through second order, proves that their canonical boundary paths
+have oriented densities equal to the previously integrated curvature terms,
+and evaluates both arc integrals.  Sector I gives the constant boundary point
+`(1+a,1+b)` and zero arc density.  The one-sided support derivatives jump at
+the three sign boundaries; Lean proves that the corresponding straight
+segment determinants are exactly
+
+```text
+1+b,  a+b,  1+a.
+```
+
+Adding the two curved arcs, the constant first arc, and these three jumps gives
+the complete upper-half oriented-boundary total and Lean proves it equals the
+already checked `∫₀^π (h²-(h')²)`.  Thus the endpoint corrections are now
+explained as literal boundary segments, not merely algebraic cancellation.
+
+An API audit found Mathlib's general curve-integral infrastructure, but no
+planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
+or theorem identifying a closed convex boundary integral with planar Lebesgue
+area.  The smallest remaining analytic-geometry bridge is therefore to prove
+that the checked arcs and jump segments trace the boundary of the exact
+halfspace-defined Firey body and to identify their closed oriented integral
+with twice its Lebesgue area.  The present development supplies the complete
+coordinatewise differentiability, oriented-density, endpoint, jump, integral,
+and periodicity precursors but does not assume that missing theorem.
 
 Pinned environment:
 
