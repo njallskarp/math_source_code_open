@@ -119,6 +119,18 @@ nonmonotone, the global-star flag is arbitrary, and an exact incidence state
 space modulo terminal symmetry has at least `ceil(2^p/(2p))` states. The
 result redirects the program to Ramsey-support-aware symbolic certificates.
 
+`ramsey-link-fan-arity-bound.md` is the first Ramsey-support-aware global
+obstruction after that pivot. The exact link interval `17 <= rho <= 24`,
+three near-`K5` witnesses, bichromatic coverage of the remaining
+main-color neighbors, and the 44-clause budget combine to give
+
+```text
+m <= 30 - ceil((rho - 3)/4) <= 26.
+```
+
+Thus all first-fan arities 27 through 30 are eliminated simultaneously,
+independently of the terminal parameter and inverse-DP history.
+
 ## Reproduce
 
 ```bash

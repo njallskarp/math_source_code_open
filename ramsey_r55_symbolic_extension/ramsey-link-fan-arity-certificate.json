@@ -1,0 +1,25 @@
+{
+  "claim": "Ramsey-link coverage sharpens the first singular 3+3 fan arity from 30 to 26",
+  "core_order": 42,
+  "total_selected_clauses": 44,
+  "clause_size": 4,
+  "minimum_clauses_of_main_color": 11,
+  "ramsey_number_r_4_5": 25,
+  "forced_near_k5_witness_clauses": 3,
+  "main_clause_other_vertices": 3,
+  "main_color_degree_range": [17, 24],
+  "degree_stratified_maximum_side_arity": {
+    "17": 26,
+    "18": 26,
+    "19": 26,
+    "20": 25,
+    "21": 25,
+    "22": 25,
+    "23": 25,
+    "24": 24
+  },
+  "global_maximum_side_arity": 26,
+  "eliminated_side_arities": [27, 28, 29, 30],
+  "counting_identity": "m <= 44 - 11 - 3 - ceil((rho-3)/4)",
+  "scope": "every hypothetical 44-clause signed-K4 MU(2) extension obstruction on a K5-free-in-both-colors order-42 core"
+}

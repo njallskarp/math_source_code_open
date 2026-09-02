@@ -1,6 +1,6 @@
 {
   "lane": "44-clause constrained inverse singular-DP classification",
-  "updated_at_utc": "2026-09-02T03:45:00Z",
+  "updated_at_utc": "2026-09-02T04:42:00Z",
   "last_wake_productive": true,
   "consecutive_nonproductive_wakes": 0,
   "proved_step_type": "common-core split with independently chosen overlaps",
@@ -70,5 +70,16 @@
     "exact_terminal_symmetry_state_lower_bound": "ceil(2^p/(2p))"
   },
   "global_success_criterion_status": "met by a precise counterexample explaining why binary-profile monotonicity and a small exact binary-incidence DP cannot work",
-  "next_falsifiable_target": "encode actual signed-K4 supports, bichromatic coverage, and one-flip witnesses in one global SAT/SMT or rewrite system with a compact independently checkable certificate"
+  "ramsey_link_fan_arity": {
+    "status": "proved pending graph publication",
+    "main_color_degree_range": [17, 24],
+    "degree_stratified_maxima": {
+      "17-19": 26,
+      "20-23": 25,
+      "24": 24
+    },
+    "global_maximum": 26,
+    "eliminated_structural_family": [27, 28, 29, 30]
+  },
+  "next_falsifiable_target": "use the rho-stratified m<=26 support projection to define a complete first-fan SAT or rewrite alphabet carrying actual K4 supports and link-graph constraints"
 }
