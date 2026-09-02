@@ -1,0 +1,26 @@
+{
+  "title": "Potential-matched unit-ancestry counterfamily",
+  "terminal_parameter": {
+    "minimum": 3,
+    "maximum": 33
+  },
+  "target": {
+    "variables": 42,
+    "clauses": 44,
+    "deficiency": 2,
+    "clause_excess_potential": 88
+  },
+  "schedule": {
+    "steps": "N = 42 - p, including N-5 filler unit steps and five zero-charge preparation/split steps",
+    "division": "92 - 2p = q(N-5) + r with 0 <= r < N-5",
+    "filler_charges": "r copies of q+1 followed by N-5-r copies of q",
+    "filler_arities": "charge + 1",
+    "first_forward_fan": "one disjoint 3+3 split of arity one"
+  },
+  "expected": {
+    "parameter_count": 31,
+    "total_dp_steps": 744,
+    "maximum_arity": 8,
+    "aggregate_sha256": "2b609a901543a906818d754a535812a47e97e8af810a8350f3c4064485f567be"
+  }
+}
