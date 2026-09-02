@@ -1,0 +1,13 @@
+{
+  "claim": "terminal binary-proliferation barrier",
+  "core_variables": 42,
+  "original_clause_length": 4,
+  "first_derived_clause_length": 6,
+  "maximum_loss_per_later_resolution": 1,
+  "stage_floor_through_five": [4, 4, 4, 4, 3, 2],
+  "maximum_binary_clauses_after_step_five": 1,
+  "excluded_p": [36, 37],
+  "surviving_p_minimum": 2,
+  "surviving_p_maximum": 35,
+  "terminal_cycle_intersection_checks": [36, 37]
+}

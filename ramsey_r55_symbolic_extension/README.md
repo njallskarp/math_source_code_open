@@ -77,6 +77,14 @@ terminal families `F_38`, `F_39`, `F_40`, and `F_41`. A compact JSON
 certificate and standard-library checker audit the arithmetic and every
 small common-core split of `F_p` for `p=2,3,4`.
 
+`terminal-binary-proliferation-barrier.md` strengthens the ancestry argument
+by tracking distinct binary clauses. The fifth singular step can create at
+most one binary; on the sixth step, creating many binaries would force a
+common literal, while the binary cycle of `F_p` has empty total intersection.
+This excludes `F_36` and `F_37`, leaving the exact current survivor range
+`2 <= p <= 35`. A compact JSON certificate and definition-level Python
+checker verify the stage floors and terminal-cycle incidence calculation.
+
 ## Reproduce
 
 ```bash
