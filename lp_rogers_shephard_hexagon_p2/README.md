@@ -36,16 +36,32 @@ The Lean development checks:
 - `inner_le_threeSegmentSupport_of_mem`;
 - `exists_mem_threeSegmentZonotope_inner_eq_support`;
 - `setSupportFunction_threeSegmentZonotope`;
+- `hasDerivAt_sectorTwoSupport`;
+- `sectorTwoSupport_sq_sub_derivative_sq`;
+- `sectorTwo_gramDet`;
+- `sectorTwoSq_pos`;
+- `sectorTwoDensity_eq_curvature_sub_boundaryDerivative`;
+- `sectorTwoBoundary_change`;
+- `integral_sectorTwoDensity_eq_curvature_sub`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
 - `normalized_area_formula_lt_bound`.
 
-In particular, the support theorem is set-level: for the actual Minkowski
-sum `[0,u]+[0,v]+[0,w]`, the subtype-indexed supremum of `inner x ξ` is the
-sum of the three positive generator pairings.  The planar normal form, area
-calculation, and sector integrations remain in the human proof; this is
-reported explicitly rather than hidden behind the checked final algebra.
+The support theorem is set-level: for the actual Minkowski sum
+`[0,u]+[0,v]+[0,w]`, the subtype-indexed supremum of `inner x ξ` is the sum
+of the three positive generator pairings.  Lean also checks the Sector II
+square-root derivative, the pointwise determinant decomposition, and the
+exact integral reduction
+
+```text
+∫ (h²-(h')²) = ∫ (1+b)²/F - ab,
+```
+
+including the endpoint correction `ab`.  The planar normal form,
+support-area theorem, evaluation of the remaining curvature integral as
+`(1+b)φ`, and the other two complete sector contributions remain in the
+human proof.
 
 Pinned environment:
 

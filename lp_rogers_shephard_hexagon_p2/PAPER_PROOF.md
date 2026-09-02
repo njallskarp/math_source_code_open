@@ -158,7 +158,11 @@ hexagon degenerates to a parallelogram.
 
 The geometric proof above is presently a human proof.  Lean checks that the
 actual set `[0,u]+[0,v]+[0,w]` has support equal to the sum of the positive
-generator pairings, the resulting three-generator squared-support identity,
+generator pairings and checks the resulting three-generator squared-support
+identity.  For Sector II it also checks `h=√F`, its derivative, the
+determinant decomposition (4), both endpoint values, and the exact integral
+reduction to the curvature integral minus `ab`.  Lean additionally checks
 the angle bounds, the algebraic deficit identity, and strict positivity of
 the final expression.  Lean does not yet check the normal-form theorem, the
-support-function area formula, or the three sector integrations.
+planar support-function area formula, the evaluation of the Sector II
+curvature integral as `(1+b)φ`, or the complete Sector I and III integrals.
