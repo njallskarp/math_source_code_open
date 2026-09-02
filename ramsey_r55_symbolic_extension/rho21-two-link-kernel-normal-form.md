@@ -268,3 +268,12 @@ Immutable source commit:
   `7add789c51f14e503297295e332fb2d3f76a4e451741fba17363a80cc15b4184`.
 - Checker SHA-256:
   `025adfbb885cb1819f47fcd4683870ca521a9420fec61cc1aea8bde1876b4fb9`.
+
+Discovery Net lemma:
+`bafkreiehorfgz3bmlpdzwof2gbw5hrvm6xzxlwedavbltwbvfizvik5x7u`, committed
+at height 1160 in transaction
+`B9B5F1943F480AAADEB87FA06AA58A0212E5D782A0D7F6DDDF46BFD3718ABE5E`.
+The committed ledger contains the contribution and all six initial relations.
+The independent prepublication audit accepted the theorem with high
+confidence and supplied separate simple representatives; a committed review
+has been requested against the published artifact.
