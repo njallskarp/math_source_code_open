@@ -41,8 +41,15 @@ The Lean development checks:
 - `sectorTwo_gramDet`;
 - `sectorTwoSq_pos`;
 - `sectorTwoDensity_eq_curvature_sub_boundaryDerivative`;
+- `sectorTwoU_pos_on_sector`;
+- `hasDerivAt_sectorTwoPhaseRatio`;
+- `hasDerivAt_sectorTwoCurvaturePrimitive`;
+- `sectorTwoPhaseRatio_pi_div_two_add`;
+- `sectorTwoCurvaturePrimitive_endpoints`;
+- `integral_sectorTwoCurvature`;
 - `sectorTwoBoundary_change`;
 - `integral_sectorTwoDensity_eq_curvature_sub`;
+- `integral_sectorTwoDensity`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -59,15 +66,22 @@ exact integral reduction
 ```
 
 including the endpoint correction `ab`.  The planar normal form,
-support-area theorem, evaluation of the remaining curvature integral as
-`(1+b)φ`, and the other two complete sector contributions remain in the
-human proof.
+support-area theorem, and the complete Sector I and III contributions remain
+in the human proof.  Lean now also proves `U>0` throughout the closed second
+sector, differentiates the branch-correct primitive
+`-(1+b) arctan(cos θ/U(θ))`, evaluates both endpoint phases, and closes the
+full exact contribution
+
+```text
+∫_{π/2}^{π/2+φ} (h²-(h')²) = (1+b)φ-ab.
+```
 
 Pinned environment:
 
 - Lean `v4.33.1`;
 - Mathlib `v4.33.1`;
-- Lake supplied by that Lean toolchain.
+- Mathlib commit `0df444a360eaa60ab8c11dca51a86af692955474`;
+- Lake `5.0.0-src+819816b`.
 
 Reproduce with:
 

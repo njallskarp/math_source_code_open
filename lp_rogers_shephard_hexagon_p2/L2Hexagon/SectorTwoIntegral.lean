@@ -20,9 +20,14 @@ and integrates its total-derivative term.  At the endpoints
 exactly `ab`.  Consequently the sector density integral is the curvature
 integral minus `ab`.
 
-The remaining evaluation of the curvature integral as `(1+b)φ`, and the
-planar support-area theorem that identifies this density integral with
-Lebesgue area, are intentionally outside this module's claim.
+The curvature integral is evaluated by the phase primitive
+
+`-(1+b) arctan (cos θ / U(θ))`.
+
+The proof checks that `U` stays strictly positive on the entire closed sector,
+so the quotient and the arctangent branch are legitimate.  The planar
+support-area theorem that identifies this density integral with Lebesgue area
+is intentionally outside this module's claim.
 -/
 
 open Real Set MeasureTheory
@@ -70,6 +75,14 @@ noncomputable def sectorTwoDensity (a b θ : ℝ) : ℝ :=
 noncomputable def sectorTwoCurvature (a b θ : ℝ) : ℝ :=
   (1 + b) ^ 2 / sectorTwoSq a b θ
 
+/-- The phase ratio whose arctangent linearizes the Sector II curvature. -/
+noncomputable def sectorTwoPhaseRatio (a b θ : ℝ) : ℝ :=
+  cos θ / sectorTwoU a b θ
+
+/-- An antiderivative of the Sector II curvature on the genuine sector. -/
+noncomputable def sectorTwoCurvaturePrimitive (a b θ : ℝ) : ℝ :=
+  -(1 + b) * arctan (sectorTwoPhaseRatio a b θ)
+
 theorem hasDerivAt_sectorTwoU (a b θ : ℝ) :
     HasDerivAt (sectorTwoU a b) (sectorTwoV a b θ) θ := by
   unfold sectorTwoU sectorTwoV
@@ -81,6 +94,39 @@ theorem hasDerivAt_sectorTwoV (a b θ : ℝ) :
   unfold sectorTwoU sectorTwoV
   exact (((Real.hasDerivAt_sin θ).const_mul (-a)).add
     ((Real.hasDerivAt_cos θ).const_mul (1 + b))).congr_deriv (by ring)
+
+/-- The numerator in the quotient derivative collapses to the constant `1+b`. -/
+theorem sectorTwoU_mul_sin_add_cos_mul_V (a b θ : ℝ) :
+    sectorTwoU a b θ * sin θ + cos θ * sectorTwoV a b θ = 1 + b := by
+  unfold sectorTwoU sectorTwoV
+  calc
+    (a * cos θ + (1 + b) * sin θ) * sin θ +
+        cos θ * (-a * sin θ + (1 + b) * cos θ) =
+      (1 + b) * (sin θ ^ 2 + cos θ ^ 2) := by ring
+    _ = 1 + b := by rw [Real.sin_sq_add_cos_sq]; ring
+
+/-- Derivative of the phase quotient wherever its denominator is nonzero. -/
+theorem hasDerivAt_sectorTwoPhaseRatio {a b θ : ℝ}
+    (hU : sectorTwoU a b θ ≠ 0) :
+    HasDerivAt (sectorTwoPhaseRatio a b)
+      (-(1 + b) / sectorTwoU a b θ ^ 2) θ := by
+  have hquot := (Real.hasDerivAt_cos θ).div (hasDerivAt_sectorTwoU a b θ) hU
+  unfold sectorTwoPhaseRatio
+  exact hquot.congr_deriv (by
+    field_simp [hU]
+    have hidentity := sectorTwoU_mul_sin_add_cos_mul_V a b θ
+    linarith)
+
+/-- The phase primitive differentiates to the exact curvature wherever `U ≠ 0`. -/
+theorem hasDerivAt_sectorTwoCurvaturePrimitive {a b θ : ℝ}
+    (hU : sectorTwoU a b θ ≠ 0) :
+    HasDerivAt (sectorTwoCurvaturePrimitive a b) (sectorTwoCurvature a b θ) θ := by
+  have hratio := hasDerivAt_sectorTwoPhaseRatio (a := a) (b := b) (θ := θ) hU
+  have hatan := (Real.hasDerivAt_arctan (sectorTwoPhaseRatio a b θ)).comp θ hratio
+  unfold sectorTwoCurvaturePrimitive sectorTwoCurvature sectorTwoSq sectorTwoPhaseRatio
+  exact hatan.const_mul (-(1 + b)) |>.congr_deriv (by
+    simp only [sectorTwoPhaseRatio]
+    field_simp [hU])
 
 theorem hasDerivAt_sectorTwoBoundary (a b θ : ℝ) :
     HasDerivAt (sectorTwoBoundary a b) (sectorTwoBoundaryDerivative a b θ) θ := by
@@ -182,6 +228,112 @@ theorem generatorAngle_sin_relation {a b : ℝ} (ha : 0 < a) :
   rw [← ht]
   field_simp [ha.ne']
 
+/-- The phase denominator is strictly positive on the whole closed Sector II interval. -/
+theorem sectorTwoU_pos_on_sector {a b θ : ℝ} (ha : 0 < a) (hb : 0 < b)
+    (hθ : θ ∈ Icc (π / 2) (π / 2 + arctan (b / a))) :
+    0 < sectorTwoU a b θ := by
+  let t := θ - π / 2
+  have hφ := generatorAngle_mem_Ioo ha hb
+  have ht0 : 0 ≤ t := by
+    dsimp [t]
+    linarith [hθ.1]
+  have htφ : t ≤ arctan (b / a) := by
+    dsimp [t]
+    linarith [hθ.2]
+  have htmem : t ∈ Ioo (-(π / 2)) (π / 2) := by
+    constructor
+    · linarith [Real.pi_div_two_pos]
+    · exact lt_of_le_of_lt htφ hφ.2
+  have hφmem : arctan (b / a) ∈ Ioo (-(π / 2)) (π / 2) := by
+    constructor
+    · linarith [hφ.1, Real.pi_div_two_pos]
+    · exact hφ.2
+  have htan : tan t ≤ tan (arctan (b / a)) :=
+    Real.strictMonoOn_tan.monotoneOn htmem hφmem htφ
+  rw [Real.tan_arctan] at htan
+  have hcos : 0 < cos t := Real.cos_pos_of_mem_Ioo htmem
+  have hsinle : a * sin t ≤ b * cos t := by
+    rw [← Real.tan_mul_cos hcos.ne']
+    calc
+      a * (tan t * cos t) ≤ a * ((b / a) * cos t) :=
+        mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right htan hcos.le) ha.le
+      _ = b * cos t := by field_simp [ha.ne']
+  have hθform : θ = π / 2 + t := by
+    dsimp [t]
+    ring
+  rw [hθform]
+  simp only [sectorTwoU, Real.cos_add, Real.sin_add, Real.cos_pi_div_two,
+    Real.sin_pi_div_two, zero_mul, one_mul, zero_sub, add_zero]
+  nlinarith
+
+/-- The phase ratio vanishes at the left endpoint. -/
+theorem sectorTwoPhaseRatio_pi_div_two (a b : ℝ) :
+    sectorTwoPhaseRatio a b (π / 2) = 0 := by
+  simp [sectorTwoPhaseRatio]
+
+/-- At the right endpoint the phase ratio is the negative generator slope. -/
+theorem sectorTwoPhaseRatio_pi_div_two_add {a b : ℝ} (ha : 0 < a) :
+    sectorTwoPhaseRatio a b (π / 2 + arctan (b / a)) = -(b / a) := by
+  let φ := arctan (b / a)
+  have hrelation : a * sin φ = b * cos φ := by
+    simpa [φ] using generatorAngle_sin_relation (b := b) ha
+  have hU : a * -sin φ + (1 + b) * cos φ = cos φ := by
+    linarith
+  have hcos : cos φ ≠ 0 := by
+    have hc := (Real.cos_arctan_pos (b / a)).ne'
+    simpa [φ] using hc
+  have harg : π / 2 + φ = φ + π / 2 := by ring
+  rw [show arctan (b / a) = φ by rfl, harg]
+  simp only [sectorTwoPhaseRatio, sectorTwoU, Real.cos_add_pi_div_two,
+    Real.sin_add_pi_div_two]
+  rw [hU]
+  rw [show -sin φ / cos φ = -(tan φ) by
+    rw [Real.tan_eq_sin_div_cos]
+    ring]
+  simp [φ]
+
+/-- Endpoint values of the phase primitive across Sector II. -/
+theorem sectorTwoCurvaturePrimitive_endpoints {a b : ℝ} (ha : 0 < a) :
+    sectorTwoCurvaturePrimitive a b (π / 2 + arctan (b / a)) -
+        sectorTwoCurvaturePrimitive a b (π / 2) =
+      (1 + b) * arctan (b / a) := by
+  rw [sectorTwoCurvaturePrimitive, sectorTwoCurvaturePrimitive,
+    sectorTwoPhaseRatio_pi_div_two_add ha, sectorTwoPhaseRatio_pi_div_two,
+    Real.arctan_neg]
+  simp
+  ring
+
+/-- The determinant curvature integrates to the exact angular contribution `(1+b)φ`. -/
+theorem integral_sectorTwoCurvature {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
+    (∫ θ in π / 2..π / 2 + arctan (b / a), sectorTwoCurvature a b θ) =
+      (1 + b) * arctan (b / a) := by
+  have hφ := generatorAngle_mem_Ioo ha hb
+  have hφpos : 0 < arctan (b / a) := by
+    simpa [generatorAngle] using hφ.1
+  have hle : π / 2 ≤ π / 2 + arctan (b / a) := by linarith
+  have hcurv : IntervalIntegrable (sectorTwoCurvature a b) volume
+      (π / 2) (π / 2 + arctan (b / a)) := by
+    have hcontF : Continuous (sectorTwoSq a b) := by
+      unfold sectorTwoSq sectorTwoU
+      fun_prop
+    apply Continuous.intervalIntegrable
+    unfold sectorTwoCurvature
+    apply Continuous.div continuous_const
+    · exact hcontF
+    · intro θ
+      exact (sectorTwoSq_pos (a := a) hb θ).ne'
+  have hftc :
+      (∫ θ in π / 2..π / 2 + arctan (b / a), sectorTwoCurvature a b θ) =
+        sectorTwoCurvaturePrimitive a b (π / 2 + arctan (b / a)) -
+          sectorTwoCurvaturePrimitive a b (π / 2) := by
+    apply intervalIntegral.integral_eq_sub_of_hasDerivAt
+    · intro θ hθ
+      rw [uIcc_of_le hle] at hθ
+      exact hasDerivAt_sectorTwoCurvaturePrimitive
+        (sectorTwoU_pos_on_sector ha hb hθ).ne'
+    · exact hcurv
+  rw [hftc, sectorTwoCurvaturePrimitive_endpoints ha]
+
 /-- The endpoint correction across Sector II is exactly `ab`. -/
 theorem sectorTwoBoundary_change {a b : ℝ} (ha : 0 < a) :
     sectorTwoBoundary a b (π / 2 + arctan (b / a)) -
@@ -236,13 +388,28 @@ theorem integral_sectorTwoDensity_eq_curvature_sub {a b : ℝ}
           a * b := by
             rw [hftc, sectorTwoBoundary_change ha]
 
+/-- The complete exact Sector II contribution, including its endpoint correction. -/
+theorem integral_sectorTwoDensity {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
+    (∫ θ in π / 2..π / 2 + arctan (b / a), sectorTwoDensity a b θ) =
+      (1 + b) * arctan (b / a) - a * b := by
+  rw [integral_sectorTwoDensity_eq_curvature_sub ha hb,
+    integral_sectorTwoCurvature ha hb]
+
+#print axioms sectorTwoU_mul_sin_add_cos_mul_V
+#print axioms hasDerivAt_sectorTwoPhaseRatio
+#print axioms hasDerivAt_sectorTwoCurvaturePrimitive
 #print axioms hasDerivAt_sectorTwoBoundary
 #print axioms hasDerivAt_sectorTwoSupport
 #print axioms sectorTwoSupport_sq_sub_derivative_sq
 #print axioms sectorTwo_gramDet
 #print axioms sectorTwoSq_pos
 #print axioms sectorTwoDensity_eq_curvature_sub_boundaryDerivative
+#print axioms sectorTwoU_pos_on_sector
+#print axioms sectorTwoPhaseRatio_pi_div_two_add
+#print axioms sectorTwoCurvaturePrimitive_endpoints
+#print axioms integral_sectorTwoCurvature
 #print axioms sectorTwoBoundary_change
 #print axioms integral_sectorTwoDensity_eq_curvature_sub
+#print axioms integral_sectorTwoDensity
 
 end L2Hexagon

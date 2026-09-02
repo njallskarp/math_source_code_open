@@ -176,8 +176,12 @@ actual set `[0,u]+[0,v]+[0,w]` has support equal to the sum of the positive
 generator pairings and checks the resulting three-generator squared-support
 identity.  For Sector II it also checks `h=√F`, its derivative, the
 determinant decomposition (4), both endpoint values, and the exact integral
-reduction to the curvature integral minus `ab`.  Lean additionally checks
-the angle bounds, the algebraic deficit identity, and strict positivity of
-the final expression.  Lean does not yet check the normal-form theorem, the
-planar support-function area formula, the evaluation of the Sector II
-curvature integral as `(1+b)φ`, or the complete Sector I and III integrals.
+reduction to the curvature integral minus `ab`.  It proves that the phase
+denominator `U=a cos θ+(1+b) sin θ` stays positive on the closed sector,
+differentiates the branch-correct primitive
+`-(1+b) arctan(cos θ/U)`, checks both endpoint phases, and therefore proves
+the complete Sector II integral `(1+b)φ-ab`.  Lean additionally checks the
+angle bounds, the algebraic deficit identity, and strict positivity of the
+final expression.  Lean does not yet check the normal-form theorem, the
+planar support-function area formula, or the complete Sector I and III
+integrals.
