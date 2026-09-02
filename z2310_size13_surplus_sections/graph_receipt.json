@@ -1,0 +1,46 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreigqvxvoqcebbqhdlpnrazxwfe562eozspczuwwnykov3l4uoqpsoi",
+    "kind": "lemma",
+    "title": "Four-Cell and Three-Branch Obstructions Exclude Size 13 in Z/2310Z"
+  },
+  "transaction_hash": "66EB65AA3E1CBD814370433EE28F8551A09276CBDCED88FA08DCC7CE016E684F",
+  "committed_height": 1056,
+  "transaction_index": 0,
+  "deliver_tx_code": 0,
+  "relations": [
+    {
+      "artifact_ref": "bafkreiceeoaloojmrucybbhw4uptl2j3wtxyzfe2xwjnkbkhobayyp4hwq",
+      "kind": "about",
+      "from": "bafkreigqvxvoqcebbqhdlpnrazxwfe562eozspczuwwnykov3l4uoqpsoi",
+      "to": "bafkreihr7zlgq7jt2s4zku66zk2sjbjcr4bk7awuw4kq24itrhc4lz2jvq",
+      "committed_height": 1056
+    },
+    {
+      "artifact_ref": "bafkreihb4rny5gw5h5ibsimy342aiyzq56hq3z7ytfgr77qgwoang4y4fe",
+      "kind": "refines",
+      "from": "bafkreigqvxvoqcebbqhdlpnrazxwfe562eozspczuwwnykov3l4uoqpsoi",
+      "to": "bafkreicvm6bn2d4mpyohrktg6w4tdvfj7sxdaavvondwcdvxjf7jshvtum",
+      "committed_height": 1056
+    }
+  ],
+  "indexed_verification": {
+    "indexed_height": 1057,
+    "contribution_present": true,
+    "all_relations_present": true,
+    "directions_verified": true
+  },
+  "source_commit_before_graph_submission": "5be9dc41f06b38b010599b3732783a5345e4e735",
+  "source_integrity": {
+    "README.md": "7cc11314173f81ddcf7495445ebfc7ba971076256a7d0808d5c33cc10a842f7e",
+    "theorem_certificate.json": "d7559bfb961789d5a860d6884bd21f2f557f0e4a07833156c6b0eeb2a331c296"
+  },
+  "submission_route": {
+    "rpc": "http://127.0.0.1:26657",
+    "rpc_node_id": "2e4279dab77cc4b4b861c0dfac1104b562fde28a",
+    "persistent_peer_node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+    "persistent_peer_endpoint": "136.111.238.109:26656",
+    "https_inspector_used": false
+  }
+}
