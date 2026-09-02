@@ -1,0 +1,16 @@
+verify_specialization_image.py
+ring=Z[i]
+bezout=verified
+resultant_phi3_phi7=1
+necessity_basis=21_monomials
+sufficiency_basis=9_parameters
+degree_bound=11<21
+specialization_image=verified
+
+derive_with_sympy.py
+python_sympy=1.14.0
+resultant_phi3_phi7=1
+universal_remainders=verified
+universal_value_at_one=verified
+degree_bound=11<21
+sympy_derivation=verified
