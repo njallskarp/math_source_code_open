@@ -184,7 +184,6 @@ std::vector<std::uint32_t> orbit_representatives(int weight) {
         if (word != least) continue;
         std::unordered_set<std::uint32_t> orbit;
         for (int shift = 0; shift < N; ++shift) orbit.insert(rotate_left(word, shift));
-        assert(orbit.size() == N);
         for (auto member : orbit) assert(covered.insert(member).second);
         representatives.push_back(word);
     }
@@ -400,6 +399,12 @@ bool s_pair_survives(
     return false;
 }
 
+std::vector<int> admissible_cases(int weight) {
+    if (weight == 0) return {2, 5};
+    if (weight == 20) return {3, 4};
+    return {0, 1, 2, 3, 4, 5};
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -408,11 +413,12 @@ int main(int argc, char** argv) {
         const std::string argument = argv[index];
         if (argument == "--weight" && index + 1 < argc) weight = std::stoi(argv[++index]);
         else {
-            std::cerr << "usage: " << argv[0] << " --weight 4|8|16\n";
+            std::cerr << "usage: " << argv[0] << " --weight 0|4|8|12|16|20\n";
             return 2;
         }
     }
-    if (weight != 4 && weight != 8 && weight != 16) {
+    if (weight != 0 && weight != 4 && weight != 8 && weight != 12
+        && weight != 16 && weight != 20) {
         std::cerr << "unsupported_weight=" << weight << '\n';
         return 2;
     }
@@ -452,14 +458,15 @@ int main(int argc, char** argv) {
     std::uint64_t s_a_assignments = 0;
     std::uint64_t case_tests = 0;
     std::uint64_t hs_survivors = 0;
+    const auto cases = admissible_cases(weight);
     for (auto b_axis : h_b_orbits) {
         std::array<std::unordered_set<Key, KeyHash>, 6> b_supports;
-        for (int case_index = 0; case_index < 6; ++case_index) {
+        for (int case_index : cases) {
             b_supports[case_index] = build_s_b_support(b_axis, case_index, s_b_assignments);
         }
         for (const auto pair : h_pairs) {
             if (pair.b_axis != b_axis) continue;
-            for (int case_index = 0; case_index < 6; ++case_index) {
+            for (int case_index : cases) {
                 ++case_tests;
                 hs_survivors += static_cast<std::uint64_t>(s_pair_survives(
                     pair.a_half, pair.signature, case_index, b_supports[case_index],
@@ -473,7 +480,7 @@ int main(int argc, char** argv) {
     std::cout << "producer_stream_used=no\n";
     std::cout << "pi_adic_filter_used=no\n";
     std::cout << "weight=" << weight << '\n';
-    std::cout << "axis_words=" << b_orbits.size() * N << '\n';
+    std::cout << "axis_words=" << subsets_of_weight(FULL, weight).size() << '\n';
     std::cout << "rotation_orbits=" << b_orbits.size() << '\n';
     std::cout << "autocorrelation_signatures=" << grouped.size() << '\n';
     std::cout << "a_exact_sum_assignments=" << a_exact_sum_assignments << '\n';
