@@ -131,6 +131,14 @@ The Lean development checks:
 - `normalizedExposedFace_subset_frontier_of_ne_zero`;
 - `frontier_normalizedLpSumTwo_eq_iUnion_nonzero_exposedFaces`; and
 - `frontier_normalizedLpSumTwo_eq_upperNormalBoundary_union_neg`;
+- `sectorTwoBoundarySpeed_pos` and `sectorThreeBoundarySpeed_pos`;
+- `strictAntiOn_sectorTwoBoundaryX` and
+  `strictAntiOn_sectorThreeBoundaryX`;
+- `injOn_sectorTwoBoundaryPoint` and
+  `injOn_sectorThreeBoundaryPoint`;
+- `injective_sectorTwoArcPath` and `injective_sectorThreeArcPath`;
+- `sectorTwoBoundaryOrientedDensity_pos` and
+  `sectorThreeBoundaryOrientedDensity_pos`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -379,6 +387,17 @@ Set.range (normalizedCyclicBoundaryPath a b ha hb)
 Thus endpoint matching, global continuity, and image equality with the actual
 halfspace body's topological frontier are now checked.  No area or desired
 formula is hidden in the path definition.
+
+`SimplePathOrientation.lean` proves the first embeddedness and orientation
+step without appealing to a Jordan theorem.  On both curved sectors the
+tangential speed `h+h''` is strictly positive.  Since `sin(theta)>0` on the
+relevant angular intervals, the first Cartesian coordinate has strictly
+negative derivative.  It follows that each canonical boundary-point map is
+injective on its closed angular interval and each bundled curved arc path is
+injective.  The module also proves that both pointwise oriented determinant
+densities are strictly positive.  These are exact per-piece results; they do
+not yet assert cross-piece disjointness or injectivity of the full cyclic
+concatenation.
 
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
