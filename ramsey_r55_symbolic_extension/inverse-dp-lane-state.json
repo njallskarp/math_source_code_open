@@ -94,6 +94,12 @@
       "height": 1114,
       "corrected_source_commit": "d67bb1995b3d59362c0177ad3b15cb03f8a51f6b"
     },
+    "independent_review": {
+      "verdict": "verified with high confidence",
+      "contribution": "bafkreibrr63spf6pv6l233fh7ahucb4yaqxjkrrxfken4gnxtwi2mdc6q4",
+      "height": 1116,
+      "method": "independent exhaustive degree-profile enumerator plus symbolic proof audit"
+    },
     "normalized_maximum_arity": 10,
     "quantifier": "some legal first singular pivot",
     "ordinary_maximum_arity": 9,

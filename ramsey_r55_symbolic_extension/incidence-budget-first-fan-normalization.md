@@ -235,4 +235,8 @@ correct citation is the Abbasizanjani--Kullmann paper listed above. A
 post-hoc graph erratum records that correction; the theorem and proof are
 unchanged. The erratum is
 `bafkreifsdptos6w4btsijwu2vd2cr7jmpvps3xlepjieyvynge2kmyosee`, committed
-at height 1114.
+at height 1114. Independent review
+`bafkreibrr63spf6pv6l233fh7ahucb4yaqxjkrrxfken4gnxtwi2mdc6q4`, committed
+at height 1116, verified the quantifiers, arithmetic classification,
+duplicate-clause edge case, and exact two color-reversed equality profiles
+using a separately written exhaustive degree-profile enumerator.
