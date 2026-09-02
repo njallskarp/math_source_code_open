@@ -1,0 +1,80 @@
+{
+  "claim": "Every spectral subset of cardinality 14 in Z/2310Z tiles.",
+  "arithmetic_correction": "14 divides 210; projected spectrality is a tiling branch, not an impossibility.",
+  "modulus": {
+    "N": 2310,
+    "base_n": 210,
+    "boundary_prime_p": 11,
+    "crt": "Z/2310Z = Z/210Z x Z/11Z"
+  },
+  "hypothetical_cardinality": 14,
+  "imported_results": [
+    {
+      "name": "spectral-to-tiling in Z/210Z",
+      "source": "arXiv:2011.09578",
+      "use": "A successfully descended projected pair makes the projection of A tile."
+    },
+    {
+      "name": "levelwise cuboid lemma",
+      "source": "arXiv:2607.26534; arXiv:2202.07555",
+      "use": "A failed Phi_(11d)-to-Phi_d descent makes a cuboid evaluation a nonzero multiple of 11 and forces every 11-level nonempty."
+    },
+    {
+      "name": "spectral mask-zero characterization",
+      "source": "standard finite cyclic Fourier characterization",
+      "use": "Differences in either member force zeros of the opposite mask."
+    }
+  ],
+  "section_frontier_if_both_descents_fail": [
+    [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1]
+  ],
+  "proof_map": [
+    {
+      "id": "phi_11_absence_and_injective_projection",
+      "statement": "Phi_11 is absent because 11 does not divide 14; both projections to Z/210Z are injective."
+    },
+    {
+      "id": "successful_descent_tiles",
+      "depends_on": ["phi_11_absence_and_injective_projection"],
+      "statement": "If either mask satisfies every Phi_(11d)-to-Phi_d implication, the projected pair is spectral; its A-projection tiles Z/210Z, and the graph lift tiles with complement T x Z/11Z."
+    },
+    {
+      "id": "two_failed_descents_force_sections",
+      "depends_on": ["phi_11_absence_and_injective_projection"],
+      "statement": "If both descents fail, both sets meet all eleven levels and have exactly Q, M, or D3 section cardinalities."
+    },
+    {
+      "id": "cross_level_coefficient_equality",
+      "depends_on": ["two_failed_descents_force_sections"],
+      "statement": "Irreducibility of Phi_11 over Q(zeta_d) makes all A-section Fourier sums equal for every difference between representatives of distinct Lambda levels."
+    },
+    {
+      "id": "gram_rank_contradiction",
+      "depends_on": ["cross_level_coefficient_equality"],
+      "statement": "A singleton A-section and an r-section, 2<=r<=4, give eleven vectors in C^r with Gram matrix (r-1)I_11+J_11, determinant (r+10)(r-1)^10, and rank 11, impossible in dimension r."
+    }
+  ],
+  "gram_certificate": {
+    "number_of_vectors": 11,
+    "possible_dimensions": [2, 3, 4],
+    "diagonal_entry": "r",
+    "off_diagonal_entry": 1,
+    "eigenvalues": {
+      "r+10": 1,
+      "r-1": 10
+    },
+    "determinant": "(r+10)(r-1)^10",
+    "contradiction": "rank 11 exceeds r for r in {2,3,4}"
+  },
+  "conclusion": "The two-failed-descent branch is impossible, so a descent succeeds and A tiles.",
+  "computation": {
+    "subset_enumeration": false,
+    "solver": false,
+    "floating_point": false,
+    "certificate_role": "dependency and exact determinant audit only"
+  },
+  "novelty": "search-relative specialization; no historical priority claim"
+}
+
