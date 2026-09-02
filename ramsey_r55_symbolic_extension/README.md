@@ -167,6 +167,15 @@ to the selected blue supports not already forcing a blue `K5`.  Explicit
 members of both abstract link families pass this filter, precisely locating
 the next missing information in red-support and completion constraints.
 
+`rho21-bichromatic-matching-cover-normal-form.md` adds the selected red
+supports exactly. Opposite-color intersection at most one turns every red
+`K4` avoiding the pivot into a four-edge matching of the blue-clause kernel.
+The exceptional degree profile gives exactly two possible demand vectors, so
+the full selected-support problem is a `41 x 20` binary matching-cover system
+with a proved converse. Exact covers for both marked kernel families and both
+demand cases force no monochromatic `K5`; completion of unspecified core
+edges or deeper singular-DP ancestry is therefore genuinely necessary.
+
 ## Reproduce
 
 ```bash

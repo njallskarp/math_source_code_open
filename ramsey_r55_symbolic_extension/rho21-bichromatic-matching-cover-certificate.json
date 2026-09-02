@@ -1,0 +1,44 @@
+{
+  "claim": "The selected red supports at the exceptional m=10, rho=21 profile are exactly demand-constrained 4-matching covers of the global blue-clause kernel D; both marked kernel representatives admit exact covers in both possible exceptional-red-vertex cases, and all four resulting bichromatic partial support systems force no monochromatic K5.",
+  "base_kernel_certificate": "rho21-global-blue-k5-kernel-certificate.json",
+  "base_kernel_certificate_sha256": "6f30cd3cc288f6e58feeb57adc8b8f4122740b300c92795930639fbafc8fef87",
+  "pivot_vertex_index": 41,
+  "ordinary_vertices": 41,
+  "selected_red_clauses": 21,
+  "residual_red_clauses": 20,
+  "residual_clause_size": 4,
+  "distinguished_triangle_edge_indices": [37, 38, 39],
+  "demand_cases": {
+    "exceptional_vertex_in_A": {
+      "description": "One distinguished-triangle edge has residual demand 2, the other two have demand 1, and every edge outside A has demand 2.",
+      "exceptional_edge_index": 37
+    },
+    "exceptional_vertex_outside_A": {
+      "description": "Every distinguished-triangle edge has residual demand 1, one edge outside A has demand 3, and every other edge has demand 2.",
+      "exceptional_edge_index": 0
+    }
+  },
+  "survivors": [
+    {
+      "kernel_representative": "q=0 two-link representative",
+      "demand_case": "exceptional_vertex_in_A",
+      "matchings": [[2,15,23,29],[1,18,21,34],[4,9,23,24],[5,10,27,30],[14,27,32,37],[13,20,22,25],[8,11,31,33],[3,12,17,26],[16,33,36,40],[6,20,26,28],[0,5,21,25],[7,10,35,36],[4,8,19,31],[13,16,18,29],[0,15,28,32],[3,7,22,37],[2,11,30,39],[6,9,24,34],[12,17,19,35],[1,14,38,40]]
+    },
+    {
+      "kernel_representative": "q=0 two-link representative",
+      "demand_case": "exceptional_vertex_outside_A",
+      "matchings": [[2,8,22,24],[15,17,30,40],[0,5,13,16],[3,8,19,36],[0,28,31,35],[1,25,27,34],[6,19,21,39],[4,22,32,33],[0,11,18,24],[7,9,29,37],[4,10,26,38],[2,12,20,27],[10,11,14,23],[6,13,25,31],[5,18,23,36],[3,7,32,33],[17,34,35,40],[9,21,26,30],[14,16,28,29],[1,12,15,20]]
+    },
+    {
+      "kernel_representative": "q=1 two-link representative",
+      "demand_case": "exceptional_vertex_in_A",
+      "matchings": [[3,12,29,34],[0,8,22,36],[1,7,20,21],[6,13,23,28],[2,16,32,33],[6,19,30,37],[9,11,26,27],[17,26,35,40],[4,14,18,36],[13,15,23,24],[5,10,14,27],[19,30,31,38],[5,8,25,39],[31,34,35,40],[4,18,22,32],[3,12,25,28],[2,11,16,20],[1,15,29,37],[0,9,24,33],[7,10,17,21]]
+    },
+    {
+      "kernel_representative": "q=1 two-link representative",
+      "demand_case": "exceptional_vertex_outside_A",
+      "matchings": [[0,5,23,34],[3,30,33,40],[14,16,19,26],[15,17,19,24],[2,18,25,40],[1,7,20,36],[8,28,29,32],[6,23,33,35],[0,22,26,36],[4,9,12,38],[10,11,21,27],[4,13,29,31],[6,11,27,32],[16,17,22,31],[12,18,24,35],[7,9,20,21],[3,5,13,34],[1,14,28,37],[0,8,15,25],[2,10,30,39]]
+    }
+  ],
+  "scope": "Exact for selected red/blue K4 support incidence and the absence of monochromatic K5s forced by those selected supports. It does not complete unspecified core edges, verify all red K4s and blue K4s of a completed core, or certify singular-DP ancestry."
+}
