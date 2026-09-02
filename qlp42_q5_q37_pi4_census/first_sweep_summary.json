@@ -1,0 +1,41 @@
+{
+  "claim_scope": "positive witness lower bound only; no unsatisfiability claim",
+  "encoding": {
+    "gaussian_prime": "1+i",
+    "layer": 4,
+    "criterion": "each residual real and imaginary coordinate is 0 modulo 4"
+  },
+  "input_dependencies_sha256": {
+    "qlp42_q5_q37_binary_frontier/frontier_orbits.tsv": "f1dff75420fb37a2454767a7177367045e100ab07a07a11addd5e5551407d89e",
+    "qlp42_q5_q37_pi3_witnesses/full_witnesses.tsv": "283779dc06d031bf2a5f333dbb32c9cfa540313db8e4a82886caf7134fe8e8eb",
+    "qlp42_q5_q37_pi3_witnesses/generate_pi3_witnesses.py": "604fe6a7f803bf5bde5cc2ce44a78ebd4a9ce5fa3df885c7980146aeb8978671",
+    "qlp42_q5_q37_pi3_witnesses/solve_pi3_mq.py": "8f3204e6be073bb3a346a44cfdbc80172627bba99792478ca2d7c35a142d449d",
+    "qlp42_q5_q37_pi3_witnesses/verify_pi3_witnesses.py": "951fab9d89dbca39a70b1585cfe5dc2f52db5e16aa132134d3d1b07faef056fa"
+  },
+  "output_manifest": {
+    "path": "qlp42_q5_q37_pi4_census/pi4_witnesses.tsv",
+    "sha256": "5a538b693c46ebdee94a2b8d5999d06072b8a3fe4ab5f1a78a36cb49616f76cf",
+    "witnesses": 4
+  },
+  "partition": {
+    "cells_completed": 216,
+    "cells_scheduled": 216,
+    "q37_cells": 108,
+    "q5_cells": 108,
+    "unresolved_cells": 212
+  },
+  "schedule": {
+    "batch": 0,
+    "free_cell_counts": [4, 8, 12, 16, 20, 24, 30, 36, 42],
+    "logical_cpus": 10,
+    "time_limit_seconds_per_attempt": 1.0,
+    "trials_per_free_cell_count": 4,
+    "worker_processes": 9
+  },
+  "witness_keys": [
+    [5, 0, 1],
+    [5, 3, 1],
+    [5, 10, 0],
+    [37, 4, 4]
+  ]
+}
