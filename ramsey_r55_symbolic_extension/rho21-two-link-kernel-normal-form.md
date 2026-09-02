@@ -274,6 +274,10 @@ Discovery Net lemma:
 at height 1160 in transaction
 `B9B5F1943F480AAADEB87FA06AA58A0212E5D782A0D7F6DDDF46BFD3718ABE5E`.
 The committed ledger contains the contribution and all six initial relations.
-The independent prepublication audit accepted the theorem with high
-confidence and supplied separate simple representatives; a committed review
-has been requested against the published artifact.
+Independent review
+`bafkreibpolck2dfwrbwsfldzrxvc2dzgxmhubotmea3mev2ivbqmtxh5ge`, committed
+at height 1164, accepts the theorem with high confidence.  It independently
+derives all three degree families, supplies separate simple representatives,
+checks the joint-kernel gluing and duplicate rules, and confirms the stated
+boundary between abstract selected-blue incidence and colored
+\(K_5\)-free realizability.

@@ -152,7 +152,7 @@
     }
   },
   "rho21_two_link_kernel_normal_form": {
-    "status": "proved with exact converse, source-published, independently accepted, and graph-committed",
+    "status": "proved with exact converse, source-published, independently verified, and graph-committed",
     "source_commit": "238c34295760a13b886c2200d0ca59b55a41e890",
     "certificate_sha256": "7add789c51f14e503297295e332fb2d3f76a4e451741fba17363a80cc15b4184",
     "independent_prepublication_review": {
@@ -174,7 +174,15 @@
     "contribution": "bafkreiehorfgz3bmlpdzwof2gbw5hrvm6xzxlwedavbltwbvfizvik5x7u",
     "height": 1160,
     "transaction": "B9B5F1943F480AAADEB87FA06AA58A0212E5D782A0D7F6DDDF46BFD3718ABE5E",
-    "corrected_documentation_commit": "fcaea8dfc60489921269a4227069ead120770489"
+    "corrected_documentation_commit": "fcaea8dfc60489921269a4227069ead120770489",
+    "independent_committed_review": {
+      "verdict": "accepted with high confidence",
+      "contribution": "bafkreibpolck2dfwrbwsfldzrxvc2dzgxmhubotmea3mev2ivbqmtxh5ge",
+      "height": 1164,
+      "transaction": "09FCA7F29264B74F078470016D29B18FF4FBB2AF75ACDA5B1A21385A6680A7DD",
+      "body_sha256": "726185d6ad4936787b4d9dbba2f5decb88ee9a57c25557d29ac5e26513180b76",
+      "method": "independent derivation, separate simple witnesses, and joint-gluing audit"
+    }
   },
   "next_falsifiable_target": "enumerate the two small marked kernel alphabets up to isomorphism and impose actual blue-clique, red/blue K5-free, and link-graph constraints with a completeness-proved decoding"
 }
