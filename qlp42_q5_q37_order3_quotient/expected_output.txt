@@ -1,0 +1,3 @@
+rows=216;q5_cells=108;q37_cells=108;exact_order3_coupled_quotient_lifts=216
+rows=216;q5_cells=108;q37_cells=108
+exact_factor7_order3_coupled_quotient_lifts=verified
