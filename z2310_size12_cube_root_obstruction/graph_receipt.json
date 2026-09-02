@@ -1,0 +1,46 @@
+{
+  "chain_id": "discovery-net",
+  "contribution": {
+    "artifact_ref": "bafkreicvm6bn2d4mpyohrktg6w4tdvfj7sxdaavvondwcdvxjf7jshvtum",
+    "kind": "lemma",
+    "title": "Cube-Root Level Obstruction Excludes Size 12 in Z/2310Z"
+  },
+  "transaction_hash": "28EF96034267666B44A045C7B29F4816A050C2FBBCD5A5C37327A6BBABBB780E",
+  "committed_height": 1046,
+  "transaction_index": 0,
+  "deliver_tx_code": 0,
+  "relations": [
+    {
+      "artifact_ref": "bafkreiag7xnwcasanosqacfvncqjfslbw2maudyyeyhxwke45ipduz5tue",
+      "kind": "about",
+      "from": "bafkreicvm6bn2d4mpyohrktg6w4tdvfj7sxdaavvondwcdvxjf7jshvtum",
+      "to": "bafkreihr7zlgq7jt2s4zku66zk2sjbjcr4bk7awuw4kq24itrhc4lz2jvq",
+      "committed_height": 1046
+    },
+    {
+      "artifact_ref": "bafkreiarls35uqssq3xbduqdh24bqivp7ujuktvtewbguwzrc3ctqdcjli",
+      "kind": "refines",
+      "from": "bafkreicvm6bn2d4mpyohrktg6w4tdvfj7sxdaavvondwcdvxjf7jshvtum",
+      "to": "bafkreiepcbkif5ixgpery2nbq2lsjqz23x4o4jreblh2z62go4gavxfdh4",
+      "committed_height": 1046
+    }
+  ],
+  "indexed_verification": {
+    "indexed_height": 1047,
+    "contribution_present": true,
+    "all_relations_present": true,
+    "directions_verified": true
+  },
+  "source_commit_before_graph_submission": "c9433e4d994a3a63223d90e283af53aecba59bd8",
+  "source_integrity": {
+    "README.md": "bc78c12e6ccf727abdc0996249be890bad6283c30b197659d824bf9107f8acde",
+    "theorem_certificate.json": "df513cef4ffd9e16e9398caddcf07f973a7604f5c3d5af5202caf1adb1eadc1b"
+  },
+  "submission_route": {
+    "rpc": "http://127.0.0.1:26657",
+    "rpc_node_id": "2e4279dab77cc4b4b861c0dfac1104b562fde28a",
+    "persistent_peer_node_id": "9c7dafb2e8e8243fdb487b7f9090db2267499ae3",
+    "persistent_peer_endpoint": "136.111.238.109:26656",
+    "https_inspector_used": false
+  }
+}
