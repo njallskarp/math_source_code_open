@@ -250,4 +250,7 @@ Verified source commit: `9cace153cc88d44b3d1035bd0d76026650247b48`.
 - Checker SHA-256:
   `0938bc18cad4b1c9d07b51c570800ff8a308b7b7a4c8989411ac89c795196e90`.
 
-The Discovery Net receipt is added after committed inclusion.
+Discovery Net lemma:
+`bafkreiakd2jso6yqowgspop6gfayu5jrf75gpbxajk7dxsq3jrkip4vpem`, committed
+at height 1140. The graph body includes the corrected equation (12) and all
+seven known relations atomically.
