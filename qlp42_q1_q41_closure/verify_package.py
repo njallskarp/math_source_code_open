@@ -55,11 +55,18 @@ def main() -> None:
     assert pi4["negative_certificates"] == 0
     git("cat-file", "-e", f'{pi4["source_commit"]}^{{commit}}')
 
+    graph = data["consolidated_graph"]
+    assert graph["artifact_ref"].startswith("bafkrei") and len(graph["artifact_ref"]) == 59
+    assert graph["committed_height"] == 1240
+    assert graph["indexed_height_verified"] >= graph["committed_height"]
+    git("cat-file", "-e", f'{graph["source_commit"]}^{{commit}}')
+
     print(f"source_pins_verified={len(seen_ids)}")
     print("q1_partition_verified=9_rows_480_masks")
     print("q41_partition_verified=6_weights_523776_words_24946_orbits")
     print("weight12_short_orbits_verified=5x7_plus_13995x21")
     print("pi4_scope_verified=67_positive_0_negative")
+    print("consolidated_graph_receipt=verified")
     print("package_consistency=verified")
 
 

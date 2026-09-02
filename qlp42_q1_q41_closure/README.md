@@ -28,6 +28,8 @@ separate `q=5` or `q=37` frontiers.
 - [`PRIOR_ART.md`](PRIOR_ART.md): positioning against primary literature.
 - [`references.bib`](references.bib): compact bibliography.
 - [`verify_package.py`](verify_package.py): dependency-free consistency check.
+- [`graph_receipt.json`](graph_receipt.json): committed transaction and
+  relation receipts for the repaired q=1 dependencies and combined corollary.
 
 Run the package audit from this directory:
 
@@ -42,6 +44,11 @@ the exceptional weight-12 orbit arithmetic, and validates the graph-reference
 syntax. It does not rerun the underlying multi-billion-assignment proofs.
 Those proof packages remain independently reproducible at their immutable
 source pins.
+
+The consolidated graph theorem is
+`bafkreifyukwfmet5naxzfsrhxplocsjg2u2vok3mxpwgvcqksqcyzppcqq`, committed
+at height 1240. The two missing q=1 prerequisites were committed at heights
+1236 and 1238 and are now explicit dependencies of the q=1 closure node.
 
 ## Fourth-layer q=5/q=37 scope at the pivot
 

@@ -1,0 +1,53 @@
+{
+  "chain_id": "discovery-net",
+  "genesis_commit": "e847e5df01c42560afeee3442925d8f1595c62fa",
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+  "source_commit": "1490afe075bc4d31b6e66960c000ead484e57c01",
+  "submission_route": "isolated local research node RPC http://127.0.0.1:27657; no HTTPS inspector",
+  "node_id": "c6b685c9098bd691d1969177c83909bd6c986540",
+  "required_peer": "d3fec047e0d258b60baa61de6229a565e8366973@34.172.207.3:26656",
+  "public_egress_cidr_observed": "104.135.222.213/32",
+  "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+  "contributions": [
+    {
+      "role": "q1_b20_missing_prerequisite",
+      "artifact_ref": "bafkreibsmvj4472sobwdhuf6gvtdydp6f74djbrl7ygpgljqasjms4a2t4",
+      "title": "Mod-7 Compression Obstruction Excludes the QLP-42 q=1 b=20 Shell",
+      "transaction_hash": "632AEFDEA5C754622484F5297541C1321A7A9C66DF4C86351C4B4EB5B5FB2A9A",
+      "height": 1236,
+      "index": 0,
+      "deliver_tx_code": 0,
+      "merkle_root": "04CDE7CCC1BB0EDB1D3845542D6AA763916B9558F7B80C25BD2078E42D5CC1AA",
+      "relation_count": 7
+    },
+    {
+      "role": "q1_b16_missing_prerequisite",
+      "artifact_ref": "bafkreidu5arttf4xetizqfpgnqp6bechzx5tfnvbekj57cylet3icw2ji4",
+      "title": "Sixth/Seventh-Order S Obstruction Excludes the QLP-42 q=1 b=16 Shell",
+      "transaction_hash": "912EA6232CD383D4490E8E269BB488C7ADB92D1DDC7D122EE65CC58355B96948",
+      "height": 1238,
+      "index": 0,
+      "deliver_tx_code": 0,
+      "merkle_root": "D200BE0513D696D796A670259C9FFFA93627E3393F0F8502BCE691BD344CBBF2",
+      "relation_count": 10
+    },
+    {
+      "role": "extreme_branch_corollary",
+      "artifact_ref": "bafkreifyukwfmet5naxzfsrhxplocsjg2u2vok3mxpwgvcqksqcyzppcqq",
+      "title": "Extreme-Branch Closure for the Canonical Norm-32 QLP-42 Shell",
+      "transaction_hash": "BAE63F910054E3194F2424064544F6B3BF102BB8B8030A9EA39CAAA371F5AB56",
+      "height": 1240,
+      "index": 0,
+      "deliver_tx_code": 0,
+      "merkle_root": "B63E1CA11E717BCA4EC3719B2F83D0D73BA795E721168C228290B33C05235E29",
+      "relation_count": 8
+    }
+  ],
+  "graph_observation": {
+    "indexed_height": 1241,
+    "errors": [],
+    "q1_closure_depends_on_b20": "bafkreiabztuhbmbfk7r4n7c5o5xgeg7up5j4z4qhyk4qklsgfltzpymda4",
+    "q1_closure_depends_on_b16": "bafkreigrfuwybjx3a2xu2k56jbfpsuchkwubulv6cg6ogyuwthoys47iei",
+    "confirmation": "Queried all three contributions, every relation, and the repaired q=1 closure dependency set from the committed GraphQL view; CheckTx alone was not treated as inclusion. CometBFT transaction results and Merkle proofs were also verified."
+  }
+}

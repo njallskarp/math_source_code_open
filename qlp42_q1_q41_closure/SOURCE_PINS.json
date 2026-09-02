@@ -8,9 +8,9 @@
     {"id":"coupled_transform","commit":"f220c6bb1d11da07d24a816e82be2ead985c7052","path":"qlp42_coupled_half_transform","tree":"4c53d38ce84c83d2769475a5e58be86e6d783c0f","graph_artifact_ref":"bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"},
     {"id":"q1_reflection","commit":"2c340a4196fb7224e05220380430e1509ed558d0","path":"qlp42_q1_second_order_symmetry","tree":"0d46985ea1b84f6cb11de5a2bfc4a1257186abe4","graph_artifact_ref":"bafkreicusfiuqzhe7f5swxrlq453nzn7d5zq64emmdjcb45i52vvcvxeym"},
     {"id":"q1_third_order","commit":"d7302a5425f3538c587f759cee0c4ecd7476b90b","path":"qlp42_q1_third_order_types","tree":"1d02e3a42dca7236117007795dc4be2db42376e9","graph_artifact_ref":"bafkreigrbear7a43rv6fmfshiwrfpwtifmhtvcucapdgiag6z444l2p4d4"},
-    {"id":"q1_b20","commit":"ea05ba1a04c1f3542cf9566a6b6dde9d394bbbf2","path":"qlp42_q1_b20_obstruction","tree":"1643037aac41eb54275a95b5120908b36c9f8320","graph_artifact_ref":null,"graph_status":"source_published_graph_gap_at_initial_audit"},
+    {"id":"q1_b20","commit":"ea05ba1a04c1f3542cf9566a6b6dde9d394bbbf2","path":"qlp42_q1_b20_obstruction","tree":"1643037aac41eb54275a95b5120908b36c9f8320","graph_artifact_ref":"bafkreibsmvj4472sobwdhuf6gvtdydp6f74djbrl7ygpgljqasjms4a2t4","graph_status":"committed_height_1236"},
     {"id":"q1_b18","commit":"b999e216fddcf502c72964167a59d5b6a9920f88","path":"qlp42_q1_b18_obstruction","tree":"d4404636602d9463ba6158046657b4e49e4b66d3","graph_artifact_ref":"bafkreib6xyklj6sa55p34p2dmvm7rtfy6n4djb5ornc4h5ezkcllgeab4a"},
-    {"id":"q1_b16","commit":"6e1e97c2023460764dfb9b48b15e626618565a82","path":"qlp42_q1_b16_sixth_order_all_cases","tree":"2ea881656992a10450b2467085c2e5e4ac204fa1","graph_artifact_ref":null,"graph_status":"source_published_graph_gap_at_initial_audit"},
+    {"id":"q1_b16","commit":"6e1e97c2023460764dfb9b48b15e626618565a82","path":"qlp42_q1_b16_sixth_order_all_cases","tree":"2ea881656992a10450b2467085c2e5e4ac204fa1","graph_artifact_ref":"bafkreidu5arttf4xetizqfpgnqp6bechzx5tfnvbekj57cylet3icw2ji4","graph_status":"committed_height_1238"},
     {"id":"q1_b14","commit":"3a29c57bf76bc0ecfaab6523ee772fc9dad8d921","path":"qlp42_q1_b14_sixth_order_s","tree":"e44e2abae7fd25159c4f17735c48c5fa9b9dd1f0","graph_artifact_ref":"bafkreiami2ubtcu42ykule36klgia43pstqbrxmxhzg4lhyprxvwv66kfe"},
     {"id":"q1_b12","commit":"99145ae5a0ce62f5c065019fb916525f5f1c6c2f","path":"qlp42_q1_b12_seventh_order_h","tree":"fae104892b17337e57ab3d7c5b0fe9fee07a9911","graph_artifact_ref":"bafkreia2kh5dj372rgtnh62t5uu6wae5omht6hqvq45oolt4dsu6ki4h3u"},
     {"id":"q1_b10","commit":"8a150071b40ef58782deb1f39ad3f4711c4f968b","path":"qlp42_q1_b10_seventh_order_h","tree":"f4174912a3a93795de341d93253d9a0ba84edbb7","graph_artifact_ref":"bafkreigxubee2r7l2p2z5dtwly74spl24lpeu5hjnboggajz7qw4fnd4pe"},
@@ -42,5 +42,11 @@
     "q5_witnesses": 38,
     "q37_witnesses": 29,
     "negative_certificates": 0
+  },
+  "consolidated_graph": {
+    "artifact_ref": "bafkreifyukwfmet5naxzfsrhxplocsjg2u2vok3mxpwgvcqksqcyzppcqq",
+    "committed_height": 1240,
+    "indexed_height_verified": 1241,
+    "source_commit": "1490afe075bc4d31b6e66960c000ead484e57c01"
   }
 }

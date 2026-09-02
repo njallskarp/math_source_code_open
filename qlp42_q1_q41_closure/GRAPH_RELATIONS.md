@@ -24,21 +24,24 @@ not to the `b=20` source theorem. No final graph contribution for either
 source theorem was found. The q=1 source proof remains a complete nine-row
 union, but the graph dependency set was incomplete.
 
-## Required topological repair
+## Completed topological repair
 
-1. Add the final `b=20` obstruction as a lemma, depending on the coupled
-   transform and q=1 third-order partition, and attach an incoming
-   `DEPENDS_ON` edge from the existing q=1 closure node.
-2. Add the final `b=16` obstruction as a lemma, depending on its committed
-   predecessor chain, the coupled transform, and the q=1 partition, and
-   attach an incoming `DEPENDS_ON` edge from the existing q=1 closure node.
-3. Add one consolidated extreme-branch corollary depending on the repaired
-   q=1 closure and the q=41 all-weight closure, refining the defect-count
-   restriction and pointing `ABOUT` the QLP-42 problem and area.
+1. The final `b=20` obstruction is
+   `bafkreibsmvj4472sobwdhuf6gvtdydp6f74djbrl7ygpgljqasjms4a2t4`, committed
+   at height 1236. The q=1 closure now has a `DEPENDS_ON` edge to it.
+2. The final `b=16` obstruction is
+   `bafkreidu5arttf4xetizqfpgnqp6bechzx5tfnvbekj57cylet3icw2ji4`, committed
+   at height 1238. The q=1 closure now has a `DEPENDS_ON` edge to it.
+3. The consolidated extreme-branch corollary is
+   `bafkreifyukwfmet5naxzfsrhxplocsjg2u2vok3mxpwgvcqksqcyzppcqq`, committed
+   at height 1240. It depends on both branch closures, both classifiers, and
+   the coupled bridge; it refines the defect-count restriction and is about
+   the QLP-42 problem and area.
 
-Every contribution and all known relations should be submitted atomically
-through the isolated local RPC. Post-commit inclusion must be checked in the
-committed ledger; CheckTx is not sufficient.
+All three contributions and their known relations were submitted atomically
+through the isolated local RPC. CometBFT transaction results and Merkle proofs
+were checked at heights 1236, 1238, and 1240, and the contributions plus every
+relation were queried from the committed graph at indexed height 1241.
 
 ## Relation semantics
 

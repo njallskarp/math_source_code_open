@@ -111,9 +111,9 @@ rows. The following exact finite theorems do so.
 
 | row | decisive certified obstruction | final graph artifact |
 |---:|---|---|
-| 20 | exact mod-7 compressed `H` contradiction | source-only at initial audit |
+| 20 | exact mod-7 compressed `H` contradiction | `bafkreibsmvj4472sobwdhuf6gvtdydp6f74djbrl7ygpgljqasjms4a2t4` |
 | 18 | exact mod-7 compressed `H` contradiction | `bafkreib6xyklj6sa55p34p2dmvm7rtfy6n4djb5ornc4h5ezkcllgeab4a` |
-| 16 | sixth-order `S` leaves two case-1 orbits; seventh-order `S` excludes both | source-only at initial audit |
+| 16 | sixth-order `S` leaves two case-1 orbits; seventh-order `S` excludes both | `bafkreidu5arttf4xetizqfpgnqp6bechzx5tfnvbekj57cylet3icw2ji4` |
 | 14 | sixth/seventh/eighth-order `S` cascade; empty eighth-order frontier | `bafkreiami2ubtcu42ykule36klgia43pstqbrxmxhzg4lhyprxvwv66kfe` |
 | 12 | certified `S` and exact-`H` predecessors; seventh-order `H` excludes the final 77 rows | `bafkreia2kh5dj372rgtnh62t5uu6wae5omht6hqvq45oolt4dsu6ki4h3u` |
 | 10 | seventh-order `H` excludes all 198 sixth-order orbit pairs | `bafkreigxubee2r7l2p2z5dtwly74spl24lpeu5hjnboggajz7qw4fnd4pe` |
@@ -125,7 +125,7 @@ Each obstruction is necessary for an exact lift; an empty necessary-condition
 frontier excludes that row. The nine rows are disjoint and exhaustive, which
 proves the theorem. `SOURCE_PINS.json` records the immutable source for every
 row, including the two source-published rows that lacked final graph nodes at
-the initial audit.
+the initial audit and were added during this consolidation.
 
 ## 3. The q=41 branch
 
@@ -209,6 +209,8 @@ pair lift cannot have total quarter-turn count `q=1` or `q=41`.
 This follows immediately from Theorems 2 and 3. It says nothing negative
 about the remaining defect-count branches. In particular, it does not turn
 the positive fourth-layer `q=5/q=37` witnesses into full QLPs or exclusions.
+The committed graph corollary is
+`bafkreifyukwfmet5naxzfsrhxplocsjg2u2vok3mxpwgvcqksqcyzppcqq`.
 
 ## 5. Certificate architecture
 
