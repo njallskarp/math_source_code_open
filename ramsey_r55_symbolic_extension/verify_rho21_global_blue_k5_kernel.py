@@ -45,7 +45,9 @@ def common_centers(family: tuple[Edge, ...]) -> set[int]:
     return center
 
 
-def audit_local_classification(label_count: int, maximum_multiplicity: int) -> dict:
+def audit_local_classification(
+    label_count: int, maximum_multiplicity: int, maximum_side_side_multiplicity: int
+) -> dict:
     labels = range(label_count)
     edge_types = tuple(itertools.combinations(labels, 2))
     five_checked = 0
@@ -79,6 +81,8 @@ def audit_local_classification(label_count: int, maximum_multiplicity: int) -> d
         for mask in range(1 << label_count):
             side = {i for i in labels if mask & (1 << i)}
             if any(deg[s] > 3 for s in side):
+                continue
+            if any(mult[e] > maximum_side_side_multiplicity for e in mult if set(e) <= side):
                 continue
             if not all(set(edge) & side for edge in family):
                 continue
@@ -161,6 +165,12 @@ def verify_representative(data: dict, representative: dict) -> None:
         raise AssertionError("wrong ordinary-edge count")
     if max(mult.values()) > data["maximum_edge_multiplicity"]:
         raise AssertionError("edge multiplicity exceeds three")
+    if any(
+        value > data["maximum_side_side_edge_multiplicity"]
+        for edge, value in mult.items()
+        if set(edge) <= side
+    ):
+        raise AssertionError("side-side edge multiplicity exceeds two")
     for node in range(n):
         expected = data["side_node_ordinary_degree"] if node in side else data["non_side_node_ordinary_degree"]
         if degree[node] != expected:
@@ -182,7 +192,9 @@ def main() -> None:
     raw = path.read_bytes()
     data = json.loads(raw)
     local = audit_local_classification(
-        data["local_pattern_enumeration_labels"], data["maximum_edge_multiplicity"]
+        data["local_pattern_enumeration_labels"],
+        data["maximum_edge_multiplicity"],
+        data["maximum_side_side_edge_multiplicity"],
     )
     for representative in data["representatives"]:
         verify_representative(data, representative)

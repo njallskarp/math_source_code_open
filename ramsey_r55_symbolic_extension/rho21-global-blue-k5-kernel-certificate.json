@@ -7,6 +7,7 @@
   "side_node_ordinary_degree": 3,
   "non_side_node_ordinary_degree": 4,
   "maximum_edge_multiplicity": 3,
+  "maximum_side_side_edge_multiplicity": 2,
   "k5_free_criterion": {
     "all_triangle_weight_maximum": 4,
     "triangle_with_at_least_two_side_nodes_weight_maximum": 3,

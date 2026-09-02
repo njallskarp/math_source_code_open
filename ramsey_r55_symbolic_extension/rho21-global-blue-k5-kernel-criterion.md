@@ -50,12 +50,20 @@ so
 \mu_D(u,v)\le3.                                               \tag{2}
 \]
 
+There is a sharper marked constraint inside the side set.  Two side clauses
+already share \(w\), so three shared ordinary vertices would make their full
+\(K_4\)-supports identical.  Therefore
+
+\[
+\mu_D(s,t)\le2\qquad(s,t\in S).                              \tag{2a}
+\]
+
 There are 41 ordinary edge-vertices.  A side clause uses one place for
 \(w\), whereas every other clause contains four ordinary vertices.  Hence
 
 \[
-|E(D)|=41,qquad
-d_D(s)=3\ (s\in S),qquad d_D(v)=4\ (v\notin S).              \tag{3}
+|E(D)|=41,\qquad
+d_D(s)=3\ (s\in S),\qquad d_D(v)=4\ (v\notin S).            \tag{3}
 \]
 
 The original vertex \(w\) is represented by the ten-element incidence set
@@ -134,7 +142,7 @@ The checker exhausts every multiset of four and five edge types on six
 canonical labels.  Six labels are complete: five pairwise-intersecting edges
 use at most a five-leaf star's six vertices, while four use at most five.  It
 verifies the star/triangle dichotomy under (2)--(3), including every side-set
-marking for the four-edge case.
+marking for the four-edge case and the sharper side-side bound (2a).
 
 The compact certificate also glues the previously published simple
 representatives into two explicit 23-node kernels, one for each value of
@@ -194,6 +202,10 @@ two-link gluing normal form.  The forward criterion and converse are a
 symbolic proof about the selected blue clauses.  The checker audits the
 finite local edge-family classification and the two supplied representatives;
 it is not the universal proof.
+
+An independent prepublication derivation accepted the theorem with high
+confidence, checked the two glued representatives without reusing the
+producer checker, and supplied the strengthening (2a).
 
 Passing (1) says only that the **selected** blue clauses do not already force
 a blue \(K_5\).  It does not produce a coloring of every unspecified edge,
