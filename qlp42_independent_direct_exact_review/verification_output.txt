@@ -1,0 +1,45 @@
+compiler=g++-16 (Homebrew GCC 16.2.0) 16.2.0
+source_sha256=728db36deb906c54406f5470109e9d76640fefd4ca567940ce97e4de1fcc6e92
+sanitizers=address,undefined
+
+implementation=independent_direct_exact_no_certificate
+producer_stream_used=no
+pi_adic_filter_used=no
+weight=4
+axis_words=5985
+rotation_orbits=285
+autocorrelation_signatures=150
+a_exact_sum_assignments=20047696
+b_exact_sum_assignments=41570100
+definition_paf_audits=15157
+exact_h_surviving_b_orbits=9
+exact_h_surviving_axis_pairs=42
+exact_s_b_assignments=2442492
+exact_s_a_assignments=32384
+exact_hs_case_tests=252
+exact_hs_survivors=0
+exclusion=verified
+
+implementation=independent_direct_exact_no_certificate
+producer_stream_used=no
+pi_adic_filter_used=no
+weight=16
+axis_words=20349
+rotation_orbits=969
+autocorrelation_signatures=322
+a_exact_sum_assignments=43412416
+b_exact_sum_assignments=124710300
+definition_paf_audits=40768
+exact_h_surviving_b_orbits=12
+exact_h_surviving_axis_pairs=24
+exact_s_b_assignments=3425136
+exact_s_a_assignments=15040
+exact_hs_case_tests=144
+exact_hs_survivors=0
+exclusion=verified
+
+Both sanitizer runs exited with status 0. The weight-16 exact-S family-A
+assignment count is larger than the producer's cached count because this
+checker deliberately recomputes a repeated `(signature, a_half, case)` state
+for each surviving B orbit. This affects work accounting, not the enumerated
+state set or the zero-survivor conclusion.
