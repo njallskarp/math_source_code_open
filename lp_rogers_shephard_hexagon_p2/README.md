@@ -123,6 +123,14 @@ The Lean development checks:
   `sectorThree_supportGap_isLocalMin`;
 - `exposedFace_sectorTwo_eq_singleton` and
   `exposedFace_sectorThree_eq_singleton`;
+- `exposedFace_sectorOneVector_eq_singleton`;
+- `normalizedFireySupportVec_smul_of_nonneg` and
+  `normalizedExposedFace_smul_of_pos`;
+- `eq_complexNorm_smul_planeDirection_arg` and
+  `exposedFace_upperHalf_subset_upperNormalBoundary`;
+- `normalizedExposedFace_subset_frontier_of_ne_zero`;
+- `frontier_normalizedLpSumTwo_eq_iUnion_nonzero_exposedFaces`; and
+- `frontier_normalizedLpSumTwo_eq_upperNormalBoundary_union_neg`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -334,22 +342,40 @@ the literal halfspace body.  It proves
 The last theorem applies geometric Hahn--Banach to the compact convex body
 with nonempty interior.  Thus every frontier point belongs to a literal
 exposed face for a nonzero normal.  Supporting-hyperplane existence is no
-longer an assumption: the remaining exhaustion step is the finite partition
-of such normals among the checked curved singleton and jump-segment faces.
+longer an assumption.
+
+`FrontierAtlas.lean` completes the finite partition and topological frontier
+exhaustion.  It proves the missing open Sector I singleton face and exact
+lower-half curved singleton faces; positive homogeneity and ray invariance of
+exposed faces; the polar reduction
+
+```text
+u = ‖u₀+i u₁‖ planeDirection(arg(u₀+i u₁));
+```
+
+and all seven cases on the closed upper angular interval, including its four
+transition directions.  It also proves that every face at a nonzero normal is
+contained in the frontier.  The final theorem
+`frontier_normalizedLpSumTwo_eq_upperNormalBoundary_union_neg` identifies the
+frontier with the explicit upper-normal atlas and its pointwise negative.
+Together these are precisely the two open curved pairs, the two opposite
+Sector I vertices, and all six classified jump segments.  Frontier coverage
+is therefore no longer an assumption.
 
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
-area.  The smallest remaining analytic-geometry bridge is therefore exhausting
-the frontier with the singleton curved faces and the six exposed jump faces,
-followed by identification of its closed oriented integral with twice
-Lebesgue area.  The present development supplies exact halfspace membership,
-support equality in every vector direction, compactness, a nonzero supporting
-normal at every frontier point, all six jump-face
+area.  The smallest remaining analytic-geometry bridge is now to package the
+explicit frontier atlas as one cyclic piecewise path, prove its endpoint,
+orientation, and injectivity properties, and identify its already checked
+oriented integral with twice Lebesgue area.  The present development supplies
+exact halfspace membership, support equality, compactness, supporting normals,
+the complete normal-chamber partition and frontier coverage, all six jump-face
 classifications, curved-sector singleton faces, central symmetry,
 coordinatewise differentiability, oriented-density, endpoint, jump, integral,
-and periodicity precursors but does not assume the missing normal-chamber
-partition, Green/Jordan, or area theorem.
+and periodicity precursors.  It does not assume the missing Green/Jordan or
+area theorem.  The affine normal-form theorem for an arbitrary centrally
+symmetric origin-vertex hexagon also remains outside Lean.
 
 Pinned environment:
 
