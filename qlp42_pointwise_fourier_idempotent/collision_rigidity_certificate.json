@@ -1,0 +1,60 @@
+{
+  "evaluation_matrix_sha256": "4aba63f433007b634914ee2e09f280fd148c1070bccb18d9a496aa45b8cde239",
+  "evaluation_rank": 12,
+  "fiber_generator_labels": [
+    "mod_7_fiber_0",
+    "mod_7_fiber_1",
+    "mod_7_fiber_2",
+    "mod_7_fiber_3",
+    "mod_7_fiber_4",
+    "mod_7_fiber_5",
+    "mod_7_fiber_6",
+    "mod_3_fiber_0",
+    "mod_3_fiber_1",
+    "mod_3_fiber_2"
+  ],
+  "fiber_generator_rank": 9,
+  "kernel_rank": 9,
+  "mixed_balance_solutions": [],
+  "multicolor_collision_modes": [
+    "identical",
+    "p_fibers_only",
+    "q_fibers_only"
+  ],
+  "n": 21,
+  "p": 7,
+  "phi_n_coefficients_low_to_high": [
+    1,
+    -1,
+    0,
+    1,
+    -1,
+    0,
+    1,
+    0,
+    -1,
+    1,
+    0,
+    -1,
+    1
+  ],
+  "q": 3,
+  "qlp_sparse_minority": {
+    "family_support_rigid_below": 3,
+    "seven_fiber_support_change_possible": false,
+    "total_minority_cells": 5
+  },
+  "schema": "qlp42-primitive-collision-rigidity-v2",
+  "selected_basis_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "selected_basis_rank": 9
+}

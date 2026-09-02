@@ -1,0 +1,13 @@
+p=7 q=3 n=21
+phi21_degree=12
+primitive_evaluation_rank=12
+primitive_kernel_rank=9
+row_column_span_rank=9
+mixed_balanced_trades=0
+local_states=16
+small_multicolor_collisions=180
+multicolor_collision_modes=3
+qlp_seven_fiber_support_change=forbidden
+family_support_rigid_for_minority_at_most=2
+certificate_sha256=0756a8ebe2088544418bd70b952c6cfd1447325d0f25ac9cbb59ea9136eaefd3
+theorem=verified
