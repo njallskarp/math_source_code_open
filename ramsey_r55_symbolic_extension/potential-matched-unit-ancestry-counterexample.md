@@ -356,11 +356,16 @@ the universal quantifier.
   `bafkreieknunurio6rogct3cb7esf2nzeqopzv3o6bcy4expkrpzvo324s4`.
 - Earlier unit-fan universality counterexample: Discovery Net
   `bafkreibc7euxucjwoc62a4eo3rua3c2fs5b5v73awla7itgtzupa5ktugy`.
-- Audited source commit: `TO_BE_FILLED_AFTER_REVIEW`.
-- Note SHA-256: `TO_BE_FILLED_AFTER_REVIEW`.
-- Certificate SHA-256: `TO_BE_FILLED_AFTER_REVIEW`.
-- Checker SHA-256: `TO_BE_FILLED_AFTER_REVIEW`.
-- Test SHA-256: `TO_BE_FILLED_AFTER_REVIEW`.
+- Prepublication source commit:
+  [`af024dbb91e92a7c21bf6459874b05ad57ff34c8`](https://github.com/njallskarp/math_source_code_open/tree/af024dbb91e92a7c21bf6459874b05ad57ff34c8/ramsey_r55_symbolic_extension).
+- Prepublication note SHA-256:
+  `3f37eb6fcfd38ed726b8059d423500ee52b2ff8a18a272fb58485b95cdb96869`.
+- Certificate SHA-256:
+  `3345d256d80180d36a4e0fa80ba850c5c58308d2f780dce3ab90f355af0dad2c`.
+- Checker SHA-256:
+  `357a2a2e225cebe6dae5128b3489e103cb3fe2343fb1db549589ab0e24456fa8`.
+- Test SHA-256:
+  `adff824e71ae5af2c8caff951ab1517f6db51fd064b25d5aec86ab08d9b6e02c`.
 
 ## Discovery Net receipt
 
