@@ -1,0 +1,70 @@
+{
+  "network": {
+    "chain_id": "discovery-net",
+    "rpc_url": "http://127.0.0.1:27657",
+    "genesis_source_commit": "e847e5df01c42560afeee3442925d8f1595c62fa",
+    "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+    "public_egress_cidr": "173.52.73.189/32",
+    "persistent_peer": "d3fec047e0d258b60baa61de6229a565e8366973@34.172.207.3:26656",
+    "indexed_height_at_confirmation": 1087,
+    "local_node_note": "The isolated research CometBFT container was restarted after its local consensus view remained at commit step for height 1067. It then replayed the already committed chain to height 1087. No unrelated node or HTTPS inspector was used."
+  },
+  "source": {
+    "repository": "https://github.com/njallskarp/math_source_code_open",
+    "directory": "qlp42_q5_q37_binary_frontier",
+    "verified_commit": "2f51086a6c037766496775a009a3a1ee12b2d6e5",
+    "branch_url": "https://github.com/njallskarp/math_source_code_open/tree/main/qlp42_q5_q37_binary_frontier",
+    "immutable_url": "https://github.com/njallskarp/math_source_code_open/tree/2f51086a6c037766496775a009a3a1ee12b2d6e5/qlp42_q5_q37_binary_frontier",
+    "canonical_orbit_manifest_sha256": "f1dff75420fb37a2454767a7177367045e100ab07a07a11addd5e5551407d89e"
+  },
+  "contribution": {
+    "artifact_ref": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea",
+    "kind": "lemma",
+    "title": "Full Binary-Shadow Frontier for the QLP-42 q=5 and q=37 Branches",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "e63ee809f888e43c0d2aab1a22990310488e42bd12c6ead6e8c8777a70ef856645400ec5ba29cecbce5fe7d631f17f739c23a7a59ce2f008802550705d0ade06"
+  },
+  "transaction": {
+    "hash": "B275D098596C7F65411AD1FCC3D09851C602D5CE374E5A63BDD64EB183574136",
+    "check_tx_code": 0,
+    "deliver_tx_code": 0,
+    "height": 1084,
+    "index": 0,
+    "block_hash": "5512C659D3138C719756882ACC1862FCD73F39627818A52F9BFCC541D016E4E4",
+    "block_time": "2026-09-02T03:52:54.05986423Z"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreibhvliv6yivtzvureu3quwluwxt3nfw47mgwdh2uibdtph3iapdxm",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreiegcuvyvcmwyqqxtw5hg76kyhixxlejum4u6wbblulk6jadqksnwa",
+      "kind": "depends_on",
+      "to": "bafkreibpozv4dtd4ukqyp44alo3fyt4l6722t55yzrbp5kdkwir76jmehe"
+    },
+    {
+      "artifact_ref": "bafkreic2vurahssvm6wdyfarh7oujmd6r5v6h4treod4elmfnglfzmo6ba",
+      "kind": "refines",
+      "to": "bafkreibpozv4dtd4ukqyp44alo3fyt4l6722t55yzrbp5kdkwir76jmehe"
+    },
+    {
+      "artifact_ref": "bafkreih7aalqlzfqvu7tpd7eypfwp3xya6qbz4nh67cll343k6goonrtii",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreie4wxcxf6ecqpq5jryaysnoi2clz5m7zok2zztmjjxqcfolvurmne",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "confirmation": {
+    "committed_graphql_indexed_height": 1087,
+    "contribution_height": 1084,
+    "contribution_transaction_index": 0,
+    "outgoing_relation_count": 5,
+    "status": "committed_and_indexed"
+  }
+}
