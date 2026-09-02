@@ -1,0 +1,46 @@
+{
+  "artifact": "K-local same-sign block displacement sandwich and obstruction",
+  "date": "2026-09-02",
+  "claims": [
+    {
+      "id": "k-local-completion-sandwich",
+      "status": "proved",
+      "constants": {
+        "negative_window_radius": "2K",
+        "positive_lower_offset": "C+4K+1",
+        "positive_upper_offset": "C+4K"
+      },
+      "computation": "none"
+    },
+    {
+      "id": "both-substantial-all-real",
+      "status": "proved",
+      "computation": "none"
+    },
+    {
+      "id": "joint-thinness-singleton",
+      "status": "proved",
+      "computation": "none"
+    },
+    {
+      "id": "two-values-force-joint-substantiality",
+      "status": "proved",
+      "computation": "none"
+    },
+    {
+      "id": "unrestricted-k-local-trichotomy",
+      "status": "open",
+      "remaining_lemma": "whether joint substantiality plus two convergent bounded-block witnesses forces both one-sign substantial properties"
+    }
+  ],
+  "primary_method": "analytic completion-time estimates",
+  "secondary_method": "explicit K=1 obstruction construction",
+  "novelty": "search-relative",
+  "primary_source": "https://arxiv.org/abs/2507.20062v2",
+  "excluded_methods": [
+    "raw permutation enumeration",
+    "solver inference",
+    "floating-point inference",
+    "further displacement hierarchy"
+  ]
+}
