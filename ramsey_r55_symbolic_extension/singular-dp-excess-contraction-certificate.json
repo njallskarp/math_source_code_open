@@ -1,0 +1,34 @@
+{
+  "claim": "Every singular-DP history from a 42-variable 44-clause pure signed 4-CNF Ramsey extension obstruction to a terminal F_p obeys an exact clause-excess contraction budget. After a first disjoint 3+3 fan of arity m, the remaining steps have total charge 90+2m-2p and some remaining step has charge at least ceil(2+(2m+8)/(41-p)), hence at least 3.",
+  "potential": "Phi(F)=sum_{C in F} (|C|-2)",
+  "step_charge": "sigma=sum_i c_i-(m-1)(a-2)=Phi(before)-Phi(after)",
+  "initial_formula": {
+    "variables": 42,
+    "clauses": 44,
+    "clause_length": 4,
+    "potential": 88
+  },
+  "terminal_family": {
+    "parameter_min": 3,
+    "parameter_max_from_committed_frontier": 33,
+    "binary_clauses": "p",
+    "long_clauses": 2,
+    "long_clause_length": "p",
+    "potential": "2p-4"
+  },
+  "first_step": {
+    "main_clause_length": 4,
+    "fan_arity_min": 1,
+    "fan_arity_max": 10,
+    "nonpivot_overlaps": 0,
+    "charge": "-2(m-1)"
+  },
+  "tail": {
+    "step_count": "41-p",
+    "charge_sum": "90+2m-2p",
+    "average_charge": "2+(2m+8)/(41-p)",
+    "universal_integer_lower_bound_on_maximum_charge": 3
+  },
+  "collision_guard": "Deficiency preservation and deletion of one variable force the clause count to drop by exactly one. Since a singular fan removes m+1 clauses and has at most m candidate resolvents, exactly m distinct new non-tautological resolvents survive; collisions, pre-existing resolvents, or deletions would contradict deficiency preservation.",
+  "scope": "A necessary condition on every complete singular-DP ancestry of a hypothetical 44-clause obstruction. It does not assert that the charge condition is sufficient and does not by itself exclude all histories."
+}
