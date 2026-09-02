@@ -257,3 +257,7 @@ barrier or any terminal-\(F_p\) exclusion. The genuine logical graph inputs
 are singular-pivot existence from the MU(2) normal form and bichromatic
 coverage. Immutable relations cannot be removed; downstream dependency
 traversals should treat this particular edge as citation/provenance only.
+Consolidated graph repair
+`bafkreicgiyghjfu2usbn7xkklnw7cvfrxvmhpe6bigpynadj6hame4vrqa`, committed
+at height 1128, accepts the objection, records the complete corrected
+bibliography, and makes this dependency-semantics correction queryable.

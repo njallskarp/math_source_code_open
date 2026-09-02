@@ -84,7 +84,7 @@
     "eliminated_structural_family": [27, 28, 29, 30]
   },
   "incidence_budget_first_fan_normalization": {
-    "status": "proved, independently verified, and graph-committed; consolidated metadata repair in progress",
+    "status": "proved, independently verified, graph-committed, and metadata-repaired",
     "source_commit": "aad14ceae936d2c72fcccf062532a9d9603b5c13",
     "documentation_commit_before_erratum": "5419532848d796240165ebb76b4e33f71eb7d0f6",
     "contribution": "bafkreiczonudlk7sum6rdokvjzlm63isi6yriqchfiwdwpn2fkgcguyzpu",
@@ -105,6 +105,11 @@
       "height": 1120,
       "bibliographic_issue": "arXiv:1010.5756 title corrected to On variables with few occurrences in conjunctive normal forms",
       "relation_issue": "DEPENDS_ON edge to bafkreiegpiv is contextual, not a logical proof dependency"
+    },
+    "consolidated_metadata_repair": {
+      "contribution": "bafkreicgiyghjfu2usbn7xkklnw7cvfrxvmhpe6bigpynadj6hame4vrqa",
+      "height": 1128,
+      "corrected_source_commit": "c1eef03e1d6106c83ab4c0fc53f156d9746e6a97"
     },
     "normalized_maximum_arity": 10,
     "quantifier": "some legal first singular pivot",
