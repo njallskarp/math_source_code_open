@@ -1,0 +1,70 @@
+{
+  "network": {
+    "chain_id": "discovery-net",
+    "rpc_url": "http://127.0.0.1:27657",
+    "genesis_source_commit": "e847e5df01c42560afeee3442925d8f1595c62fa",
+    "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+    "public_egress_cidr": "173.52.73.189/32",
+    "persistent_peer": "d3fec047e0d258b60baa61de6229a565e8366973@34.172.207.3:26656",
+    "indexed_height_at_confirmation": 1103,
+    "local_node_note": "Submitted only through the healthy isolated research node at its local RPC; the HTTPS inspector and unrelated local test chain were not used."
+  },
+  "source": {
+    "repository": "https://github.com/njallskarp/math_source_code_open",
+    "directory": "qlp42_q5_q37_pi2_frontier",
+    "verified_commit": "fb20ea778ce613221113052d9de807c3ee4f9bdf",
+    "branch_url": "https://github.com/njallskarp/math_source_code_open/tree/main/qlp42_q5_q37_pi2_frontier",
+    "immutable_url": "https://github.com/njallskarp/math_source_code_open/tree/fb20ea778ce613221113052d9de807c3ee4f9bdf/qlp42_q5_q37_pi2_frontier",
+    "expected_summary_sha256": "64452895d556ddd68c020248911ea885b49fe09ce6191df73afd31f0f929f97d"
+  },
+  "contribution": {
+    "artifact_ref": "bafkreidxfkmo72a36ony2dsluhsbmaqzy63qxjvq6vwwg3ojgghsggwz6i",
+    "kind": "lemma",
+    "title": "Second-Order Gaussian Obstruction on the QLP-42 q=5 and q=37 Frontier",
+    "signer_public_key": "63927e76b58ad0ead87f40f494879dfdb5b78271470e14e31fbfe6a858194b51",
+    "signature": "7d826d2c0f31228d562139da88993714831e4e1c95c63cd107800350e72f251cab0d9e13ff512371160108b05477ca523a7c828ced055259bc1be5b48f306b09"
+  },
+  "transaction": {
+    "hash": "1D818A68AFFD49DBD30BBD689986E00F9B7F44706045E30F85F6F160BDFC808D",
+    "check_tx_code": 0,
+    "deliver_tx_code": 0,
+    "height": 1102,
+    "index": 0,
+    "block_hash": "E45F7022E5A601F850B39614676A5EDBA1322636883EB3E525F32D6AB9B140FD",
+    "block_time": "2026-09-02T05:04:32.39410294Z"
+  },
+  "relations": [
+    {
+      "artifact_ref": "bafkreig4by3tah4zrpp4v4qikroff2k263vbn3cefc7ps4wpgdd3mhoxse",
+      "kind": "depends_on",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreihcxh64qruug6scu2cga75fv5lgrsuhnns3scbqpuexb3fr25pcs4",
+      "kind": "refines",
+      "to": "bafkreicgaufhn4nmt2n5xwuxrjyaamcxbdok2jqy2wp4tnun3fka4g6cea"
+    },
+    {
+      "artifact_ref": "bafkreicuoipju5gahiphpgtdee7ioacyw25zcvxly5tamf7lubopafu2eu",
+      "kind": "depends_on",
+      "to": "bafkreias46qnx32stuc7ej6akxloxuadbg5mfdzdixjl7bch7ufr5f2wyi"
+    },
+    {
+      "artifact_ref": "bafkreibekg4qwrxyoqidjhai4fihnsvi4tscmiuctpac3gyy5swfcnlsv4",
+      "kind": "about",
+      "to": "bafkreibvb5ywcjodjo5v4yrkegakkjsqmbbnklebcf4i4up6nrdrc4sgyq"
+    },
+    {
+      "artifact_ref": "bafkreigwgtpodimimbpy477adm6qtimvayige3fl2yx3ur3gtzhgcvrt5q",
+      "kind": "about",
+      "to": "bafkreigdto2zx5kyishby6xzvshp3ss4kh2rzld5zybcckkilow3jfxbyu"
+    }
+  ],
+  "confirmation": {
+    "committed_graphql_indexed_height": 1103,
+    "contribution_height": 1102,
+    "contribution_transaction_index": 0,
+    "outgoing_relation_count": 5,
+    "status": "committed_and_indexed"
+  }
+}
