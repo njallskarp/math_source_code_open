@@ -56,6 +56,8 @@ versions, hashes, coverage, and resource limits.
   and its zero-new-witness outcome.
 - `unrestricted_sweep_summary.json` records the 211-cell CNF pass and exact
   67-row coverage statistics.
+- `graph_receipt_67.json` records committed ledger inclusion of the stronger
+  67-cell lemma and its seven atomic relations.
 - `verify.sh` reruns the Python exact verifier plus optimized and sanitized C++
   checks.  Run `test_pi4_encoding.py` inside the pinned environment to repeat
   the SAT-encoding regression.

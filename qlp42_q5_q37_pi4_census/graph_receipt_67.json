@@ -1,0 +1,27 @@
+{
+  "accepted_for_broadcast": true,
+  "artifact_refs": {
+    "contribution": "bafkreie24um5q3mw3yv6sbor6l3zve7xemsjmcoy2wkfexgp365i5bwttu",
+    "relations": [
+      "bafkreidpes6bd6eann2t5eitgcknnsui6yz4t3bgosywxm3gr5mzirbl4e",
+      "bafkreid3z5ry3ghyei5g563rcl6ixdpllnnciddj7mqqbhdw7oe57qnyya",
+      "bafkreidumbtrkchqhwzqo2vr4qmfqqlimvx7tymbrf2ezixxmlhtnnipne",
+      "bafkreihhw573gtmxrfhwacyeoyvlmi3t4u67wzv5aaysivgpmutwvxzmqm",
+      "bafkreiap4h37z4hc42sijlkqml54x2qmykhq2bzedgzo3hkmst4r7tqmee",
+      "bafkreie4sz4vfmkm56opnl3syftlhsz5etevbsqwtiui6jemdsprzitvre",
+      "bafkreidbjgtuw57aelk5fdisk75g5pwp4ohdoeil37fy7rer7esy2r6kyi"
+    ]
+  },
+  "chain_id": "discovery-net",
+  "check_tx_code": 0,
+  "committed": {
+    "height": 1226,
+    "indexed_height_when_confirmed": 1227,
+    "transaction_index": 0
+  },
+  "genesis_sha256": "3e3c8f1ca6e402b0ec2574ee17fe878339526913358f1a8d4ac3216ffea1c30a",
+  "manifest_sha256": "87db049b4e4cf7e52245c3e1ac4eb1340768c6216786abb632ca4b842c176767",
+  "rpc_url": "http://127.0.0.1:27657",
+  "source_commit_cited_by_graph": "0470cd6544de8ac51f2e77a861715a7e4bc50adb",
+  "transaction_hash": "FDA5C4BEBA04DAF331DAD842891385182DD153938F6572E32A8A353CF444A4E4"
+}
