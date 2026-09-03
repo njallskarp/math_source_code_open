@@ -1,0 +1,16 @@
+Python=3.12.12
+SymPy=1.14.0
+mpmath=1.3.0
+determinant_and_factorization=OK
+area_and_deficit_assembly=OK
+deficit_derivative=OK
+arc_derivative_normalization=OK
+sharp_upper_bound_reduction=OK
+case p=1.10 a=1.00 b=1.00 formula_area=11.478598578156 halfplane_area_262144=11.478598617437 abs_error_262144=3.928e-08 deficit=0.449751759102
+case p=1.25 a=4.00 b=0.20 formula_area=19.882069061207 halfplane_area_262144=19.882069069090 abs_error_262144=7.883e-09 deficit=0.399492384273
+case p=1.50 a=0.30 b=2.70 formula_area=14.385323275309 halfplane_area_262144=14.385323276369 abs_error_262144=1.060e-09 deficit=0.681231725833
+case p=2.00 a=1.00 b=1.00 formula_area=9.141592653590 halfplane_area_262144=9.141592653833 abs_error_262144=2.432e-10 deficit=1.570796326795
+case p=3.00 a=2.00 b=0.50 formula_area=10.627849093047 halfplane_area_262144=10.627849094072 abs_error_262144=1.025e-09 deficit=1.163394748811
+case p=10.00 a=7.00 b=4.00 formula_area=28.833094951184 halfplane_area_262144=28.833095028601 abs_error_262144=7.742e-08 deficit=8.408757931164
+numerical_cases_sha256=5080de3f88bd7dabfd86b9572586e002bbee6ee469173c86e3779fe6f3f1fcb2
+VERIFIED
