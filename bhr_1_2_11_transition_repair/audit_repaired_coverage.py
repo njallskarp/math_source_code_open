@@ -14,6 +14,7 @@ from audit_source_certificate import audit_certificate
 from verify import SUPPORT, require
 from verify_cap_orthants import verify_certificate as verify_cap_orthants
 from verify_dead_orthants import verify_certificate as verify_dead_orthants
+from verify_even_b_c1 import verify_certificate as verify_even_b_c1
 from verify_residual_slab import verify_certificate as verify_residual_slab
 from verify_target_orthant import verify_certificate as verify_target_orthant
 
@@ -27,8 +28,9 @@ EXPECTED_COUNTS = {
     "after_twenty_two_trimodal_cores": 5999,
     "after_twenty_two_cap_orthants": 8052,
     "after_first_residual_slab": 8071,
-    "after_target_orthant": 8105,
-    "residual_symbolic_patterns": 1439,
+    "after_even_b_c1_completion": 8105,
+    "after_target_orthant": 8139,
+    "residual_symbolic_patterns": 1405,
 }
 
 
@@ -90,11 +92,18 @@ def in_strengthened_residual_slab(target: tuple[int, int, int]) -> bool:
     return c == 1 and a >= 1 and b >= 9 and b % 2 == 1 and a + b >= 20
 
 
+def in_completed_c1_slice(target: tuple[int, int, int]) -> bool:
+    """Test the now-complete admissible positive c=1 slice."""
+    a, b, c = target
+    return c == 1 and a >= 1 and b >= 1 and a + b >= 20
+
+
 def audit_coverage(
     source_path: Path,
     dead_path: Path,
     trimodal_path: Path,
     slab_path: Path,
+    even_b_c1_path: Path,
     target_path: Path,
     verify_inputs: bool = True,
 ) -> dict[str, Any]:
@@ -102,6 +111,7 @@ def audit_coverage(
     dead_raw = dead_path.read_bytes()
     trimodal_raw = trimodal_path.read_bytes()
     slab_raw = slab_path.read_bytes()
+    even_b_c1_raw = even_b_c1_path.read_bytes()
     target_raw = target_path.read_bytes()
     if verify_inputs:
         audit_certificate(source_path)
@@ -112,6 +122,7 @@ def audit_coverage(
         verify_dead_orthants(dead_path, 1)
         verify_cap_orthants(trimodal_path, 1)
         verify_residual_slab(slab_path, 1)
+        verify_even_b_c1(even_b_c1_path, 1)
         verify_target_orthant(target_path, 1)
 
     source = json.loads(source_raw)
@@ -179,6 +190,10 @@ def audit_coverage(
             if covered:
                 counts["after_first_residual_slab"] += 1
             if not covered:
+                covered = in_completed_c1_slice(target)
+            if covered:
+                counts["after_even_b_c1_completion"] += 1
+            if not covered:
                 covered = in_orthant(target, target_seed, set(SUPPORT))
             if covered:
                 counts["after_target_orthant"] += 1
@@ -198,6 +213,7 @@ def audit_coverage(
         "dead_orthant_sha256": hashlib.sha256(dead_raw).hexdigest(),
         "trimodal_sha256": hashlib.sha256(trimodal_raw).hexdigest(),
         "residual_slab_sha256": hashlib.sha256(slab_raw).hexdigest(),
+        "even_b_c1_sha256": hashlib.sha256(even_b_c1_raw).hexdigest(),
         "target_orthant_sha256": hashlib.sha256(target_raw).hexdigest(),
         **counts,
         "residual_cases": len(residual_by_base),
@@ -217,11 +233,19 @@ def main() -> None:
         "--slab", type=Path, default=Path("residual_slab_certificate.json")
     )
     parser.add_argument(
+        "--even-b-c1", type=Path, default=Path("even_b_c1_certificate.json")
+    )
+    parser.add_argument(
         "--target", type=Path, default=Path("target_orthant_certificate.json")
     )
     args = parser.parse_args()
     summary = audit_coverage(
-        args.source_certificate, args.dead, args.trimodal, args.slab, args.target
+        args.source_certificate,
+        args.dead,
+        args.trimodal,
+        args.slab,
+        args.even_b_c1,
+        args.target,
     )
     for key, value in summary.items():
         if isinstance(value, list):

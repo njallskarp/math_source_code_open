@@ -25,6 +25,12 @@
 > patterns from the conservative residual audit.  Published linear
 > realizations already cover this existence range; the contribution is the
 > explicit simultaneous-growth certificate.
+>
+> Boundary completion: [`EVEN_B_C1_COMPLETION.md`](EVEN_B_C1_COMPLETION.md)
+> gives two parity-swapped, 2-growable four-block families for
+> `(1,20+2q,1)` and `(2,18+2q,1)`.  Together with the prior odd-`b` formula
+> and the published `a>=3` theorem, they prove every admissible positive
+> `c=1` instance.  This removes 34 more patterns from the conservative audit.
 
 ## Result
 
@@ -175,6 +181,8 @@ cd research/bhr_1_2_11_transition_repair
 python3 verify.py certificate.json
 python3 verify_target_orthant.py target_orthant_certificate.json --grid 3
 python3 independent_target_check.py target_orthant_certificate.json
+python3 verify_even_b_c1.py even_b_c1_certificate.json --grid 64
+python3 independent_even_b_c1_check.py even_b_c1_certificate.json --grid 64
 python3 -m unittest -v test_verify.py
 python3 construct.py --a 7 --b 28 --c 4
 ```
