@@ -18,3 +18,4 @@ import L2Hexagon.FrontierAtlas
 import L2Hexagon.CyclicBoundaryPath
 import L2Hexagon.SimplePathOrientation
 import L2Hexagon.UpperPathInjectivity
+import L2Hexagon.CyclicPathSimplicity

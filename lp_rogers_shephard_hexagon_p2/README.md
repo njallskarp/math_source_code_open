@@ -139,6 +139,11 @@ The Lean development checks:
 - `injective_sectorTwoArcPath` and `injective_sectorThreeArcPath`;
 - `sectorTwoBoundaryOrientedDensity_pos` and
   `sectorThreeBoundaryOrientedDensity_pos`;
+- `injective_normalizedUpperBoundaryPath`;
+- `normalizedClosedUpperBoundary_inter_neg`;
+- `Path.injOn_trans_Ico_of_range_inter_subset`;
+- `injOn_normalizedCyclicBoundaryPath_Ico`;
+- `eq_or_endpoints_of_normalizedCyclicBoundaryPath_eq`;
 - `generatorAngle_mem_Ioo`;
 - `normalizedDeficit_pos`;
 - `normalized_bound_sub_area_formula`;
@@ -406,17 +411,33 @@ all three straight jump paths are injective and classifies every pairwise
 range intersection among the five upper pieces using strict monotonicity of
 the curved first coordinates and exact endpoint gaps.  Recursive application
 of the concatenation theorem yields `injective_normalizedUpperBoundaryPath`:
-the complete five-piece upper-normal path is injective.  Intersections between
-that path and its pointwise negative, and hence injectivity modulo endpoints
-of the closed cyclic path, remain explicit downstream obligations.
+the complete five-piece upper-normal path is injective.
+
+`CyclicPathSimplicity.lean` closes the global simple-closed-path bridge.  With
+`v=(1+a,1+b)`, it proves the exact half-boundary intersection
+
+```text
+normalizedClosedUpperBoundary(a,b)
+  ∩ -normalizedClosedUpperBoundary(a,b) = {v,-v}.
+```
+
+The proof uses the determinant with the diameter `[-v,v]`: a frontier point
+where that determinant vanishes must be an endpoint, because every other
+point of the diameter is in the interior of the convex body.  Continuity and
+one explicit first-jump point fix the positive sign on the open upper path.
+The reusable theorem `Path.injOn_trans_Ico_of_range_inter_subset` then gives
+`injOn_normalizedCyclicBoundaryPath_Ico`; the actual cyclic path is injective
+on `[0,1)`.  The stronger theorem
+`eq_or_endpoints_of_normalizedCyclicBoundaryPath_eq` says that equal path
+values on `[0,1]` come only from equal parameters or the identified endpoint
+pairs `(0,1)` and `(1,0)`.
 
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
-area.  The smallest remaining analytic-geometry bridge is now to prove that
-the checked cyclic path is injective except at its common initial/final
-endpoint, establish positive orientation, and identify its already checked
-oriented integral with twice Lebesgue area.  The present development supplies
+area.  The smallest remaining analytic-geometry bridge is now to establish
+global positive orientation and identify the checked oriented integral with
+twice planar Lebesgue area.  The present development supplies
 exact halfspace membership, support equality, compactness, supporting normals,
 the complete normal-chamber partition and frontier coverage, all six jump-face
 classifications, curved-sector singleton faces, central symmetry,
