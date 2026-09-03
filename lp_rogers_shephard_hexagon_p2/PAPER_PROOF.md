@@ -209,6 +209,29 @@ Lean proves that the arcs-plus-jumps oriented-boundary total is exactly the
 already checked support-density integral in (8).  This formally accounts for
 all polygonal endpoint contributions.
 
+The formal development now also evaluates Mathlib's literal curve integral
+of the continuous one-form
+
+\[
+\omega_{(x,y)}(u,v)=xv-yu
+\]
+
+along the actual simple cyclic frontier path.  Affine reparametrization of
+each curved arc is proved at the `curveIntegralFun` level, and every straight
+jump is integrated as its endpoint determinant.  Since
+\(\omega_{-z}(-w)=\omega_z(w)\), the pointwise-negative return half has the
+same integral as the upper half.  Thus Lean checks
+
+\[
+\oint_\Gamma (x\,dy-y\,dx)
+=2\left(2(1+a+b)+(1+b)\phi
+ +(1+a)\left(\frac\pi2-\phi\right)\right)>0.
+\]
+
+This is a genuine curve integral and positive-orientation certificate.  The
+separate Green/Jordan step equating half of it with planar Lebesgue area is
+not assumed.
+
 Lean additionally reproduces the source `p=2` Firey body as the exact
 intersection of all vector halfspaces and checks that source exponent `1/2`
 is the square root.  A global consequence of the three-positive-parts identity
@@ -334,10 +357,10 @@ not decide equality at the smaller symmetric-body bound.
 The pinned Mathlib has curve-integral infrastructure but no planar Green/Jordan
 theorem, no convex support-function or mixed-area API, and no theorem
 identifying the closed oriented integral of this piecewise smooth convex
-boundary with twice its Lebesgue area.  Full frontier coverage by the checked
-singleton curved faces and six jump segments, followed by that
-boundary-to-area identification, is now the precise smallest
-analytic-geometry bridge.
+boundary with twice its Lebesgue area.  Full frontier coverage, cyclic
+simplicity, and the exact positive line integral are checked; the
+boundary-to-area identification is now the precise smallest analytic-geometry
+bridge.
 
 The supporting-plane precursor needed for frontier coverage is now checked.
 The prescribed Firey support dominates the Euclidean norm, so the open unit

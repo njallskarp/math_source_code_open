@@ -432,17 +432,34 @@ on `[0,1)`.  The stronger theorem
 values on `[0,1]` come only from equal parameters or the identified endpoint
 pairs `(0,1)` and `(1,0)`.
 
+`OrientedCurveIntegral.lean` evaluates Mathlib's genuine `curveIntegral` of
+the continuous one-form `x dy - y dx` on that actual cyclic path.  It first
+proves a reusable affine-reparametrization theorem, then checks the literal
+curve integrals of the two smooth arcs and three jump segments.  It also
+proves that simultaneous negation of the path point and velocity leaves this
+one-form invariant.  Consequently
+
+```text
+∫ᶜ z in normalizedCyclicBoundaryPath a b ha hb, orientedAreaForm z
+  = 2 * (2 * (1+a+b) + (1+b) * arctan (b/a)
+      + (1+a) * (pi/2-arctan (b/a))).
+```
+
+The integral is strictly positive.  This is an exact algebraic orientation
+certificate for the checked simple closed frontier path; it is not an
+unproved invocation of Green's theorem and is not a definition of area.
+
 An API audit found Mathlib's general curve-integral infrastructure, but no
 planar Green/Jordan theorem, convex support-function theory, mixed-area theory,
 or theorem identifying a closed convex boundary integral with planar Lebesgue
-area.  The smallest remaining analytic-geometry bridge is now to establish
-global positive orientation and identify the checked oriented integral with
-twice planar Lebesgue area.  The present development supplies
+area.  The smallest remaining analytic-geometry bridge is now to identify the
+checked positive oriented integral with twice planar Lebesgue area.  The present development supplies
 exact halfspace membership, support equality, compactness, supporting normals,
 the complete normal-chamber partition and frontier coverage, all six jump-face
 classifications, curved-sector singleton faces, central symmetry,
 coordinatewise differentiability, oriented-density, endpoint, jump, integral,
-and periodicity precursors.  It does not assume the missing Green/Jordan or
+periodicity, simple-path, and literal curve-integral precursors.  It does not
+assume the missing Green/Jordan or
 area theorem.  The affine normal-form theorem for an arbitrary centrally
 symmetric origin-vertex hexagon also remains outside Lean.
 

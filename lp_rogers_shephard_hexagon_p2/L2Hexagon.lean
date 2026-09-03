@@ -19,3 +19,4 @@ import L2Hexagon.CyclicBoundaryPath
 import L2Hexagon.SimplePathOrientation
 import L2Hexagon.UpperPathInjectivity
 import L2Hexagon.CyclicPathSimplicity
+import L2Hexagon.OrientedCurveIntegral
