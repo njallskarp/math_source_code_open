@@ -1,0 +1,29 @@
+{
+  "schema": "ramsey-r55-genealogical-four-incidence-cut-v1",
+  "leaves": [
+    {"id": "R4", "color": "positive", "clause": [1, 2, 3, 4]},
+    {"id": "B", "color": "negative", "clause": [-4, -5, -6, -7]},
+    {"id": "R5", "color": "positive", "clause": [1, 2, 3, 5]},
+    {"id": "R6", "color": "positive", "clause": [1, 2, 3, 6]},
+    {"id": "R7", "color": "positive", "clause": [1, 2, 3, 7]}
+  ],
+  "resolutions": [
+    {"id": "Q4", "left": "R4", "right": "B", "pivot": 4},
+    {"id": "Q5", "left": "Q4", "right": "R5", "pivot": -5},
+    {"id": "Q6", "left": "Q5", "right": "R6", "pivot": -6},
+    {"id": "C", "left": "Q6", "right": "R7", "pivot": -7}
+  ],
+  "root": "C",
+  "expected": {
+    "root_clause": [1, 2, 3],
+    "leaf_occurrences": 5,
+    "bichromatic_intersection_edges": 4,
+    "maximum_nonpivot_overlap": 3,
+    "four_incidence_cuts": 3,
+    "monochromatic_k5_count": 0
+  },
+  "dependencies": {
+    "overlap_debt_source_commit": "c795573c19dd41f18a41252dd2ab748d9d61c5f2",
+    "global_excess_contraction": "bafkreib5av4yfin6zt4x66756sfddvvu5qiy62wd2ch5v2kg2mtq346e7q"
+  }
+}
