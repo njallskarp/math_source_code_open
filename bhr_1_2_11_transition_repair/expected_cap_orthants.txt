@@ -1,0 +1,14 @@
+certificate_sha256=532470ffe31ff3e5acb4da51a78c15f172d2d00db6816dd43d5dc44a243bc059
+python=3.12.12
+cap_orthants=22
+partition_strata=176
+face_seeds=66
+face_derivation_steps=264
+tri_seed_links_checked=66
+grid=3
+ray_paths_checked=330
+face_family_paths_checked=1650
+face_coordinate_transitions_checked=2112
+face_commuting_squares_checked=1056
+record_sha256=76d79ab6bc3d0dc6237feaea50be1f1bc16093096dfbf8a1c8e6adffc6d76680
+VERIFIED

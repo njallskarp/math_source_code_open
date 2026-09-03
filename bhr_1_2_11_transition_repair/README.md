@@ -8,6 +8,11 @@
 > Further result: [`TRIMODAL_SAFE_CORES.md`](TRIMODAL_SAFE_CORES.md) derives a
 > safe simultaneous `{1,2,11}` seed in every one of the 22 residue classes and
 > proves a transition-closed three-dimensional core from each seed.
+>
+> Strongest current result: [`CAP_ORTHANT_REPAIR.md`](CAP_ORTHANT_REPAIR.md)
+> derives all 66 pairwise face seeds and partitions every one of the 22
+> complete cap orthants into transition-closed caps, rays, faces, and
+> tri-modal interiors.
 
 ## Result
 
