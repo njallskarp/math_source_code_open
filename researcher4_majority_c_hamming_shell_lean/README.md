@@ -1,4 +1,4 @@
-# Majority-C Hamming shell bound in Lean
+# Majority-C Hamming shell bounds in Lean
 
 This pinned Lean project formalizes the capped-quadratic optimization in the
 upper-bound proof for the reviewed formula
@@ -18,7 +18,7 @@ the exact doubled inequality
 2(1+a+b+c)+\sum_{x\in\{a,b,c\}}x(N+r-x).
 \]
 
-The theorem `card_ge_of_shell_incidence` then packages the direct
+The theorem `card_ge_of_shell_incidence` packages the direct
 combinatorial interface: from
 
 \[
@@ -28,6 +28,21 @@ combinatorial interface: from
 
 it derives `(N+1)(r+1) <= C`.  In the Hamming-graph proof, `B` is the
 selected distance-two shell and `C` is the color-class cardinality.
+
+`HammingShellIncidence.lean` now discharges the graph-theoretic premise.
+For a finite dependent Hamming space, a selected set `C`, a base word `v`,
+and an internal-degree threshold `h`, it defines the coordinate first shells
+`L_i` and selected distance-two shell `B`, and proves
+
+\[
+\sum_i |L_i|(h-|L_i|)\leq 2|B|.
+\]
+
+The proof classifies every selected neighbor of a first-shell word and uses
+Mathlib's finite bipartite double count.  Its reusable local capacity lemma
+shows that any distance-two word is adjacent to directed first-shell words
+in at most its two changed coordinates.  The incidence theorem is slightly
+stronger than needed: it does not assume that the base word belongs to `C`.
 
 ## Exported theorems
 
@@ -39,7 +54,10 @@ selected distance-two shell and `C` is the color-class cardinality.
   integers, using `N <= 2r <= N+1`;
 - `balanced_shell_lower_bound_nat`: the cardinality form with
   `r = (N+1)/2`; and
-- `card_ge_of_shell_incidence`: the incidence-to-class-size corollary.
+- `card_ge_of_shell_incidence`: the incidence-to-class-size corollary;
+- `card_directedFirstShell_neighbors_le_two`: the distance-two capacity
+  lemma; and
+- `hamming_shell_incidence`: the generic weighted Hamming-shell double count.
 
 ## Reproduction
 
@@ -48,11 +66,12 @@ lake clean
 lake exe cache get
 lake build
 lake env lean MajorityShellBound.lean
+lake env lean HammingShellIncidence.lean
 ```
 
-The standalone command prints the axiom dependencies of all five exported
-results.  Every result uses only `propext`, `Classical.choice`, and
-`Quot.sound`.
+The standalone commands print the axiom dependencies of the five arithmetic
+results and the three audited incidence results.  Every audited result uses
+only `propext`, `Classical.choice`, and `Quot.sound`.
 
 Pinned versions:
 
@@ -62,10 +81,11 @@ Pinned versions:
 - Mathlib `v4.33.1`, commit
   `0df444a360eaa60ab8c11dca51a86af692955474`.
 
-SHA-256 of `MajorityShellBound.lean`:
+SHA-256 values:
 
 ```text
-b50d86784dfb20c2eb7928787fb6f9df2758892803fc0adcfa377f538b38bf14
+b50d86784dfb20c2eb7928787fb6f9df2758892803fc0adcfa377f538b38bf14  MajorityShellBound.lean
+8edc33ce9f96ff3b198ab1cf39ba7dd89c457547ffca3a63559211b7ad957edc  HammingShellIncidence.lean
 ```
 
 ## Theorem and trust boundary
@@ -78,10 +98,11 @@ The primary source is Bujtas--Dettlaff--Furmanczyk--Laskowska,
 poses the odd-dimensional balanced Hamming case as an open problem and does
 not contain the reviewed exact three-dimensional formula.
 
-This project does **not** claim to formalize the full formula.  It does not
-define majority C-colorings, prove the Hamming-shell incidence inequality
-from graph adjacency, construct the optimal coloring, or prove the final
-partition/division argument.  It kernel-checks precisely the previously
-unformalized capped-quadratic optimization and its clean cardinality
-interface.  There is no external data, generated certificate, solver,
-floating point, `native_decide`, custom axiom, `sorry`, or `admit`.
+This project does **not** claim to formalize the full formula.  It proves the
+capped-quadratic optimization and the generic Hamming-shell incidence layer,
+but it does not yet connect the coordinate-shell cardinalities to the
+three-dimensional equal-alphabet caps and disjoint-shell count, define a
+majority C-coloring partition, construct the optimal coloring, or prove the
+final floor/division argument.  There is no external data, generated
+certificate, solver, floating point, `native_decide`, custom axiom, `sorry`,
+or `admit`.
