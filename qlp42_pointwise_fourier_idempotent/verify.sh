@@ -6,6 +6,7 @@ python3 derive_fiber_trade_counterexample.py > fiber_trade_derived_output.txt
 {
     python3 verify_collision_rigidity.py
     python3 verify_fiber_trade_counterexample.py
+    python3 verify_fiber_norm_translation_obstruction.py
 } | tee actual_output.txt
 diff -u expected_output.txt actual_output.txt
 python3 - <<'PY'
@@ -15,12 +16,15 @@ import hashlib
 names = [
     "README.md",
     "FIBER_TRADE_COUNTEREXAMPLE.md",
+    "FIBER_NORM_TRANSLATION_OBSTRUCTION.md",
     "derive_collision_rigidity.py",
     "derive_fiber_trade_counterexample.py",
     "verify_collision_rigidity.py",
     "verify_fiber_trade_counterexample.py",
+    "verify_fiber_norm_translation_obstruction.py",
     "collision_rigidity_certificate.json",
     "fiber_trade_counterexample.json",
+    "fiber_norm_translation_certificate.json",
     "expected_output.txt",
     "verify.sh",
 ]

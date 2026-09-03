@@ -265,3 +265,26 @@ reduces all indicator differences modulo \(\Phi_{21}\) over
 \(\mathbb Z[z]\). The independent checker instead verifies the tensor-fiber
 factorization directly on \(C_7\times C_3\), so it does not share the
 cyclotomic reduction routine. Both use exact integer arithmetic.
+
+## Translation obstruction to a fiber-norm detector
+
+A proposed repair was to add the two compressed group-ring norms on
+\(C_7\). The universal detector is false. For any two local states \(a,b\),
+the compressed words
+
+\[
+(a,b,b,b,b,b,b)
+\qquad\text{and}\qquad
+(b,a,b,b,b,b,b)
+\]
+
+are cyclic translates. Their \(S\)- and \(H\)-norms therefore agree. If
+\(a\) and \(b\) lie in opposite quarter classes, lifting each compressed
+coordinate to a monochromatic three-cell fiber gives a cross-category
+fiber exchange that moves six support positions while preserving all
+primitive indicator coefficients.
+
+This refutes a universal translation-invariant compressed-norm detector. It
+does not provide a canonical-case QLP witness and does not rule out a more
+specialized invariant that uses additional QLP structure. See
+`FIBER_NORM_TRANSLATION_OBSTRUCTION.md`.

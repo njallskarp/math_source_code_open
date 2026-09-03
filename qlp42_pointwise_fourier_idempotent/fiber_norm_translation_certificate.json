@@ -1,0 +1,14 @@
+{
+  "schema": "qlp42-fiber-norm-translation-obstruction-v1",
+  "compressed_group": "C7",
+  "fiber_group": "C3",
+  "construction": {
+    "first": ["a", "b", "b", "b", "b", "b", "b"],
+    "second": ["b", "a", "b", "b", "b", "b", "b"],
+    "relation": "second is the right cyclic translate of first"
+  },
+  "verified_ordered_cross_class_pairs": 128,
+  "expected_support_symmetric_difference_after_lift": 6,
+  "claim": "translation-invariant compressed S/H norms are not a universal cross-category fiber-trade detector",
+  "scope": "structural local-alphabet counterexample family, not a canonical-case QLP witness"
+}
