@@ -8,19 +8,18 @@ hexagons for every p>1**.
 ## Result
 
 The theorem, exact deficit, and stated `p>=2` stability criterion survive an
-independent proof audit.  The evidence here also proves the strictly sharper
-upper bound
+independent proof audit.  The evidence here also proves, for every `p>1`, the
+strict upper bound
 
 ```text
-Delta_p(a,b) < (1+c_q) min(a,b)          (a,b>0, p>=2),
+Delta_p(a,b) < (1+c_q) min(a,b)          (a,b>0, p>1),
 ```
 
-replacing the target's `(4+c_q) min(a,b)`.  The constant `1+c_q` is optimal
-for fixed `p>=2`, as the ratio tends to it when `min(a,b)/max(a,b)` tends to
-zero.
-
-The same upper estimate is valid for every `p>1`; only the target's matching
-lower estimate uses `p>=2`.
+replacing the target's `(4+c_q) min(a,b)` on its stated `p>=2` stability
+range and extending the upper estimate below `p=2`.  The constant `1+c_q` is
+optimal for every fixed `p>1`, as the ratio tends to it when
+`min(a,b)/max(a,b)` tends to zero.  Only the target's matching lower estimate
+uses `p>=2`.
 
 ## Reproduction
 
@@ -79,8 +78,9 @@ t[D-u(1+c_q)] <= t^2-1 < 0.
 
 Thus `Delta<(1+c_q)b`.  When `u` tends to zero, `S/beta` tends to one,
 `(t-alpha)/u` tends to zero for `p>=2`, and the residual in (1), divided by
-`u`, tends to zero.  Therefore `Delta/b` tends to `1+c_q`, proving optimality
-of the constant for each fixed `p>=2`.
+`u`, tends to zero; the same limit follows for `1<p<2` from
+`S-beta=O(beta*u^p)`.  Therefore `Delta/b` tends to `1+c_q`, proving
+optimality of the constant for every fixed `p>1`.
 
 ## Trust boundary
 

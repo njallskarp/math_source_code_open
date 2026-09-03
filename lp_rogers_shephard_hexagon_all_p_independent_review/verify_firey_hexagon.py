@@ -163,10 +163,11 @@ def numerical_checks() -> tuple[list[dict[str, str]], str]:
             raise AssertionError((p, a, b, error_low, error_high))
         if not deficit > 0:
             raise AssertionError((p, a, b, "nonpositive deficit"))
-        if p >= 2:
-            scale = min(mp.mpf(str(a)), mp.mpf(str(b)))
-            if not (c_q * scale <= deficit < (1 + c_q) * scale):
-                raise AssertionError((p, a, b, "sharp stability bound failed"))
+        scale = min(mp.mpf(str(a)), mp.mpf(str(b)))
+        if not deficit < (1 + c_q) * scale:
+            raise AssertionError((p, a, b, "sharp upper bound failed"))
+        if p >= 2 and not c_q * scale <= deficit:
+            raise AssertionError((p, a, b, "lower stability bound failed"))
         records.append(
             {
                 "p": f"{p:.2f}",
