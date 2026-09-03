@@ -1,0 +1,10 @@
+certificate_sha256=532470ffe31ff3e5acb4da51a78c15f172d2d00db6816dd43d5dc44a243bc059
+python=3.12.12
+cases=22
+source_derivation_steps=396
+grid=3
+family_paths_checked=2750
+coordinate_transitions_checked=4224
+commuting_squares_checked=4224
+record_sha256=6b2d157ae6e7d39197fa878d53ca5cffdb16c0549b46d0472f7f0ae4adcda468
+VERIFIED

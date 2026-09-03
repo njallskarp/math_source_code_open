@@ -4,6 +4,10 @@
 > 1/2 cross-transitions in the source certificate and repairs all eight
 > orthants whose first mixed transition loses a mode completely.  The result
 > below is the `c=4` row of that stronger certificate.
+>
+> Further result: [`TRIMODAL_SAFE_CORES.md`](TRIMODAL_SAFE_CORES.md) derives a
+> safe simultaneous `{1,2,11}` seed in every one of the 22 residue classes and
+> proves a transition-closed three-dimensional core from each seed.
 
 ## Result
 
