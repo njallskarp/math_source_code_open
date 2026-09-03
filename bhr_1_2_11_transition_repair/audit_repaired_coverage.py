@@ -16,6 +16,7 @@ from verify_cap_orthants import verify_certificate as verify_cap_orthants
 from verify_dead_orthants import verify_certificate as verify_dead_orthants
 from verify_even_b_c1 import verify_certificate as verify_even_b_c1
 from verify_residual_slab import verify_certificate as verify_residual_slab
+from verify_small_a_c3_slab import verify_certificate as verify_small_a_c3_slab
 from verify_target_orthant import verify_certificate as verify_target_orthant
 
 EXPECTED_DEAD_SHA256 = (
@@ -30,7 +31,8 @@ EXPECTED_COUNTS = {
     "after_first_residual_slab": 8071,
     "after_even_b_c1_completion": 8105,
     "after_target_orthant": 8139,
-    "residual_symbolic_patterns": 1405,
+    "after_small_a_c3_slab": 8151,
+    "residual_symbolic_patterns": 1393,
 }
 
 
@@ -105,6 +107,7 @@ def audit_coverage(
     slab_path: Path,
     even_b_c1_path: Path,
     target_path: Path,
+    small_a_c3_path: Path,
     verify_inputs: bool = True,
 ) -> dict[str, Any]:
     source_raw = source_path.read_bytes()
@@ -113,6 +116,7 @@ def audit_coverage(
     slab_raw = slab_path.read_bytes()
     even_b_c1_raw = even_b_c1_path.read_bytes()
     target_raw = target_path.read_bytes()
+    small_a_c3_raw = small_a_c3_path.read_bytes()
     if verify_inputs:
         audit_certificate(source_path)
         require(
@@ -124,12 +128,14 @@ def audit_coverage(
         verify_residual_slab(slab_path, 1)
         verify_even_b_c1(even_b_c1_path, 1)
         verify_target_orthant(target_path, 1)
+        verify_small_a_c3_slab(small_a_c3_path, 1)
 
     source = json.loads(source_raw)
     dead = json.loads(dead_raw)
     trimodal = json.loads(trimodal_raw)
     slab = json.loads(slab_raw)
     target_orthant = json.loads(target_raw)
+    small_a_c3 = json.loads(small_a_c3_raw)
     require(tuple(source["underlying_set"]) == SUPPORT, "wrong source support")
     dead_by_base = {
         tuple(record["residue_case"]): tuple(record["boundary_seed"]["counts"])
@@ -147,6 +153,8 @@ def audit_coverage(
     require(slab_seed == (2, 21, 1), "wrong residual slab seed")
     target_seed = tuple(target_orthant["seed"]["counts"])
     require(target_seed == (4, 7, 23), "wrong target orthant seed")
+    small_a_c3_seed = tuple(small_a_c3["seed"]["counts"])
+    require(small_a_c3_seed == (1, 9, 25), "wrong small-a c3 slab seed")
 
     counts = {key: 0 for key in EXPECTED_COUNTS if key != "residual_symbolic_patterns"}
     residuals: list[tuple[tuple[int, int, int], tuple[int, int, int], tuple[bool, bool, bool]]] = []
@@ -197,6 +205,10 @@ def audit_coverage(
                 covered = in_orthant(target, target_seed, set(SUPPORT))
             if covered:
                 counts["after_target_orthant"] += 1
+            if not covered:
+                covered = in_orthant(target, small_a_c3_seed, {2, 11})
+            if covered:
+                counts["after_small_a_c3_slab"] += 1
             else:
                 residuals.append((base, target, high))
                 residual_by_base[base] = residual_by_base.get(base, 0) + 1
@@ -215,6 +227,7 @@ def audit_coverage(
         "residual_slab_sha256": hashlib.sha256(slab_raw).hexdigest(),
         "even_b_c1_sha256": hashlib.sha256(even_b_c1_raw).hexdigest(),
         "target_orthant_sha256": hashlib.sha256(target_raw).hexdigest(),
+        "small_a_c3_slab_sha256": hashlib.sha256(small_a_c3_raw).hexdigest(),
         **counts,
         "residual_cases": len(residual_by_base),
         "largest_residual_case": list(largest_base),
@@ -238,6 +251,9 @@ def main() -> None:
     parser.add_argument(
         "--target", type=Path, default=Path("target_orthant_certificate.json")
     )
+    parser.add_argument(
+        "--small-a-c3", type=Path, default=Path("small_a_c3_slab_certificate.json")
+    )
     args = parser.parse_args()
     summary = audit_coverage(
         args.source_certificate,
@@ -246,6 +262,7 @@ def main() -> None:
         args.slab,
         args.even_b_c1,
         args.target,
+        args.small_a_c3,
     )
     for key, value in summary.items():
         if isinstance(value, list):

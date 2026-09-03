@@ -1,0 +1,122 @@
+{
+  "schema": "bhr-small-a-c3-slab-v1",
+  "support": [
+    1,
+    2,
+    11
+  ],
+  "source_context": {
+    "source_certificate_sha256": "e92ba9b84512e8829400bdeaf0fd0ef0082b56b26e6720e882ba2c2bbb8fbc6c",
+    "residue_case": [
+      1,
+      1,
+      3
+    ],
+    "source_witness_index": 1,
+    "source_role": "The starting path is copied from the pinned finite certificate; every property used here is rechecked directly.",
+    "previous_coverage": 8139,
+    "previous_residual_symbolic_patterns": 1405,
+    "previous_residual_records_sha256": "09c1f72e2be4010c8783418c46464547e6fffe20fdddd137ebb46443da4a8b0d"
+  },
+  "derivation": {
+    "counts": [
+      1,
+      7,
+      14
+    ],
+    "path": [
+      4,
+      15,
+      17,
+      6,
+      8,
+      19,
+      21,
+      10,
+      11,
+      22,
+      20,
+      9,
+      7,
+      18,
+      16,
+      5,
+      3,
+      14,
+      2,
+      13,
+      1,
+      12,
+      0
+    ],
+    "selected_growth_cuts": {
+      "2": 2,
+      "11": 11
+    },
+    "growth_modes_applied_once": [
+      2,
+      11
+    ],
+    "orders_checked": 2,
+    "require_identical_endpoints": true
+  },
+  "safe_margin": {
+    "growth_modes": [
+      2,
+      11
+    ],
+    "maximum_edge_length": 11,
+    "maximum_pair_sum": 13,
+    "seed_order": 36
+  },
+  "seed": {
+    "counts": [
+      1,
+      9,
+      25
+    ],
+    "path": [
+      6,
+      17,
+      28,
+      30,
+      19,
+      8,
+      10,
+      21,
+      32,
+      34,
+      23,
+      12,
+      13,
+      24,
+      35,
+      33,
+      22,
+      11,
+      9,
+      20,
+      31,
+      29,
+      18,
+      7,
+      5,
+      16,
+      27,
+      2,
+      4,
+      15,
+      26,
+      1,
+      3,
+      14,
+      25,
+      0
+    ],
+    "selected_growth_cuts": {
+      "2": 2,
+      "11": 13
+    }
+  },
+  "claim": "For all q,r>=0, the multiset {1,2^(9+2q),11^(25+11r)} has a cyclic Hamiltonian-path realization."
+}

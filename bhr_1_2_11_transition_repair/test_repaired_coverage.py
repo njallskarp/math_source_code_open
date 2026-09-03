@@ -29,13 +29,15 @@ class RepairedCoverageTests(unittest.TestCase):
             HERE / "residual_slab_certificate.json",
             HERE / "even_b_c1_certificate.json",
             HERE / "target_orthant_certificate.json",
+            HERE / "small_a_c3_slab_certificate.json",
         )
         self.assertEqual(summary["admissible_symbolic_patterns"], 9544)
         self.assertEqual(summary["after_twenty_two_cap_orthants"], 8052)
         self.assertEqual(summary["after_first_residual_slab"], 8071)
         self.assertEqual(summary["after_even_b_c1_completion"], 8105)
         self.assertEqual(summary["after_target_orthant"], 8139)
-        self.assertEqual(summary["residual_symbolic_patterns"], 1405)
+        self.assertEqual(summary["after_small_a_c3_slab"], 8151)
+        self.assertEqual(summary["residual_symbolic_patterns"], 1393)
 
     def test_tampered_dead_certificate_is_rejected(self) -> None:
         data = json.loads((HERE / "dead_orthant_certificate.json").read_text())
@@ -51,6 +53,7 @@ class RepairedCoverageTests(unittest.TestCase):
                     HERE / "residual_slab_certificate.json",
                     HERE / "even_b_c1_certificate.json",
                     HERE / "target_orthant_certificate.json",
+                    HERE / "small_a_c3_slab_certificate.json",
                 )
 
     def test_tampered_residual_slab_is_rejected(self) -> None:
@@ -67,6 +70,7 @@ class RepairedCoverageTests(unittest.TestCase):
                     bad,
                     HERE / "even_b_c1_certificate.json",
                     HERE / "target_orthant_certificate.json",
+                    HERE / "small_a_c3_slab_certificate.json",
                 )
 
     def test_tampered_target_orthant_is_rejected(self) -> None:
@@ -83,6 +87,7 @@ class RepairedCoverageTests(unittest.TestCase):
                     HERE / "residual_slab_certificate.json",
                     HERE / "even_b_c1_certificate.json",
                     bad,
+                    HERE / "small_a_c3_slab_certificate.json",
                 )
 
     def test_tampered_even_b_c1_certificate_is_rejected(self) -> None:
@@ -99,6 +104,24 @@ class RepairedCoverageTests(unittest.TestCase):
                     HERE / "residual_slab_certificate.json",
                     bad,
                     HERE / "target_orthant_certificate.json",
+                    HERE / "small_a_c3_slab_certificate.json",
+                )
+
+    def test_tampered_small_a_c3_certificate_is_rejected(self) -> None:
+        data = json.loads((HERE / "small_a_c3_slab_certificate.json").read_text())
+        data["seed"]["selected_growth_cuts"]["11"] += 1
+        with tempfile.TemporaryDirectory() as tmp:
+            bad = Path(tmp) / "bad.json"
+            bad.write_text(json.dumps(data))
+            with self.assertRaises(VerificationError):
+                audit_coverage(
+                    SOURCE,  # type: ignore[arg-type]
+                    HERE / "dead_orthant_certificate.json",
+                    HERE / "trimodal_certificate.json",
+                    HERE / "residual_slab_certificate.json",
+                    HERE / "even_b_c1_certificate.json",
+                    HERE / "target_orthant_certificate.json",
+                    bad,
                 )
 
 

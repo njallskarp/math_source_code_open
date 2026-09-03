@@ -31,6 +31,12 @@
 > `(1,20+2q,1)` and `(2,18+2q,1)`.  Together with the prior odd-`b` formula
 > and the published `a>=3` theorem, they prove every admissible positive
 > `c=1` instance.  This removes 34 more patterns from the conservative audit.
+>
+> Genuine small-`a` frontier: [`SMALL_A_C3_SLAB.md`](SMALL_A_C3_SLAB.md)
+> derives a simultaneous 2/11-growable seed at `(1,9,25)` from two checked
+> orders of a source witness.  The safe-margin theorem then closes every
+> `(1,9+2q,25+11r)`, adding a new existence slab outside the published
+> `a>=3` range and removing 12 more residual patterns.
 
 ## Result
 
@@ -183,6 +189,8 @@ python3 verify_target_orthant.py target_orthant_certificate.json --grid 3
 python3 independent_target_check.py target_orthant_certificate.json
 python3 verify_even_b_c1.py even_b_c1_certificate.json --grid 64
 python3 independent_even_b_c1_check.py even_b_c1_certificate.json --grid 64
+python3 verify_small_a_c3_slab.py small_a_c3_slab_certificate.json --grid 6
+python3 independent_small_a_c3_check.py small_a_c3_slab_certificate.json --grid 6
 python3 -m unittest -v test_verify.py
 python3 construct.py --a 7 --b 28 --c 4
 ```
