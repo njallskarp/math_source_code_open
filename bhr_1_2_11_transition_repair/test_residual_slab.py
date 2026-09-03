@@ -8,7 +8,11 @@ import tempfile
 import unittest
 
 from verify import VerificationError, verify_realization
-from verify_residual_slab import residual_slab_path, verify_certificate
+from verify_residual_slab import (
+    residual_slab_path,
+    verify_certificate,
+    verify_formula_state,
+)
 
 HERE = Path(__file__).resolve().parent
 
@@ -25,12 +29,17 @@ class ResidualSlabTests(unittest.TestCase):
 
     def test_certificate_small_grid(self) -> None:
         summary = verify_certificate(HERE / "residual_slab_certificate.json", 1)
+        self.assertEqual(summary["extended_formula_states_checked"], 18)
         self.assertEqual(summary["family_paths_checked"], 9)
         self.assertEqual(summary["coordinate_transitions_checked"], 8)
         self.assertEqual(summary["commuting_squares_checked"], 4)
 
     def test_large_formula_state(self) -> None:
         verify_realization(residual_slab_path(1000, 1000), (1002, 2021, 1))
+
+    def test_extended_formula_boundaries(self) -> None:
+        for p, q in ((-1, -1), (0, -1), (9, -6)):
+            verify_formula_state(residual_slab_path(p, q), p, q)
 
     def test_tampered_seed_is_rejected(self) -> None:
         data = json.loads((HERE / "residual_slab_certificate.json").read_text())

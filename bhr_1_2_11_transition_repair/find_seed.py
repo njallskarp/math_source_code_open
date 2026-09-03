@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CP-SAT generator for a simultaneous 1- and 2-growable BHR seed."""
+"""CP-SAT generator for a BHR seed with selected simultaneous growth modes."""
 
 from __future__ import annotations
 
@@ -12,12 +12,18 @@ from verify import cyclic_length, changed_by_embedding, verify_growth, verify_re
 
 DEFAULT_COUNTS = (2, 18, 4)
 SUPPORT = (1, 2, 11)
-REQUIRED_GROWTH = (1, 2)
+DEFAULT_GROWTH_MODES = (1, 2)
 
 
 def solve(
-    counts: tuple[int, int, int], seconds: float
+    counts: tuple[int, int, int],
+    seconds: float,
+    growth_modes: tuple[int, ...] = DEFAULT_GROWTH_MODES,
 ) -> tuple[str, list[int] | None, dict[int, int] | None]:
+    if not growth_modes or len(set(growth_modes)) != len(growth_modes):
+        raise ValueError("growth modes must be nonempty and distinct")
+    if any(mode not in SUPPORT for mode in growth_modes):
+        raise ValueError(f"growth modes must belong to {SUPPORT}")
     n = sum(counts) + 1
     dummy = n
     model = cp_model.CpModel()
@@ -54,7 +60,7 @@ def solve(
         )
 
     growth_choices: dict[tuple[int, int], cp_model.IntVar] = {}
-    for x in REQUIRED_GROWTH:
+    for x in growth_modes:
         choices = []
         for m in range(x - 1, n - x):
             choice = model.new_bool_var(f"grow_{x}_{m}")
@@ -99,7 +105,7 @@ def solve(
             for (xx, m), choice in growth_choices.items()
             if xx == x and solver.value(choice)
         )
-        for x in REQUIRED_GROWTH
+        for x in growth_modes
     }
     verify_realization(path, counts)
     for x, m in selected.items():
@@ -117,14 +123,24 @@ def main() -> None:
         metavar=("A", "B", "C"),
         default=DEFAULT_COUNTS,
     )
+    parser.add_argument(
+        "--modes",
+        nargs="+",
+        type=int,
+        choices=SUPPORT,
+        default=DEFAULT_GROWTH_MODES,
+        help="distinct growth modes required of the returned seed",
+    )
     args = parser.parse_args()
     counts = tuple(args.counts)
-    status, path, selected = solve(counts, args.seconds)
+    growth_modes = tuple(args.modes)
+    status, path, selected = solve(counts, args.seconds, growth_modes)
     print(
         json.dumps(
             {
                 "status": status,
                 "counts": list(counts),
+                "required_growth_modes": list(growth_modes),
                 "selected_growth_cuts": selected,
                 "path": path,
             },

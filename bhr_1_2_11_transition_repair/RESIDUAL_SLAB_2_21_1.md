@@ -1,21 +1,30 @@
-# An explicit transition-closed BHR `{1,2,11}` residual slab
+# An explicit BHR `{1,2,11}` family with a transition-closed residual slab
 
-## Result
+## Strengthened result
 
-For every `p,q >= 0`, the multiset
+For every `a >= 1`, odd `b >= 9`, and `a+b >= 20`, the multiset
 
 \[
-  \{1^{2+p},2^{21+2q},11\}
+  \{1^a,2^b,11\}
 \]
 
 has a Hamiltonian-path realization in the cyclically labelled complete graph
-on `25+p+2q` vertices.  This supplies the first slab below the 22 complete cap
-orthants that was not already covered by the transition-aware certificate
-audit.
+on `a+b+2` vertices.  Equivalently, put `p=a-2` and `q=(b-21)/2` below:
+
+```text
+p >= -1, q >= -6, and 25+p+2q >= 22.
+```
+
+The original range `p,q >= 0` is additionally transition-closed in modes 1
+and 2.  It supplied the first slab below the 22 complete cap orthants that was
+not already covered by the transition-aware certificate audit.  The larger
+existence range was identified and independently verified in the committed
+review `bafkreifqlyii73w3bzrp3pxtji2wruuvtakkuk6rl6dfrb7nknz34qbkt4`.
 
 ## Explicit four-block family
 
-For `p,q >= 0`, let `P[p,q]` be the concatenation of
+For parameters in the strengthened range, let `P[p,q]` be the concatenation
+of
 
 ```text
 (p+1, p+3, ..., p+13+2q),
@@ -32,7 +41,8 @@ P[0,0] =
  23,21,19,17,15).
 ```
 
-The four blocks partition `0,...,24+p+2q`: the first and the tail of the
+In the nondegenerate range `p>=0,q>=-5`, the four blocks partition
+`0,...,24+p+2q`: the first and the tail of the
 third partition the two parities from `p+1` through `p+13+2q`; the second and
 fourth do the same from `p+14+2q` through `p+24+2q`; and the consecutive
 prefix of the third block is `0,...,p`.
@@ -55,10 +65,21 @@ Direct gap-insertion calculation also gives
   G_{2,p+1}(P[p,q])=P[p,q+1].
 \]
 
-Consequently every member is 1-growable at cut 0 and 2-growable at cut
-`p+1`, and the two transitions commute.  The displayed formula and edge
-count prove the family for all parameters; no finite grid or solver
-completeness claim is used for the universal quantifiers.
+Consequently every member in the original `p,q>=0` slab is 1-growable at cut
+0 and 2-growable at cut `p+1`, and the two transitions commute.
+
+Two boundary calculations complete the strengthened existence result.  If
+`q=-6`, the first block is a singleton and the parity tail of the third block
+is empty.  The second and fourth blocks supply `5+4=9` length-2 edges, while
+the long join is from `p` to `p+11`.  The order condition forces `p>=9`.  If
+`p=-1`, the order condition forces `q>=-1`; the consecutive prefix is empty,
+vertex 0 begins the first block, and the join that formerly supplied the
+second length-1 edge instead has cyclic length 2.  The length-2 count is then
+`(6+q)+5+(5+q)+4+1=21+2q`, and there is one length-1 edge.  Thus the same
+literal blocks prove all parameters displayed above.  Some degenerate
+boundary paths are not simultaneously growable at the advertised cuts; the
+strengthening claims their explicit realizations, not transition closure
+beyond the original slab.
 
 ## Discovery and exact reproduction
 
@@ -79,9 +100,10 @@ python3 verify_residual_slab.py residual_slab_certificate.json --grid 24
 python3 -m unittest -v test_residual_slab.py
 ```
 
-It reconstructs every path from the formula, verifies its permutation and
-cyclic edge-length multiset, checks both growth definitions and recurrences,
-and checks commuting squares.  `expected_residual_slab.txt` records the exact
+It reconstructs and verifies the strengthened formula on a boundary-inclusive
+grid, then checks both growth definitions, recurrences, and commuting squares
+throughout the original transition-closed range.  Separate tests cover
+`(p,q)=(-1,-1),(0,-1),(9,-6)`.  `expected_residual_slab.txt` records the exact
 reference output.  Certificate SHA-256 is
 `8031d3eda5e24ee5609effe05cd1da7998d944a60f64c677e4251909c4c28d8b`,
 and the grid-24 transition-record SHA-256 is
@@ -98,16 +120,18 @@ the `a` and `b` coordinates, reducing the conservative residual from 1,492 to
 1,473.  This finite count measures coverage of proved regions; it is not a
 claim that the remaining patterns are unrealizable.
 
-The theorem trusts exact integer arithmetic, the displayed formula and block
-proof, the compact certificate, and CPython executing the definition-level
-checker.  It does not trust CP-SAT, solver optimality, the source certificate's
-old coordinatewise coverage inference, or the bounded parameter grid as an
-induction proof.
+For `a>=3`, existence in this range also follows from Theorem 1.3(5) of the
+grid-based paper below; the apparently new existence frontier is `a in {1,2}`
+with odd `b>=19`.  The theorem trusts exact integer arithmetic, the displayed
+formula and block proof, the compact certificate, and CPython executing the
+definition-level checker.  It does not trust CP-SAT, solver optimality, the
+source certificate's old coordinatewise coverage inference, or the bounded
+parameter grid as an induction proof.
 
 Chand and Ollis leave `{1,2,11}` as the possible exception in their
 size-three classification (<https://arxiv.org/abs/2202.07733>).  The later
-grid-based theorem (<https://arxiv.org/abs/2402.08736>) explicitly excludes
-the broad large-order case with `a in {1,2}` and odd third length, so it does
-not supply this frontier.  Live support-specific and exact-parameter searches
-on 2026-09-03 found no prior formula for this slab.  This is search-relative
-novelty, not a priority claim.
+grid-based theorem (<https://arxiv.org/abs/2402.08736>) supplies the `a>=3`
+subrange but excludes its broad large-order case with `a in {1,2}` and odd
+third length, so it does not supply the frontier above.  Live support-specific
+and exact-parameter searches on 2026-09-03 found no prior formula for this
+slab.  This is search-relative novelty, not a priority claim.

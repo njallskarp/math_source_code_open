@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact checker for the explicit BHR (2+p,21+2q,1) slab."""
+"""Exact checker for the four-block odd-b, c=1 BHR family."""
 
 from __future__ import annotations
 
@@ -29,7 +29,8 @@ EXPECTED_CERTIFICATE_SHA256 = (
 
 def residual_slab_path(p: int, q: int) -> list[int]:
     """Return the four-block path P[p,q] from the written construction."""
-    require(p >= 0 and q >= 0, ("negative parameter", p, q))
+    require(p >= -1 and q >= -6, ("parameter range", p, q))
+    require(25 + p + 2 * q >= 22, ("order below 22", p, q))
     return (
         list(range(p + 1, p + 14 + 2 * q, 2))
         + list(range(p + 14 + 2 * q, p + 25 + 2 * q, 2))
@@ -39,12 +40,19 @@ def residual_slab_path(p: int, q: int) -> list[int]:
     )
 
 
-def verify_state(path: list[int], p: int, q: int) -> None:
+def verify_formula_state(path: list[int], p: int, q: int) -> None:
     verify_realization(path, (2 + p, 21 + 2 * q, 1))
     maximum = max(
         cyclic_length(u, v, len(path)) for u, v in zip(path, path[1:])
     )
     require(maximum == 11, ("maximum edge length", maximum))
+
+
+def verify_state(path: list[int], p: int, q: int) -> None:
+    """Check the original transition-closed p,q>=0 slab."""
+    require(p >= 0 and q >= 0, ("transition range", p, q))
+    verify_formula_state(path, p, q)
+    maximum = 11
     require(2 * maximum + 1 + 2 <= len(path), ("unsafe margin", len(path)))
     verify_growth(path, 1, 0)
     verify_growth(path, 2, p + 1)
@@ -78,6 +86,14 @@ def verify_certificate(
         "wrong seed cuts",
     )
     require(seed["path"] == residual_slab_path(0, 0), "wrong seed path")
+
+    extended_formula_states_checked = 0
+    for p in range(-1, grid + 2):
+        for q in range(-6, grid + 2):
+            if 25 + p + 2 * q < 22:
+                continue
+            verify_formula_state(residual_slab_path(p, q), p, q)
+            extended_formula_states_checked += 1
 
     family: dict[tuple[int, int], list[int]] = {}
     record_hash = hashlib.sha256()
@@ -127,6 +143,7 @@ def verify_certificate(
         "certificate_sha256": certificate_sha256,
         "python": platform.python_version(),
         "grid": grid,
+        "extended_formula_states_checked": extended_formula_states_checked,
         "family_paths_checked": family_paths_checked,
         "coordinate_transitions_checked": coordinate_transitions_checked,
         "commuting_squares_checked": commuting_squares_checked,

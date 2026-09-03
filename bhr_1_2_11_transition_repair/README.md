@@ -1,4 +1,4 @@
-# A commuting growable family repairing one BHR `{1,2,11}` orthant
+# Transition-closed repairs for BHR support `{1,2,11}`
 
 > Follow-up: [`DEAD_ORTHANT_REPAIR.md`](DEAD_ORTHANT_REPAIR.md) audits all
 > 1/2 cross-transitions in the source certificate and repairs all eight
@@ -15,8 +15,16 @@
 > tri-modal interiors.
 >
 > First below-cap slab: [`RESIDUAL_SLAB_2_21_1.md`](RESIDUAL_SLAB_2_21_1.md)
-> gives a direct four-block formula for every `(2+p,21+2q,1)`, closing the
-> first canonical residual cell and 18 further symbolic patterns.
+> gives a direct four-block formula for all admissible `c=1`, odd `b>=9`
+> cases with `a+b>=20`.  Its original `(2+p,21+2q,1)` range is a commuting
+> two-mode slab.
+>
+> New full orthant: [`TARGET_ORTHANT_4_7_23.md`](TARGET_ORTHANT_4_7_23.md)
+> gives a simultaneous 1/2/11-growable seed at `(4,7,23)`.  The exact
+> safe-margin equality closes every `(4+p,7+2q,23+11r)` and removes 34
+> patterns from the conservative residual audit.  Published linear
+> realizations already cover this existence range; the contribution is the
+> explicit simultaneous-growth certificate.
 
 ## Result
 
@@ -165,6 +173,8 @@ The construction and verification require only CPython's standard library:
 ```bash
 cd research/bhr_1_2_11_transition_repair
 python3 verify.py certificate.json
+python3 verify_target_orthant.py target_orthant_certificate.json --grid 3
+python3 independent_target_check.py target_orthant_certificate.json
 python3 -m unittest -v test_verify.py
 python3 construct.py --a 7 --b 28 --c 4
 ```
