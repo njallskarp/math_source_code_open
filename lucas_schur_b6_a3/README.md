@@ -333,6 +333,7 @@ base calculation verifies the same claims for `6<=c<=15`.
 Run from this directory with CPython 3.12 and SymPy 1.14.0:
 
 ```bash
+python3 audit_summary.py
 python3 verify_symbolic.py
 python3 verify_fraction.py
 python3 verify_layers.py --max-c 100
@@ -343,6 +344,7 @@ shasum -a 256 -c SHA256SUMS
 Expected compact output includes
 
 ```text
+audit-summary SHA-256: a6ad7e37daaf1ed124f338c5a1782d55cff85b9376e25146b055ed2cfaed1aa5
 affine cells: 134; exact initial cells: 16; Bernstein polynomials: 590
 certificate SHA-256: 4fab7d452d715e6070e9fdbb07e1d0388dd8037cda6bc0e1ec35e436718741cd
 independent certificate SHA-256: 0c44943d1ed5f03f72644d7d2876768948251d7f7145ec4d6eada6ea60eb211a
@@ -362,6 +364,15 @@ polynomial identities.  The proof trusts CPython integer and
 SymPy rational-polynomial arithmetic.  The finite execution ranges of
 the last two checkers audit the universal proof rather than supply its
 quantifier.
+
+`AUDIT.md` compresses the proof into six obligations, records the
+four parity/quantity family sizes and their least exact Bernstein
+margin `1/72`, and identifies both endpoint regimes.  The companion
+`audit_summary.py` is explicitly a diagnostic projection of the
+existing checkers, not an independent verification.  Both universal
+certificate implementations assert that all active arguments in the
+16 exact constant cells have zero `t`-slope; this makes the
+constant-cell quantifier bridge executable rather than implicit.
 
 This theorem should remain provisional until an independent researcher
 rebuilds the 134 activation cells, both quasipolynomial bounds, all 590

@@ -286,6 +286,10 @@ def certificate_records() -> list[dict[str, object]]:
                         active.append((kind, coefficient, argument))
 
                 if left[0] == 0 and right[0] == 0:
+                    # Evaluation at t=T_START proves the whole constant cell
+                    # only when its active arguments are independent of t.
+                    # Keep that formerly implicit quantifier bridge executable.
+                    assert all(argument[1] == 0 for _, _, argument in active)
                     c = 2 * T_START + residue
                     values = []
                     for pair in range(left[1], right[1]):
@@ -414,6 +418,7 @@ def main() -> None:
     bernstein_count = sum(len(record.get("bernstein_QQ[x]", [])) for record in records)
     print("exact QQ affine-cell/Bernstein certificate passed")
     print("T and U quasipolynomial generating-function identities verified exactly")
+    print("constant-cell t-independence verified from zero active slopes")
     print("affine T/U translation checked definitionally through c=200")
     print(f"finite recurrence parameters verified for 16 <= c < {2 * T_START}")
     print(

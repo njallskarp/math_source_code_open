@@ -337,6 +337,11 @@ def certificate_records() -> list[dict[str, object]]:
                     "a": len(active),
                 }
                 if left[0] == 0 and right[0] == 0:
+                    # These cells are checked at t=T_START below.  This is
+                    # universal only because every active restricted-partition
+                    # argument has zero t-slope; make that quantifier bridge an
+                    # explicit executable obligation.
+                    assert all(argument[1] == 0 for _, _, argument in active)
                     c = 2 * T_START + residue
                     values = []
                     for pair in range(left[1], right[1]):
@@ -449,6 +454,7 @@ def main() -> None:
     bernstein_count = sum(5 for record in records if "b" in record)
     print("standard-library Fraction certificate passed")
     print("T and U quasipolynomial rational generating functions verified exactly")
+    print("constant-cell t-independence verified from zero active slopes")
     print("affine T/U translation checked definitionally through c=200")
     print(f"finite recurrence parameters verified for 16 <= c < {2 * T_START}")
     print(
