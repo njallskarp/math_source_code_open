@@ -40,6 +40,40 @@ theorem sum_supportedCount_powersetCard
           (by simpa [hcard x hx] using hks)
     _ = #features * Nat.choose (#U - k) (s - k) := by simp
 
+/-- A `k`-element support inside `U` survives deletion of exactly `|U|-k`
+vertices.  This is the vertex-deletion analogue of
+`sum_supportedCount_powersetCard`; feature identifiers keep the statement
+multiplicity-safe when several features have the same support. -/
+theorem sum_supportedCount_erase
+    {α ι : Type*} [DecidableEq α] [DecidableEq ι]
+    (U : Finset α) (features : Finset ι) (support : ι → Finset α) (k : ℕ)
+    (hsubset : ∀ x ∈ features, support x ⊆ U)
+    (hcard : ∀ x ∈ features, #(support x) = k) :
+    (∑ v ∈ U, supportedCount features support (U.erase v)) =
+      #features * (#U - k) := by
+  calc
+    (∑ v ∈ U, supportedCount features support (U.erase v)) =
+        ∑ v ∈ U, ∑ x ∈ features,
+          if support x ⊆ U.erase v then 1 else 0 := by
+      apply Finset.sum_congr rfl
+      intro v hv
+      simp [supportedCount]
+    _ = ∑ x ∈ features, ∑ v ∈ U,
+          if support x ⊆ U.erase v then 1 else 0 := by
+      rw [Finset.sum_comm]
+    _ = ∑ x ∈ features, (#U - k) := by
+      apply Finset.sum_congr rfl
+      intro x hx
+      have hfilter :
+          U.filter (fun v ↦ support x ⊆ U.erase v) = U \ support x := by
+        ext v
+        simp [Finset.subset_erase, hsubset x hx]
+      have hcount :
+          #(U.filter (fun v ↦ support x ⊆ U.erase v)) = #U - k := by
+        rw [hfilter, Finset.card_sdiff_of_subset (hsubset x hx), hcard x hx]
+      simpa using hcount
+    _ = #features * (#U - k) := by simp
+
 /-- At sample order 24, the published rational local bound
 `c ≥ 5m - (203/9)(24-2)` and integrality sharpen to
 `5m ≤ c + 496`. -/
@@ -196,7 +230,93 @@ theorem albertson_order54_of_local495
       (by omega)
       hlocal
 
+/-- Summing the reviewed vertex-deletion inequalities over a 54-element
+universe.  Here `excess v` represents `degree v - 26`; the handshake and
+minimum-degree arguments enter only through the exact total `48`.
+
+The pointwise hypothesis is the subtraction-free form of
+`deleted v ≥ 5650 - 27 * excess v`. -/
+theorem order54_deleted_sum_lower_bound
+    {α : Type*} [Fintype α]
+    (deleted excess : α → ℕ)
+    (hcard : Fintype.card α = 54)
+    (hexcess : ∑ v, excess v = 48)
+    (hlocal : ∀ v, 5650 ≤ deleted v + 27 * excess v) :
+    303804 ≤ ∑ v, deleted v := by
+  have hsum : (∑ v : α, (5650 : ℕ)) ≤
+      ∑ v : α, (deleted v + 27 * excess v) := by
+    exact Finset.sum_le_sum fun v _ ↦ hlocal v
+  simp [Finset.sum_add_distrib, ← Finset.mul_sum, hcard, hexcess] at hsum
+  omega
+
+/-- The finite handshake arithmetic behind the degree-excess total.  The
+graph-theoretic facts `sum degree = 2 * 726` and `degree v ≥ 26` remain outside
+this lemma; the latter is represented constructively by `degree v = 26 +
+excess v`. -/
+theorem order54_degree_excess_total
+    {α : Type*} [Fintype α]
+    (degree excess : α → ℕ)
+    (hcard : Fintype.card α = 54)
+    (hdegreeSum : ∑ v, degree v = 1452)
+    (hdecomp : ∀ v, degree v = 26 + excess v) :
+    ∑ v, excess v = 48 := by
+  have hsumDecomp : (∑ v, degree v) = ∑ v, (26 + excess v) := by
+    apply Finset.sum_congr rfl
+    intro v hv
+    exact hdecomp v
+  simp [Finset.sum_add_distrib, hcard] at hsumDecomp
+  omega
+
+/-- The final exact ceiling step: `303804 / 50 = 6076.08`. -/
+theorem order54_floor_of_two_stage_inequality
+    {crossings : ℕ} (h : 303804 ≤ 50 * crossings) :
+    6077 ≤ crossings := by
+  omega
+
+/-- The bounded two-stage implication underlying the independently reviewed
+Albertson `r = 27`, order-54 refinement.  A feature is a crossing occurrence
+of a fixed drawing and its support is its four distinct endpoints.  Deleting
+a vertex retains exactly the features whose supports avoid it, so the generic
+deletion identity gives the coefficient `54 - 4 = 50`.
+
+No graph or drawing topology is modeled here.  The pointwise local inequality,
+the four-endpoint property, and the degree-excess total are the explicit
+interface to those external arguments. -/
+theorem albertson_order54_two_stage_deletion
+    {α χ : Type*} [Fintype α]
+    [DecidableEq α] [DecidableEq χ]
+    (crossings : Finset χ) (crossingSupport : χ → Finset α)
+    (excess : α → ℕ)
+    (hcard : Fintype.card α = 54)
+    (hcrossings_card : ∀ x ∈ crossings, #(crossingSupport x) = 4)
+    (hexcess : ∑ v, excess v = 48)
+    (hlocal : ∀ v,
+      5650 ≤ supportedCount crossings crossingSupport
+        ((Finset.univ : Finset α).erase v) + 27 * excess v) :
+    303804 ≤ 50 * #crossings ∧ 6077 ≤ #crossings := by
+  have hsumLower :
+      303804 ≤ ∑ v, supportedCount crossings crossingSupport
+        ((Finset.univ : Finset α).erase v) :=
+    order54_deleted_sum_lower_bound
+      (fun v ↦ supportedCount crossings crossingSupport
+        ((Finset.univ : Finset α).erase v))
+      excess hcard hexcess hlocal
+  have hsumExact :
+      (∑ v, supportedCount crossings crossingSupport
+        ((Finset.univ : Finset α).erase v)) = #crossings * 50 := by
+    simpa [hcard] using
+      sum_supportedCount_erase (Finset.univ : Finset α) crossings
+        crossingSupport 4
+        (fun _ _ ↦ Finset.subset_univ _)
+        hcrossings_card
+  rw [hsumExact] at hsumLower
+  constructor
+  · simpa [Nat.mul_comm] using hsumLower
+  · apply order54_floor_of_two_stage_inequality
+    simpa [Nat.mul_comm] using hsumLower
+
 #print axioms sum_supportedCount_powersetCard
+#print axioms sum_supportedCount_erase
 #print axioms local_integral_rounding_24
 #print axioms fixed_support_sampling_bound
 #print axioms order54_floor_of_averaged_inequality
@@ -206,5 +326,9 @@ theorem albertson_order54_of_local495
 #print axioms albertson_order54_integral_sampling
 #print axioms albertson_order54_of_published_local_bound
 #print axioms albertson_order54_of_local495
+#print axioms order54_deleted_sum_lower_bound
+#print axioms order54_degree_excess_total
+#print axioms order54_floor_of_two_stage_inequality
+#print axioms albertson_order54_two_stage_deletion
 
 end AlbertsonIntegralSampling

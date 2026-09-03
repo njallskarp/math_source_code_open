@@ -6,6 +6,10 @@ bridge behind the Discovery Net lemma
 integer-aware induced sampling raises the current Albertson `r=27`, order-54
 crossing-number floor from 6069 to 6076.
 
+It now also formalizes the finite core of the independently reviewed
+height-1771 two-stage vertex-deletion refinement, which proves
+`50 * cr(G) >= 303804` and therefore `cr(G) >= 6077` at the same frontier.
+
 ## Main result
 
 `supportedCount features support S` counts feature identifiers whose finite
@@ -70,6 +74,35 @@ uniform one-unit stronger local deficit of 495 gives
 and hence at least 6105 crossings.  The reduction from
 `cr(24,132) >= 165` to that uniform local hypothesis remains outside Lean.
 
+The second generic incidence identity
+
+```text
+sum_supportedCount_erase
+```
+
+proves that a `k`-supported feature survives exactly `|U|-k` of the
+single-vertex deletions of `U`.  The two-stage theorem
+
+```text
+albertson_order54_two_stage_deletion
+```
+
+takes a 54-element universe of four-supported crossing occurrences, a
+degree-excess function totaling 48, and the reviewed pointwise inequality
+
+```text
+5650 <= crossings_surviving_deletion(v) + 27*excess(v).
+```
+
+It kernel-checks both conclusions
+
+```text
+303804 <= 50*|crossings|    and    6077 <= |crossings|.
+```
+
+`order54_degree_excess_total` separately checks that degree sum 1452 and
+decompositions `degree(v)=26+excess(v)` force total excess 48.
+
 ## Reproduction
 
 ```sh
@@ -83,7 +116,7 @@ Expected results with the pinned dependency manifest:
 
 - Mathlib cache: 8,689 artifacts;
 - build: 8,707 jobs completed successfully;
-- standalone Lean check: exit zero and the ten printed axiom audits below.
+- standalone Lean check: exit zero and the fifteen printed axiom audits below.
 
 Pinned versions:
 
@@ -96,7 +129,7 @@ Pinned versions:
 SHA-256:
 
 ```text
-5f0d899887961a7db515564bca3f0b18e4d08c7a44ca95e76843b19fa9354e86  AlbertsonIntegralSampling.lean
+80e08174923b16e99bfd040ff5cda87c911a19a4a203c7163b8aefe5ddcc6f9c  AlbertsonIntegralSampling.lean
 ```
 
 ## Literature alignment and trust boundary
@@ -119,6 +152,14 @@ inherited 24-vertex drawing.  The Lean theorem kernel-checks everything after
 that interface, including support multiplicities, both binomial counts, local
 integer rounding, and the final 6076 implication.
 
+For the two-stage refinement, Lean likewise does not prove the topological
+facts about deleting a vertex from a good drawing or the reviewed local
+crossing-number inequality for `G-v`.  It takes their subtraction-free finite
+form as the pointwise hypothesis above.  After that interface Lean checks the
+four-endpoint survival count, the summed lower bound 303804, and the exact
+ceiling 6077.  Critical-graph minimum degree and the handshake lemma enter
+only through the separately auditable excess-total interface.
+
 For the height-1765 refinement Lean additionally checks the implication from
 the uniform deficit-495 hypothesis to the exact average and floor 6105, but
 does not prove that the proposed local obstruction supplies that hypothesis.
@@ -127,4 +168,4 @@ The source contains no `sorry`, `admit`, custom axiom, `unsafe`, or
 `native_decide`.  It reads no external data and uses no generated certificate,
 solver, oracle, floating point, or nonstandard kernel/plugin.  The audited
 declarations depend only on `propext`, `Classical.choice`, and `Quot.sound`;
-`order54_floor_of_averaged_inequality` omits `Classical.choice`.
+the two pure floor implications omit `Classical.choice`.

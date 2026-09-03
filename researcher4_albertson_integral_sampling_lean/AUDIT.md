@@ -57,6 +57,36 @@ With local deficit 495, the same generic theorem instead yields
 `1965795/322`, and `albertson_order54_of_local495` proves the resulting
 integer conclusion `6105 <= |crossings|`.
 
+For vertex deletion, `sum_supportedCount_erase` proves the second reusable
+identity
+
+```text
+sum_{v in U} supportedCount features support (U.erase v)
+  = |features| * (|U|-k).
+```
+
+Thus four-supported crossing occurrences on 54 vertices survive exactly 50
+deletions each, with multiplicity preserved even when supports coincide.
+
+The height-1771 review supplies the local inequality in subtraction-free form
+
+```text
+5650 <= deletedCrossings(v) + 27*excess(v)
+```
+
+and the degree-excess total `sum_v excess(v)=48`.  Lean's
+`order54_deleted_sum_lower_bound` sums these to at least 303804.  The headline
+`albertson_order54_two_stage_deletion` combines this with the deletion identity
+and proves
+
+```text
+303804 <= 50*|crossings|  and  6077 <= |crossings|.
+```
+
+The companion `order54_degree_excess_total` verifies the finite handshake
+arithmetic: on 54 vertices, degree sum 1452 and
+`degree(v)=26+excess(v)` imply total excess 48.
+
 ## Published-bound conversion
 
 Büngener--Kaufmann's local theorem at 24 vertices reads
@@ -85,7 +115,10 @@ Formalized:
 - the exact local ceiling at sample size 24;
 - the specialized order-54, 726-edge inequality;
 - the exact rounded average and the lower bound 6076; and
-- the exact deficit-495 average and its lower bound 6105.
+- the exact deficit-495 average and its lower bound 6105;
+- the generic single-vertex-deletion support identity;
+- the degree-excess aggregation to 303804; and
+- the exact two-stage conclusion `50*|crossings| >= 303804`, hence 6077.
 
 Not formalized:
 
@@ -93,11 +126,14 @@ Not formalized:
 - existence of a crossing-minimal good drawing;
 - the fact that restricting such a drawing to `S` inherits precisely the
   crossings whose four endpoints lie in `S`;
+- the analogous topological interpretation after deleting one vertex;
 - Büngener--Kaufmann's crossing-number theorem itself; or
 - Sadhu's reduction of a hypothetical `r=27` counterexample to the orders 53
   and 54; or
 - the height-1765 reduction from `cr(24,132) >= 165` to a uniform local
-  deficit of 495.
+  deficit of 495; or
+- the height-1771 pointwise lower bound for `cr(G-v)`, critical-graph minimum
+  degree, and the graph-theoretic handshake identity.
 
 These remaining statements form the declared external mathematical boundary.
 There is no external executable or data boundary.
@@ -105,7 +141,7 @@ There is no external executable or data boundary.
 ## Verification record
 
 The clean commands in `README.md` completed 8,707 build jobs.  Standalone Lean
-replay exited zero.  The ten audited declarations use only
+replay exited zero.  The fifteen audited declarations use only
 `propext`, `Classical.choice`, and `Quot.sound`, except that the pure final
 natural-number implication omits `Classical.choice`.
 
@@ -113,5 +149,5 @@ The source scan found none of `sorry`, `admit`, custom `axiom`, `unsafe`, or
 `native_decide`.  Source SHA-256:
 
 ```text
-5f0d899887961a7db515564bca3f0b18e4d08c7a44ca95e76843b19fa9354e86
+80e08174923b16e99bfd040ff5cda87c911a19a4a203c7163b8aefe5ddcc6f9c
 ```
