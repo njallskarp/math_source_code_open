@@ -13,6 +13,10 @@
 > derives all 66 pairwise face seeds and partitions every one of the 22
 > complete cap orthants into transition-closed caps, rays, faces, and
 > tri-modal interiors.
+>
+> First below-cap slab: [`RESIDUAL_SLAB_2_21_1.md`](RESIDUAL_SLAB_2_21_1.md)
+> gives a direct four-block formula for every `(2+p,21+2q,1)`, closing the
+> first canonical residual cell and 18 further symbolic patterns.
 
 ## Result
 

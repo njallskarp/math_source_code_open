@@ -14,6 +14,7 @@ from audit_source_certificate import audit_certificate
 from verify import SUPPORT, require
 from verify_cap_orthants import verify_certificate as verify_cap_orthants
 from verify_dead_orthants import verify_certificate as verify_dead_orthants
+from verify_residual_slab import verify_certificate as verify_residual_slab
 
 EXPECTED_DEAD_SHA256 = (
     "33d53244922865533b379d8f40d91063e1758f5997362e940f5d1ea503e7686d"
@@ -24,7 +25,8 @@ EXPECTED_COUNTS = {
     "after_eight_dead_orthants": 3457,
     "after_twenty_two_trimodal_cores": 5999,
     "after_twenty_two_cap_orthants": 8052,
-    "residual_symbolic_patterns": 1492,
+    "after_first_residual_slab": 8071,
+    "residual_symbolic_patterns": 1473,
 }
 
 
@@ -84,11 +86,13 @@ def audit_coverage(
     source_path: Path,
     dead_path: Path,
     trimodal_path: Path,
+    slab_path: Path,
     verify_inputs: bool = True,
 ) -> dict[str, Any]:
     source_raw = source_path.read_bytes()
     dead_raw = dead_path.read_bytes()
     trimodal_raw = trimodal_path.read_bytes()
+    slab_raw = slab_path.read_bytes()
     if verify_inputs:
         audit_certificate(source_path)
         require(
@@ -97,10 +101,12 @@ def audit_coverage(
         )
         verify_dead_orthants(dead_path, 1)
         verify_cap_orthants(trimodal_path, 1)
+        verify_residual_slab(slab_path, 1)
 
     source = json.loads(source_raw)
     dead = json.loads(dead_raw)
     trimodal = json.loads(trimodal_raw)
+    slab = json.loads(slab_raw)
     require(tuple(source["underlying_set"]) == SUPPORT, "wrong source support")
     dead_by_base = {
         tuple(record["residue_case"]): tuple(record["boundary_seed"]["counts"])
@@ -114,6 +120,8 @@ def audit_coverage(
         tuple(record["residue_case"]): tuple(record["cap_seed"]["counts"])
         for record in trimodal["cases"]
     }
+    slab_seed = tuple(slab["seed"]["counts"])
+    require(slab_seed == (2, 21, 1), "wrong residual slab seed")
 
     counts = {key: 0 for key in EXPECTED_COUNTS if key != "residual_symbolic_patterns"}
     residuals: list[tuple[tuple[int, int, int], tuple[int, int, int], tuple[bool, bool, bool]]] = []
@@ -152,6 +160,10 @@ def audit_coverage(
                 covered = in_orthant(target, cap_by_base[base], set(SUPPORT))
             if covered:
                 counts["after_twenty_two_cap_orthants"] += 1
+            if not covered and base == (1, 1, 1):
+                covered = in_orthant(target, slab_seed, {1, 2})
+            if covered:
+                counts["after_first_residual_slab"] += 1
             else:
                 residuals.append((base, target, high))
                 residual_by_base[base] = residual_by_base.get(base, 0) + 1
@@ -167,6 +179,7 @@ def audit_coverage(
         "source_sha256": hashlib.sha256(source_raw).hexdigest(),
         "dead_orthant_sha256": hashlib.sha256(dead_raw).hexdigest(),
         "trimodal_sha256": hashlib.sha256(trimodal_raw).hexdigest(),
+        "residual_slab_sha256": hashlib.sha256(slab_raw).hexdigest(),
         **counts,
         "residual_cases": len(residual_by_base),
         "largest_residual_case": list(largest_base),
@@ -181,8 +194,13 @@ def main() -> None:
     parser.add_argument("source_certificate", type=Path)
     parser.add_argument("--dead", type=Path, default=Path("dead_orthant_certificate.json"))
     parser.add_argument("--trimodal", type=Path, default=Path("trimodal_certificate.json"))
+    parser.add_argument(
+        "--slab", type=Path, default=Path("residual_slab_certificate.json")
+    )
     args = parser.parse_args()
-    summary = audit_coverage(args.source_certificate, args.dead, args.trimodal)
+    summary = audit_coverage(
+        args.source_certificate, args.dead, args.trimodal, args.slab
+    )
     for key, value in summary.items():
         if isinstance(value, list):
             value = json.dumps(value, separators=(",", ":"))

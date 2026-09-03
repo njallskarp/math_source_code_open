@@ -43,6 +43,10 @@ result in `TRIMODAL_SAFE_CORES.md`.  It is not a proof of the full BHR
 conjecture for support `{1,2,11}`: finite-thickness regions below at least one
 cap coordinate remain.
 
+The follow-up `RESIDUAL_SLAB_2_21_1.md` supplies the first explicit
+transition-closed slab below these caps and reduces the conservative residual
+count further.
+
 ## The 66 pairwise face seeds
 
 Each embedded cap path is simultaneously growable in modes `1`, `2`, and

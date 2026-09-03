@@ -1,0 +1,8 @@
+certificate_sha256=8031d3eda5e24ee5609effe05cd1da7998d944a60f64c677e4251909c4c28d8b
+python=3.12.12
+grid=24
+family_paths_checked=676
+coordinate_transitions_checked=1250
+commuting_squares_checked=625
+record_sha256=742283d6593b95da86c4ab22dd18010516e18788969a19d52b8b48648d19fede
+VERIFIED
