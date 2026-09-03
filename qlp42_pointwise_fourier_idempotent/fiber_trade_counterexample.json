@@ -1,0 +1,33 @@
+{
+  "schema": "qlp42-pointwise-fiber-trade-counterexample-v1",
+  "case": 0,
+  "coordinate_order": "row-major (r,c) with r in C7 and c in C3",
+  "family_targets": {
+    "A": {"S": [1, -1], "H": [0, 0]},
+    "B": {"S": [4, -5], "H": [1, 0]}
+  },
+  "global_parameters": {"q": 5, "sigma": 3},
+  "family_parameters": {
+    "A": {"q": 4, "sigma": 4},
+    "B": {"q": 1, "sigma": -1}
+  },
+  "state_counts": {
+    "A": [2, 0, 0, 0, 0, 7, 0, 2, 1, 0, 0, 0, 0, 0, 4, 5],
+    "B": [0, 1, 4, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8]
+  },
+  "first": {
+    "A": [14, 14, 14, 5, 5, 5, 0, 0, 5, 5, 5, 5, 7, 7, 8, 14, 15, 15, 15, 15, 15],
+    "B": [1, 2, 2, 2, 2, 5, 5, 5, 5, 5, 5, 5, 5, 15, 15, 15, 15, 15, 15, 15, 15]
+  },
+  "second": {
+    "A": [5, 5, 5, 14, 14, 14, 0, 0, 5, 5, 5, 5, 7, 7, 8, 14, 15, 15, 15, 15, 15],
+    "B": [1, 2, 2, 2, 2, 5, 5, 5, 5, 5, 5, 5, 5, 15, 15, 15, 15, 15, 15, 15, 15]
+  },
+  "expected": {
+    "changed_three_cell_fibers": 2,
+    "quarter_support_symmetric_difference": 6,
+    "nonzero_primitive_indicator_remainders": 0,
+    "claim": "the fixed-invariant support-rigidity lemma is false",
+    "scope": "aggregate exact-sum local-state counterexample, not a QLP witness"
+  }
+}

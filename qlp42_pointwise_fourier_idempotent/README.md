@@ -70,6 +70,36 @@ determine its quarter support uniquely. Since the two family minority counts
 sum to five, at least one of the two families always satisfies this
 support-rigidity condition.
 
+## Sharpness: the second family need not be rigid
+
+The fixed-invariant strengthening suggested after the theorem is false.
+Even after fixing the sixteen state multiplicities separately in each
+family, both exact \(S/H\) sums, the global \(q\) and \(\sigma\), and every
+primitive order-\(21\) Fourier coefficient of every state indicator, the
+quarter support of the other family need not be determined.
+
+The file `fiber_trade_counterexample.json` gives an exact case-\(0\)
+counterexample at
+
+\[
+(q,\sigma)=(5,3).
+\]
+
+Family \(A\) has \((q_A,\sigma_A)=(4,4)\). One three-cell fiber is
+monochromatic in quarter state \(14\), while a second is monochromatic in
+nonquarter state \(5\). Exchanging the two fiber labels moves three quarter
+positions. Family \(B\) is unchanged and has
+\((q_B,\sigma_B)=(1,-1)\). The state counts, and therefore all aggregate
+linear invariants, remain fixed. Each changed indicator difference is a
+linear combination of complete three-cell fiber indicators, so all of its
+primitive order-\(21\) Fourier coefficients vanish.
+
+This is a counterexample to the proposed invariant package, not a QLP-42
+witness. The paired words satisfy the local sixteen-state alphabet and the
+canonical case-\(0\) exact sums, but the certificate does not assert the
+remaining QLP autocorrelation equations. See
+`FIBER_TRADE_COUNTEREXAMPLE.md` for the precise statement and proof.
+
 ## Fourier idempotent lift
 
 For a coloring \(F:C_n\to\mathcal A\), let \(n_a(j)\) be the indicator of
@@ -229,3 +259,9 @@ alphabet. The code certifies the \(p=7,q=3\) instance and its link to the
 sixteen-state transform. The computational trust boundary consists of
 CPython, the operating system, and hardware; no third-party package,
 floating point, randomness, solver, or timeout is used.
+
+The sharpness counterexample is checked twice. The production derivation
+reduces all indicator differences modulo \(\Phi_{21}\) over
+\(\mathbb Z[z]\). The independent checker instead verifies the tensor-fiber
+factorization directly on \(C_7\times C_3\), so it does not share the
+cyclotomic reduction routine. Both use exact integer arithmetic.
