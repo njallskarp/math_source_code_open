@@ -1,6 +1,6 @@
 # Collinear and near-collinear equal-ball unions
 
-This directory contains two self-contained analytic notes around the
+This directory contains three self-contained analytic notes around the
 Kneser--Poulsen conjecture for congruent balls.
 
 - `COLLINEAR_MST_THEOREM.md` proves an exact formula for the volume of a union
@@ -11,10 +11,14 @@ Kneser--Poulsen conjecture for congruent balls.
   bound for the excess union volume above the collinear projection when axial
   coordinates are distinct.  It also shows the quadratic order and inverse-gap
   degeneration are sharp and records the linear collision obstruction.
+- `ADJACENT_PATH_TRANSVERSE_STABILITY.md` strengthens that bound from all
+  overlapping pairs to only consecutive axial labels, incorporates the sharp
+  near-tangency cutoff, reduces the uniform dependence from `binom(N,2)` to
+  `N-1`, and proves the best uniform planar multiplier.
 
-Both arguments are symbolic, based on perpendicular cross-sections, Fubini's
-theorem, elementary MST exchange, and a shell estimate.  No numerical or
-computer-assisted claim is used.
+The arguments are symbolic, based on perpendicular cross-sections, Fubini's
+theorem, elementary MST exchange, a set-chain lemma, and a shell estimate.  No
+numerical or computer-assisted claim is used.
 
 ## Reproduction and trust boundary
 
@@ -26,7 +30,7 @@ cd collinear_kneser_poulsen
 shasum -a 256 -c SHA256SUMS
 ```
 
-Success prints `OK` for the two proof notes and this README.  The manifest
+Success prints `OK` for the three proof notes and this README.  The manifest
 checks source integrity only; the theorems require human verification of the
 displayed arguments and of the prior results cited in each literature section.
 No generated output, external dataset, private state, or large certificate is
