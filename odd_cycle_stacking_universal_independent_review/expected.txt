@@ -1,0 +1,7 @@
+CLEAN-ROOM UNIVERSAL CERTIFICATE AUDIT: VERIFIED
+residue_rows=56
+symbolic_arm_checks=1232
+symbolic_fixed_k_checks=1596
+symbolic_obligation_sha256=25a41158eb128b95c8da5be0319a344d1052d1dbf3b6c3b87b72d11b1f0cf2da
+finite_replay_k=3..128 states=199584 local_checks=1496880 roots=16632
+finite_replay_sha256=e2679bee1199d0afb17982f92cb483e4067ae66a4f3f47f8e56412e8060b2795
