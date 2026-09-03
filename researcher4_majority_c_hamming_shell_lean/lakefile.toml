@@ -1,6 +1,6 @@
 name = "majority_c_hamming"
 version = "0.1.0"
-defaultTargets = ["MajorityShellBound", "HammingShellIncidence", "HammingFin3LowerBound"]
+defaultTargets = ["MajorityShellBound", "HammingShellIncidence", "HammingFin3LowerBound", "HammingColorCountUpper"]
 
 [[lean_lib]]
 name = "MajorityShellBound"
@@ -10,6 +10,9 @@ name = "HammingShellIncidence"
 
 [[lean_lib]]
 name = "HammingFin3LowerBound"
+
+[[lean_lib]]
+name = "HammingColorCountUpper"
 
 [[require]]
 name = "mathlib"

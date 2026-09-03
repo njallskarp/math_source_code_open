@@ -61,6 +61,24 @@ fin3_card_ge_of_internal_degree
 Thus the complete lower bound for a nonempty majority color class in the
 balanced three-dimensional Hamming graph is kernel-checked.
 
+`HammingColorCountUpper.lean` closes the global counting step without a
+custom partition type.  For an arbitrary coloring function it defines the
+finite image `usedColors` and the fiber `colorClass`.  A generic bipartite
+double count proves that a uniform fiber lower bound `m` implies
+`|usedColors| * m <= |domain|`.  Composing this with the class theorem gives
+
+```text
+fin3_card_usedColors_le_majority_bound
+  (hn : 2 <= n)
+  (hmajority : forall u,
+    n - 1 + n / 2 <=
+      |internalNeighbors (colorClass color (color u)) u|) :
+  |usedColors color| <= n * n / ((n + 2) / 2).
+```
+
+Since `(n+2)/2 = ceil((n+1)/2)`, this is exactly the global upper bound in
+the reviewed formula.
+
 ## Exported theorems
 
 - `sum_sq_le_one_cap`: if three nonnegative integers of cap `N` sum to
@@ -80,7 +98,12 @@ balanced three-dimensional Hamming graph is kernel-checked.
 - `one_add_card_internal_add_card_distanceShell_two_le`: the disjoint-shell
   cardinality bound; and
 - `fin3_card_ge_of_internal_degree`: the composed three-dimensional
-  color-class lower bound.
+  color-class lower bound;
+- `card_usedColors_mul_le_card`: the generic uniform-fiber counting lemma;
+- `fin3_usedColors_mul_classBound_le`: the pre-division Hamming color count;
+  and
+- `fin3_card_usedColors_le_majority_bound`: the exact global upper bound on
+  used colors.
 
 ## Reproduction
 
@@ -91,11 +114,13 @@ lake build
 lake env lean MajorityShellBound.lean
 lake env lean HammingShellIncidence.lean
 lake env lean HammingFin3LowerBound.lean
+lake env lean HammingColorCountUpper.lean
 ```
 
 The standalone commands print the axiom dependencies of the five arithmetic
-results, three incidence results, and four specialization results.  Every
-audited result uses only `propext`, `Classical.choice`, and `Quot.sound`.
+results, three incidence results, four specialization results, and four
+global-count declarations.  Every audited result uses only `propext`,
+`Classical.choice`, and `Quot.sound`.
 
 Pinned versions:
 
@@ -111,6 +136,7 @@ SHA-256 values:
 b50d86784dfb20c2eb7928787fb6f9df2758892803fc0adcfa377f538b38bf14  MajorityShellBound.lean
 8edc33ce9f96ff3b198ab1cf39ba7dd89c457547ffca3a63559211b7ad957edc  HammingShellIncidence.lean
 49cec09387eaf1eff052b32aa83ad319e668c941f3f89930ae46e524a2ba6f55  HammingFin3LowerBound.lean
+cdd14d8cdecff91e902518b7e484075dd6f7cad3c0c741cf6e844808c98575dd  HammingColorCountUpper.lean
 ```
 
 ## Theorem and trust boundary
@@ -125,9 +151,9 @@ not contain the reviewed exact three-dimensional formula.
 
 This project does **not** claim to formalize the full formula.  It proves the
 capped-quadratic optimization, the generic Hamming-shell incidence layer, and
-the complete three-dimensional lower bound for one nonempty color class.  It
-does not define a majority C-coloring partition, lift the class bound to a
-global color-count statement, construct the optimal coloring, or prove the
-final floor/division argument.  There is no external data, generated
-certificate, solver, floating point, `native_decide`, custom axiom, `sorry`,
-or `admit`.
+the complete three-dimensional class and global color-count upper bounds for
+an explicit coloring function.  It does not construct the optimal coloring,
+prove that construction satisfies the majority condition, or package both
+directions as an equality for a named majority C-chromatic invariant.  There
+is no external data, generated certificate, solver, floating point,
+`native_decide`, custom axiom, `sorry`, or `admit`.

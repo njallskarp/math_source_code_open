@@ -72,6 +72,36 @@ Here `n-1+n/2 = ceil(3(n-1)/2)` and
 `n*(n/2+1) = (N+1)(ceil(N/2)+1)` for `N=n-1`, so the formal theorem matches
 the class-size lower bound in the reviewed proof without a parity gap.
 
+`HammingColorCountUpper.lean` formalizes the global division step using only
+a coloring function.  `usedColors color` is the image of the finite vertex
+set and `colorClass color c` is its fiber.  The generic theorem
+`card_usedColors_mul_le_card` double-counts the relation `color x = c` and
+proves
+
+```text
+|usedColors color| * m <= |domain|
+```
+
+whenever every used fiber has cardinality at least `m`.  Each vertex has at
+most one incident color because `color` is a function.  For domain
+`Fin 3 -> Fin n`, `fin3_usedColors_mul_classBound_le` supplies
+
+```text
+|usedColors color| * (n * (n/2+1)) <= n^3.
+```
+
+Cancelling the positive factor `n` and applying `Nat.le_div_iff_mul_le`
+gives the exact theorem
+
+```text
+|usedColors color| <= n^2 / ((n+2)/2).
+```
+
+The proved normalization `n/2+1 = (n+2)/2` identifies the denominator with
+`ceil((n+1)/2)`.  Thus the global upper-bound direction of the reviewed
+formula is formalized directly for every coloring function satisfying the
+majority fiber condition.
+
 The proof first establishes generic integer concentration lemmas at totals
 `N+t` and `2N+t`.  It then splits on whether `a+b+c <= 2N`.  The two residual
 differences are, after doubling,
@@ -87,16 +117,16 @@ truncated-subtraction side conditions.
 
 ## Scope not claimed
 
-The full graph theorem still requires two distinct layers:
+The full exact theorem still requires two layers:
 
-1. define the majority C-coloring partition interface and lift the nonempty
-   class bound to the global upper bound on the number of colors; and
-2. formalize the explicit row/column construction attaining that bound and
-   the final color-class/floor identities.
+1. formalize the explicit row/column construction attaining the bound and
+   prove its majority property and used-color count; and
+2. optionally package the function-level upper and construction lower bounds
+   as an equality for a named majority C-chromatic invariant.
 
 Neither layer is silently assumed.  The current artifact kernel-checks the
-complete lower bound for one nonempty class, not the full exact majority
-C-chromatic formula.
+complete upper-bound direction for the number of used colors, not the full
+exact majority C-chromatic formula.
 
 ## Literature and graph-first status
 
@@ -135,11 +165,12 @@ lake build
 lake env lean MajorityShellBound.lean
 lake env lean HammingShellIncidence.lean
 lake env lean HammingFin3LowerBound.lean
+lake env lean HammingColorCountUpper.lean
 ```
 
 Expected axiom output for each of the five arithmetic results and the three
 audited incidence results, and for each of the four audited specialization
-results:
+and four global-count results:
 
 ```text
 [propext, Classical.choice, Quot.sound]
@@ -151,7 +182,9 @@ for `MajorityShellBound.lean` and
 `8edc33ce9f96ff3b198ab1cf39ba7dd89c457547ffca3a63559211b7ad957edc`
 for `HammingShellIncidence.lean`, and
 `49cec09387eaf1eff052b32aa83ad319e668c941f3f89930ae46e524a2ba6f55`
-for `HammingFin3LowerBound.lean`.  The sources contain no `sorry`, `admit`,
+for `HammingFin3LowerBound.lean`, and
+`cdd14d8cdecff91e902518b7e484075dd6f7cad3c0c741cf6e844808c98575dd` for
+`HammingColorCountUpper.lean`.  The sources contain no `sorry`, `admit`,
 custom axiom, `unsafe`, or `native_decide`; they read no external files and
 use no generated data, certificate, solver, oracle, or nonstandard
 kernel/plugin.
