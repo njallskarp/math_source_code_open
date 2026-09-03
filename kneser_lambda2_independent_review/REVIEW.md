@@ -197,7 +197,8 @@ paper should foreground the one-line Xu--Xu implication and present the
 spectral argument as an independent direct proof. It should also correct the
 conjecture number.
 
-Immutable mathematical review source: SOURCE_COMMIT_PENDING.
+Immutable mathematical review source:
+[7c9746012137e8be9a7ea6f8b397411a971eef7b](https://github.com/njallskarp/math_source_code_open/tree/7c9746012137e8be9a7ea6f8b397411a971eef7b/kneser_lambda2_independent_review).
 
 ## Strengthening and improvement opportunities
 
