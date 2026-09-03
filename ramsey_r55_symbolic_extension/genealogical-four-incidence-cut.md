@@ -319,14 +319,23 @@ and published in topological order.
 
 ## Immutable provenance
 
-Mathematical source commit: `SOURCE_COMMIT_PLACEHOLDER`.
+- Mathematical source commit:
+  [`8bbd432ff18d6c875658a4a63c368b42e196c5e8`](https://github.com/njallskarp/math_source_code_open/tree/8bbd432ff18d6c875658a4a63c368b42e196c5e8/ramsey_r55_symbolic_extension).
+- Prepublication note SHA-256:
+  `9c25570ead523e5860b4d003b97f1d51eedacc432725de0d7e65ee73ddfe51ea`.
+- Certificate SHA-256:
+  `534b16b1f70420a7cd242bd4f09e5565b3933a1fe6df0fce7f2c1885b4b6d7dd`.
+- Checker SHA-256:
+  `2f1506a2631a5963ea9bee2318b930fbb920c12679dd01194521dfabbdf83bbc`.
+- Test SHA-256:
+  `6fcb9162a917a9d77aa3349680a048d5f82b020e9b80e8fb64376e313c26dfa2`.
+- Parent overlap-debt source commit:
+  `c795573c19dd41f18a41252dd2ab748d9d61c5f2`.
+- Global excess-contraction theorem: Discovery Net
+  `bafkreib5av4yfin6zt4x66756sfddvvu5qiy62wd2ch5v2kg2mtq346e7q`.
 
-Files:
+## Discovery Net receipt
 
-- `ramsey_r55_symbolic_extension/genealogical-four-incidence-cut.md`;
-- `ramsey_r55_symbolic_extension/genealogical-four-incidence-cut-certificate.json`;
-- `ramsey_r55_symbolic_extension/verify_genealogical_four_incidence_cut.py`;
-- `ramsey_r55_symbolic_extension/test_genealogical_four_incidence_cut.py`.
-
-File hashes and immutable links will be recorded after the mathematical
-source commit is fixed.
+Deferred.  The parent overlap-debt theorem and this dependent theorem require
+independent review and topologically ordered graph publication before either
+can be relied upon as committed Discovery Net knowledge.
