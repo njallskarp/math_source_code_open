@@ -1,154 +1,126 @@
-# A boundary-eigenvalue criterion for line-graph signature amplifiers
+# Boundary eigenvalues and line-graph signature amplifiers
 
-Let (s(L(G))) be the adjacency signature of the line graph of a connected
-simple graph (G), and let
+For a connected simple graph `G`, let `s(L(G))` denote the adjacency
+signature of its line graph and let
 
-\[
-c(G)=|E(G)|-|V(G)|+1.
-\]
+```text
+c(G) = |E(G)| - |V(G)| + 1.
+```
 
-The open sharp cyclomatic bound is
+The open sharp cyclomatic conjecture is
 
-\[
-2s(L(G))\leq c(G)+1. \tag{1}
-\]
+```text
+2 s(L(G)) <= c(G) + 1.                                      (1)
+```
 
-This note gives an exact algebraic reduction for one natural way of attacking
-(1): zero-response rooted modules.  It identifies the precise obstruction
-that a counterexample search must find, and it turns any such obstruction into
-an infinite counterexample family.
+This note gives an exact algebraic reduction for one natural counterexample
+mechanism: zero-response rooted modules.
 
-## The criterion
+## Boundary-to-amplifier criterion
 
-Write (Q(J)) for the signless Laplacian of (J).  Suppose that a connected
-simple graph (J) has these two properties:
+Let `J` be a connected simple graph such that:
 
-1. (2) is a simple eigenvalue of (Q(J));
-2. (2s(L(J))=c(J)+1).
+1. `2` is a simple eigenvalue of its signless Laplacian `Q(J)`;
+2. `2 s(L(J)) = c(J) + 1`.
 
-Choose a (2)-eigenvector (y) of (Q(J)), and choose a vertex (v) with
-(y_v\ne0).  Form (M) by adjoining one new leaf (r) at (v), and regard
-(r) as the root.  If (ho=rv), then
+Choose a `2`-eigenvector `y` of `Q(J)` and a vertex `v` with `y_v != 0`.
+Form `M` by adjoining a new leaf `r` at `v`, and regard `r` as the root.
+Write `rho = rv` for the root edge and `K = A(L(M))`. Then
 
-\[
-K=A(L(M))\quad\hbox{is invertible},\qquad
-(K^{-1})_{\rho\rho}=0,
-\]
+```text
+K is invertible,
+(K inverse)_[rho,rho] = 0,
+s(L(M)) = s(L(J)),
+c(M) = c(J).
+```
 
-and
+Starting from `C5` and attaching `k` disjoint copies of this rooted module
+therefore gives connected simple graphs `G_k` satisfying
 
-\[
-s(L(M))=s(L(J)),\qquad c(M)=c(J).
-\]
+```text
+c(G_k) = 1 + k c(J),
+s(L(G_k)) = 1 + k (c(J)+1)/2,
+2 s(L(G_k)) - (c(G_k)+1) = k.
+```
 
-Consequently, starting from (C_5) and attaching (k) disjoint copies of
-this rooted module gives connected simple graphs (G_k) satisfying
+Thus one boundary graph `J` with a simple signless-Laplacian eigenvalue `2`
+would disprove (1) by an infinite family.
 
-\[
-c(G_k)=1+k c(J),\qquad
-s(L(G_k))=1+k\frac{c(J)+1}{2},
-\]
-
-so
-
-\[
-2s(L(G_k))-(c(G_k)+1)=k.
-\]
-
-Thus even one graph (J) on the sharp boundary with a simple signless-
-Laplacian eigenvalue (2) disproves (1), and does so by an infinite family.
-
-Conversely, every rooted-leaf module (M) with invertible (A(L(M))) and
-zero inverse diagonal at its root edge arises this way: deleting the root leaf
-gives a connected graph (J) for which (2) is a simple eigenvalue of
-(Q(J)), the associated eigenvector is nonzero at the neighbour of the
-deleted leaf, and (s(L(J))=s(L(M))).
+Conversely, every rooted-leaf graph `M` for which `A(L(M))` is invertible
+and its inverse has zero diagonal at the root edge arises this way after
+deleting the root leaf. The resulting graph `J` has a simple `2`-eigenvalue
+of `Q(J)`, the corresponding eigenvector is nonzero at the attachment
+vertex, and `s(L(J)) = s(L(M))`.
 
 ## Proof
 
-Let (R) be the unsigned vertex-edge incidence matrix of (J), and put
+Let `R` be the unsigned vertex-edge incidence matrix of `J` and put
 
-\[
-B=A(L(J))=R^{\mathsf T}R-2I.
-\]
+```text
+B = A(L(J)) = R^T R - 2 I.
+```
 
-The multiplicity of (2) in (Q(J)=RR^{\mathsf T}) equals the nullity of
-(B), because the two matrices have the same nonzero squared singular values.
-Under the hypothesis, (ker B) is therefore one-dimensional.  If
-(Q(J)y=2y), set
+The multiplicity of `2` in `Q(J) = R R^T` equals the nullity of `B`, since
+the two Gram matrices have the same nonzero eigenvalues with multiplicity.
+Hence `ker(B)` is one-dimensional. If `Q(J)y = 2y`, set
 
-\[
-x=\frac12R^{\mathsf T}y.
-\]
+```text
+x = (1/2) R^T y.
+```
 
-Then (Bx=0) and (Rx=y).  Let (z=R^{\mathsf T}e_v), the indicator vector
-of the edges of (J) incident with (v).  It follows that
+Then `Bx = 0` and `Rx = y`. Let `z = R^T e_v`, the indicator of the edges
+of `J` incident with `v`. Therefore
 
-\[
-z^{\mathsf T}x=e_v^{\mathsf T}Rx=y_v\ne0. \tag{2}
-\]
+```text
+z^T x = e_v^T R x = y_v != 0.                              (2)
+```
 
-Ordering the root edge last gives
+Ordering the root edge last gives the bordered matrix
 
-\[
-A(L(M))=
-\begin{pmatrix}
-B&z\\ z^{\mathsf T}&0
-\end{pmatrix}. \tag{3}
-\]
+```text
+        [ B    z ]
+K   =   [        ].                                         (3)
+        [ z^T  0 ]
+```
 
-Apply a congruence which writes (B) as its nonsingular part plus one zero
-coordinate.  Equation (2) says that the last border couples nontrivially to
-that zero coordinate.  The remaining (2\times2) block has negative
-determinant, hence inertia ((1,0,1)).  Therefore, if
+Use a congruence to split `B` into its nonsingular part and one zero
+coordinate. Equation (2) says that the border couples nontrivially to that
+zero coordinate. After eliminating the nonsingular part, the remaining
+two-dimensional block has negative determinant and hence inertia `(1,0,1)`.
+Thus
 
-\[
-\operatorname{In}(B)=(p,1,n),
-\]
+```text
+In(B) = (p,1,n)  implies  In(K) = (p+1,0,n+1).              (4)
+```
 
-then
+This proves invertibility and preservation of signature. The
+`(rho,rho)` cofactor of `K` is `det(B)=0`, so Cramer's formula gives the
+zero inverse diagonal. Adding a leaf preserves cyclomatic number.
 
-\[
-\operatorname{In}(A(L(M)))=(p+1,0,n+1). \tag{4}
-\]
+For any host `H`, the adjacency matrix after identifying the root with a
+vertex of `H` has off-diagonal coupling only through the root-edge
+coordinate. Schur elimination of `K` changes the host block by the root
+inverse diagonal times a rank-one matrix. That scalar is zero, so line-graph
+inertia is additive. Repeated attachment to `C5` proves the formulas for
+`G_k`.
 
-This proves invertibility and preservation of signature.  Moreover, the
-(ho,ho) cofactor in (3) is (det B=0), so Cramer's formula gives
-((K^{-1})_{\rho\rho}=0).  Adding a leaf preserves cyclomatic number.
-
-For any host (H), the line-graph adjacency matrix after identifying the
-root with a vertex of (H) has block form
-
-\[
-\begin{pmatrix}
-A(L(H))&w e_\rho^{\mathsf T}\\
-e_\rho w^{\mathsf T}&K
-\end{pmatrix}.
-\]
-
-Schur elimination of (K) changes the first block by
-(- (K^{-1})_{\rho\rho}ww^{\mathsf T}=0).  Hence line-graph inertia is
-additive under every such attachment.  Applying this repeatedly to (C_5)
-proves the displayed formulas for (G_k).
-
-For the converse, delete the root-edge row and column of (K).  The result is
-(B=A(L(J))).  The zero inverse diagonal says (det B=0), while principal
-interlacing with nonsingular (K) forces (dim\ker B=1).  If the border were
-orthogonal to (ker B), then (K) would still be singular, so the coupling
-is nonzero.  Reversing the incidence argument gives a simple (2)-eigenvalue
-of (Q(J)) and an eigenvector nonzero at the attachment vertex.  The same
-hyperbolic-pair argument gives (4), completing the converse.
+For the converse, delete the root-edge row and column of `K`; the result is
+`B = A(L(J))`. The zero inverse diagonal gives `det(B)=0`, while principal
+interlacing with nonsingular `K` forces `nullity(B)=1`. If the border were
+orthogonal to `ker(B)`, then `K` would remain singular, so the coupling is
+nonzero. Reversing the incidence argument supplies the asserted simple
+`2`-eigenvalue and nonzero eigenvector coordinate. The same hyperbolic-pair
+argument proves signature preservation.
 
 ## Reproduction
 
-The checker uses only the Python standard library and exact integer/rational
-arithmetic.  It verifies every matrix identity used by the reduction on the
-published rooted (C_4\!-!C_5) zero-response module, including both incidence
-identities, exact inertias, the singular principal minor, and the inverse
-cofactor condition.
+The checker uses Python standard-library exact integer and rational
+arithmetic. It verifies the incidence identities, exact inertias, singular
+principal minor, and inverse-cofactor mechanism on Paone's rooted
+`C4--C5` zero-response module.
 
 ```sh
-python3 verify.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify.py
 ```
 
 Expected final line:
@@ -157,22 +129,19 @@ Expected final line:
 RESULT_SHA256=ff0955a9847d73d4bfce22f4bc14562379a96f4a0a7996399de72cca76e65997
 ```
 
-The universal criterion is proved above; the finite computation is a
-reproduction check of its algebraic mechanism, not evidence for the universal
-quantifiers.  The exploratory search that selected this reduction is also not
-part of the theorem: numerical filtering found no boundary obstruction among
-connected graphs through nine vertices or among residue-reduced linear cactus
-chains with one, three, or five cycles.
+The universal result is the proof above. The finite checker validates its
+algebraic mechanism on a canonical module; it is not evidence for the
+universal quantifiers. Exploratory numerical searches are excluded from the
+claim.
 
 ## Literature boundary
 
-The incidence identities and Schur-complement tools are classical.  Paone's
-rooted-module paper supplies the explicit (C_4\!-!C_5) zero-response module
-and an unbounded-signature family.  Paone and Paone formulate (1), give exact
-pendant-tree response formulas, and leave (1) open.  Francis and Uptain give an
-independent unbounded-signature construction.  The present contribution is
-the boundary-to-amplifier equivalence above, not those ingredients or a proof
-of (1).
+The incidence identities and Schur complements are classical. Paone gives
+the explicit `C4--C5` zero-response module and an unbounded-signature
+family. Paone and Paone formulate (1), derive exact pendant-tree response
+formulas, and leave (1) open. Francis and Uptain independently construct
+unbounded line-graph signature. The contribution here is the exact
+boundary-to-amplifier equivalence, not those ingredients or a proof of (1).
 
 Primary sources checked:
 
