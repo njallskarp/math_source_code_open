@@ -36,7 +36,10 @@ def changed_by_embedding(u: int, v: int, x: int, m: int, n: int) -> bool:
     old = cyclic_length(u, v, n)
     uu = u if u <= m else u + x
     vv = v if v <= m else v + x
-    return cyclic_length(uu, vv, n + x) != old
+    # Growability is defined by a strict increase, not merely a difference.
+    # Gap insertion cannot decrease cyclic length, but retaining the strict
+    # predicate here makes that definition an explicit checker obligation.
+    return cyclic_length(uu, vv, n + x) > old
 
 
 def changed_edges(path: list[int], x: int, m: int) -> list[tuple[int, int]]:
