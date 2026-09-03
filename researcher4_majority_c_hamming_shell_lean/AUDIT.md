@@ -45,6 +45,33 @@ must be among its two changed coordinates, and adjacency in a fixed direction
 uniquely determines the first-shell word.  Mathlib's `Finset` bipartite
 degree-sum identity then completes the double count.
 
+`HammingFin3LowerBound.lean` supplies every remaining set-theoretic premise
+of the single-class lower bound.  Evaluation at coordinate `i` is injective
+on `L_i`, because all other coordinates equal the center; hence
+`|L_i| <= n-1`.  Projection from the directed first shell to its words is a
+bijection onto the internal neighbors of the center, giving
+
+```text
+|internalNeighbors C v| = sum_i |L_i|.
+```
+
+Finally, the center, internal-neighbor shell, and distance-two shell are
+pairwise disjoint subsets of `C`.  Specializing to `Fin 3 -> Fin n` and using
+`Fin.sum_univ_three`, the theorem `fin3_card_ge_of_internal_degree` composes
+these facts with `hamming_shell_incidence` and
+`card_ge_of_shell_incidence`.  Its exact statement is
+
+```text
+2 <= n,
+v in C,
+forall u in C, n - 1 + n / 2 <= |internalNeighbors C u|
+  ==> n * (n / 2 + 1) <= |C|.
+```
+
+Here `n-1+n/2 = ceil(3(n-1)/2)` and
+`n*(n/2+1) = (N+1)(ceil(N/2)+1)` for `N=n-1`, so the formal theorem matches
+the class-size lower bound in the reviewed proof without a parity gap.
+
 The proof first establishes generic integer concentration lemmas at totals
 `N+t` and `2N+t`.  It then splits on whether `a+b+c <= 2N`.  The two residual
 differences are, after doubling,
@@ -60,18 +87,16 @@ truncated-subtraction side conditions.
 
 ## Scope not claimed
 
-The full graph theorem still requires three distinct layers:
+The full graph theorem still requires two distinct layers:
 
-1. specialize to `Fin 3 -> Fin n`, bound each `|L_i|` by `n-1`, identify the
-   first-shell sum with the internal degree at the basepoint, and prove the
-   disjoint-shell cardinality bound consumed by `card_ge_of_shell_incidence`;
-2. define the majority C-coloring partition interface; and
-3. formalize the explicit row/column construction attaining the bound and
+1. define the majority C-coloring partition interface and lift the nonempty
+   class bound to the global upper bound on the number of colors; and
+2. formalize the explicit row/column construction attaining that bound and
    the final color-class/floor identities.
 
-None of these is silently assumed by the exported arithmetic theorem.  The
-current artifact is a reusable logical bridge, not a formal proof of the
-new exact majority C-chromatic formula.
+Neither layer is silently assumed.  The current artifact kernel-checks the
+complete lower bound for one nonempty class, not the full exact majority
+C-chromatic formula.
 
 ## Literature and graph-first status
 
@@ -109,10 +134,12 @@ lake exe cache get
 lake build
 lake env lean MajorityShellBound.lean
 lake env lean HammingShellIncidence.lean
+lake env lean HammingFin3LowerBound.lean
 ```
 
 Expected axiom output for each of the five arithmetic results and the three
-audited incidence results:
+audited incidence results, and for each of the four audited specialization
+results:
 
 ```text
 [propext, Classical.choice, Quot.sound]
@@ -122,7 +149,9 @@ Source SHA-256 values are
 `b50d86784dfb20c2eb7928787fb6f9df2758892803fc0adcfa377f538b38bf14`
 for `MajorityShellBound.lean` and
 `8edc33ce9f96ff3b198ab1cf39ba7dd89c457547ffca3a63559211b7ad957edc`
-for `HammingShellIncidence.lean`.  The sources contain no `sorry`, `admit`,
+for `HammingShellIncidence.lean`, and
+`49cec09387eaf1eff052b32aa83ad319e668c941f3f89930ae46e524a2ba6f55`
+for `HammingFin3LowerBound.lean`.  The sources contain no `sorry`, `admit`,
 custom axiom, `unsafe`, or `native_decide`; they read no external files and
 use no generated data, certificate, solver, oracle, or nonstandard
 kernel/plugin.

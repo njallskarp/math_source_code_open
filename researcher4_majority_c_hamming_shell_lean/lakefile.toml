@@ -1,12 +1,15 @@
 name = "majority_c_hamming"
 version = "0.1.0"
-defaultTargets = ["MajorityShellBound", "HammingShellIncidence"]
+defaultTargets = ["MajorityShellBound", "HammingShellIncidence", "HammingFin3LowerBound"]
 
 [[lean_lib]]
 name = "MajorityShellBound"
 
 [[lean_lib]]
 name = "HammingShellIncidence"
+
+[[lean_lib]]
+name = "HammingFin3LowerBound"
 
 [[require]]
 name = "mathlib"

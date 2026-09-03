@@ -44,6 +44,23 @@ shows that any distance-two word is adjacent to directed first-shell words
 in at most its two changed coordinates.  The incidence theorem is slightly
 stronger than needed: it does not assume that the base word belongs to `C`.
 
+`HammingFin3LowerBound.lean` closes the specialization and composition.  It
+proves that evaluation in coordinate `i` injects `L_i` into the alphabet with
+the center value removed, identifies the center degree with
+`sum_i |L_i|`, and counts the disjoint center, first, and second shells.  The
+headline result is:
+
+```text
+fin3_card_ge_of_internal_degree
+  (hn : 2 <= n) (hv : v ∈ C)
+  (hdegree : forall u in C,
+    n - 1 + n / 2 <= |internalNeighbors C u|) :
+  n * (n / 2 + 1) <= |C|.
+```
+
+Thus the complete lower bound for a nonempty majority color class in the
+balanced three-dimensional Hamming graph is kernel-checked.
+
 ## Exported theorems
 
 - `sum_sq_le_one_cap`: if three nonnegative integers of cap `N` sum to
@@ -57,7 +74,13 @@ stronger than needed: it does not assume that the base word belongs to `C`.
 - `card_ge_of_shell_incidence`: the incidence-to-class-size corollary;
 - `card_directedFirstShell_neighbors_le_two`: the distance-two capacity
   lemma; and
-- `hamming_shell_incidence`: the generic weighted Hamming-shell double count.
+- `hamming_shell_incidence`: the generic weighted Hamming-shell double count;
+- `card_directionShell_le_card_sub_one`: the coordinate-shell cap;
+- `card_internalNeighbors_eq_sum_directionShell`: the first-shell partition;
+- `one_add_card_internal_add_card_distanceShell_two_le`: the disjoint-shell
+  cardinality bound; and
+- `fin3_card_ge_of_internal_degree`: the composed three-dimensional
+  color-class lower bound.
 
 ## Reproduction
 
@@ -67,11 +90,12 @@ lake exe cache get
 lake build
 lake env lean MajorityShellBound.lean
 lake env lean HammingShellIncidence.lean
+lake env lean HammingFin3LowerBound.lean
 ```
 
 The standalone commands print the axiom dependencies of the five arithmetic
-results and the three audited incidence results.  Every audited result uses
-only `propext`, `Classical.choice`, and `Quot.sound`.
+results, three incidence results, and four specialization results.  Every
+audited result uses only `propext`, `Classical.choice`, and `Quot.sound`.
 
 Pinned versions:
 
@@ -86,6 +110,7 @@ SHA-256 values:
 ```text
 b50d86784dfb20c2eb7928787fb6f9df2758892803fc0adcfa377f538b38bf14  MajorityShellBound.lean
 8edc33ce9f96ff3b198ab1cf39ba7dd89c457547ffca3a63559211b7ad957edc  HammingShellIncidence.lean
+49cec09387eaf1eff052b32aa83ad319e668c941f3f89930ae46e524a2ba6f55  HammingFin3LowerBound.lean
 ```
 
 ## Theorem and trust boundary
@@ -99,10 +124,10 @@ poses the odd-dimensional balanced Hamming case as an open problem and does
 not contain the reviewed exact three-dimensional formula.
 
 This project does **not** claim to formalize the full formula.  It proves the
-capped-quadratic optimization and the generic Hamming-shell incidence layer,
-but it does not yet connect the coordinate-shell cardinalities to the
-three-dimensional equal-alphabet caps and disjoint-shell count, define a
-majority C-coloring partition, construct the optimal coloring, or prove the
+capped-quadratic optimization, the generic Hamming-shell incidence layer, and
+the complete three-dimensional lower bound for one nonempty color class.  It
+does not define a majority C-coloring partition, lift the class bound to a
+global color-count statement, construct the optimal coloring, or prove the
 final floor/division argument.  There is no external data, generated
 certificate, solver, floating point, `native_decide`, custom axiom, `sorry`,
 or `admit`.
