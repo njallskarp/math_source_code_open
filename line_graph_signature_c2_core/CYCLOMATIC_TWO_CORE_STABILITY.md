@@ -142,7 +142,10 @@ length:        4  5  6  3,                         (9)
 and for a joining path use representatives `4,1,2,3`.  A theta reduction can
 produce parallel terminal edges; this is harmless because (5)--(7) are
 matrix congruences and the reduced matrix retains the correct edge
-multiplicities.
+multiplicities.  In (10)--(13), “line signature” on such a reduced matrix
+means the invariant `sig(M_reduced)-1`, which equals the line signature of
+the original simple graph by (2) and (7); it is not an assertion about a
+separately defined simple line graph of the reduced multigraph.
 
 Exact rational congruence of the 16 reduced rose matrices gives line-signature
 distribution
