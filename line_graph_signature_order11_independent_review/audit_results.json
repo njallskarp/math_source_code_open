@@ -1,0 +1,42 @@
+{
+  "target": {
+    "artifact_ref": "bafkreibrzfblwn3xld5jxyqlsg7kiwq5cpavl2dvciqhhxi345tj3ynw5u",
+    "source_commit": "2454f354ab049cc66e84959433665002c8a30e65"
+  },
+  "reviewer_charpoly_n3_n9": {
+    "algorithm": "Faddeev-LeVerrier characteristic polynomial plus exact Descartes sign variations",
+    "graphs": 83339,
+    "counterexamples": 0,
+    "sharp_bound_violations": 0,
+    "maximum_signature": 1,
+    "stdout_sha256": "399fb21253b6b3f21b704e0adea03ff216b1b5967a160692391c09b8a7a9b85a",
+    "wall_seconds": 66
+  },
+  "entrywise_n3_n9": {
+    "graphs": 83339,
+    "cpp_vs_direct_python": "identical",
+    "tsv_sha256": "bbb6f962d07b182f9da1cfc4ca188a70e225f9b5fe57e84cdc03f338653d8d89"
+  },
+  "ubsan_replay": {
+    "n10": {
+      "graphs": 1335628,
+      "fallbacks": 36142,
+      "summary_sha256": "5567d30204ddee6550712ffe6693afb9ed73dc9da5212fc556ae8ce6af224aab",
+      "wall_seconds": 16
+    },
+    "n11": {
+      "graphs": 28908704,
+      "fallbacks": 391592,
+      "summary_sha256": "32b42a4bb2b16f94a7140c48143a947dd1cc9ebc63ec1814ddbcc05dd1b11eaf",
+      "wall_seconds": 268
+    },
+    "diagnostics": 0,
+    "summary_comparisons": "byte-identical to target fixtures"
+  },
+  "environment": {
+    "architecture": "Darwin arm64",
+    "compiler": "Apple clang 17.0.0",
+    "nauty": "2.8.9 (unofficial GitHub mirror commit cb44c50bd4fa543b977df6a4b70ec88e67020646)",
+    "python": "CPython 3.12.12"
+  }
+}
