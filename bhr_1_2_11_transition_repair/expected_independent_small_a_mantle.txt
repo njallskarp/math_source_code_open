@@ -1,0 +1,12 @@
+certificate_sha256=7669175bf86a2ad4938bc1cd8a1aae8e7a64b5e59bcfc4904b6e6b4d7646a192
+residue_classes=11
+source_derivation_steps=44
+minimum_seed_order=36
+seed_paths_sha256=cd3cd69b37cbb53c9d6ffc50e1b1429f57601dd8707387d103d20fc80b0addd0
+safe_margin=35<=36
+grid=6
+family_paths_checked=704
+coordinate_transitions_checked=1078
+commuting_squares_checked=539
+record_sha256=9dbdc10aa3bd26922507777712b06f311302b7bfa17b2454c8176c18bbb5959d
+VERIFIED

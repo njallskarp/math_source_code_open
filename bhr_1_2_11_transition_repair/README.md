@@ -9,7 +9,7 @@
 > safe simultaneous `{1,2,11}` seed in every one of the 22 residue classes and
 > proves a transition-closed three-dimensional core from each seed.
 >
-> Strongest current result: [`CAP_ORTHANT_REPAIR.md`](CAP_ORTHANT_REPAIR.md)
+> Global certificate repair: [`CAP_ORTHANT_REPAIR.md`](CAP_ORTHANT_REPAIR.md)
 > derives all 66 pairwise face seeds and partitions every one of the 22
 > complete cap orthants into transition-closed caps, rays, faces, and
 > tri-modal interiors.
@@ -37,6 +37,12 @@
 > orders of a source witness.  The safe-margin theorem then closes every
 > `(1,9+2q,25+11r)`, adding a new existence slab outside the published
 > `a>=3` range and removing 12 more residual patterns.
+>
+> Full small-`a` mantle: [`SMALL_A_MANTLE.md`](SMALL_A_MANTLE.md) repeats the
+> direct two-order repair in every `c mod 11` residue class.  Eleven safe
+> 2/11-growable seeds prove the corresponding eleven slabs and, uniformly,
+> every `(1,b,c)` with odd `b>=15` and `c>=20`.  Eight new residue classes
+> remove 60 further patterns from the conservative audit.
 
 ## Result
 

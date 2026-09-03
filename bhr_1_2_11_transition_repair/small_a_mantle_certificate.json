@@ -1,0 +1,1262 @@
+{
+  "schema": "bhr-small-a-mantle-v1",
+  "support": [
+    1,
+    2,
+    11
+  ],
+  "source_context": {
+    "source_certificate_sha256": "e92ba9b84512e8829400bdeaf0fd0ef0082b56b26e6720e882ba2c2bbb8fbc6c",
+    "source_role": "Selected paths are copied from the pinned finite certificate; every mathematical property used below is rechecked directly.",
+    "previous_coverage": 8151,
+    "previous_residual_symbolic_patterns": 1393,
+    "previous_residual_records_sha256": "3d0e81150a2e5147b0b47e3a8ffdc3bb10085a54430e7562fac84bcace348e1a"
+  },
+  "safe_margin": {
+    "growth_modes": [
+      2,
+      11
+    ],
+    "maximum_edge_length": 11,
+    "maximum_pair_sum": 13,
+    "required_order": 35,
+    "minimum_seed_order": 36
+  },
+  "cases": [
+    {
+      "residue_case": [
+        1,
+        1,
+        1
+      ],
+      "source_witness_index": 0,
+      "source": {
+        "counts": [
+          1,
+          9,
+          12
+        ],
+        "path": [
+          5,
+          16,
+          18,
+          7,
+          9,
+          20,
+          22,
+          11,
+          0,
+          21,
+          10,
+          8,
+          19,
+          17,
+          6,
+          4,
+          15,
+          13,
+          2,
+          3,
+          14,
+          12,
+          1
+        ],
+        "selected_growth_cuts": {
+          "2": 1,
+          "11": 11
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          11,
+          23
+        ],
+        "path": [
+          7,
+          18,
+          29,
+          31,
+          20,
+          9,
+          11,
+          22,
+          33,
+          35,
+          24,
+          13,
+          2,
+          0,
+          34,
+          23,
+          12,
+          10,
+          21,
+          32,
+          30,
+          19,
+          8,
+          6,
+          17,
+          28,
+          26,
+          15,
+          4,
+          5,
+          16,
+          27,
+          25,
+          14,
+          3,
+          1
+        ],
+        "selected_growth_cuts": {
+          "2": 1,
+          "11": 13
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "11+2q",
+          "23+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        2
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          9,
+          13
+        ],
+        "path": [
+          16,
+          5,
+          3,
+          14,
+          1,
+          12,
+          23,
+          21,
+          10,
+          8,
+          19,
+          18,
+          7,
+          9,
+          20,
+          22,
+          0,
+          11,
+          13,
+          2,
+          4,
+          15,
+          17,
+          6
+        ],
+        "selected_growth_cuts": {
+          "2": 1,
+          "11": 10
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          11,
+          24
+        ],
+        "path": [
+          29,
+          18,
+          7,
+          5,
+          16,
+          27,
+          1,
+          3,
+          14,
+          25,
+          36,
+          34,
+          23,
+          12,
+          10,
+          21,
+          32,
+          31,
+          20,
+          9,
+          11,
+          22,
+          33,
+          35,
+          0,
+          2,
+          13,
+          24,
+          26,
+          15,
+          4,
+          6,
+          17,
+          28,
+          30,
+          19,
+          8
+        ],
+        "selected_growth_cuts": {
+          "2": 1,
+          "11": 12
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "11+2q",
+          "24+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        3
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          7,
+          14
+        ],
+        "path": [
+          4,
+          15,
+          17,
+          6,
+          8,
+          19,
+          21,
+          10,
+          11,
+          22,
+          20,
+          9,
+          7,
+          18,
+          16,
+          5,
+          3,
+          14,
+          2,
+          13,
+          1,
+          12,
+          0
+        ],
+        "selected_growth_cuts": {
+          "2": 2,
+          "11": 11
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          9,
+          25
+        ],
+        "path": [
+          6,
+          17,
+          28,
+          30,
+          19,
+          8,
+          10,
+          21,
+          32,
+          34,
+          23,
+          12,
+          13,
+          24,
+          35,
+          33,
+          22,
+          11,
+          9,
+          20,
+          31,
+          29,
+          18,
+          7,
+          5,
+          16,
+          27,
+          2,
+          4,
+          15,
+          26,
+          1,
+          3,
+          14,
+          25,
+          0
+        ],
+        "selected_growth_cuts": {
+          "2": 2,
+          "11": 13
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "9+2q",
+          "25+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        4
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          7,
+          15
+        ],
+        "path": [
+          20,
+          9,
+          11,
+          22,
+          0,
+          13,
+          2,
+          15,
+          4,
+          6,
+          17,
+          19,
+          8,
+          7,
+          18,
+          16,
+          5,
+          3,
+          14,
+          1,
+          12,
+          23,
+          21,
+          10
+        ],
+        "selected_growth_cuts": {
+          "2": 2,
+          "11": 11
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          9,
+          26
+        ],
+        "path": [
+          33,
+          22,
+          11,
+          13,
+          24,
+          35,
+          0,
+          26,
+          15,
+          4,
+          2,
+          28,
+          17,
+          6,
+          8,
+          19,
+          30,
+          32,
+          21,
+          10,
+          9,
+          20,
+          31,
+          29,
+          18,
+          7,
+          5,
+          16,
+          27,
+          1,
+          3,
+          14,
+          25,
+          36,
+          34,
+          23,
+          12
+        ],
+        "selected_growth_cuts": {
+          "2": 2,
+          "11": 13
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "9+2q",
+          "26+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        5
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          7,
+          16
+        ],
+        "path": [
+          24,
+          10,
+          12,
+          1,
+          3,
+          14,
+          13,
+          2,
+          0,
+          11,
+          9,
+          23,
+          21,
+          7,
+          18,
+          4,
+          15,
+          17,
+          6,
+          20,
+          22,
+          8,
+          19,
+          5,
+          16
+        ],
+        "selected_growth_cuts": {
+          "2": 19,
+          "11": 10
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          9,
+          27
+        ],
+        "path": [
+          37,
+          10,
+          21,
+          23,
+          12,
+          1,
+          3,
+          14,
+          25,
+          24,
+          13,
+          2,
+          0,
+          11,
+          22,
+          20,
+          9,
+          36,
+          34,
+          7,
+          18,
+          29,
+          31,
+          4,
+          15,
+          26,
+          28,
+          17,
+          6,
+          33,
+          35,
+          8,
+          19,
+          30,
+          32,
+          5,
+          16,
+          27
+        ],
+        "selected_growth_cuts": {
+          "2": 30,
+          "11": 10
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "9+2q",
+          "27+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        6
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          7,
+          17
+        ],
+        "path": [
+          6,
+          17,
+          2,
+          3,
+          18,
+          7,
+          9,
+          20,
+          5,
+          16,
+          1,
+          25,
+          14,
+          12,
+          23,
+          21,
+          10,
+          8,
+          19,
+          4,
+          15,
+          0,
+          24,
+          13,
+          11,
+          22
+        ],
+        "selected_growth_cuts": {
+          "2": 5,
+          "11": 14
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          9,
+          28
+        ],
+        "path": [
+          8,
+          19,
+          30,
+          2,
+          3,
+          31,
+          20,
+          9,
+          11,
+          22,
+          33,
+          5,
+          7,
+          18,
+          29,
+          1,
+          38,
+          27,
+          16,
+          14,
+          25,
+          36,
+          34,
+          23,
+          12,
+          10,
+          21,
+          32,
+          4,
+          6,
+          17,
+          28,
+          0,
+          37,
+          26,
+          15,
+          13,
+          24,
+          35
+        ],
+        "selected_growth_cuts": {
+          "2": 5,
+          "11": 16
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "9+2q",
+          "28+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        7
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          7,
+          18
+        ],
+        "path": [
+          2,
+          18,
+          7,
+          9,
+          20,
+          4,
+          15,
+          26,
+          24,
+          13,
+          11,
+          22,
+          23,
+          12,
+          14,
+          25,
+          0,
+          16,
+          5,
+          21,
+          10,
+          8,
+          19,
+          3,
+          1,
+          17,
+          6
+        ],
+        "selected_growth_cuts": {
+          "2": 5,
+          "11": 14
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          9,
+          29
+        ],
+        "path": [
+          2,
+          31,
+          20,
+          9,
+          11,
+          22,
+          33,
+          4,
+          6,
+          17,
+          28,
+          39,
+          37,
+          26,
+          15,
+          13,
+          24,
+          35,
+          36,
+          25,
+          14,
+          16,
+          27,
+          38,
+          0,
+          29,
+          18,
+          7,
+          5,
+          34,
+          23,
+          12,
+          10,
+          21,
+          32,
+          3,
+          1,
+          30,
+          19,
+          8
+        ],
+        "selected_growth_cuts": {
+          "2": 5,
+          "11": 16
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "9+2q",
+          "29+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        8
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          7,
+          19
+        ],
+        "path": [
+          15,
+          26,
+          24,
+          13,
+          11,
+          22,
+          5,
+          16,
+          27,
+          1,
+          18,
+          7,
+          9,
+          20,
+          3,
+          4,
+          21,
+          10,
+          8,
+          19,
+          2,
+          0,
+          17,
+          6,
+          23,
+          12,
+          14,
+          25
+        ],
+        "selected_growth_cuts": {
+          "2": 6,
+          "11": 15
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          9,
+          30
+        ],
+        "path": [
+          17,
+          28,
+          39,
+          37,
+          26,
+          15,
+          13,
+          24,
+          35,
+          5,
+          7,
+          18,
+          29,
+          40,
+          1,
+          31,
+          20,
+          9,
+          11,
+          22,
+          33,
+          3,
+          4,
+          34,
+          23,
+          12,
+          10,
+          21,
+          32,
+          2,
+          0,
+          30,
+          19,
+          8,
+          6,
+          36,
+          25,
+          14,
+          16,
+          27,
+          38
+        ],
+        "selected_growth_cuts": {
+          "2": 6,
+          "11": 17
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "9+2q",
+          "30+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        9
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          13,
+          9
+        ],
+        "path": [
+          11,
+          13,
+          2,
+          0,
+          22,
+          20,
+          9,
+          7,
+          18,
+          16,
+          5,
+          3,
+          14,
+          15,
+          4,
+          6,
+          17,
+          19,
+          8,
+          10,
+          12,
+          1,
+          23,
+          21
+        ],
+        "selected_growth_cuts": {
+          "2": 21,
+          "11": 11
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          15,
+          20
+        ],
+        "path": [
+          11,
+          22,
+          24,
+          13,
+          2,
+          0,
+          35,
+          33,
+          31,
+          20,
+          9,
+          7,
+          18,
+          29,
+          27,
+          16,
+          5,
+          3,
+          14,
+          25,
+          26,
+          15,
+          4,
+          6,
+          17,
+          28,
+          30,
+          19,
+          8,
+          10,
+          21,
+          23,
+          12,
+          1,
+          36,
+          34,
+          32
+        ],
+        "selected_growth_cuts": {
+          "2": 32,
+          "11": 11
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "15+2q",
+          "20+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        10
+      ],
+      "source_witness_index": 0,
+      "source": {
+        "counts": [
+          1,
+          11,
+          10
+        ],
+        "path": [
+          22,
+          1,
+          12,
+          14,
+          3,
+          5,
+          16,
+          15,
+          4,
+          6,
+          17,
+          19,
+          8,
+          10,
+          21,
+          0,
+          2,
+          13,
+          11,
+          9,
+          20,
+          18,
+          7
+        ],
+        "selected_growth_cuts": {
+          "2": 1,
+          "11": 11
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          13,
+          21
+        ],
+        "path": [
+          35,
+          1,
+          3,
+          14,
+          25,
+          27,
+          16,
+          5,
+          7,
+          18,
+          29,
+          28,
+          17,
+          6,
+          8,
+          19,
+          30,
+          32,
+          21,
+          10,
+          12,
+          23,
+          34,
+          0,
+          2,
+          4,
+          15,
+          26,
+          24,
+          13,
+          11,
+          22,
+          33,
+          31,
+          20,
+          9
+        ],
+        "selected_growth_cuts": {
+          "2": 1,
+          "11": 13
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "13+2q",
+          "21+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    },
+    {
+      "residue_case": [
+        1,
+        1,
+        11
+      ],
+      "source_witness_index": 1,
+      "source": {
+        "counts": [
+          1,
+          11,
+          11
+        ],
+        "path": [
+          6,
+          17,
+          19,
+          8,
+          10,
+          21,
+          23,
+          1,
+          12,
+          14,
+          3,
+          5,
+          16,
+          15,
+          4,
+          2,
+          13,
+          11,
+          0,
+          22,
+          20,
+          9,
+          7,
+          18
+        ],
+        "selected_growth_cuts": {
+          "2": 1,
+          "11": 10
+        }
+      },
+      "derivation": {
+        "growth_modes_applied_once": [
+          2,
+          11
+        ],
+        "orders_checked": 2,
+        "require_identical_endpoints": true
+      },
+      "safe_seed": {
+        "counts": [
+          1,
+          13,
+          22
+        ],
+        "path": [
+          8,
+          19,
+          30,
+          32,
+          21,
+          10,
+          12,
+          23,
+          34,
+          36,
+          1,
+          3,
+          14,
+          25,
+          27,
+          16,
+          5,
+          7,
+          18,
+          29,
+          28,
+          17,
+          6,
+          4,
+          15,
+          26,
+          24,
+          13,
+          2,
+          0,
+          35,
+          33,
+          22,
+          11,
+          9,
+          20,
+          31
+        ],
+        "selected_growth_cuts": {
+          "2": 1,
+          "11": 12
+        }
+      },
+      "family": {
+        "counts": [
+          1,
+          "13+2q",
+          "22+11r"
+        ],
+        "parameters": "q,r>=0"
+      }
+    }
+  ]
+}
