@@ -43,6 +43,13 @@
 > 2/11-growable seeds prove the corresponding eleven slabs and, uniformly,
 > every `(1,b,c)` with odd `b>=15` and `c>=20`.  Eight new residue classes
 > remove 60 further patterns from the conservative audit.
+>
+> Lower `a=2` safe cores: [`A2_MANTLE_SAFE_CORES.md`](A2_MANTLE_SAFE_CORES.md)
+> tracks the mode-1 cut while deriving the nine remaining `a=2` 2/11 faces.
+> All eleven endpoints are thus simultaneously 1/2/11-growable at safe order,
+> lowering nine earlier tri-modal cores from `a=3` to `a=2`.  The existence
+> region already followed from the cap partition; the contribution is the
+> simpler all-residue safe-core mechanism and pinned predecessor certificate.
 
 ## Result
 

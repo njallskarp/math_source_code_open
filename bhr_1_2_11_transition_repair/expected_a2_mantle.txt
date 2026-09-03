@@ -1,0 +1,16 @@
+certificate_sha256=601a48ad69abef99c6279c8420492c16c9000120069affad74686388d4ccca4e
+python=3.12.12
+residue_classes=11
+two_mode_sources=9
+existing_safe_residues_rederived=2
+external_provenance_checked=true
+trimodal_successor_links_checked=11
+source_derivation_steps=72
+minimum_seed_order=36
+seed_paths_sha256=004f25da6b57aef196ce74d743b1b2680893fe47f4633eafb007c0bdd5e5989c
+grid=3
+family_paths_checked=1375
+coordinate_transitions_checked=2112
+commuting_squares_checked=2112
+record_sha256=a52077728ea22b3e2ab4d8868b659a4174408745a284381d1cc403548ca8fc40
+VERIFIED
