@@ -1,0 +1,14 @@
+{
+  "class_counts": {
+    "p": 280,
+    "p-1": 269
+  },
+  "classification_checks": 549,
+  "endpoint_checks": 549,
+  "higher_wieferich_primes": [],
+  "prime_bound": 4000,
+  "prime_count": 549,
+  "python": "3.12.12",
+  "record_sha256": "916daa87ed6f601880db9d72921554f16ea7aab64cb89356085ac77e165db40e",
+  "valuation_checks": 549
+}
