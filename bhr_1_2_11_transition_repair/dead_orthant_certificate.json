@@ -1,0 +1,826 @@
+{
+  "generator": {
+    "ortools": "9.14.6206",
+    "python": "3.12.12",
+    "random_seed": 1,
+    "time_limit_seconds": 120,
+    "workers": 1
+  },
+  "repairs": [
+    {
+      "boundary_seed": {
+        "counts": [
+          2,
+          17,
+          2
+        ],
+        "lost_ordered_mode_pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "path": [
+          10,
+          21,
+          19,
+          17,
+          15,
+          13,
+          11,
+          9,
+          8,
+          7,
+          5,
+          3,
+          1,
+          12,
+          14,
+          16,
+          18,
+          20,
+          0,
+          2,
+          4,
+          6
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "interior_seed": {
+        "all_growth_cuts": {
+          "1": [
+            0,
+            13
+          ],
+          "2": [
+            1,
+            2
+          ]
+        },
+        "counts": [
+          3,
+          19,
+          2
+        ],
+        "path": [
+          1,
+          12,
+          10,
+          8,
+          6,
+          5,
+          3,
+          4,
+          2,
+          0,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+          23,
+          21,
+          19,
+          17,
+          15,
+          13,
+          11,
+          9,
+          7
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "residue_case": [
+        1,
+        1,
+        2
+      ],
+      "source_witness_index": 13
+    },
+    {
+      "boundary_seed": {
+        "counts": [
+          3,
+          13,
+          5
+        ],
+        "lost_ordered_mode_pairs": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "path": [
+          4,
+          6,
+          17,
+          15,
+          13,
+          12,
+          1,
+          2,
+          0,
+          20,
+          18,
+          16,
+          14,
+          3,
+          5,
+          7,
+          9,
+          11,
+          10,
+          21,
+          19,
+          8
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "interior_seed": {
+        "all_growth_cuts": {
+          "1": [
+            0
+          ],
+          "2": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "counts": [
+          4,
+          15,
+          5
+        ],
+        "path": [
+          11,
+          22,
+          24,
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          23,
+          21,
+          19,
+          20,
+          9,
+          7,
+          5,
+          16,
+          18,
+          17,
+          15,
+          13,
+          14,
+          3,
+          1
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "residue_case": [
+        1,
+        1,
+        5
+      ],
+      "source_witness_index": 13
+    },
+    {
+      "boundary_seed": {
+        "counts": [
+          3,
+          11,
+          7
+        ],
+        "lost_ordered_mode_pairs": [
+          [
+            2,
+            1
+          ]
+        ],
+        "path": [
+          11,
+          9,
+          8,
+          10,
+          12,
+          1,
+          3,
+          14,
+          16,
+          5,
+          7,
+          18,
+          20,
+          19,
+          17,
+          6,
+          4,
+          15,
+          13,
+          2,
+          0,
+          21
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "interior_seed": {
+        "all_growth_cuts": {
+          "1": [
+            6
+          ],
+          "2": [
+            4,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "counts": [
+          4,
+          13,
+          7
+        ],
+        "path": [
+          7,
+          9,
+          20,
+          22,
+          24,
+          13,
+          14,
+          0,
+          2,
+          16,
+          18,
+          4,
+          5,
+          3,
+          1,
+          15,
+          17,
+          19,
+          21,
+          23,
+          12,
+          11,
+          10,
+          8,
+          6
+        ],
+        "selected_growth_cuts": {
+          "1": 6,
+          "2": 8
+        }
+      },
+      "residue_case": [
+        1,
+        1,
+        7
+      ],
+      "source_witness_index": 13
+    },
+    {
+      "boundary_seed": {
+        "counts": [
+          1,
+          18,
+          2
+        ],
+        "lost_ordered_mode_pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "path": [
+          13,
+          15,
+          17,
+          19,
+          21,
+          10,
+          11,
+          9,
+          7,
+          5,
+          3,
+          1,
+          12,
+          14,
+          16,
+          18,
+          20,
+          0,
+          2,
+          4,
+          6,
+          8
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "interior_seed": {
+        "all_growth_cuts": {
+          "1": [
+            0,
+            9
+          ],
+          "2": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "counts": [
+          2,
+          20,
+          2
+        ],
+        "path": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          24,
+          22,
+          20,
+          18,
+          19,
+          17,
+          15,
+          16,
+          14,
+          12,
+          10,
+          21,
+          23,
+          0,
+          2,
+          4,
+          6,
+          8
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "residue_case": [
+        1,
+        2,
+        2
+      ],
+      "source_witness_index": 8
+    },
+    {
+      "boundary_seed": {
+        "counts": [
+          2,
+          16,
+          3
+        ],
+        "lost_ordered_mode_pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "path": [
+          0,
+          2,
+          4,
+          6,
+          17,
+          15,
+          13,
+          11,
+          9,
+          7,
+          8,
+          10,
+          21,
+          19,
+          20,
+          18,
+          16,
+          14,
+          12,
+          1,
+          3,
+          5
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "interior_seed": {
+        "all_growth_cuts": {
+          "1": [
+            5
+          ],
+          "2": [
+            1
+          ]
+        },
+        "counts": [
+          3,
+          18,
+          3
+        ],
+        "path": [
+          4,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          24,
+          22,
+          20,
+          18,
+          16,
+          15,
+          1,
+          2,
+          0,
+          23,
+          21,
+          19,
+          17,
+          6,
+          8,
+          10,
+          12,
+          14
+        ],
+        "selected_growth_cuts": {
+          "1": 5,
+          "2": 1
+        }
+      },
+      "residue_case": [
+        1,
+        2,
+        3
+      ],
+      "source_witness_index": 8
+    },
+    {
+      "boundary_seed": {
+        "counts": [
+          1,
+          16,
+          4
+        ],
+        "lost_ordered_mode_pairs": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "path": [
+          19,
+          21,
+          10,
+          8,
+          6,
+          17,
+          15,
+          13,
+          11,
+          9,
+          7,
+          18,
+          16,
+          14,
+          12,
+          1,
+          3,
+          5,
+          4,
+          2,
+          0,
+          20
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "interior_seed": {
+        "all_growth_cuts": {
+          "1": [
+            18,
+            21
+          ],
+          "2": [
+            19
+          ]
+        },
+        "counts": [
+          2,
+          18,
+          4
+        ],
+        "path": [
+          20,
+          18,
+          16,
+          5,
+          7,
+          9,
+          11,
+          13,
+          12,
+          10,
+          8,
+          22,
+          24,
+          1,
+          3,
+          14,
+          15,
+          17,
+          6,
+          4,
+          2,
+          0,
+          23,
+          21,
+          19
+        ],
+        "selected_growth_cuts": {
+          "1": 18,
+          "2": 19
+        }
+      },
+      "residue_case": [
+        1,
+        2,
+        4
+      ],
+      "source_witness_index": 8
+    },
+    {
+      "boundary_seed": {
+        "counts": [
+          3,
+          12,
+          6
+        ],
+        "lost_ordered_mode_pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "path": [
+          3,
+          1,
+          12,
+          11,
+          13,
+          15,
+          17,
+          6,
+          8,
+          19,
+          21,
+          10,
+          9,
+          20,
+          0,
+          2,
+          4,
+          5,
+          7,
+          18,
+          16,
+          14
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "interior_seed": {
+        "all_growth_cuts": {
+          "1": [
+            0
+          ],
+          "2": [
+            1
+          ]
+        },
+        "counts": [
+          4,
+          14,
+          6
+        ],
+        "path": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          10,
+          21,
+          20,
+          18,
+          16,
+          14,
+          12,
+          11,
+          0,
+          23,
+          22,
+          24,
+          13,
+          2,
+          4,
+          15,
+          17,
+          19,
+          8,
+          6
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "residue_case": [
+        1,
+        2,
+        6
+      ],
+      "source_witness_index": 12
+    },
+    {
+      "boundary_seed": {
+        "counts": [
+          3,
+          10,
+          8
+        ],
+        "lost_ordered_mode_pairs": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "path": [
+          9,
+          8,
+          10,
+          21,
+          19,
+          20,
+          18,
+          7,
+          5,
+          16,
+          14,
+          3,
+          1,
+          12,
+          13,
+          11,
+          0,
+          2,
+          4,
+          15,
+          17,
+          6
+        ],
+        "selected_growth_cuts": {
+          "1": 0,
+          "2": 1
+        }
+      },
+      "interior_seed": {
+        "all_growth_cuts": {
+          "1": [
+            5
+          ],
+          "2": [
+            6
+          ]
+        },
+        "counts": [
+          4,
+          12,
+          8
+        ],
+        "path": [
+          4,
+          2,
+          0,
+          14,
+          12,
+          23,
+          21,
+          20,
+          22,
+          11,
+          13,
+          24,
+          1,
+          3,
+          17,
+          15,
+          16,
+          5,
+          19,
+          18,
+          7,
+          9,
+          10,
+          8,
+          6
+        ],
+        "selected_growth_cuts": {
+          "1": 5,
+          "2": 6
+        }
+      },
+      "residue_case": [
+        1,
+        2,
+        8
+      ],
+      "source_witness_index": 13
+    }
+  ],
+  "safe_margin": {
+    "growth_modes": [
+      1,
+      2
+    ],
+    "inequality": "2*11+1+2 <= 25",
+    "maximum_edge_length": 11,
+    "seed_order": 25
+  },
+  "schema": "bhr-dead-orthant-repair-v1",
+  "source_artifact": {
+    "affected_witnesses": 8,
+    "certificate_sha256": "e92ba9b84512e8829400bdeaf0fd0ef0082b56b26e6720e882ba2c2bbb8fbc6c",
+    "dead_first_interior_targets": 8,
+    "failure_records_sha256": "0a604cbf19537c855faa04a8d31b4a5985603ec6f1464ddb6f9e60a357795b03",
+    "predicted_cut_failures": 18,
+    "repository_commit": "8fcd1e624b3d668794e3179787d0965137365286",
+    "total_mode_losses": 11,
+    "transition_obligations": 1093,
+    "uniquely_covered_dead_targets": 8
+  },
+  "support": [
+    1,
+    2,
+    11
+  ]
+}

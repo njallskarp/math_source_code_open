@@ -1,0 +1,23 @@
+{
+  "schema": "bhr-growable-orthant-repair-v1",
+  "support": [1, 2, 11],
+  "boundary_seed": {
+    "counts": [1, 16, 4],
+    "path": [19, 21, 10, 8, 6, 17, 15, 13, 11, 9, 7, 18, 16, 14, 12, 1, 3, 5, 4, 2, 0, 20],
+    "selected_growth_cuts": {"1": 0, "2": 1},
+    "source_graph_ref": "bafkreie7zy3t5aejqdd6avfbn5rawarep7fxlffrm5fj3mtmwxelpgtiga"
+  },
+  "interior_seed": {
+    "counts": [2, 18, 4],
+    "path": [20, 18, 16, 5, 7, 9, 11, 13, 12, 10, 8, 22, 24, 1, 3, 14, 15, 17, 6, 4, 2, 0, 23, 21, 19],
+    "selected_growth_cuts": {"1": 18, "2": 19},
+    "generator": {
+      "python": "3.12.12",
+      "ortools": "9.14.6206",
+      "workers": 1,
+      "random_seed": 1,
+      "time_limit_seconds": 300
+    }
+  }
+}
+

@@ -1,0 +1,29 @@
+source_sha256=e92ba9b84512e8829400bdeaf0fd0ef0082b56b26e6720e882ba2c2bbb8fbc6c
+cases=22
+witnesses=628
+transition_obligations=1093
+predicted_cut_failures=18
+total_mode_losses=11
+affected_witnesses=8
+dead_first_interior_targets=8
+uniquely_covered_dead_targets=8
+failure_records_sha256=0a604cbf19537c855faa04a8d31b4a5985603ec6f1464ddb6f9e60a357795b03
+AUDITED
+
+certificate_sha256=33d53244922865533b379d8f40d91063e1758f5997362e940f5d1ea503e7686d
+python=3.12.12
+repairs=8
+boundary_losses_reproduced=11
+grid=10
+interior_paths_checked=1152
+commuting_squares_checked=968
+record_sha256=14913d14b91b086fb6e7ea02392c0d297548044e1d733a0c98b7d89b8ac06061
+VERIFIED
+
+max_order=8
+paths_by_order={4: 6, 5: 24, 6: 120, 7: 720, 8: 5040}
+obligations_by_order={4: 0, 5: 0, 6: 0, 7: 132, 8: 324}
+total_paths=5910
+total_obligations=456
+record_sha256=01634bbb3a20b874e953673ceb62bea06b490c8e97f05e51080d0f2b2ec22c88
+VERIFIED
