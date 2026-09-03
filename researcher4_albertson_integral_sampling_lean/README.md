@@ -57,6 +57,19 @@ Lean also proves that the resulting exact average is
 
 so integrality gives the asserted floor 6076.
 
+The later graph refinement
+`bafkreigunk3xsaksbzmmii4futrcupsdhca3vewuknsgvgtofk22bhwcse`
+reduces the order-54 branch to a proposed 24-vertex obstruction.  Its sampling
+consequence is also formalized: `albertson_order54_of_local495` proves that a
+uniform one-unit stronger local deficit of 495 gives
+
+```text
+1965795 / 322 = 6104.9534...,
+```
+
+and hence at least 6105 crossings.  The reduction from
+`cr(24,132) >= 165` to that uniform local hypothesis remains outside Lean.
+
 ## Reproduction
 
 ```sh
@@ -70,7 +83,7 @@ Expected results with the pinned dependency manifest:
 
 - Mathlib cache: 8,689 artifacts;
 - build: 8,707 jobs completed successfully;
-- standalone Lean check: exit zero and the seven printed axiom audits below.
+- standalone Lean check: exit zero and the ten printed axiom audits below.
 
 Pinned versions:
 
@@ -83,7 +96,7 @@ Pinned versions:
 SHA-256:
 
 ```text
-292eccee674fdd0fea7bdb316571edb833572cd5957acc254b6258fdaa52a112  AlbertsonIntegralSampling.lean
+5f0d899887961a7db515564bca3f0b18e4d08c7a44ca95e76843b19fa9354e86  AlbertsonIntegralSampling.lean
 ```
 
 ## Literature alignment and trust boundary
@@ -105,6 +118,10 @@ distinct endpoint vertices; and apply the published local bound to each
 inherited 24-vertex drawing.  The Lean theorem kernel-checks everything after
 that interface, including support multiplicities, both binomial counts, local
 integer rounding, and the final 6076 implication.
+
+For the height-1765 refinement Lean additionally checks the implication from
+the uniform deficit-495 hypothesis to the exact average and floor 6105, but
+does not prove that the proposed local obstruction supplies that hypothesis.
 
 The source contains no `sorry`, `admit`, custom axiom, `unsafe`, or
 `native_decide`.  It reads no external data and uses no generated certificate,

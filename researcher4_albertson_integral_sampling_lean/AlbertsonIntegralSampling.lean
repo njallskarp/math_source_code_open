@@ -106,6 +106,23 @@ theorem order54_integral_average_value :
         ((Nat.choose 50 20 : ℕ) : ℚ)) = (10759164 : ℚ) / 1771 := by
   norm_num [Nat.choose]
 
+/-- The improved order-54 arithmetic if every 24-vertex sample satisfies the
+one-unit stronger local inequality with deficit 495. -/
+theorem order54_floor_of_local495_averaged_inequality
+    {crossings : ℕ}
+    (h : 5 * 726 * Nat.choose 52 22 ≤
+      crossings * Nat.choose 50 20 + 495 * Nat.choose 54 24) :
+    6105 ≤ crossings := by
+  norm_num [Nat.choose] at h ⊢
+  omega
+
+/-- The exact average associated with the proposed 24-vertex obstruction. -/
+theorem order54_local495_average_value :
+    ((((5 * 726 * Nat.choose 52 22 : ℕ) : ℚ) -
+      ((495 * Nat.choose 54 24 : ℕ) : ℚ)) /
+        ((Nat.choose 50 20 : ℕ) : ℚ)) = (1965795 : ℚ) / 322 := by
+  norm_num [Nat.choose]
+
 /-- The locally rounded 24-vertex inequality forces at least 6076 crossings
 for 726 two-vertex supports on a 54-element universe. -/
 theorem albertson_order54_integral_sampling
@@ -152,12 +169,42 @@ theorem albertson_order54_of_published_local_bound
   intro S hS
   exact local_integral_rounding_24 (hlocal S hS)
 
+/-- The sampling consequence of a uniform deficit-495 theorem on all
+24-vertex induced subdrawings.  In the graph result this uniform theorem is
+reduced to the local obstruction `cr(24,132) ≥ 165`; that reduction remains
+outside this finite-support interface. -/
+theorem albertson_order54_of_local495
+    {α ε χ : Type*} [Fintype α]
+    [DecidableEq α] [DecidableEq ε] [DecidableEq χ]
+    (edges : Finset ε) (crossings : Finset χ)
+    (edgeSupport : ε → Finset α) (crossingSupport : χ → Finset α)
+    (hcard : Fintype.card α = 54) (hedges : #edges = 726)
+    (hedges_card : ∀ e ∈ edges, #(edgeSupport e) = 2)
+    (hcrossings_card : ∀ x ∈ crossings, #(crossingSupport x) = 4)
+    (hlocal : ∀ S ∈ (Finset.univ : Finset α).powersetCard 24,
+      5 * supportedCount edges edgeSupport S ≤
+        supportedCount crossings crossingSupport S + 495) :
+    6105 ≤ #crossings := by
+  apply order54_floor_of_local495_averaged_inequality
+  simpa [hcard, hedges] using
+    fixed_support_sampling_bound (Finset.univ : Finset α) edges crossings
+      edgeSupport crossingSupport 24 5 495
+      (fun _ _ ↦ Finset.subset_univ _)
+      hedges_card
+      (fun _ _ ↦ Finset.subset_univ _)
+      hcrossings_card
+      (by omega)
+      hlocal
+
 #print axioms sum_supportedCount_powersetCard
 #print axioms local_integral_rounding_24
 #print axioms fixed_support_sampling_bound
 #print axioms order54_floor_of_averaged_inequality
 #print axioms order54_integral_average_value
+#print axioms order54_floor_of_local495_averaged_inequality
+#print axioms order54_local495_average_value
 #print axioms albertson_order54_integral_sampling
 #print axioms albertson_order54_of_published_local_bound
+#print axioms albertson_order54_of_local495
 
 end AlbertsonIntegralSampling

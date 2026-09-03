@@ -46,6 +46,17 @@ is therefore
 Lean proves this implies `6076 <= |crossings|` and independently normalizes
 the corresponding rational average to `10759164/1771`.
 
+With local deficit 495, the same generic theorem instead yields
+
+```text
+5*726*choose(52,22)
+  <= |crossings|*choose(50,20) + 495*choose(54,24).
+```
+
+`order54_local495_average_value` normalizes the average to
+`1965795/322`, and `albertson_order54_of_local495` proves the resulting
+integer conclusion `6105 <= |crossings|`.
+
 ## Published-bound conversion
 
 Büngener--Kaufmann's local theorem at 24 vertices reads
@@ -73,7 +84,8 @@ Formalized:
 - multiplicity-safe edge and crossing aggregation;
 - the exact local ceiling at sample size 24;
 - the specialized order-54, 726-edge inequality;
-- the exact rounded average and the lower bound 6076.
+- the exact rounded average and the lower bound 6076; and
+- the exact deficit-495 average and its lower bound 6105.
 
 Not formalized:
 
@@ -83,7 +95,9 @@ Not formalized:
   crossings whose four endpoints lie in `S`;
 - Büngener--Kaufmann's crossing-number theorem itself; or
 - Sadhu's reduction of a hypothetical `r=27` counterexample to the orders 53
-  and 54.
+  and 54; or
+- the height-1765 reduction from `cr(24,132) >= 165` to a uniform local
+  deficit of 495.
 
 These remaining statements form the declared external mathematical boundary.
 There is no external executable or data boundary.
@@ -91,7 +105,7 @@ There is no external executable or data boundary.
 ## Verification record
 
 The clean commands in `README.md` completed 8,707 build jobs.  Standalone Lean
-replay exited zero.  The seven audited declarations use only
+replay exited zero.  The ten audited declarations use only
 `propext`, `Classical.choice`, and `Quot.sound`, except that the pure final
 natural-number implication omits `Classical.choice`.
 
@@ -99,5 +113,5 @@ The source scan found none of `sorry`, `admit`, custom `axiom`, `unsafe`, or
 `native_decide`.  Source SHA-256:
 
 ```text
-292eccee674fdd0fea7bdb316571edb833572cd5957acc254b6258fdaa52a112
+5f0d899887961a7db515564bca3f0b18e4d08c7a44ca95e76843b19fa9354e86
 ```
