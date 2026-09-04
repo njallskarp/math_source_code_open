@@ -1,0 +1,50 @@
+{
+  "boundary_even": {
+    "a_over_trace_cross": {
+      "clear_shifts": [[4, 0, 4, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+      "sha256": "ac15e3ffc327ec1af41a881d36b1319da3a724c2ceaec071189b5d66293f3f1f",
+      "terms": 117
+    },
+    "q_drop": {
+      "clear_shifts": [[2, 0, 3, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+      "sha256": "dfc6c187e5f9fc439d22a1633a907b0bf300eeeb7336699524805b7038d77c60",
+      "terms": 35
+    },
+    "trace_drop": {
+      "clear_shifts": [[2, 0, 3, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+      "sha256": "cf85209c7deb9ee2a62d90cb7114930d68bd43e7ce198555f1674ee2514e5fa3",
+      "terms": 35
+    }
+  },
+  "boundary_odd": {
+    "a_over_trace_cross": {
+      "clear_shifts": [[4, 0, 4, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+      "sha256": "8c6a713b4dd7bc3538e60eb382a5681c7bc9cce5498ca1b8126a4104bcb4085b",
+      "terms": 117
+    },
+    "q_drop": {
+      "clear_shifts": [[2, 0, 3, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+      "sha256": "aa39d2feb778d2be30057bf6388816c1d94aca6227d702c764106a5abec6d7da",
+      "terms": 28
+    },
+    "trace_drop": {
+      "clear_shifts": [[2, 0, 3, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+      "sha256": "bc4b2b0f2e520af480eff863b7b4bfb99cc2c94b6b458528a04380446d0f9bb7",
+      "terms": 35
+    }
+  },
+  "coefficient_field": "Q(phi), phi^2=phi+1, phi=(1+sqrt(5))/2",
+  "identities": {
+    "trace_q": "t-3q=6(2phi-1)a_scaled",
+    "trace_symmetry": "tr(KxKyKz) is invariant under S3"
+  },
+  "schema": 1,
+  "variables": ["X", "Y", "Z", "U", "V"],
+  "within_layer": {
+    "a_over_trace_cross": {
+      "clear_shift": [2, 2, 2, 0, 0],
+      "sha256": "a05fe96667bcc3cb177f15d9966434b82ec283c725b22538d5ab065d64c52f03",
+      "terms": 11
+    }
+  }
+}
