@@ -67,6 +67,27 @@ exact infinite family.  See
 [MULTIBOX_OBSTRUCTION.md](MULTIBOX_OBSTRUCTION.md) for the theorem, the exact
 family, and the scope of the obstruction.
 
+A cyclic row--column exchange now crosses that barrier.  Every Hamming
+rectangle with both orders at least `s` partitions into exactly
+`floor(m*n/s)` coordinate-line sets of size at least `s`.  Consequently, if
+two minor coordinates `nj,nk` are at least `s`, and
+
+```text
+nl * ((nj*nk) mod s) < s,
+```
+
+then the four-dimensional quotient upper bound is exact.  In particular,
+pairwise divisibility `s | nj*nk` suffices even when neither factor is
+individually divisible by `s`.  The family
+
+```text
+K_(k^2+2k+3) square K_(k^2+k) square K_(k^2+k) square K_(k^2+2), k>=2,
+```
+
+has residue product exactly `2*s`, cannot use a pure residual completion, and
+has exact value `(k+1)^2*(k^2+2)`.  See
+[CROSS_BOUNDARY_EXCHANGE.md](CROSS_BOUNDARY_EXCHANGE.md).
+
 The complete proof and exact parameter map are in
 [NEAR_TRIANGLE_FOUR_DIMENSIONAL.md](NEAR_TRIANGLE_FOUR_DIMENSIONAL.md).
 
@@ -79,6 +100,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_near_triangle.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_mixed_radix.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_residue_box.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_multibox_obstruction.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary.py
 ```
 
 Expected output:
@@ -134,6 +156,25 @@ multi-box volume contradictions checked: 24360931
 exceptional residue partitions reconstructed: 64
 exceptional partition parts checked: 5816
 explicit Hamming-family parameters checked: 353500
+all exact checks passed
+```
+
+The cross-boundary checker reports:
+
+```text
+rectangle partitions reconstructed: 9129
+rectangle line parts checked: 498902
+rectangle cells checked: 7393776
+cyclic corner switches checked: 7140
+four-dimensional near-triangle parameters checked: 479445
+pair-remainder parameters detected: 157292
+genuinely new pair-exchange parameters detected: 44467
+lifted Hamming partitions reconstructed: 1582
+lifted Hamming line parts checked: 118501
+lifted Hamming minor cells checked: 771730
+explicit infinite-family indices checked: 9999
+explicit family partitions reconstructed: 4
+explicit family line parts checked: 1652
 all exact checks passed
 ```
 

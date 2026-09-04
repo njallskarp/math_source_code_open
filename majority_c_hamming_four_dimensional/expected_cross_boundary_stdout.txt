@@ -1,0 +1,14 @@
+rectangle partitions reconstructed: 9129
+rectangle line parts checked: 498902
+rectangle cells checked: 7393776
+cyclic corner switches checked: 7140
+four-dimensional near-triangle parameters checked: 479445
+pair-remainder parameters detected: 157292
+genuinely new pair-exchange parameters detected: 44467
+lifted Hamming partitions reconstructed: 1582
+lifted Hamming line parts checked: 118501
+lifted Hamming minor cells checked: 771730
+explicit infinite-family indices checked: 9999
+explicit family partitions reconstructed: 4
+explicit family line parts checked: 1652
+all exact checks passed
