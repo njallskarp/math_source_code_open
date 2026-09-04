@@ -1,0 +1,1 @@
+VERIFIED cubic residue module; group=C27xC9xC3xC3; normal_forms=2187; transform_period_checks=39366; high_jet_classes=386; sha256=b0273557d8c021d98fe06a2e36bf3361a9563ac13f261d419d45490ec9b3866b

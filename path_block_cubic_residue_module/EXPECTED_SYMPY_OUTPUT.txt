@@ -1,0 +1,1 @@
+INDEPENDENT SYMPY PASS; pair=(6,5,1)/(7,3,2); coefficients=11; exact_transform_identity=true
