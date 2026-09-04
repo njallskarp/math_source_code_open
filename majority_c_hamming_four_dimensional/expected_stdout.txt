@@ -1,0 +1,8 @@
+greedy parameter quadruples checked: 57870
+greedy total-shell sizes checked: 2159646
+full-profile parameter quadruples checked: 316
+full shell profiles checked: 176336
+divisible constructions checked: 10166
+K3xK2xK2xK2 candidate subsets checked: 187726
+K3xK2xK2xK2 feasible size-6 subsets: 12
+all exact checks passed
