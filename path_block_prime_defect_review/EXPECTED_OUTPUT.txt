@@ -1,0 +1,6 @@
+INDEPENDENT unequal-width grid; max_width=8; ordered_pairs=3438; predicted_polynomial=72; observed_polynomial=72; mismatches=0
+HARD leading-cancellation family; widths=21,24; recurrence_order=109; phi3_pole_order=2
+HARD leading-cancellation family; widths=24,21; recurrence_order=111; phi3_pole_order=2
+HARD leading-cancellation family; widths=24,27; recurrence_order=201; phi3_pole_order=2
+INDEPENDENT quotient-ring cancellation scan; checked=4527; first_width=21; found=1
+sha256=bc0f2733191027d12fda571ff0605759b2569ae38819c989a212edd7e882d7ee
