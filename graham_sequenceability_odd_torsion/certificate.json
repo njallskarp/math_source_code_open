@@ -1,0 +1,35 @@
+{
+  "field_prime": 3,
+  "moves": [
+    [1, 5],
+    [2, 4],
+    [0, 2],
+    [2, 3],
+    [3, 5]
+  ],
+  "rows_on_six_labels": [
+    [0, 1, 1, 1, 1, 1],
+    [0, 0, 1, 1, 1, 0],
+    [1, 1, 1, 0, 0, 0],
+    [1, 0, 0, 1, 0, 0],
+    [1, 0, 0, 0, 1, 1]
+  ],
+  "terminal_identities": [
+    {
+      "coefficients": [-1, 0, 1, 1, 1],
+      "target_index_zero_based": 0,
+      "target_multiple": 3
+    },
+    {
+      "coefficients": [1, 0, -1, 2, -1],
+      "target_index_zero_based": 3,
+      "target_multiple": 3
+    }
+  ],
+  "discovery": {
+    "method": "seeded random walk with exact rational and mod-3 row reduction",
+    "python": "CPython 3.12.12",
+    "seed": 2026090403,
+    "first_hit_trial_zero_based": 16613
+  }
+}
