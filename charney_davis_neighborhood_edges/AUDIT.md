@@ -68,6 +68,21 @@ degree(u)=3 for every u in N_G(r), and CliqueFree G 3.
 Mathlib supplies `CliqueFree G 3 -> IsIndepSet G (neighborSet G r)`, after
 which Lean derives `|B|=12` and `|E(G[B])|=14`.
 
+For every finite simple graph `H`,
+`card_edgeFinset_add_card_edgeFinset_compl` proves
+
+```text
+|E(H)| + |E(Hᶜ)| = choose |V(H)| 2.
+```
+
+It constructs the disjoint union of the two finite edge sets and identifies it
+with the complete graph, whose edge count is a Mathlib theorem.  Therefore
+`degree_four_far_compl_edge_count` derives
+
+```text
+|E((G[B])ᶜ)| = choose 12 2 - 14 = 52.
+```
+
 ## What is and is not formalized
 
 Formalized:
@@ -79,7 +94,8 @@ Formalized:
 - both additive and subtraction forms of the generic identity;
 - triangle-free neighborhoods being independent via an existing Mathlib
   theorem; and
-- the exact 17-vertex `12/14` consequence.
+- the generic finite complement-edge identity; and
+- the exact 17-vertex `12/14/52` consequence.
 
 Not formalized:
 
@@ -87,7 +103,8 @@ Not formalized:
   Charney--Davis counterexample;
 - simplicial complexes, generalized homology-sphere conditions, or gamma
   polynomials;
-- the complement one-skeleton and flag-link identifications; or
+- the identification of the complement induced graph with the flag-link
+  one-skeleton; or
 - the published Gal, Labbé--Nevo, and Davis--Okun inputs.
 
 This is therefore a formalization of the finite graph-incidence bridge, not an
@@ -106,7 +123,7 @@ lake env lean NeighborhoodEdgeDecomposition.lean
                                    success
 ```
 
-All seven audited declarations report only:
+All ten audited declarations report only:
 
 ```text
 propext, Classical.choice, Quot.sound
@@ -116,7 +133,7 @@ The source scan found none of `sorry`, `admit`, a custom `axiom`, `unsafe`, or
 `native_decide`.  There is no external executable or data boundary.
 
 ```text
-444ab8d270ccd52c1d456df3a655ed17a5ee228bf3977b047b9e9e864be3e830
+0849cf5ea20d6de53ee90d84e682713f75d30b84d79854f600051af5d7c290bd
 ```
 
 is the SHA-256 of `NeighborhoodEdgeDecomposition.lean`.

@@ -253,6 +253,36 @@ lemma card_farVertices (r : V) :
   rw [Finset.card_insert_of_notMem (G.notMem_neighborFinset_self r)]
   rw [SimpleGraph.card_neighborFinset_eq_degree]
 
+/-- A finite simple graph and its complement partition all unordered pairs of
+distinct vertices. -/
+theorem card_edgeFinset_add_card_edgeFinset_compl
+    {W : Type*} [Fintype W] [DecidableEq W]
+    (H : SimpleGraph W) [DecidableRel H.Adj] :
+    #H.edgeFinset + #Hᶜ.edgeFinset = (Fintype.card W).choose 2 := by
+  classical
+  have hdis : Disjoint H.edgeFinset Hᶜ.edgeFinset := by
+    rw [SimpleGraph.disjoint_edgeFinset]
+    exact disjoint_compl_right
+  have hunion :
+      H.edgeFinset ∪ Hᶜ.edgeFinset = (⊤ : SimpleGraph W).edgeFinset := by
+    ext e
+    obtain ⟨u, v⟩ := e
+    by_cases huv : H.Adj u v
+    · simp [SimpleGraph.mem_edgeFinset, SimpleGraph.mem_edgeSet,
+        SimpleGraph.compl_adj, huv, H.ne_of_adj huv]
+    · simp [SimpleGraph.mem_edgeFinset, SimpleGraph.mem_edgeSet,
+        SimpleGraph.compl_adj, huv]
+  rw [← Finset.card_union_of_disjoint hdis, hunion,
+    SimpleGraph.card_edgeFinset_top_eq_card_choose_two]
+
+/-- Subtraction form of the finite complement-edge count. -/
+theorem card_edgeFinset_compl_eq_choose_sub
+    {W : Type*} [Fintype W] [DecidableEq W]
+    (H : SimpleGraph W) [DecidableRel H.Adj] :
+    #Hᶜ.edgeFinset = (Fintype.card W).choose 2 - #H.edgeFinset := by
+  have htotal := card_edgeFinset_add_card_edgeFinset_compl H
+  omega
+
 /-- The exact local graph count used at the rigid Charney--Davis profile:
 a degree-four vertex in a 26-edge graph, with independent degree-three
 neighbors, leaves 14 edges on the other vertices. -/
@@ -307,12 +337,34 @@ theorem degree_four_far_profile_of_triangleFree
     (G.isIndepSet_neighborSet_of_triangleFree hTriangleFree r)
     hEdges hDegree hNeighborDegree
 
+/-- The complement of the far induced graph has exactly 52 edges in the rigid
+17-vertex profile. This is the one-skeleton count used after the external
+flag-link identification in the Charney--Davis argument. -/
+theorem degree_four_far_compl_edge_count
+    (r : V)
+    (hVertices : Fintype.card V = 17)
+    (hTriangleFree : G.CliqueFree 3)
+    (hEdges : #G.edgeFinset = 26)
+    (hDegree : G.degree r = 4)
+    (hNeighborDegree : ∀ u ∈ G.neighborFinset r, G.degree u = 3) :
+    #((G.induce (↑(farVertices G r) : Set V))ᶜ.edgeFinset) = 52 := by
+  have hprofile := degree_four_far_profile_of_triangleFree G r hVertices
+    hTriangleFree hEdges hDegree hNeighborDegree
+  have hcardtype :
+      Fintype.card (↑(farVertices G r) : Set V) = 12 := by
+    simpa using hprofile.1
+  rw [card_edgeFinset_compl_eq_choose_sub, hcardtype, hprofile.2]
+  decide
+
 #print axioms graph_eq_star_sup_cross_sup_far
 #print axioms card_edgeFinset_neighborhood_decomposition
 #print axioms card_far_induced_eq_sub_degrees
 #print axioms card_farVertices
+#print axioms card_edgeFinset_add_card_edgeFinset_compl
+#print axioms card_edgeFinset_compl_eq_choose_sub
 #print axioms degree_four_far_edge_count
 #print axioms degree_four_far_profile
 #print axioms degree_four_far_profile_of_triangleFree
+#print axioms degree_four_far_compl_edge_count
 
 end NeighborhoodEdgeDecomposition

@@ -38,6 +38,18 @@ of `r` has degree 3, Lean proves
 Triangle-freeness is converted internally to independence of the neighborhood
 using Mathlib's `SimpleGraph.isIndepSet_neighborSet_of_triangleFree`.
 
+The reusable theorem `card_edgeFinset_add_card_edgeFinset_compl` also proves
+that any finite simple graph and its complement partition the
+`choose |V| 2` edges of the complete graph.  Combining its subtraction form
+with the `12/14` profile, `degree_four_far_compl_edge_count` proves
+
+```text
+|E((G[B])ᶜ)| = choose 12 2 - 14 = 52.
+```
+
+This reaches the exact graph count used by the earlier link-gamma calculation;
+only the flag-link identification remains external.
+
 ## Reproduction
 
 ```sh
@@ -51,7 +63,7 @@ Expected results with the committed manifest:
 
 - Mathlib cache: 8,690 artifacts;
 - clean project build: 1,180 jobs completed successfully; and
-- standalone replay: exit zero and seven printed axiom audits, each containing
+- standalone replay: exit zero and ten printed axiom audits, each containing
   only `propext`, `Classical.choice`, and `Quot.sound`.
 
 Pinned versions:
@@ -65,7 +77,7 @@ Pinned versions:
 Source SHA-256:
 
 ```text
-444ab8d270ccd52c1d456df3a655ed17a5ee228bf3977b047b9e9e864be3e830  NeighborhoodEdgeDecomposition.lean
+0849cf5ea20d6de53ee90d84e682713f75d30b84d79854f600051af5d7c290bd  NeighborhoodEdgeDecomposition.lean
 ```
 
 ## Theorem alignment and trust boundary
@@ -99,8 +111,8 @@ Lean does **not** formalize here:
 - the assertion that the chosen graph is the complement one-skeleton;
 - flagness and the identification of the vertex link with the relevant clique
   or independence complex; or
-- the transfer from 14 complement edges on 12 vertices to the link-gamma
-  contradiction.
+- the identification of `(G[B])ᶜ` with the link one-skeleton and the subsequent
+  link-gamma contradiction.
 
 These are explicit external mathematical bridges.  The Lean file reads no
 external data and uses no generated certificate, solver, oracle, floating
