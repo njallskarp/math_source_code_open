@@ -1,6 +1,8 @@
 import Mathlib.Combinatorics.SimpleGraph.AdjMatrix
 import Mathlib.Combinatorics.SimpleGraph.IncMatrix
 import Mathlib.Combinatorics.SimpleGraph.LineGraph
+import Mathlib.Algebra.Polynomial.RingDivision
+import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
 
 open Matrix
 
@@ -133,6 +135,78 @@ theorem lineGraph_adjMatrix_eq_transpose_mul_sub
   rw [edgeIncMatrix_transpose_mul]
   exact (add_sub_cancel_right _ _).symm
 
+/-- If the graph has at least as many edges as vertices, the characteristic
+polynomial of the edge Gram matrix is the characteristic polynomial of the
+vertex co-Gram matrix with exactly the dimension-difference power of `X`.
+
+This is the rectangular `AB`/`BA` characteristic-polynomial identity applied
+to the unsigned incidence matrix. -/
+theorem edgeGram_charpoly_eq_X_pow_mul_coGram
+    {R : Type*} [CommRing R] [Fintype V]
+    (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hcard : Fintype.card V ≤ Fintype.card G.edgeSet) :
+    ((edgeIncMatrix R G)ᵀ * edgeIncMatrix R G).charpoly =
+      Polynomial.X ^ (Fintype.card G.edgeSet - Fintype.card V) *
+        (edgeIncMatrix R G * (edgeIncMatrix R G)ᵀ).charpoly :=
+  Matrix.charpoly_mul_comm_of_le (edgeIncMatrix R G)ᵀ (edgeIncMatrix R G) hcard
+
+/-- In the cyclomatic-three cardinality regime `|E| = |V| + 2`, the edge
+Gram characteristic polynomial has exactly the explicit surplus factor `X²`. -/
+theorem edgeGram_charpoly_eq_X_sq_mul_coGram
+    {R : Type*} [CommRing R] [Fintype V]
+    (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hcard : Fintype.card G.edgeSet = Fintype.card V + 2) :
+    ((edgeIncMatrix R G)ᵀ * edgeIncMatrix R G).charpoly =
+      Polynomial.X ^ 2 * (edgeIncMatrix R G * (edgeIncMatrix R G)ᵀ).charpoly := by
+  rw [edgeGram_charpoly_eq_X_pow_mul_coGram G (by omega),
+    show Fintype.card G.edgeSet - Fintype.card V = 2 by omega]
+
+/-- Away from zero, the edge Gram and vertex co-Gram matrices have identical
+algebraic root multiplicities. -/
+theorem edgeGram_rootMultiplicity_eq_coGram_of_ne_zero
+    {K : Type*} [Field K] [Fintype V]
+    (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hcard : Fintype.card V ≤ Fintype.card G.edgeSet)
+    {μ : K} (hμ : μ ≠ 0) :
+    ((edgeIncMatrix K G)ᵀ * edgeIncMatrix K G).charpoly.rootMultiplicity μ =
+      (edgeIncMatrix K G * (edgeIncMatrix K G)ᵀ).charpoly.rootMultiplicity μ := by
+  rw [edgeGram_charpoly_eq_X_pow_mul_coGram G hcard,
+    Polynomial.rootMultiplicity_mul]
+  · simp [Polynomial.rootMultiplicity_eq_zero, Polynomial.IsRoot, hμ]
+  · exact mul_ne_zero (pow_ne_zero _ Polynomial.X_ne_zero)
+      (Matrix.charpoly_monic _).ne_zero
+
+/-- The zero-root algebraic multiplicity of the edge Gram matrix is the
+zero-root multiplicity of the vertex co-Gram matrix plus the index-cardinality
+difference. -/
+theorem edgeGram_rootMultiplicity_zero_eq_card_sub_add_coGram
+    {K : Type*} [Field K] [Fintype V]
+    (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hcard : Fintype.card V ≤ Fintype.card G.edgeSet) :
+    ((edgeIncMatrix K G)ᵀ * edgeIncMatrix K G).charpoly.rootMultiplicity 0 =
+      (Fintype.card G.edgeSet - Fintype.card V) +
+        (edgeIncMatrix K G * (edgeIncMatrix K G)ᵀ).charpoly.rootMultiplicity 0 := by
+  rw [edgeGram_charpoly_eq_X_pow_mul_coGram G hcard,
+    Polynomial.rootMultiplicity_mul]
+  · rw [show (Polynomial.X : Polynomial K) ^
+          (Fintype.card G.edgeSet - Fintype.card V) =
+        (Polynomial.X - Polynomial.C 0) ^
+          (Fintype.card G.edgeSet - Fintype.card V) by simp,
+      Polynomial.rootMultiplicity_X_sub_C_pow]
+  · exact mul_ne_zero (pow_ne_zero _ Polynomial.X_ne_zero)
+      (Matrix.charpoly_monic _).ne_zero
+
+/-- In the cyclomatic-three cardinality regime, the edge Gram matrix has two
+more zero roots (with algebraic multiplicity) than the vertex co-Gram matrix. -/
+theorem edgeGram_rootMultiplicity_zero_eq_two_add_coGram
+    {K : Type*} [Field K] [Fintype V]
+    (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hcard : Fintype.card G.edgeSet = Fintype.card V + 2) :
+    ((edgeIncMatrix K G)ᵀ * edgeIncMatrix K G).charpoly.rootMultiplicity 0 =
+      2 + (edgeIncMatrix K G * (edgeIncMatrix K G)ᵀ).charpoly.rootMultiplicity 0 := by
+  rw [edgeGram_rootMultiplicity_zero_eq_card_sub_add_coGram G (by omega),
+    show Fintype.card G.edgeSet - Fintype.card V = 2 by omega]
+
 #print axioms edgeIncMatrix_transpose_mul_apply_eq_card_inter
 #print axioms edge_toFinset_injective
 #print axioms card_inter_eq_one_of_card_two
@@ -141,5 +215,10 @@ theorem lineGraph_adjMatrix_eq_transpose_mul_sub
 #print axioms edge_inter_card_of_not_lineGraph_adj
 #print axioms edgeIncMatrix_transpose_mul
 #print axioms lineGraph_adjMatrix_eq_transpose_mul_sub
+#print axioms edgeGram_charpoly_eq_X_pow_mul_coGram
+#print axioms edgeGram_charpoly_eq_X_sq_mul_coGram
+#print axioms edgeGram_rootMultiplicity_eq_coGram_of_ne_zero
+#print axioms edgeGram_rootMultiplicity_zero_eq_card_sub_add_coGram
+#print axioms edgeGram_rootMultiplicity_zero_eq_two_add_coGram
 
 end LineGraphIncidence

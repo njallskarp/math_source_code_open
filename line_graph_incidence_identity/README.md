@@ -17,6 +17,19 @@ The statement uses Mathlib's `SimpleGraph`, `SimpleGraph.lineGraph`,
 to every finite simple graph and every semiring; no connectedness, minimum
 degree, or cyclomatic-number hypothesis is needed.
 
+It also formalizes the rectangular Gram/co-Gram characteristic-polynomial
+transfer.  If `B` has rows indexed by `V` and columns indexed by `E`, and
+`|V| <= |E|`, then over every commutative ring
+
+```text
+charpoly(Bᵀ B) = X^(|E| - |V|) * charpoly(B Bᵀ).
+```
+
+Over a field, nonzero roots therefore have identical algebraic
+multiplicities.  At zero, the multiplicity on the left is larger by exactly
+`|E| - |V|`.  In the cyclomatic-three regime `|E| = |V| + 2`, the surplus is
+exactly two.
+
 ## Formal interface
 
 Mathlib's `incMatrix` has one column for every unordered vertex pair.  The
@@ -34,9 +47,15 @@ The principal exported theorems are:
 - `edgeIncMatrix_transpose_mul_apply_eq_card_inter`: each Gram entry is the
   cardinality of the two edges' common-endpoint finset, cast into the
   coefficient semiring;
-- `edgeIncMatrix_transpose_mul`: `Bᵀ B = A(L(G)) + 2I` over any semiring; and
+- `edgeIncMatrix_transpose_mul`: `Bᵀ B = A(L(G)) + 2I` over any semiring;
 - `lineGraph_adjMatrix_eq_transpose_mul_sub`:
-  `A(L(G)) = Bᵀ B - 2I` over any ring.
+  `A(L(G)) = Bᵀ B - 2I` over any ring;
+- `edgeGram_charpoly_eq_X_pow_mul_coGram`: the generic rectangular
+  characteristic-polynomial factorization over a commutative ring;
+- `edgeGram_rootMultiplicity_eq_coGram_of_ne_zero`: equality of every nonzero
+  algebraic root multiplicity over a field; and
+- `edgeGram_rootMultiplicity_zero_eq_two_add_coGram`: the exact two-root
+  surplus when `|E| = |V| + 2`.
 
 Supporting lemmas prove that actual simple-graph edges have two endpoints,
 that adjacent line-graph vertices share exactly one endpoint, and that
@@ -61,14 +80,14 @@ Pinned versions:
 Expected results with the committed manifest:
 
 - Mathlib cache: 8,690 artifacts;
-- clean project build: 1,348 jobs completed successfully;
-- standalone replay: exit zero and eight printed axiom audits, each containing
+- clean project build: 1,793 jobs completed successfully;
+- standalone replay: exit zero and thirteen printed axiom audits, each containing
   only `propext`, `Classical.choice`, and `Quot.sound`.
 
 Source SHA-256:
 
 ```text
-b6673841bcf580118bb536ad38b2e63e54f48c937fe8113338298a78f50059e1  LineGraphIncidence.lean
+fb4293e47298bc316d1575559909ce6c1481fc2c373f75ddcac462f787a43453  LineGraphIncidence.lean
 ```
 
 ## Theorem alignment and trust boundary
@@ -79,13 +98,19 @@ corrected review
 `bafkreia7262slp7qmuxpylmcdgdqu7pgcz24fuzhm2rj5ortvw7gn5g4tu`.
 It is also stated as the unsigned-graph baseline in
 [Alomari--Abudayah--Germina--Sander](https://doi.org/10.1515/spma-2022-0176).
+The rectangular characteristic-polynomial factorization is the classical
+Sylvester determinantal identity; see
+[Brualdi--Schneider](https://doi.org/10.1016/0024-3795(83)80049-4).
 
 Lean proves the matrix equality directly from Mathlib's graph and matrix
-definitions.  It does **not** formalize spectral inertia, the equality of
-nonzero spectra of `BᵀB` and `BBᵀ`, signless Laplacians, cyclomatic number,
-subdivision reduction, kernel enumeration, or the target's bound on
-line-graph signature.  Consequently this project formalizes one reusable
-structural bridge of that theorem, not its computer-assisted classification.
+definitions.  The spectral extension is a small wrapper around Mathlib's
+rectangular `Matrix.charpoly_mul_comm_of_le`; it proves an exact polynomial
+identity and algebraic root-multiplicity consequences.  It does **not**
+identify `BBᵀ` with a separately defined signless Laplacian, formalize ordered
+real eigenvalues, spectral inertia or signature, cyclomatic number,
+subdivision reduction, kernel enumeration, or the target's line-graph bound.
+Consequently this project formalizes two reusable structural bridges of that
+theorem, not its computer-assisted classification.
 
 The source reads no external data and uses no solver, certificate, floating
 point, plugin, custom axiom, `sorry`, `admit`, `unsafe`, or `native_decide`.
