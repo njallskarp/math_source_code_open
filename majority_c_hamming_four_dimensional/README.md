@@ -152,6 +152,15 @@ K_(k^2+2k) square K_(k^2) square K_(k^2) square K_(k^2), k>=3,
 has exact value `k^4+k^3+k^2+k+1` and lies outside every earlier residue
 criterion in this suite. See [ALL_LARGE_THREE_BOX.md](ALL_LARGE_THREE_BOX.md).
 
+A specialist literature audit gives two exact reductions. The anchored
+rectangle is a direct specialization of Cameron--Horsley Theorem 2: every cut
+condition reduces to a two-case nonnegative integer expression, and the
+uncentred rows force the common transversal. The full three-box problem is a
+fixed-centre, fixed-size hyperstar decomposition in Lonc's 1987 Hall framework;
+the new content is the universal all-large capacity choice and explicit carry
+exchange, not the general feasibility criterion. See
+[SPECIALIST_PRIOR_ART_REDUCTION.md](SPECIALIST_PRIOR_ART_REDUCTION.md).
+
 The complete proof and exact parameter map are in
 [NEAR_TRIANGLE_FOUR_DIMENSIONAL.md](NEAR_TRIANGLE_FOUR_DIMENSIONAL.md).
 
@@ -168,6 +177,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_three_coordinate_slabs.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_balanced_stars_thin.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_specialist_star_reduction.py
 ```
 
 Expected output:
@@ -254,6 +264,9 @@ output in `expected_balanced_stars_thin_stdout.txt`.
 The all-large three-box checker reports the compact expected output in
 `expected_all_large_three_box_stdout.txt`.
 
+The specialist star-reduction checker reports the compact expected output in
+`expected_specialist_star_reduction_stdout.txt`.
+
 ## Evidence and trust boundary
 
 The theorem is a human proof from an exact first/second-shell incidence bound,
@@ -286,5 +299,10 @@ all-size-`s` rectangle case is therefore classical; see Yamamoto et al.,
 *On claw-decomposition of complete graphs and complete bigraphs* (1975),
 <https://doi.org/10.32917/hmj/1206136782>, and the modern discussion by
 Cameron--Horsley, <https://arxiv.org/abs/1807.10738>. The claimed new scope
-is restricted to the nondivisible cyclic construction and its Hamming/slab
-consequences.
+is restricted to the closed-form cyclic construction and its Hamming/slab
+consequences; existence of the balanced and anchored rectangle is a direct
+corollary of Cameron--Horsley Theorem 2. Coordinate-line decompositions of a
+three-box are fixed-centre hyperstar decompositions covered abstractly by
+Lonc's Hall criterion, <https://doi.org/10.1016/0012-365X(87)90128-2>. The
+all-large theorem contributes an explicit universal capacity choice and carry
+exchange within that framework.

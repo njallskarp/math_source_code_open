@@ -1,0 +1,9 @@
+small corners exhaustively audited: 819
+restriction-count types checked: 559943
+exhaustive zero-slack types: 3830
+exhaustive minimum cut slack: 0
+large-range corners audited: 167480
+extremal cut types checked: 15397100
+extremal zero-slack types: 879122
+extremal minimum cut slack: 0
+all exact checks passed

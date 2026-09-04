@@ -279,9 +279,21 @@ Yamamoto et al., *On claw-decomposition of complete graphs and complete
 bigraphs* (1975), <https://doi.org/10.32917/hmj/1206136782>. Cameron and
 Horsley, *Decompositions of complete multigraphs into stars of varying
 sizes*, <https://arxiv.org/abs/1807.10738>, give general graph
-varying-star criteria; Hajebi and Javadi,
+varying-star criteria. The anchored rectangle existence statement is a
+direct corollary of their Theorem 2; the complete cut reduction is given in
+[SPECIALIST_PRIOR_ART_REDUCTION.md](SPECIALIST_PRIOR_ART_REDUCTION.md).
+Hajebi and Javadi,
 *Parameterized Complexity of the Star Decomposition Problem*,
 <https://arxiv.org/abs/2411.13348>, treat the broader algorithmic problem.
+
+More generally, Lonc, *Decompositions of hypergraphs into hyperstars*
+(1987), <https://doi.org/10.1016/0012-365X(87)90128-2>, gives a Hall-type
+necessary-and-sufficient criterion for an arbitrary hypergraph with fixed
+hyperstar centres and sizes. A coordinate-line part of the three-box is a
+hyperstar with centre size two, so the line-partition problem lies within
+that framework. The criterion does not choose centre capacities maximizing
+the number of parts under a lower size bound; the construction above supplies
+one universal feasible choice explicitly.
 
 The graph-theoretic target is Open Problem 2 of Bujtás, Dettlaff,
 Furmańczyk, and Laskowska, *Majority C-coloring in Cartesian products*,
@@ -291,7 +303,8 @@ not include the all-large-minor quotient formula (9).
 
 Targeted searches for decompositions of complete multipartite uniform
 hypergraphs, multidimensional arrays, and Cartesian boxes into variable
-coordinate lines found no matching anchored carry-exchange theorem. The
-candidate-new claim is the explicit three-dimensional construction and its
-Hamming consequence; novelty remains search-relative, not a historical
-priority claim.
+coordinate lines found no theorem stating this universal all-large quotient
+or its aligned carry exchange. The candidate-new scope is restricted to the
+explicit three-dimensional capacity choice and construction and its Hamming
+consequence--not the general hyperstar feasibility framework. Novelty remains
+search-relative, not a historical priority claim.

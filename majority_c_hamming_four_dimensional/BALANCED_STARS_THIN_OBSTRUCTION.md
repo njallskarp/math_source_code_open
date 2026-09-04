@@ -214,20 +214,27 @@ Cameron and Horsley, *Decompositions of complete multigraphs into stars of
 varying sizes*,
 <https://arxiv.org/abs/1807.10738>, give a general necessary-and-sufficient
 flow criterion for decomposing a multigraph into prescribed stars with
-prescribed centers. That result can subsume particular two-size instances
-once suitable center data are supplied, but it does not state the universal
-balanced family (1) or this cyclic certificate.
+prescribed centers. In fact the balanced and anchored rectangle existence
+statements here are direct corollaries of their Theorem 2: for the final
+corner (K_{s+a,s+b}), prescribe (a+q) row stars of size (s),
+(\tau) column stars of size (s+1), and all other column stars of size
+(s), where (ab=sq+\tau). Their cut condition reduces exactly to the two
+nonnegative expressions proved in
+[SPECIALIST_PRIOR_ART_REDUCTION.md](SPECIALIST_PRIOR_ART_REDUCTION.md).
+Uncentred rows are forced into every column star, giving the common
+transversal. Thus the existence theorem, including arbitrary placement of
+the (\tau) large columns, is prior-art subsumed; the cyclic construction is
+a closed-form witness rather than a new existence claim.
 
 Hajebi and Javadi, *Parameterized Complexity of the Star Decomposition
 Problem*,
 <https://arxiv.org/abs/2411.13348>, show that general varying-size star
 decomposition remains parameterized-hard even for complete bipartite graphs.
-The contribution here is deliberately narrower: an explicit construction
-for the consecutive multiset forced by Euclidean division, together with
-the sharp thin-coordinate and Hamming consequences (5)--(11). Lonc's 1992
-varying-star result concerns complete graphs rather than this stated
-complete-bipartite family. Novelty is search-relative, not a claim of
-historical priority.
+The contribution here is deliberately narrower: an elementary explicit
+cyclic realization, together with the sharp thin-coordinate, boundary-crossing,
+and Hamming consequences (5)--(11). Lonc's 1992 varying-star result concerns
+complete graphs rather than this stated complete-bipartite family. Novelty is
+search-relative, not a claim of historical priority.
 
 The proof is elementary and universal. The accompanying standard-library
 Python checker reconstructs bounded balanced partitions cell by cell,
