@@ -1,0 +1,10 @@
+mixed-radix identities checked: 93412
+qualifying identities checked: 66550
+four-dimensional near-triangle parameters checked: 479445
+residue-product families detected: 141493
+genuinely nondivisible families detected: 21615
+generic cell-level partitions checked: 4025
+generic line classes checked: 212261
+lifted Hamming partitions checked: 647
+lifted Hamming colour classes checked: 30251
+all exact checks passed

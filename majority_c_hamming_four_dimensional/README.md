@@ -22,6 +22,18 @@ If `s` divides at least one of `n2,n3,n4`, equality holds.  The proof extends
 to every dimension satisfying `N_1 <= h <= N_1+N_2`: every colour class has
 at least `n1*s` vertices, and the same quotient upper bound follows.
 
+A mixed-radix line partition substantially enlarges the exact regime.  If
+
+```text
+(n2 mod s) * (n3 mod s) * (n4 mod s) < s,
+```
+
+then the quotient upper bound is attained, even when `s` divides none of the
+three minor orders.  See
+[MIXED_RADIX_EXTENSION.md](MIXED_RADIX_EXTENSION.md) for the dimension-free
+partition lemma and proof.  The first concrete new case is
+`K_5 square K_3 square K_3 square K_3`, whose exact value is `13`.
+
 The complete proof and exact parameter map are in
 [NEAR_TRIANGLE_FOUR_DIMENSIONAL.md](NEAR_TRIANGLE_FOUR_DIMENSIONAL.md).
 
@@ -31,6 +43,7 @@ CPython 3.12 or later; standard library only:
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 verify_near_triangle.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_mixed_radix.py
 ```
 
 Expected output:
@@ -43,6 +56,21 @@ full shell profiles checked: 176336
 divisible constructions checked: 10166
 K3xK2xK2xK2 candidate subsets checked: 187726
 K3xK2xK2xK2 feasible size-6 subsets: 12
+all exact checks passed
+```
+
+The mixed-radix checker separately reports:
+
+```text
+mixed-radix identities checked: 93412
+qualifying identities checked: 66550
+four-dimensional near-triangle parameters checked: 479445
+residue-product families detected: 141493
+genuinely nondivisible families detected: 21615
+generic cell-level partitions checked: 4025
+generic line classes checked: 212261
+lifted Hamming partitions checked: 647
+lifted Hamming colour classes checked: 30251
 all exact checks passed
 ```
 
