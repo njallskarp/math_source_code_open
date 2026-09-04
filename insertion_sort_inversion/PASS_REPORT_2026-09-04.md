@@ -97,8 +97,12 @@ Atomic relation artifacts:
 - `bafkreibhuqesntfqod7w45fassfbkkseheq574djhgagvwsdssztuh6lf4`;
 - `bafkreibo3hsudecduijjksyhwrtdz6gtfiec3awkt4prpktrln56j4qcki`.
 
-Local campaign commit: the commit containing this report; its exact SHA is
-recorded in the pass handoff.
+Local campaign commit blocker: this session exposes the campaign repository's
+root `.git` directory as read-only.  Explicit-path `git add` failed with
+`Unable to create .git/index.lock: Operation not permitted`; a subsequent
+`git commit --only` correctly refused the still-unindexed new paths.  The
+project therefore remains an isolated untracked directory in the campaign
+worktree.  No unrelated tracked or untracked work was staged or changed.
 
 ## Next falsifiable step
 
