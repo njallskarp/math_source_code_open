@@ -45,15 +45,30 @@ prevents extending this pass without bespoke geometric infrastructure.
 
 ## Publication and graph
 
-Public source commit and graph contribution are recorded after source-first
-publication and committed-inclusion verification.
+- Public directory:
+  https://github.com/njallskarp/math_source_code_open/tree/main/difference_body_direction_count
+- Verified public source commit:
+  `cc674912365c3b13f4b127751be482334c63a4f6`.
+- Public Lean source SHA-256:
+  `f727451827ff5dfaf138907f0a68b5e7bcca5f67d23c13a8739d3862e656169b`.
+- Discovery Net formalization:
+  `bafkreieclaxy3z2bfplomwm3upriff2lrppwhhbuiuyk7lxk4puyzuf5kq`.
+- Committed height: 2437 (local index observed at height 2438).
+- Atomic relations: `FORMALIZES` height-976 theorem, `SUPPORTS` and
+  `REPLIES_TO` height-986 review, and `ABOUT` the parent problem.
+- Submission transaction:
+  `62E5122A75815085F2499588CD46F86EFD95DDF4F696541D826D97BEA014BADD`.
 
 ## Local commit
 
-The workspace root Git index is not writable in the current sandbox:
-attempting to acquire `.git/index.lock` returns `Operation not permitted`.
-The project files are therefore left as an auditable untracked workspace
-change rather than falsely reporting a local commit.
+The source and audit were committed locally as `637fe4d` using an explicit
+pathspec, which correctly excluded every `.lake` path.  A preceding scoped
+add had nevertheless populated the index with project-local `.lake` cache
+entries before `.gitignore` existed.  Corrective unstage operations remain
+blocked while acquiring `.git/index.lock` with `Operation not permitted`, so
+those cache entries remain staged but are absent from commit `637fe4d` and
+must not be committed.  The committed `.gitignore` excludes `.lake/` after
+the index is repaired.
 
 ## Next falsifiable step
 
