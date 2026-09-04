@@ -1,0 +1,6 @@
+VERIFIED equivariant transfer and gamma characters; structural_cases=132; graded_cases=44; nonuniform_graded_cases=24; named_cases=5; group_elements=13; transfer_checks=9176; sha256=ef1f4fd1fce50f6b028f53a6ab157bdcd6a30c0ce6cb8d60b7066ab9002cf53f
+path3_uniform_a2: d=6 rank=3 degree=2 |G|=2 gamma_mult=[[0, 1], [1, 1]]
+path5_uniform_a1: d=5 rank=1 degree=3 |G|=2 gamma_mult=[[0, 1], [2, 2]]
+cycle4_uniform_a1: d=4 rank=1 degree=2 |G|=4 gamma_mult=[[0, 0, 0, 1], [0, 0, 0, 0]]
+k22_nonuniform_1_2: d=6 rank=2 degree=3 |G|=4 gamma_mult=[[0, 0, 0, 1], [0, 0, 1, 1]]
+matching_nonuniform: d=6 rank=2 degree=3 |G|=1 gamma_mult=[[1], [6]]
