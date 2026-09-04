@@ -1,0 +1,8 @@
+PASS independent Albertson r=27 full-chain arithmetic audit
+frontier_rows=[(53, 713), (53, 714), (53, 715), (54, 726)]
+order54={'bound': '218768121/35960', 'ceiling': 6084}
+sampling={'unconditional_digest': '55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43', 'row_bounds': {'53,714': 6100, '53,715': 6129}, 'conditional_digest': '79e615e691c84d697b2dbc3d6fded0d9657c37d3f91f4bebc1a61097fb39f7f6', 'support_equality': [686, 691], 'deletion_sum': 298314, 'row_53_713': 6089}
+profiles=[(10, 7, 39, 83, 17), (12, 4, 38, 82, 16)]
+five_face_boundary=u-z-t-r-w-u; chi=1
+Z(27)=6084
+review_certificate_sha256=9e59de37b4ae54c496d84c32dddd7ef0fd8e71b9a5a7e8c1b590a304c72ef5bf
