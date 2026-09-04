@@ -1,0 +1,6 @@
+PASS definition-level split-Hall and endpoint-degree audit
+hall_labelled_subsets=29360091; tight_hall_subsets=41; endpoint_failures=4
+endpoint_masks_scanned=2097152
+D20: endpoint_vectors=77520; min_palette_slack=8; degree_floor=224; handshake=174; margin=50
+D19: endpoint_vectors=125970; min_palette_slack=9; degree_floor=212; handshake=150; margin=62
+certificate_sha256=80c0e9a5e8210a3ef0b74b0f957cdc6b22cc1536172209cc193c089c2d861f93
