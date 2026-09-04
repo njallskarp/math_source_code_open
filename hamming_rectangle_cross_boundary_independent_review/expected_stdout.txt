@@ -1,0 +1,10 @@
+independent balanced rectangle partitions: 74
+independent witness digest: d60a03a35e4c834a8bad14fadb7a9168184a86911851eb8f0f76590fed10b6c6
+cyclic corner parameter triples: 2646700
+corner arithmetic digest: 64ff6ba40a09836c3be2ea114703146f41a5eb95b4dca61d7efaad4b9258c3a7
+near-triangle quadruples: 479445
+pair-remainder exact quadruples: 157292
+Hamming parameter digest: bee6d1216a6f8a473121f5ee1cf2731941b35c85770a4ea100ecfe3c3db03b4d
+explicit family indices: 9999
+family digest: e40e8134b4b5ce3d610e7fa2b90086b45bd36f7faff0b58a3ed22152a9ae6c8c
+all independent checks passed
