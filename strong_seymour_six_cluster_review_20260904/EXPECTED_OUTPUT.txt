@@ -1,0 +1,2 @@
+VERIFIED cluster-Hall reduction; quotient_classes=56 below36=90896960 order36=18179392 order36_raw_obstructions=1 order36_weighted_orbits=1 coverage_fnv64=5753450958029060800 obstruction_fnv64=13867651348073930262
+first_order36_weighted_orbit quotient=345 sizes=11,3,3,9,3,7 published_mask=21465
