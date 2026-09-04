@@ -1,0 +1,9 @@
+python=3.12.12 sympy=1.14.0
+closed_form_profiles subdouble=168808 boundary=185756 exceptional_ordered=26 status=verified
+sympy_gram primes=3,5,7,11,13 cases=29 exact_rank_and_determinant=verified
+exact_spectral_search p=3 n=2 normalized_sets=10 spectral_pairs=0 all_pairs_project=verified
+exact_spectral_search p=3 n=4 normalized_sets=165 spectral_pairs=57 all_pairs_project=verified
+exact_spectral_search p=3 n=5 normalized_sets=364 spectral_pairs=0 all_pairs_project=verified
+exact_spectral_search p=3 n=7 normalized_sets=1140 spectral_pairs=0 all_pairs_project=verified
+z2310_interval possible=14,15 impossible=12,13,16,17,18,19,20 status=verified
+review_audit_sha256=6c99f38bfa48cc73d378f35caf34a90c70f1469c01295dd61d371e8439a61cc8
