@@ -1,0 +1,12 @@
+degree_multisets=296010
+retained_low_weight_sides=370
+profile_counts=1,5,17,40,69,95,122
+connected_counts=1,5,16,37,63,85,107
+diameter_le_8_counts=0,2,11,30,52,70,88
+diameter_le_5_counts=0,0,5,16,28,37,49
+escape_counts=0,0,1,3,6,10,15
+escape_data_sha256=bf0f2ef8a84453435e00778f04ff0892b16719ba244a7773d02ebddade99ca32
+diameter_thresholds=29,32
+d26_boundary=red_clique=4 blue_clique=4 blue_components=13,13
+target_certificate_match=false
+audit_sha256=09d5105f82dd10f6f759c620f06a4f2959f9cf984e8a449b4c5b86664157a185
