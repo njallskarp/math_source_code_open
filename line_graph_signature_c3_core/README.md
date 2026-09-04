@@ -1,5 +1,13 @@
 # Cyclomatic-three core classification for line-graph signature
 
+## Follow-up: exact equality-family responses
+
+The companion proof [C3_EQUALITY_RESPONSE.md](C3_EQUALITY_RESPONSE.md)
+classifies every diagonal entry of `(Q(H)-2I)^(-1)` on the equality family:
+the only values are `1/2` and `3/2`.  It follows that adding one leaf at any
+vertex lowers the line-graph signature from two to one.  Two additional exact
+checkers reproduce the response theorem.
+
 Let `H` be a connected simple graph with minimum degree at least two, and set
 
 ```text
