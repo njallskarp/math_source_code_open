@@ -1,0 +1,4 @@
+block_gram_cases=40 p=3,5,7,11 r=2..2p-2 exact_negative_witness=verified
+boundary_pair_search_p=3_n=2,4,5 normalized_sets=1336 spectral_pairs=161 one_sided_exceptional=40 both_exceptional=0
+z2310_sizes_12_to_21 possible=14,15,21 impossible=12,13,16,17,18,19,20 status=classified
+audit_sha256=ae83a4f658af62bbbc19b5fadcb0038245ae714ed9dd59962e6342c4eee89b14
