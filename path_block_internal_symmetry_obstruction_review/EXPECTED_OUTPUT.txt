@@ -1,0 +1,8 @@
+INDEPENDENT AUDIT PASSED; direct_dilations=5; series_dilations=24; c2_tail_checks=21; simplex_permutations=41; simplex_dilations=9; sha256=7c3860af7b4d3675d7ecfbe386516012dadea4a5963789f5254bef709c625bbc
+ordinary_hstar=[1, 4, 1]
+fixed_ehrhart_numerator=[1, 2, 6, 2, 1]
+identity_counts_prefix=[1, 11, 57, 203, 574, 1386, 2982, 5874]
+fixed_counts_prefix=[1, 5, 21, 57, 138, 282, 538, 938]
+swap_hstar_prefix=[1, 0, 5, -8, 12, -16, 20, -24, 28, -32, 36, -40]
+c2_trivial_prefix=[1, 2, 3, -4, 6, -8, 10, -12, 14, -16, 18, -20]
+c2_sign_prefix=[0, 2, -2, 4, -6, 8, -10, 12, -14, 16, -18, 20]
