@@ -1,0 +1,8 @@
+dominant pairs checked: 19900
+coarse shell profiles checked: 66670000
+structured parameter tuples checked: 1027
+structured shell profiles checked: 394709
+K5xK2xK2 candidate subsets checked: 20349
+K5xK2xK2 feasible size-5 subsets: 4
+minimum doubled strict-margin (S>=2): 2
+all exact checks passed
