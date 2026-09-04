@@ -1,0 +1,5 @@
+profile_audit_p=3,5,7,11 subdouble_profiles=168808 boundary_profiles=185756 status=verified
+gram_formula_cases=18 exact_rational_rank=status_verified
+direct_pair_search_p=3_n=4,5,7 normalized_sets=1669 spectral_pairs=57 status=all_project
+z2310_sizes_12_to_20 possible=14,15 impossible=12,13,16,17,18,19,20 status=classified
+audit_sha256=145924b2b7571a7478204576dacc18418aad4da69d80944339ffdfa2c91dd246
