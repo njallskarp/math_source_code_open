@@ -1,0 +1,12 @@
+n=2 graphs=2 local_instances=2 global_graphs=1
+n=3 graphs=8 local_instances=6 global_graphs=1
+n=4 graphs=64 local_instances=56 global_graphs=1
+n=5 graphs=1024 local_instances=960 global_graphs=1
+n=6 graphs=32768 local_instances=33024 global_graphs=1
+petersen_complement=(n,d,lambda,mu)=(10,6,3,4) boundary=10
+c5_independent_blowups=m=3..12 no_one_round_pair explicit_second_round_ok
+graphs_examined=33866
+local_criterion_instances=34048
+global_criterion_graphs=5
+blowup_family_checks=10
+audit_sha256=daf011085ba7bba4c48715e58aeed7cb711bdb462dd5182144d43667c02d33f7
