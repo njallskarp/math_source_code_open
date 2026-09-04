@@ -145,9 +145,22 @@ def main() -> None:
     )
     assert left_jet != right_jet
     assert left_jet[1] != right_jet[1]
+
+    for prime in (3, 5, 7, 11):
+        variable = sp.symbols(f"z{prime}")
+        cyclotomic = sp.cyclotomic_poly(prime, variable)
+        for left_residue in range(1, prime):
+            for right_residue in range(1, prime):
+                remainder = sp.rem(
+                    2 - variable**left_residue - variable**right_residue,
+                    cyclotomic,
+                    domain=sp.ZZ,
+                )
+                assert remainder != 0
     print(
         "INDEPENDENT SYMPY VERIFIED; p=7; defect=4; "
-        "leading_cancellations=1; residual_order=3; whole_jets=different"
+        "leading_cancellations=1; residual_order=3; whole_jets=different; "
+        "defect_one=impossible"
     )
 
 

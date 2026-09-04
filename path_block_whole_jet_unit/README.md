@@ -34,10 +34,13 @@ polynomial identity
 K_(m,e)(X) = K_(c,e)(X)  in F_p[X].                            (2)
 ```
 
-The factorial-block unit hypothesis implies `e+1<p`.  Comparing the linear
-terms in the *single whole-jet identity* (2) then gives `m=c (mod p)`.  Hence
-`A=B (mod p)`.  But exact leading cancellation also forces `A+B=0 (mod p)`;
-this is impossible for odd `p` because `A` is a unit.
+When `e=1`, leading cancellation is already impossible: its cyclotomic-factor
+condition would say `1-zeta^b=-(1-zeta^a)` for two nonzero residues, hence
+`zeta^a+zeta^b=2`, contradicting the equality case of the triangle inequality.
+Now assume `e>=2`.  The factorial-block unit hypothesis implies `e+1<p`.
+Comparing the linear terms in the *single whole-jet identity* (2) then gives
+`m=c (mod p)`.  Hence `A=B (mod p)`.  But exact leading cancellation also
+forces `A+B=0 (mod p)`; this is impossible for odd `p` because `A` is a unit.
 
 The unit condition is essential to this stated theorem.  When `p` divides
 both rising blocks, division by their common valuation changes the residue
@@ -105,9 +108,19 @@ P_(lambda,zeta) P_(nu,1) + P_(lambda,1) P_(nu,zeta)
 cancel in all `e` relevant orders, their leading coefficients are opposite
 and their normalized whole jets are equal.  This proves (2).
 
-The coefficient of `X` in (1) is `-(e+1)(q-1)`, so (2) and `e+1<p` give
-`m=c (mod p)`.  The earlier cyclotomic-unit leading calculation says that
-leading cancellation requires
+If `e=1`, the necessary leading cyclotomic-factor identity is
+
+```text
+1-zeta^b = -(1-zeta^a)
+```
+
+for the unique nondivisible parts `a,b` modulo `p`.  It would give
+`zeta^a+zeta^b=2`.  Since both summands have modulus one, equality in the
+triangle inequality forces both to equal one, contrary to `p` dividing
+neither `a` nor `b`.  Thus assume `e>=2`, so the coefficient of `X` occurs in
+the full jet.  That coefficient in (1) is `-(e+1)(q-1)`, and (2) together
+with `e+1<p` gives `m=c (mod p)`.  The earlier cyclotomic-unit leading
+calculation says that leading cancellation requires
 
 ```text
 A + B = 0 (mod p)                                             (5)
@@ -182,8 +195,9 @@ whole-action effectiveness.
 ## Trust boundary
 
 The universal theorem depends on the independently reviewed endpoint formula
-and prime-defect reduction, the earlier cyclotomic-unit leading calculation,
-and the displayed local valuation proof.  The primary checker reconstructs
+and prime-defect reduction, the direct defect-one phase argument, the earlier
+cyclotomic-unit leading calculation, and the displayed local valuation proof.
+The primary checker reconstructs
 the hard witness in the exact field `Q[zeta_7]` and verifies the finite-field
 whole-jet polynomials.  The independent SymPy checker repeats the local-wave
 calculation without importing primary code.  These exact examples corroborate

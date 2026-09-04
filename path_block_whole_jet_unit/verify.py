@@ -237,6 +237,20 @@ def whole_jet_polynomial(divisible_count: int, defect: int, prime: int) -> tuple
     )
 
 
+def defect_one_factor_remainder(
+    left_residue: int, right_residue: int, prime: int
+) -> tuple[int, ...]:
+    """Reduce 2-z^a-z^b modulo Phi_p; zero would permit defect-one cancellation."""
+    if prime < 3 or left_residue % prime == 0 or right_residue % prime == 0:
+        raise ValueError("an odd prime and two nonzero residues are required")
+    coefficients = [0] * prime
+    coefficients[0] = 2
+    coefficients[left_residue % prime] -= 1
+    coefficients[right_residue % prime] -= 1
+    leading = coefficients[-1]
+    return tuple(entry - leading for entry in coefficients[:-1])
+
+
 def cross_report(left: Partition, right: Partition, depth: int) -> dict[str, int]:
     left_root_order = sum(part % PRIME == 0 for part in left)
     right_root_order = sum(part % PRIME == 0 for part in right)
@@ -294,6 +308,15 @@ def verify() -> dict[str, object]:
     }:
         raise AssertionError(exact)
 
+    defect_one_primes = (3, 5, 7, 11)
+    for prime in defect_one_primes:
+        for left_residue in range(1, prime):
+            for right_residue in range(1, prime):
+                if not any(
+                    defect_one_factor_remainder(left_residue, right_residue, prime)
+                ):
+                    raise AssertionError((prime, left_residue, right_residue))
+
     result: dict[str, object] = {
         "theorem": "factorial-block p-units obstruct full maximal cross-jet cancellation",
         "prime": PRIME,
@@ -305,6 +328,7 @@ def verify() -> dict[str, object]:
         "right_block_mod_p": right_block % PRIME,
         "left_whole_jet_mod_p": left_jet,
         "right_whole_jet_mod_p": right_jet,
+        "defect_one_checked_primes": defect_one_primes,
         **exact,
     }
     canonical = json.dumps(result, sort_keys=True, separators=(",", ":"))

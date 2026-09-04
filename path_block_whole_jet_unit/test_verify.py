@@ -22,6 +22,18 @@ class WholeJetUnitTests(unittest.TestCase):
         self.assertEqual(report["cancelled_orders"], 1)
         self.assertEqual(report["residual_order"], 3)
 
+    def test_defect_one_factor_identity_is_impossible(self) -> None:
+        for prime in (3, 5, 7, 11):
+            for left_residue in range(1, prime):
+                for right_residue in range(1, prime):
+                    self.assertTrue(
+                        any(
+                            verify.defect_one_factor_remainder(
+                                left_residue, right_residue, prime
+                            )
+                        )
+                    )
+
     def test_report_is_deterministic(self) -> None:
         self.assertEqual(verify.verify(), verify.verify())
 
