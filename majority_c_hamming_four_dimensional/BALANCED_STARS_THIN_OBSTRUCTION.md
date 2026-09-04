@@ -210,14 +210,16 @@ claw-decomposition of complete graphs and complete bigraphs*, Hiroshima
 Math. J. 5 (1975), 33--42,
 <https://doi.org/10.32917/hmj/1206136782>.
 
-Cameron and Horsley, *Decompositions of edge-colored multigraphs*,
+Cameron and Horsley, *Decompositions of complete multigraphs into stars of
+varying sizes*,
 <https://arxiv.org/abs/1807.10738>, give a general necessary-and-sufficient
 flow criterion for decomposing a multigraph into prescribed stars with
 prescribed centers. That result can subsume particular two-size instances
 once suitable center data are supplied, but it does not state the universal
 balanced family (1) or this cyclic certificate.
 
-Hajebi and Javadi, *On the parameterized complexity of star decomposition*,
+Hajebi and Javadi, *Parameterized Complexity of the Star Decomposition
+Problem*,
 <https://arxiv.org/abs/2411.13348>, show that general varying-size star
 decomposition remains parameterized-hard even for complete bipartite graphs.
 The contribution here is deliberately narrower: an explicit construction
