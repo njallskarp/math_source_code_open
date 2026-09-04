@@ -1,0 +1,7 @@
+parameters=n:21 type:32,6,4
+starter_external_edges=21,21,21
+starter_person_cycle_lengths=32,6,4;32,6,4;32,6,4
+developed_meals=40 external_edges=840 coverage_multiplicity=1
+certificate_sha256=9bf1bce4304692f64ad6acd44d81cdfc4c7d618b340dc72cdaf1ec1f6b7b33a0
+developed_schedule_sha256=0ebb07f5aa67030b23d1aa735807f1a7c211fa6a0a0c0972e2790e68f9f398f9
+VERIFIED HOP(32,6,4)
