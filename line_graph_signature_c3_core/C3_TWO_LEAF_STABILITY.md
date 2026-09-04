@@ -160,8 +160,8 @@ Primary sources checked:
 
 The rank-two congruence argument is human-checkable.  Its use here depends on
 the computer-assisted cyclomatic-three equality classification and the exact
-diagonal-response theorem in `C3_EQUALITY_RESPONSE.md`; the latter has two
-same-author exact implementations but has not yet received independent
-mathematical review.  The reduced-base pair census shares the family definition
-with those results.  The direct line-graph checker has an independent graph
-builder and spectral route, but it remains a finite audit of the reduced bases.
+diagonal-response theorem in `C3_EQUALITY_RESPONSE.md`; that dependency was
+independently reconstructed and accepted at Discovery Net height 1847.  The
+reduced-base pair census shares the family definition with those results.  The
+direct line-graph checker has an independent graph builder and spectral route,
+but it remains a finite audit of the reduced bases.

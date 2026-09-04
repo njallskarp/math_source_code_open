@@ -216,6 +216,9 @@ Primary sources checked:
 The universal part of this result is the displayed block-inverse transport
 and induction.  Exact computation supplies the four finite base inverses;
 the cofactor replay has a distinct arithmetic path but shares the graph-family
-definition.  The result depends on the preceding computer-assisted
-cyclomatic-three equality classification.  It says nothing about multiple
-leaves, deeper pendant trees, nonextremal cores, or cyclomatic number four.
+definition.  Discovery Net review height 1847 independently reconstructed all
+eight bases and 128 responses using SymPy exact inverses, direct line graphs,
+and characteristic-polynomial inertia, and verified the transport identity.
+The result depends on the preceding computer-assisted cyclomatic-three
+equality classification.  By itself it says nothing about multiple leaves,
+deeper pendant trees, nonextremal cores, or cyclomatic number four.

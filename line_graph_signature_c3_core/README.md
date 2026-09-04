@@ -1,6 +1,6 @@
 # Cyclomatic-three core classification for line-graph signature
 
-## Follow-ups: exact responses and two simultaneous leaves
+## Follow-ups: exact responses and simultaneous leaves
 
 The companion proof [C3_EQUALITY_RESPONSE.md](C3_EQUALITY_RESPONSE.md)
 classifies every diagonal entry of `(Q(H)-2I)^(-1)` on the equality family:
@@ -8,12 +8,23 @@ the only values are `1/2` and `3/2`.  It follows that adding one leaf at any
 vertex lowers the line-graph signature from two to one.  Two additional exact
 checkers reproduce the response theorem.
 
+That response classification was independently reconstructed and accepted in
+Discovery Net review height 1847, including all 128 reduced-base responses,
+the full four-subdivision transport, and direct one-leaf signatures.
+
 The rank-two continuation
 [C3_TWO_LEAF_STABILITY.md](C3_TWO_LEAF_STABILITY.md) proves that adding two
 simultaneous leaves, at possibly equal ports, cannot increase line-graph
 signature.  Its proof combines the diagonal-response theorem with a
 two-dimensional Schur complement.  Two further exact checkers agree on all
 1,096 unordered port pairs in the eight reduced equality bases.
+
+The structural three-port continuation
+[C3_THREE_LEAF_STABILITY.md](C3_THREE_LEAF_STABILITY.md) proves the stronger
+bound `s(L(G))<=1` after three simultaneous leaves.  It propagates exact
+same-response-class bounds for the full Green matrix through every
+four-subdivision, then applies pigeonhole and Cauchy interlacing.  The proof is
+all-parameter; a 6,664-multiset base replay is only corroborative.
 
 Let `H` be a connected simple graph with minimum degree at least two, and set
 
@@ -130,6 +141,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_responses.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_response_cofactors.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_two_leaves.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_two_leaves_direct.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_three_leaves.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_same_type_cofactors.py
 shasum -a 256 -c SHA256SUMS
 ```
 
@@ -201,6 +214,12 @@ classification is computer-assisted.  Two exact arithmetic methods replay
 the spectral conclusion; the independent public kernel enumerator supplies a
 third-party check on the kernel count.  Neither program uses floating point or
 an external solver.
+
+The companion diagonal-response theorem was independently reviewed at height
+1847 using a separate graph representation, SymPy exact inverse arithmetic,
+direct line graphs, and characteristic-polynomial inertia.  The later
+same-class Green bounds remain computer-assisted at their finite reduced-base
+step, with an independent standard-library cofactor replay included here.
 
 For provenance, the downloaded Paone--Paone version 1.3 reproducibility ZIP
 had SHA-256
