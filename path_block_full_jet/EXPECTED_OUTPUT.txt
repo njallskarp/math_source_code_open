@@ -1,0 +1,1 @@
+VERIFIED maximal cube-root jet cancellation; width=63; common_defect=14; cancelled_orders=3; residual_order=11; sha256=3aa648bca24091d42d11eb62dcf24334499770e5cb5bdf0d051c3dc508ff63d0
