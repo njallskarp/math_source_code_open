@@ -21,6 +21,22 @@ rho <= 24 and blueDegree <= 24.
 
 There are no hidden graph, coloring, or CNF assumptions.
 
+`OneFlipWitness.lean` separately defines:
+
+```lean
+Violated value assignment support
+SelectedUnsatisfiable reds blues
+Monochromatic color value support
+oneFlip color w z pivot
+IsBlueWitness color w z B
+blueDefectClauses color w blues
+```
+
+Here `color : V -> V -> Bool` and an assignment is simply `V -> Bool`.
+`SelectedUnsatisfiable` says literally that every assignment violates a
+selected all-true red support or all-false blue support.  No clause parser or
+external satisfiability result is hidden in the definition.
+
 ## Proof architecture
 
 `card_le_card_mul_of_biUnion_cover` uses Mathlib's
@@ -40,6 +56,14 @@ m + ceil((rho - 3)/4) <= 30,
 derive the reviewed subtraction form and three degree strata, and finally
 prove `m <= 26`.
 
+The one-flip proof constructs the valuation that clones `color w` except at
+`z`, proves no red support can be violated, and extracts a blue violated
+support from `SelectedUnsatisfiable`.  The local no-extension hypotheses rule
+out a blue support avoiding both `w` and `z`; hence the support is the required
+one-edge-defect witness.  Mathlib's `Finset.card_le_card_of_injOn` then turns
+witness incompatibility into the common-link cardinality bound.  Erasing `w`
+from a unique red four-set gives the exact lower bound three.
+
 ## What remains external
 
 The project deliberately stops before the surrounding Ramsey and SAT
@@ -48,7 +72,9 @@ hypotheses from:
 
 - a red/blue coloring of `K_42`;
 - the HOL4 or published proof of `R(4,5)=25`;
-- an unsatisfiable signed extension subsystem;
+- derivation of `SelectedUnsatisfiable` from a concrete signed extension
+  subsystem;
+- derivation of the two local no-extension hypotheses from clique-freeness;
 - singular Davis--Putnam fan structure; or
 - one-flip witness clauses.
 
@@ -63,12 +89,13 @@ With Lean 4.33.1 and Mathlib v4.33.1 pinned by `lean-toolchain`,
 ```text
 lake clean                         success
 lake exe cache get                 8,690 artifacts available
-lake build                         755 jobs completed successfully
+lake build                         757 jobs completed successfully
 lake env lean RamseyLinkFanBound.lean
                                    success
+lake env lean OneFlipWitness.lean  success
 ```
 
-All eleven audited declarations report only Lean's standard axioms
+All fifteen audited declarations report only Lean's standard axioms
 `propext`, `Classical.choice`, and `Quot.sound`.  The following four require
 only `propext` and `Quot.sound`:
 
@@ -84,6 +111,8 @@ The source scan found none of `sorry`, `admit`, a custom `axiom`, `unsafe`, or
 
 ```text
 28bf3f73f26bcd02287f938e31f7f23001a39d05fe02809761e9745f8222a98b
+685d9e3b6df9cd99e3d5f50799dfd9e1e17364f6aecd7710fafadbe735cb7705
 ```
 
-is the SHA-256 of `RamseyLinkFanBound.lean`.
+are the SHA-256 values of `RamseyLinkFanBound.lean` and
+`OneFlipWitness.lean`, respectively.

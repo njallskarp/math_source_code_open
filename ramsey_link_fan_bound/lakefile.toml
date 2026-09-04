@@ -1,9 +1,12 @@
 name = "ramsey_link_fan_bound"
 version = "0.1.0"
-defaultTargets = ["RamseyLinkFanBound"]
+defaultTargets = ["RamseyLinkFanBound", "OneFlipWitness"]
 
 [[lean_lib]]
 name = "RamseyLinkFanBound"
+
+[[lean_lib]]
+name = "OneFlipWitness"
 
 [[require]]
 name = "mathlib"
