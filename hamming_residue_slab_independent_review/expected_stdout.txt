@@ -1,0 +1,11 @@
+python: 3.12.12
+composition arithmetic triples checked: 16515072
+clean-room exact-cover bases and extensions: 4
+exact-cover search states visited: 35
+cells in explicit extended covers: 261
+near-triangle parameter quadruples checked: 1564
+feasible first-shell profiles checked: 4131643
+smallest new Hamming case: orders=(11, 7, 7, 5), s=4, quotient=61
+smallest new Hamming case: orders=(11, 8, 7, 6), s=5, quotient=67
+explicit-family indices checked: 99999
+all independent checks passed
