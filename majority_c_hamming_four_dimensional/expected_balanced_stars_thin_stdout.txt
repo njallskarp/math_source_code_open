@@ -1,0 +1,15 @@
+balanced rectangle partitions reconstructed: 9129
+balanced rectangle line parts checked: 498902
+balanced rectangle cells checked: 7393776
+balanced rectangle size-(s+1) parts checked: 47244
+thin-box partitions reconstructed: 3345
+thin-box line parts checked: 269107
+thin-box positive-deficit instances reconstructed: 1306
+thin-coordinate identities checked: 8999900
+thin-coordinate carry obstructions checked: 8713863
+thin-coordinate accumulated deficit: 500692346
+Hamming separation-family indices checked: 9998
+Hamming family partitions reconstructed: 12
+Hamming family colour classes checked: 1190
+Hamming family nonlinear residue cells checked: 180
+all exact checks passed

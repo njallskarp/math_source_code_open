@@ -108,6 +108,29 @@ with exact value `6*k^2+19*k+16`; its first member is
 `K_12 square K_8 square K_7 square K_7` with value `78`. See
 [THREE_COORDINATE_SLABS.md](THREE_COORDINATE_SLABS.md).
 
+The rectangle theorem admits a balanced strengthening: its
+`floor(m*n/s)` line parts can always be chosen with sizes only `s` and
+`s+1`, with exactly `(m*n) mod s` of the latter size. This is an explicit
+two-consecutive-size star decomposition of `K_(m,n)`. It also makes the
+slab condition sharp when the third side `p` is smaller than `s`:
+
+```text
+maximum number of line parts in [m] x [n] x [p]
+  = p*floor(m*n/s),  1 <= p < s.
+```
+
+The exact deficit from the volume quotient is
+`floor(p*((m*n) mod s)/s)`. Therefore a carry cannot be repaired without a
+part crossing the complete-slab/residual-layer boundary. The family
+
+```text
+K_(s+2) square K_(s+2) square K_(s+1) square K_(s-1), s>=3,
+```
+
+has exact majority C-chromatic number `s^2+2*s-2` by the nonlinear one-box
+construction, but every coordinate-line lift has at most one fewer colour.
+See [BALANCED_STARS_THIN_OBSTRUCTION.md](BALANCED_STARS_THIN_OBSTRUCTION.md).
+
 The complete proof and exact parameter map are in
 [NEAR_TRIANGLE_FOUR_DIMENSIONAL.md](NEAR_TRIANGLE_FOUR_DIMENSIONAL.md).
 
@@ -122,6 +145,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_residue_box.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_multibox_obstruction.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_three_coordinate_slabs.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_balanced_stars_thin.py
 ```
 
 Expected output:
@@ -201,6 +225,9 @@ all exact checks passed
 
 The three-coordinate slab checker reports the compact expected output in
 `expected_three_coordinate_slabs_stdout.txt`.
+
+The balanced-star/thin-coordinate checker reports the compact expected
+output in `expected_balanced_stars_thin_stdout.txt`.
 
 ## Evidence and trust boundary
 
