@@ -1,0 +1,4 @@
+core_records=72 core_sha256=5f22202d2ea18eddf1b02e7ebe6cf1a855f80d8880d101335d546e3f328cd75b
+core_edge_histogram=11:19,12:8,13:29,15:10,16:1,17:5
+extension_signature_histogram=-8:37,-7:531,-6:3204,-5:10765,-4:23362,-3:35471,-2:38952,-1:27405,0:7479,1:178
+extensions=147384 maximum_extension_signature=1 status=VERIFIED
