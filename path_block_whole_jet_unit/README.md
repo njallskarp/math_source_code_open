@@ -65,19 +65,20 @@ F_tau(1-u)       = u^(-(r+1)) C_1(u).
 ```
 
 The extra denominator `1-x` is one of the `e+1` factors nonvanishing at
-`zeta`.  Work in the localization of `Z[zeta]` at `pi=1-zeta` and substitute
-`u=pi v`.  After division by constant terms, every `p`-divisible factor is
-`1 modulo pi`, whereas every nonvanishing factor satisfies
+`zeta`.  The block-unit hypothesis gives `e+1<p`.  Work in the localization
+of `Z[zeta]` at `pi=1-zeta`, substitute `u=pi v`, and truncate modulo `v^e`.
+After division by constant terms, every `p`-divisible factor is `1 modulo pi`
+through this truncation, whereas every nonvanishing factor satisfies
 
 ```text
 (1-zeta^a) / (1-zeta^a(1-pi v)^a) = (1+v)^(-1)  (mod pi).
 ```
 
-Therefore the entire local power series, not merely a fixed prefix, obeys
+Therefore the complete defect-length local truncations obey
 
 ```text
-C_zeta(pi v)/C_zeta(0) = (1+v)^(-(e+1))  (mod pi),
-C_1(pi v)/C_1(0)       = 1               (mod pi).       (3)
+C_zeta(pi v)/C_zeta(0) = (1+v)^(-(e+1))  (mod pi,v^e),
+C_1(pi v)/C_1(0)       = 1               (mod pi,v^e).   (3)
 ```
 
 For a pole of order `q`, the coefficient wave is recovered exactly from
@@ -94,7 +95,10 @@ inverse powers of `y`.  Equation (3) supplies
 interval of `e+1` consecutive integers in either rising block contains a
 multiple of `p`; in particular `e+1<p`.  All factorial denominators appearing
 before degree `e` are consequently `p`-units, so this reduction takes place
-in the local integral lattice without hidden denominators.
+in the local integral lattice without hidden denominators.  No infinite-series
+congruence is asserted: at degree `p-1` and above, divided-power terms from a
+`p`-divisible factor can survive modulo `pi`.  Since `e-1<p-1`, those terms
+occur strictly beyond the complete jet needed here.
 
 Let `P_(tau,zeta)` and `P_(tau,1)` denote the two waves and normalize
 `P_(tau,zeta)/P_(tau,1)` by its leading coefficient.  Equations (3)--(4)
