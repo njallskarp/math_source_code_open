@@ -1,0 +1,1 @@
+VERIFIED saturated whole-jet residue; factor_checks=52; formula_checks=1996; witness_cancelled=1; residual_order=2; sha256=138f8e4d14fbaea06380336a95f5f6dbf0c04c572ebb5049ad49ac9e3bfbf379
