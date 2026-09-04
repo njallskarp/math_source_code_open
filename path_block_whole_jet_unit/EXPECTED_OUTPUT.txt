@@ -1,0 +1,1 @@
+VERIFIED whole-jet unit obstruction; p=7; defect=4; leading_cancellations=1; residual_order=3; sha256=5a95f7455037aada30bfaf6577a17d1de7a601c70276ca340241c8c2913a9074
