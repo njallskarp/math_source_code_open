@@ -1,0 +1,3 @@
+VERIFIED least internal-symmetry obstruction; direct_dilations=8; formula_dilations=81; simplex_cycle_type_pairs=433; numerator_at_minus_one=4; sha256=a2ba0f04fd64fafc2acca760a25ffe7397a0df7192b5410625e574d381970e0d
+fixed_counts_prefix=[1, 5, 21, 57, 138, 282, 538, 938]
+hstar_prefix=[1, 0, 5, -8, 12, -16, 20, -24, 28, -32, 36, -40]
