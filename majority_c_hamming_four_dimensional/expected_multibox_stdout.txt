@@ -1,0 +1,8 @@
+capped shell profiles checked: 133518
+small residue boxes checked exhaustively: 23
+small residue subsets checked exhaustively: 14539
+multi-box volume contradictions checked: 24360931
+exceptional residue partitions reconstructed: 64
+exceptional partition parts checked: 5816
+explicit Hamming-family parameters checked: 353500
+all exact checks passed

@@ -52,6 +52,21 @@ chi_bar_>=(K_(2s+2) square K_(2s-1) square K_(s+2) square K_(s+1))
 
 See [RESIDUE_BOX_EXTENSION.md](RESIDUE_BOX_EXTENSION.md).
 
+The natural attempt to keep partitioning the final residue box has a sharp
+barrier.  If every residue is smaller than `s`, any induced subgraph of
+minimum degree at least `s-1` has at least `2*s-2` vertices.  Consequently a
+three-coordinate residue box with `floor(r2*r3*r4/s) >= 2` cannot supply all
+of those quotient parts for any `s >= 4`.  The unique multi-box exception is
+
+```text
+s = 3, (r2,r3,r4) = (2,2,2),
+```
+
+where the residual cube splits into two square faces.  It gives a further
+exact infinite family.  See
+[MULTIBOX_OBSTRUCTION.md](MULTIBOX_OBSTRUCTION.md) for the theorem, the exact
+family, and the scope of the obstruction.
+
 The complete proof and exact parameter map are in
 [NEAR_TRIANGLE_FOUR_DIMENSIONAL.md](NEAR_TRIANGLE_FOUR_DIMENSIONAL.md).
 
@@ -63,6 +78,7 @@ CPython 3.12 or later; standard library only:
 PYTHONDONTWRITEBYTECODE=1 python3 verify_near_triangle.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_mixed_radix.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_residue_box.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_multibox_obstruction.py
 ```
 
 Expected output:
@@ -105,6 +121,19 @@ generic cell-level partitions checked: 4025
 generic line classes checked: 212261
 lifted Hamming partitions checked: 647
 lifted Hamming colour classes checked: 30251
+all exact checks passed
+```
+
+The multi-box checker reports:
+
+```text
+capped shell profiles checked: 133518
+small residue boxes checked exhaustively: 23
+small residue subsets checked exhaustively: 14539
+multi-box volume contradictions checked: 24360931
+exceptional residue partitions reconstructed: 64
+exceptional partition parts checked: 5816
+explicit Hamming-family parameters checked: 353500
 all exact checks passed
 ```
 
