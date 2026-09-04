@@ -1,0 +1,4 @@
+cycle_power_distance_cases=117
+trace_bijection_cases=21 parameter_pairs=7
+total_cycle_specialization_cases=10
+audit_sha256=96a0e626c06f5df4843f1f81f97dd40451f2a2779fc169f74c16b92a315f5754
