@@ -1,0 +1,8 @@
+q3_edges=12 q3_faces=6
+square_free_patterns=2902 active_patterns=2130
+active_face_profile=t1:936,t2:672,t3:328,t4:162,t5:24,t6:8
+local_min_twice_slack=0 local_equality_patterns=48
+square_saturated_q2=count:4,min:3,distribution:e3:4
+square_saturated_q3=count:74,min:8,distribution:e8:66,e9:8
+theorem_integer_bounds=d3:8,d4:18,d5:38,d6:80,d7:166,d8:342,d9:702,d10:1434
+status=PASS
