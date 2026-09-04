@@ -1,12 +1,19 @@
 # Cyclomatic-three core classification for line-graph signature
 
-## Follow-up: exact equality-family responses
+## Follow-ups: exact responses and two simultaneous leaves
 
 The companion proof [C3_EQUALITY_RESPONSE.md](C3_EQUALITY_RESPONSE.md)
 classifies every diagonal entry of `(Q(H)-2I)^(-1)` on the equality family:
 the only values are `1/2` and `3/2`.  It follows that adding one leaf at any
 vertex lowers the line-graph signature from two to one.  Two additional exact
 checkers reproduce the response theorem.
+
+The rank-two continuation
+[C3_TWO_LEAF_STABILITY.md](C3_TWO_LEAF_STABILITY.md) proves that adding two
+simultaneous leaves, at possibly equal ports, cannot increase line-graph
+signature.  Its proof combines the diagonal-response theorem with a
+two-dimensional Schur complement.  Two further exact checkers agree on all
+1,096 unordered port pairs in the eight reduced equality bases.
 
 Let `H` be a connected simple graph with minimum degree at least two, and set
 
@@ -119,6 +126,11 @@ library.  From this directory run:
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_core.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_charpoly.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_responses.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_response_cofactors.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_two_leaves.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_c3_two_leaves_direct.py
+shasum -a 256 -c SHA256SUMS
 ```
 
 The primary run checks 26,688 assignments and ends with:
@@ -158,18 +170,21 @@ raw exploratory search, binary, cache, or generated private state is needed.
 
 Paone and Paone formulate the sharp cyclomatic conjecture, enumerate the
 `3,15,111` kernels for cyclomatic numbers `2,3,4`, and leave the singular
-boundary regime open.  Paone proves the four-subdivision congruence and
-classifies the three-cycle-chain equality family when the two connecting
-bridges are unsubdivided.  The theorem here checks all 15 cyclomatic-three
-kernels and allows arbitrary subdivision of both connectors, showing that
-odd connector lengths are exactly the additional equality cases.  Francis
-and Uptain independently prove that connected line graphs have unbounded
-signature, a different phenomenon from this fixed-cyclomatic slice.
+boundary regime open.  Paone and Paone separately establish the relevant rose
+and generalized-theta subclasses.  Paone proves the four-subdivision
+congruence and classifies the three-cycle-chain equality family when the two
+connecting bridges are unsubdivided.  The theorem here checks all 15
+cyclomatic-three kernels and allows arbitrary subdivision of both connectors,
+showing that odd connector lengths are exactly the additional equality cases.
+Francis and Uptain independently prove that connected line graphs have
+unbounded signature, a different phenomenon from this fixed-cyclomatic slice.
 
 Primary sources checked:
 
 - Andrea Paone and Marco Paone, *Line-Graph Signature Beyond the 2-Core*,
   version 1.3, <https://doi.org/10.5281/zenodo.21706797>.
+- Andrea Paone and Marco Paone, *Line-graph inertia of roses and generalized
+  theta graphs*, <https://doi.org/10.5281/zenodo.21744051>.
 - Andrea Paone, *Unbounded signature of line graphs: counterexamples and
   transfer mechanisms*, version 2, <https://doi.org/10.5281/zenodo.21534809>.
 - Luke Francis and Trevor Uptain, *The signature of connected line graphs is
