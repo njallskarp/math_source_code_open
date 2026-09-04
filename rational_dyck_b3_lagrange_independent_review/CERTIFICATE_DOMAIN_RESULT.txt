@@ -1,0 +1,7 @@
+parity=0 name=trace_drop terms=35 U0_terms=7 V0_terms=5 UV0_terms=1 min_U_exp=0 min_V_exp=0
+parity=0 name=q_drop terms=35 U0_terms=7 V0_terms=5 UV0_terms=1 min_U_exp=0 min_V_exp=0
+parity=0 name=a_over_trace_cross terms=117 U0_terms=13 V0_terms=9 UV0_terms=1 min_U_exp=0 min_V_exp=0
+parity=1 name=trace_drop terms=35 U0_terms=7 V0_terms=5 UV0_terms=1 min_U_exp=0 min_V_exp=0
+parity=1 name=q_drop terms=28 U0_terms=0 V0_terms=4 UV0_terms=0 min_U_exp=1 min_V_exp=0
+parity=1 name=a_over_trace_cross terms=117 U0_terms=13 V0_terms=9 UV0_terms=1 min_U_exp=0 min_V_exp=0
+DOMAIN AUDIT PASSED; odd q_drop is U-divisible; target strictness uses gcd(a,3)=1 to exclude U=0

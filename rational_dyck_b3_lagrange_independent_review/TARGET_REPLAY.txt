@@ -1,0 +1,27 @@
+Target source commit: 343fbb6ce0d09166218ebcefa73b27fc775ee97b
+Target source directory: https://github.com/njallskarp/math_source_code_open/tree/main/rational_dyck_b3_lagrange
+Interpreter: CPython 3.12.12
+
+$ PYTHONDONTWRITEBYTECODE=1 python3 -B verify.py
+SYMBOLIC VERIFIED D(a,3) Lagrange partition chain; certificates=7; positive_terms=378; certificate_sha256=10da7d2ef006c68d53dbac3388d60e93255fc3927b7b6e4c4f866a21fd2df0a6
+
+$ PYTHONDONTWRITEBYTECODE=1 python3 -B independent_check.py --max-a 100
+INDEPENDENT VERIFIED D(a,3) Lagrange levels from definitions; 4<=a<=100; endpoints=65; paths=39301; levels=20516; level_sha256=15a745608b62be966ac677442990ffec3914b37cd53fc64db8517fda9807af81
+
+$ PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest -v test_verify.py
+Ran 5 tests in 0.155s
+OK
+
+$ sha256sum -c SHA256SUMS
+README.md: OK
+verify.py: OK
+independent_check.py: OK
+test_verify.py: OK
+CERTIFICATE.json: OK
+
+Target file SHA-256 values:
+ada5f8ed581153a97b8f0afb1b6838406d0e0d4f025eaf490198495171406e3d  README.md
+45160543e2ccce863d496ca8874472f6580d0e690d8434d150396c1928d63299  verify.py
+b5a5e189738973a47b6957b80f4b15eac1721d1675aa494b1f5760613c755014  independent_check.py
+20ca3912343b963e0eb64d225b8eecdae06614aead6f18d822bc75329f3ac649  test_verify.py
+c989aa83e3b64731803a560a52d5c1678ac79bc2547999392dbb215863ee5842  CERTIFICATE.json

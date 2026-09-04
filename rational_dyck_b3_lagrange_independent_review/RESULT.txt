@@ -1,0 +1,1 @@
+INDEPENDENT MATRIX AUDIT PASSED; 4<=a<=120; coprime_endpoints=78; coprime_paths=66417; coprime_levels=34437; noncoprime_endpoints=39; noncoprime_paths=35295; noncoprime_levels=17867; sorted_cut_checks=101712; transition_checks=52187; noncoprime_terminal_q_ties=39; digit1_max_ties=0; audit_sha256=e00985f3b603b3bbcf5321cab59fe21eb1777d13c36e91ae45ca6e23d83fdd50
