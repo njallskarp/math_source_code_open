@@ -1,0 +1,2 @@
+{"algorithm":"SymPy DomainMatrix inverse plus direct line-graph charpoly","base_assignments":8,"base_signature_checks":8,"determinant_counts":{"-4":4,"4":4},"one_leaf_signature_checks":128,"record_sha256":"3f35404094eee97889596aa8fa4387782aef8a329fb3ec58b5d6651deeae5651","response_counts":{"1/2":88,"3/2":40},"same_port_star_checks_k2_through_k6":80,"status":"VERIFIED","sympy":"1.14.0","transport_schur_identity":"VERIFIED"}
+RESULT_SHA256=9175fe0108374208752be86d2d3e50d89eafff581ebed470d8568754b7e7e14e
