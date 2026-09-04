@@ -1,0 +1,1 @@
+INDEPENDENT SYMPY PASS; full_jet=14; minimum_pi_valuation=2; associated_graded_difference=X^3; residual_order=11

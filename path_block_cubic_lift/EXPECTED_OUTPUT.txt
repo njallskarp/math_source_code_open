@@ -1,0 +1,1 @@
+VERIFIED complete cubic lift; factor_checks=2460; parameter_checks=13; transform_checks=60; graded_difference=X^3; residual_order=11; sha256=2e37c1c729336b80686aac76cb0c6297dbf506ba0e634277907df1f55469f644
