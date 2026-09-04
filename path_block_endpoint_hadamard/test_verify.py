@@ -34,6 +34,30 @@ class EndpointHadamardTests(unittest.TestCase):
         self.assertEqual(verify.synchronized_pole_witness((2, 1)), (1, 2, 1, 1))
         self.assertEqual(verify.synchronized_pole_witness((4, 2)), (2, 2, 1, 1))
 
+    def test_maximal_prime_profile(self) -> None:
+        self.assertEqual(verify.maximal_prime_profile((1, 1, 1)), (3, ()))
+        self.assertEqual(verify.maximal_prime_profile((6, 1)), (1, (2, 3)))
+        self.assertEqual(
+            verify.maximal_prime_profile((4, 4, 3, 3, 3, 3, 1)),
+            (3, (3,)),
+        )
+        witness = verify.defect_profile_witness((2, 2, 1), (3, 1, 1))
+        self.assertEqual(witness, (2, 3))
+        self.assertEqual(
+            verify.cyclotomic_residual_order((2, 2, 1), (3, 1, 1), 2),
+            witness[1],
+        )
+
+    def test_least_leading_cancellation(self) -> None:
+        left = (4, 4, 3, 3, 3, 3, 1)
+        right = (3, 3, 3, 3, 3, 2, 2, 2)
+        self.assertTrue(verify.leading_cross_cancels(left, right, 3))
+        self.assertEqual(verify.cyclotomic_residual_order(left, right, 3), 2)
+        unequal_right = (6, 3, 3, 3, 3, 2, 2, 2)
+        self.assertTrue(verify.leading_cross_cancels(left, unequal_right, 3))
+        self.assertEqual(sum(unequal_right) - sum(left), 3)
+        self.assertEqual(verify.cyclotomic_residual_order(left, unequal_right, 3), 2)
+
     def test_full_report(self) -> None:
         report = verify.verify()
         self.assertEqual(report["classification_width"], 10)
@@ -41,6 +65,9 @@ class EndpointHadamardTests(unittest.TestCase):
         self.assertEqual(report["polynomial_pairs"], 27)
         self.assertEqual(report["one_sided_failures"], 128)
         self.assertEqual(report["synchronized_nonrectangular"], 2647)
+        self.assertEqual(report["maximal_profile_targeted_pairs"], 4527)
+        self.assertEqual(report["least_leading_cancellation_width"], 21)
+        self.assertEqual(report["leading_cancellation_residual_order"], 2)
 
 
 if __name__ == "__main__":

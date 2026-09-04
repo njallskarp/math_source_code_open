@@ -1,0 +1,1 @@
+INDEPENDENT maximal-prime jet; nominal_order=12; actual_order=11; determinant_zero=9; residual_order=2; subleading_identity=verified

@@ -6,7 +6,7 @@ import hashlib
 import itertools
 import json
 from functools import cache
-from math import comb, gcd, lcm
+from math import comb, factorial, gcd, lcm
 
 Polynomial = list[int]  # constant coefficient first
 Partition = tuple[int, ...]
@@ -28,6 +28,19 @@ def poly_mul(left: Polynomial, right: Polynomial) -> Polynomial:
     return trim(result)
 
 
+def poly_add(left: Polynomial, right: Polynomial) -> Polynomial:
+    result = [0] * max(len(left), len(right))
+    for index, value in enumerate(left):
+        result[index] += value
+    for index, value in enumerate(right):
+        result[index] += value
+    return trim(result)
+
+
+def poly_scale(poly: Polynomial, scalar: int) -> Polynomial:
+    return trim([scalar * value for value in poly])
+
+
 def cycle_determinant(partition: Partition) -> Polynomial:
     result = [1]
     for length in partition:
@@ -36,6 +49,66 @@ def cycle_determinant(partition: Partition) -> Polynomial:
         factor[length] = -1
         result = poly_mul(result, factor)
     return result
+
+
+@cache
+def prime_divisors(value: int) -> tuple[int, ...]:
+    result: list[int] = []
+    divisor = 2
+    remaining = value
+    while divisor * divisor <= remaining:
+        if remaining % divisor == 0:
+            result.append(divisor)
+            while remaining % divisor == 0:
+                remaining //= divisor
+        divisor += 1
+    if remaining > 1:
+        result.append(remaining)
+    return tuple(result)
+
+
+def maximal_prime_profile(partition: Partition) -> tuple[int, tuple[int, ...]]:
+    """Return (minimal prime defect, primes attaining it)."""
+    primes = sorted({prime for part in partition for prime in prime_divisors(part)})
+    if not primes:
+        return len(partition), ()
+    counts = {
+        prime: sum(part % prime == 0 for part in partition) for prime in primes
+    }
+    maximum = max(counts.values())
+    return (
+        len(partition) - maximum,
+        tuple(prime for prime, count in counts.items() if count == maximum),
+    )
+
+
+def defect_profile_witness(
+    left: Partition, right: Partition
+) -> tuple[int, int] | None:
+    """Return (prime order, exact pole order) when profiles force uniqueness.
+
+    This implements only the profile-mismatch branch of the theorem.  Equal
+    profiles require the cross-term coefficient and jet analysis.
+    """
+    left_defect, left_primes = maximal_prime_profile(left)
+    right_defect, right_primes = maximal_prime_profile(right)
+    if not left_primes or not right_primes:
+        return None
+    if left_defect < right_defect:
+        prime = left_primes[0]
+        return prime, len(right) - sum(part % prime == 0 for part in right)
+    if right_defect < left_defect:
+        prime = right_primes[0]
+        return prime, len(left) - sum(part % prime == 0 for part in left)
+    left_only = sorted(set(left_primes) - set(right_primes))
+    if left_only:
+        prime = left_only[0]
+        return prime, len(right) - sum(part % prime == 0 for part in right)
+    right_only = sorted(set(right_primes) - set(left_primes))
+    if right_only:
+        prime = right_only[0]
+        return prime, len(left) - sum(part % prime == 0 for part in left)
+    return None
 
 
 @cache
@@ -248,6 +321,67 @@ def polynomial_valuation(poly: Polynomial, factor: Polynomial) -> int:
         valuation += 1
 
 
+def cyclotomic_residual_order(
+    left: Partition, right: Partition, root_order: int
+) -> int:
+    """Return the pole order of h* at primitive roots of the given order."""
+    numerator, denominator = hadamard_numerator(left, right)
+    determinant = poly_mul([1, -1], cycle_determinant(left + right))
+    product = poly_mul(numerator, determinant)
+    cyclotomic = list(cyclotomic_polynomial(root_order))
+    return polynomial_valuation(denominator, cyclotomic) - polynomial_valuation(
+        product, cyclotomic
+    )
+
+
+def leading_cross_numerator(
+    left: Partition, right: Partition, prime: int
+) -> Polynomial:
+    """Numerator whose Phi_p divisibility is leading cross cancellation.
+
+    The endpoint defects at ``prime`` must be equal and both endpoint series
+    must have a nontrivial pole there.  The returned polynomial evaluates to
+
+        r!(c-1)! L_left D_right + (m-1)!s! L_right D_left,
+
+    where m,c count prime-divisible parts, L is the product of the remaining
+    parts, and D is the product of their (1-t^part) factors.
+    """
+    if prime_divisors(prime) != (prime,):
+        raise ValueError("root order must be prime")
+    left_count = sum(part % prime == 0 for part in left)
+    right_count = sum(part % prime == 0 for part in right)
+    left_defect = len(left) - left_count
+    right_defect = len(right) - right_count
+    if not left_count or not right_count or left_defect != right_defect:
+        raise ValueError("positive equal endpoint defects are required")
+
+    left_nondivisible = tuple(part for part in left if part % prime)
+    right_nondivisible = tuple(part for part in right if part % prime)
+    left_product = 1
+    for part in left_nondivisible:
+        left_product *= part
+    right_product = 1
+    for part in right_nondivisible:
+        right_product *= part
+
+    left_scalar = factorial(len(left)) * factorial(right_count - 1) * left_product
+    right_scalar = (
+        factorial(left_count - 1) * factorial(len(right)) * right_product
+    )
+    return poly_add(
+        poly_scale(cycle_determinant(right_nondivisible), left_scalar),
+        poly_scale(cycle_determinant(left_nondivisible), right_scalar),
+    )
+
+
+def leading_cross_cancels(
+    left: Partition, right: Partition, prime: int
+) -> bool:
+    numerator = leading_cross_numerator(left, right, prime)
+    return exact_division(numerator, list(cyclotomic_polynomial(prime))) is not None
+
+
 def hstar_polynomial(left: Partition, right: Partition) -> Polynomial | None:
     numerator, denominator = hadamard_numerator(left, right)
     determinant = poly_mul([1, -1], cycle_determinant(left + right))
@@ -327,6 +461,78 @@ def verify_synchronized_poles(
     return checked, tuple(sorted(histogram.items()))
 
 
+def verify_least_leading_cancellation() -> dict[str, object]:
+    """Find the least hard-profile cancellation, then check its full pole.
+
+    This is a targeted falsification of leading-coefficient noncancellation,
+    not a larger census for polynomial endpoint pairs.  Profile mismatch is
+    excluded because the defect lemma already gives a unique dominant cross
+    term there; order two is excluded because its leading constants are
+    positive real numbers.
+    """
+    expected_left = (4, 4, 3, 3, 3, 3, 1)
+    expected_right = (3, 3, 3, 3, 3, 2, 2, 2)
+    checked = 0
+    first_width = 0
+    found: list[tuple[Partition, Partition, int]] = []
+
+    for width in range(2, 22):
+        groups: dict[tuple[int, tuple[int, ...]], list[Partition]] = {}
+        for partition in partitions(width):
+            if len(set(partition)) == 1:
+                continue
+            profile = maximal_prime_profile(partition)
+            if profile[1]:
+                groups.setdefault(profile, []).append(partition)
+
+        current: list[tuple[Partition, Partition, int]] = []
+        for (_, maximizing_primes), group in groups.items():
+            for prime in maximizing_primes:
+                if prime == 2:
+                    continue
+                for index, left in enumerate(group):
+                    for right in group[index + 1 :]:
+                        checked += 1
+                        if leading_cross_cancels(left, right, prime):
+                            current.append((left, right, prime))
+        if current:
+            first_width = width
+            found = current
+            break
+
+    expected = [(expected_left, expected_right, 3)]
+    if first_width != 21 or found != expected or checked != 4527:
+        raise AssertionError((first_width, found, checked))
+
+    residual_order = cyclotomic_residual_order(expected_left, expected_right, 3)
+    if residual_order != 2:
+        raise AssertionError(residual_order)
+
+    numerator, denominator = hadamard_numerator(expected_left, expected_right)
+    determinant = poly_mul(
+        [1, -1], cycle_determinant(expected_left + expected_right)
+    )
+    product = poly_mul(numerator, determinant)
+    canonical = json.dumps(
+        {
+            "left": expected_left,
+            "right": expected_right,
+            "product_numerator": product,
+            "common_denominator": denominator,
+        },
+        separators=(",", ":"),
+    )
+    return {
+        "least_leading_cancellation_width": first_width,
+        "leading_cancellation_root_order": 3,
+        "maximal_profile_targeted_pairs": checked,
+        "leading_cancellation_residual_order": residual_order,
+        "leading_cancellation_rational_sha256": hashlib.sha256(
+            canonical.encode()
+        ).hexdigest(),
+    }
+
+
 def verify_classification_grid(maximum_width: int = 10) -> tuple[int, int, int, int]:
     endpoint_pairs = 0
     polynomial_pairs = 0
@@ -372,6 +578,7 @@ def verify() -> dict[str, object]:
         one_sided_failures,
     ) = verify_classification_grid()
     synchronized_nonrectangular, pole_order_histogram = verify_synchronized_poles()
+    cancellation_report = verify_least_leading_cancellation()
     report: dict[str, object] = {
         "classification_width": 10,
         "direct_fixed_cases": direct_fixed_cases,
@@ -383,6 +590,7 @@ def verify() -> dict[str, object]:
         "synchronized_nonrectangular": synchronized_nonrectangular,
         "synchronized_width": 20,
         "pole_order_histogram": pole_order_histogram,
+        **cancellation_report,
     }
     canonical = json.dumps(report, sort_keys=True, separators=(",", ":"))
     report["sha256"] = hashlib.sha256(canonical.encode()).hexdigest()
@@ -411,6 +619,17 @@ def main() -> None:
         f"synchronized_width={report['synchronized_width']}; "
         f"synchronized_nonrectangular={report['synchronized_nonrectangular']}; "
         f"pole_order_histogram={histogram}"
+    )
+    print(
+        "maximal_profile_targeted_pairs="
+        f"{report['maximal_profile_targeted_pairs']}; "
+        "least_leading_cancellation_width="
+        f"{report['least_leading_cancellation_width']}; "
+        f"root_order={report['leading_cancellation_root_order']}; "
+        "residual_pole_order="
+        f"{report['leading_cancellation_residual_order']}; "
+        "rational_sha256="
+        f"{report['leading_cancellation_rational_sha256']}"
     )
 
 

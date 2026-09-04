@@ -27,21 +27,28 @@ h*_g(t) = (1-t) Q_lambda(t) Q_nu(t)
 
 In particular, (1) is independent of the middle cycle type `mu`.  It turns
 the internal-symmetry question into a Hadamard product of two weighted
-polynomial-ring Hilbert series.
+polynomial-ring Hilbert series.  The derivation does not require the endpoint
+blocks to have the same width: below, `W_lambda=sum(lambda)` and
+`W_nu=sum(nu)` may differ.
 
-Formula (1) gives two all-width classifications.
+Formula (1) gives the following all-parameter results.
 
 1. If one endpoint is fixed coordinatewise and the other endpoint
    permutation is nonidentity, then `h*_g(t)` is not a polynomial.  More
    precisely, at every nontrivial root `zeta` of `Q_lambda`, it has a pole
-   of exact order `a`.
-2. Suppose one endpoint has rectangular cycle type `(d^r)`, where `a=dr`.
-   Then `h*_g(t)` is a polynomial if and only if the other endpoint also
-   has cycle type `(d^r)`.  In the polynomial case,
+   of exact order equal to the number of coordinates in the fixed endpoint.
+2. Suppose one endpoint has rectangular cycle type `(d^r)`.  Then `h*_g(t)`
+   is a polynomial if and only if the other endpoint has cycle type `(d^s)`
+   for the same `d`.  In the polynomial case,
 
 ```text
-h*_g(t) = sum_(j=0)^r binom(r,j)^2 t^(dj).                    (2)
+h*_g(t) = sum_(j=0)^min(r,s) binom(r,j)binom(s,j)t^(dj).      (2)
 ```
+
+3. If the endpoint widths differ, then (2) is the complete classification:
+   `h*_g(t)` is polynomial if and only if both endpoint types are rectangular
+   with a common cycle length.  This absorbs the unequal-width refinement
+   identified in the independent review of the endpoint formula.
 
 There is also a uniform diagonal pole theorem.  Suppose both endpoints have
 the same cycle type `lambda`.  Write `d=gcd(lambda)`, reduce the parts to
@@ -149,21 +156,22 @@ is nonzero at `zeta`.  The remaining pole has exact order `a`.
 
 ## Rectangular endpoint cycles
 
-For `lambda=nu=(d^r)`,
+For `lambda=(d^r)` and `nu=(d^s)`,
 
 ```text
 A_lambda(n) = binom(floor(n/d)+r,r).
+A_nu(n) = binom(floor(n/d)+s,s).
 ```
 
 Consequently,
 
 ```text
-sum A_lambda(n)^2 t^n
+sum A_lambda(n)A_nu(n)t^n
   = (1+t+...+t^(d-1))
-    sum_(k>=0) binom(k+r,r)^2 t^(dk)
+    sum_(k>=0) binom(k+r,r)binom(k+s,s)t^(dk)
 
   = (1+t+...+t^(d-1))
-    (sum_(j=0)^r binom(r,j)^2 t^(dj))/(1-t^d)^(2r+1).
+    (sum_j binom(r,j)binom(s,j)t^(dj))/(1-t^d)^(r+s+1).
 ```
 
 Substitution in (1), using
@@ -186,17 +194,153 @@ h*_(lambda,nu)(t) = h*_(lambda',nu')(t^d).                    (5)
 
 The left reduced type is coordinatewise fixed.  Equation (4) says (5) is
 polynomial only when the right reduced type is also the identity, namely
-when `nu=(d^r)`.  This completes the rectangular classification.
+when `nu=(d^s)`.  This completes the rectangular classification.
+
+## Maximal-prime defect theorem
+
+This section proves the unequal-width classification and isolates the exact
+remaining obstruction when the widths agree.  First divide both endpoint
+types by the gcd of all their parts, using (5).  Rectangular endpoints have
+already been classified, so assume both reduced types are nonrectangular.
+
+For a prime `p`, define
+
+```text
+c_lambda(p) = #{i : p divides lambda_i},
+delta_lambda = r - max_p c_lambda(p),
+P_lambda = {p prime : c_lambda(p)=r-delta_lambda}.
+```
+
+Define `delta_nu` and `P_nu` similarly.  It is enough to maximize over primes:
+if an integer `k>=2` divides a part, each prime divisor of `k` divides at
+least the same set of parts.
+
+If `delta_lambda < delta_nu`, choose `p` in `P_lambda` and let `zeta` be
+primitive of order `p`.  Put `u=delta_lambda` and
+`v=s-c_nu(p)`, so `v>u`.  The cross-pairing `(zeta,1)` in the endpoint
+Hadamard product has pole order
+
+```text
+r+s-u.
+```
+
+The other cross-pairing has smaller order `r+s-v`.  Every pairing of two
+nontrivial poles has order at most
+
+```text
+(r-delta_lambda)+(s-delta_nu)-1 < r+s-u.
+```
+
+Thus the maximal term is unique.  The determinant has zero order
+`r+s-u-v`, leaving a pole of exact order `v`.  The symmetric argument handles
+`delta_nu < delta_lambda`.  If the defects agree but
+`P_lambda != P_nu`, a prime in their symmetric difference gives the same
+unique-pole conclusion.
+
+It remains to consider a common profile
+
+```text
+delta_lambda=delta_nu=e,       P_lambda=P_nu,
+```
+
+The common-gcd normalization forces `e>=1`.  Choose a prime `p` in this
+common set.  Write
+`m=r-e`, `c=s-e`.  The only terms above the determinant threshold are now
+the two cross-pairings, both nominally of order `M=m+s=r+c`.  For the parts
+not divisible by `p`, put
+
+```text
+L_lambda = product lambda_i,       D_lambda(z) = product (1-z^lambda_i),
+L_nu     = product nu_i,           D_nu(z)     = product (1-z^nu_i).
+```
+
+At a primitive `p`-th root `zeta`, their leading coefficient vanishes
+exactly when
+
+```text
+r!(c-1)! L_lambda D_nu(zeta)
+  + (m-1)!s! L_nu D_lambda(zeta) = 0.             (6)
+```
+
+For `p=2`, every quantity in (6) has the same positive real phase, so it
+cannot vanish.  For odd prime `p`, each factor `1-zeta^a` with `p` not
+dividing `a` has field norm `p`.  Since each `D` has `e` factors, taking the
+cyclotomic norm shows that (6) is equivalent to the pair of exact conditions
+
+```text
+D_nu(zeta) = -D_lambda(zeta),
+r!(c-1)! L_lambda = (m-1)!s! L_nu.                (7)
+```
+
+When `e=1`, the first condition in (7) would say
+`1-zeta^b=-(1-zeta^a)`, hence `zeta^a+zeta^b=2`; this is impossible for
+nontrivial unit complex numbers.  Thus defect one also has a nonzero leading
+pole.
+
+Finally suppose (7) holds and `e>=2`.  Expand an endpoint series at a pole
+`alpha` as
+
+```text
+F(alpha(1-u)) = C u^(-q)(1+g_1 u+O(u^2)).
+```
+
+The ratio of the subleading to leading coefficient of its coefficient
+polynomial is `(q-1)(q/2+g_1)`.  Direct expansion gives
+
+```text
+rho_lambda(1) = r(W_lambda+1)/2,
+Re rho_lambda(zeta) = (m-1)(W_lambda+1)/2,
+```
+
+and the analogous formulas for `nu`.  After leading cancellation, the real
+part of the difference between the two cross-term subleading ratios is
+
+```text
+(e+1)(W_nu-W_lambda)/2.                             (8)
+```
+
+If the endpoint widths differ, (8) is nonzero.  The Hadamard series then has
+pole order exactly `M-1`, while the determinant zero has order `M-e`; a pole
+of exact order `e-1` remains.  Together with the profile-mismatch and defect-
+one cases, this proves: for unequal endpoint widths, polynomiality occurs
+exactly for the common-cycle-length rectangular pairs in (2).
+
+For equal widths, (8) can vanish.  In fact, the assertion that the leading
+maximal-prime cross coefficient never cancels is false.  The least exact
+hard-profile counterexample is
+
+```text
+lambda = (4,4,3,3,3,3,1),       nu = (3,3,3,3,3,2,2,2).     (9)
+```
+
+Both have width 21, defect `e=3`, and unique maximizing prime `3`.  At a
+primitive cube root, `D_lambda=(1-zeta)^3`,
+`D_nu=(1-zeta^2)^3=-D_lambda`, while `L_lambda=16`, `L_nu=8`, and
+
+```text
+7! 4! 16 = 3! 8! 8 = 1935360.
+```
+
+Thus (7) holds and the nominal order-12 coefficient cancels.  Exact rational
+reconstruction nevertheless leaves a pole of order two after the determinant;
+only the first order cancels.  A targeted search checks precisely the 4,527
+profile-aligned odd-prime candidate pairs of smaller or equal width and finds
+(9) as the unique first cancellation at width 21.  This is a counterexample
+to leading-term noncancellation, not to the polynomiality classification.
+The remaining equal-width problem is to prove that the full defect-length
+cross-term jet cannot cancel.
 
 ## Reproduction
 
-Requirements: CPython 3.12 or a compatible Python 3 interpreter; standard
-library only.
+Requirements for the primary checker: CPython 3.12 or a compatible Python 3
+interpreter; standard library only.  The independent local-wave checker is
+optional and pins SymPy 1.14.0.
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 verify.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_verify.py
 shasum -a 256 -c SHA256SUMS
+python3 independent_sympy_check.py
 ```
 
 The checker reconstructs the full formula for all 35 internal cycle-type
@@ -208,6 +352,17 @@ the synchronized rectangular pairs predicted by (2).  It also checks all
 It additionally constructs an exact cyclotomic pole witness for every one
 of the 2,647 nonrectangular synchronized cycle types through width twenty;
 these finite checks corroborate the uniform partial-fraction proof.
+The new targeted check considers only pairs that survive the structural
+defect/profile reduction and only odd maximizing primes.  It tests 4,527 such
+candidate pairs through the first failure, proves no smaller leading
+cancellation exists, finds the unique first pair (9) at width 21, and verifies
+that its residual primitive-cube-root pole has order two.  Its exact reconstructed
+rational-function digest is
+`280b46abbf1cea553d3bd4777eaa09ab4a2f6aaf98ed527356b3ed749890d1c0`.
+The optional SymPy checker independently expands the local pole waves rather
+than using the primary checker's common-denominator reconstruction; it confirms
+nominal order 12, actual order 11, determinant zero order 9, and residual pole
+order 2.
 
 ## Literature and novelty boundary
 
@@ -219,18 +374,23 @@ Bjoerner--Welker treat weighted Segre products abstractly:
 <https://arxiv.org/abs/math/0312516>.  D'Ali--Higashitani's graded-order-
 polytope theorem concerns poset automorphisms:
 <https://arxiv.org/abs/2505.07623>.
+Stapledon's later commutative-algebra treatment of equivariant Ehrhart theory
+is <https://arxiv.org/abs/2311.17273>.
 
-Targeted searches on 2026-09-04 found no primary source applying the
-endpoint Hadamard cancellation, the exact one-sided pole theorem, or the
-rectangular classification to path block polytopes.  Novelty is
-search-relative only; no historical-priority claim is made.
+Targeted searches on 2026-09-04 found no primary source applying the endpoint
+Hadamard cancellation, maximal-prime defect profiles, the unequal-width
+classification, or the exact leading-cancellation obstruction to path block
+polytopes.  Novelty is search-relative only; no historical-priority claim is
+made.
 
 ## Trust boundary
 
 The universal claims rest on (1), maximal root-of-unity pole order, the
-differential pole calculation (4), and the scaling and binomial identities
-(2),(5).  Finite computation is
-corroboration and conjecture evidence, not proof of the unrestricted
-classification.  The checker trusts CPython exact integer/list/tuple
-semantics and SHA-256.  It uses no floating point, solver, randomness,
-external data, generated input, or omitted certificate.
+differential pole calculation (4), scaling and binomial identities (2),(5),
+the cyclotomic norm in (7), and the exact local expansion (8).  The finite
+targeted computation proves only the stated minimality of (9); it is not proof
+of the unresolved equal-width classification.  The checker trusts CPython
+exact integer/list/tuple semantics and SHA-256.  The independent local-wave
+check additionally trusts SymPy 1.14.0 exact algebraic-number and series
+arithmetic.  Neither path uses floating point, a solver, randomness, external
+data, generated input, or an omitted certificate.
