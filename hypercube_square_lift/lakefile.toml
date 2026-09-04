@@ -1,0 +1,11 @@
+name = "hypercube_square_lift"
+version = "0.1.0"
+defaultTargets = ["HypercubeSquareLift"]
+
+[[lean_lib]]
+name = "HypercubeSquareLift"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.33.1"
