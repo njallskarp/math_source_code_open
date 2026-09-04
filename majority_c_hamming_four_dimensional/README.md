@@ -131,6 +131,27 @@ has exact majority C-chromatic number `s^2+2*s-2` by the nonlinear one-box
 construction, but every coordinate-line lift has at most one fewer colour.
 See [BALANCED_STARS_THIN_OBSTRUCTION.md](BALANCED_STARS_THIN_OBSTRUCTION.md).
 
+A transversal alignment of the larger rectangle stars now eliminates every
+modular carry as soon as all three minor sides are at least `s`. Precisely,
+every box
+
+```text
+[m] x [n] x [p],  m,n,p >= s,
+```
+
+partitions optimally into `floor(m*n*p/s)` coordinate-line parts, all of
+size `s` or `s+1`. Larger residual stars donate aligned cells to vertical
+slab parts; displaced cells form one new horizontal line for each carry.
+Consequently the four-dimensional majority C-chromatic quotient is exact
+whenever `n4>=s`. The first-carry family
+
+```text
+K_(k^2+2k) square K_(k^2) square K_(k^2) square K_(k^2), k>=3,
+```
+
+has exact value `k^4+k^3+k^2+k+1` and lies outside every earlier residue
+criterion in this suite. See [ALL_LARGE_THREE_BOX.md](ALL_LARGE_THREE_BOX.md).
+
 The complete proof and exact parameter map are in
 [NEAR_TRIANGLE_FOUR_DIMENSIONAL.md](NEAR_TRIANGLE_FOUR_DIMENSIONAL.md).
 
@@ -146,6 +167,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_multibox_obstruction.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_three_coordinate_slabs.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_balanced_stars_thin.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
 ```
 
 Expected output:
@@ -228,6 +250,9 @@ The three-coordinate slab checker reports the compact expected output in
 
 The balanced-star/thin-coordinate checker reports the compact expected
 output in `expected_balanced_stars_thin_stdout.txt`.
+
+The all-large three-box checker reports the compact expected output in
+`expected_all_large_three_box_stdout.txt`.
 
 ## Evidence and trust boundary
 

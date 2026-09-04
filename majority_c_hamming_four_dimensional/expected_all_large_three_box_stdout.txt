@@ -1,0 +1,22 @@
+anchored rectangle instances reconstructed: 13455
+anchored rectangle line parts checked: 574464
+anchored rectangle cells checked: 6670248
+anchored size-(s+1) parts checked: 51264
+all-large three-box partitions reconstructed: 1287
+all-large three-box line parts checked: 153434
+all-large three-box cells checked: 967437
+positive-carry three-boxes reconstructed: 248
+cross-slab exchanges checked: 450
+maximum-carry stress instances reconstructed: 59
+maximum-carry stress exchanges checked: 1711
+maximum-carry stress line parts checked: 295059
+four-dimensional near-triangle parameters checked: 479445
+all-large-minor parameters detected: 198345
+new parameters beyond preceding criteria: 35691
+lifted Hamming partitions reconstructed: 595
+lifted Hamming colour classes checked: 33637
+lifted Hamming minor cells checked: 177207
+first-carry family indices checked: 9998
+first-carry family partitions reconstructed: 3
+first-carry family line parts checked: 1243
+all exact checks passed
