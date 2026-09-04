@@ -1,0 +1,102 @@
+# Ramsey-link singular-fan bound in Lean
+
+This pinned Lean project formalizes the finite cardinality bridge in the
+reviewed `m <= 26` bound for a first singular `3+3` Davis--Putnam fan in a
+hypothetical 44-clause signed-`K_4` Ramsey-extension obstruction.
+
+## Main theorem
+
+`ramsey_link_fan_arity_le_26` works with finite types of vertices and clauses.
+It assumes four pairwise-disjoint clause categories inside a 44-clause
+selection:
+
+1. at least 11 selected clauses of the main color;
+2. exactly `m` side clauses;
+3. exactly three one-flip witness clauses; and
+4. extra clauses covering `rho - 3` remaining link vertices, with each extra
+   clause covering at most four of them.
+
+It also assumes the two Ramsey-link upper bounds and complementary-degree
+identity
+
+```text
+rho <= 24,  blueDegree <= 24,  rho + blueDegree = 41.
+```
+
+Lean then proves
+
+```text
+m <= 26.
+```
+
+The proof separately exports:
+
+- a generic finite bi-union cover-capacity theorem;
+- a four-way pairwise-disjoint cardinality theorem;
+- the interval `17 <= rho <= 24`;
+- the exact inequality
+  `m + ceil((rho - 3)/4) <= 30` and its subtraction form; and
+- the degree strata `m <= 26`, `m <= 25`, and `m <= 24` for the ranges
+  `17..19`, `20..23`, and `24`.
+
+The custom `ceilDivFour n = (n+3)/4` is the standard ceiling division by four;
+Lean proves the cover lower bound from Mathlib's `Finset` bi-union theorem.
+
+## Reproduction
+
+```sh
+lake clean
+lake exe cache get
+lake build
+lake env lean RamseyLinkFanBound.lean
+```
+
+Pinned versions:
+
+- Lean 4.33.1, commit
+  `819816b2e0a3bf405af45ae5c7af2491d8f5bee6`;
+- Lake `5.0.0-src+819816b`; and
+- Mathlib v4.33.1, commit
+  `0df444a360eaa60ab8c11dca51a86af692955474`.
+
+Expected results with the committed manifest:
+
+- Mathlib cache: 8,690 artifacts;
+- clean project build: 755 jobs completed successfully; and
+- standalone replay: exit zero and eleven printed axiom audits, each
+  containing only `propext`, `Classical.choice`, and `Quot.sound` (four of the
+  arithmetic declarations do not require `Classical.choice`).
+
+Source SHA-256:
+
+```text
+28bf3f73f26bcd02287f938e31f7f23001a39d05fe02809761e9745f8222a98b  RamseyLinkFanBound.lean
+```
+
+## Theorem alignment and trust boundary
+
+The formalized conclusion and degree-stratified inequality are the finite
+counting step in Discovery Net lemma
+`bafkreia7anjykjq3ky6fd4tjmhvkgtxbnwokx5oonkonvn55x6wmustgti`, accepted by
+review `bafkreidm36n4leivfplrkfvcdgeb252urkhwd3qqggav3c66nsjparcbaa`.
+
+The bound `R(4,5)=25`, from which the two link-cardinality bounds arise, is the
+theorem of [McKay--Radziszowski](https://users.cecs.anu.edu.au/~bdm/papers/r45.pdf)
+and has separately been formalized in HOL4 by
+[Gauthier--Brown](https://doi.org/10.4230/LIPIcs.ITP.2024.16).  This Lean
+development does not import or reprove their formalization.
+
+Lean does **not** formalize here:
+
+- red/blue Ramsey colorings or the theorem `R(4,5)=25`;
+- signed CNF semantics, minimal unsatisfiability, or Davis--Putnam reduction;
+- the existence and shape of the first singular `3+3` fan;
+- bichromatic coverage or the one-flip common-link witness theorem; or
+- the broader claim `R(5,5)=43`.
+
+Instead, those graph/SAT results enter through explicit finite-set hypotheses:
+link bounds, clause-category cardinalities, pairwise disjointness, target
+coverage, and per-clause capacity.  Lean verifies every subsequent set and
+arithmetic step.  The source reads no external data and uses no certificate,
+solver, oracle, floating point, plugin, custom axiom, `sorry`, `admit`,
+`unsafe`, or `native_decide`.
