@@ -1,0 +1,10 @@
+generic residue-box partitions checked: 1158
+generic partition parts checked: 97035
+generic exact line classes checked: 95877
+four-dimensional near-triangle parameters checked: 479445
+previous mixed-radix parameters detected: 141493
+new complementary parameters detected: 5648
+lifted Hamming constructions checked: 79
+lifted majority-C colour classes checked: 4484
+explicit infinite-family indices checked: 9998
+all exact checks passed

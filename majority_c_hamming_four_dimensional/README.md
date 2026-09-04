@@ -34,6 +34,24 @@ three minor orders.  See
 partition lemma and proof.  The first concrete new case is
 `K_5 square K_3 square K_3 square K_3`, whose exact value is `13`.
 
+The complementary one-box construction applies when, for
+`r_j = n_j mod s`,
+
+```text
+s <= r2*r3*r4 < 2*s
+r2+r3+r4 >= s+2.
+```
+
+After stripping exact line blocks, the remaining residue box itself has
+minimum degree at least `s-1`.  This proves, for every `s >= 3`,
+
+```text
+chi_bar_>=(K_(2s+2) square K_(2s-1) square K_(s+2) square K_(s+1))
+  = 2*s^2+5*s.
+```
+
+See [RESIDUE_BOX_EXTENSION.md](RESIDUE_BOX_EXTENSION.md).
+
 The complete proof and exact parameter map are in
 [NEAR_TRIANGLE_FOUR_DIMENSIONAL.md](NEAR_TRIANGLE_FOUR_DIMENSIONAL.md).
 
@@ -44,6 +62,7 @@ CPython 3.12 or later; standard library only:
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 verify_near_triangle.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_mixed_radix.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_residue_box.py
 ```
 
 Expected output:
@@ -56,6 +75,21 @@ full shell profiles checked: 176336
 divisible constructions checked: 10166
 K3xK2xK2xK2 candidate subsets checked: 187726
 K3xK2xK2xK2 feasible size-6 subsets: 12
+all exact checks passed
+```
+
+The residue-box checker reports:
+
+```text
+generic residue-box partitions checked: 1158
+generic partition parts checked: 97035
+generic exact line classes checked: 95877
+four-dimensional near-triangle parameters checked: 479445
+previous mixed-radix parameters detected: 141493
+new complementary parameters detected: 5648
+lifted Hamming constructions checked: 79
+lifted majority-C colour classes checked: 4484
+explicit infinite-family indices checked: 9998
 all exact checks passed
 ```
 
