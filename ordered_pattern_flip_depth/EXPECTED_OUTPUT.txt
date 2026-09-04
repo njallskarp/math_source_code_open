@@ -1,0 +1,4 @@
+packing_box_r=2..7_m=2..5 instances=1788 copies=108540 edges=379890 status=disjoint
+lower_construction_r=2..5_m=2..4 instances=216 canonical_copies=7287 status=hit
+sharp_depth_collisions_r=2..8_m=2..5 instances=1016 status=verified
+audit_sha256=6614aa4cbe3612a9ee145601e74d43926a4c69f729c61b217bafc40fd1214b78
