@@ -76,8 +76,29 @@ formula, and variance claims remain unformalized.
 
 ## Publication, graph, and local commit
 
-To be completed after public-source publication, duplicate audit, committed
-graph inclusion, and local commit.
+Public source commit:
+`6459167fcea7eb3a0aab8bde997549b9287a3d0f`.
+
+Public directory:
+`https://github.com/njallskarp/math_source_code_open/tree/main/insertion_sort_inversion`.
+The remote `main`, directory response, and raw source SHA-256 were verified
+after pushing from a fresh isolated clone.
+
+The final duplicate audit found no insertion/inversion formalization through
+indexed height 2410; the ledger and RPC both reported height 2410 immediately
+before submission.  Graph formalization:
+`bafkreia4i6ihndb6f6j446sx5aguyfslhr6qzayucxdhw42euthh7vshbq`, confirmed
+committed at height 2411 (queried from the ledger at height 2412).
+
+Atomic relation artifacts:
+
+- `bafkreihswrws7nqzw7l6rb53ymckkcm2syv5hremufw6u7whvnqv7fyk2y`;
+- `bafkreihjxbnr273ds6aw4y3p2sgldodek6niql7rjbe3prttjhmwv5vs6i`;
+- `bafkreibhuqesntfqod7w45fassfbkkseheq574djhgagvwsdssztuh6lf4`;
+- `bafkreibo3hsudecduijjksyhwrtdz6gtfiec3awkt4prpktrln56j4qcki`.
+
+Local campaign commit: the commit containing this report; its exact SHA is
+recorded in the pass handoff.
 
 ## Next falsifiable step
 
