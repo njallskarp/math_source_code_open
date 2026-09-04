@@ -1,0 +1,15 @@
+shell DP states checked: 21840
+small boxes checked: 53
+subsets below 2s-2 checked: 50816
+sharp equality sets checked: 59
+legal unordered [2]^3 bipartitions: 3
+three-residue tuples checked: 4015946
+volume-bound survivors: ((3, 2, 2, 2),)
+general residue profiles checked: 488033
+normalized general survivors: ((3, (2, 2, 2)),)
+exceptional partitions checked: 216
+exceptional parts checked: 61587
+higher-dimensional exceptional partitions checked: 120
+higher-dimensional exceptional parts checked: 20157
+family parameter points checked: 46750
+independent exact checks passed
