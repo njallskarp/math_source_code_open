@@ -1,0 +1,10 @@
+rho=17 blueDegree=24 cover=4 max_m=26 next_fails=yes
+rho=18 blueDegree=23 cover=4 max_m=26 next_fails=yes
+rho=19 blueDegree=22 cover=4 max_m=26 next_fails=yes
+rho=20 blueDegree=21 cover=5 max_m=25 next_fails=yes
+rho=21 blueDegree=20 cover=5 max_m=25 next_fails=yes
+rho=22 blueDegree=19 cover=5 max_m=25 next_fails=yes
+rho=23 blueDegree=18 cover=5 max_m=25 next_fails=yes
+rho=24 blueDegree=17 cover=6 max_m=24 next_fails=yes
+verified: 8 strata; global m<=26; excluded=[27,28,29,30]; abstract stratum bounds are sharp
+record_sha256=3f3c885ccf8725cc0d87dc0d031159dc083cb5e3d75fa13db7d6011ad998d98a
