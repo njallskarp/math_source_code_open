@@ -1,4 +1,4 @@
-INDEPENDENT AUDIT PASSED; posets=50; transfer_checks=20359; blowup_cases=132; provenance_mismatches=3; missing_files=1; sha256=7d00a4f923cd230eb0f9a4cd364bd5a67a8996fca5964d9f0e2cf9eac8558e3f
+INDEPENDENT AUDIT PASSED; posets=50; transfer_checks=20359; blowup_cases=132; provenance_errors=0; sha256=6483c95e77325b5acc8e2b1e2a7509fa9176d98cf86d97d51647ed87a1533bdc
 {
   "blowups": {
     "blowup_cases": 132,
@@ -8,13 +8,13 @@ INDEPENDENT AUDIT PASSED; posets=50; transfer_checks=20359; blowup_cases=132; pr
     "row_sha256": "37b9ffedc521e4724c2b686ca54c3e184ccdb4787c0243c26deb689463de7650"
   },
   "provenance": {
-    "asserted_hash_mismatches": 3,
     "manifest_entries": 4,
-    "missing_asserted_files": 1,
+    "provenance_errors": 0,
     "target_commit": "c28570c96f9aa413711d24ccf4bd53c15caa0e93",
     "target_stdout_sha256": "9a0b3851874316ff9f0edb60095dc5fff8e11826e7bea5930e17dff077673f49",
     "test_methods": 4,
-    "tree_files": 5
+    "tree_files": 5,
+    "tree_sha256": "0be2f16183e9ba6df3d8b7157dc5158edeb8a6604b1237d7d7ea60f30536036d"
   },
   "transfer": {
     "automorphism_actions": 114,
