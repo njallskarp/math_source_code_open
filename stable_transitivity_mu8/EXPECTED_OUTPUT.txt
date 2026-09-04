@@ -1,0 +1,8 @@
+classes=96
+orders=40320
+dual_order_checks=3870720
+primal_terms=2464
+maximum_denominator=3940
+equal_margin=13/20
+stable_rate=7/6
+audit_sha256=968e123eaddbf7b227e7c8868512b06d128dbba020696fe5894bc09a09ee40fb
