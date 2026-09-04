@@ -1,0 +1,10 @@
+n=2 graphs=2 certificates=1 probability=1/2
+n=3 graphs=8 certificates=2 probability=1/4
+n=4 graphs=64 certificates=14 probability=7/32
+n=5 graphs=1024 certificates=192 probability=3/16
+n=6 graphs=32768 certificates=6464 probability=101/512
+profile_implication_checks=6673
+weighted_formula_checks=12
+graphs_examined=33866
+certificate_graphs=6673
+audit_sha256=9c8520a9007c09ef155af17f8564ad5efbccaf09125a23a9ad90a30430ad9130
