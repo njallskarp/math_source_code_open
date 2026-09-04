@@ -43,6 +43,21 @@ Formula (1) gives two all-width classifications.
 h*_g(t) = sum_(j=0)^r binom(r,j)^2 t^(dj).                    (2)
 ```
 
+There is also a uniform diagonal pole theorem.  Suppose both endpoints have
+the same cycle type `lambda`.  Write `d=gcd(lambda)`, reduce the parts to
+`bar(lambda)=lambda/d`, and let `r` be the number of cycles.  If
+`bar(lambda)` is not `(1^r)`, put
+
+```text
+m = max_(k>=2) #{i : k divides bar(lambda)_i}.
+```
+
+For every `k` attaining this maximum, and every `xi` such that `xi^d` is a
+primitive `k`-th root, `h*_g(t)` has a pole of exact order `r-m` at `xi`.
+Consequently synchronized endpoint actions have polynomial equivariant
+`h*` exactly for rectangular cycle types.  The middle action remains
+arbitrary.
+
 The exact check over every ordered pair of endpoint partitions through
 width ten finds no polynomial cases beyond (2).  This supports, but does
 not prove, the general classification conjecture that (2) lists all
@@ -56,6 +71,27 @@ the coefficient formulas
 `binom(n+p-1,p-1)alpha^(-n)` and
 `binom(n+q-1,q-1)beta^(-n)`.  Thus a uniquely maximal pole pairing cannot
 cancel.
+
+## Synchronized endpoint pole theorem
+
+First use (5) below to divide all cycle lengths by their common gcd.  We may
+therefore assume `gcd(lambda)=1`.  If `lambda` is nontrivial, then `m>=1`
+and `m<r`.  Let `zeta` be a primitive `k`-th root for an order `k` attaining
+`m`.  The endpoint series `1/((1-t)Q_lambda(t))` has pole order `r+1` at
+`1`, pole order `m` at `zeta`, and pole order at most `m` at every other
+nontrivial root.
+
+In its Hadamard square, the two pairings `(zeta,1)` and `(1,zeta)` are
+identical and add rather than cancel.  They give a pole of order `m+r` at
+`zeta`.  Any pairing of two nontrivial roots has order at most
+`2m-1 < m+r`, so this pole order is exact.  Formula (1) contributes a zero
+of order `2m`, leaving a pole of exact order `r-m`.
+
+Undoing the common scale replaces `t` by `t^d`; its derivative is nonzero
+at roots of unity, so the pole order is unchanged.  The only case with no
+witness is `bar(lambda)=(1^r)`, equivalently
+`lambda=(d^r)`, and (2) gives its polynomial.  This proves the claimed
+if-and-only-if classification for synchronized endpoint cycle types.
 
 ## Proof of the endpoint formula
 
@@ -169,6 +205,9 @@ and performs exact rational divisibility on all 3,582 ordered endpoint
 partition pairs through width ten.  Exactly 27 pairs are polynomial, all
 the synchronized rectangular pairs predicted by (2).  It also checks all
 128 nonidentity one-sided cases in that range.
+It additionally constructs an exact cyclotomic pole witness for every one
+of the 2,647 nonrectangular synchronized cycle types through width twenty;
+these finite checks corroborate the uniform partial-fraction proof.
 
 ## Literature and novelty boundary
 
@@ -188,8 +227,9 @@ search-relative only; no historical-priority claim is made.
 
 ## Trust boundary
 
-The universal claims rest on (1), the differential pole calculation (4),
-and the scaling and binomial identities (2),(5).  Finite computation is
+The universal claims rest on (1), maximal root-of-unity pole order, the
+differential pole calculation (4), and the scaling and binomial identities
+(2),(5).  Finite computation is
 corroboration and conjecture evidence, not proof of the unrestricted
 classification.  The checker trusts CPython exact integer/list/tuple
 semantics and SHA-256.  It uses no floating point, solver, randomness,

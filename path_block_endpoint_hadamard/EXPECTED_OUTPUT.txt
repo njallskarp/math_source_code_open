@@ -1,2 +1,3 @@
-VERIFIED endpoint-Hadamard theorem; middle_formula_triples=35; direct_fixed_cases=32; endpoint_pairs=3582; polynomial_pairs=27; one_sided_failures=128; sha256=05e909cd91f789161b5908f7442c5af1225e81dbdc11568368338e4544ffce32
+VERIFIED endpoint-Hadamard theorem; middle_formula_triples=35; direct_fixed_cases=32; endpoint_pairs=3582; polynomial_pairs=27; one_sided_failures=128; sha256=9e838c14cb4b5fa4d0b41eb253a1af2e2a55ef26dab5df89496566fb0aa5e8d4
 classification_width=10; rectangular_formula_cases=27
+synchronized_width=20; synchronized_nonrectangular=2647; pole_order_histogram=1:430,2:560,3:397,4:368,5:227,6:200,7:127,8:111,9:64,10:59,11:33,12:28,13:16,14:13,15:6,16:5,17:2,18:1

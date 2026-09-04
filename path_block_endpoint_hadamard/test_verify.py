@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Unit tests for the endpoint-Hadamard verifier."""
 
 from __future__ import annotations
@@ -30,12 +29,18 @@ class EndpointHadamardTests(unittest.TestCase):
                         verify.rectangular_formula(width, length),
                     )
 
+    def test_synchronized_pole_witness(self) -> None:
+        self.assertIsNone(verify.synchronized_pole_witness((3, 3, 3)))
+        self.assertEqual(verify.synchronized_pole_witness((2, 1)), (1, 2, 1, 1))
+        self.assertEqual(verify.synchronized_pole_witness((4, 2)), (2, 2, 1, 1))
+
     def test_full_report(self) -> None:
         report = verify.verify()
         self.assertEqual(report["classification_width"], 10)
         self.assertEqual(report["endpoint_pairs"], 3582)
         self.assertEqual(report["polynomial_pairs"], 27)
         self.assertEqual(report["one_sided_failures"], 128)
+        self.assertEqual(report["synchronized_nonrectangular"], 2647)
 
 
 if __name__ == "__main__":

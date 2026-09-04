@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Exact checks for the endpoint-Hadamard formula on three path blocks."""
 
 from __future__ import annotations
@@ -7,7 +6,7 @@ import hashlib
 import itertools
 import json
 from functools import cache
-from math import comb, lcm
+from math import comb, gcd, lcm
 
 Polynomial = list[int]  # constant coefficient first
 Partition = tuple[int, ...]
@@ -222,6 +221,33 @@ def exact_division(numerator: Polynomial, denominator: Polynomial) -> Polynomial
     return trim(quotient)
 
 
+@cache
+def cyclotomic_polynomial(order: int) -> tuple[int, ...]:
+    """Return Phi_order in constant-coefficient-first form."""
+    if order < 1:
+        raise ValueError("cyclotomic order must be positive")
+    result = [-1] + [0] * (order - 1) + [1]
+    for divisor in range(1, order):
+        if order % divisor == 0:
+            quotient = exact_division(result, list(cyclotomic_polynomial(divisor)))
+            if quotient is None:
+                raise AssertionError((order, divisor))
+            result = quotient
+    return tuple(result)
+
+
+def polynomial_valuation(poly: Polynomial, factor: Polynomial) -> int:
+    """Return the exact multiplicity with which factor divides poly."""
+    valuation = 0
+    remainder = poly[:]
+    while True:
+        quotient = exact_division(remainder, factor)
+        if quotient is None:
+            return valuation
+        remainder = quotient
+        valuation += 1
+
+
 def hstar_polynomial(left: Partition, right: Partition) -> Polynomial | None:
     numerator, denominator = hadamard_numerator(left, right)
     determinant = poly_mul([1, -1], cycle_determinant(left + right))
@@ -234,6 +260,71 @@ def rectangular_formula(width: int, cycle_length: int) -> Polynomial:
     for j in range(cycles + 1):
         result[j * cycle_length] = comb(cycles, j) ** 2
     return trim(result)
+
+
+def synchronized_pole_witness(
+    partition: Partition,
+) -> tuple[int, int, int, int] | None:
+    """Return (common scale, root order, maximal pole count, residual order).
+
+    A rectangular partition reduces to the identity and has no pole witness.
+    Otherwise the selected primitive root has maximal nontrivial pole order.
+    """
+    common_scale = gcd(*partition)
+    reduced = tuple(length // common_scale for length in partition)
+    if all(length == 1 for length in reduced):
+        return None
+    cycle_count = len(reduced)
+    divisible_counts = {
+        order: sum(length % order == 0 for length in reduced)
+        for order in range(2, max(reduced) + 1)
+    }
+    maximal_pole_count = max(divisible_counts.values())
+    root_order = min(
+        order
+        for order, count in divisible_counts.items()
+        if count == maximal_pole_count
+    )
+
+    numerator, _ = hadamard_numerator(reduced, reduced)
+    determinant = poly_mul([1, -1], cycle_determinant(reduced + reduced))
+    product = poly_mul(numerator, determinant)
+    numerator_valuation = polynomial_valuation(
+        product, list(cyclotomic_polynomial(root_order))
+    )
+    common_denominator_valuation = 2 * cycle_count + 1
+    residual_order = common_denominator_valuation - numerator_valuation
+    expected_order = cycle_count - maximal_pole_count
+    if residual_order != expected_order:
+        raise AssertionError(
+            (
+                partition,
+                reduced,
+                root_order,
+                maximal_pole_count,
+                residual_order,
+                expected_order,
+            )
+        )
+    return common_scale, root_order, maximal_pole_count, residual_order
+
+
+def verify_synchronized_poles(
+    maximum_width: int = 20,
+) -> tuple[int, tuple[tuple[int, int], ...]]:
+    checked = 0
+    histogram: dict[int, int] = {}
+    for width in range(1, maximum_width + 1):
+        for partition in partitions(width):
+            witness = synchronized_pole_witness(partition)
+            if witness is None:
+                if len(set(partition)) != 1:
+                    raise AssertionError((width, partition))
+                continue
+            checked += 1
+            residual_order = witness[-1]
+            histogram[residual_order] = histogram.get(residual_order, 0) + 1
+    return checked, tuple(sorted(histogram.items()))
 
 
 def verify_classification_grid(maximum_width: int = 10) -> tuple[int, int, int, int]:
@@ -280,6 +371,7 @@ def verify() -> dict[str, object]:
         rectangular_formula_cases,
         one_sided_failures,
     ) = verify_classification_grid()
+    synchronized_nonrectangular, pole_order_histogram = verify_synchronized_poles()
     report: dict[str, object] = {
         "classification_width": 10,
         "direct_fixed_cases": direct_fixed_cases,
@@ -288,6 +380,9 @@ def verify() -> dict[str, object]:
         "one_sided_failures": one_sided_failures,
         "polynomial_pairs": polynomial_pairs,
         "rectangular_formula_cases": rectangular_formula_cases,
+        "synchronized_nonrectangular": synchronized_nonrectangular,
+        "synchronized_width": 20,
+        "pole_order_histogram": pole_order_histogram,
     }
     canonical = json.dumps(report, sort_keys=True, separators=(",", ":"))
     report["sha256"] = hashlib.sha256(canonical.encode()).hexdigest()
@@ -308,6 +403,14 @@ def main() -> None:
     print(
         "classification_width=10; "
         f"rectangular_formula_cases={report['rectangular_formula_cases']}"
+    )
+    histogram = ",".join(
+        f"{order}:{count}" for order, count in report["pole_order_histogram"]
+    )
+    print(
+        f"synchronized_width={report['synchronized_width']}; "
+        f"synchronized_nonrectangular={report['synchronized_nonrectangular']}; "
+        f"pole_order_histogram={histogram}"
     )
 
 
