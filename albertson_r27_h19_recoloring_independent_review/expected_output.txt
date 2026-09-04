@@ -1,0 +1,5 @@
+PASS independent weighted-profile recolouring audit
+general_profile_parameter_sets=616; surviving_labelled_moves=8008
+target_profile_moves=(c8:0,c9:8); incidence_total=152
+minimum_degree_sums=(c8:133,c9:145); handshake_value=112
+certificate_sha256=fa499be47fb90956ef162e7a064cfe3ad901304a1b382e6b4b0b736cc6808c3b
