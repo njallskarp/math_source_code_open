@@ -257,11 +257,23 @@ majority degree, and a long initial range of (9)--(10).  It uses exact integer
 arithmetic only; these checks corroborate the proof and conventions rather
 than replace them.
 
-The primary literature boundary remains Bujtas, Dettlaff, Furmanczyk, and
-Laskowska, *Majority C-coloring in Cartesian products* (2026),
-<https://arxiv.org/abs/2608.27669>.  Its author source was inspected directly
-on 2026-09-04.  Proposition 15 gives coordinate-projection lower bounds and
-Open Problem 2 asks for imbalanced three- and four-dimensional Hamming graphs;
-it does not state the cyclic rectangle partition, pair-remainder criterion
-(6), or family (9)--(10).  Targeted primary-source searches found no matching
-statement.  Novelty is search-relative, not a historical-priority claim.
+There is a classical scope boundary for the rectangle theorem. Identifying
+\([m]\times[n]\) with the edges of \(K_{m,n}\), a coordinate-line part is a
+star. When \(s\mid mn\), every part in (1) has size exactly \(s\), so this is
+the classical complete-bipartite star-decomposition theorem of Yamamoto,
+Ikeda, Shige-eda, Ushio, and Hamada, *On claw-decomposition of complete graphs
+and complete bigraphs*, Hiroshima Math. J. 5 (1975), 33--42,
+<https://doi.org/10.32917/hmj/1206136782>. Cameron and Horsley explicitly
+record the equivalent result in their modern discussion,
+<https://arxiv.org/abs/1807.10738>. The relevant new candidate scope here is
+the explicit cyclic construction when \(s\nmid mn\) and its Hamming
+application, not the divisible existence theorem.
+
+Bujtas, Dettlaff, Furmanczyk, and Laskowska, *Majority C-coloring in
+Cartesian products* (2026), <https://arxiv.org/abs/2608.27669>, was inspected
+in author-source form on 2026-09-04. Proposition 15 gives
+coordinate-projection lower bounds and Open Problem 2 asks for imbalanced
+three- and four-dimensional Hamming graphs; it does not state the
+nondivisible cyclic rectangle construction, pair-remainder criterion (6), or
+family (9)--(10). Targeted primary-source searches found no matching
+statement. Novelty is search-relative, not a historical-priority claim.

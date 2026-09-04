@@ -1,0 +1,15 @@
+three-dimensional box partitions reconstructed: 8726
+three-dimensional line parts checked: 1726562
+three-dimensional cells checked: 14790224
+boxes beyond the old layerwise criterion: 2624
+four-dimensional near-triangle parameters checked: 479445
+residue-slab parameters detected: 227546
+parameters beyond old layerwise criterion: 70254
+parameters beyond every previous exact criterion: 48736
+lifted Hamming partitions reconstructed: 1882
+lifted Hamming line parts checked: 146523
+lifted Hamming minor cells checked: 942092
+explicit infinite-family indices checked: 9999
+explicit family partitions reconstructed: 4
+explicit family line parts checked: 654
+all exact checks passed

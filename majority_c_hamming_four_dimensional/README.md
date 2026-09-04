@@ -88,6 +88,26 @@ has residue product exactly `2*s`, cannot use a pure residual completion, and
 has exact value `(k+1)^2*(k^2+2)`.  See
 [CROSS_BOUNDARY_EXCHANGE.md](CROSS_BOUNDARY_EXCHANGE.md).
 
+A third-coordinate slab composition strengthens that condition. For two
+minor orders `m,n >= s`, put `tau=(m*n) mod s`; for the remaining order `p`,
+put `c=p mod s`. If
+
+```text
+c*tau < s,
+```
+
+then the minor box has an optimal line partition. Complete `s`-slabs in the
+third coordinate are removed first, so only `c`, rather than the full order
+`p`, multiplies the pair remainder. This gives the genuinely new family
+
+```text
+K_(3k+6) square K_(3k+2) square K_(2k+3) square K_(2k+3), k>=2,
+```
+
+with exact value `6*k^2+19*k+16`; its first member is
+`K_12 square K_8 square K_7 square K_7` with value `78`. See
+[THREE_COORDINATE_SLABS.md](THREE_COORDINATE_SLABS.md).
+
 The complete proof and exact parameter map are in
 [NEAR_TRIANGLE_FOUR_DIMENSIONAL.md](NEAR_TRIANGLE_FOUR_DIMENSIONAL.md).
 
@@ -101,6 +121,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_mixed_radix.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_residue_box.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_multibox_obstruction.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_three_coordinate_slabs.py
 ```
 
 Expected output:
@@ -178,6 +199,9 @@ explicit family line parts checked: 1652
 all exact checks passed
 ```
 
+The three-coordinate slab checker reports the compact expected output in
+`expected_three_coordinate_slabs_stdout.txt`.
+
 ## Evidence and trust boundary
 
 The theorem is a human proof from an exact first/second-shell incidence bound,
@@ -203,3 +227,12 @@ balanced even-dimensional theorem is recovered here when all four orders are
 equal.  The source does not state the class-size bound or the imbalanced
 divisibility formulas above.  Targeted searches on 2026-09-04 found no matching
 result.  Novelty is search-relative, not a historical-priority claim.
+
+Under the identification of a rectangle with the edge set of a complete
+bipartite graph, its coordinate-line parts are stars. The divisible
+all-size-`s` rectangle case is therefore classical; see Yamamoto et al.,
+*On claw-decomposition of complete graphs and complete bigraphs* (1975),
+<https://doi.org/10.32917/hmj/1206136782>, and the modern discussion by
+Cameron--Horsley, <https://arxiv.org/abs/1807.10738>. The claimed new scope
+is restricted to the nondivisible cyclic construction and its Hamming/slab
+consequences.
