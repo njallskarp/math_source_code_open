@@ -1,0 +1,1 @@
+VERIFIED equal-cycle audit; direct_pairs=5284; polynomial=35; unequal_width_polynomial=0; equal_width_nonrectangular_polynomial=0; unit_checks=5053; odd_cancellations=0; height2095_residue=0; sha256=85ae4aca7f00f3ed36e531cc1c0a8b246aa9c1b57ea1de7301f199db97414a12
