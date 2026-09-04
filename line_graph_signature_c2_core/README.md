@@ -11,8 +11,13 @@ not claim stability for arbitrary deeper pendant trees.
 
 `THREE_LEAF_STABILITY.md` proves stability for any three simultaneous leaves,
 again allowing repeated supports.  It combines a marked modulo-four reduction
-with seven nonsingular and ten singular all-range response types.  This is the
-structural endpoint of the suite: no claim is made for four leaves.
+with seven nonsingular and ten singular all-range response types.
+
+`FOUR_LEAF_STABILITY.md` strengthens this to any four simultaneous leaves.  A
+new four-dimensional local-to-global inertia lemma imports the three-port
+classification.  The only new singular branch reduces to seven exact mixed
+response types on a complete four-mark subdivision quotient.  This is the
+structural endpoint of the suite: no claim is made for five leaves.
 
 The main argument is in `CYCLOMATIC_TWO_CORE_STABILITY.md`.  It combines an
 exact leaf rank-one criterion with a four-subdivision congruence that
@@ -31,6 +36,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_two_leaf.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_two_leaf_charpoly.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_three_leaf.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_three_leaf_charpoly.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_four_leaf.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_four_leaf_charpoly.py
 ```
 
 Expected final lines:
@@ -46,17 +53,27 @@ result_sha256=15c98ee6dbf61da872c7caa997362f27e4808c74648d13cf9d083ccc28f0a4a6
 VERIFIED
 result_sha256=4fc568578691a39bfa29412cb21652b8224c7046c812293bfb2606b4e7ac22c0
 VERIFIED
+result_sha256=4ca9b47cf0280c8b5cdc3ace780c0df2005772f83701fcec2d6370f7a10c4495
+VERIFIED
+result_sha256=4bd8dc171f6c8010104a44a12096b3769099f3c0fbe1f0e67a03f888bfbacf0d
+VERIFIED
 ```
 
 On the publication machine (CPython 3.12.12), the exhaustive three-leaf
-checker took 193 seconds and the independent SymPy audit took 17 seconds.
-These wall times are informative and are not included in the result hashes.
+checker took 193 seconds and its independent SymPy audit took 17 seconds. The
+four-leaf checker took about 214 seconds and its independent audit took 41
+seconds. These wall times are informative and are not included in the result
+hashes.
 
 The output records 16 reduced rose cases, 64 reduced theta cases, both exact
 dumbbell signature tables, 46 four-subdivision checks, 714 leaf checks, and
 the nonextremal response `-3/4` sharpness witness.  The three-leaf checker
 additionally covers 631,680 marked-representative triples, all 17 response
-types, and 30,513 direct full-matrix regressions.
+types, and 30,513 direct full-matrix regressions. The four-leaf checker covers
+2,185,340 cases in the only new singular branch, all seven resulting types,
+3,048 locally admissible four-dimensional response matrices, and 15,948
+direct full-matrix regressions. Its independent audit constructs and checks
+all 3,576 four-leaf placements on the minimal bases.
 
 ## Trust boundary
 
@@ -65,5 +82,5 @@ The proof is symbolic and human-readable.  The checker uses exact
 algorithm.  Its finite calculations corroborate the displayed residue and
 response tables.  It does not replace the graph-topology classification or
 the general block-congruence proof, and it makes no claim about multiple or
-iterated pendant attachments beyond the separately proved two- and
-three-leaf theorems.
+iterated pendant attachments beyond the separately proved two-, three-, and
+four-leaf theorems.
