@@ -30,6 +30,13 @@ Over a field this implies equality of the algebraic root multiplicity at every
 nonzero scalar and an exact zero-root surplus of `|E| - |V|`.  The specialized
 hypothesis `|E| = |V| + 2` gives a surplus of two.
 
+Over every semiring, Lean additionally proves the exact Mathlib-native
+signless-Laplacian expression
+
+```text
+B Bᵀ = G.degMatrix R + G.adjMatrix R.
+```
+
 ## Proof architecture
 
 `edgeIncMatrix` is a `Matrix.submatrix` of Mathlib's `incMatrix`, with columns
@@ -54,11 +61,19 @@ identity already supplied by Mathlib as `Matrix.charpoly_mul_comm_of_le`, with
 it contributes no multiplicity away from zero and contributes exactly its
 exponent at zero.
 
+For the co-Gram identity, `Finset.sum_subtype` rewrites the sum over the actual
+edge subtype as a filtered sum over all unordered vertex pairs.  Every nonedge
+incidence column is zero, so `Finset.sum_filter_of_ne` removes the filter and
+reduces the result to Mathlib's existing `SimpleGraph.incMatrix_mul_transpose`.
+Entrywise simplification identifies its diagonal/off-diagonal presentation
+with `degMatrix + adjMatrix`.
+
 ## What remains external
 
 This project does not define or prove:
 
-- an identification of `BBᵀ` with a separately defined signless Laplacian;
+- a separate `signlessLapMatrix` definition or API beyond the exact
+  `degMatrix + adjMatrix` expression;
 - ordered real eigenvalues or an inertia/signature transfer theorem;
 - cyclomatic number, suppression, subdivision congruence, or kernel
   classification; or
@@ -78,17 +93,17 @@ With Lean 4.33.1 and Mathlib v4.33.1 pinned by `lean-toolchain`,
 ```text
 lake clean                         success
 lake exe cache get                 8,690 artifacts available
-lake build                         1,793 jobs completed successfully
+lake build                         2,736 jobs completed successfully
 lake env lean LineGraphIncidence.lean
                                    success
 ```
 
-All thirteen audited declarations report only Lean's standard axioms `propext`,
+All fifteen audited declarations report only Lean's standard axioms `propext`,
 `Classical.choice`, and `Quot.sound`.  A source scan found none of `sorry`,
 `admit`, a custom `axiom`, `unsafe`, or `native_decide`.
 
 Source SHA-256:
 
 ```text
-fb4293e47298bc316d1575559909ce6c1481fc2c373f75ddcac462f787a43453
+361986718b8eb451c6cc7d5bf2e19437dab64ac019f7afd6b18790af43137820
 ```

@@ -1,5 +1,6 @@
 import Mathlib.Combinatorics.SimpleGraph.AdjMatrix
 import Mathlib.Combinatorics.SimpleGraph.IncMatrix
+import Mathlib.Combinatorics.SimpleGraph.LapMatrix
 import Mathlib.Combinatorics.SimpleGraph.LineGraph
 import Mathlib.Algebra.Polynomial.RingDivision
 import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
@@ -135,6 +136,43 @@ theorem lineGraph_adjMatrix_eq_transpose_mul_sub
   rw [edgeIncMatrix_transpose_mul]
   exact (add_sub_cancel_right _ _).symm
 
+/-- Restricting Mathlib's incidence matrix from all unordered pairs to actual
+edges does not change its vertex co-Gram matrix, because every nonedge column
+is zero. -/
+theorem edgeIncMatrix_mul_transpose_eq_incMatrix_mul_transpose
+    {R : Type*} [Semiring R] [Fintype V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] :
+    edgeIncMatrix R G * (edgeIncMatrix R G)ᵀ =
+      G.incMatrix R * (G.incMatrix R)ᵀ := by
+  classical
+  ext a b
+  simp only [Matrix.mul_apply, edgeIncMatrix, Matrix.submatrix_apply,
+    Matrix.transpose_apply, id_eq]
+  rw [← Finset.sum_subtype
+    (Finset.univ.filter fun e : Sym2 V => e ∈ G.edgeSet) (by simp)
+    (fun e : Sym2 V => G.incMatrix R a e * G.incMatrix R b e)]
+  apply Finset.sum_filter_of_ne
+  intro e _ hne
+  by_contra he
+  have hzero : G.incMatrix R a e = 0 :=
+    G.incMatrix_of_notMem_incidenceSet (fun hae => he hae.1)
+  exact hne (by simp [hzero])
+
+/-- The vertex co-Gram matrix of the edge-indexed unsigned incidence matrix
+is the signless Laplacian `D(G) + A(G)`. -/
+theorem edgeIncMatrix_mul_transpose
+    {R : Type*} [Semiring R] [Fintype V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] :
+    edgeIncMatrix R G * (edgeIncMatrix R G)ᵀ =
+      G.degMatrix R + G.adjMatrix R := by
+  rw [edgeIncMatrix_mul_transpose_eq_incMatrix_mul_transpose,
+    G.incMatrix_mul_transpose]
+  ext a b
+  by_cases hab : a = b
+  · subst b
+    simp [SimpleGraph.degMatrix, SimpleGraph.adjMatrix_apply]
+  · simp [SimpleGraph.degMatrix, SimpleGraph.adjMatrix_apply, hab]
+
 /-- If the graph has at least as many edges as vertices, the characteristic
 polynomial of the edge Gram matrix is the characteristic polynomial of the
 vertex co-Gram matrix with exactly the dimension-difference power of `X`.
@@ -215,6 +253,8 @@ theorem edgeGram_rootMultiplicity_zero_eq_two_add_coGram
 #print axioms edge_inter_card_of_not_lineGraph_adj
 #print axioms edgeIncMatrix_transpose_mul
 #print axioms lineGraph_adjMatrix_eq_transpose_mul_sub
+#print axioms edgeIncMatrix_mul_transpose_eq_incMatrix_mul_transpose
+#print axioms edgeIncMatrix_mul_transpose
 #print axioms edgeGram_charpoly_eq_X_pow_mul_coGram
 #print axioms edgeGram_charpoly_eq_X_sq_mul_coGram
 #print axioms edgeGram_rootMultiplicity_eq_coGram_of_ne_zero

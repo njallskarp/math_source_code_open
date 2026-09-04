@@ -30,6 +30,13 @@ multiplicities.  At zero, the multiplicity on the left is larger by exactly
 `|E| - |V|`.  In the cyclomatic-three regime `|E| = |V| + 2`, the surplus is
 exactly two.
 
+Finally, over every semiring, the vertex co-Gram matrix is exactly the
+signless Laplacian expressed through Mathlib's existing matrices:
+
+```text
+B Bᵀ = G.degMatrix R + G.adjMatrix R.
+```
+
 ## Formal interface
 
 Mathlib's `incMatrix` has one column for every unordered vertex pair.  The
@@ -50,6 +57,10 @@ The principal exported theorems are:
 - `edgeIncMatrix_transpose_mul`: `Bᵀ B = A(L(G)) + 2I` over any semiring;
 - `lineGraph_adjMatrix_eq_transpose_mul_sub`:
   `A(L(G)) = Bᵀ B - 2I` over any ring;
+- `edgeIncMatrix_mul_transpose_eq_incMatrix_mul_transpose`: restricting
+  Mathlib's all-unordered-pair incidence matrix to actual edges does not alter
+  the vertex co-Gram product;
+- `edgeIncMatrix_mul_transpose`: `B Bᵀ = D(G) + A(G)` over any semiring;
 - `edgeGram_charpoly_eq_X_pow_mul_coGram`: the generic rectangular
   characteristic-polynomial factorization over a commutative ring;
 - `edgeGram_rootMultiplicity_eq_coGram_of_ne_zero`: equality of every nonzero
@@ -80,14 +91,14 @@ Pinned versions:
 Expected results with the committed manifest:
 
 - Mathlib cache: 8,690 artifacts;
-- clean project build: 1,793 jobs completed successfully;
-- standalone replay: exit zero and thirteen printed axiom audits, each containing
+- clean project build: 2,736 jobs completed successfully;
+- standalone replay: exit zero and fifteen printed axiom audits, each containing
   only `propext`, `Classical.choice`, and `Quot.sound`.
 
 Source SHA-256:
 
 ```text
-fb4293e47298bc316d1575559909ce6c1481fc2c373f75ddcac462f787a43453  LineGraphIncidence.lean
+361986718b8eb451c6cc7d5bf2e19437dab64ac019f7afd6b18790af43137820  LineGraphIncidence.lean
 ```
 
 ## Theorem alignment and trust boundary
@@ -98,6 +109,8 @@ corrected review
 `bafkreia7262slp7qmuxpylmcdgdqu7pgcz24fuzhm2rj5ortvw7gn5g4tu`.
 It is also stated as the unsigned-graph baseline in
 [Alomari--Abudayah--Germina--Sander](https://doi.org/10.1515/spma-2022-0176).
+The same paper states `B B* = A(G) + D` as equation (2), the conventional
+signless-Laplacian identity.
 The rectangular characteristic-polynomial factorization is the classical
 Sylvester determinantal identity; see
 [Brualdi--Schneider](https://doi.org/10.1016/0024-3795(83)80049-4).
@@ -106,10 +119,11 @@ Lean proves the matrix equality directly from Mathlib's graph and matrix
 definitions.  The spectral extension is a small wrapper around Mathlib's
 rectangular `Matrix.charpoly_mul_comm_of_le`; it proves an exact polynomial
 identity and algebraic root-multiplicity consequences.  It does **not**
-identify `BBᵀ` with a separately defined signless Laplacian, formalize ordered
-real eigenvalues, spectral inertia or signature, cyclomatic number,
+introduce a separate `signlessLapMatrix` definition beyond the exact
+`degMatrix + adjMatrix` expression, formalize ordered real eigenvalues,
+spectral inertia or signature, cyclomatic number,
 subdivision reduction, kernel enumeration, or the target's line-graph bound.
-Consequently this project formalizes two reusable structural bridges of that
+Consequently this project formalizes three reusable structural bridges of that
 theorem, not its computer-assisted classification.
 
 The source reads no external data and uses no solver, certificate, floating
