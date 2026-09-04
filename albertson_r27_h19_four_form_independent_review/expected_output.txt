@@ -1,0 +1,8 @@
+PASS clean-room Albertson h=19 geometry audit
+four_block_caps=(135, 142, 151, 162)
+three_block_summary=((0, 56, 27), (1, 32, 30), (2, 19, 32)); exceptions=14
+labelled_exception_geometries=168; nonresidual=153
+derived_residual_forms=(((8, 8, 18), 0, 0, 'three isolated cliques'), ((8, 8, 18), 0, 1, 'isolated largest; bridge between smaller cliques'), ((8, 8, 19), 1, 0, 'isolated largest; smaller cliques share one cut'), ((8, 9, 18), 1, 0, 'isolated largest; smaller cliques share one cut'))
+two_block_profiles=((9, 25, 1, 17, 6), (10, 24, 2, 16, 21), (11, 23, 3, 15, 34), (12, 22, 4, 14, 45), (13, 21, 5, 13, 54), (14, 20, 6, 12, 61), (15, 19, 7, 11, 66), (16, 18, 8, 10, 69), (17, 17, 9, 9, 70))
+uniform_row_small_cases=((1, 28, 3), (2, 286, 6), (3, 3876, 10), (4, 65780, 15))
+certificate_sha256=d4e8d7f87a4cc119db4c3e64fa6164276e24fc06ee1afe9c1aa9bea46477f1d4
