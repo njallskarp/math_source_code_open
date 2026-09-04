@@ -1,4 +1,4 @@
-# Lean-checked modular residue-slab composition
+# Lean-checked residue-slab composition and concrete Hamming lift
 
 This Lean 4 project formalizes the dimension-free partition-composition lemma
 in the independently reviewed Discovery Net result *Modular residue-slab
@@ -9,6 +9,11 @@ composition gives new exact Hamming families*
 2031; a second independent accepting review is
 `bafkreihzc7ijqap32xneq7fkgmv2v2uimhir5wyj6xcasj3u7lyeh7hpcy` at height
 2033.
+
+`HammingLift.lean` closes the next graph-theoretic bridge identified in the
+height-2051 formalization: it turns the finite-fiber coloring into an actual
+Mathlib `SimpleGraph` coloring on Cartesian products of complete graphs and
+proves the required same-color-neighbor bound.
 
 ## Informal theorem
 
@@ -68,6 +73,27 @@ dimension-free construction from any particular tuple encoding.
 - `modularComposition`: the combined surjectivity, fiber-size,
   line-containment, and quotient-count theorem.
 
+`HammingLift.lean` proves:
+
+- `sameColorNeighborFinset_lift`: the exact disjoint decomposition of the
+  same-color neighborhood in `completeGraph I □ G`;
+- `card_sameColorNeighborFinset_lift`: same-color degrees add across that
+  product;
+- `fiber_erase_subset_sameColorNeighbors` and
+  `card_sameColorNeighbors_ge_fiber_sub_one`: a clique fiber of size at least
+  `s` contributes at least `s-1` minor-coordinate neighbors;
+- `hammingLift_sameColorNeighbors_ge`: the generic lift bound
+  `(|I|-1)+(s-1)`;
+- `appendedLineGraph`: distinct points on an appended coordinate line form a
+  simple graph;
+- `appendedLineGraph_sameOrAdjacent_eq_boxProd`: this graph is exactly
+  `G □ completeGraph (Fin p)` when the base line relation is equality or
+  adjacency in `G`;
+- `residueSlab_hammingLift_sameColorNeighbors_ge`: the direct bridge from
+  `appendColor` and its fiber theorem to the lifted graph;
+- `residueSlab_iteratedBoxProd_sameColorNeighbors_ge`: the graph-native final
+  statement on `completeGraph I □ (G □ completeGraph (Fin p))`.
+
 ## Alignment and trust boundary
 
 The theorem assumes a surjective base coloring with the exact base part count,
@@ -75,13 +101,18 @@ minimum fiber size, and an abstract `baseLine` relation. Hence it formalizes
 the complete modular slab-plus-residual composition bridge and the exact
 scheme deficit.
 
+It now formalizes the first-coordinate Hamming lift and the exact
+same-color-neighbor lower bound.  If `|I|=n1`, then the bound is
+`(n1-1)+(s-1)=N1+s-1`, exactly the threshold used by the reviewed Hamming
+construction.  It also identifies the minor line graph with Mathlib's
+Cartesian product, so this is not merely an arithmetic or abstract-relation
+kernel.
+
 It does not construct the universal cyclic rectangle partition from height
-1981, prove that a concrete Hamming tuple relation is equivalent to
-`baseLine`, formalize the lift through the first Hamming coordinate, verify
-the majority-neighbor threshold, invoke the height-1925 upper bound, or check
-the height-2023 explicit family. These remain external. Accordingly this is a
-formalization of the dimension-free composition component, not the entire
-four-dimensional Hamming theorem.
+1981, instantiate its base coloring, formalize the separate height-1925
+upper bound, or check the height-2023 parameter family. These remain
+external. Accordingly the project formalizes the composition and lower
+Hamming-lift bridges, not the entire four-dimensional equality theorem.
 
 The cyclic-rectangle audit found usable standard primitives (`Fin`,
 `finProdFinEquiv`, `Nat.ModEq`, and finite fibers), but no existing lemma for
@@ -108,11 +139,12 @@ The project pins Lean and Mathlib `v4.33.1`.
 lake update
 lake exe cache get
 lake clean hamming_residue_slab_composition
-lake build ResidueSlabComposition
+lake build ResidueSlabComposition HammingLift
 lake env lean ResidueSlabComposition.lean
+lake env lean HammingLift.lean
 ```
 
-The final two commands must exit successfully. Nine `#print axioms` reports
+The final three commands must exit successfully. Eighteen `#print axioms` reports
 should contain only standard Lean/Mathlib logical infrastructure: `propext`,
 `Classical.choice`, and `Quot.sound`, with some declarations using a subset.
 

@@ -1,9 +1,12 @@
 name = "hamming_residue_slab_composition"
 version = "0.1.0"
-defaultTargets = ["ResidueSlabComposition"]
+defaultTargets = ["ResidueSlabComposition", "HammingLift"]
 
 [[lean_lib]]
 name = "ResidueSlabComposition"
+
+[[lean_lib]]
+name = "HammingLift"
 
 [[require]]
 name = "mathlib"

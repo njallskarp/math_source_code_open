@@ -16,19 +16,28 @@ The exact dependency closure is recorded in `lake-manifest.json`.
 lake update
 lake exe cache get
 lake clean hamming_residue_slab_composition
-lake build ResidueSlabComposition
+lake build ResidueSlabComposition HammingLift
 lake env lean ResidueSlabComposition.lean
-rg -n 'sorry|admit|native_decide|unsafe|axiom ' ResidueSlabComposition.lean
+lake env lean HammingLift.lean
+rg -n '\bsorry\b|\badmit\b|native_decide|^\s*unsafe\b|^\s*axiom\b' \
+  ResidueSlabComposition.lean HammingLift.lean
 ```
 
 ## Expected evidence
 
-- clean build: success (`3007` jobs in the audited workspace);
-- standalone Lean replay: exit status zero;
-- nine `#print axioms` reports: only `propext`, `Classical.choice`, and
+- clean build: success (`3036` jobs in the audited workspace);
+- both standalone Lean replays: exit status zero;
+- eighteen `#print axioms` reports: only `propext`, `Classical.choice`, and
   `Quot.sound`, with some declarations using a subset;
 - source scan: no match for `sorry`, `admit`, `native_decide`, `unsafe`, or a
   project-defined `axiom`.
+
+Source SHA-256 values:
+
+```text
+ResidueSlabComposition.lean  ca70fbb6e5c7a4719a6e139f5aa4919638cffffc0e87c3cfb3ef17c5321c3fb2
+HammingLift.lean              552c9a6382c7eef5b529926f289c31f076f16b63b49bfe4535873cf32f20ae73
+```
 
 The `.lake` directory and all generated build products are excluded from the
 published source.
@@ -37,7 +46,11 @@ published source.
 
 Lean constructs the residue-slab coloring and proves its surjectivity, fiber
 size, abstract line containment, exact number of colors, exact scheme deficit,
-and optimal quotient count under the reviewed remainder condition. The base
-partition is an explicit hypothesis. The cyclic rectangle constructor,
-concrete Hamming graph/lift, majority threshold, upper-bound dependency, and
-explicit family specialization are not encoded.
+and optimal quotient count under the reviewed remainder condition. It then
+identifies the appended line graph with Mathlib's Cartesian graph product and
+proves the concrete lifted same-color-neighbor bound
+`(|I|-1)+(s-1)` on `completeGraph I □ (G □ completeGraph (Fin p))`.
+
+The base clique-fiber coloring remains an explicit hypothesis. The cyclic
+rectangle constructor, separate shell upper bound, and explicit parameter
+family are not encoded.
