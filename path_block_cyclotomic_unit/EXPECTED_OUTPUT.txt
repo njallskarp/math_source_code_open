@@ -1,0 +1,1 @@
+VERIFIED cyclotomic-unit obstruction; equal_cycle_primes=3,5,7; height_2095_boundary=passes; sha256=97c38bd9829ea756c5f8f2bf090afe4d602a5ab2a6314cf7454d1c61d4aa9289
