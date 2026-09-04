@@ -25,6 +25,17 @@ class HallCompressionTests(unittest.TestCase):
         self.assertEqual([row["defect"] for row in certificate], [1] * 6)
         self.assertEqual(verify.compressed_strong_clusters(verify.PUBLISHED_OUT, verify.PUBLISHED_SIZES), ())
 
+    def test_hall_cut_maximum_deficiency_identity(self) -> None:
+        for root in range(len(verify.PUBLISHED_OUT)):
+            self.assertEqual(
+                verify.maximum_hall_deficiency(
+                    verify.PUBLISHED_OUT, verify.PUBLISHED_SIZES, root
+                ),
+                verify.maximum_cut_deficiency(
+                    verify.PUBLISHED_OUT, verify.PUBLISHED_SIZES, root
+                ),
+            )
+
     def test_invalid_cluster_size(self) -> None:
         with self.assertRaises(ValueError):
             verify.blowup(verify.tournament(0, 2), (1, 0))

@@ -76,6 +76,42 @@ def compressed_clusters(out: list[set[int]], sizes: tuple[int, ...]) -> list[int
     return answer
 
 
+def left_maximum_defect(out: list[set[int]], sizes: tuple[int, ...], root: int) -> int:
+    first = sorted(out[root])
+    reached = set().union(*(out[head] for head in first)) if first else set()
+    second = reached.difference(first, {root})
+    defects = []
+    for count in range(len(first) + 1):
+        for chosen_tuple in itertools.combinations(first, count):
+            chosen = set(chosen_tuple)
+            neighbors = {
+                target for target in second if any(target in out[source] for source in chosen)
+            }
+            defects.append(
+                sum(sizes[source] for source in chosen)
+                - sum(sizes[target] for target in neighbors)
+            )
+    return max(defects)
+
+
+def right_maximum_defect(out: list[set[int]], sizes: tuple[int, ...], root: int) -> int:
+    first = sorted(out[root])
+    reached = set().union(*(out[head] for head in first)) if first else set()
+    second = sorted(reached.difference(first, {root}))
+    defects = []
+    for count in range(len(second) + 1):
+        for right_tuple in itertools.combinations(second, count):
+            right = set(right_tuple)
+            forced = {
+                source for source in first if (out[source] & set(second)).issubset(right)
+            }
+            defects.append(
+                sum(sizes[source] for source in forced)
+                - sum(sizes[target] for target in right)
+            )
+    return max(defects)
+
+
 PUBLISHED_OUT = [
     {1, 4, 5},
     {3, 4, 5},
@@ -101,6 +137,13 @@ def main() -> None:
                 compressed = [terminals[cluster] for cluster in compressed_clusters(out, sizes)]
                 if direct != compressed:
                     raise AssertionError((order, mask, sizes, direct, compressed))
+                for root in range(order):
+                    left_defect = left_maximum_defect(out, sizes, root)
+                    right_defect = right_maximum_defect(out, sizes, root)
+                    if left_defect != right_defect:
+                        raise AssertionError(
+                            (order, mask, sizes, root, left_defect, right_defect)
+                        )
                 digest.update(f"{order}|{mask}|{sizes}|{direct}\n".encode("ascii"))
                 cases += 1
                 vertices += len(arcs)
@@ -128,7 +171,7 @@ def main() -> None:
                 "published_defect_margins": margins,
                 "published_strong_clusters": [],
                 "quotient_orders": [1, 2, 3, 4],
-                "status": "INDEPENDENT HALL-SUBSET VERIFIED",
+                "status": "INDEPENDENT HALL-CUT DUALITY VERIFIED",
                 "vertex_instances": vertices,
                 "weight_values": [1, 2],
             },

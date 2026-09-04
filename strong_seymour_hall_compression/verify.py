@@ -136,13 +136,52 @@ def quotient_hall_defects(
     return tuple(defects)
 
 
+def quotient_cut_defects(
+    out: Sequence[frozenset[int]], sizes: Sequence[int], cluster: int
+) -> tuple[tuple[tuple[int, ...], tuple[int, ...], int], ...]:
+    """Return (right set, forced left set, weight defect) for dual Hall cuts."""
+    validate_quotient(out)
+    if len(sizes) != len(out) or any(size < 1 for size in sizes):
+        raise ValueError("cluster sizes must be positive and match the quotient")
+    first = sorted(out[cluster])
+    second = sorted(second_quotient_clusters(out, cluster))
+    defects = []
+    for subset_mask in range(1 << len(second)):
+        right = tuple(
+            second[index] for index in range(len(second)) if subset_mask >> index & 1
+        )
+        right_set = frozenset(right)
+        forced_left = tuple(
+            source
+            for source in first
+            if frozenset(out[source]).intersection(second).issubset(right_set)
+        )
+        defect = sum(sizes[source] for source in forced_left) - sum(
+            sizes[target] for target in right
+        )
+        defects.append((right, forced_left, defect))
+    return tuple(defects)
+
+
+def maximum_hall_deficiency(
+    out: Sequence[frozenset[int]], sizes: Sequence[int], cluster: int
+) -> int:
+    return max(defect for _, _, defect in quotient_hall_defects(out, sizes, cluster))
+
+
+def maximum_cut_deficiency(
+    out: Sequence[frozenset[int]], sizes: Sequence[int], cluster: int
+) -> int:
+    return max(defect for _, _, defect in quotient_cut_defects(out, sizes, cluster))
+
+
 def compressed_strong_clusters(
     out: Sequence[frozenset[int]], sizes: Sequence[int]
 ) -> tuple[int, ...]:
     return tuple(
         cluster
         for cluster in range(len(out))
-        if max(defect for _, _, defect in quotient_hall_defects(out, sizes, cluster)) <= 0
+        if maximum_hall_deficiency(out, sizes, cluster) <= 0
     )
 
 
@@ -212,6 +251,15 @@ def main() -> None:
                         f"compression mismatch: order={order}, mask={mask}, sizes={sizes}, "
                         f"direct={direct}, compressed={compressed}"
                     )
+                for cluster in range(order):
+                    left_defect = maximum_hall_deficiency(out, sizes, cluster)
+                    right_defect = maximum_cut_deficiency(out, sizes, cluster)
+                    if left_defect != right_defect:
+                        raise AssertionError(
+                            f"deficiency duality mismatch: order={order}, mask={mask}, "
+                            f"sizes={sizes}, cluster={cluster}, left={left_defect}, "
+                            f"right={right_defect}"
+                        )
                 digest.update(f"{order}|{mask}|{sizes}|{direct}\n".encode("ascii"))
                 cases += 1
                 vertex_instances += len(rows)
@@ -225,7 +273,7 @@ def main() -> None:
         raise AssertionError("the published order-36 blow-up must have no strong vertex")
 
     print(
-        "VERIFIED QUOTIENT-WEIGHT HALL COMPRESSION; "
+        "VERIFIED QUOTIENT-WEIGHT HALL AND CUT COMPRESSION; "
         f"orders=1..4 weight_max=3 cases={cases} vertex_instances={vertex_instances} "
         f"audit_sha256={digest.hexdigest()}"
     )
