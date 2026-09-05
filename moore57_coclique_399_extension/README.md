@@ -1,4 +1,4 @@
-# Every 399-coclique in the missing Moore graph extends uniquely
+# Near-Hoffman coclique rigidity in the missing Moore graph
 
 Assume that a Moore graph of degree `57` and diameter `2` exists.  This
 directory proves the following conditional structural theorem.
@@ -41,6 +41,29 @@ a_x = 0^1, 7^57, 8^2793.
 
 The unique vertex with `a_x=0` is the unique extension point.
 
+## Deficit two
+
+[DEFICIT_TWO.md](DEFICIT_TWO.md) gives the next structural boundary.  For a
+398-coclique, if every outside vertex has at most eight neighbours in the
+coclique, then its profile is forced to be
+
+```text
+0^2, 6^1, 7^112, 8^2737
+```
+
+and it has a unique 400-coclique extension.  Therefore every nonextendible
+398-coclique must have positive defect support
+
+```text
+P = {x : |N(x) intersect S| > 8}
+```
+
+with `27<=|P|<=57`, spectral radius at least `5`, and maximum positive defect
+`max_P(|N(x) intersect S|-8)` in `{1,2,5}`.  This is a clean obstruction, but
+not an exclusion: the positive-support radius-two inequalities retain a
+weighted-star branch, so the coclique lane is frozen pending a new incidence
+or design mechanism.
+
 ## Reproduction
 
 Requires CPython 3.11 or later and only the standard library.
@@ -48,6 +71,8 @@ Requires CPython 3.11 or later and only the standard library.
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 verify.py
 diff -u EXPECTED_OUTPUT.txt <(PYTHONDONTWRITEBYTECODE=1 python3 verify.py)
+PYTHONDONTWRITEBYTECODE=1 python3 verify_deficit_two.py
+diff -u EXPECTED_DEFICIT_TWO.txt <(PYTHONDONTWRITEBYTECODE=1 python3 verify_deficit_two.py)
 shasum -a 256 -c SHA256SUMS
 ```
 
@@ -59,6 +84,8 @@ lower bound `58` is imposed.
 
 Expected-output SHA-256:
 `97970ec2d49de541797e664372be84a51d533f334b69fa5c4a9d3af42c574500`.
+The deficit-two expected-output digest is recorded in `SHA256SUMS`.
+It is `dbe17e68a102c5e063311975f4c24e5a1e70e6670196ff15935c676cee6a6754`.
 
 The finite computation audits arithmetic only.  The universal theorem rests
 on the written counting and spectral proof.
@@ -86,6 +113,9 @@ Targeted primary-source and exact-phrase searches on 2026-09-04 found the
 general outindependent spectrum but no statement that every 399-coclique
 extends, no exclusion of independence number `399`, and no defect-support
 argument above.  Novelty is search-relative, not a historical-priority claim.
+The deficit-two audit additionally checked P. Renteln, *Some constraints on
+the missing Moore graph*, Australas. J. Combin. 77 (2020), 373--382; its full
+text contains no independent-set or coclique theorem.
 
 ## Trust boundary
 

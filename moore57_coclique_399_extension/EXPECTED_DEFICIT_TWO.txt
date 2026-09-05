@@ -1,0 +1,8 @@
+Moore(57,2) 398-coclique deficit-two audit
+outside=2852 sum_z=-130 sum_z2=244 energy=114
+nonpositive nonextension candidate: w1=16 w2=57; incidence minimum gap=244
+positive-support obstruction: 27<=size<=57, rho>=5
+maximum positive defect allowed=(1, 2, 5)
+maximum-defect energy bounds=1:52,2:102,3:126,4:124,5:96,6:122,7:150,8:180,9:212,10:246
+canonical extension profile: 0^2 6^1 7^112 8^2737
+barrier: weighted K1,33 positive support consumes 96/114 energy
