@@ -1,0 +1,13 @@
+PASS marking_cover E_markings=1716 orbit_types=12 labeled_partner_neighborhoods=2425062140
+PASS formula_census variables=29611 clauses=2492430 exact_sums=91 totalizer_variables=26986 totalizer_clauses=507636
+PASS c13_complete_two_anchor_model n=43 edges=445 degrees=20^13,21^30 E_incidence=6^42,8^1
+anchors=u13,v14 codegree=13 local_red_edges=100,100 local_blue_edges=100,100
+cells=R13,A7,B7,D14 E_cells=3,3,3,4 C_cells=10,4,4,10
+internal=eR26,eA9,eB8,eD45 cross=eRA52,eRB53,eAD56,eBD57,eRD87,eAB11
+global_outside_obstruction=redK5:180,blueK5:513
+edge_sha256=bc92dd1f5f1f8827d35a58048ade97a102921f7cab193f6b30706cb5184eed99
+PASS cpp_c13_complete_two_anchor_model n=43 edges=445 degrees=20^13,21^30 E_incidence=6^42,8^1
+anchors=u13,v14 codegree=13 local_red_edges=100,100 local_blue_edges=100,100
+cells=R13,A7,B7,D14 E_cells=3,3,3,4 C_cells=10,4,4,10
+internal=eR26,eA9,eB8,eD45 cross=eRA52,eRB53,eAD56,eBD57,eRD87,eAB11
+global_outside_obstruction=redK5:180,blueK5:513

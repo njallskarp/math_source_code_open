@@ -1,0 +1,18 @@
+{
+  "base_variables": 2625,
+  "blue_triangle_variables": 861,
+  "bytes": 138517605,
+  "clauses": 2492430,
+  "conjunction_clauses": 6888,
+  "exact_sums": 91,
+  "graph_variables": 903,
+  "lines": 2492431,
+  "local_clauses": 1977864,
+  "merges": 4423,
+  "red_triangle_variables": 861,
+  "sha256": "2ce34acd542808c44755edbd467a976abd98e16c0d6c3cadc644db6807937b93",
+  "totalizer_clauses": 507636,
+  "totalizer_variables": 26986,
+  "unit_clauses": 42,
+  "variables": 29611
+}
