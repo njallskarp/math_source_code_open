@@ -1,0 +1,8 @@
+ore k=29 leaves=1 n=29 m=406
+ore k=29 leaves=2 n=57 m=811
+ore k=29 leaves=3 n=85 m=1216
+ore k=29 leaves=4 n=113 m=1621
+row t=0 n=58 m=838 X=52 rho=52 delta=702 KY_raw=23113/28 KY_ceil=826 integer_gap=12 raw_gap=351/28
+row t=1 n=58 m=839 X=54 rho=-4 delta=758 KY_raw=23113/28 KY_ceil=826 integer_gap=13 raw_gap=379/28
+row t=2 n=58 m=840 X=56 rho=-60 delta=814 KY_raw=23113/28 KY_ceil=826 integer_gap=14 raw_gap=407/28
+certificate_sha256=abcb8ce93e7330c829e08788d0574c6c0dfbbaee6641770c9025236b89ef8179
