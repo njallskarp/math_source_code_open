@@ -1,0 +1,10 @@
+q3_incidence=edges:12,faces:6,adjacent_face_pairs:12
+face_boundary_minima=t0:0,t1:4,t2:6,t3:6,t4:6,t5:4,t6:0
+square_free_by_active_faces=t0:772,t1:936,t2:672,t3:328,t4:162,t5:24,t6:8
+min_twice_local_margin=t0:0,t1:5,t2:6,t3:3,t4:0,t5:1,t6:6
+min_margin_multiplicity=t0:1,t1:24,t2:108,t3:64,t4:48,t5:24,t6:8
+exact_equality_signatures=t0,q0,b0,delta0,a0:1;t4,q0,b2,delta6,a2:48
+square_saturated_q3=e8:66,e9:8
+global_chain_checks=74
+integer_bound_d7=ceil(3136/19)=166
+status=PASS
