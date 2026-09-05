@@ -1,9 +1,12 @@
 name = "albertson_neighborhood_obstruction"
 version = "0.1.0"
-defaultTargets = ["AlbertsonNeighborhoodObstruction"]
+defaultTargets = ["AlbertsonNeighborhoodObstruction", "AlbertsonReservoirCapacity"]
 
 [[lean_lib]]
 name = "AlbertsonNeighborhoodObstruction"
+
+[[lean_lib]]
+name = "AlbertsonReservoirCapacity"
 
 [[require]]
 name = "mathlib"
