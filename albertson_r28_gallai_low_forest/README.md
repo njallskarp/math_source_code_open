@@ -19,14 +19,17 @@ Then:
        row 768: 0^52 1 25^2,       0^52 2 24 25;
        row 769: 0^52 3 25^2,       0^52 4 24 25.
 
-2. Every surviving profile with 51 low vertices forces `L` to contain a
-   unique `K_26` block.  That block contains between 22 and 25 vertices of the
-   49-vertex component `C`; each such core vertex is saturated by its 25 block
-   neighbors and the two singleton vertices.
+2. The four profiles with 51 low vertices are also impossible.  Their edge
+   floor first forces `L` to contain a unique `K_26` block and then a disjoint
+   `K_25` block, but those blocks have at least 625 edges whereas the degree
+   identity permits at most 615.
 
-Consequently the height-2583 lists compress from three to one profile at row
-768 and from eight to six at row 769.  The single row-768 profile, and three
-of the six row-769 profiles, additionally carry the unique-`K_26` structure.
+Consequently row 768 is eliminated outright.  The height-2583 row-769 list
+compresses from eight profiles to exactly these three unresolved profiles:
+
+    0^50 1^3 25^2,
+    0^50 1^2 2 24 25,
+    0^49 1^4 24 25.
 
 ## Proof
 
@@ -70,11 +73,23 @@ On the other hand, if `R=V(G)-V(L)`, the degree identity and the forced edge
          >= m - sum_{v in R}(27+x_v) + 1.
 
 For every 52-low profile this floor is 637 at row 768 or 636 at row 769,
-contradicting 628.  For every 51-low profile it is at least 609, which exceeds
-603 and therefore forces a `K_26`.  The preceding argument makes that block
-unique.  A `K_26` lying wholly in `C`, together with the adjacent pair `W`,
-would be a proper `K_28` subgraph of the critical graph, so the block contains
-at least one low vertex of `B`; hence it has 22 to 25 core vertices.
+contradicting 628.
+
+For every 51-low profile the floor is at least 609, which exceeds 603 and
+therefore forces the unique `K_26`.  If there were no `K_25` block, the same
+convex packing, now with remaining increments at most 23, would give
+
+    e(L) <= 325+276+3 = 604,
+
+again below 609.  Hence a `K_25` block is also present.  It cannot share a cut
+vertex with the `K_26`, since that vertex would have internal degree at least
+`25+24=49`; so the two blocks are disjoint and contribute at least
+`325+300=625` edges.  The exact degree identity also gives the upper bound
+
+    e(L) <= m - sum_{v in R}(27+x_v) + binom(4,2),
+
+which is 615 on row 768 and 614 on row 769.  This contradiction eliminates
+all four 51-low profiles.
 
 ## Reproduction
 

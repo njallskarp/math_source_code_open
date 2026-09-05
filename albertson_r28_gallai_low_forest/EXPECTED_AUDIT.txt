@@ -1,4 +1,5 @@
 PASS independent Gallai threshold audit
-ceilings=n52_at_most_one_K26:628,n51_no_K26:603
+ceilings=n52_at_most_one_K26:628,n51_no_K26:603,n51_K26_no_K25:604
 floors=n52_row768:637,n52_row769:636,n51_min:609
-conclusions=row768_survivors:1,row769_survivors:6,forced_unique_K26:4
+block_gap=n51_degree_ceiling_max:615,K26_plus_K25_floor:625
+conclusions=row768_survivors:0,row769_survivors:3
