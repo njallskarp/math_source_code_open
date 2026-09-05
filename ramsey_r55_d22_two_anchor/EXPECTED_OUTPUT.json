@@ -1,0 +1,106 @@
+{
+  "blue_five_minus_edge": [
+    5,
+    8,
+    9,
+    10,
+    25
+  ],
+  "cell_sizes": [
+    10,
+    11,
+    10,
+    10
+  ],
+  "common": 10,
+  "defects": {
+    "B": 280,
+    "R": 273
+  },
+  "degree_deviation_square_sum": 17,
+  "degrees": [
+    [
+      20,
+      8
+    ],
+    [
+      21,
+      26
+    ],
+    [
+      22,
+      9
+    ]
+  ],
+  "diagonal_edges": 210,
+  "edge_sha256": "af4d730dd4efe5813c1c009cc9095b8119869ec9e952a3cfba618e712da02ebc",
+  "edges": 452,
+  "excluded_fixed_neighborhood_completions": "2^210",
+  "first_defects": {
+    "B": [
+      1,
+      2,
+      4,
+      25,
+      26
+    ],
+    "R": [
+      1,
+      11,
+      17,
+      30,
+      38
+    ]
+  },
+  "forced_diagonal_edge": [
+    5,
+    25
+  ],
+  "guarded_incidence_cut": {
+    "lhs": 9,
+    "multipliers": [
+      1,
+      1
+    ],
+    "rhs": 8
+  },
+  "local": [
+    [
+      0,
+      "R",
+      22,
+      108,
+      6
+    ],
+    [
+      0,
+      "B",
+      20,
+      100,
+      0
+    ],
+    [
+      3,
+      "R",
+      21,
+      99,
+      8
+    ],
+    [
+      3,
+      "B",
+      21,
+      97,
+      10
+    ]
+  ],
+  "monochromatic_list_sha256": "18a90df71ad0cd96b91199551e2c5dd111dde24efe75acf9fcb058651225997f",
+  "pattern_digest": "fdf1ea0906186e1ce6dc11932838c28c3a7b9bc414f19712b934b97bf83e472c",
+  "red_five_minus_edge": [
+    5,
+    25,
+    28,
+    34,
+    41
+  ]
+}

@@ -1,0 +1,3 @@
+PASS rejected missing root edge and nonbinary incidence
+PASS rejected incorrect forcing hole and incorrect forcing five-set
+PASS rejected truncated graph6

@@ -1,0 +1,7 @@
+PASS independent graph6 decoding and four full (4,5) neighborhoods
+PASS red_degree_profile=20^8,21^26,22^9 red_edges=452
+PASS cells=10,11,10,10 diagonal_edges=210
+PASS fixed red and blue K5-minus-edge force opposite colors on (5,25)
+PASS every one of 2^210 fixed-neighborhood completions is excluded
+PASS monochromatic_K5 red=273 blue=280
+MONOCHROMATIC_LIST_SHA256 18a90df71ad0cd96b91199551e2c5dd111dde24efe75acf9fcb058651225997f
