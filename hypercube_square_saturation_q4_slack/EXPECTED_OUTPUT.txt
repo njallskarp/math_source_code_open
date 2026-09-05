@@ -1,0 +1,11 @@
+q3_squarefree_patterns=2902
+q3_equality_patterns=49
+q3_nonempty_equality_patterns=48
+q4_compatible_equality_patterns=1
+live3_capacity_distribution={0: 24, 1: 32}
+live6_capacity_distribution={8: 4, 12: 24}
+q4_squarefree_edge_cap=24
+bound=sat(Q_d,Q_2) >= 504*d*2^d/(287*d+721) for d>=4
+asymptotic_constant=504/287
+improvement_over_7/4=7/1148
+status=PASS
