@@ -1,0 +1,12 @@
+target=bafkreicotrvsknilumgyiep3mvbl4aa6qaxsiuhh5q5oovm5mz2n74g5ri
+arithmetic=exact_python_int_and_Fraction
+recursive_sweeps_including_final_no_change=2
+frontier=L53_713:6071,L53_714:6100,L54_725:6106,L54_726:6134,floor53:713,floor54:726
+triangle_free=[(0, 7249)]
+barrier_survivors={3: [(49, 1), (48, 1, 1)], 4: [(47, 1, 1)]}
+same_with_complete_graph_base_through_K12=True
+triangle_free_with_complete_graph_base_through_K12=[(0, 7088)]
+gallai_V51=(582, 1, (24, 23, 3));forced=614
+gallai_V50=(579, 1, (24, 23, 2));forced=588
+certificate_sha256=594a288d304ffaf5b157a41d7838d821338eb3661b14f5af0e90658496519872
+STATUS=PASS
