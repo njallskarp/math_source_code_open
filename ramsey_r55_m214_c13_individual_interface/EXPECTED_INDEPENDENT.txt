@@ -1,0 +1,7 @@
+VERIFIED INDIVIDUAL PAIRWISE-INTERFACE WITNESS
+core_edges=26 independent_triples=78 independent_fours=39 transversals=3459
+columns=15x13 marked_columns=6x13
+degrees=20^13,21^30 E_incidences=6^42,8^1 anchor_triangles=100,100,100,100
+IA=49 IB=47 IO=99 mA=12 mB=14 mO=55 mAB=18 mAO=43 mBO=41
+K5_by_outside red=0,0,0,181,123,31 blue=0,0,0,42,321,168
+outside_edges=183 triangle_mismatch_vertices=39

@@ -1,0 +1,4 @@
+FOUND energy=0 IA=49 IB=47 mA=12 mB=14 mO_interval=[44,73]
+rows 1c48 1630 1391 02ee 11a9 04de 1fff 0067 19c5 091c 0e2c 18f3 0f12 19f7 0703 1033 078c 1eb4 1f42 0b4b 04be 189b 1f6d 07fc 19c0 0979 069f 1667
+forced A/B/O/AB/AO/BO=0/0/7/7/22/17 red_forbidden_A/B=9/7
+individual_violations=0

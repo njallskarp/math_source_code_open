@@ -1,0 +1,6 @@
+REJECTED nontransversal
+REJECTED wrong-mark
+REJECTED wrong-pivot
+REJECTED forbidden-red
+REJECTED forbidden-blue
+ALL 5 NEGATIVE CONTROLS REJECTED
