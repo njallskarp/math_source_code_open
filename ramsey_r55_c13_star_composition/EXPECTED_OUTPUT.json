@@ -1,0 +1,33 @@
+{
+  "B_edge_upper_bound": 12,
+  "Farkas_rhs": -1,
+  "Farkas_terms": 31,
+  "Farkas_variables": 30,
+  "K5_rows": 18,
+  "deletion_masks_sha256": "bddf580028511fb5042dc0d3aed21387939594f17d8f649ca28948951a36b85a",
+  "deletion_witnesses": 19,
+  "footprint_support": [
+    0,
+    7,
+    8,
+    9,
+    10,
+    11,
+    13,
+    14,
+    15
+  ],
+  "mixed_orbit": "star_center",
+  "necessary_free_B_row_size": 6,
+  "selected_B_edge_target": 13,
+  "selected_free_B_row_size": 5,
+  "selection_sha256": "ebe63f742ec0fe25ace4aa14eecfada571592440001cb682e41389c834acedcc",
+  "signatures": [
+    1,
+    2,
+    4,
+    0,
+    0
+  ],
+  "status": "VERIFIED C13 STAR COMPOSITION OBSTRUCTION"
+}

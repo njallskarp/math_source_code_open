@@ -1,0 +1,47 @@
+{
+  "B_red_capacity_before_mixed_cut": 13,
+  "Boolean_deletion_models": 19,
+  "K5_origins": 18,
+  "anchor_vertices_full_labels": [
+    3,
+    5,
+    6
+  ],
+  "forced_red_edges_on_star": 10,
+  "literal_truth_table_cases": 1058,
+  "signature_coordinate_vectors": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "star_vertices_full_labels": [
+    15,
+    23,
+    26,
+    29,
+    30
+  ],
+  "status": "DIRECT LITERAL COMPOSITION AUDIT PASS"
+}
