@@ -1,0 +1,60 @@
+{
+  "witnesses": [
+    {
+      "d": 18,
+      "U": 85,
+      "parent_edges": 83,
+      "source_record_zero_based": 7,
+      "parent_graph6_base64": "UXpuWlpZVmt5VXpCUXR1SXFiXGJMR2pTREd3",
+      "delete_edges": [[0, 1], [3, 4], [7, 15], [9, 10]]
+    },
+    {
+      "d": 19,
+      "U": 92,
+      "parent_edges": 92,
+      "source_record_zero_based": 3,
+      "parent_graph6_base64": "UnpuWlttclVoZXhKSFxgamxgcXVJX1V+R293aFJn",
+      "delete_edges": []
+    },
+    {
+      "d": 20,
+      "U": 100,
+      "parent_edges": 100,
+      "source_record_zero_based": 0,
+      "parent_graph6_base64": "U3puWlhtWlJcSHhKU2pZRWJXeURaYFhzdUldYGBsQWJb",
+      "delete_edges": [[8, 9], [1, 15]]
+    },
+    {
+      "d": 21,
+      "U": 107,
+      "parent_edges": 107,
+      "source_record_zero_based": 0,
+      "parent_graph6_base64": "VD9DYHxQVFJjW0ppakp5b3lzbEZ4U31xdFdqcHFuaVdWd3FU",
+      "delete_edges": [[0, 19], [1, 20], [2, 15], [3, 16], [13, 18], [14, 17]]
+    },
+    {
+      "d": 22,
+      "U": 114,
+      "parent_edges": 114,
+      "source_record_zero_based": 0,
+      "parent_graph6_base64": "VT9DWUJJZVtkU1JXSnZMbkl8Y15nbVVMd3d1YVVtUGZWbEREfGdhZw==",
+      "delete_edges": [[5, 12], [10, 13], [14, 19], [15, 18], [16, 21], [17, 20]]
+    },
+    {
+      "d": 23,
+      "U": 122,
+      "parent_edges": 119,
+      "source_record_zero_based": 0,
+      "parent_graph6_base64": "Vj9DWEBEVmJzZUxHWkJoQEpQSmtmWWd5WHxba31USnZCeE9Xe2hHfVpaQD8=",
+      "delete_edges": []
+    },
+    {
+      "d": 24,
+      "U": 132,
+      "parent_edges": 126,
+      "source_record_zero_based": 1156,
+      "parent_graph6_base64": "Vz9DWUFFb1xQS0RMTGlNdHBIW0xMWVBNVkdbcnhKXG92RVxPclhnTmBSWF5RUGE=",
+      "delete_edges": []
+    }
+  ]
+}

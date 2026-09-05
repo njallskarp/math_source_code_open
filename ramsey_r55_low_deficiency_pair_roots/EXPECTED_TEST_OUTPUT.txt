@@ -1,0 +1,5 @@
+PASS detected injected K4
+PASS detected injected independent five-set
+PASS rejected malformed graph6
+PASS rejected changed catalog count
+PASS rejection controls

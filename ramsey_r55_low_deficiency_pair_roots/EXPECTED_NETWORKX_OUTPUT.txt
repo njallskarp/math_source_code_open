@@ -1,0 +1,1 @@
+PASS NetworkX 3.6 independent witnesses d=18:e=79:Delta=9 d=19:e=92:Delta=10 d=20:e=98:Delta=10 d=21:e=101:Delta=10 d=22:e=108:Delta=10 d=23:e=119:Delta=11 d=24:e=126:Delta=11

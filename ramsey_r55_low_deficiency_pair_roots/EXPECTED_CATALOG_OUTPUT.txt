@@ -1,0 +1,6 @@
+PASS thresholds q0=9,10,10,10,10,11,11 partners=3,1,2,4,5,1,4
+PASS pair-root cover scalar_cells=189 coarse_templates=18767
+PAIR_ROOT_TABLE_SHA256 c34f75acf736e8458c57bb5229702dadc4226480f3ec89cf8f0fdc2927a0079d
+PASS sharp witnesses d=18:e=79:delta=6:Delta=9 d=19:e=92:delta=0:Delta=10 d=20:e=98:delta=2:Delta=10 d=21:e=101:delta=6:Delta=10 d=22:e=108:delta=6:Delta=10 d=23:e=119:delta=3:Delta=11 d=24:e=126:delta=6:Delta=11
+PASS pinned R(3,5) catalog records=721
+SCOPE complete low-deficiency pair-root reduction; no R(5,5;43) existence verdict
