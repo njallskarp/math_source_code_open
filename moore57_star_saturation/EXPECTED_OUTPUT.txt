@@ -1,0 +1,11 @@
+Moore(57,2) sharp 398-coclique star saturation
+outside=2852 sum_z=-130 sum_z2=244 total_energy=114
+positive: sum=38 square_sum=58 energy=96 profile=5^1,1^33
+negative: sum=168 square_sum=186 energy=18
+Moore branches: S-rooted=13 zero-rooted=11 weight-bearing=24 weight_each=7
+two-walk degree lower bounds: w3=23 (saturated), w4=40>23 (excluded)
+profile: w1=150 w2=9 w3=0 |W|=159
+profile: w1=153 w2=6 w3=1 |W|=160
+profile: w1=156 w2=3 w3=2 |W|=161
+profile: w1=159 w2=0 w3=3 |W|=162
+profile_digest=6d6d60318f3cac5f0f773ec165dd1de9d69cd648bed22786630e45d94bb8811b
