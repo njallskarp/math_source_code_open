@@ -183,6 +183,13 @@ classifies the only shell profiles compatible with the small order and uses
 line divisibility outside the exceptional `h=2,3,4` cases.  See
 [THREE_COORDINATE_CORE_GAP.md](THREE_COORDINATE_CORE_GAP.md).
 
+The remaining order `2*h+1` is completely rigid.  Every nonlinear Hamming
+`h`-core of that order is either two nested parallel lines of sizes `h+1,h`,
+two perpendicular `(h+1)`-point lines sharing one cell, or, only for `h=4`,
+the full `3`-by-`3` grid.  In majority-colouring notation `h=s-1`, these are
+exactly the possible nonlinear legal classes of size `2*s-1`.  See
+[ORDER_2H_PLUS_ONE_CLASSIFICATION.md](ORDER_2H_PLUS_ONE_CLASSIFICATION.md).
+
 At the equality boundary `r*u*p=2*s-2`, layer divisibility completely
 classifies when that forced prism can repair the carry.  A quotient-optimal
 partition exists exactly in the two cases
@@ -250,6 +257,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_global_nonlinear_class_bound.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_global_nonlinear_class_bound.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_three_coordinate_core_gap.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_three_coordinate_core_gap.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_order_2h_plus_one_classification.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_order_2h_plus_one_classification.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_first_carry_equality_classification.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_first_carry_equality_classification.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
@@ -354,6 +363,10 @@ in `test_global_nonlinear_class_bound.py`.
 The three-coordinate core-gap checker reports the compact expected output in
 `expected_three_coordinate_core_gap_stdout.txt`; its six unit tests are in
 `test_three_coordinate_core_gap.py`.
+
+The order-`2*h+1` classification checker reports the compact expected output
+in `expected_order_2h_plus_one_classification_stdout.txt`; its six unit tests
+are in `test_order_2h_plus_one_classification.py`.
 
 The all-large three-box checker reports the compact expected output in
 `expected_all_large_three_box_stdout.txt`.

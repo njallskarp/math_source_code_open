@@ -1,0 +1,14 @@
+two-flat parameter jobs exhausted: 21
+fixed-order subsets checked: 7511175
+nonlinear h-cores classified: 6353
+nested-parallel witnesses: 4122
+perpendicular-line witnesses: 2060
+exceptional 3-by-3 grids: 171
+classification-witness SHA-256: d9a7ea1d1d02746ababc6043ff902549cd6b8be2332d394325efa2d189400ef2
+direction pairs audited through h=300: 2261225
+direction pairs surviving the shell bound: 301
+direction-pair SHA-256: e809a01b5b5cb85194040886be306d3386f8bbf7d64db3328818be1e96273eab
+normal-form instances through h=100: 298
+normal-form SHA-256: 528d153e93b1893088bef2e2e4bb31523888c31c0e2bbdc94e8a4d4447ccb91d
+mutations/controls rejected: 5
+all exact checks passed
