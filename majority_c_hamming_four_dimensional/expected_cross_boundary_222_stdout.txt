@@ -1,0 +1,12 @@
+base parts: 19
+base line/nonlinear parts: 18/1
+base certificate SHA-256: 00c016b2f78ad84d7ba067683bbc3cf5909746a41ec8eabeba69f29d65e7c0c3
+cell-level box instances through a,b=8: 64
+cell-level parts checked: 15328
+cell-level line parts checked: 15264
+cell-level cells checked: 76832
+formula box instances through a,b=500: 250000
+ordered Hamming family instances: 124750
+mutated certificates rejected: 3
+K_16 square K_12 square K_12 square K_2: exact 57; line ceiling 56
+all exact checks passed

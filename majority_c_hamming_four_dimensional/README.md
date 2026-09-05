@@ -146,6 +146,25 @@ ordered near-triangle Hamming graphs, with an explicit exact formula for the
 majority C-chromatic number.  See
 [FIRST_CARRY_SEPARATION.md](FIRST_CARRY_SEPARATION.md).
 
+The whole-tail degree condition is not necessary for arbitrary partitions.
+At `s=5`, the residual pattern `(2,2,2)` has tail degree only three, but a
+cross-boundary `K_4 square K_2` repairs the carry.  An explicit 19-part
+partition of `[7] square [7] square [2]` extends by exact 5-stripping to every
+
+```text
+[5a+2] square [5b+2] square [2],  a,b>=1.
+```
+
+This yields the exact infinite Hamming family
+
+```text
+chi_bar_>=(K_(5(a+b)-4) square K_(5a+2) square K_(5b+2) square K_2)
+  = 10ab+4a+4b+1,  a>=b>=2,
+```
+
+while every line lift has one fewer colour.  See
+[CROSS_BOUNDARY_222.md](CROSS_BOUNDARY_222.md).
+
 A transversal alignment of the larger rectangle stars now eliminates every
 modular carry as soon as all three minor sides are at least `s`. Precisely,
 every box
@@ -192,6 +211,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_three_coordinate_slabs.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_balanced_stars_thin.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_first_carry_separation.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary_222.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_cross_boundary_222.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_specialist_star_reduction.py
 ```
@@ -279,6 +300,10 @@ output in `expected_balanced_stars_thin_stdout.txt`.
 
 The first-carry classification checker reports the compact expected output in
 `expected_first_carry_separation_stdout.txt`.
+
+The `(2,2,2)` cross-boundary checker reports the compact expected output in
+`expected_cross_boundary_222_stdout.txt`; its five unit tests are in
+`test_cross_boundary_222.py`.
 
 The all-large three-box checker reports the compact expected output in
 `expected_all_large_three_box_stdout.txt`.
