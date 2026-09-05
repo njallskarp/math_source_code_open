@@ -1,0 +1,8 @@
+Moore(57,2) 399-coclique exact audit
+outside=2851 sum_a=22743 sum_a2=181545
+sum_z=-65 sum_z2=121 defect_energy=56
+positive-support contradiction: size<=28, spectral size>=37
+negative-support threshold: rho>=912/121, square_surplus=11848, size>=58
+admissible exact profiles after threshold=1
+neighbor-count profile: 0^1 7^57 8^2793
+conclusion: every 399-coclique has a unique 400-coclique extension
