@@ -19,8 +19,8 @@ Command:
 lake build
 ```
 
-Observed result after adding the threshold-inversion module:
-`Build completed successfully (1507 jobs).`
+Observed result after extending the `r=29` feasibility module:
+`Build completed successfully (1509 jobs).`
 
 The source contains no `sorry`, `admit`, declaration of a new axiom, or unsafe
 declaration. Explicit `#print axioms` commands cover the generic counting,
@@ -67,14 +67,16 @@ The targeted build completed successfully with 1011 jobs and no warning. Its
 source SHA-256 is
 `daf032e3a920f9fa9014cfa8521361e27c0a5cd4b9500f5a4a9794514a90e648`.
 
-The order-57 `r=29` feasibility audit covers the three active-support interval
-checks, all six displayed recurrence ceilings, the five residual gaps, the
-common exact threshold theorem, and the conditional closure theorem
-`r29_order57_closed_from_829`. A targeted build completed successfully with
-973 jobs. Every printed declaration reports only `propext`,
-`Classical.choice`, and `Quot.sound` (the pure gap arithmetic uses only
-`propext`). The module source SHA-256 is
-`c4ff1c135c1df8c5e97185500fdc5b376f35e1bc00452dcf13b5e81445e4751c`.
+The `r=29` feasibility audit now covers orders 56--59. Eleven sparse affine
+supports establish exact recurrence thresholds 817, 829, 841, and 852, all
+displayed boundary ceilings, and disconnected-complement diagnostic values
+8497, 8575, and 8684. The reusable theorem
+`deletion_recurrence_closes_at_threshold` composes the generic finite-support
+deletion recurrence with its exact arithmetic inverse. A targeted standalone
+compilation completed successfully. Every printed declaration reports only
+`propext`, `Classical.choice`, and `Quot.sound` (pure comparison arithmetic
+uses only `propext`). The module source SHA-256 is
+`3ebc0acc29405c6c35bd081897558da3a2e1a68a65a56643225b077880349f16`.
 
 ## Independent certificate check
 
@@ -117,14 +119,16 @@ positive targets, and edge counts to check the exact iff proved by
 the independently scanned table thresholds.
 
 `PYTHONDONTWRITEBYTECODE=1 python3 verify_r29.py` extends the exact table to
-order 57 and reports
-`recursive_table_order57_sha256=87c42d5516bc4d3f347dc4ad7c03d57d288cb1cc357887905776d4493d45051d`.
-It verifies each of the three order-56 affine supports against all 1541 table
-entries and at both equality endpoints, checks every rational mean and bound,
-confirms the exact table values for edges 824--829, and establishes by exact
-scan that 829 is the first recurrence closure edge. The compact checked-evidence
-digest is
-`3536011ea4f06b9ed3e95c1fbfa884407cc2771b3159b02922996167ea7864e3`.
+order 59 and reports the order-56--59 SHA-256 values
+`ee056ada7011df41bce287e59ba3c08100c73f988a4e23e444397818e8a5a70f`,
+`87c42d5516bc4d3f347dc4ad7c03d57d288cb1cc357887905776d4493d45051d`,
+`d8eb22acb2ddb6cd2205846850820fef460320bdaa7c110299ad43be98ab0b5d`,
+and `53a49ea8964b39985e47b9a76fc17578142e0bbb53973f5115cd6a959a2efd14`.
+It verifies all eleven supports against every entry of their source tables and
+at both equality endpoints, checks every rational mean, bound, and ceiling in
+the four boundary windows, and independently scans the exact first closure
+edges 817, 829, 841, and 852. The compact checked-evidence digest is
+`3ac4a630351f3e8d906a405d813df8a87647e4d8da294a2674e30988e94dc705`.
 
 ## Statement alignment
 
@@ -153,13 +157,15 @@ applicability of those supports retain the trust boundary above.
 
 `AlbertsonR29Feasibility.lean` adds no separator or profile-classification
 assumption. Lean proves the conditional recurrence implication for arbitrary
-finite support data once `IsActiveAtRatio` and every local order-56 table bound
+finite support data once `IsActiveAtRatio` and every local lower-table bound
 are supplied. The Python checker validates the finite table and support data,
 but it is not a proof-assistant kernel and does not connect the table to plane
-drawings. The critical-edge floor 824 is only arithmetic from an externally
-supplied graph inequality. In particular, the five rows 824--828 remain open,
-and the unreviewed `r=29` specialization of the separator/profile reduction is
-not imported or endorsed.
+drawings. The critical-edge and disconnected-complement floors are only
+arithmetic from externally supplied graph inequalities. The resulting eight
+rows on orders 57 and 58 therefore inherit all structural assumptions of
+Discovery Net height 2761; this audit is not an independent review of that
+artifact, and it does not import or endorse an unformalized separator/profile
+classification.
 
 The separate graph module closes the elementary structural consequences stated
 at Discovery Net height 2523. For a finite complement graph `H`, integer

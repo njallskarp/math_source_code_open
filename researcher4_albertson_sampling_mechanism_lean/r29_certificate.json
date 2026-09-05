@@ -1,110 +1,67 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "parameters": {
     "chromatic_number": 29,
-    "order": 57,
     "comparison": 8281,
-    "critical_edge_floor": 824,
-    "recurrence_threshold": 829
+    "candidate_edge_floors": {"56": 810, "57": 824, "58": 838, "59": 852},
+    "recurrence_thresholds": {"56": 817, "57": 829, "58": 841, "59": 852},
+    "disconnected_complement_edge_floors": {"56": 823, "57": 837, "58": 852}
   },
   "recursive_table": {
-    "maximum_order": 57,
-    "sha256": "87c42d5516bc4d3f347dc4ad7c03d57d288cb1cc357887905776d4493d45051d",
+    "maximum_order": 59,
+    "sha256": "53a49ea8964b39985e47b9a76fc17578142e0bbb53973f5115cd6a959a2efd14",
     "checkpoints": [
-      {
-        "maximum_order": 53,
-        "sha256": "55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43"
-      },
-      {
-        "maximum_order": 56,
-        "sha256": "ee056ada7011df41bce287e59ba3c08100c73f988a4e23e444397818e8a5a70f"
-      }
+      {"maximum_order": 53, "sha256": "55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43"},
+      {"maximum_order": 56, "sha256": "ee056ada7011df41bce287e59ba3c08100c73f988a4e23e444397818e8a5a70f"},
+      {"maximum_order": 57, "sha256": "87c42d5516bc4d3f347dc4ad7c03d57d288cb1cc357887905776d4493d45051d"},
+      {"maximum_order": 58, "sha256": "d8eb22acb2ddb6cd2205846850820fef460320bdaa7c110299ad43be98ab0b5d"}
     ]
   },
   "supports": {
-    "m824": {
-      "source_order": 56,
-      "maximum_edges": 1540,
-      "slope": 129,
-      "intercept": 72328,
-      "scale": 4,
-      "left": 792,
-      "right": 796,
-      "endpoint_values": [7460, 7589]
-    },
-    "m825_to_m827": {
-      "source_order": 56,
-      "maximum_edges": 1540,
-      "slope": 65,
-      "intercept": 36562,
-      "scale": 2,
-      "left": 796,
-      "right": 798,
-      "endpoint_values": [7589, 7654]
-    },
-    "m828_to_m829": {
-      "source_order": 56,
-      "maximum_edges": 1540,
-      "slope": 33,
-      "intercept": 18680,
-      "scale": 1,
-      "left": 798,
-      "right": 804,
-      "endpoint_values": [7654, 7852]
-    }
+    "o55_m810_to_m812": {"source_order": 55, "target_order": 56, "maximum_edges": 1485, "slope": 97, "intercept": 53334, "scale": 3, "left": 780, "right": 783, "endpoint_values": [7442, 7539]},
+    "o55_m813_to_m814": {"source_order": 55, "target_order": 56, "maximum_edges": 1485, "slope": 65, "intercept": 35817, "scale": 2, "left": 783, "right": 785, "endpoint_values": [7539, 7604]},
+    "o55_m815_to_m817": {"source_order": 55, "target_order": 56, "maximum_edges": 1485, "slope": 33, "intercept": 18301, "scale": 1, "left": 785, "right": 791, "endpoint_values": [7604, 7802]},
+    "o55_disconnected_m823": {"source_order": 55, "target_order": 56, "maximum_edges": 1485, "slope": 169, "intercept": 94672, "scale": 5, "left": 793, "right": 798, "endpoint_values": [7869, 8038]},
+    "o56_m824": {"source_order": 56, "target_order": 57, "maximum_edges": 1540, "slope": 129, "intercept": 72328, "scale": 4, "left": 792, "right": 796, "endpoint_values": [7460, 7589]},
+    "o56_m825_to_m827": {"source_order": 56, "target_order": 57, "maximum_edges": 1540, "slope": 65, "intercept": 36562, "scale": 2, "left": 796, "right": 798, "endpoint_values": [7589, 7654]},
+    "o56_m828_to_m829": {"source_order": 56, "target_order": 57, "maximum_edges": 1540, "slope": 33, "intercept": 18680, "scale": 1, "left": 798, "right": 804, "endpoint_values": [7654, 7852]},
+    "o56_disconnected_m837": {"source_order": 56, "target_order": 57, "maximum_edges": 1540, "slope": 133, "intercept": 75524, "scale": 4, "left": 804, "right": 808, "endpoint_values": [7852, 7985]},
+    "o57_m838_to_m841": {"source_order": 57, "target_order": 58, "maximum_edges": 1596, "slope": 32, "intercept": 18248, "scale": 1, "left": 808, "right": 813, "endpoint_values": [7608, 7768]},
+    "o57_disconnected_m852": {"source_order": 57, "target_order": 58, "maximum_edges": 1596, "slope": 67, "intercept": 38947, "scale": 2, "left": 821, "right": 825, "endpoint_values": [8030, 8164]},
+    "o58_m852": {"source_order": 58, "target_order": 59, "maximum_edges": 1653, "slope": 94, "intercept": 54166, "scale": 3, "left": 823, "right": 829, "endpoint_values": [7732, 7920]}
   },
   "rows": [
-    {
-      "edges": 824,
-      "support": "m824",
-      "mean": [45320, 57],
-      "bound": [430896, 53],
-      "ceiling": 8131,
-      "comparison_gap": 150
-    },
-    {
-      "edges": 825,
-      "support": "m825_to_m827",
-      "mean": [15125, 19],
-      "bound": [865341, 106],
-      "ceiling": 8164,
-      "comparison_gap": 117
-    },
-    {
-      "edges": 826,
-      "support": "m825_to_m827",
-      "mean": [45430, 57],
-      "bound": [434458, 53],
-      "ceiling": 8198,
-      "comparison_gap": 83
-    },
-    {
-      "edges": 827,
-      "support": "m825_to_m827",
-      "mean": [45485, 57],
-      "bound": [872491, 106],
-      "ceiling": 8232,
-      "comparison_gap": 49
-    },
-    {
-      "edges": 828,
-      "support": "m828_to_m829",
-      "mean": [15180, 19],
-      "bound": [438060, 53],
-      "ceiling": 8266,
-      "comparison_gap": 15
-    },
-    {
-      "edges": 829,
-      "support": "m828_to_m829",
-      "mean": [45595, 57],
-      "bound": [439875, 53],
-      "ceiling": 8300,
-      "comparison_surplus": 19
-    }
+    {"target_order": 56, "edges": 810, "support": "o55_m810_to_m812", "mean": [10935, 14], "bound": [104673, 13], "ceiling": 8052, "comparison_gap": 229, "role": "candidate"},
+    {"target_order": 56, "edges": 811, "support": "o55_m810_to_m812", "mean": [21897, 28], "bound": [210219, 26], "ceiling": 8086, "comparison_gap": 195, "role": "candidate"},
+    {"target_order": 56, "edges": 812, "support": "o55_m810_to_m812", "mean": [783, 1], "bound": [105546, 13], "ceiling": 8119, "comparison_gap": 162, "role": "candidate"},
+    {"target_order": 56, "edges": 813, "support": "o55_m813_to_m814", "mean": [21951, 28], "bound": [423939, 52], "ceiling": 8153, "comparison_gap": 128, "role": "candidate"},
+    {"target_order": 56, "edges": 814, "support": "o55_m813_to_m814", "mean": [10989, 14], "bound": [212847, 26], "ceiling": 8187, "comparison_gap": 94, "role": "candidate"},
+    {"target_order": 56, "edges": 815, "support": "o55_m815_to_m817", "mean": [22005, 28], "bound": [213737, 26], "ceiling": 8221, "comparison_gap": 60, "role": "candidate"},
+    {"target_order": 56, "edges": 816, "support": "o55_m815_to_m817", "mean": [5508, 7], "bound": [107314, 13], "ceiling": 8255, "comparison_gap": 26, "role": "candidate"},
+    {"target_order": 56, "edges": 817, "support": "o55_m815_to_m817", "mean": [22059, 28], "bound": [215519, 26], "ceiling": 8290, "comparison_surplus": 9, "role": "closure"},
+    {"target_order": 56, "edges": 823, "support": "o55_disconnected_m823", "mean": [22221, 28], "bound": [1104533, 130], "ceiling": 8497, "comparison_surplus": 216, "role": "disconnected_complement"},
+    {"target_order": 57, "edges": 824, "support": "o56_m824", "mean": [45320, 57], "bound": [430896, 53], "ceiling": 8131, "comparison_gap": 150, "role": "candidate"},
+    {"target_order": 57, "edges": 825, "support": "o56_m825_to_m827", "mean": [15125, 19], "bound": [865341, 106], "ceiling": 8164, "comparison_gap": 117, "role": "candidate"},
+    {"target_order": 57, "edges": 826, "support": "o56_m825_to_m827", "mean": [45430, 57], "bound": [434458, 53], "ceiling": 8198, "comparison_gap": 83, "role": "candidate"},
+    {"target_order": 57, "edges": 827, "support": "o56_m825_to_m827", "mean": [45485, 57], "bound": [872491, 106], "ceiling": 8232, "comparison_gap": 49, "role": "candidate"},
+    {"target_order": 57, "edges": 828, "support": "o56_m828_to_m829", "mean": [15180, 19], "bound": [438060, 53], "ceiling": 8266, "comparison_gap": 15, "role": "candidate"},
+    {"target_order": 57, "edges": 829, "support": "o56_m828_to_m829", "mean": [45595, 57], "bound": [439875, 53], "ceiling": 8300, "comparison_surplus": 19, "role": "closure"},
+    {"target_order": 57, "edges": 837, "support": "o56_disconnected_m837", "mean": [15345, 19], "bound": [1817787, 212], "ceiling": 8575, "comparison_surplus": 294, "role": "disconnected_complement"},
+    {"target_order": 58, "edges": 838, "support": "o57_m838_to_m841", "mean": [23464, 29], "bound": [221656, 27], "ceiling": 8210, "comparison_gap": 71, "role": "candidate"},
+    {"target_order": 58, "edges": 839, "support": "o57_m838_to_m841", "mean": [23492, 29], "bound": [24728, 3], "ceiling": 8243, "comparison_gap": 38, "role": "candidate"},
+    {"target_order": 58, "edges": 840, "support": "o57_m838_to_m841", "mean": [23520, 29], "bound": [223448, 27], "ceiling": 8276, "comparison_gap": 5, "role": "candidate"},
+    {"target_order": 58, "edges": 841, "support": "o57_m838_to_m841", "mean": [812, 1], "bound": [224344, 27], "ceiling": 8310, "comparison_surplus": 29, "role": "closure"},
+    {"target_order": 58, "edges": 852, "support": "o57_disconnected_m852", "mean": [23856, 29], "bound": [468889, 54], "ceiling": 8684, "comparison_surplus": 403, "role": "disconnected_complement"},
+    {"target_order": 59, "edges": 852, "support": "o58_m852", "mean": [48564, 59], "bound": [1369222, 165], "ceiling": 8299, "comparison_surplus": 18, "role": "candidate_and_closure"}
   ],
+  "expected_open_rows": {
+    "56": [810, 811, 812, 813, 814, 815, 816],
+    "57": [824, 825, 826, 827, 828],
+    "58": [838, 839, 840],
+    "59": []
+  },
   "trust_boundary": {
-    "checked": "exact rational recurrence, full order-56 minorants, table hashes, edge threshold and displayed gaps",
-    "external": "uniform crossing inequalities, drawing-to-four-support translation, critical-edge inequality, and every r=29 separator/profile classification"
+    "checked": "exact rational recurrence through order 59, all sparse supports against full source tables, table hashes, edge thresholds, boundary rows, disconnected-complement diagnostics, and displayed gaps",
+    "external": "uniform crossing inequalities, drawing-to-four-support translation, critical-edge and disconnected-complement graph inequalities, and every r=29 separator/profile or block-spectrum classification"
   }
 }

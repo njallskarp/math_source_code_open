@@ -39,20 +39,27 @@ These are consequences of one parameterized iff rather than scans of fixed
 windows.
 
 `AlbertsonR29Feasibility.lean` applies that generic inverse to the bounded
-order-57 gate for `r=29`. Three exact order-56 supports cover edge counts
-824--829. Lean checks the six recurrence ceilings
+orders 56--59 gate for `r=29`. The reusable theorem
+`deletion_recurrence_closes_at_threshold` composes an arbitrary checked sparse
+support with the exact threshold inverse; it remains parameterized in the
+finite support data, table, support, order, and target. Eleven exact affine
+supports then establish:
 
-```text
-8131, 8164, 8198, 8232, 8266, 8300
-```
+| target order | critical edge floor | recurrence threshold | rows below threshold |
+| ---: | ---: | ---: | --- |
+| 56 | 810 | 817 | 810--816 |
+| 57 | 824 | 829 | 824--828 |
+| 58 | 838 | 841 | 838--840 |
+| 59 | 852 | 852 | none |
 
-and their gaps `150,117,83,49,15` below `Z(29)=8281`, followed by a surplus
-of 19. It proves that all three supports have exact threshold 829 and supplies
-one theorem-aligned wrapper: if an active support, all local order-56 lower
-bounds, and at least 829 edges are supplied, then the abstract crossing count
-is at least `Z(29)`. The order-57 critical-edge floor rounds to 824, so the
-recurrence alone leaves exactly the five rows 824--828. This is a feasibility
-gate, not an unconditional `r=29` result.
+Lean also checks the disconnected-complement diagnostic inputs 823, 837, and
+852 at orders 56, 57, and 58. Their recurrence ceilings are respectively
+8497, 8575, and 8684, all above `Z(29)=8281`; the order-59 critical floor has
+ceiling 8299. Consequently the numerical recurrence dependency is closed and,
+when combined with the external structural hypotheses reported at Discovery
+Net height 2761, the surviving frontier consists of exactly the five order-57
+rows 824--828 and three order-58 rows 838--840. This directory neither reviews
+those structural hypotheses nor proves an unconditional `r=29` result.
 
 `AlbertsonPairMoments.lean` supplies the finite-graph structural layer needed
 after the recurrence leaves the two order-55 rows:
@@ -191,9 +198,11 @@ checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce2771
 The focused `r=29` checker should end with:
 
 ```text
-open_rows=824,825,826,827,828
-first_recurrence_closure_edge=829
-checked_evidence_sha256=3536011ea4f06b9ed3e95c1fbfa884407cc2771b3159b02922996167ea7864e3
+order56_open_rows=810,811,812,813,814,815,816
+order57_open_rows=824,825,826,827,828
+order58_open_rows=838,839,840
+order59_open_rows=none
+checked_evidence_sha256=3ac4a630351f3e8d906a405d813df8a87647e4d8da294a2674e30988e94dc705
 ```
 
 As an independent audit of the threshold theorem, the checker also exhausts
@@ -235,8 +244,12 @@ integer ceiling division before checking that the affine thresholds 770 and
   dichotomy.
 - Height 2623 reports the order-57 `r=29` recurrence ceiling 828 and the five
   residual gaps. `AlbertsonR29Feasibility.lean` and `verify_r29.py` reproduce
-  precisely that numerical slice with a kernel-checked threshold interface
-  and a fresh full-table hash through order 57.
+  that slice and extend the exact recurrence audit through order 59.
+- Height 2761 reports a clean eight-row feasibility frontier on orders 57 and
+  58 after importing structural critical-graph and disconnected-complement
+  hypotheses. The present work kernel-checks the recurrence thresholds and
+  exact arithmetic used by that reduction, but is not an independent review
+  of height 2761 and does not formalize its graph-structural inputs.
 - Height 2699 accepts the separator certificate of height 2569 only for its
   exact `r=28` slice. Therefore no `r=29` separator-profile reduction is used
   here: the claimed compression of the five rows to one profile per row
