@@ -1,0 +1,20 @@
+{
+  "cube_evaluation_sha256": "7769b826b29d0aa8c76c519adbda753472375f8e469119444453e1e09e8eb43f",
+  "cube_five_sets": 46088,
+  "cube_one_hole_rows": 730,
+  "cube_one_sided_rows": 92176,
+  "degree_equations": 40,
+  "fractional_variables": 407,
+  "minimum_omitted_violated_hole_count": 1,
+  "missing_local_clause_violation": "108899049810134324659/1203273626769012071456",
+  "old_cliques": 353,
+  "profile_equations": 6,
+  "remaining_global_linear_violations": {
+    "local-visible": 6,
+    "uses-invisible": 189
+  },
+  "root_colored_rows": 31153,
+  "root_five_sets": 304590,
+  "status": "EXACT CUBE-CREATION LP BARRIER VERIFIED",
+  "visible_edit_value": "45941068573726913088165/1203273626769012071456"
+}
