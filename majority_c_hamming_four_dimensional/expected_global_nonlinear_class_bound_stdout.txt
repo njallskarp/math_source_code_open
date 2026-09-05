@@ -1,0 +1,11 @@
+exhaustive Hamming hosts: 10
+nonempty subsets checked: 205894
+nonlinear subsets checked: 205453
+legal nonlinear threshold claims: 71911
+equality witnesses: 263
+equality witness SHA-256: b299f1a46daade027186878ac01a86378ed195ad54cc554efb1ed03e595a5180
+first-carry patterns through s=500: 2786875
+first-carry remainder buckets below/equal/above 2s-2: 2765601/18139/3135
+equality patterns with illegal whole tail: 16149
+equality-pattern SHA-256: a36be6978a8bfbd4ffdc6344a7a089d7e1eb6b1b7b37c812f289a5f2b56c5622
+all exact checks passed

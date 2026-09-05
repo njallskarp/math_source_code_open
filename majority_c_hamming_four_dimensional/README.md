@@ -165,6 +165,16 @@ chi_bar_>=(K_(5(a+b)-4) square K_(5a+2) square K_(5b+2) square K_2)
 while every line lift has one fewer colour.  See
 [CROSS_BOUNDARY_222.md](CROSS_BOUNDARY_222.md).
 
+There is also a global rigidity principle behind this gadget.  In an
+arbitrary Hamming graph, every induced subgraph of minimum degree at least
+`s-1` that is not contained in a coordinate line has at least `2s-2`
+vertices.  Equality forces `K_(s-1) square K_2`, with no restriction on the
+ambient factor orders.  Therefore a first-carry remainder below `2s-2`
+cannot be repaired by any boundary-mixing partition; at equality, an optimal
+partition has exactly one nonlinear part of that forced type and all other
+parts are line `K_s`s.  See
+[GLOBAL_NONLINEAR_CLASS_BOUND.md](GLOBAL_NONLINEAR_CLASS_BOUND.md).
+
 A transversal alignment of the larger rectangle stars now eliminates every
 modular carry as soon as all three minor sides are at least `s`. Precisely,
 every box
@@ -214,6 +224,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_first_carry_separation.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary_222.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_cross_boundary_222.py
 ruby verify_cross_boundary_222_independent.rb
+PYTHONDONTWRITEBYTECODE=1 python3 verify_global_nonlinear_class_bound.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_global_nonlinear_class_bound.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_specialist_star_reduction.py
 ```
@@ -308,6 +320,10 @@ The `(2,2,2)` cross-boundary checker reports the compact expected output in
 four lines in `expected_cross_boundary_222_independent_ruby_stdout.txt`.  It
 checks the base certificate and 250,000 count identities, not the universal
 stripping or Hamming upper-bound arguments.
+
+The global nonlinear-class checker reports the compact expected output in
+`expected_global_nonlinear_class_bound_stdout.txt`; its seven unit tests are
+in `test_global_nonlinear_class_bound.py`.
 
 The all-large three-box checker reports the compact expected output in
 `expected_all_large_three_box_stdout.txt`.
