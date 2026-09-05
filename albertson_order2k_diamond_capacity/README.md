@@ -31,6 +31,15 @@ Hall obstruction.  In a subdivision-free critical graph, a two-leaf
 same-singleton obstruction forces an induced alternating rectangle and every
 factor at the unavailable endpoint must escape through a third pair.
 
+[`MINIMAL_ESCAPE_COUNTERMODEL.md`](MINIMAL_ESCAPE_COUNTERMODEL.md) identifies
+the exact limit of that local mechanism.  A fully 6-vertex-critical example
+has a minimum four-by-four endpoint escape component that avoids both
+Hall-obstructing pairs.  The example contains an explicit `TK_6`, so it does
+not contradict the preceding theorem; it proves that any stronger return-to-
+the-target conclusion must use the global no-subdivision hypothesis rather
+than criticality and overlay minimality alone.  A standard-library exact
+checker accompanies the hand proof.
+
 ## Setup
 
 Let `G` be a `k`-vertex-critical graph on `2k` vertices, let
