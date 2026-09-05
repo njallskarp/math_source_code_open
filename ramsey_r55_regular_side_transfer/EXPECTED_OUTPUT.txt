@@ -1,0 +1,8 @@
+PASS five remaining double-degree-19 profiles, M=216..220 and 25 anchored splits
+PASS literal exceptional cores: individual hard inequalities, central aggregate, and no core K5
+PASS exact central cell margins and capacities; 105 positive cells
+PASS all 1522 common-neighborhood union cuts
+PASS all 210 ordered exceptional-root sides have order at most fourteen
+PASS four altered witnesses rejected
+LIMITATION the accepted order-15 regular-side obstruction cannot activate in this relaxation
+SCOPE exact core/signature witnesses, not central-edge assignments or Ramsey(5,5;43) graphs
