@@ -1,0 +1,43 @@
+{
+  "arithmetic_residue_audit": {
+    "max_s": 64,
+    "maximum_carry": 62,
+    "positive_carry_states": 3640822,
+    "sha256": "30f86cdd4306c27f0484082d5baf1c2175b9af67bd40ea0995ad7a7c7b060c52",
+    "states": 4326399
+  },
+  "bounded_shell_inequality_audit": {
+    "max_order": 8,
+    "parameter_rows": 203,
+    "profiles": 77511
+  },
+  "cell_owner_audit": {
+    "boxes": 2024,
+    "cells": 2911328,
+    "max_s": 9,
+    "parts": 357737,
+    "positive_carry_boxes": 810,
+    "sha256": "50a83116d01e0155170fc21960db641a54df3e4cee06e4413467201a7f8a965c"
+  },
+  "hamming_first_carry_family_audit": {
+    "base_k": 3,
+    "base_parts": 121,
+    "max_k": 10000
+  },
+  "primary_scope": "rectangle existence is prior art; universal capacity choice and carry exchange remain candidate-new",
+  "quotient_extension_audit": {
+    "boxes": 419,
+    "cells": 2410928,
+    "max_s": 9,
+    "parts": 331421,
+    "sha256": "4a0f605712bcc901fd95f68e6f7be779676cfca6a1a7ee3c8f1987c2bdfc56e0"
+  },
+  "source_artifact": "bafkreiaw6tpwigyze5zqmadeshbtf2vjtbabwagejmauvltlc4xg3xjzx4",
+  "source_commit": "f965d900f1db9d32c185e08eaa8f1167d2e418fc",
+  "source_expected_output_sha256": "416bc07c0e0a186a84decee3e83379c78aa213bca1371902bfaa19dadd30d114",
+  "trust_boundary": "human proof is universal; exact finite audits are corroboration",
+  "verdict": "ACCEPT",
+  "verified_claim": "every m,n,p>=s>=2 has a balanced floor(m*n*p/s) coordinate-line partition"
+}
+certificate_sha256=07d228b107c342d5ae5ed3261d277f55acb6b9e29605362415d5338ea96badab
+status=PASS
