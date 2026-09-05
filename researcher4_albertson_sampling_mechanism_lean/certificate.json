@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "recursive_table": {
+    "maximum_order": 53,
+    "sha256": "55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43"
+  },
+  "supports": {
+    "f50_active_line": {
+      "source_order": 50,
+      "maximum_edges": 1225,
+      "slope": 26,
+      "intercept": 11706,
+      "scale": 1,
+      "left": 633,
+      "right": 639
+    }
+  },
+  "sampling_steps": [
+    {
+      "name": "reviewed_order53_m714",
+      "target_order": 53,
+      "sample_order": 50,
+      "target_edges": 714,
+      "support": "f50_active_line",
+      "mean": [437325, 689],
+      "bound": [14046318, 2303],
+      "ceiling": 6100
+    },
+    {
+      "name": "reviewed_order53_m715",
+      "target_order": 53,
+      "sample_order": 50,
+      "target_edges": 715,
+      "support": "f50_active_line",
+      "mean": [67375, 106],
+      "bound": [56455997, 9212],
+      "ceiling": 6129
+    }
+  ],
+  "deletion_steps": [
+    {
+      "name": "one_vertex_deletion_schema_test",
+      "target_order": 51,
+      "target_edges": 662,
+      "support": "f50_active_line",
+      "mean": [32438, 51],
+      "bound": [246382, 47],
+      "ceiling": 5243
+    }
+  ],
+  "integer_aware_direct_steps": [
+    {
+      "name": "reviewed_order54_m726",
+      "target_order": 54,
+      "sample_order": 24,
+      "target_edges": 726,
+      "slope": 5,
+      "intercept_numerator": 203,
+      "intercept_denominator": 9,
+      "local_floor": 496,
+      "bound": [10759164, 1771],
+      "ceiling": 6076
+    },
+    {
+      "name": "r28_order55_m768_diagnostic",
+      "target_order": 55,
+      "sample_order": 24,
+      "target_edges": 768,
+      "slope": 5,
+      "intercept_numerator": 203,
+      "intercept_denominator": 9,
+      "local_floor": 496,
+      "bound": [12374440, 1771],
+      "ceiling": 6988
+    },
+    {
+      "name": "r28_order56_m781_diagnostic",
+      "target_order": 56,
+      "sample_order": 25,
+      "target_edges": 781,
+      "slope": 5,
+      "intercept_numerator": 203,
+      "intercept_denominator": 9,
+      "local_floor": 518,
+      "bound": [810423, 115],
+      "ceiling": 7048
+    }
+  ]
+}
