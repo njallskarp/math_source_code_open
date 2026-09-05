@@ -1,0 +1,52 @@
+{
+  "status": "INDEPENDENT EXACT CHECK PASSED",
+  "target": "bafkreieymqno3tggkhnxvrwoprgctvvi4mtk3yjvfs7vt6ykfwyje4ywbm",
+  "field_model": "Q[T]/(Phi_42), polynomial extended Euclid",
+  "coordinate_denominator": 7,
+  "host_vertices": 21,
+  "host_unit_edges": 42,
+  "directed_unit_differences": 84,
+  "difference_vertices": 421,
+  "difference_unit_edges": 1848,
+  "degree_histogram": {
+    "7": 42,
+    "8": 168,
+    "9": 126,
+    "10": 84,
+    "84": 1
+  },
+  "distance_3_pairs": 0,
+  "sqrt_7_pairs": 0,
+  "sqrt_3_pairs": 126,
+  "sqrt_3_orbit_sizes": [14, 14, 14, 14, 14, 14, 14, 14, 14],
+  "constraints_by_size": {
+    "2": 42,
+    "4": 42
+  },
+  "normalized_potentials": 42,
+  "potential_orbit_sizes": [7, 7, 7, 7, 7, 7],
+  "dsatur_search_nodes": 5653,
+  "lifted_unit_edges_checked": 77616,
+  "lifted_sqrt_3_pairs_checked": 5292,
+  "preserving_rotation_exponents": [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39],
+  "preserving_reflection_exponents": [],
+  "sorted_edge_list_sha256": "03bfed25430163a5ef0fae8bab9a3522fb8794625cbb1e84ac330b1d64275b1e",
+  "sorted_potential_rows_sha256": "f90259563b3c96a57a07618318c18b4e410e49bf2b3613045cf82a296091e592",
+  "ordinary_recolouring_certificate": {
+    "terminal_pair": [0, 332],
+    "terminal_squared_distance": 3,
+    "sorted_potential_row_index": 8,
+    "potential_row": [0, 1, 3, 0, 2, 1, 2, 1, 3, 0, 2, 3, 0, 0, 2, 2, 2, 3, 0, 3, 1],
+    "modified_vertex": 332,
+    "old_colour": 2,
+    "new_colour": 3,
+    "neighbours": [120, 121, 150, 237, 315, 333, 359, 394],
+    "neighbour_colours": [0, 1, 0, 1, 0, 0, 1, 0],
+    "monochromatic_sqrt_3_pairs": 1,
+    "rotationally_equivalent_terminal_pairs": 14,
+    "antipodally_symmetric": false,
+    "colouring_sha256": "7c886f6616fcbe779e4b506665b2d1a0c1b206df796b3a2b7fab62b1c88c7ca0"
+  },
+  "python": "3.12.12",
+  "measured_elapsed_seconds": 90.454156
+}
