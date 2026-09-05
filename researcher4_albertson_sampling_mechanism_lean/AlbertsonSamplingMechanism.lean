@@ -364,6 +364,138 @@ theorem deletion_recurrence_of_active_support
 
 /-! Exact diagnostic specializations. -/
 
+/-- Active order-54 affine support selected by the exact recurrence checker. -/
+def r28Order54Support : SparseAffineSupport where
+  slope := 91
+  intercept := 47708
+  scale := 3
+  left := 740
+  right := 743
+
+/-- Active order-55 affine support selected by the exact recurrence checker. -/
+def r28Order55Support : SparseAffineSupport where
+  slope := 59
+  intercept := 31220
+  scale := 2
+  left := 752
+  right := 754
+
+/-- The exact order-55 recurrence value once the order-54 support is supplied. -/
+theorem r28_order55_recursive_value :
+    deletionRecurrenceBound 55 r28Order54Support.slope
+      r28Order54Support.intercept r28Order54Support.scale 768 = 7060 := by
+  norm_num [deletionRecurrenceBound, r28Order54Support,
+    Nat.ceilDiv_eq_add_pred_div]
+
+/-- The exact order-56 recurrence value once the order-55 support is supplied. -/
+theorem r28_order56_recursive_value :
+    deletionRecurrenceBound 56 r28Order55Support.slope
+      r28Order55Support.intercept r28Order55Support.scale 781 = 7115 := by
+  norm_num [deletionRecurrenceBound, r28Order55Support,
+    Nat.ceilDiv_eq_add_pred_div]
+
+/-- Concrete order-55 instance of the abstract deletion recurrence.  Validity
+of the checker-selected order-54 support remains an explicit hypothesis. -/
+theorem r28_order55_recursive_bound
+    {α ε χ : Type*} [DecidableEq α] [DecidableEq ε] [DecidableEq χ]
+    (U : Finset α) (edges : Finset ε) (crossings : Finset χ)
+    (edgeSupport : ε → Finset α) (crossingSupport : χ → Finset α)
+    (F : ℕ → ℕ)
+    (hUcard : #U = 55) (hedgeCount : #edges = 768)
+    (hedges_subset : ∀ e ∈ edges, edgeSupport e ⊆ U)
+    (hedges_card : ∀ e ∈ edges, #(edgeSupport e) = 2)
+    (hcrossings_subset : ∀ x ∈ crossings, crossingSupport x ⊆ U)
+    (hcrossings_card : ∀ x ∈ crossings, #(crossingSupport x) = 4)
+    (hcert : r28Order54Support.IsActiveAtRatio F 1431
+      (#edges * (55 - 2)) 55)
+    (hedgeRange : ∀ v ∈ U,
+      supportedCount edges edgeSupport (U.erase v) ≤ 1431)
+    (hlocal : ∀ v ∈ U,
+      F (supportedCount edges edgeSupport (U.erase v)) ≤
+        supportedCount crossings crossingSupport (U.erase v)) :
+    7060 ≤ #crossings := by
+  have hglobal := deletion_recurrence_of_active_support U edges crossings
+    edgeSupport crossingSupport F r28Order54Support 1431 55 hUcard
+    hedges_subset hedges_card hcrossings_subset hcrossings_card (by norm_num)
+    hcert hedgeRange hlocal
+  simpa [hedgeCount, r28Order54Support, deletionRecurrenceBound,
+    Nat.ceilDiv_eq_add_pred_div] using hglobal
+
+/-- Concrete order-56 instance of the abstract deletion recurrence.  Validity
+of the checker-selected order-55 support remains an explicit hypothesis. -/
+theorem r28_order56_recursive_bound
+    {α ε χ : Type*} [DecidableEq α] [DecidableEq ε] [DecidableEq χ]
+    (U : Finset α) (edges : Finset ε) (crossings : Finset χ)
+    (edgeSupport : ε → Finset α) (crossingSupport : χ → Finset α)
+    (F : ℕ → ℕ)
+    (hUcard : #U = 56) (hedgeCount : #edges = 781)
+    (hedges_subset : ∀ e ∈ edges, edgeSupport e ⊆ U)
+    (hedges_card : ∀ e ∈ edges, #(edgeSupport e) = 2)
+    (hcrossings_subset : ∀ x ∈ crossings, crossingSupport x ⊆ U)
+    (hcrossings_card : ∀ x ∈ crossings, #(crossingSupport x) = 4)
+    (hcert : r28Order55Support.IsActiveAtRatio F 1485
+      (#edges * (56 - 2)) 56)
+    (hedgeRange : ∀ v ∈ U,
+      supportedCount edges edgeSupport (U.erase v) ≤ 1485)
+    (hlocal : ∀ v ∈ U,
+      F (supportedCount edges edgeSupport (U.erase v)) ≤
+        supportedCount crossings crossingSupport (U.erase v)) :
+    7115 ≤ #crossings := by
+  have hglobal := deletion_recurrence_of_active_support U edges crossings
+    edgeSupport crossingSupport F r28Order55Support 1485 56 hUcard
+    hedges_subset hedges_card hcrossings_subset hcrossings_card (by norm_num)
+    hcert hedgeRange hlocal
+  simpa [hedgeCount, r28Order55Support, deletionRecurrenceBound,
+    Nat.ceilDiv_eq_add_pred_div] using hglobal
+
+/-- The standard four-factor drawing value used as the Albertson comparison
+threshold.  Its relevance to complete-graph crossing number is external. -/
+def zarankiewiczNumber (r : ℕ) : ℕ :=
+  (r / 2) * ((r - 1) / 2) * ((r - 2) / 2) * ((r - 3) / 2) / 4
+
+theorem r28_zarankiewicz_value : zarankiewiczNumber 28 = 7098 := by
+  norm_num [zarankiewiczNumber]
+
+theorem r28_order56_recursive_exceeds_zarankiewicz :
+    zarankiewiczNumber 28 <
+      deletionRecurrenceBound 56 r28Order55Support.slope
+        r28Order55Support.intercept r28Order55Support.scale 781 := by
+  norm_num [zarankiewiczNumber, deletionRecurrenceBound, r28Order55Support,
+    Nat.ceilDiv_eq_add_pred_div]
+
+theorem r28_order55_m768_recursive_gap :
+    zarankiewiczNumber 28 -
+      deletionRecurrenceBound 55 r28Order54Support.slope
+        r28Order54Support.intercept r28Order54Support.scale 768 = 38 := by
+  norm_num [zarankiewiczNumber, deletionRecurrenceBound, r28Order54Support,
+    Nat.ceilDiv_eq_add_pred_div]
+
+theorem r28_order55_m769_recursive_value :
+    deletionRecurrenceBound 55 r28Order54Support.slope
+      r28Order54Support.intercept r28Order54Support.scale 769 = 7092 := by
+  norm_num [deletionRecurrenceBound, r28Order54Support,
+    Nat.ceilDiv_eq_add_pred_div]
+
+theorem r28_order55_m770_recursive_value :
+    deletionRecurrenceBound 55 r28Order54Support.slope
+      r28Order54Support.intercept r28Order54Support.scale 770 = 7123 := by
+  norm_num [deletionRecurrenceBound, r28Order54Support,
+    Nat.ceilDiv_eq_add_pred_div]
+
+theorem r28_order55_m770_exceeds_zarankiewicz :
+    zarankiewiczNumber 28 <
+      deletionRecurrenceBound 55 r28Order54Support.slope
+        r28Order54Support.intercept r28Order54Support.scale 770 := by
+  norm_num [zarankiewiczNumber, deletionRecurrenceBound, r28Order54Support,
+    Nat.ceilDiv_eq_add_pred_div]
+
+theorem r28_order56_m781_recursive_surplus :
+    deletionRecurrenceBound 56 r28Order55Support.slope
+        r28Order55Support.intercept r28Order55Support.scale 781 -
+      zarankiewiczNumber 28 = 17 := by
+  norm_num [zarankiewiczNumber, deletionRecurrenceBound, r28Order55Support,
+    Nat.ceilDiv_eq_add_pred_div]
+
 /-- Integer edge threshold supplied by the external critical-graph inequality
 `2m ≥ (r-1)n + (2r-6)`.  This definition only rounds the stated arithmetic
 bound; the graph-theoretic inequality itself is outside this file. -/
@@ -410,6 +542,17 @@ theorem r28_order56_direct :
 #print axioms integer_aware_affine_sampling
 #print axioms sampling_recurrence_of_active_support
 #print axioms deletion_recurrence_of_active_support
+#print axioms r28_order55_recursive_value
+#print axioms r28_order56_recursive_value
+#print axioms r28_order55_recursive_bound
+#print axioms r28_order56_recursive_bound
+#print axioms r28_zarankiewicz_value
+#print axioms r28_order56_recursive_exceeds_zarankiewicz
+#print axioms r28_order55_m768_recursive_gap
+#print axioms r28_order55_m769_recursive_value
+#print axioms r28_order55_m770_recursive_value
+#print axioms r28_order55_m770_exceeds_zarankiewicz
+#print axioms r28_order56_m781_recursive_surplus
 #print axioms r28_order55_edge_input
 #print axioms r28_order56_edge_input
 #print axioms historical_order54_direct

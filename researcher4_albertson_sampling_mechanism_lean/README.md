@@ -26,11 +26,12 @@ abstract identifiers carrying supports of cardinality two and four.
 
 `SparseAffineSupport` records the slope, intercept, denominator, and two active
 integer endpoints of a rational supporting line. `certificate.json` is a compact
-machine-readable instance of this schema. It records one support for the order-50
-table, two reviewed order-53 sampling steps, one deletion-schema diagnostic, and
-three direct integer-aware sampling rows.
+machine-readable instance of this schema. It records active supports for the
+order-50, order-54, and order-55 tables, identifies the support used at every
+sampling or deletion step, and retains the reviewed order-53 table hash as a
+checkpoint.
 
-The checked numerical specializations are:
+The checked direct-sampling specializations are:
 
 | input | sample | exact lower bound | ceiling |
 | --- | ---: | ---: | ---: |
@@ -40,11 +41,25 @@ The checked numerical specializations are:
 | `(n,m)=(55,768)` | 24 | `12374440/1771` | 6988 |
 | `(n,m)=(56,781)` | 25 | `810423/115` | 7048 |
 
-The last two rows are diagnostics for `r=28`, not claims that Albertson's
-conjecture is proved there. The edge inputs 768 and 781 are the exact ceilings of
-the externally supplied critical-graph inequality
+The exact convex deletion recurrence then gives:
+
+| target | source support | exact lower bound | ceiling |
+| --- | --- | ---: | ---: |
+| `(n,m)=(55,768)` | order 54, endpoints 740/743 | `1080124/153` | 7060 |
+| `(n,m)=(56,781)` | order 55, endpoints 752/754 | `369973/52` | 7115 |
+
+The comparison value is `Z(28)=7098`. Thus the order-56 diagnostic clears the
+comparison by 17, while the order-55 minimum-edge diagnostic remains 38 short.
+The exact table first reaches 7098 at 770 edges for order 55: the values at
+768, 769, and 770 edges are respectively 7060, 7092, and 7123.
+
+These are conditional `r=28` mechanism diagnostics, not a claim that
+Albertson's conjecture is proved for `r=28`. The edge inputs 768 and 781 are the
+exact ceilings of the externally supplied critical-graph inequality
 `2m >= (r-1)n + (2r-6)` at orders 55 and 56. The Lean file verifies this
-arithmetic provenance but does not prove that graph-theoretic inequality.
+arithmetic provenance, the two instantiated recurrence implications, and the
+comparison arithmetic. It does not prove that graph-theoretic inequality or
+construct the required drawings.
 
 ## Reproduction
 
@@ -61,8 +76,9 @@ The build should end with `Build completed successfully`. The checker should
 begin with `PASS sparse affine sampling certificate` and report:
 
 ```text
-recursive_table_sha256=55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43
-checked_results_sha256=3688b109567c18dbb6dd22593cc8ac87d27e74edba33c0376a5ae5db54c31806
+recursive_table_sha256=ee056ada7011df41bce287e59ba3c08100c73f988a4e23e444397818e8a5a70f
+recursive_table_order53_sha256=55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43
+checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce277118796bd
 ```
 
 ## Literature and graph alignment
@@ -74,7 +90,9 @@ checked_results_sha256=3688b109567c18dbb6dd22593cc8ac87d27e74edba33c0376a5ae5db5
   support data.
 - Height 1813 supplies the reviewed convex-sampling recurrence and reference
   order-53 table hash reproduced by `verify.py`.
-- B\u00fcngener and Kaufmann, [*Improving the Crossing Lemma by Characterizing
+- Height 2503 is the parameterized sampling/deletion formalization extended by
+  the present concrete recurrence instances.
+- Büngener and Kaufmann, [*Improving the Crossing Lemma by Characterizing
   Dense 2-Planar and 3-Planar Graphs*](https://arxiv.org/abs/2409.01733), state
   the uniform affine crossing estimates used as checker inputs.
 - Sadhu, [*Albertson's Conjecture Holds for r at Most
@@ -86,14 +104,17 @@ checked_results_sha256=3688b109567c18dbb6dd22593cc8ac87d27e74edba33c0376a5ae5db5
 Lean kernel-checks the support-counting identities, exact floor/ceiling
 arithmetic, the parameterized sampling implication, and the abstract deletion
 recurrence. The only reported axioms are Mathlib's standard `propext`,
-`Classical.choice`, and `Quot.sound`.
+`Classical.choice`, and `Quot.sound`. Lean additionally checks the two concrete
+conditional recurrence bounds, `Z(28)=7098`, the 38-crossing residual gap at
+order 55, and the 17-crossing surplus at order 56.
 
 External hypotheses remain explicit: a drawing must supply crossing identifiers
 with four distinct supported vertices; induced drawings must obey the local
 crossing lower bound; the integer table `F` must actually lower-bound those
 induced drawings; and each sparse support must be a valid minorant with the
 claimed active endpoints. `verify.py` checks the published affine inputs, the
-recursive table through order 53, the sparse support, and all displayed rational
-values, but it is ordinary Python rather than a proof-assistant kernel. Neither
-the topology-to-support translation nor the cited published graph inequalities
-are formalized here.
+recursive table through order 56, every sparse support globally and at its
+active endpoints, every displayed rational value, and both threshold windows.
+It is ordinary exact Python rather than a proof-assistant kernel. Neither the
+topology-to-support translation nor the cited published graph inequalities are
+formalized here.

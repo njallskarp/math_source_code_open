@@ -1,8 +1,14 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "recursive_table": {
-    "maximum_order": 53,
-    "sha256": "55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43"
+    "maximum_order": 56,
+    "sha256": "ee056ada7011df41bce287e59ba3c08100c73f988a4e23e444397818e8a5a70f",
+    "checkpoints": [
+      {
+        "maximum_order": 53,
+        "sha256": "55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43"
+      }
+    ]
   },
   "supports": {
     "f50_active_line": {
@@ -12,7 +18,28 @@
       "intercept": 11706,
       "scale": 1,
       "left": 633,
-      "right": 639
+      "right": 639,
+      "endpoint_values": [4752, 4908]
+    },
+    "f54_r28_active_line": {
+      "source_order": 54,
+      "maximum_edges": 1431,
+      "slope": 91,
+      "intercept": 47708,
+      "scale": 3,
+      "left": 740,
+      "right": 743,
+      "endpoint_values": [6544, 6635]
+    },
+    "f55_r28_active_line": {
+      "source_order": 55,
+      "maximum_edges": 1485,
+      "slope": 59,
+      "intercept": 31220,
+      "scale": 2,
+      "left": 752,
+      "right": 754,
+      "endpoint_values": [6574, 6633]
     }
   },
   "sampling_steps": [
@@ -46,6 +73,32 @@
       "mean": [32438, 51],
       "bound": [246382, 47],
       "ceiling": 5243
+    },
+    {
+      "name": "r28_order55_m768_recursive",
+      "target_order": 55,
+      "target_edges": 768,
+      "support": "f54_r28_active_line",
+      "mean": [40704, 55],
+      "bound": [1080124, 153],
+      "ceiling": 7060,
+      "baseline_ceiling": 6988,
+      "gain": 72,
+      "comparison_threshold": 7098,
+      "meets_threshold": false
+    },
+    {
+      "name": "r28_order56_m781_recursive",
+      "target_order": 56,
+      "target_edges": 781,
+      "support": "f55_r28_active_line",
+      "mean": [21087, 28],
+      "bound": [369973, 52],
+      "ceiling": 7115,
+      "baseline_ceiling": 7048,
+      "gain": 67,
+      "comparison_threshold": 7098,
+      "meets_threshold": true
     }
   ],
   "integer_aware_direct_steps": [
@@ -84,6 +137,22 @@
       "local_floor": 518,
       "bound": [810423, 115],
       "ceiling": 7048
+    }
+  ],
+  "threshold_diagnostics": [
+    {
+      "name": "r28_order55_threshold",
+      "order": 55,
+      "comparison_threshold": 7098,
+      "first_edges": 770,
+      "window": [[767, 7029], [768, 7060], [769, 7092], [770, 7123], [771, 7155], [772, 7187]]
+    },
+    {
+      "name": "r28_order56_threshold",
+      "order": 56,
+      "comparison_threshold": 7098,
+      "first_edges": 781,
+      "window": [[778, 7024], [779, 7055], [780, 7085], [781, 7115], [782, 7146], [783, 7177]]
     }
   ]
 }

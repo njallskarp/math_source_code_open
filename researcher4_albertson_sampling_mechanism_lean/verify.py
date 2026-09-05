@@ -11,6 +11,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 
+if not __debug__:
+    raise RuntimeError("certificate checks require Python without -O")
+
 
 def ceil_fraction(value: Fraction) -> int:
     return -((-value.numerator) // value.denominator)
@@ -91,6 +94,7 @@ def deletion_fraction(
 def recursive_closure(maximum_order: int):
     tables: dict[int, list[int]] = {}
     hulls: dict[int, list[tuple[int, int]]] = {}
+    digests: dict[int, str] = {}
     digest = sha256()
     for order in range(4, maximum_order + 1):
         values = []
@@ -110,7 +114,8 @@ def recursive_closure(maximum_order: int):
             digest.update(f"{order}:{edges}:{value}\n".encode("ascii"))
         tables[order] = values
         hulls[order] = lower_hull(values)
-    return tables, hulls, digest.hexdigest()
+        digests[order] = digest.hexdigest()
+    return tables, hulls, digests
 
 
 def fraction_field(data: list[int]) -> Fraction:
@@ -120,14 +125,26 @@ def fraction_field(data: list[int]) -> Fraction:
     return Fraction(data[0], data[1])
 
 
+def run_self_tests() -> None:
+    assert ceil_fraction(Fraction(3, 2)) == 2
+    assert ceil_fraction(Fraction(-1, 2)) == 0
+    test_hull = lower_hull([0, 2, 3])
+    assert test_hull == [(0, 0), (2, 3)]
+    assert hull_value(test_hull, Fraction(1)) == Fraction(3, 2)
+
+
 def main() -> None:
+    run_self_tests()
     certificate_bytes = (ROOT / "certificate.json").read_bytes()
     certificate = json.loads(certificate_bytes)
-    assert certificate["schema_version"] == 1
+    assert certificate["schema_version"] == 2
 
     table_spec = certificate["recursive_table"]
-    tables, _, table_digest = recursive_closure(table_spec["maximum_order"])
+    tables, _, table_digests = recursive_closure(table_spec["maximum_order"])
+    table_digest = table_digests[table_spec["maximum_order"]]
     assert table_digest == table_spec["sha256"]
+    for checkpoint in table_spec["checkpoints"]:
+        assert table_digests[checkpoint["maximum_order"]] == checkpoint["sha256"]
 
     supports = certificate["supports"]
     for support in supports.values():
@@ -139,7 +156,12 @@ def main() -> None:
             assert support["slope"] * edges <= (
                 support["scale"] * value + support["intercept"]
             )
-        for endpoint in (support["left"], support["right"]):
+        assert len(support["endpoint_values"]) == 2
+        for endpoint, expected_value in zip(
+            (support["left"], support["right"]),
+            support["endpoint_values"],
+        ):
+            assert table[endpoint] == expected_value
             assert support["slope"] * endpoint == (
                 support["scale"] * table[endpoint] + support["intercept"]
             )
@@ -163,6 +185,12 @@ def main() -> None:
         )
         assert bound == fraction_field(step["bound"])
         assert ceil_fraction(bound) == step["ceiling"]
+        if "baseline_ceiling" in step:
+            assert step["ceiling"] - step["baseline_ceiling"] == step["gain"]
+        if "comparison_threshold" in step:
+            assert (
+                step["ceiling"] >= step["comparison_threshold"]
+            ) == step["meets_threshold"]
         checked.append((step["name"], str(bound), step["ceiling"]))
 
     for step in certificate["deletion_steps"]:
@@ -229,13 +257,39 @@ def main() -> None:
         assert best_order == step["sample_order"]
         assert best_bound == fraction_field(step["bound"])
 
+    threshold_checks = []
+    for diagnostic in certificate["threshold_diagnostics"]:
+        table = tables[diagnostic["order"]]
+        threshold = diagnostic["comparison_threshold"]
+        first_edges = next(
+            edges for edges, value in enumerate(table) if value >= threshold
+        )
+        assert first_edges == diagnostic["first_edges"]
+        assert [
+            [edges, table[edges]] for edges, _ in diagnostic["window"]
+        ] == diagnostic["window"]
+        threshold_checks.append(
+            (diagnostic["name"], first_edges, table[first_edges])
+        )
+
     result_digest = sha256(
-        json.dumps(checked, separators=(",", ":"), sort_keys=True).encode("ascii")
+        json.dumps(
+            {"steps": checked, "thresholds": threshold_checks},
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("ascii")
     ).hexdigest()
     print("PASS sparse affine sampling certificate")
     print(f"recursive_table_sha256={table_digest}")
+    for checkpoint in table_spec["checkpoints"]:
+        print(
+            f"recursive_table_order{checkpoint['maximum_order']}_sha256="
+            f"{checkpoint['sha256']}"
+        )
     for name, bound, ceiling in checked:
         print(f"{name}: bound={bound}; ceiling={ceiling}")
+    for name, first_edges, value in threshold_checks:
+        print(f"{name}: first_edges={first_edges}; value={value}")
     print(f"checked_results_sha256={result_digest}")
 
 
