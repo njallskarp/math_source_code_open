@@ -1,0 +1,29 @@
+{
+  "all_checks": true,
+  "clauses": 88433,
+  "counter_blocks": 112,
+  "counter_clauses": 26320,
+  "distinct_global_clauses": 51624,
+  "files": {
+    "discovery/formula.cnf": {
+      "bytes": 9978651,
+      "sha256": "d5209eed821a4ec9c03f9a22df325be12ba0ddf12f2d3cd71e44c6048f2c9498"
+    },
+    "discovery/proof.drat": {
+      "bytes": 19062231,
+      "sha256": "d77cd87ede9dd4c3b20b0e5ddd90a89a599d0c9d8b8a26e2e35692e786fd0b5d"
+    },
+    "final.cnf": {
+      "bytes": 1981753,
+      "sha256": "9c809bbc4cee28279e25a961cfa7e8966682f234caab087f19390aad764157ac"
+    },
+    "trimmed.drat": {
+      "bytes": 15660129,
+      "sha256": "f8540742adf697f15502e3213a2acb8cfa7cc320670bcf99d673b0505acc01db"
+    }
+  },
+  "formula_sha256": "9c809bbc4cee28279e25a961cfa7e8966682f234caab087f19390aad764157ac",
+  "primary_variables": 400,
+  "rup_replays": 2,
+  "variables": 13600
+}

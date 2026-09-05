@@ -1,0 +1,10 @@
+{
+  "all_checks": true,
+  "clauses": 88433,
+  "counter_blocks": 112,
+  "counter_clauses": 26320,
+  "distinct_global_clauses": 51624,
+  "formula_sha256": "9c809bbc4cee28279e25a961cfa7e8966682f234caab087f19390aad764157ac",
+  "primary_variables": 400,
+  "variables": 13600
+}
