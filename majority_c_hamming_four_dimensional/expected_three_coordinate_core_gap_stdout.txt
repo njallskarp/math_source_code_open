@@ -1,0 +1,13 @@
+Hamming hosts exhausted: 8
+nonempty subsets checked: 403192
+minimum-degree-at-least-2 cores: 97728
+three-coordinate cores checked: 94794
+near-extremal cores confined to two coordinates: 932
+dimension-gap equality witnesses: 657
+equality-witness SHA-256: 52d9b521bf215ce331422d6cdb7fd2fe611b3fd66435af6cf78c72166035d4fe
+shell profiles enumerated through h=24: 2820576
+shell profiles surviving the size bound: 26
+shell-profile SHA-256: 1516404adcd6b23cd72aaab0af6e80f78f2c6fb1e876b826c4a63353a4f91d61
+boundary example orders (cycle/cube/grid): 6/8/9
+mutations/controls rejected: 3
+all exact checks passed

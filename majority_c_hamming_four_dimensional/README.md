@@ -175,6 +175,14 @@ partition has exactly one nonlinear part of that forced type and all other
 parts are line `K_s`s.  See
 [GLOBAL_NONLINEAR_CLASS_BOUND.md](GLOBAL_NONLINEAR_CLASS_BOUND.md).
 
+There is a further dimension gap immediately above equality.  Any induced
+Hamming subgraph of minimum degree at least `h` that varies in three or more
+coordinates has at least `2*h+2` vertices.  Equivalently, every `h`-core on
+at most `2*h+1` vertices lies in a coordinate two-flat.  The argument
+classifies the only shell profiles compatible with the small order and uses
+line divisibility outside the exceptional `h=2,3,4` cases.  See
+[THREE_COORDINATE_CORE_GAP.md](THREE_COORDINATE_CORE_GAP.md).
+
 At the equality boundary `r*u*p=2*s-2`, layer divisibility completely
 classifies when that forced prism can repair the carry.  A quotient-optimal
 partition exists exactly in the two cases
@@ -240,6 +248,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_cross_boundary_222.py
 ruby verify_cross_boundary_222_independent.rb
 PYTHONDONTWRITEBYTECODE=1 python3 verify_global_nonlinear_class_bound.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_global_nonlinear_class_bound.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_three_coordinate_core_gap.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_three_coordinate_core_gap.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_first_carry_equality_classification.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_first_carry_equality_classification.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
@@ -340,6 +350,10 @@ stripping or Hamming upper-bound arguments.
 The global nonlinear-class checker reports the compact expected output in
 `expected_global_nonlinear_class_bound_stdout.txt`; its seven unit tests are
 in `test_global_nonlinear_class_bound.py`.
+
+The three-coordinate core-gap checker reports the compact expected output in
+`expected_three_coordinate_core_gap_stdout.txt`; its six unit tests are in
+`test_three_coordinate_core_gap.py`.
 
 The all-large three-box checker reports the compact expected output in
 `expected_all_large_three_box_stdout.txt`.
