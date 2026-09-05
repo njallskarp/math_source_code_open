@@ -1,0 +1,6 @@
+VERIFIED PAIRWISE-COMPATIBLE AGGREGATE SELECTION
+core_edges=26 independent_triples=78 independent_fours=39 transversals=3459
+columns=15x13 marked_columns=6x13
+IA=50 IB=48 IO=97 mA=11 mB=13 mO=47 mAB=10 mAO=52 mBO=50
+forced=A:0,B:0,O:5,AB:10,AO:17,BO:21 red_forbidden=A:10,B:8
+monochromatic_K5_outside_le_2=0 outside_edges=183

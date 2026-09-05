@@ -1,0 +1,6 @@
+REJECTED nontransversal
+REJECTED wrong-column
+REJECTED wrong-mark
+REJECTED edge-capacity
+REJECTED wrong-pivot
+ALL 5 NEGATIVE CONTROLS REJECTED
