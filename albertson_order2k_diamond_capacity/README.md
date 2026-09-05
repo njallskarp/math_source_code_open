@@ -199,6 +199,21 @@ local theorem and a proof, counterexample, or quantitatively useful weakening
 of that cross-diamond statement is available.  Further scalar recurrence or
 profile enumeration is outside the gate.
 
+## Exact excess saturation barrier
+
+[`EXCESS_SATURATION_BARRIER.md`](EXCESS_SATURATION_BARRIER.md) pins the
+degree-excess route to its sharp classical boundary.  For a genuinely
+`k`-critical graph of order `2k`, Kostochka--Stiebitz gives
+`X>=2(k-3)`, with equality attained.  Below `X=2k`, only the three values
+`2k-6,2k-4,2k-2` exist.  At `k=29` these are exactly the three surviving
+order-58 rows.
+
+This corrects the scope of the standard-branch separation family: that
+family is vertex-critical and has `X=1308` at `k=29`, so it does not test the
+near-extremal edge-critical input.  Any resumption must exclude the local
+four-block footprint in the three exact excess classes, not seek another
+generic degree count.
+
 ## Dependency pinning
 
 The detailed graph-to-frontier audit is in [`DEPENDENCY_AUDIT.md`](DEPENDENCY_AUDIT.md).
@@ -223,6 +238,8 @@ matches the published source, run
 
 ```sh
 cd albertson_order2k_diamond_capacity
+PYTHONDONTWRITEBYTECODE=1 python3 verify_excess_saturation.py \
+  | diff -u EXPECTED_EXCESS_SATURATION.txt -
 shasum -a 256 -c SHA256SUMS
 ```
 

@@ -1,0 +1,5 @@
+t=0 n=58 m=838 X=52 low_lb=6
+t=1 n=58 m=839 X=54 low_lb=4
+t=2 n=58 m=840 X=56 low_lb=2
+separation k=29 n=58 eH=187 eG=1466 X=1308
+certificate_sha256=c6afb963c524751a7fcf15cddcb3b4e00889d03f8486be553cd9712d31a9f1d0
