@@ -1,0 +1,8 @@
+classes=96
+g8_arcs=20 missing_pairs=8 automorphisms=2
+orders=40320 g8_tight_orders=832 g8_maximum_hits=13
+completions=256 completion_classes=96 multiplicities=2:72,4:16,6:8
+profiles=96 profile_orders=1920 profile_terms=1690 maximum_multiplicity=5
+arc_count_checks=2688
+exact_ray=m(6qT)=7q_for_all_q>=1
+audit_sha256=37a66ffb38a906c3f500306bc30207045533b1b6347574a20ec6a2abadb38a3a

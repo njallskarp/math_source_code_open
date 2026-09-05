@@ -13,6 +13,15 @@ The mathematical proof is in `THEOREM.md`.  The compact certificate contains
 2,464 rationally weighted orders and one 20-arc dual obstruction for each of
 the 96 classes.
 
+The companion theorem `M6_THEOREM.md` strengthens this on the integral
+semigroup.  A single canonical 20-arc partial tournament `G8` has exactly the
+96 obstruction classes as its completion classes, and every completion `T`
+satisfies
+
+    m(6q T) = 7q  for every q>=1.
+
+Thus every exceptional ray attains its asymptotic slope at scale six.
+
 ## Verify
 
 The correctness-boundary command uses only the Python standard library and
@@ -37,6 +46,17 @@ Expected summary:
 Recorded verification used CPython 3.12.12 on macOS.  No solver, randomness,
 floating point, or external data is used by the verifier.
 
+Verify the integral scale-six theorem with:
+
+    PYTHONDONTWRITEBYTECODE=1 python3 verify_m6.py
+    diff -u EXPECTED_M6_OUTPUT.txt <(PYTHONDONTWRITEBYTECODE=1 python3 verify_m6.py)
+    PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_m6.py
+
+Its final lines are:
+
+    exact_ray=m(6qT)=7q_for_all_q>=1
+    audit_sha256=37a66ffb38a906c3f500306bc30207045533b1b6347574a20ec6a2abadb38a3a
+
 ## Regenerate
 
 The deterministic certificate generator uses NumPy 2.5.2 and SciPy 1.18.1
@@ -51,6 +71,17 @@ Generation solves 96 LPs.  Each floating solution is reconstructed as
 exactly before it is written.  Regeneration is useful provenance but is not
 part of the proof trust boundary; `verify_certificate.py` independently
 rebuilds the 40,320 orders and checks the committed rational witnesses.
+
+The integral profiles and compact isomorphism maps can be regenerated with:
+
+    UV_CACHE_DIR=/tmp/stable-mu8-uv-cache \
+      uv run --with-requirements requirements.txt \
+      python generate_m6_profiles.py
+    PYTHONDONTWRITEBYTECODE=1 python3 generate_g8_maps.py
+
+The MILP generator is discovery-only.  `verify_m6.py` independently decodes
+the resulting integer profiles and permutation maps using a separate
+definition-level implementation.
 
 ## Input provenance
 

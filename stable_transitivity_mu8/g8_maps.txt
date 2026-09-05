@@ -1,0 +1,355 @@
+CERTIFICATE stable_transitivity_g8_maps_v1 classes=96 completions=256
+# SUPPORT <source-index> g8_to_t=<permutation>
+SUPPORT 830 g8_to_t=6,0,7,2,1,5,3,4
+SUPPORT 1456 g8_to_t=0,1,2,3,4,7,6,5
+SUPPORT 1463 g8_to_t=4,5,6,0,7,3,1,2
+SUPPORT 1480 g8_to_t=4,5,6,0,7,3,1,2
+SUPPORT 1481 g8_to_t=4,5,6,0,7,3,1,2
+SUPPORT 1497 g8_to_t=0,1,2,3,4,6,7,5
+SUPPORT 1500 g8_to_t=1,2,3,4,5,0,7,6
+SUPPORT 1504 g8_to_t=2,3,4,5,6,1,7,0
+SUPPORT 1506 g8_to_t=5,0,6,1,2,4,3,7
+SUPPORT 1509 g8_to_t=3,4,5,6,0,2,7,1
+SUPPORT 1519 g8_to_t=3,5,6,7,1,4,0,2
+SUPPORT 1520 g8_to_t=2,3,4,5,6,1,7,0
+SUPPORT 1523 g8_to_t=0,1,2,3,4,6,7,5
+SUPPORT 1525 g8_to_t=3,4,5,6,0,2,7,1
+SUPPORT 1526 g8_to_t=1,2,3,4,5,0,7,6
+SUPPORT 1527 g8_to_t=3,4,5,6,0,2,7,1
+SUPPORT 1533 g8_to_t=0,1,2,3,4,6,7,5
+SUPPORT 1536 g8_to_t=1,2,3,4,5,0,7,6
+SUPPORT 1539 g8_to_t=0,1,2,3,4,6,7,5
+SUPPORT 1599 g8_to_t=0,1,2,3,4,7,5,6
+SUPPORT 1606 g8_to_t=4,5,6,0,7,3,2,1
+SUPPORT 1618 g8_to_t=0,1,2,3,4,7,5,6
+SUPPORT 1625 g8_to_t=4,5,6,0,7,3,2,1
+SUPPORT 1627 g8_to_t=7,1,3,5,4,0,2,6
+SUPPORT 2198 g8_to_t=0,2,3,4,5,1,7,6
+SUPPORT 2203 g8_to_t=2,3,4,5,6,0,7,1
+SUPPORT 2208 g8_to_t=3,4,5,6,1,2,7,0
+SUPPORT 2217 g8_to_t=7,0,1,3,2,5,4,6
+SUPPORT 2220 g8_to_t=2,3,4,5,6,0,7,1
+SUPPORT 2221 g8_to_t=3,5,6,7,0,4,1,2
+SUPPORT 2226 g8_to_t=3,4,5,6,1,2,7,0
+SUPPORT 2227 g8_to_t=3,4,5,6,1,2,7,0
+SUPPORT 2228 g8_to_t=3,4,5,6,1,2,7,0
+SUPPORT 2290 g8_to_t=0,2,3,4,6,1,7,5
+SUPPORT 2295 g8_to_t=2,3,4,6,5,0,7,1
+SUPPORT 2309 g8_to_t=0,2,3,4,6,1,7,5
+SUPPORT 2312 g8_to_t=2,3,4,6,5,0,7,1
+SUPPORT 2313 g8_to_t=3,5,6,7,0,4,2,1
+SUPPORT 2317 g8_to_t=0,2,3,4,6,1,7,5
+SUPPORT 2320 g8_to_t=2,3,4,6,5,0,7,1
+SUPPORT 3452 g8_to_t=5,0,6,7,2,4,1,3
+SUPPORT 3641 g8_to_t=1,2,3,4,5,7,6,0
+SUPPORT 3666 g8_to_t=0,1,6,2,3,5,4,7
+SUPPORT 3670 g8_to_t=1,2,3,4,5,6,7,0
+SUPPORT 3672 g8_to_t=4,0,5,6,1,3,2,7
+SUPPORT 3674 g8_to_t=2,3,4,5,0,1,7,6
+SUPPORT 3813 g8_to_t=4,0,5,6,2,3,1,7
+SUPPORT 3814 g8_to_t=1,3,4,5,0,2,7,6
+SUPPORT 3890 g8_to_t=3,4,6,0,7,2,5,1
+SUPPORT 3918 g8_to_t=3,4,6,0,7,1,5,2
+SUPPORT 3937 g8_to_t=5,3,6,7,0,1,4,2
+SUPPORT 4085 g8_to_t=3,4,6,0,7,2,5,1
+SUPPORT 4102 g8_to_t=3,4,6,0,7,2,5,1
+SUPPORT 4110 g8_to_t=6,0,7,1,5,3,2,4
+SUPPORT 4124 g8_to_t=3,4,6,0,7,1,5,2
+SUPPORT 4141 g8_to_t=3,4,6,0,7,1,5,2
+SUPPORT 4181 g8_to_t=2,5,7,3,1,4,6,0
+SUPPORT 4419 g8_to_t=0,4,6,1,7,2,5,3
+SUPPORT 4423 g8_to_t=1,2,3,5,4,7,6,0
+SUPPORT 4448 g8_to_t=0,1,6,2,3,4,5,7
+SUPPORT 4452 g8_to_t=1,2,3,5,4,6,7,0
+SUPPORT 4721 g8_to_t=0,1,5,2,7,4,3,6
+SUPPORT 4724 g8_to_t=2,3,4,6,5,7,0,1
+SUPPORT 4750 g8_to_t=3,0,4,5,1,7,2,6
+SUPPORT 4755 g8_to_t=1,2,6,3,7,5,4,0
+SUPPORT 4803 g8_to_t=0,1,5,2,6,4,3,7
+SUPPORT 4806 g8_to_t=3,0,4,5,1,6,2,7
+SUPPORT 4808 g8_to_t=2,3,6,4,0,1,5,7
+SUPPORT 4886 g8_to_t=1,2,5,3,6,0,4,7
+SUPPORT 4921 g8_to_t=4,1,5,6,3,0,2,7
+SUPPORT 4943 g8_to_t=1,2,5,3,7,0,4,6
+SUPPORT 5029 g8_to_t=3,5,6,0,7,4,2,1
+SUPPORT 5047 g8_to_t=3,5,6,0,7,4,2,1
+SUPPORT 5163 g8_to_t=1,2,3,5,4,7,6,0
+SUPPORT 5172 g8_to_t=4,0,6,1,7,5,2,3
+SUPPORT 5188 g8_to_t=0,1,6,2,3,4,5,7
+SUPPORT 5192 g8_to_t=1,2,3,5,4,6,7,0
+SUPPORT 5197 g8_to_t=3,4,5,0,6,2,1,7
+SUPPORT 5251 g8_to_t=1,3,5,6,0,2,4,7
+SUPPORT 5282 g8_to_t=3,4,5,0,7,2,1,6
+SUPPORT 5713 g8_to_t=0,3,5,1,6,2,4,7
+SUPPORT 5740 g8_to_t=0,3,5,1,7,2,4,6
+SUPPORT 5747 g8_to_t=1,2,4,6,5,7,3,0
+SUPPORT 6413 g8_to_t=1,2,3,4,5,7,0,6
+SUPPORT 6536 g8_to_t=0,1,3,5,4,7,2,6
+SUPPORT 6537 g8_to_t=2,4,6,0,7,3,5,1
+SUPPORT 6553 g8_to_t=2,4,6,0,7,3,5,1
+SUPPORT 6623 g8_to_t=0,1,3,5,4,6,2,7
+SUPPORT 6624 g8_to_t=2,0,6,3,1,4,5,7
+SUPPORT 6746 g8_to_t=2,4,6,0,7,3,5,1
+SUPPORT 6763 g8_to_t=1,2,3,4,6,7,0,5
+SUPPORT 6772 g8_to_t=1,2,3,4,6,7,0,5
+SUPPORT 6773 g8_to_t=6,0,7,1,5,2,3,4
+SUPPORT 6789 g8_to_t=1,3,4,6,5,2,7,0
+SUPPORT 6811 g8_to_t=4,0,7,5,3,6,1,2
+SUPPORT 6877 g8_to_t=4,0,7,5,3,6,1,2
+# COMPLETION <8-bit-index> class=<source-index> completion_to_t=<permutation>
+COMPLETION 00000000 class=1480 completion_to_t=3,7,6,5,0,2,1,4
+COMPLETION 00000001 class=4724 completion_to_t=7,6,0,2,1,4,3,5
+COMPLETION 00000010 class=1625 completion_to_t=3,7,6,5,0,1,2,4
+COMPLETION 00000011 class=5747 completion_to_t=7,0,1,6,2,4,3,5
+COMPLETION 00000100 class=1463 completion_to_t=3,7,6,5,0,2,1,4
+COMPLETION 00000101 class=5172 completion_to_t=2,3,7,6,0,5,1,4
+COMPLETION 00000110 class=1606 completion_to_t=3,7,6,5,0,1,2,4
+COMPLETION 00000111 class=4755 completion_to_t=7,0,1,3,6,5,2,4
+COMPLETION 00001000 class=3452 completion_to_t=2,7,4,6,5,0,1,3
+COMPLETION 00001001 class=6536 completion_to_t=0,2,7,1,4,3,6,5
+COMPLETION 00001010 class=2228 completion_to_t=7,4,5,0,1,2,3,6
+COMPLETION 00001011 class=4423 completion_to_t=7,0,1,2,4,3,6,5
+COMPLETION 00001100 class=1481 completion_to_t=3,7,6,5,0,2,1,4
+COMPLETION 00001101 class=6413 completion_to_t=7,0,2,1,3,4,6,5
+COMPLETION 00001110 class=1520 completion_to_t=7,5,0,1,2,3,4,6
+COMPLETION 00001111 class=3641 completion_to_t=7,0,1,2,3,4,6,5
+COMPLETION 00010000 class=2309 completion_to_t=2,1,4,3,7,6,5,0
+COMPLETION 00010001 class=5029 completion_to_t=7,6,0,2,1,4,3,5
+COMPLETION 00010010 class=2220 completion_to_t=1,6,2,4,3,7,5,0
+COMPLETION 00010011 class=4124 completion_to_t=7,1,6,2,4,0,3,5
+COMPLETION 00010100 class=6763 completion_to_t=7,0,2,1,3,6,4,5
+COMPLETION 00010101 class=6746 completion_to_t=7,0,2,1,3,6,4,5
+COMPLETION 00010110 class=4102 completion_to_t=7,0,1,2,3,6,4,5
+COMPLETION 00010111 class=4085 completion_to_t=7,0,1,2,3,6,4,5
+COMPLETION 00011000 class=830 completion_to_t=2,4,3,7,6,5,0,1
+COMPLETION 00011001 class=4750 completion_to_t=2,4,7,0,1,3,6,5
+COMPLETION 00011010 class=1527 completion_to_t=4,7,5,0,1,2,3,6
+COMPLETION 00011011 class=5163 completion_to_t=7,0,1,2,4,3,6,5
+COMPLETION 00011100 class=1618 completion_to_t=0,2,1,3,4,7,6,5
+COMPLETION 00011101 class=1599 completion_to_t=0,2,1,3,4,7,6,5
+COMPLETION 00011110 class=1536 completion_to_t=5,0,1,2,3,4,7,6
+COMPLETION 00011111 class=1456 completion_to_t=0,1,2,3,4,7,6,5
+COMPLETION 00100000 class=4110 completion_to_t=2,3,7,5,6,4,0,1
+COMPLETION 00100001 class=6811 completion_to_t=2,7,6,4,0,3,5,1
+COMPLETION 00100010 class=2227 completion_to_t=7,4,5,0,1,2,3,6
+COMPLETION 00100011 class=6553 completion_to_t=3,7,0,5,1,6,2,4
+COMPLETION 00100100 class=5282 completion_to_t=3,7,5,0,2,1,6,4
+COMPLETION 00100101 class=4721 completion_to_t=0,2,3,7,5,1,6,4
+COMPLETION 00100110 class=3890 completion_to_t=3,7,5,0,1,6,2,4
+COMPLETION 00100111 class=6537 completion_to_t=3,7,0,5,1,6,2,4
+COMPLETION 00101000 class=3813 completion_to_t=2,7,4,5,0,1,3,6
+COMPLETION 00101001 class=6623 completion_to_t=0,2,7,1,4,3,5,6
+COMPLETION 00101010 class=2208 completion_to_t=7,4,5,0,1,2,3,6
+COMPLETION 00101011 class=4452 completion_to_t=7,0,1,2,4,3,5,6
+COMPLETION 00101100 class=5197 completion_to_t=3,7,5,0,2,1,4,6
+COMPLETION 00101101 class=4803 completion_to_t=0,2,3,7,5,1,4,6
+COMPLETION 00101110 class=1504 completion_to_t=7,5,0,1,2,3,4,6
+COMPLETION 00101111 class=3670 completion_to_t=7,0,1,2,3,4,5,6
+COMPLETION 00110000 class=2217 completion_to_t=2,1,4,3,7,5,6,0
+COMPLETION 00110001 class=5047 completion_to_t=7,6,0,2,1,4,3,5
+COMPLETION 00110010 class=1525 completion_to_t=4,7,5,0,1,2,3,6
+COMPLETION 00110011 class=1627 completion_to_t=4,7,0,5,1,6,2,3
+COMPLETION 00110100 class=1523 completion_to_t=2,3,4,7,5,0,1,6
+COMPLETION 00110101 class=6772 completion_to_t=7,0,2,1,3,6,4,5
+COMPLETION 00110110 class=1539 completion_to_t=0,1,2,3,4,7,5,6
+COMPLETION 00110111 class=1519 completion_to_t=0,1,2,3,4,7,5,6
+COMPLETION 00111000 class=3672 completion_to_t=2,4,7,5,0,1,3,6
+COMPLETION 00111001 class=4806 completion_to_t=2,4,7,0,1,3,5,6
+COMPLETION 00111010 class=1509 completion_to_t=4,7,5,0,1,2,3,6
+COMPLETION 00111011 class=5192 completion_to_t=7,0,1,2,4,3,5,6
+COMPLETION 00111100 class=1506 completion_to_t=2,3,4,7,5,0,1,6
+COMPLETION 00111101 class=3666 completion_to_t=0,2,3,4,7,5,1,6
+COMPLETION 00111110 class=1533 completion_to_t=0,1,2,3,4,7,5,6
+COMPLETION 00111111 class=1497 completion_to_t=0,1,2,3,4,7,5,6
+COMPLETION 01000000 class=5047 completion_to_t=2,3,7,6,4,5,0,1
+COMPLETION 01000001 class=6772 completion_to_t=2,7,6,4,0,3,5,1
+COMPLETION 01000010 class=4141 completion_to_t=3,5,7,0,1,6,2,4
+COMPLETION 01000011 class=2317 completion_to_t=7,1,6,4,0,3,5,2
+COMPLETION 01000100 class=4085 completion_to_t=3,6,5,0,2,7,1,4
+COMPLETION 01000101 class=6746 completion_to_t=3,6,0,5,2,7,1,4
+COMPLETION 01000110 class=4124 completion_to_t=3,5,7,0,1,6,2,4
+COMPLETION 01000111 class=5029 completion_to_t=3,7,6,0,5,1,2,4
+COMPLETION 01001000 class=1627 completion_to_t=5,2,7,1,4,3,6,0
+COMPLETION 01001001 class=1519 completion_to_t=7,4,6,0,5,2,1,3
+COMPLETION 01001010 class=2312 completion_to_t=5,7,0,1,2,4,3,6
+COMPLETION 01001011 class=2226 completion_to_t=7,1,4,6,0,5,2,3
+COMPLETION 01001100 class=4102 completion_to_t=3,6,5,0,2,7,1,4
+COMPLETION 01001101 class=6763 completion_to_t=3,6,0,5,2,7,1,4
+COMPLETION 01001110 class=2220 completion_to_t=5,7,0,1,2,3,4,6
+COMPLETION 01001111 class=2309 completion_to_t=0,5,1,2,3,7,4,6
+COMPLETION 01010000 class=2226 completion_to_t=6,4,5,0,2,1,3,7
+COMPLETION 01010001 class=2317 completion_to_t=6,4,0,5,2,7,1,3
+COMPLETION 01010010 class=2312 completion_to_t=1,6,2,4,3,5,7,0
+COMPLETION 01010011 class=4141 completion_to_t=7,1,6,2,4,0,3,5
+COMPLETION 01010100 class=1519 completion_to_t=6,5,0,2,1,3,4,7
+COMPLETION 01010101 class=6772 completion_to_t=3,6,0,5,2,7,1,4
+COMPLETION 01010110 class=1627 completion_to_t=1,3,6,4,5,7,0,2
+COMPLETION 01010111 class=5047 completion_to_t=3,7,6,0,5,1,2,4
+COMPLETION 01011000 class=1526 completion_to_t=4,6,5,0,2,1,3,7
+COMPLETION 01011001 class=2221 completion_to_t=4,7,6,0,5,2,1,3
+COMPLETION 01011010 class=3937 completion_to_t=1,4,3,5,7,6,0,2
+COMPLETION 01011011 class=2313 completion_to_t=4,7,6,0,5,1,2,3
+COMPLETION 01011100 class=1539 completion_to_t=6,5,0,2,1,3,4,7
+COMPLETION 01011101 class=1523 completion_to_t=0,2,1,3,4,6,5,7
+COMPLETION 01011110 class=1525 completion_to_t=1,3,4,6,5,0,2,7
+COMPLETION 01011111 class=2217 completion_to_t=0,5,1,2,3,4,7,6
+COMPLETION 01100000 class=6773 completion_to_t=2,3,5,7,6,4,0,1
+COMPLETION 01100001 class=6877 completion_to_t=2,7,6,4,0,3,5,1
+COMPLETION 01100010 class=2320 completion_to_t=5,7,0,1,2,4,3,6
+COMPLETION 01100011 class=4181 completion_to_t=7,4,0,3,5,1,6,2
+COMPLETION 01100100 class=4943 completion_to_t=5,0,2,3,7,1,6,4
+COMPLETION 01100101 class=5740 completion_to_t=0,3,5,2,7,1,6,4
+COMPLETION 01100110 class=3918 completion_to_t=3,5,7,0,1,6,2,4
+COMPLETION 01100111 class=4419 completion_to_t=0,3,5,7,1,6,2,4
+COMPLETION 01101000 class=4921 completion_to_t=5,2,7,4,0,1,3,6
+COMPLETION 01101001 class=5251 completion_to_t=4,0,5,2,7,1,3,6
+COMPLETION 01101010 class=2295 completion_to_t=5,7,0,1,2,4,3,6
+COMPLETION 01101011 class=6789 completion_to_t=7,0,5,1,2,4,3,6
+COMPLETION 01101100 class=4886 completion_to_t=5,0,2,3,7,1,4,6
+COMPLETION 01101101 class=5713 completion_to_t=0,3,5,2,7,1,4,6
+COMPLETION 01101110 class=2203 completion_to_t=5,7,0,1,2,3,4,6
+COMPLETION 01101111 class=2290 completion_to_t=0,5,1,2,3,7,4,6
+COMPLETION 01110000 class=2313 completion_to_t=5,6,0,2,1,4,3,7
+COMPLETION 01110001 class=4141 completion_to_t=6,4,0,3,5,2,7,1
+COMPLETION 01110010 class=3937 completion_to_t=4,5,7,1,6,0,2,3
+COMPLETION 01110011 class=2312 completion_to_t=4,0,3,5,7,1,6,2
+COMPLETION 01110100 class=2221 completion_to_t=5,6,0,2,1,3,4,7
+COMPLETION 01110101 class=2317 completion_to_t=0,5,2,1,3,6,4,7
+COMPLETION 01110110 class=1526 completion_to_t=5,0,1,2,3,4,7,6
+COMPLETION 01110111 class=2226 completion_to_t=0,5,1,2,3,4,7,6
+COMPLETION 01111000 class=4808 completion_to_t=4,5,0,2,3,7,1,6
+COMPLETION 01111001 class=6624 completion_to_t=2,4,0,3,5,7,1,6
+COMPLETION 01111010 class=3674 completion_to_t=4,5,0,1,2,3,7,6
+COMPLETION 01111011 class=3814 completion_to_t=4,0,5,1,2,3,7,6
+COMPLETION 01111100 class=5188 completion_to_t=0,2,3,4,5,7,1,6
+COMPLETION 01111101 class=4448 completion_to_t=0,2,3,4,5,7,1,6
+COMPLETION 01111110 class=1500 completion_to_t=5,0,1,2,3,4,7,6
+COMPLETION 01111111 class=2198 completion_to_t=0,5,1,2,3,4,7,6
+COMPLETION 10000000 class=1625 completion_to_t=3,6,7,5,0,2,1,4
+COMPLETION 10000001 class=5747 completion_to_t=6,0,2,7,1,4,3,5
+COMPLETION 10000010 class=1480 completion_to_t=3,6,7,5,0,1,2,4
+COMPLETION 10000011 class=4724 completion_to_t=6,7,0,1,2,4,3,5
+COMPLETION 10000100 class=1606 completion_to_t=3,6,7,5,0,2,1,4
+COMPLETION 10000101 class=4755 completion_to_t=6,0,2,3,7,5,1,4
+COMPLETION 10000110 class=1463 completion_to_t=3,6,7,5,0,1,2,4
+COMPLETION 10000111 class=5172 completion_to_t=1,3,6,7,0,5,2,4
+COMPLETION 10001000 class=2220 completion_to_t=2,7,1,4,3,6,5,0
+COMPLETION 10001001 class=4124 completion_to_t=6,2,7,1,4,0,3,5
+COMPLETION 10001010 class=2309 completion_to_t=1,2,4,3,6,7,5,0
+COMPLETION 10001011 class=5029 completion_to_t=6,7,0,1,2,4,3,5
+COMPLETION 10001100 class=4102 completion_to_t=6,0,2,1,3,7,4,5
+COMPLETION 10001101 class=4085 completion_to_t=6,0,2,1,3,7,4,5
+COMPLETION 10001110 class=6763 completion_to_t=6,0,1,2,3,7,4,5
+COMPLETION 10001111 class=6746 completion_to_t=6,0,1,2,3,7,4,5
+COMPLETION 10010000 class=2228 completion_to_t=6,4,5,0,2,1,3,7
+COMPLETION 10010001 class=4423 completion_to_t=6,0,2,1,4,3,7,5
+COMPLETION 10010010 class=3452 completion_to_t=1,6,4,7,5,0,2,3
+COMPLETION 10010011 class=6536 completion_to_t=0,1,6,2,4,3,7,5
+COMPLETION 10010100 class=1520 completion_to_t=6,5,0,2,1,3,4,7
+COMPLETION 10010101 class=3641 completion_to_t=6,0,2,1,3,4,7,5
+COMPLETION 10010110 class=1481 completion_to_t=3,6,7,5,0,1,2,4
+COMPLETION 10010111 class=6413 completion_to_t=6,0,1,2,3,4,7,5
+COMPLETION 10011000 class=1527 completion_to_t=4,6,5,0,2,1,3,7
+COMPLETION 10011001 class=5163 completion_to_t=6,0,2,1,4,3,7,5
+COMPLETION 10011010 class=830 completion_to_t=1,4,3,6,7,5,0,2
+COMPLETION 10011011 class=4750 completion_to_t=1,4,6,0,2,3,7,5
+COMPLETION 10011100 class=1536 completion_to_t=5,0,2,1,3,4,6,7
+COMPLETION 10011101 class=1456 completion_to_t=0,2,1,3,4,6,7,5
+COMPLETION 10011110 class=1618 completion_to_t=0,1,2,3,4,6,7,5
+COMPLETION 10011111 class=1599 completion_to_t=0,1,2,3,4,6,7,5
+COMPLETION 10100000 class=4141 completion_to_t=3,5,6,0,2,7,1,4
+COMPLETION 10100001 class=2317 completion_to_t=6,2,7,4,0,3,5,1
+COMPLETION 10100010 class=5047 completion_to_t=1,3,6,7,4,5,0,2
+COMPLETION 10100011 class=6772 completion_to_t=1,6,7,4,0,3,5,2
+COMPLETION 10100100 class=4124 completion_to_t=3,5,6,0,2,7,1,4
+COMPLETION 10100101 class=5029 completion_to_t=3,6,7,0,5,2,1,4
+COMPLETION 10100110 class=4085 completion_to_t=3,7,5,0,1,6,2,4
+COMPLETION 10100111 class=6746 completion_to_t=3,7,0,5,1,6,2,4
+COMPLETION 10101000 class=2312 completion_to_t=2,7,1,4,3,5,6,0
+COMPLETION 10101001 class=4141 completion_to_t=6,2,7,1,4,0,3,5
+COMPLETION 10101010 class=2226 completion_to_t=7,4,5,0,1,2,3,6
+COMPLETION 10101011 class=2317 completion_to_t=7,4,0,5,1,6,2,3
+COMPLETION 10101100 class=1627 completion_to_t=2,3,7,4,5,6,0,1
+COMPLETION 10101101 class=5047 completion_to_t=3,6,7,0,5,2,1,4
+COMPLETION 10101110 class=1519 completion_to_t=7,5,0,1,2,3,4,6
+COMPLETION 10101111 class=6772 completion_to_t=3,7,0,5,1,6,2,4
+COMPLETION 10110000 class=2312 completion_to_t=5,6,0,2,1,4,3,7
+COMPLETION 10110001 class=2226 completion_to_t=6,2,4,7,0,5,1,3
+COMPLETION 10110010 class=1627 completion_to_t=5,1,6,2,4,3,7,0
+COMPLETION 10110011 class=1519 completion_to_t=6,4,7,0,5,1,2,3
+COMPLETION 10110100 class=2220 completion_to_t=5,6,0,2,1,3,4,7
+COMPLETION 10110101 class=2309 completion_to_t=0,5,2,1,3,6,4,7
+COMPLETION 10110110 class=4102 completion_to_t=3,7,5,0,1,6,2,4
+COMPLETION 10110111 class=6763 completion_to_t=3,7,0,5,1,6,2,4
+COMPLETION 10111000 class=3937 completion_to_t=2,4,3,5,6,7,0,1
+COMPLETION 10111001 class=2313 completion_to_t=4,6,7,0,5,2,1,3
+COMPLETION 10111010 class=1526 completion_to_t=4,7,5,0,1,2,3,6
+COMPLETION 10111011 class=2221 completion_to_t=4,6,7,0,5,1,2,3
+COMPLETION 10111100 class=1525 completion_to_t=2,3,4,7,5,0,1,6
+COMPLETION 10111101 class=2217 completion_to_t=0,5,2,1,3,4,6,7
+COMPLETION 10111110 class=1539 completion_to_t=7,5,0,1,2,3,4,6
+COMPLETION 10111111 class=1523 completion_to_t=0,1,2,3,4,7,5,6
+COMPLETION 11000000 class=2227 completion_to_t=6,4,5,0,2,1,3,7
+COMPLETION 11000001 class=6553 completion_to_t=3,6,0,5,2,7,1,4
+COMPLETION 11000010 class=4110 completion_to_t=1,3,6,5,7,4,0,2
+COMPLETION 11000011 class=6811 completion_to_t=1,6,7,4,0,3,5,2
+COMPLETION 11000100 class=3890 completion_to_t=3,6,5,0,2,7,1,4
+COMPLETION 11000101 class=6537 completion_to_t=3,6,0,5,2,7,1,4
+COMPLETION 11000110 class=5282 completion_to_t=3,6,5,0,1,2,7,4
+COMPLETION 11000111 class=4721 completion_to_t=0,1,3,6,5,2,7,4
+COMPLETION 11001000 class=1525 completion_to_t=4,6,5,0,2,1,3,7
+COMPLETION 11001001 class=1627 completion_to_t=4,6,0,5,2,7,1,3
+COMPLETION 11001010 class=2217 completion_to_t=1,2,4,3,6,5,7,0
+COMPLETION 11001011 class=5047 completion_to_t=6,7,0,1,2,4,3,5
+COMPLETION 11001100 class=1539 completion_to_t=0,2,1,3,4,6,5,7
+COMPLETION 11001101 class=1519 completion_to_t=0,2,1,3,4,6,5,7
+COMPLETION 11001110 class=1523 completion_to_t=1,3,4,6,5,0,2,7
+COMPLETION 11001111 class=6772 completion_to_t=6,0,1,2,3,7,4,5
+COMPLETION 11010000 class=2208 completion_to_t=6,4,5,0,2,1,3,7
+COMPLETION 11010001 class=4452 completion_to_t=6,0,2,1,4,3,5,7
+COMPLETION 11010010 class=3813 completion_to_t=1,6,4,5,0,2,3,7
+COMPLETION 11010011 class=6623 completion_to_t=0,1,6,2,4,3,5,7
+COMPLETION 11010100 class=1504 completion_to_t=6,5,0,2,1,3,4,7
+COMPLETION 11010101 class=3670 completion_to_t=6,0,2,1,3,4,5,7
+COMPLETION 11010110 class=5197 completion_to_t=3,6,5,0,1,2,4,7
+COMPLETION 11010111 class=4803 completion_to_t=0,1,3,6,5,2,4,7
+COMPLETION 11011000 class=1509 completion_to_t=4,6,5,0,2,1,3,7
+COMPLETION 11011001 class=5192 completion_to_t=6,0,2,1,4,3,5,7
+COMPLETION 11011010 class=3672 completion_to_t=1,4,6,5,0,2,3,7
+COMPLETION 11011011 class=4806 completion_to_t=1,4,6,0,2,3,5,7
+COMPLETION 11011100 class=1533 completion_to_t=0,2,1,3,4,6,5,7
+COMPLETION 11011101 class=1497 completion_to_t=0,2,1,3,4,6,5,7
+COMPLETION 11011110 class=1506 completion_to_t=1,3,4,6,5,0,2,7
+COMPLETION 11011111 class=3666 completion_to_t=0,1,3,4,6,5,2,7
+COMPLETION 11100000 class=2320 completion_to_t=5,6,0,2,1,4,3,7
+COMPLETION 11100001 class=4181 completion_to_t=6,4,0,3,5,2,7,1
+COMPLETION 11100010 class=6773 completion_to_t=1,3,5,6,7,4,0,2
+COMPLETION 11100011 class=6877 completion_to_t=1,6,7,4,0,3,5,2
+COMPLETION 11100100 class=3918 completion_to_t=3,5,6,0,2,7,1,4
+COMPLETION 11100101 class=4419 completion_to_t=0,3,5,6,2,7,1,4
+COMPLETION 11100110 class=4943 completion_to_t=5,0,1,3,6,2,7,4
+COMPLETION 11100111 class=5740 completion_to_t=0,3,5,1,6,2,7,4
+COMPLETION 11101000 class=3937 completion_to_t=4,5,6,2,7,0,1,3
+COMPLETION 11101001 class=2312 completion_to_t=4,0,3,5,6,2,7,1
+COMPLETION 11101010 class=2313 completion_to_t=5,7,0,1,2,4,3,6
+COMPLETION 11101011 class=4141 completion_to_t=7,4,0,3,5,1,6,2
+COMPLETION 11101100 class=1526 completion_to_t=5,0,2,1,3,4,6,7
+COMPLETION 11101101 class=2226 completion_to_t=0,5,2,1,3,4,6,7
+COMPLETION 11101110 class=2221 completion_to_t=5,7,0,1,2,3,4,6
+COMPLETION 11101111 class=2317 completion_to_t=0,5,1,2,3,7,4,6
+COMPLETION 11110000 class=2295 completion_to_t=5,6,0,2,1,4,3,7
+COMPLETION 11110001 class=6789 completion_to_t=6,0,5,2,1,4,3,7
+COMPLETION 11110010 class=4921 completion_to_t=5,1,6,4,0,2,3,7
+COMPLETION 11110011 class=5251 completion_to_t=4,0,5,1,6,2,3,7
+COMPLETION 11110100 class=2203 completion_to_t=5,6,0,2,1,3,4,7
+COMPLETION 11110101 class=2290 completion_to_t=0,5,2,1,3,6,4,7
+COMPLETION 11110110 class=4886 completion_to_t=5,0,1,3,6,2,4,7
+COMPLETION 11110111 class=5713 completion_to_t=0,3,5,1,6,2,4,7
+COMPLETION 11111000 class=3674 completion_to_t=4,5,0,2,1,3,6,7
+COMPLETION 11111001 class=3814 completion_to_t=4,0,5,2,1,3,6,7
+COMPLETION 11111010 class=4808 completion_to_t=4,5,0,1,3,6,2,7
+COMPLETION 11111011 class=6624 completion_to_t=1,4,0,3,5,6,2,7
+COMPLETION 11111100 class=1500 completion_to_t=5,0,2,1,3,4,6,7
+COMPLETION 11111101 class=2198 completion_to_t=0,5,2,1,3,4,6,7
+COMPLETION 11111110 class=5188 completion_to_t=0,1,3,4,5,6,2,7
+COMPLETION 11111111 class=4448 completion_to_t=0,1,3,4,5,6,2,7
