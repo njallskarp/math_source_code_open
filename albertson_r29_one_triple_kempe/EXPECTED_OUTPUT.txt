@@ -1,0 +1,14 @@
+parameters=k29,n58,Z29=8281,deletion_budget=447120
+rows=m838:E815:X52;m839:E814:X54;m840:E813:X56
+degree28_min=m838:6,m839:4,m840:2
+two_block=q+p<=406
+cross_edge_min=m838:380,m839:379,m840:378
+kempe_p_max=m838:216,m839:216,m840:217
+no_TK29=Delta(H[N_G(v)])>=2,therefore_p>=2
+excess_histograms=m838:275826,m839:376859,m840:512081
+deletion_sum_min=m838:443312,m839:445104,m840:446896
+deletion_minimizers=m838:27,m839:271,m840:1575
+required_sum_lift=m838:3809,m839:2017,m840:225
+formal_scalar_profiles=m838:10368,m839:10745,m840:11122
+gate_decision=pause_r29_no_row_closed_and_profiles_gt_30
+certificate_sha256=46685a7f3489ea2fc4d58b5e011c0895981c877d0261b3b498407caa6664def2
