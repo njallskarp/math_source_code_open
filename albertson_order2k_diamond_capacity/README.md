@@ -26,6 +26,11 @@ step: a unicyclic overlay theorem for the endpoint deletion factors, an exact
 characterization of singleton Hall availability by a six-vertex exchange,
 and a sharp degree-excess bound on the number of such short exchanges.
 
+[`TWO_LEAF_ESCAPE.md`](TWO_LEAF_ESCAPE.md) sharpens the smallest unresolved
+Hall obstruction.  In a subdivision-free critical graph, a two-leaf
+same-singleton obstruction forces an induced alternating rectangle and every
+factor at the unavailable endpoint must escape through a third pair.
+
 ## Setup
 
 Let `G` be a `k`-vertex-critical graph on `2k` vertices, let
