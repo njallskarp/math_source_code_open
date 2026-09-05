@@ -1,0 +1,5 @@
+PASS independent_balance k=0 delta=0 X=96 P=231 Q=294
+outside_triangles=red318,blue455 targets=red360,blue413 discrepancy=red-42,blue42
+capacity_maxima=core_edge12,independent_pair_miss8,cell_core_edge3,independent_triple_miss3
+K5_by_outside=0:0,0;1:0,0;2:0,0;3:181,42;4:123,321;5:31,168
+STATUS VERIFIED C13 OUTSIDE-TRIANGLE BALANCE OBSTRUCTION
