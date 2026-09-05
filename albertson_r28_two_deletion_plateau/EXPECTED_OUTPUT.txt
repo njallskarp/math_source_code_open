@@ -1,0 +1,16 @@
+PASS Albertson r=28 two-deletion plateau
+denominator=1275 target_numerator=9048676
+row=768 profile=0^52,1^1,25^2 baseline=9026658 penalty=[21468,21470] sum=[9005188,9005190] bound=7063 reason=24<=e_01<=26
+row=768 profile=0^52,2^1,24^1,25^1 baseline=9026500 penalty=[21465,21467] sum=[9005033,9005035] bound=7063 reason=23<=e_02<=25
+row=768 profile=0^51,1^2,24^1,25^1 baseline=9026449 penalty=[21438,21443] sum=[9005006,9005011] bound=7063 reason=47<=e_01+e_11<=52
+row=769 profile=0^52,3^1,25^2 baseline=9066280 penalty=[20752,20752] sum=[9045528,9045528] bound=7095 reason=0<=e_01<=0
+row=769 profile=0^52,4^1,24^1,25^1 baseline=9066122 penalty=[20749,20749] sum=[9045373,9045373] bound=7095 reason=0<=e_01<=0
+row=769 profile=0^51,1^1,2^1,25^2 baseline=9066280 penalty=[20752,20778] sum=[9045502,9045528] bound=7095 reason=0<=e_01<=26
+row=769 profile=0^51,1^1,3^1,24^1,25^1 baseline=9066122 penalty=[20749,20775] sum=[9045347,9045373] bound=7095 reason=0<=e_01<=26
+row=769 profile=0^51,2^2,24^1,25^1 baseline=9066071 penalty=[20749,20749] sum=[9045322,9045322] bound=7095 reason=0<=e_01<=0
+row=769 profile=0^50,1^3,25^2 baseline=9066329 penalty=[20752,20830] sum=[9045499,9045577] bound=7095 reason=0<=e_01<=78
+row=769 profile=0^50,1^2,2^1,24^1,25^1 baseline=9066121 penalty=[20749,20801] sum=[9045320,9045372] bound=7095 reason=0<=e_01<=52
+row=769 profile=0^49,1^4,24^1,25^1 baseline=9066168 penalty=[20749,20853] sum=[9045315,9045419] bound=7095 reason=0<=e_01<=104
+row=768 universal_two_deletion_bound=7063 optimistic_target_shortfall=43486
+row=769 universal_two_deletion_bound=7095 optimistic_target_shortfall=3099
+certificate_sha256=e286957fee871389315da7998a05717cc710cda46d0dbddb412968c1ceb250c1

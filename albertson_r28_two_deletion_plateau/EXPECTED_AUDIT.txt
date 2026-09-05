@@ -1,0 +1,3 @@
+PASS independent type-count audit
+cases=11 frozen_F53_entries=22 denominator=1275
+bounds=768:7063,769:7095
