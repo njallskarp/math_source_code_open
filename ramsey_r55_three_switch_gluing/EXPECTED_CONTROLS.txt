@@ -1,0 +1,2 @@
+Positive exact replay: PASS
+Damaged certificates rejected: 13/13
