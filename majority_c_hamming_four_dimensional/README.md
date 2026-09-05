@@ -175,6 +175,20 @@ partition has exactly one nonlinear part of that forced type and all other
 parts are line `K_s`s.  See
 [GLOBAL_NONLINEAR_CLASS_BOUND.md](GLOBAL_NONLINEAR_CLASS_BOUND.md).
 
+At the equality boundary `r*u*p=2*s-2`, layer divisibility completely
+classifies when that forced prism can repair the carry.  A quotient-optimal
+partition exists exactly in the two cases
+
+```text
+p=2 and r*u=s-1,  or  p=s-1 and r*u=2.
+```
+
+Both cases have uniform constructions for all `m,n>=s` with the prescribed
+positive residues.  Every other equality-boundary pattern is impossible:
+each orientation of the unique `K_(s-1) square K_2` leaves some thin layer
+with a nonzero remainder modulo `s`.  See
+[FIRST_CARRY_EQUALITY_CLASSIFICATION.md](FIRST_CARRY_EQUALITY_CLASSIFICATION.md).
+
 A transversal alignment of the larger rectangle stars now eliminates every
 modular carry as soon as all three minor sides are at least `s`. Precisely,
 every box
@@ -226,6 +240,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_cross_boundary_222.py
 ruby verify_cross_boundary_222_independent.rb
 PYTHONDONTWRITEBYTECODE=1 python3 verify_global_nonlinear_class_bound.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_global_nonlinear_class_bound.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_first_carry_equality_classification.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_first_carry_equality_classification.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_specialist_star_reduction.py
 ```

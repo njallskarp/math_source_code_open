@@ -1,0 +1,12 @@
+equality-boundary patterns through s=1000: 44599
+constructive/excluded patterns: 9046/35553
+layer-divisible ordered prism orientations: 18096
+orientation certificate SHA-256: aa96281589be20d4effe1a10d99ad9e36f4a8b237909d5fd37850b6c8dc402e0
+constructed instances through s=18: 332
+short/long thin-factor instances: 204/128
+constructed cells checked: 768848
+constructed parts checked: 56600
+induced degrees checked: 768848
+construction certificate SHA-256: 15e848d5197900791712d71ce8380fcabc33fd91447e10ca432929e3b989357d
+mutated/invalid inputs rejected: 5
+all exact checks passed
