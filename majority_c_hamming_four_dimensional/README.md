@@ -213,6 +213,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_balanced_stars_thin.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_first_carry_separation.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary_222.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_cross_boundary_222.py
+ruby verify_cross_boundary_222_independent.rb
 PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_specialist_star_reduction.py
 ```
@@ -303,7 +304,10 @@ The first-carry classification checker reports the compact expected output in
 
 The `(2,2,2)` cross-boundary checker reports the compact expected output in
 `expected_cross_boundary_222_stdout.txt`; its five unit tests are in
-`test_cross_boundary_222.py`.
+`test_cross_boundary_222.py`.  The separate Ruby owner-map audit reports the
+four lines in `expected_cross_boundary_222_independent_ruby_stdout.txt`.  It
+checks the base certificate and 250,000 count identities, not the universal
+stripping or Hamming upper-bound arguments.
 
 The all-large three-box checker reports the compact expected output in
 `expected_all_large_three_box_stdout.txt`.

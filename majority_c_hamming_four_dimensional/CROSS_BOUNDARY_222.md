@@ -196,7 +196,11 @@ is search-relative, not a priority claim.
 
 The accompanying standard-library CPython checker constructs every part,
 checks cell ownership and Hamming adjacency directly, audits the formulas and
-Hamming thresholds, and rejects certificate mutations.  These finite checks
-corroborate the explicit construction; the universal theorems follow from the
-displayed stripping and lifting arguments together with the cited sharp thin
-and near-triangle bounds.
+Hamming thresholds, and rejects certificate mutations.  A separately written
+Ruby owner-map audit reconstructs the 98-cell base certificate directly from
+the coordinate predicates and checks the two counting identities on 250,000
+parameter pairs.  Its scope is deliberately narrower than the Python checker:
+it does not check the Hamming threshold or upper-bound prerequisites.  These
+finite checks corroborate the explicit construction; the universal theorems
+follow from the displayed stripping and lifting arguments together with the
+cited sharp thin and near-triangle bounds.

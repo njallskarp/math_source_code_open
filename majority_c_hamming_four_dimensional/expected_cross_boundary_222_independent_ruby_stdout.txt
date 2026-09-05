@@ -1,0 +1,4 @@
+ruby owner classes: 19
+ruby covered cells: 98
+ruby base certificate SHA-256: 00c016b2f78ad84d7ba067683bbc3cf5909746a41ec8eabeba69f29d65e7c0c3
+ruby formula instances: 250000
