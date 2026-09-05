@@ -1,0 +1,44 @@
+{
+  "category_counts": [
+    [
+      "parity_tetrahedron",
+      8
+    ],
+    [
+      "star_center",
+      8
+    ],
+    [
+      "star_leaf",
+      24
+    ],
+    [
+      "triangle_double",
+      24
+    ],
+    [
+      "triangle_heavy",
+      24
+    ]
+  ],
+  "qualifying_multiset_sha256": "2ada2c0b14a0cb3a3ba96a9dc3b06d969e30e4e6c1817fce23bec1d857a5a9c3",
+  "qualifying_multisets": 88,
+  "status": "PASS_ANTIPODAL_PAIR_DECOMPOSITION",
+  "support_counts": [
+    [
+      3,
+      0,
+      8
+    ],
+    [
+      4,
+      0,
+      2
+    ],
+    [
+      4,
+      3,
+      8
+    ]
+  ]
+}

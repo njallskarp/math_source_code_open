@@ -1,0 +1,46 @@
+{
+  "format": "r55-three-cube-mixed-orbits-v1",
+  "group_order": 48,
+  "orbits": [
+    {
+      "name": "triangle_heavy",
+      "representative": ["000", "000", "000", "011", "101"],
+      "support_size": 3,
+      "multiplicities": [3, 1, 1],
+      "stabilizer_order": 2,
+      "orbit_size": 24
+    },
+    {
+      "name": "star_center",
+      "representative": ["000", "000", "001", "010", "100"],
+      "support_size": 4,
+      "multiplicities": [2, 1, 1, 1],
+      "stabilizer_order": 6,
+      "orbit_size": 8
+    },
+    {
+      "name": "star_leaf",
+      "representative": ["000", "000", "001", "011", "101"],
+      "support_size": 4,
+      "multiplicities": [2, 1, 1, 1],
+      "stabilizer_order": 2,
+      "orbit_size": 24
+    },
+    {
+      "name": "triangle_double",
+      "representative": ["000", "000", "011", "011", "101"],
+      "support_size": 3,
+      "multiplicities": [2, 2, 1],
+      "stabilizer_order": 2,
+      "orbit_size": 24
+    },
+    {
+      "name": "parity_tetrahedron",
+      "representative": ["000", "000", "011", "101", "110"],
+      "support_size": 4,
+      "multiplicities": [2, 1, 1, 1],
+      "stabilizer_order": 6,
+      "orbit_size": 8
+    }
+  ]
+}
