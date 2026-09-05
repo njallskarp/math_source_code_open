@@ -1,0 +1,36 @@
+{
+  "asymptotic_constant": "39270/21779",
+  "bound": "sat(Q_d,Q_2) >= 39270*d*2^d/(21779*d+56761) for d>=6",
+  "edge_q5_facet_multiplicity": 5,
+  "edge_square_multiplicity": 5,
+  "external_q6_squarefree_edge_cap": 132,
+  "finite_bound_cross_difference": "714*(d-1)",
+  "global_slack_coefficient": "661/22440",
+  "improvement_over_39984_22175": "714/482949325",
+  "live_facet_sets_checked": 4096,
+  "q6_deficit_per_edge": "1/11",
+  "q6_edges": 192,
+  "q6_q3_subcubes": 160,
+  "q6_q5_facets": 12,
+  "q6_slack_edge_ratio": "661/1122",
+  "q6_squares": 240,
+  "q6_vertices": 64,
+  "support_audit_sha256": "d9a140da23564a878779b98852375f8356485641fb66d0fd4bdcfac3096fddff",
+  "support_capacity_max_by_live_count": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 1,
+    "6": 6,
+    "7": 11,
+    "8": 20,
+    "9": 36,
+    "10": 64,
+    "11": 112,
+    "12": 192
+  }
+}
+certificate_sha256=45cf31bb1694c4e0511aafefed7adc81bbaf304bb49d0c433f24e70b27dc8a6e
+status=PASS
