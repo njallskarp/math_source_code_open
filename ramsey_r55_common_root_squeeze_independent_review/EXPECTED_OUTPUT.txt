@@ -1,0 +1,8 @@
+PASS elementary R(3,4)<=9 degree/parity endgame; forced red degree 3
+PASS literal 11-vertex R(5,5) fixture attains common-root cap eight; red edges 28
+PASS exact nonnegative-slack decomposition of strengthened paired inequality
+PASS seven inherited patterns checked; unique survivor A=(4,2,8), B=(4,8,2), D=16
+PASS equality forces U edge, U-to-P/Q/W degrees 8/8/2, and two 60-edge rooted sides
+PASS k=11 and k=12 central aggregate identities both exact
+COVERAGE patterns=7 rooted_side_edges=60
+SCOPE accepts new lemma/application conditional on imported height-2509/2557 branch data; no graph existence claim
