@@ -1,0 +1,47 @@
+{
+  "base_case": {
+    "exact_colours": 13,
+    "full_vertices_checked": 200,
+    "lifted_owner_sha256": "83160df4d178faba38bb5c19f317218793837acba6671c02eebfe3ddb17bdfb8",
+    "line_lift_ceiling": 12,
+    "minimum_same_colour_degree": 6,
+    "nonlinear_minor_cells": 4
+  },
+  "boundary_identity_audit": {
+    "accumulated_positive_deficit": 16350442,
+    "max_s": 128,
+    "positive_residue_pairs": 653932,
+    "sha256": "64bb4fa156e5824ddb387ba5a6bbc1ee70570a8c91eecced6e300e6d04464153",
+    "states": 2796032
+  },
+  "flow_rectangle_audit": {
+    "boxes": 6535,
+    "cells": 4203452,
+    "large_parts": 29144,
+    "max_s": 16,
+    "parts": 318068
+  },
+  "hamming_family_audit": {
+    "classes": 2408,
+    "max_s": 10000,
+    "reconstructed": 16,
+    "sha256": "c799b1f8c08b07b5b07564d316157ad73673e0a53c7425430e2b5bc2fe3eaef7",
+    "symbolic": 9998
+  },
+  "shell_bound_audit": {
+    "equality_profiles": 104,
+    "max_s": 28,
+    "profile_digest_u64": 2595089701606891372,
+    "profiles": 2281201
+  },
+  "thin_owner_audit": {
+    "boxes": 3345,
+    "cells": 2442231,
+    "max_s": 10,
+    "parts": 269107,
+    "positive_deficit_boxes": 1306
+  },
+  "verdict": "ACCEPT"
+}
+certificate_sha256=1cea8afe003a4505d49d030886bbbc7a95f08067c021bd228cad4e3dc46534c2
+status=PASS
