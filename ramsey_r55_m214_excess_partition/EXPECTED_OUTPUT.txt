@@ -1,0 +1,22 @@
+generate_partition.py:
+{"a_order_surplus_sum_max":3072,"a_order_weakened_variables_max":58,"added_rows":638,"formula_bytes":168156113,"formula_lines":1975602,"formula_sha256":"287b7523b52071202d82a479912bf59a8caac9ae1c58bace7e05aba77ac77f4f","global_constraint_ids":[1975638,1975639],"input_internal_constraints":1975091,"one_hot_constraint_ids":[1975729,1975728],"output_internal_constraints":1975729,"output_rows":1975601,"output_variables":13341,"pattern_names":["E_left_8","E_right_8","E_left_7_7","E_split_7_7","E_right_7_7","C_left_8","C_right_8","C_left_7_7","C_split_7_7","C_right_7_7"],"proof_bytes":104747,"proof_lines":1281,"proof_sha256":"168599027b1ab906e9c20839d72ab78156309086a8ef0945d73a13e68329241d"}
+
+check_partition.cpp:
+PASS streams copied_rows=1974963 appended_rows=638 proof_lines=1281 red/rup/pol=465/1/172
+PASS abstract_cover candidate_placements=946 valid_ordered_states=10 patterns=10 multiplicity=1
+PASS independent_partition_check
+
+VeriPB 3.0.2:
+Running VeriPB version 3.0.2
+s VERIFIED OUTPUT EQUISATISFIABLE
+s VERIFIED NO CONCLUSION
+
+SHA-256:
+287b7523b52071202d82a479912bf59a8caac9ae1c58bace7e05aba77ac77f4f  /tmp/r55_m214_excess_partition.opb
+168599027b1ab906e9c20839d72ab78156309086a8ef0945d73a13e68329241d  /tmp/r55_m214_excess_partition.pbp
+
+Negative fixtures:
+PASS negative_fixtures formula=one_hot_rhs_2 proof=u0_witness_1
+C++ checker: nonzero exit, FAIL appended row mismatch at index 637
+VeriPB: nonzero exit, first changed witness rejected
+

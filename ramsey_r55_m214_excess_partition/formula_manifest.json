@@ -1,0 +1,33 @@
+{
+  "input": {
+    "equalities": 128,
+    "rows": 1974963,
+    "sha256": "d621bf525bd6e3525ef5f9ccc741dc01c66a07f39b3db4c5e63741190d75eebc",
+    "variables": 13244
+  },
+  "output": {
+    "bytes": 168156113,
+    "equalities": 128,
+    "lines": 1975602,
+    "rows": 1975601,
+    "sha256": "287b7523b52071202d82a479912bf59a8caac9ae1c58bace7e05aba77ac77f4f",
+    "variables": 13341
+  },
+  "proof": {
+    "bytes": 104747,
+    "commands": {
+      "pol": 172,
+      "red": 465,
+      "rup": 1
+    },
+    "format": "VeriPB 3.0",
+    "lines": 1281,
+    "sha256": "168599027b1ab906e9c20839d72ab78156309086a8ef0945d73a13e68329241d"
+  },
+  "transformation": {
+    "added_rows": 638,
+    "class_bits": 1,
+    "pattern_selectors": 10,
+    "threshold_bits": 86
+  }
+}
