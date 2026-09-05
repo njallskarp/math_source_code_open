@@ -1,0 +1,4 @@
+status=VERIFIED_AGGREGATE_COUNTEREXAMPLE
+core_independent_fours=39 transversals=3459 rows=28 types=24 k=0
+anchor_incidence_A=45 B=54 internal_A=16 B=7 O=37
+pairwise_full_A_cap=15 required_A_edges=16 gap=1

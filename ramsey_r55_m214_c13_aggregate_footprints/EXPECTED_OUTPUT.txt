@@ -1,0 +1,1 @@
+{"A_pairwise_compatible_edge_cap":15,"A_required_edges":16,"certificate_sha256":"8b8454e0924238e08561cd2d456b5f15940b9e45bfc1af5a46e3c172657d734f","core_independent_fours":39,"footprint_rows":28,"k":0,"nonzero_row_types":24,"status":"VERIFIED AGGREGATE COUNTEREXAMPLE","transversal_masks":3459}

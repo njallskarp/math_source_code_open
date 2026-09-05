@@ -1,0 +1,21 @@
+{
+  "certificate": {
+    "nonzero_row_types": 24,
+    "rows": 28,
+    "sha256": "8b8454e0924238e08561cd2d456b5f15940b9e45bfc1af5a46e3c172657d734f"
+  },
+  "generated_lp": {
+    "binary_variables": 27,
+    "bytes": 4829321,
+    "constraints": 64,
+    "general_integer_variables": 20766,
+    "row_variables": 20754,
+    "sha256": "6f28eb0951cb87d3c25ddabf1620fdedfe4ea243a3743f5183e355bb097d0c40"
+  },
+  "solver": {
+    "result": "optimal solution found; objective k=0",
+    "soplex": "8.0.2",
+    "version": "SCIP 10.0.3"
+  },
+  "status": "DIRECTLY VERIFIED AGGREGATE WITNESS; NOT A GRAPH COMPLETION"
+}
