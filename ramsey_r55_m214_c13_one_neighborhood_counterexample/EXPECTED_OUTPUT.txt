@@ -1,0 +1,6 @@
+PASS c13_one_neighborhood_counterexample n=21 edges=100 h_edges=87 partner_degree=13 red_triangles=114 blue_independent_4sets=94
+degree_sequence=13,12,11,10,10,10,10,10,10,10,10,9,9,9,9,9,8,8,8,8,7
+graph6=Ts`?XGRQR@B`Kcqk\Ve~kPpq`N\`mOjnJ~}?
+edge_sha256=df51657665a58646c8cd53f74bf723b5e000b8e39d1d063a88347aacaab55160
+PASS cpp_c13_one_neighborhood_counterexample n=21 edges=100 partner_degree=13 red_triangles=114 blue_independent_4sets=94
+degree_sequence=13,12,11,10,10,10,10,10,10,10,10,9,9,9,9,9,8,8,8,8,7
