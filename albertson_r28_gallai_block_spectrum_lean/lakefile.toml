@@ -1,0 +1,11 @@
+name = "albertson_gallai_block_spectrum"
+version = "0.1.0"
+defaultTargets = ["GallaiBlockSpectrum"]
+
+[[lean_lib]]
+name = "GallaiBlockSpectrum"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.33.1"
