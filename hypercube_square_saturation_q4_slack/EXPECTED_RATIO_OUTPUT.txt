@@ -1,0 +1,20 @@
+q3_squarefree_patterns=2902
+q3_positive_objective_patterns=48
+q3_positive_objective_signature=(edges=7,twice_sigma=0,lambda=14)
+facet_gluing_nodes=140515
+facet_gluing_pruned=120236
+facet_gluing_violations=0
+edge_branch_nodes=9455
+edge_branch_pruned=4340
+edge_branch_violations=0
+witness_mask=0x2313ff54
+witness_edges=17
+witness_active_squares=15
+witness_pairs=3
+witness_slack=3
+witness_ratio=3/17
+certificate_sha256=a53316b56c9d8444c63ae565573a3bfbb3359c83978ecc2558e93162ca8c51de
+bound=sat(Q_d,Q_2) >= 119*d*2^d/(66*d+172) for d>=4
+asymptotic_constant=119/66
+improvement_over_7/4=7/132
+status=PASS
