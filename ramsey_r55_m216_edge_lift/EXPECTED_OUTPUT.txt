@@ -1,0 +1,9 @@
+PASS M=216 profile 19^2 20^5 21^36; literal seven-vertex core and 19 signature cells
+PASS 184 aggregate central-edge variables (138 nonzero), exact boxes, degrees, and 447 total edges
+PASS hard exceptional local profiles: 85/115, 85/115, 92/107, 93/107, 93/107, 93/107, 92/107
+PASS all 262 root-union capacities; exceptional ordered-side maximum 14
+PASS 3828 central-cell lifting inequalities (2230 genuinely external) and 310 fixed-vertex inequalities; minimum slack 0
+PASS literal cell-pair coefficient uniformity checked 2234906 times
+PASS four altered certificates rejected
+LIMITATION external-root lifting plus the rooted order-15/16 density result does not exclude M=216
+SCOPE exact aggregate counts, not individual central edges, a 43-vertex graph, or profile feasibility
