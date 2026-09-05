@@ -1,0 +1,13 @@
+independent R(5,5) creation-sensitive certificate audit: PASS
+seed: red_edges=450 degrees=20^3+21^40 profiles=(92,107)^3 old_K5=176R+177B mixed_old_K5=0
+visibility: visible=656 invisible=124
+full mixed formula: visited=304590 rows=31153 width3=28 width6=31125 one_hole=2556
+selected certificate: old=96 mixed=224 one_hole=224 triggers=99
+identity: scale=10000 old_weight=383172 box_penalty=1464 numerator=381708 bound=95427/2500 integer_lower_bound=39
+residual: min=0 max=17924 sha256=18e606baeebec7211f90d78a7c1858d834fbc6c51b4a39b0a117d4fc06acbbe7
+proved weaker hypothesis set: degrees=3,4,5,6,7,8,9,10,13,17,39,40,41,42 profiles=0B,0R,1B,1R,2R
+truth_table_cases=8320 tamper_controls=3/3
+old_K5_sha256=8e0a7ff0367562efb040f8d3433cfd95cbdc0a767102f9f9eee64e269cf3285d
+full_mixed_formula_sha256=4cd187fd9d330dd49cac8caae96cbd94e5a0e4d67af9fd9e566bf23409fb6ec9
+seed_sha256=9f4bd3853e985697f7fc496c0544f9d800235c2ece4a25cb718a2c3181559916
+certificate_sha256=50129540618fb010e8421778a3ca1f13b836bb820be1b52bc7e3577bb0b6c696
