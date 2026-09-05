@@ -1,0 +1,7 @@
+{"bytes":7843,"rows":60,"sha256":"ba43f6364de0a6f8807f278bddb618370b883fb881239f4265372b58240e7f37","types_per_codegree":12}
+PASS anchor_pair_force incident_sum=200 central_sum_lower=122 max_if_all_central_at_most_8=198 forced_codegree=9
+PASS local_double_count graphs=33867 rooted_checks=202013
+PASS e_neighbour_orbits subsets=1716 orbits=12
+PASS pair_types rows=60 sha256=ba43f6364de0a6f8807f278bddb618370b883fb881239f4265372b58240e7f37
+PASS independent_pair_quotient rows=60 e_subsets=1716 e_orbits=12 forced_codegree=9 graphs=33867 rooted_checks=202013
+PASS pair_checker_controls valid=accepted missing/changed/duplicate=rejected
