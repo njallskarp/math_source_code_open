@@ -1,0 +1,8 @@
+audited profiles: 390000
+range: 3 <= g <= 80, 1 <= a <= 5000
+exact bound: 4b <= a + 2 floor(a/(g-1))
+g=3 density: 2/3
+g=5 density: 8/11
+g=6 density: 20/27
+profile stream sha256: ade752969b8755ce8128a6dc1434000347cdf559c113a2e2d957a6e6bb2ac63c
+all exact checks passed
