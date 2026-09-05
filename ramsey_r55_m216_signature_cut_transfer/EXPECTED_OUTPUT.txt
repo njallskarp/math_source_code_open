@@ -1,0 +1,8 @@
+PASS M=216 core 901619 has no direct or color-reversed height-2715 exceptional template
+PASS 36 named central vertices, 321 red central edges, all 43 exact degrees, and 447 total edges
+PASS all 165 cell-pair quotas and 263 exceptional root-union capacities
+PASS hard exceptional local profiles: 85/115, 85/115, 92/107, 93/107, 92/107, 93/107, 93/107
+PASS 7299 pointwise central lifting inequalities (4217 genuinely external), 322 fixed inequalities, and 1 density rows; minimum slack 0
+PASS four altered survivors rejected
+LIMITATION exceptional-core height-2715 cut plus pointwise exceptional-root lifting does not exclude M=216
+SCOPE not a Ramsey graph: 32 central hard-cap violations and 317/346 red/blue K5s
