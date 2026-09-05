@@ -71,12 +71,34 @@ requested by the independent reviews at Discovery Net heights 1821 and 1865:
 - `all_rows_eq_of_uniform_card_of_no_succ_transversal` proves, over arbitrary
   finite index and value types, that if `L` has at least `d+1` indices, every
   row on `L` has size `d`, and no `d+1` rows admit a transversal, then all rows
-  on `L` are equal.
+  on `L` are equal;
+- `card_eq_and_all_rows_eq_of_card_ge_of_no_succ_transversal` proves the
+  stronger form used after contraction: if every row has at least `d`
+  elements and no `d+1` rows admit a transversal, every row is forced to have
+  exactly `d` elements and all rows coincide.
 
 The proof applies Mathlib's finite-set Hall theorem. It formalizes exactly the
 uniform-row consequence used in the common-support branches of the reviewed
 two-clique arguments, but deliberately does not formalize their coloring,
-contraction, conformal-triangle, or topological-clique cases.
+conformal-triangle or topological-clique cases.
+
+`AlbertsonTwoContraction.lean` closes the next reviewed finite-set bridge:
+
+- `ContractedRow r p` represents the compatible classes after merging `p`
+  into one distinguished `Option.none` class and retaining outside points as
+  singleton `Option.some` classes;
+- `card_sub_one_le_card_contractedRow` proves that contracting a two-element
+  set loses at most one compatible class;
+- `eq_of_card_eq_of_two_contractedRows` proves that equal-cardinality rows
+  with identical signatures after two distinct pair contractions were equal
+  before contraction;
+- `all_rows_eq_of_two_contraction_obstructions` combines both modules: for a
+  family of equal `e`-element rows, the absence of an `e`-transversal after
+  each of two distinct pair contractions forces all original rows to agree.
+
+This is the complete abstract two-contraction rigidity step from the reviewed
+height-1849 argument. The incidence graph that supplies the rows and the
+subsequent coloring and subdivision deductions remain external.
 
 `SparseAffineSupport` records the slope, intercept, denominator, and two active
 integer endpoints of a rational supporting line. `certificate.json` is a compact
@@ -163,8 +185,9 @@ checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce2771
   two-clique profile, and height 1821 independently verifies that use and asks
   for a parametric statement. Height 1849 reuses the same consequence in a
   broader two-clique dichotomy, independently accepted at height 1865. The
-  new Hall module formalizes only this common-support kernel, not either full
-  coloring-or-subdivision dichotomy.
+  Hall and two-contraction modules formalize the common-support and
+  double-uniformity kernels, not either full coloring-or-subdivision
+  dichotomy.
 - Büngener and Kaufmann, [*Improving the Crossing Lemma by Characterizing
   Dense 2-Planar and 3-Planar Graphs*](https://arxiv.org/abs/2409.01733), state
   the uniform affine crossing estimates used as checker inputs.
@@ -207,11 +230,15 @@ that critical coloring excludes conformal triangles; those are explicit
 predicate hypotheses. It also does not formalize the height-2583 finite
 component classification or its subsequent profile counts.
 
-For the uniform-row module, Lean kernel-checks the finite-family implication
-from equal row cardinalities and the absence of a `d+1`-row system of distinct
-representatives to equality of every row. The only reported axioms are
+For the uniform-row module, Lean kernel-checks both the equal-cardinality and
+at-least-cardinality implications from the absence of a `d+1`-row system of
+distinct representatives to exact row size and equality of every row. The
+two-contraction module additionally checks the concrete `Option`-tagged
+contraction representation, its cardinality loss, and the complete deduction
+from two deficient contractions to equality of the original rows. The only
+reported axioms are
 `propext`, `Classical.choice`, and `Quot.sound`, inherited from Mathlib's Hall
-theorem and finite-set infrastructure. Translating `HasTransversalOn` into a
-matching in a particular complement-incidence graph is intentionally external,
-as are all Albertson normal-form, coloring, contraction, subdivision, and
-drawing-topology arguments.
+theorem and finite-set infrastructure. Translating a particular
+complement-incidence graph into `ContractedRow` and `HasTransversalOn` is
+intentionally external, as are all Albertson normal-form, coloring,
+subdivision, and drawing-topology arguments.

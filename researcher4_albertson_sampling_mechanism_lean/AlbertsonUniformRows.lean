@@ -88,6 +88,50 @@ theorem hasTransversalOn_of_card_eq_succ_of_ne
       _ ≤ (U.biUnion (fun x : {i // i ∈ S} ↦ N x.1)).card :=
         Finset.card_le_card (Finset.union_subset hNi hNj)
 
+/-- Hall kernel for the at-least-degree form used after contraction.  Among
+`d + 1` rows of size at least `d`, one row of size at least `d + 1` forces a
+transversal. -/
+theorem hasTransversalOn_of_card_eq_succ_of_card_ge_of_exists_card_ge_succ
+    {I A : Type*} [DecidableEq I] [DecidableEq A]
+    (N : I → Finset A) (d : ℕ) (S : Finset I)
+    (hS : S.card = d + 1)
+    (hcard : ∀ i ∈ S, d ≤ (N i).card)
+    {i : I} (hi : i ∈ S) (hiLarge : d + 1 ≤ (N i).card) :
+    HasTransversalOn N S := by
+  classical
+  rw [HasTransversalOn]
+  apply (Finset.all_card_le_biUnion_card_iff_exists_injective
+    (fun x : {i // i ∈ S} ↦ N x.1)).mp
+  intro U
+  by_cases hU : U = ∅
+  · simp [hU]
+  by_cases hUd : U.card ≤ d
+  · obtain ⟨x, hx⟩ := U.nonempty_iff_ne_empty.mpr hU
+    calc
+      U.card ≤ d := hUd
+      _ ≤ (N x.1).card := hcard x.1 x.2
+      _ ≤ (U.biUnion (fun y : {i // i ∈ S} ↦ N y.1)).card :=
+        Finset.card_le_card (Finset.subset_biUnion_of_mem
+          (fun y : {i // i ∈ S} ↦ N y.1) hx)
+  · have hUcard : U.card = d + 1 := by
+      have hle : U.card ≤ d + 1 := by
+        calc
+          U.card ≤ Fintype.card {i // i ∈ S} := Finset.card_le_univ U
+          _ = S.card := Fintype.card_coe S
+          _ = d + 1 := hS
+      omega
+    have hUuniv : U = Finset.univ := by
+      apply Finset.eq_univ_of_card
+      rw [hUcard, Fintype.card_coe, hS]
+    let ii : {x // x ∈ S} := ⟨i, hi⟩
+    calc
+      U.card = d + 1 := hUcard
+      _ ≤ (N i).card := hiLarge
+      _ ≤ (U.biUnion (fun x : {i // i ∈ S} ↦ N x.1)).card :=
+        Finset.card_le_card (Finset.subset_biUnion_of_mem
+          (fun x : {i // i ∈ S} ↦ N x.1)
+          (x := ii) (by rw [hUuniv]; exact Finset.mem_univ ii))
+
 /-- Uniform-row consequence of a matching-number obstruction.
 
 The hypothesis `hno` says that no `d + 1` rows inside `L` have a system of
@@ -132,7 +176,44 @@ theorem all_rows_eq_of_uniform_card_of_no_succ_transversal
   · exact hpS (Finset.mem_insert.mpr (Or.inr (Finset.mem_singleton_self j)))
   · exact hij
 
+/-- At-least-degree uniform-row rigidity.
+
+If `L` has at least `d + 1` indices, every row has at least `d` elements, and
+no `d + 1` rows admit a transversal, then every row has exactly `d` elements
+and all rows are equal.  This is the precise form used for contracted
+incidence rows in the reviewed Albertson argument. -/
+theorem card_eq_and_all_rows_eq_of_card_ge_of_no_succ_transversal
+    {I A : Type*} [DecidableEq I] [DecidableEq A]
+    (N : I → Finset A) (d : ℕ) (L : Finset I)
+    (hL : d + 1 ≤ L.card)
+    (hcard : ∀ i ∈ L, d ≤ (N i).card)
+    (hno : ∀ S : Finset I, S ⊆ L → S.card = d + 1 →
+      ¬ HasTransversalOn N S) :
+    (∀ i ∈ L, (N i).card = d) ∧
+      ∀ i ∈ L, ∀ j ∈ L, N i = N j := by
+  classical
+  have hexact : ∀ i ∈ L, (N i).card = d := by
+    intro i hi
+    apply Nat.le_antisymm
+    · by_contra hle
+      have hiLarge : d + 1 ≤ (N i).card := by omega
+      obtain ⟨S, hiS, hSL, hScard⟩ := Finset.exists_subsuperset_card_eq
+        (s := ({i} : Finset I)) (t := L) (n := d + 1)
+        (by simpa using hi)
+        (by simp)
+        hL
+      exact hno S hSL hScard
+        (hasTransversalOn_of_card_eq_succ_of_card_ge_of_exists_card_ge_succ
+          N d S hScard
+          (fun x hx ↦ hcard x (hSL hx))
+          (hiS (by simp)) hiLarge)
+    · exact hcard i hi
+  exact ⟨hexact,
+    all_rows_eq_of_uniform_card_of_no_succ_transversal N d L hL hexact hno⟩
+
 end AlbertsonUniformRows
 
 #print axioms AlbertsonUniformRows.hasTransversalOn_of_card_eq_succ_of_ne
 #print axioms AlbertsonUniformRows.all_rows_eq_of_uniform_card_of_no_succ_transversal
+#print axioms AlbertsonUniformRows.hasTransversalOn_of_card_eq_succ_of_card_ge_of_exists_card_ge_succ
+#print axioms AlbertsonUniformRows.card_eq_and_all_rows_eq_of_card_ge_of_no_succ_transversal

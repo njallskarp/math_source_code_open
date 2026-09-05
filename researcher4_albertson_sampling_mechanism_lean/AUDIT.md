@@ -19,8 +19,8 @@ Command:
 lake build
 ```
 
-Observed result after adding the Hall module:
-`Build completed successfully (1503 jobs).`
+Observed result after adding the Hall and two-contraction modules:
+`Build completed successfully (1505 jobs).`
 
 The source contains no `sorry`, `admit`, declaration of a new axiom, or unsafe
 declaration. Explicit `#print axioms` commands cover the generic counting,
@@ -43,11 +43,19 @@ lemma reports only `propext`.
 
 The Hall/common-support audit covers
 `hasTransversalOn_of_card_eq_succ_of_ne` and
-`all_rows_eq_of_uniform_card_of_no_succ_transversal`. Both report only
-`propext`, `Classical.choice`, and `Quot.sound`. A targeted build of the new
-module completed successfully with 1010 jobs and no warning. Its source
-SHA-256 is
-`351acddc7cc7c98ebea3580b0468794d3290eefd21e457e93b86d3fa98910fe3`.
+`all_rows_eq_of_uniform_card_of_no_succ_transversal`, together with the new
+at-least-degree kernel and its exact-cardinality conclusion. All four report
+only `propext`, `Classical.choice`, and `Quot.sound`. A targeted build completed
+successfully with 1010 jobs and no warning. The strengthened module SHA-256 is
+`81b4f6c84937b36469dd49f856c8d14a8f0c2dc2fbcddd1561f0a1c04b9686e5`.
+
+The two-contraction audit covers the concrete contracted-row membership and
+cardinality lemmas, symmetric-difference containment, pair rigidity, and the
+composed family theorem `all_rows_eq_of_two_contraction_obstructions`. Every
+exported theorem reports only `propext`, `Classical.choice`, and `Quot.sound`.
+The targeted build completed successfully with 1011 jobs and no warning. Its
+source SHA-256 is
+`daf032e3a920f9fa9014cfa8521361e27c0a5cd4b9500f5a4a9794514a90e648`.
 
 ## Independent certificate check
 
@@ -134,9 +142,15 @@ crossing-number bounds.
 `AlbertsonUniformRows.lean` formalizes the exact finite-family statement used
 by the reviewed common-support step. The obstruction hypothesis says directly
 that every `d+1`-element index subset lacks an injective choice into its rows;
-it is not hidden behind an informal matching-number predicate. Lean proves the
-contrapositive by extending two unequal rows to `d+1` indices and checking
-Hall's inequalities for every subfamily. It does not formalize the conversion
-between complement edges and row membership, the simultaneous matchings used
-for coloring, contracted row signatures, or the final topological `K_r`
-routings.
+it is not hidden behind an informal matching-number predicate. Lean checks
+Hall's inequalities for every subfamily and now proves both the exact-size and
+at-least-size versions.
+
+`AlbertsonTwoContraction.lean` represents a contracted two-point colour class
+by an `Option.none` tag and the remaining singleton classes by `Option.some`.
+Lean proves the representation loses at most one compatible class, applies the
+at-least-size Hall theorem to each deficient contraction, and proves that two
+distinct contracted pairs force equality of the original equal-size rows. It
+does not formalize the conversion from a specific complement graph into this
+finite-family interface, the simultaneous matchings used for coloring, or the
+final topological `K_r` routings.
