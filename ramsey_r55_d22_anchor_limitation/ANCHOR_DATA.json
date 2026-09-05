@@ -1,0 +1,27 @@
+{
+  "format": "r55-d22-anchor-limitation-v1",
+  "red_anchor_core": {
+    "order": 22,
+    "extremal_edge_bound": 114,
+    "parent_edges": 114,
+    "parent_graph6_base64": "VT9DWUJJZVtkU1JXSnZMbkl8Y15nbVVMd3d1YVVtUGZWbEREfGdhZw==",
+    "delete_edges": [
+      [5, 12],
+      [10, 13],
+      [14, 19],
+      [15, 18],
+      [16, 21],
+      [17, 20]
+    ]
+  },
+  "blue_anchor_core": {
+    "order": 20,
+    "edges": 100,
+    "graph6_base64": "U3puWlhtWlJcSHhKU2pZRWJXeURaYFhzdUldYGBsQWJb"
+  },
+  "red_cross_rule": {
+    "description": "A_i B_j is red iff (j-i) mod 20 is in {0,...,9}",
+    "modulus": 20,
+    "width": 10
+  }
+}

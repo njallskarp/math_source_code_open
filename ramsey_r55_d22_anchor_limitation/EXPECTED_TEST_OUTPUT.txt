@@ -1,0 +1,2 @@
+PASS valid anchor witness
+PASS rejected missing deletion, wrong cross width, and truncated graph6

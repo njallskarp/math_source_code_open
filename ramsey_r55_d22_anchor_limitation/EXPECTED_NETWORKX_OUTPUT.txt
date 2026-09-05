@@ -1,0 +1,5 @@
+PASS NetworkX graph6 reconstruction
+PASS red_edges=440 blue_edges=463 degree_box=19..23
+PASS high=18 high_edges=73 triple_k=2:4,3:34,4:35
+PASS monochromatic_K5 red=206 blue=1536 through_anchor=0
+SCOPE independent library check of the same compact data and cyclic construction

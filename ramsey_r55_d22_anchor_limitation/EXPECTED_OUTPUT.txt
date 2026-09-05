@@ -1,0 +1,7 @@
+PASS anchor blocks A=22 B=20 red_A_edges=108 deficiency=6 blue_B_edges=100
+PASS degree box red=19^7,20^10,21^25,22 blue=20,21^25,22^10,23^7
+PASS no monochromatic K5 through anchor=0
+PASS joint partners high=18 high_edges=73 triple_k=2:4,3:34,4:35
+TRIANGLE_CELL_SHA256 1636347ac1c5dfba24f3bcda86d046b47e62079209ec6ad5720c65bc83a7c73e
+PASS full coloring monochromatic K5 red=206 blue=1536 all_avoid_anchor=yes
+SCOPE exact one-anchor limitation witness; not an R(5,5;43) graph
