@@ -1,0 +1,9 @@
+PASS selection_schedule rows=232 arithmetic_goals=874 syntactic_images=25922
+PASS strict_inversion_scalar_cases=120 range=0..8
+{"formula":{"bytes":168085777,"constraints":1974963,"equalities":128,"lines":1974964,"order_rows":232,"sha256":"d621bf525bd6e3525ef5f9ccc741dc01c66a07f39b3db4c5e63741190d75eebc","variables":13244},"proof":{"bytes":6423184,"explicit_cutting_planes_goals":874,"lines":3285,"order_rows":232,"sha256":"38559d18edd3edff6ea809a6299562f44d10c1a6132f6a6f5246b0a530ed725b","substitution_mappings_per_row":1722,"veripb_format":"3.0"}}
+PASS independent_stream base_rows=1974731 order_rows=232 output_rows=1974963
+PASS proof_structure substitutions=232 mappings_each=1722 explicit_cp_goals=874
+PASS selection_order cells=4 all_pairs=232
+Running VeriPB version 3.0.2
+s VERIFIED OUTPUT EQUISATISFIABLE
+s VERIFIED NO CONCLUSION

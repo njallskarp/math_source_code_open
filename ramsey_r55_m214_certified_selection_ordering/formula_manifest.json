@@ -1,0 +1,34 @@
+{
+  "base_formula": {
+    "bytes": 167913049,
+    "equalities": 128,
+    "rows": 1974731,
+    "sha256": "88aa294709836a0a707b2203da2176d420a3608353db21cc741dfa9bedf89a58",
+    "variables": 13244
+  },
+  "certificate": {
+    "explicit_cutting_planes_goals": 874,
+    "format": "VeriPB 3.0",
+    "lines": 3285,
+    "sha256": "38559d18edd3edff6ea809a6299562f44d10c1a6132f6a6f5246b0a530ed725b",
+    "size_bytes": 6423184,
+    "substitution_mappings_per_order_row": 1722
+  },
+  "ordered_formula": {
+    "bytes": 168085777,
+    "equalities": 128,
+    "lines": 1974964,
+    "order_rows": 232,
+    "rows": 1974963,
+    "sha256": "d621bf525bd6e3525ef5f9ccc741dc01c66a07f39b3db4c5e63741190d75eebc",
+    "variables": 13244
+  },
+  "toolchain": {
+    "clang": "Apple clang 17.0.0 (clang-1700.6.3.2)",
+    "cpython": "3.12.12",
+    "rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+    "veripb_commit": "c648bac06be995b82bd218e248f005140fc8ce11",
+    "veripb_release": "3.0.2"
+  },
+  "verifier_result": "VERIFIED OUTPUT EQUISATISFIABLE; VERIFIED NO CONCLUSION"
+}
