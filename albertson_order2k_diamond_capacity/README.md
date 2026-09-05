@@ -21,6 +21,11 @@ two-vertex-criticality separation family and explains exactly why the Tutte
 interfaces at Discovery Net heights 2815 and 2831 do not control these
 conformal deletion triangles.
 
+[`ENDPOINT_EXCHANGE.md`](ENDPOINT_EXCHANGE.md) supplies the next structural
+step: a unicyclic overlay theorem for the endpoint deletion factors, an exact
+characterization of singleton Hall availability by a six-vertex exchange,
+and a sharp degree-excess bound on the number of such short exchanges.
+
 ## Setup
 
 Let `G` be a `k`-vertex-critical graph on `2k` vertices, let
