@@ -1,0 +1,8 @@
+PASS pinned height-2703 aggregate witness and literal exceptional core
+PASS three rooted sides have orders (7, 5, 8) and signature partitions VW, UV, UW
+PASS pointwise bounds a+v=2, v+w>=4, a+w<=5 imply integral a<=1
+PASS handshaking cut z_14,14<=1 contradicts recorded value 2
+PASS sharp abstract one-internal-edge degree fixture
+PASS four altered inputs rejected
+THEOREM the height-2703 M=216 aggregate pseudomodel has no pointwise external-root lift
+SCOPE cuts this pseudomodel, not the complete M=216 degree profile
