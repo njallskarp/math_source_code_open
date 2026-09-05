@@ -1,0 +1,51 @@
+{
+  "c3_certificate": {
+    "edge_deletion_rotation_systems": 18,
+    "graph": "C3 box C3",
+    "kuratowski_subdivisions": 5941,
+    "one_crossing_configurations": 99,
+    "three_crossing_rotation_systems": 1,
+    "two_crossing_configurations": 5841
+  },
+  "census_certificate": {
+    "certified_members": 63,
+    "kuratowski_subdivisions": 5563,
+    "members_by_order": {
+      "6": 1,
+      "7": 3,
+      "8": 10,
+      "9": 17,
+      "10": 32
+    },
+    "restricted_rows": 64,
+    "rotation_systems": 1123,
+    "unique_cr_ge_3_row_is_c3_box_c3": true
+  },
+  "census_certificate_sha256": "aef4486f0cb298201e6222405f96cfeeea28b031a7df54a36087ee103211ea66",
+  "certificate_sha256": "8f8ca3086722062e8e39a255846903c06c8fb1068ccb490c3bc17d647f44ee7f",
+  "mutation_smoke": "rejected out-of-range mask and truncated rotation",
+  "unrestricted_output_scope": {
+    "by_order": {
+      "6": {
+        "edge_deletion_survivors": 1,
+        "with_isolate": 0
+      },
+      "7": {
+        "edge_deletion_survivors": 7,
+        "with_isolate": 1
+      },
+      "8": {
+        "edge_deletion_survivors": 43,
+        "with_isolate": 7
+      },
+      "9": {
+        "edge_deletion_survivors": 260,
+        "with_isolate": 43
+      }
+    },
+    "cr_ge_3_rows": 1,
+    "edge_deletion_survivors": 311,
+    "not_standard_critical_due_to_isolates": 51,
+    "standard_critical_candidates": 260
+  }
+}
