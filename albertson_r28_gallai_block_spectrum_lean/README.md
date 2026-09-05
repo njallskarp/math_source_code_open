@@ -28,6 +28,19 @@ The final Lean corollaries exclude exactly the imported intervals
 `[609,615]`, `[582,591]`, and `[560,569]`.  The last two gap theorems require
 no uniqueness assumption for the increment-25 atom.
 
+`GallaiBlockAtomization.lean` closes the representation-neutral bridge from a
+finite list of block summaries to those packing theorems.  A summary is tagged
+as a clique or odd cycle and records only its increment.  Lean proves that the
+canonical expansion:
+
+- preserves total block increment and total edge count;
+- produces positive atoms satisfying the caller's cap;
+- preserves the multiplicity of every large atom exactly: for `k > 2`, the
+  number of size-`k` atoms equals the number of clique summaries of increment
+  `k`;
+- transfers the generic Bellman bound and all three exact forbidden intervals
+  directly to valid block-summary lists.
+
 ## Reproduction
 
 Requires Git and the Lean toolchain selected by `lean-toolchain`.
@@ -58,14 +71,16 @@ Imported and deliberately unformalized:
 
 - Gallai's theorem that every block of the low-vertex induced subgraph of a
   critical graph is a complete graph or an odd cycle;
-- extraction of a finite block list and the identity equating the sum of
-  block increments with the low-vertex component order minus one;
+- graph-theoretic extraction of a finite block-summary list and the identity
+  equating its total increment with the low-vertex component order minus one;
 - the upstream separator profiles, the forced `K_26` premise used in the
   height-2637 branch, and the row-specific degree/edge intervals;
 - all graph drawing and crossing-number topology.
 
 The Lean theorems expose the consequences of these imports as explicit
-hypotheses on a finite set of atoms.  See `AUDIT.md` for the exact mapping.
+hypotheses on a finite list of block summaries.  From that boundary onward,
+atomization and the spectrum contradictions are formal.  See `AUDIT.md` for
+the exact mapping.
 
 ## Versions
 

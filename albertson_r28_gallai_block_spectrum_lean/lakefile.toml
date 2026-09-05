@@ -1,9 +1,12 @@
 name = "albertson_gallai_block_spectrum"
 version = "0.1.0"
-defaultTargets = ["GallaiBlockSpectrum"]
+defaultTargets = ["GallaiBlockSpectrum", "GallaiBlockAtomization"]
 
 [[lean_lib]]
 name = "GallaiBlockSpectrum"
+
+[[lean_lib]]
+name = "GallaiBlockAtomization"
 
 [[require]]
 name = "mathlib"
