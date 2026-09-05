@@ -1,0 +1,5 @@
+PASS independent_subset_dp core_edges=26 independent4=39
+transversals=3459 minimum=5 minimal=117 minimal_sizes=5:65,6:52
+affine_orbits=52,13,52 exact_minimal_cover=yes
+third_anchor_types=63 cell_order=111,110,101,011,100,010,001,000
+height2807_interface=pass:18,fail:10,uncovered4:35 first_blueK5=8,15,19,20,25

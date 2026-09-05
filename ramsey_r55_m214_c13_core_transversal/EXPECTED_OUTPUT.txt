@@ -1,0 +1,7 @@
+PASS cyclic_core n=13 edges=26 degree=4^13 redK3=0 blueK5=0 independent4=39
+transversal_histogram=5:65,6:416,7:910,8:1014,9:676,10:286,11:78,12:13,13:1
+minimal_transversals=117 sizes=5:65,6:52 affine_orbits=5/52,5/13,6/52
+independent4_sha256=eb839acb989791d3ed9fc3340eb7ed5067ba8f8d1776448aeeedb5d8a3146f66 minimal_transversal_sha256=2422c0b67b48c2d3382535591a074ac17eba08cff83bb7929a5a537cf2231ea1
+third_anchor_types=63 third_anchor_sha256=316db262d8d11f5297b0b65529bc12066b74be3eccec03f1500fa72cc319b2a1
+height2807_interface=exterior:28,pass:18,fail:10,uncovered4:35
+first_blueK5=8,15,19,20,25 failure_sha256=3911a58629d99b7bba29e127ef14844ed44188aed2f367ac5e7cf7ed5bdaebe5
