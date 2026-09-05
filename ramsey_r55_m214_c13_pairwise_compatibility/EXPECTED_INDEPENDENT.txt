@@ -1,0 +1,2 @@
+PASS mask=031a multiplicity=2 red_forbidden=1 blue_forbidden=1 max_multiplicity=1
+core_edges=26 independent_triples=78 independent_fours=39 transversals=3459

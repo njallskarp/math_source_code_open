@@ -1,0 +1,1 @@
+{"blue_edge_forbidden":true,"certificate_sha256":"a41e2be7c581e800648145a7e89242659a97e826cc3d1201c47e9fb5c5bfcc11","core_independent_fours":39,"core_transversals":3459,"duplicate_mask":"031a","maximum_multiplicity":1,"red_edge_forbidden":true,"status":"VERIFIED NO-COLOR PAIR OBSTRUCTION"}
