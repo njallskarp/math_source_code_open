@@ -1,0 +1,8 @@
+PASS identity graphs=33868 vertex_checks=202013
+PASS m214_arithmetic red_edges=445 total_deficiency=604 red_triangles=1403 blue_triangles=1463 blue_excess=2
+PASS exceptional_incidence incidence=260 surplus=2 exact_anchors=28..30
+PASS normalized_anchor split=6+15/7+14 cross_total=214
+PASS backbone min_degrees=13/12 component_min=18/16 red_after_delete3_min=14 connectivity>=4/2 diameter<=5
+{"bytes":167913049,"constraints":1974731,"five_sets":962598,"lines":1974732,"sha256":"88aa294709836a0a707b2203da2176d420a3608353db21cc741dfa9bedf89a58","triangle_variables":12341,"variables":13244}
+PASS canonical_opb variables=13244 constraints=1974731 five_sets=962598 triangles=12341
+PASS branch_arithmetic red_edges=445 exceptional_incidence=260 blue_excess=2 exact_anchors=28..30
