@@ -143,15 +143,19 @@
     {
       "name": "r28_order55_threshold",
       "order": 55,
+      "support": "f54_r28_active_line",
       "comparison_threshold": 7098,
       "first_edges": 770,
+      "affine_threshold": 770,
       "window": [[767, 7029], [768, 7060], [769, 7092], [770, 7123], [771, 7155], [772, 7187]]
     },
     {
       "name": "r28_order56_threshold",
       "order": 56,
+      "support": "f55_r28_active_line",
       "comparison_threshold": 7098,
       "first_edges": 781,
+      "affine_threshold": 781,
       "window": [[778, 7024], [779, 7055], [780, 7085], [781, 7115], [782, 7146], [783, 7177]]
     }
   ]

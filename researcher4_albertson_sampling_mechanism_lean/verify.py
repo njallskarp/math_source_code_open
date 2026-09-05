@@ -91,6 +91,24 @@ def deletion_fraction(
     )
 
 
+def deletion_edge_threshold(
+    target_order: int,
+    slope: int,
+    intercept: int,
+    scale: int,
+    target: int,
+) -> int:
+    """Least edge count whose natural-number deletion ceiling reaches target."""
+    assert target_order > 4 and slope > 0 and scale > 0 and target > 0
+    numerator = (
+        intercept * target_order
+        + scale * (target_order - 4) * (target - 1)
+        + 1
+    )
+    denominator = slope * (target_order - 2)
+    return ceil_fraction(Fraction(numerator, denominator))
+
+
 def recursive_closure(maximum_order: int):
     tables: dict[int, list[int]] = {}
     hulls: dict[int, list[tuple[int, int]]] = {}
@@ -131,6 +149,24 @@ def run_self_tests() -> None:
     test_hull = lower_hull([0, 2, 3])
     assert test_hull == [(0, 0), (2, 3)]
     assert hull_value(test_hull, Fraction(1)) == Fraction(3, 2)
+    # Independent finite audit of the parameterized Lean threshold theorem.
+    for order in range(5, 10):
+        for slope in range(1, 4):
+            for intercept in range(6):
+                for scale in range(1, 4):
+                    for target in range(1, 10):
+                        threshold = deletion_edge_threshold(
+                            order, slope, intercept, scale, target
+                        )
+                        for edges in range(threshold + 3):
+                            numerator = max(
+                                0,
+                                slope * edges * (order - 2) - intercept * order,
+                            )
+                            bound = ceil_fraction(
+                                Fraction(numerator, scale * (order - 4))
+                            )
+                            assert (threshold <= edges) == (target <= bound)
 
 
 def main() -> None:
@@ -265,6 +301,16 @@ def main() -> None:
             edges for edges, value in enumerate(table) if value >= threshold
         )
         assert first_edges == diagnostic["first_edges"]
+        support = supports[diagnostic["support"]]
+        affine_threshold = deletion_edge_threshold(
+            diagnostic["order"],
+            support["slope"],
+            support["intercept"],
+            support["scale"],
+            threshold,
+        )
+        assert affine_threshold == diagnostic["affine_threshold"]
+        assert affine_threshold == first_edges
         assert [
             [edges, table[edges]] for edges, _ in diagnostic["window"]
         ] == diagnostic["window"]

@@ -19,8 +19,8 @@ Command:
 lake build
 ```
 
-Observed result after adding the Hall and two-contraction modules:
-`Build completed successfully (1505 jobs).`
+Observed result after adding the threshold-inversion module:
+`Build completed successfully (1507 jobs).`
 
 The source contains no `sorry`, `admit`, declaration of a new axiom, or unsafe
 declaration. Explicit `#print axioms` commands cover the generic counting,
@@ -32,6 +32,16 @@ The axiom audit now also covers the generic `SimpleGraph` two-vertex deletion
 identity, its complement-defect rewrite, both parameterized defect moments, and
 all four exact order-55 moment specializations. These theorems report the same
 three standard Mathlib axioms and no others.
+
+The deletion-threshold audit covers the parameterized theorem
+`deletionEdgeThreshold_le_iff` and its order-55/order-56 diagnostic
+specializations. The theorem characterizes the exact least edge count at which
+an affine deletion ceiling reaches any positive target, despite the natural
+subtraction in the numerator. All five printed declarations report only
+`propext`, `Classical.choice`, and `Quot.sound`. A standalone compilation and
+the full 1507-job project build both completed without warning. The source
+SHA-256 is
+`5dfd35d2f63f156eb5935dfb7c1f4c6879a210896d284e300ca7c3325914f104`.
 
 The conformal-separator audit covers `matching_deletePairOfAdj`,
 `matchingOffThree_of_matchingOffOne_of_adj`,
@@ -92,6 +102,10 @@ at both endpoints. It checks every mean, rational bound, ceiling, gain, and
 comparison result. It also exhausts all sample sizes for each direct diagnostic,
 verifies the exact first edge count reaching 7098 at orders 55 and 56, and runs
 small definition-level tests of ceiling and lower-hull interpolation.
+It additionally exhausts a grid of small orders, slopes, intercepts, scales,
+positive targets, and edge counts to check the exact iff proved by
+`deletionEdgeThreshold_le_iff`; the affine thresholds 770 and 781 must equal
+the independently scanned table thresholds.
 
 ## Statement alignment
 
@@ -110,6 +124,13 @@ local table bound as explicit hypotheses. Lean proves that the second value
 selected supports are valid minorants. Thus the formalization closes the finite
 implication and arithmetic comparison without claiming a topological graph
 theory formalization or a complete `r=28` theorem.
+
+`AlbertsonDeletionThreshold.lean` adds no graph or drawing assumption. It is a
+pure arithmetic corollary of the already formalized affine recurrence formula:
+under `n>4`, positive slope and scale, and positive target, its threshold is
+both sufficient and necessary. The diagnostic values only identify where the
+two supplied supports reach the external comparison value; validity and local
+applicability of those supports retain the trust boundary above.
 
 The separate graph module closes the elementary structural consequences stated
 at Discovery Net height 2523. For a finite complement graph `H`, integer

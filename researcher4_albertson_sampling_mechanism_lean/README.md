@@ -24,6 +24,20 @@ abstract identifiers carrying supports of cardinality two and four.
   one-vertex-deletion recurrence. In particular, a crossing occurrence survives
   exactly `n-4` deletions.
 
+`AlbertsonDeletionThreshold.lean` proves the exact inverse of the affine
+deletion recurrence. For arbitrary positive slope `a`, scale `d`, target `T`,
+and `n > 4`, the recurrence reaches `T` exactly when the edge count is at least
+
+```text
+ceil((b*n + d*(n-4)*(T-1) + 1) / (a*(n-2))).
+```
+
+The proof handles the truncated natural subtraction in the recurrence
+explicitly. Its diagnostic instances show that the selected order-54 and
+order-55 supports first reach `Z(28)=7098` at 770 and 781 edges, respectively.
+These are consequences of one parameterized iff rather than scans of fixed
+windows.
+
 `AlbertsonPairMoments.lean` supplies the finite-graph structural layer needed
 after the recurrence leaves the two order-55 rows:
 
@@ -157,6 +171,12 @@ recursive_table_order53_sha256=55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a
 checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce277118796bd
 ```
 
+As an independent audit of the threshold theorem, the checker also exhausts
+small orders, positive slopes/scales/targets, intercepts, and edge counts. It
+verifies the threshold iff directly using natural subtraction and exact
+integer ceiling division before checking that the affine thresholds 770 and
+781 agree with the corresponding recursive-table scans.
+
 ## Literature and graph alignment
 
 - Discovery Net height 1761 states the integer-aware induced-sampling step and
@@ -198,8 +218,9 @@ checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce2771
 ## Trust boundary
 
 Lean kernel-checks the support-counting identities, exact floor/ceiling
-arithmetic, the parameterized sampling implication, and the abstract deletion
-recurrence. It also checks finite-graph two-vertex deletion and both generic
+arithmetic, the parameterized sampling implication, the abstract deletion
+recurrence, and its parameterized exact edge-threshold inverse. It also checks
+finite-graph two-vertex deletion and both generic
 defect moments over arbitrary finite vertex types. The only reported axioms are
 Mathlib's standard `propext`, `Classical.choice`, and `Quot.sound`. Lean
 additionally checks the two concrete
