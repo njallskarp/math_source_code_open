@@ -1,0 +1,7 @@
+PASS independent labeled (3,4) augmentation through order eight: [1, 2, 7, 40, 322, 2812, 13842, 17640]
+PASS S8 and S6 orbit partitions: eight_types=3 six_types=15 labeled=17640/2812
+PASS degree balance reduces 45 rooted pairs to five exact mask pairs
+PASS transposed column-first literal search excludes all five cases; attempts=812,812,812,812,4732
+PASS rook-graph positive control has 82 completions; two negative controls rejected
+THEOREM no eight-regular (4,4;15) graph; conditional hard profile 19^2 20^3 21^38 excluded
+SCOPE application imports the reviewed height-2589 hard-branch reduction; no target graph or Ramsey-bound claim

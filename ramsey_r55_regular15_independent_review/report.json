@@ -1,0 +1,228 @@
+{
+  "algorithm": "column-first literal-four-set search",
+  "application": {
+    "M": 217,
+    "anchored_splits_after": 271,
+    "global_profiles_after": 66,
+    "hard_branch_excluded": true,
+    "profile": "19^2 20^3 21^38",
+    "rooted_side_degree": 8,
+    "rooted_side_edges": 60,
+    "rooted_side_order": 15
+  },
+  "balanced_cases": [
+    {
+      "B_complement_mask": 4060,
+      "H_mask": 5388912,
+      "attempted_columns": 812,
+      "completions": 0,
+      "nodes_by_depth": [
+        1,
+        28,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "B_complement_mask": 2012,
+      "H_mask": 5404008,
+      "attempted_columns": 812,
+      "completions": 0,
+      "nodes_by_depth": [
+        1,
+        28,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "B_complement_mask": 954,
+      "H_mask": 5683824,
+      "attempted_columns": 812,
+      "completions": 0,
+      "nodes_by_depth": [
+        1,
+        28,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "B_complement_mask": 956,
+      "H_mask": 5683824,
+      "attempted_columns": 812,
+      "completions": 0,
+      "nodes_by_depth": [
+        1,
+        28,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "B_complement_mask": 1884,
+      "H_mask": 5683824,
+      "attempted_columns": 4732,
+      "completions": 0,
+      "nodes_by_depth": [
+        1,
+        28,
+        56,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "census": {
+    "eight_vertex_classes": [
+      {
+        "automorphisms": 8,
+        "edges": 10,
+        "labeled_graphs": 5040,
+        "representative": 5388912
+      },
+      {
+        "automorphisms": 4,
+        "edges": 11,
+        "labeled_graphs": 10080,
+        "representative": 5404008
+      },
+      {
+        "automorphisms": 16,
+        "edges": 12,
+        "labeled_graphs": 2520,
+        "representative": 5683824
+      }
+    ],
+    "labeled_counts_order_1_to_8": [
+      1,
+      2,
+      7,
+      40,
+      322,
+      2812,
+      13842,
+      17640
+    ],
+    "six_vertex_classes": [
+      {
+        "automorphisms": 48,
+        "edges": 3,
+        "labeled_graphs": 15,
+        "representative": 656
+      },
+      {
+        "automorphisms": 4,
+        "edges": 4,
+        "labeled_graphs": 180,
+        "representative": 657
+      },
+      {
+        "automorphisms": 2,
+        "edges": 5,
+        "labeled_graphs": 360,
+        "representative": 659
+      },
+      {
+        "automorphisms": 10,
+        "edges": 5,
+        "labeled_graphs": 72,
+        "representative": 684
+      },
+      {
+        "automorphisms": 2,
+        "edges": 5,
+        "labeled_graphs": 360,
+        "representative": 692
+      },
+      {
+        "automorphisms": 2,
+        "edges": 6,
+        "labeled_graphs": 360,
+        "representative": 693
+      },
+      {
+        "automorphisms": 2,
+        "edges": 6,
+        "labeled_graphs": 360,
+        "representative": 700
+      },
+      {
+        "automorphisms": 16,
+        "edges": 5,
+        "labeled_graphs": 45,
+        "representative": 920
+      },
+      {
+        "automorphisms": 2,
+        "edges": 6,
+        "labeled_graphs": 360,
+        "representative": 922
+      },
+      {
+        "automorphisms": 4,
+        "edges": 7,
+        "labeled_graphs": 180,
+        "representative": 954
+      },
+      {
+        "automorphisms": 4,
+        "edges": 7,
+        "labeled_graphs": 180,
+        "representative": 956
+      },
+      {
+        "automorphisms": 12,
+        "edges": 6,
+        "labeled_graphs": 60,
+        "representative": 1880
+      },
+      {
+        "automorphisms": 4,
+        "edges": 7,
+        "labeled_graphs": 180,
+        "representative": 1884
+      },
+      {
+        "automorphisms": 8,
+        "edges": 8,
+        "labeled_graphs": 90,
+        "representative": 2012
+      },
+      {
+        "automorphisms": 72,
+        "edges": 9,
+        "labeled_graphs": 10,
+        "representative": 4060
+      }
+    ]
+  },
+  "external_catalog_used_in_proof": false,
+  "positive_control": {
+    "attempted_columns": 738,
+    "negative_tests": 2,
+    "nodes_by_depth": [
+      1,
+      6,
+      34,
+      82,
+      82
+    ],
+    "solutions": 82
+  },
+  "solver_used": false
+}
