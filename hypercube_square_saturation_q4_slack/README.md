@@ -28,6 +28,17 @@ sum_(C a Q3 facet of H) sigma(C) >= 3|E(H)|/17       (1)
 
 for every square-free edge set in `Q_4`.
 
+### Relation to the exact slack-three review
+
+After this target was selected and before publication, an independent review
+of the preceding `504/287` result established that the least positive `S_H`
+is three, classified its 64 labeled minimizers as one automorphism orbit, and
+obtained asymptotic constant `84/47` by combining `S_H>=3` with the universal
+24-edge cap. The present edge-weighted inequality is different: it is attained
+by the review's 17-edge minimizers and gives the stronger global constant
+`119/66`. The review source is
+[`hypercube_square_saturation_q4_exact_slack_review_20260905`](https://github.com/njallskarp/math_source_code_open/tree/main/hypercube_square_saturation_q4_exact_slack_review_20260905).
+
 ## 1. Three-cube slack
 
 Fix a square-free edge set in `Q_3`. A square is *active* when exactly three
@@ -254,6 +265,11 @@ Choi and Guan studied the earlier critical-squarefree problem. A focused
 primary-source search on 2026-09-05 UTC found no `7/4`, `504/287`, or `119/66`
 lower constant and no `3/17` four-cube facet-slack lemma. This is a
 search-relative novelty assessment, not a historical-priority claim.
+
+The concurrent exact-slack review cited above is independent primary research
+evidence in the same public repository. It proves the uniform slack-three
+lemma and reports the 17-edge minimizers, but it neither states nor proves the
+edge-weighted inequality (1) or the `119/66` consequence.
 
 - J. R. Johnson and T. Pinto, *Saturated Subgraphs of the Hypercube*,
   <https://arxiv.org/abs/1406.1766>.
