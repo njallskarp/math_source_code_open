@@ -1,6 +1,6 @@
 # Verification audit
 
-Audit date: 2026-09-04.
+Audit date: 2026-09-05.
 
 ## Versions
 
@@ -16,16 +16,21 @@ Audit date: 2026-09-04.
 Command:
 
 ```sh
-lake build AlbertsonSamplingMechanism
+lake build
 ```
 
-Observed result: `Build completed successfully (971 jobs).`
+Observed result: `Build completed successfully (1249 jobs).`
 
 The source contains no `sorry`, `admit`, declaration of a new axiom, or unsafe
 declaration. Explicit `#print axioms` commands cover the generic counting,
 sampling, rounding, sparse-support, deletion, and numerical theorems. Their
 output contains only `propext`, `Classical.choice`, and `Quot.sound` (some
 arithmetic lemmas use only a subset).
+
+The axiom audit now also covers the generic `SimpleGraph` two-vertex deletion
+identity, its complement-defect rewrite, both parameterized defect moments, and
+all four exact order-55 moment specializations. These theorems report the same
+three standard Mathlib axioms and no others.
 
 ## Independent certificate check
 
@@ -80,3 +85,21 @@ local table bound as explicit hypotheses. Lean proves that the second value
 selected supports are valid minorants. Thus the formalization closes the finite
 implication and arithmetic comparison without claiming a topological graph
 theory formalization or a complete `r=28` theorem.
+
+The separate graph module closes the elementary structural consequences stated
+at Discovery Net height 2523. For a finite complement graph `H`, integer
+weights `x`, and `degree_H(v)+x(v)=d`, Lean proves
+
+```text
+sum_{u<v} D(u,v) = (n-1) sum_v x(v) + |E(H)|
+sum_{u<v} D(u,v)^2 = (n-4) sum_v x(v)^2
+                         + (sum_v x(v))^2
+                         + 2d sum_v x(v) + |E(H)|.
+```
+
+Here `sum_{u<v}` is implemented invariantly as half the ordered off-diagonal
+sum; `D` is symmetric because simple-graph adjacency is symmetric. At
+`n=55,d=27`, the supplied edge and excess totals reduce these formulas to the
+four numbers in height 2523. The graph theorem does not prove those supplied
+totals, connected-complement/factor-critical structure, Stehlík's coloring
+theorem, or any matching/Hall constraint. Those are explicit external bridges.

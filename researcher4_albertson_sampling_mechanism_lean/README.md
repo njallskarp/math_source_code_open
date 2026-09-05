@@ -24,6 +24,25 @@ abstract identifiers carrying supports of cardinality two and four.
   one-vertex-deletion recurrence. In particular, a crossing occurrence survives
   exactly `n-4` deletions.
 
+`AlbertsonPairMoments.lean` supplies the finite-graph structural layer needed
+after the recurrence leaves the two order-55 rows:
+
+- `card_edges_delete_two_add_degrees` proves the generic two-vertex deletion
+  identity directly for Mathlib `SimpleGraph` edge finsets;
+- `card_edges_delete_two_eq_sub_pairDefect` rewrites that identity in the
+  complement-defect coordinates
+  `D(u,v)=x(u)+x(v)+1[uv in E(H)]`, with complementarity required only on the
+  selected pair;
+- `unorderedPairTotal_pairDefect` and
+  `unorderedPairTotal_pairDefect_sq` prove the parameterized first and second
+  moments when `degree_H(v)+x(v)=d`;
+- the four `r28_m768_*` and `r28_m769_*` specializations recover exactly
+  `3471`, `51*S2+6072`, `3578`, and `51*S2+6387`.
+
+The moment proofs use the ordered off-diagonal finset and divide its symmetric
+sum by two. They are not profile enumeration and do not import factor
+criticality, Hall's theorem, critical coloring, or drawing topology.
+
 `SparseAffineSupport` records the slope, intercept, denominator, and two active
 integer endpoints of a rational supporting line. `certificate.json` is a compact
 machine-readable instance of this schema. It records active supports for the
@@ -68,7 +87,7 @@ and Mathlib to `v4.33.1`.
 
 ```sh
 lake update
-lake build AlbertsonSamplingMechanism
+lake build
 PYTHONDONTWRITEBYTECODE=1 python3 verify.py
 ```
 
@@ -92,6 +111,10 @@ checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce2771
   order-53 table hash reproduced by `verify.py`.
 - Height 2503 is the parameterized sampling/deletion formalization extended by
   the present concrete recurrence instances.
+- Height 2523 reduces the `r=28` frontier to `(55,768)` and `(55,769)` and
+  states the pair-deletion and defect-moment identities. The present
+  `SimpleGraph` module independently kernel-checks exactly those structural
+  identities; its graph-theoretic hypotheses remain explicit.
 - Büngener and Kaufmann, [*Improving the Crossing Lemma by Characterizing
   Dense 2-Planar and 3-Planar Graphs*](https://arxiv.org/abs/2409.01733), state
   the uniform affine crossing estimates used as checker inputs.
@@ -103,10 +126,13 @@ checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce2771
 
 Lean kernel-checks the support-counting identities, exact floor/ceiling
 arithmetic, the parameterized sampling implication, and the abstract deletion
-recurrence. The only reported axioms are Mathlib's standard `propext`,
-`Classical.choice`, and `Quot.sound`. Lean additionally checks the two concrete
+recurrence. It also checks finite-graph two-vertex deletion and both generic
+defect moments over arbitrary finite vertex types. The only reported axioms are
+Mathlib's standard `propext`, `Classical.choice`, and `Quot.sound`. Lean
+additionally checks the two concrete
 conditional recurrence bounds, `Z(28)=7098`, the 38-crossing residual gap at
-order 55, and the 17-crossing surplus at order 56.
+order 55, the 17-crossing surplus at order 56, and all four exact order-55
+moment formulas.
 
 External hypotheses remain explicit: a drawing must supply crossing identifiers
 with four distinct supported vertices; induced drawings must obey the local
@@ -117,4 +143,8 @@ recursive table through order 56, every sparse support globally and at its
 active endpoints, every displayed rational value, and both threshold windows.
 It is ordinary exact Python rather than a proof-assistant kernel. Neither the
 topology-to-support translation nor the cited published graph inequalities are
-formalized here.
+formalized here. For the pair-moment module, the assertions that a candidate
+has 55 vertices, that its complement has 717 or 716 edges, that the excess sum
+is 51 or 53, and that `degree_H(v)+x(v)=27` are explicit hypotheses. Connected
+complement, Stehlík's theorem, factor-criticality, and matching/Hall constraints
+are not formalized.
