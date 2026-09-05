@@ -40,6 +40,14 @@ the-target conclusion must use the global no-subdivision hypothesis rather
 than criticality and overlay minimality alone.  A standard-library exact
 checker accompanies the hand proof.
 
+[`STANDARD_BRANCH_SEPARATION.md`](STANDARD_BRANCH_SEPARATION.md) gives the
+uniform closure of that test.  Every target-avoiding four-block escape forces
+an isolated outside edge in the representative graph, but a fully
+`k`-vertex-critical order-`2k` family with three low vertices shows that the
+canonical branch set still need not route.  The same family has an explicit
+shifted `TK_k`; at `k=29` its density is far from the frontier, isolating
+degree excess or branch-set mobility as the necessary next input.
+
 ## Setup
 
 Let `G` be a `k`-vertex-critical graph on `2k` vertices, let
