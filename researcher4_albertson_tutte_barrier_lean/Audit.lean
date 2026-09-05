@@ -1,0 +1,15 @@
+import AlbertsonTutteBarrier
+
+#print axioms AlbertsonTutteBarrier.hasMatchingOff_iff
+#print axioms AlbertsonTutteBarrier.oddComponents_ncard_eq_of_iso
+#print axioms AlbertsonTutteBarrier.tutte_iff
+#print axioms AlbertsonTutteBarrier.oddCount_delete
+#print axioms AlbertsonTutteBarrier.ncard_union_image_remaining
+#print axioms AlbertsonTutteBarrier.exists_oddCount_gap_two
+#print axioms AlbertsonTutteBarrier.FactorCritical.oddCount_add_one_le
+#print axioms AlbertsonTutteBarrier.FactorCritical.odd_card
+#print axioms AlbertsonTutteBarrier.exists_deletion_witness
+#print axioms AlbertsonTutteBarrier.exists_tight_witness_of_three_deleted
+
+#check AlbertsonTutteBarrier.exists_deletion_witness
+#check AlbertsonTutteBarrier.exists_tight_witness_of_three_deleted
