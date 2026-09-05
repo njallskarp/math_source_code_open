@@ -1,0 +1,57 @@
+{
+  "blue_unit_occurrences": 16,
+  "blue_unit_variables": 13,
+  "certificate": [
+    "x_4_32>=1",
+    "x_4_35>=1",
+    "x_4_32+x_4_35<=1"
+  ],
+  "degrees": [
+    [
+      20,
+      8
+    ],
+    [
+      21,
+      26
+    ],
+    [
+      22,
+      9
+    ]
+  ],
+  "diagonal_edges": 210,
+  "full_coloring_defects": {
+    "B": 223,
+    "R": 336
+  },
+  "local": [
+    [
+      0,
+      "R",
+      22,
+      108
+    ],
+    [
+      0,
+      "B",
+      20,
+      100
+    ],
+    [
+      3,
+      "R",
+      21,
+      95
+    ],
+    [
+      3,
+      "B",
+      21,
+      101
+    ]
+  ],
+  "red_unit_occurrences": 8,
+  "red_unit_variables": 7,
+  "status": "PASS_UNIT_SAT_BINARY_UNSAT"
+}
