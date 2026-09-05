@@ -20,9 +20,11 @@ the only surviving component multiset is
     H-B: 49,1,1.
 
 This exact upstream classification was independently replayed from public
-commit `c9cdabd4b8bc17ff5e87293077eb017fc88407a5`; both expected-output diffs
-were empty and every manifest hash passed.  It is nevertheless kept explicit
-as an external dependency rather than silently copied into this checker.
+source at
+<https://github.com/abuzar08/discovery-net-notes/tree/main/topological-graph-theory/albertson-order-2r-1-barrier-dichotomy>,
+commit `c9cdabd4b8bc17ff5e87293077eb017fc88407a5`; both expected-output diffs were
+empty and every manifest hash passed.  It is nevertheless kept explicit as an
+external dependency rather than silently copied into this checker.
 
 ## Separator lemma
 
