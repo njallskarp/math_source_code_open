@@ -1,0 +1,9 @@
+integer profiles checked: 63488
+cyclomatic-refinement rows checked: 9951900
+integer-profile sha256: d27e552728543675bcf62a3797803ecdba24a90ca35535cafad4b1cc35d7ae37
+tree/apex models checked: 2094151
+tree/apex equality models: 2956
+tree/apex stream sha256: 905c7cc6c616190e69a89f2dd16efa4a4b8ca934d3f73f2c708741ce5c8bc156
+equality divisibility cases checked: 24625
+equality-divisibility sha256: 2521c05bc33f399f31a99c81a6ffdf5b18fc90f62268166988805f2b9bfee542
+all independent checks passed
