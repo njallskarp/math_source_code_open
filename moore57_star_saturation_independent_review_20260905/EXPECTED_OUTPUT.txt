@@ -1,0 +1,17 @@
+independent Moore(57,2) star-saturation audit: PASS
+moments: outside=2852 sum_z=-130 sum_z2=244 energy=114
+sharp star: center=5 leaves=33 positive_sum=38 positive_square=58
+negative side: weight=168 square=186 branches=24x7
+pre-two-walk profiles=6; w4_degree_floor=40>23
+surviving profiles=4; w3_degree_floor=23=23
+profile t=0: (n1,n2,n3)=(150,9,0), order=159
+profile t=1: (n1,n2,n3)=(153,6,1), order=160
+profile t=2: (n1,n2,n3)=(156,3,2), order=161
+profile t=3: (n1,n2,n3)=(159,0,3), order=162
+edge constraint t=0: e13=0, e23=e33=0, e12=144-4e22, e11=531+4e22, 0<=e22<=36
+edge constraint t=1: e13=23, e23=e33=0, e12=96-4e22, e11=558+4e22, 0<=e22<=15
+edge constraint t=2: e13=46, e23=e33=0, e12=48-4e22, e11=585+4e22, 0<=e22<=3
+edge constraint t=3: e13=69, e23=e33=0, e12=0-4e22, e11=612+4e22, 0<=e22<=0
+S demand: center=13 leaf=297 remaining=88 weighted_total=1158
+profile_sha256=7582da2c1672e745aa0bd804980bfe0ae0ba06a55dc960af8be8072155d4b558
+edge_constraint_sha256=e0d9c4b704034c2ca561c58b93ae835b1f7604d271528eb37af029acf86d84d5
