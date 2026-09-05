@@ -1,0 +1,8 @@
+python: 3.12.12
+degree-sequence range: 2 <= h <= 15
+unordered partition pairs tested: 41570866
+pairs passing local capacity tests: 43
+realizable degree-sequence pairs: 43
+realizable counts by h: 2:3,3:3,4:4,5:3,6:3,7:3,8:3,9:3,10:3,11:3,12:3,13:3,14:3,15:3
+audit SHA-256: 2c292e9b4fd273db45ab445beabbde45bb33e44434af934fe69d00bd5e785dbc
+all degree-sequence classifications matched
