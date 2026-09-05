@@ -1,0 +1,12 @@
+PASS clean-room Albertson r=29 feasibility gate
+Z(29)=8281; counterexample_budget<=8280
+candidate_orders=34,35,52..81 (32 orders)
+direct_survivors=(56,810,7979),(57,824,8048),(58,838,8132),(59,852,8237)
+recursive_pre_join=n56:810..816,n57:824..828,n58:838..840,n59:closed
+disconnected_bounds=n56:m>=823->cr>=8497,n57:m>=837->cr>=8575,n58:m>=852->cr>=8684
+final_rows=(57,824,8131),(57,825,8164),(57,826,8198),(57,827,8232),(57,828,8266),(58,838,8210),(58,839,8243),(58,840,8276)
+degree_excess=(57,824):52,(57,825):54,(57,826):56,(57,827):58,(57,828):60,(58,838):52,(58,839):54,(58,840):56
+forced_degree28_min=(57,824):5,(57,825):3,(57,826):1,(57,827):0,(57,828):0,(58,838):6,(58,839):4,(58,840):2
+complement_structure=n57:factor-critical;n58:each H-v has K3+27K2 factor
+sparse_dependency_nodes=684
+provenance_sha256=d0d8619aeef306abbfee52227cf55d5bf8d9c873bf53af4e7fc7f63370731bbc
