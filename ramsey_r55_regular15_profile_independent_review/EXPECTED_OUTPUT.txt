@@ -1,0 +1,6 @@
+catalog_sha256=53a46ba21cb16805eb07775b60746f783864388538368955e72cbdae5ae8f4e1
+records=640 checked_four_sets=873600
+edge_histogram=50:13,51:96,52:211,53:211,54:96,55:13
+maximum_edges=55 regular_records=0 degree_eight_records=0
+VERIFIED no eight-regular Ramsey(4,4;15) graph in the complete supplied catalog
+certificate_sha256=c2838cad83decec661d5808abbe912597c5cce66c8a4d544802acffc2b3dbcd0

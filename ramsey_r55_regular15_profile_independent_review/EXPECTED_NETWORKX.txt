@@ -1,0 +1,3 @@
+networkx=3.6 records=640 checked_four_sets=873600
+edge_histogram=50:13,51:96,52:211,53:211,54:96,55:13
+VERIFIED independent NetworkX decode finds no regular catalog record
