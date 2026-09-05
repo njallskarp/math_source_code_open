@@ -2,10 +2,38 @@
 
 All declarations are in namespace `AlbertsonNeighborhoodObstruction` and use
 native Mathlib graphs, colorings, induced subgraphs, sets, and chromatic number.
-The deleted graph is exactly `G.induce {x | x ≠ a}`. Both project modules
-import Mathlib directly and no other campaign project.
+The vertex-deleted graph is exactly `G.induce {x | x ≠ a}`. The two original
+modules import Mathlib directly. The new component module imports the
+reservoir module and Mathlib connectivity, not another campaign project.
 
-## New reservoir module
+## Native singleton-component module
+
+| Declaration | Exact role |
+|---|---|
+| `neighborSet_subset_of_singleton_component` | Derive actual neighborhood containment from a singleton component after deleting a set. |
+| `card_add_card_le_of_singleton_overlap` | Bound two finite sets confined to a common set plus one point and disjoint inside the common set. |
+| `disjoint_clique_neighbors_of_singleton_components` | Extract containment and nonadjacency from native components, then apply the chromatic-drop theorem. |
+| `degree_add_degree_le_of_singleton_components` | Bound the actual combined complement degree by the clique size plus two. |
+
+The singleton hypothesis is an equality between the support of the actual
+component containing a surviving vertex and the singleton containing that
+vertex. The induced graph is the complement restricted to vertices outside
+the union of the clique and the extra vertex's singleton. Component support is Mathlib's
+native reachability-quotient support, not a custom encoding.
+
+The final theorem assumes a finite vertex type, positive finite chromatic
+number, an actual complement clique, chromatic drop at its vertices, and two
+distinct surviving vertices with singleton supports. Its conclusion uses
+native `SimpleGraph.degree`. `Audit.lean` type-checks the four-clique
+specialization with bound six, retaining all graph hypotheses. This is not
+an instantiated example graph or an independently checked enumeration.
+
+The only new counting step is finite inclusion-exclusion on the actual
+neighborhoods: their union lies in the clique plus one vertex and their
+intersection lies in that single vertex. The set-cardinality helper is
+separate from the graph theorem and does not import a numerical degree table.
+
+## Preserved reservoir module
 
 | Declaration | Exact role |
 |---|---|
@@ -62,6 +90,14 @@ is added to the earlier theorems.
 - The earlier clique-barrier theorem retains nonempty-neighborhood and
   criticality premises. Criticality does not exclude isolated complement
   vertices.
+- Native singleton supports now imply neighborhood containment and the
+  complement nonedge. No decoder or assertion about component counts is
+  used to obtain these facts.
+- The degree endpoint does not require adjacency to the extra vertex or
+  complement connectivity. The upper bound remains valid even if either
+  singleton has no complement neighbors.
+- The finite degree theorem exposes decidable equality and adjacency through
+  ordinary Mathlib instances; they do not encode a generated graph or oracle.
 
 ## Verification
 
@@ -73,14 +109,21 @@ lake build
 lake env lean Audit.lean
 ```
 
-Both the workspace build and a fresh isolated publication-directory build
-passed without project warnings, 1006 jobs each. Both project modules were
-recompiled in the fresh location; only pinned own-workspace dependency caches
-were reused. All 14 declarations, including both constructors, were audited
-in both locations. Each depends exactly on `propext`, `Classical.choice`, and
-`Quot.sound`.
+Both the current workspace build and a fresh isolated publication-directory
+build passed without project warnings, 1008 jobs each. All three project
+modules were recompiled in the fresh location. All 18 declarations, including
+both constructors, were audited in both locations. Each depends exactly on
+`propext`, `Classical.choice`, and `Quot.sound`. The four-clique specialization
+also type-checks in both locations. Only pinned own-workspace dependency
+caches were reused.
 
-New source SHA-256:
+Singleton-component source SHA-256:
+
+```text
+491efb8c09af9c3b1245f80102c94afdf21a850939e747313d0453f059ed3130
+```
+
+Preserved reservoir source SHA-256:
 
 ```text
 7e34e564981067fd638f22251b87b59f0d41c6c2a48e2ee247cff6e71d2cc18d
@@ -100,11 +143,12 @@ executable coloring search. No `sorry`, `admit`, custom axiom, unsafe shortcut,
 ## Unformalized application interface
 
 For height 2933, the actual critical graph, its finite chromatic value, clique
-and singleton-component neighborhood containments must be supplied. The new
-source closes only the resulting two-singleton disjointness bridge; the old
-source closes only non-domination and its clique consequence.
+and existence of two native singleton components must be supplied. The
+current source closes the resulting neighborhood, nonedge, disjointness and
+degree-bound implications. The original folding source closes non-domination
+and its clique consequence.
 
-No barrier extraction, separator enumeration, subsequent degree-excess
+No barrier extraction, separator-enumeration soundness, subsequent degree-excess
 calculation, Gallai spectrum, crossing estimate, topology or complete
 order-58 elimination is imported or certified. This is scoped formalization
 authoring, not an independent review of those claims.

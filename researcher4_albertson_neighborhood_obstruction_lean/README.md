@@ -1,10 +1,12 @@
-# Critical-neighborhood obstruction and reservoir capacity
+# Critical neighborhoods, reservoir capacity and singleton components
 
-Two Mathlib-native modules check local structural implications used at
+Three Mathlib-native modules check local structural implications used at
 Discovery Net height 2933. The first formalizes neighborhood folding and
 complement non-domination. The second proves a parameterized injection into
 a boundary set and derives the two-singleton neighbor-disjointness step.
-Neither module verifies the full order-58 elimination or a crossing theorem.
+The third extracts those premises from native singleton components and
+proves the bound on their actual degrees. None verifies the full order-58
+elimination or a crossing theorem.
 
 ## Parameterized reservoir theorem
 
@@ -61,9 +63,43 @@ of size two and a reservoir of size one, a contradiction.
 
 In height 2933, the clique has four vertices and the two named vertices are
 singleton components outside the clique together with the extra vertex.
-This source checks the finite implication once actual neighborhood
-containments and the nonedge are supplied. It does not extract these premises
-from a component certificate.
+The reservoir module takes actual neighborhood containments and the nonedge
+as inputs. The following component module derives these premises from native
+component supports. Neither parses an external enumeration certificate.
+
+## Native singleton-component degree endpoint
+
+For a finite simple graph with positive finite chromatic number, take a
+clique in its complement and one extra vertex. Assume that deleting any
+vertex of this clique strictly lowers the original chromatic number. If two
+distinct vertices are singleton components of the complement after deleting
+the clique together with the extra vertex, their combined complement degree
+is at most the clique size plus two.
+
+The exact theorem is `degree_add_degree_le_of_singleton_components` in
+[AlbertsonSingletonComponents.lean](AlbertsonSingletonComponents.lean).
+The singleton conditions use Mathlib's actual `ConnectedComponent.supp` of
+the induced deletion graph. There is no free degree sequence, component-size
+table, or assumed neighborhood-containment summary.
+
+An edge from a singleton component to another surviving vertex would place
+both in its support, a contradiction. Thus every neighbor lies in the deleted
+set, and the two singleton vertices are nonadjacent. The reservoir theorem
+then makes their neighbor sets inside the clique disjoint. Their full
+neighborhood union has size at most the clique size plus one, and their
+intersection has size at most one. Finite inclusion-exclusion yields the
+degree bound.
+
+The theorem is parameterized by the graph, chromatic number, finite clique
+and extra vertex. The clique need not have four vertices, and the graph need
+not have order twice its chromatic number. The extra vertex need not be
+assumed outside the clique. No complement-connectivity, minimum-degree,
+matching, non-domination, special-cover or topology premise is needed.
+
+`Audit.lean` also compiles the exact four-clique specialization: the combined
+degree is at most six. This is a conditional theorem application, not a
+constructed order-58 graph or a checked separator enumeration. It closes
+the native graph-to-degree step used in the height-2933 argument.
 
 ## Earlier neighborhood-folding module
 
@@ -79,8 +115,9 @@ complement neighborhood can lie in a complement clique. Nonemptiness is
 essential: a complete critical graph has an edgeless complement.
 
 [AlbertsonNeighborhoodObstruction.lean](AlbertsonNeighborhoodObstruction.lean)
-is unchanged from height 2953. Both modules import Mathlib directly; neither
-imports the other or another campaign project.
+is unchanged from height 2953. The two original modules import Mathlib
+directly and are unchanged. The component module imports the reservoir
+module and Mathlib connectivity; no other campaign project is imported.
 
 ## Literature and claim status
 
@@ -117,8 +154,9 @@ Dependency caches are optional accelerators.
 Expected compact result:
 
 ```text
-Build completed successfully (1006 jobs).
-14 audited declarations: propext, Classical.choice, Quot.sound only.
+Build completed successfully (1008 jobs).
+18 audited declarations: propext, Classical.choice, Quot.sound only.
+Four-clique degree-six specialization compiles.
 ```
 
 See [AUDIT.md](AUDIT.md) for alignment and trust boundaries. The kernel proof
@@ -127,10 +165,12 @@ external solver, generated certificate, or data oracle.
 
 ## Remaining application boundary
 
-Criticality, finite chromatic number, the actual clique and neighborhoods,
-and the complement nonedge are premises, not conclusions about an arbitrary
-graph. Barrier extraction, separator enumeration, degree-excess bounds,
-Gallai spectra, crossing estimates and drawing topology remain external.
+Criticality, finite chromatic number, the actual clique and existence of two
+native singleton components are premises, not conclusions about an arbitrary
+graph. For the new endpoint, neighborhood containment and the complement
+nonedge are derived, not imported. Barrier extraction, separator-enumeration
+soundness, downstream degree-excess bounds, Gallai spectra, crossing estimates
+and drawing topology remain external.
 Neither the full order-58 elimination with independence number at least four
 nor any other complete row/order family is certified here. The numerical
 29-chromatic gate stays paused.
