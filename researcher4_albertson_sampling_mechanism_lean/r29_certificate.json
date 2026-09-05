@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "parameters": {
+    "chromatic_number": 29,
+    "order": 57,
+    "comparison": 8281,
+    "critical_edge_floor": 824,
+    "recurrence_threshold": 829
+  },
+  "recursive_table": {
+    "maximum_order": 57,
+    "sha256": "87c42d5516bc4d3f347dc4ad7c03d57d288cb1cc357887905776d4493d45051d",
+    "checkpoints": [
+      {
+        "maximum_order": 53,
+        "sha256": "55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43"
+      },
+      {
+        "maximum_order": 56,
+        "sha256": "ee056ada7011df41bce287e59ba3c08100c73f988a4e23e444397818e8a5a70f"
+      }
+    ]
+  },
+  "supports": {
+    "m824": {
+      "source_order": 56,
+      "maximum_edges": 1540,
+      "slope": 129,
+      "intercept": 72328,
+      "scale": 4,
+      "left": 792,
+      "right": 796,
+      "endpoint_values": [7460, 7589]
+    },
+    "m825_to_m827": {
+      "source_order": 56,
+      "maximum_edges": 1540,
+      "slope": 65,
+      "intercept": 36562,
+      "scale": 2,
+      "left": 796,
+      "right": 798,
+      "endpoint_values": [7589, 7654]
+    },
+    "m828_to_m829": {
+      "source_order": 56,
+      "maximum_edges": 1540,
+      "slope": 33,
+      "intercept": 18680,
+      "scale": 1,
+      "left": 798,
+      "right": 804,
+      "endpoint_values": [7654, 7852]
+    }
+  },
+  "rows": [
+    {
+      "edges": 824,
+      "support": "m824",
+      "mean": [45320, 57],
+      "bound": [430896, 53],
+      "ceiling": 8131,
+      "comparison_gap": 150
+    },
+    {
+      "edges": 825,
+      "support": "m825_to_m827",
+      "mean": [15125, 19],
+      "bound": [865341, 106],
+      "ceiling": 8164,
+      "comparison_gap": 117
+    },
+    {
+      "edges": 826,
+      "support": "m825_to_m827",
+      "mean": [45430, 57],
+      "bound": [434458, 53],
+      "ceiling": 8198,
+      "comparison_gap": 83
+    },
+    {
+      "edges": 827,
+      "support": "m825_to_m827",
+      "mean": [45485, 57],
+      "bound": [872491, 106],
+      "ceiling": 8232,
+      "comparison_gap": 49
+    },
+    {
+      "edges": 828,
+      "support": "m828_to_m829",
+      "mean": [15180, 19],
+      "bound": [438060, 53],
+      "ceiling": 8266,
+      "comparison_gap": 15
+    },
+    {
+      "edges": 829,
+      "support": "m828_to_m829",
+      "mean": [45595, 57],
+      "bound": [439875, 53],
+      "ceiling": 8300,
+      "comparison_surplus": 19
+    }
+  ],
+  "trust_boundary": {
+    "checked": "exact rational recurrence, full order-56 minorants, table hashes, edge threshold and displayed gaps",
+    "external": "uniform crossing inequalities, drawing-to-four-support translation, critical-edge inequality, and every r=29 separator/profile classification"
+  }
+}

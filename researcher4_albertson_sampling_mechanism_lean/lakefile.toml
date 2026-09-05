@@ -1,6 +1,6 @@
 name = "albertson_sampling_mechanism"
 version = "0.1.0"
-defaultTargets = ["AlbertsonSamplingMechanism", "AlbertsonDeletionThreshold", "AlbertsonPairMoments", "AlbertsonConformalSeparator", "AlbertsonUniformRows", "AlbertsonTwoContraction"]
+defaultTargets = ["AlbertsonSamplingMechanism", "AlbertsonDeletionThreshold", "AlbertsonPairMoments", "AlbertsonConformalSeparator", "AlbertsonUniformRows", "AlbertsonTwoContraction", "AlbertsonR29Feasibility"]
 
 [[lean_lib]]
 name = "AlbertsonSamplingMechanism"
@@ -19,6 +19,9 @@ name = "AlbertsonUniformRows"
 
 [[lean_lib]]
 name = "AlbertsonTwoContraction"
+
+[[lean_lib]]
+name = "AlbertsonR29Feasibility"
 
 [[require]]
 name = "mathlib"

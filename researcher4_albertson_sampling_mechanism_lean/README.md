@@ -38,6 +38,22 @@ order-55 supports first reach `Z(28)=7098` at 770 and 781 edges, respectively.
 These are consequences of one parameterized iff rather than scans of fixed
 windows.
 
+`AlbertsonR29Feasibility.lean` applies that generic inverse to the bounded
+order-57 gate for `r=29`. Three exact order-56 supports cover edge counts
+824--829. Lean checks the six recurrence ceilings
+
+```text
+8131, 8164, 8198, 8232, 8266, 8300
+```
+
+and their gaps `150,117,83,49,15` below `Z(29)=8281`, followed by a surplus
+of 19. It proves that all three supports have exact threshold 829 and supplies
+one theorem-aligned wrapper: if an active support, all local order-56 lower
+bounds, and at least 829 edges are supplied, then the abstract crossing count
+is at least `Z(29)`. The order-57 critical-edge floor rounds to 824, so the
+recurrence alone leaves exactly the five rows 824--828. This is a feasibility
+gate, not an unconditional `r=29` result.
+
 `AlbertsonPairMoments.lean` supplies the finite-graph structural layer needed
 after the recurrence leaves the two order-55 rows:
 
@@ -160,6 +176,7 @@ and Mathlib to `v4.33.1`.
 lake update
 lake build
 PYTHONDONTWRITEBYTECODE=1 python3 verify.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_r29.py
 ```
 
 The build should end with `Build completed successfully`. The checker should
@@ -169,6 +186,14 @@ begin with `PASS sparse affine sampling certificate` and report:
 recursive_table_sha256=ee056ada7011df41bce287e59ba3c08100c73f988a4e23e444397818e8a5a70f
 recursive_table_order53_sha256=55da0a3d413620951dba0ac52618fa24f09d59de43a0c7e8a0f3927283036f43
 checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce277118796bd
+```
+
+The focused `r=29` checker should end with:
+
+```text
+open_rows=824,825,826,827,828
+first_recurrence_closure_edge=829
+checked_evidence_sha256=3536011ea4f06b9ed3e95c1fbfa884407cc2771b3159b02922996167ea7864e3
 ```
 
 As an independent audit of the threshold theorem, the checker also exhausts
@@ -208,6 +233,18 @@ integer ceiling division before checking that the affine thresholds 770 and
   Hall and two-contraction modules formalize the common-support and
   double-uniformity kernels, not either full coloring-or-subdivision
   dichotomy.
+- Height 2623 reports the order-57 `r=29` recurrence ceiling 828 and the five
+  residual gaps. `AlbertsonR29Feasibility.lean` and `verify_r29.py` reproduce
+  precisely that numerical slice with a kernel-checked threshold interface
+  and a fresh full-table hash through order 57.
+- Height 2699 accepts the separator certificate of height 2569 only for its
+  exact `r=28` slice. Therefore no `r=29` separator-profile reduction is used
+  here: the claimed compression of the five rows to one profile per row
+  remains outside the checked dependency boundary.
+- Cranston, [*Progress on Albertson's
+  Conjecture*](https://arxiv.org/abs/2512.08020), states both the affine
+  `5m-203(n-2)/9` crossing estimate and the subdivision-free critical-edge
+  inequality used as external numerical inputs.
 - Büngener and Kaufmann, [*Improving the Crossing Lemma by Characterizing
   Dense 2-Planar and 3-Planar Graphs*](https://arxiv.org/abs/2409.01733), state
   the uniform affine crossing estimates used as checker inputs.

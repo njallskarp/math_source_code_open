@@ -67,6 +67,15 @@ The targeted build completed successfully with 1011 jobs and no warning. Its
 source SHA-256 is
 `daf032e3a920f9fa9014cfa8521361e27c0a5cd4b9500f5a4a9794514a90e648`.
 
+The order-57 `r=29` feasibility audit covers the three active-support interval
+checks, all six displayed recurrence ceilings, the five residual gaps, the
+common exact threshold theorem, and the conditional closure theorem
+`r29_order57_closed_from_829`. A targeted build completed successfully with
+973 jobs. Every printed declaration reports only `propext`,
+`Classical.choice`, and `Quot.sound` (the pure gap arithmetic uses only
+`propext`). The module source SHA-256 is
+`c4ff1c135c1df8c5e97185500fdc5b376f35e1bc00452dcf13b5e81445e4751c`.
+
 ## Independent certificate check
 
 Command:
@@ -107,6 +116,16 @@ positive targets, and edge counts to check the exact iff proved by
 `deletionEdgeThreshold_le_iff`; the affine thresholds 770 and 781 must equal
 the independently scanned table thresholds.
 
+`PYTHONDONTWRITEBYTECODE=1 python3 verify_r29.py` extends the exact table to
+order 57 and reports
+`recursive_table_order57_sha256=87c42d5516bc4d3f347dc4ad7c03d57d288cb1cc357887905776d4493d45051d`.
+It verifies each of the three order-56 affine supports against all 1541 table
+entries and at both equality endpoints, checks every rational mean and bound,
+confirms the exact table values for edges 824--829, and establishes by exact
+scan that 829 is the first recurrence closure edge. The compact checked-evidence
+digest is
+`3536011ea4f06b9ed3e95c1fbfa884407cc2771b3159b02922996167ea7864e3`.
+
 ## Statement alignment
 
 The Lean result is conditional by design. It proves the finite implication from
@@ -131,6 +150,16 @@ under `n>4`, positive slope and scale, and positive target, its threshold is
 both sufficient and necessary. The diagnostic values only identify where the
 two supplied supports reach the external comparison value; validity and local
 applicability of those supports retain the trust boundary above.
+
+`AlbertsonR29Feasibility.lean` adds no separator or profile-classification
+assumption. Lean proves the conditional recurrence implication for arbitrary
+finite support data once `IsActiveAtRatio` and every local order-56 table bound
+are supplied. The Python checker validates the finite table and support data,
+but it is not a proof-assistant kernel and does not connect the table to plane
+drawings. The critical-edge floor 824 is only arithmetic from an externally
+supplied graph inequality. In particular, the five rows 824--828 remain open,
+and the unreviewed `r=29` specialization of the separator/profile reduction is
+not imported or endorsed.
 
 The separate graph module closes the elementary structural consequences stated
 at Discovery Net height 2523. For a finite complement graph `H`, integer
