@@ -46,6 +46,45 @@ It retains connectivity through shared classes, but it is **not** the
 bipartite block-incidence multigraph. No graph isomorphism, edge multiplicity,
 cycle rank, or unique-cycle statement about that multigraph is formalized.
 
+## Block-intersection component endpoint
+
+`AlbertsonIncidenceBalance.lean` now proves balance directly on the actual
+blocks. Its `incidenceGraph C D` has vertex type
+
+```text
+(Set.range C) ⊕ (Set.range D)
+```
+
+and joins a left color `a` to a right color `b` exactly when some original
+vertex has colors `a` and `b`. Thus adjacency is nonempty intersection of
+the two actual color classes; same-side vertices are never adjacent.
+
+For every actual connected component `K`, `incidence_component_balance`
+proves
+
+```text
+(Sum.inl ⁻¹' K.supp).ncard = (Sum.inr ⁻¹' K.supp).ncard.
+```
+
+It derives, rather than assumes, the component-label set and its saturation
+for both colorings. Projection of the left/right block vertices is proved to
+give exactly the colors used on those labels, with cardinality preserved.
+The earlier optimal-coloring theorem then supplies equality. No assumption
+identifying the old label-graph components with these components is needed.
+
+Restricting vertices to **used** colors is essential. For a one-vertex graph,
+give the left coloring a two-element palette with one unused color and the
+right coloring a one-element palette. Both use the optimal one color, but
+the unused left palette entry would form an isolated, unbalanced component
+if nominal palette entries were treated as blocks. The range subtypes exclude
+this artifact without requiring surjective colorings.
+
+This is the underlying **simple block-intersection graph**. Multiple original
+vertices in the same class intersection still give just one adjacency here.
+The theorem counts block vertices, never those simple edges. It does not
+transport multigraph degrees, parallel edges, or cycle rank, and it does not
+prove any unique-cycle or routing statement.
+
 ## Proof
 
 Construct an actual proper mixed coloring: use `D` inside `S` and `C` outside,
@@ -77,8 +116,9 @@ Lean `leanprover/lean4:v4.33.1`, release commit
 transitive dependencies. Do not run `lake update` for this version. Cache
 retrieval is optional acceleration, not a logical dependency.
 
-Expected: successful build and zero audit exit status. The audit covers eight
-theorems plus the mixed-coloring constructor, using only the standard axioms
+Expected: both modules build successfully and the audit exits zero. It covers
+16 declarations: the original eight theorems and mixed-coloring constructor,
+plus seven incidence-interface theorems. They use only the standard axioms
 `propext`, `Classical.choice`, and `Quot.sound`. No `sorry`, `admit`, custom
 axiom, `native_decide`, unsafe shortcut, or external data is used.
 
@@ -92,10 +132,10 @@ The implementation uses the
 at the pinned source revision.
 
 For clique partitions of `H`, use proper colorings of `Hᶜ`. Supplying native
-optimal colorings from the particular critical graph and identifying an
-incidence-component label set as a common union of whole classes remain
-application interfaces. The native label-graph endpoint avoids assuming
-saturation but does not formalize the incidence-multigraph correspondence.
+optimal colorings from the particular critical graph remains an application
+interface. The block-intersection endpoint now derives the whole-class-union
+condition for its own actual components. No separate formal incidence
+multigraph or equivalence to such a library object is provided.
 The charge identity, exceptional unicyclic component, shortest exchanges,
 Hall availability, disjoint routing, and all crossing-number conclusions are
 outside this project. No r=29 row is eliminated; its numerical gate remains

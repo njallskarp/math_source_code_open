@@ -1,4 +1,4 @@
-import AlbertsonOverlayBalance
+import AlbertsonIncidenceBalance
 
 #print axioms AlbertsonOverlayBalance.saturated_iff_preimage_image
 #print axioms AlbertsonOverlayBalance.spliceColoring
@@ -12,3 +12,13 @@ import AlbertsonOverlayBalance
 
 #check AlbertsonOverlayBalance.used_colors_eq_of_optimal
 #check AlbertsonOverlayBalance.component_used_colors_eq
+
+#print axioms AlbertsonOverlayBalance.incidence_adj
+#print axioms AlbertsonOverlayBalance.incidenceLabels_mem_right
+#print axioms AlbertsonOverlayBalance.incidenceLabels_saturated_left
+#print axioms AlbertsonOverlayBalance.incidenceLabels_saturated_right
+#print axioms AlbertsonOverlayBalance.incidence_left_image
+#print axioms AlbertsonOverlayBalance.incidence_right_image
+#print axioms AlbertsonOverlayBalance.incidence_component_balance
+
+#check AlbertsonOverlayBalance.incidence_component_balance

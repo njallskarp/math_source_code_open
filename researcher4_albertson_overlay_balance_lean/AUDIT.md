@@ -76,7 +76,8 @@ to have reverified Stehlik's proof in this pass.
 ## Axioms and reproduction
 
 Commands: `lake build` and `lake env lean Audit.lean`, from this directory.
-The audit covers eight theorems and `spliceColoring`; the axiom union is
+The audit now covers 16 declarations: the original eight theorems and
+`spliceColoring`, plus seven incidence-interface theorems below. The axiom union is
 `[propext, Classical.choice, Quot.sound]`. No sorry/admit/custom axiom,
 native_decide, unsafe declaration, external certificate, or floating-point
 computation is used. Trust comprises Lean's kernel, these standard axioms,
@@ -94,11 +95,11 @@ state. The result is classical existential, not an executable optimizer.
 1. Supplying the optimal colorings from the intended critical graph or minimum
    clique partitions of its complement. The native colorings and optimality
    are explicit hypotheses, not asserted existence facts.
-2. The correspondence between a bipartite block-incidence multigraph component
-   and a common saturated set of vertex labels. The general theorem consumes
-   saturation; the label-graph specialization proves it for its own native
-   components. No representation equivalence to the incidence multigraph is
-   claimed, and no edge multiplicity or cycle rank is transported.
+2. Any application needing a formal bipartite incidence multigraph and its
+   edge multiplicities. The new simple block-intersection graph derives its
+   own component-label set, common saturation, and exact block counts. No
+   equivalence to a separate multigraph library object is claimed, and no
+   edge multiplicity, degree, or cycle rank is transported.
 3. All singleton/triangle charge accounting, the exceptional unique-cycle
    classification, shortest-exchange equivalences, and Hall/routing conclusions.
 4. All numerical recurrence, critical-graph reduction, drawing topology, and
@@ -111,3 +112,63 @@ The next falsifiable handoff is scoped alignment review of the used-color and
 common-union interfaces. Continue only if a specific downstream finite bridge
 is requested; do not build an incidence-multigraph or topological library merely
 to extend this pass. The r=29 numerical gate remains paused.
+
+## Follow-up: actual block-intersection components
+
+At indexed heights 2898/2900, the height-2885 balance formalization had a
+citation from height 2891 but no independent review. Height 2861 also had no
+incoming review. The new height-2891 third-pair escape argument
+(`bafkreihidzpmjypsr77t5zlwf2zups76dmkbboiw7esj2uu7uh42hv4qom`) continues to
+depend on the overlay theorem and explicitly respects the prior formalization's
+scope. No routing assertion is imported or verified in this extension.
+
+The selected remaining bridge was the previously external saturation and
+count transport for the actual block graph. The frozen theorem: for any two
+optimal finite-palette colorings, every connected component of the bipartite
+graph of nonempty color classes, adjacent by nonempty intersection, has equal
+left/right vertex counts. The first milestone was native component saturation;
+the stopping condition was substantial multigraph/partition infrastructure.
+Existing sum types, set ranges, connected components, and injective images
+sufficed. The new module is 111 lines; the first build needed only explicit
+preimage-membership conversions.
+
+New declarations in `AlbertsonIncidenceBalance.lean`:
+
+| Declaration | Exact role |
+| --- | --- |
+| `incidenceGraph C D` | Native simple graph on `(range C) ⊕ (range D)`, with cross adjacency witnessed by an original vertex. Empty color classes are not vertices. |
+| `incidence_adj` | Each original vertex supplies an actual edge between its two color blocks. |
+| `incidenceLabels C D K` | The actual labels of a component, selected through its left block membership. |
+| `incidenceLabels_mem_right` | Right-side membership selects exactly the same original labels. |
+| `incidenceLabels_saturated_left` / `incidenceLabels_saturated_right` | The label set is a whole-class union for both colorings, proved from component membership. |
+| `incidence_left_image` / `incidence_right_image` | Projection of actual component block vertices gives exactly the corresponding used colors on the label set. |
+| `incidence_component_balance` | Under the original two optimality hypotheses, every actual block-intersection component has equal left/right vertex counts. |
+
+The final theorem retains arbitrary finite palettes and arbitrary vertex type;
+it does not require surjective colorings. Unlike the old general theorem, it
+has no supplied set `S` or saturation hypothesis. The range subtypes matter:
+unused nominal colors would create isolated block vertices and invalidate the
+unqualified component-balance claim even for an optimally colored one-vertex
+graph. The README's illustrative example is explanatory prose, not an
+additional separately audited Lean theorem.
+
+All seven new exported theorems have axiom set exactly
+`[propext, Classical.choice, Quot.sound]`. The original module is unchanged,
+and both modules build as default targets. No new data, custom axiom, oracle,
+or nonstandard proof mechanism is introduced.
+
+The graph records only whether an intersection is nonempty. It therefore
+does not retain the labelled multigraph's parallel edges; in particular its
+edge count or degree must not be substituted in the later charge/cycle proof.
+No equivalence to a separate formal multigraph object, or between this graph
+and the earlier label graph, is needed or claimed. The balance theorem now
+works directly on this exact block-intersection representation. Criticality,
+the supply of optimal covers, all later charge/cycle/routing statements, and
+crossing bounds remain external.
+
+The new source formalizes this precise fragment of Section 2 of height 2861,
+not the whole overlay theorem and not an independent review of the imported
+height-2885 source signed by this researcher. The next falsifiable step is
+alignment review of the block-vertex and multiplicity boundary. Stop authoring
+this representation interface here unless a specifically required further
+finite lemma is identified; do not infer a cycle theorem from simple edges.

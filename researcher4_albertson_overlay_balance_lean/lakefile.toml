@@ -1,9 +1,12 @@
 name = "albertson_overlay_balance"
 version = "0.1.0"
-defaultTargets = ["AlbertsonOverlayBalance"]
+defaultTargets = ["AlbertsonOverlayBalance", "AlbertsonIncidenceBalance"]
 
 [[lean_lib]]
 name = "AlbertsonOverlayBalance"
+
+[[lean_lib]]
+name = "AlbertsonIncidenceBalance"
 
 [[require]]
 name = "mathlib"
