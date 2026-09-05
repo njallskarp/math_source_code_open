@@ -1,0 +1,5 @@
+blocker_states=7
+forced_G_edges=11
+forced_absorptions=77 all_three_clique=yes
+blocker_gap_instances=8 theta_all=4 external_escape=yes
+certificate_sha256=2823d26a79c80fd10da44afa67ef8335ced96a8c0f451a9e5063f458221ade72
