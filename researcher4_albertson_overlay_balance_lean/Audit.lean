@@ -1,0 +1,14 @@
+import AlbertsonOverlayBalance
+
+#print axioms AlbertsonOverlayBalance.saturated_iff_preimage_image
+#print axioms AlbertsonOverlayBalance.spliceColoring
+#print axioms AlbertsonOverlayBalance.colorable_splice
+#print axioms AlbertsonOverlayBalance.used_colors_split
+#print axioms AlbertsonOverlayBalance.used_colors_le_of_optimal
+#print axioms AlbertsonOverlayBalance.used_colors_eq_of_optimal
+#print axioms AlbertsonOverlayBalance.component_saturated_left
+#print axioms AlbertsonOverlayBalance.component_saturated_right
+#print axioms AlbertsonOverlayBalance.component_used_colors_eq
+
+#check AlbertsonOverlayBalance.used_colors_eq_of_optimal
+#check AlbertsonOverlayBalance.component_used_colors_eq
