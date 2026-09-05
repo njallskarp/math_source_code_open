@@ -1,0 +1,9 @@
+classes=96
+residues=2,3,4,5
+profiles=384 profile_orders=4800 squarefree_profiles=384
+arc_count_checks=10752
+g8_defect_layers=0:832,1:4192,2:9344,3:11584,4:9344,5:4192,6:832
+candidate_counts=d2:35296,d3:25952,d4:14368,d5:5024
+residue_values=m(dT)=d+1_for_d=2,3,4,5
+exact_rays=m(kT)=ceil(7k/6)_using_d1_and_d6_dependencies
+audit_sha256=e5606e70fb271a9dc797728dd5fc3dbdd42a639585af55086aae83518e939851

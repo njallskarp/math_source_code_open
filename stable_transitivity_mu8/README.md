@@ -22,6 +22,14 @@ satisfies
 
 Thus every exceptional ray attains its asymptotic slope at scale six.
 
+The final theorem `ALL_RAYS_THEOREM.md` determines the complete integral
+growth along every exceptional ray:
+
+    m(k T) = ceil(7k/6)  for every k>=1.
+
+The new certificate supplies square-free sharp profiles for the four missing
+residues `k=2,3,4,5`; addition of the scale-six profile proves all parameters.
+
 ## Verify
 
 The correctness-boundary command uses only the Python standard library and
@@ -57,6 +65,18 @@ Its final lines are:
     exact_ray=m(6qT)=7q_for_all_q>=1
     audit_sha256=37a66ffb38a906c3f500306bc30207045533b1b6347574a20ec6a2abadb38a3a
 
+Verify the complete exceptional-ray theorem with:
+
+    PYTHONDONTWRITEBYTECODE=1 python3 verify_residues.py
+    diff -u EXPECTED_RESIDUE_OUTPUT.txt <(PYTHONDONTWRITEBYTECODE=1 python3 verify_residues.py)
+    PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_residues.py
+
+Its final lines are:
+
+    residue_values=m(dT)=d+1_for_d=2,3,4,5
+    exact_rays=m(kT)=ceil(7k/6)_using_d1_and_d6_dependencies
+    audit_sha256=e5606e70fb271a9dc797728dd5fc3dbdd42a639585af55086aae83518e939851
+
 ## Regenerate
 
 The deterministic certificate generator uses NumPy 2.5.2 and SciPy 1.18.1
@@ -82,6 +102,24 @@ The integral profiles and compact isomorphism maps can be regenerated with:
 The MILP generator is discovery-only.  `verify_m6.py` independently decodes
 the resulting integer profiles and permutation maps using a separate
 definition-level implementation.
+
+Regenerate the 384 square-free residue profiles serially with:
+
+    UV_CACHE_DIR=/tmp/stable-mu8-uv-cache \
+      uv run --with-requirements requirements.txt \
+      python generate_residue_profiles.py
+
+The generator also accepts half-open `--class-start` and `--class-stop`
+ranges for deterministic parallel shards.  Merge a complete partition with:
+
+    PYTHONDONTWRITEBYTECODE=1 python3 merge_residue_shards.py \
+      --output residue_profiles.txt /tmp/residue-shard-*.txt
+
+The recorded production run used eight disjoint 12-class shards.  A
+post-cleanup regeneration of the first complete class was byte-identical to
+the corresponding four certificate rows.  HiGHS is used only to discover
+binary witnesses; `verify_residues.py` uses a separately implemented direct
+order-mask enumeration and standard-library integer arithmetic.
 
 ## Input provenance
 
@@ -110,6 +148,8 @@ every displayed mask directly.
 The second source gives the ordinary predictability minimax LP and identifies
 the common 20-arc `G_8` obstacle at value `13/20`.  Ordinary predictability
 only asks every arc probability to be *at least* a threshold.  Stable
-transitivity requires the exact equal-margin slice treated here.  The claim
-is `mu_8=7/6`; no value for order nine or a finite formula for `m(8,k)` is
-asserted.
+transitivity requires the exact equal-margin slice treated here.  This
+package proves `mu_8=7/6` and the exact formula on each of the 96 exceptional
+ordinary-tournament rays.  It does not claim a finite formula for the maximum
+`m(8,k)` over arbitrary mixtures of ordinary layer types, nor any value at
+order nine.
