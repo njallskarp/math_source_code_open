@@ -1,0 +1,92 @@
+{
+  "degrees": [
+    [
+      20,
+      8
+    ],
+    [
+      21,
+      26
+    ],
+    [
+      22,
+      9
+    ]
+  ],
+  "diagonal_edges": 210,
+  "first_blue_width3_k5": [
+    1,
+    2,
+    6,
+    13,
+    34
+  ],
+  "first_red_width3_k5": [
+    1,
+    9,
+    16,
+    27,
+    40
+  ],
+  "local": [
+    [
+      0,
+      "R",
+      22,
+      108
+    ],
+    [
+      0,
+      "B",
+      20,
+      100
+    ],
+    [
+      3,
+      "R",
+      21,
+      99
+    ],
+    [
+      3,
+      "B",
+      21,
+      98
+    ]
+  ],
+  "minimum_defect_width": 3,
+  "monochromatic_defects": [
+    [
+      "B",
+      3,
+      93
+    ],
+    [
+      "B",
+      4,
+      53
+    ],
+    [
+      "B",
+      6,
+      58
+    ],
+    [
+      "R",
+      3,
+      141
+    ],
+    [
+      "R",
+      4,
+      20
+    ],
+    [
+      "R",
+      6,
+      1
+    ]
+  ],
+  "status": "PASS_DEGREE_COMPATIBLE_WIDTH2_SAT",
+  "width_at_most_two_clauses": 413
+}

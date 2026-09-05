@@ -1,0 +1,144 @@
+{
+  "anchors": [
+    0,
+    3
+  ],
+  "cell_sizes": [
+    10,
+    11,
+    10,
+    10
+  ],
+  "degree_deviation_square_sum": 17,
+  "degrees": [
+    [
+      20,
+      8
+    ],
+    [
+      21,
+      26
+    ],
+    [
+      22,
+      9
+    ]
+  ],
+  "diagonal_edges": 210,
+  "edge_sha256": "1910c00f11e247f45ccea2508784d01eb87f5ac3e7511b1ee134566a06e6df73",
+  "edges": 452,
+  "first_blue_width3_k5": [
+    1,
+    2,
+    6,
+    13,
+    34
+  ],
+  "first_red_width3_k5": [
+    1,
+    9,
+    16,
+    27,
+    40
+  ],
+  "local": [
+    [
+      0,
+      "R",
+      22,
+      108,
+      6
+    ],
+    [
+      0,
+      "B",
+      20,
+      100,
+      0
+    ],
+    [
+      3,
+      "R",
+      21,
+      99,
+      8
+    ],
+    [
+      3,
+      "B",
+      21,
+      98,
+      9
+    ]
+  ],
+  "minimum_defect_width": 3,
+  "monochromatic_defects": [
+    [
+      "B",
+      3,
+      93
+    ],
+    [
+      "B",
+      4,
+      53
+    ],
+    [
+      "B",
+      6,
+      58
+    ],
+    [
+      "R",
+      3,
+      141
+    ],
+    [
+      "R",
+      4,
+      20
+    ],
+    [
+      "R",
+      6,
+      1
+    ]
+  ],
+  "monochromatic_list_sha256": "85c11a90fd1014d932b1b9e0f43f89414fff7db2ee0af917b175b41bf747b7dd",
+  "residual_clause_sha256": "99055acf33e8349550ac37701c30ef8f9360e183409ef213f31a04619683829c",
+  "residual_clauses": 8249,
+  "violated_residual_clauses": [
+    [
+      "B",
+      3,
+      92
+    ],
+    [
+      "B",
+      4,
+      45
+    ],
+    [
+      "B",
+      6,
+      58
+    ],
+    [
+      "R",
+      3,
+      140
+    ],
+    [
+      "R",
+      4,
+      12
+    ],
+    [
+      "R",
+      6,
+      1
+    ]
+  ],
+  "width_at_most_two_clauses": 413,
+  "width_at_most_two_status": "SAT_BY_STORED_DEGREE_COMPATIBLE_ASSIGNMENT"
+}

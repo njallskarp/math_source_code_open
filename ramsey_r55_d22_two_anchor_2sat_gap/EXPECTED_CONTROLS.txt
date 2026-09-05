@@ -1,0 +1,3 @@
+PASS rejected flipped incidence bit
+PASS rejected incorrect width-three defects
+PASS rejected nonbinary row and truncated graph6
