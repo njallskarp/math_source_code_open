@@ -1,0 +1,607 @@
+{
+  "bin_order": [
+    "00",
+    "01",
+    "10",
+    "11"
+  ],
+  "excess_placements": {
+    "C77": 435,
+    "C8": 30,
+    "E77": 78,
+    "E8": 13
+  },
+  "families": [
+    {
+      "anchor_choices_min": 12,
+      "exact_central_red_neighbors": 15,
+      "excess": [
+        [
+          5,
+          2
+        ]
+      ],
+      "name": "E_left_8",
+      "partner_min": 9
+    },
+    {
+      "anchor_choices_min": 4,
+      "exact_central_red_neighbors": 15,
+      "excess": [
+        [
+          11,
+          1
+        ],
+        [
+          12,
+          1
+        ]
+      ],
+      "name": "E_right_77",
+      "partner_min": 9
+    },
+    {
+      "anchor_choices_min": 16,
+      "exact_central_red_neighbors": 15,
+      "excess": [
+        [
+          42,
+          2
+        ]
+      ],
+      "name": "C_right_8",
+      "partner_min": 9
+    },
+    {
+      "anchor_choices_min": 1,
+      "exact_central_red_neighbors": 15,
+      "excess": [
+        [
+          41,
+          1
+        ],
+        [
+          42,
+          1
+        ]
+      ],
+      "name": "C_right_77",
+      "partner_min": 9
+    },
+    {
+      "anchor_choices_min": 28,
+      "exact_central_red_neighbors": 14,
+      "excess": [
+        [
+          28,
+          1
+        ],
+        [
+          42,
+          1
+        ]
+      ],
+      "name": "C_split_77_partition",
+      "partner_min": 8
+    }
+  ],
+  "incidence_orbits": [
+    {
+      "bins": [
+        4,
+        13,
+        13,
+        0
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 285028443000
+    },
+    {
+      "bins": [
+        5,
+        12,
+        12,
+        1
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 9633961373400
+    },
+    {
+      "bins": [
+        6,
+        11,
+        11,
+        2
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 115607536480800
+    },
+    {
+      "bins": [
+        7,
+        10,
+        10,
+        3
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 666119614960800
+    },
+    {
+      "bins": [
+        8,
+        9,
+        9,
+        4
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 2081623796752500
+    },
+    {
+      "bins": [
+        9,
+        8,
+        8,
+        5
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 3746922834154500
+    },
+    {
+      "bins": [
+        10,
+        7,
+        7,
+        6
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 3996717689764800
+    },
+    {
+      "bins": [
+        11,
+        6,
+        6,
+        7
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 2543365802577600
+    },
+    {
+      "bins": [
+        12,
+        5,
+        5,
+        8
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 953762175966600
+    },
+    {
+      "bins": [
+        13,
+        4,
+        4,
+        9
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 203795336745000
+    },
+    {
+      "bins": [
+        14,
+        3,
+        3,
+        10
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 23290895628000
+    },
+    {
+      "bins": [
+        15,
+        2,
+        2,
+        11
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 1270412488800
+    },
+    {
+      "bins": [
+        16,
+        1,
+        1,
+        12
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 26466926850
+    },
+    {
+      "bins": [
+        17,
+        0,
+        0,
+        13
+      ],
+      "epsilon": null,
+      "family": "E_right_77",
+      "kind": "E77",
+      "labeled_multiplicity": 119759850
+    },
+    {
+      "bins": [
+        0,
+        14,
+        14,
+        0
+      ],
+      "epsilon": 0,
+      "family": "C_split_77_partition",
+      "kind": "C77",
+      "labeled_multiplicity": 40116600
+    },
+    {
+      "bins": [
+        1,
+        13,
+        13,
+        1
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 7862853600
+    },
+    {
+      "bins": [
+        2,
+        12,
+        12,
+        2
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 332205564600
+    },
+    {
+      "bins": [
+        3,
+        11,
+        11,
+        3
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 5315289033600
+    },
+    {
+      "bins": [
+        4,
+        10,
+        10,
+        4
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 40196873316600
+    },
+    {
+      "bins": [
+        5,
+        9,
+        9,
+        5
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 160787493266400
+    },
+    {
+      "bins": [
+        6,
+        8,
+        8,
+        6
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 361771859849400
+    },
+    {
+      "bins": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 472518347558400
+    },
+    {
+      "bins": [
+        8,
+        6,
+        6,
+        8
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 361771859849400
+    },
+    {
+      "bins": [
+        9,
+        5,
+        5,
+        9
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 160787493266400
+    },
+    {
+      "bins": [
+        10,
+        4,
+        4,
+        10
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 40196873316600
+    },
+    {
+      "bins": [
+        11,
+        3,
+        3,
+        11
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 5315289033600
+    },
+    {
+      "bins": [
+        12,
+        2,
+        2,
+        12
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 332205564600
+    },
+    {
+      "bins": [
+        13,
+        1,
+        1,
+        13
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 7862853600
+    },
+    {
+      "bins": [
+        14,
+        0,
+        0,
+        14
+      ],
+      "epsilon": 0,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 40116600
+    },
+    {
+      "bins": [
+        2,
+        13,
+        13,
+        0
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 3931426800
+    },
+    {
+      "bins": [
+        3,
+        12,
+        12,
+        1
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 221470376400
+    },
+    {
+      "bins": [
+        4,
+        11,
+        11,
+        2
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 3986466775200
+    },
+    {
+      "bins": [
+        5,
+        10,
+        10,
+        3
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 32157498653280
+    },
+    {
+      "bins": [
+        6,
+        9,
+        9,
+        4
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 133989577722000
+    },
+    {
+      "bins": [
+        7,
+        8,
+        8,
+        5
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 310090165585200
+    },
+    {
+      "bins": [
+        8,
+        7,
+        7,
+        6
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 413453554113600
+    },
+    {
+      "bins": [
+        9,
+        6,
+        6,
+        7
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 321574986532800
+    },
+    {
+      "bins": [
+        10,
+        5,
+        5,
+        8
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 144708743939760
+    },
+    {
+      "bins": [
+        11,
+        4,
+        4,
+        9
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 36542612106000
+    },
+    {
+      "bins": [
+        12,
+        3,
+        3,
+        10
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 4872348280800
+    },
+    {
+      "bins": [
+        13,
+        2,
+        2,
+        11
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 306651290400
+    },
+    {
+      "bins": [
+        14,
+        1,
+        1,
+        12
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 7301221200
+    },
+    {
+      "bins": [
+        15,
+        0,
+        0,
+        13
+      ],
+      "epsilon": 1,
+      "family": "C_right_77",
+      "kind": "C77",
+      "labeled_multiplicity": 37442160
+    }
+  ],
+  "schema": 1
+}
