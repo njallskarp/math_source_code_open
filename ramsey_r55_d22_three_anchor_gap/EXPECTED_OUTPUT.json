@@ -1,0 +1,81 @@
+{
+  "base_degree_profile": [
+    [
+      20,
+      8
+    ],
+    [
+      21,
+      26
+    ],
+    [
+      22,
+      9
+    ]
+  ],
+  "base_edge_sha256": "1910c00f11e247f45ccea2508784d01eb87f5ac3e7511b1ee134566a06e6df73",
+  "base_edges": 452,
+  "base_local_profiles": [
+    [
+      0,
+      "R",
+      22,
+      108,
+      6
+    ],
+    [
+      0,
+      "B",
+      20,
+      100,
+      0
+    ],
+    [
+      3,
+      "R",
+      21,
+      99,
+      8
+    ],
+    [
+      3,
+      "B",
+      21,
+      98,
+      9
+    ]
+  ],
+  "cell_sizes": [
+    10,
+    11,
+    10,
+    10
+  ],
+  "clause_sha256": "bf5d83bd2d6bca4faea493bb7ed74feb8f0bf1d6390848b36b9bfd88274e4ff4",
+  "core_clauses": 8,
+  "core_variables": 7,
+  "deletion_examples": [
+    "0100000",
+    "1001101",
+    "1001110",
+    "1010100",
+    "1100000",
+    "1010000",
+    "1001100",
+    "1000100"
+  ],
+  "deletion_satisfying_counts": [
+    12,
+    1,
+    1,
+    4,
+    12,
+    4,
+    1,
+    4
+  ],
+  "diagonal_edges": 210,
+  "fixed_incidence_sha256": "c4e838310bc8dd4d7a0a556250cc9980a7180d20ab2986f9b05b3bc353b9b857",
+  "satisfying_assignments": 0,
+  "third_anchor": 1
+}

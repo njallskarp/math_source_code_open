@@ -1,0 +1,65 @@
+{
+  "assignments_checked": 128,
+  "diagonal_edges": 210,
+  "first_violation_counts": [
+    [
+      1,
+      64
+    ],
+    [
+      2,
+      16
+    ],
+    [
+      3,
+      8
+    ],
+    [
+      4,
+      10
+    ],
+    [
+      5,
+      15
+    ],
+    [
+      6,
+      10
+    ],
+    [
+      7,
+      1
+    ],
+    [
+      8,
+      4
+    ]
+  ],
+  "profiles": [
+    [
+      0,
+      "R",
+      22,
+      108
+    ],
+    [
+      0,
+      "B",
+      20,
+      100
+    ],
+    [
+      3,
+      "R",
+      21,
+      99
+    ],
+    [
+      3,
+      "B",
+      21,
+      98
+    ]
+  ],
+  "status": "PASS_NO_VALID_THIRD_ANCHOR_AT_VERTEX_1"
+}
