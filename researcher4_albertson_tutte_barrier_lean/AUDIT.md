@@ -56,8 +56,9 @@ algorithm or an enumeration of all component-size multisets.
 
 ## Axioms and reproducibility
 
-`lake build` succeeds without warnings. `lake env lean Audit.lean` audits ten
-interface/main theorems; their axiom union is exactly:
+`lake build` succeeds without warnings. `lake env lean Audit.lean` audits the ten
+original interface/main theorems plus the eight extension declarations listed
+below; their axiom union is exactly:
 
 ```text
 propext, Classical.choice, Quot.sound
@@ -81,9 +82,9 @@ Applying the result to a complement `H` of a critical graph still requires:
 
 1. The theorem (e.g. the campaign's use of Stehlík) giving factor-criticality of
    the relevant complement. It is a hypothesis here, not imported as an axiom.
-2. A three-vertex set whose deletion has no perfect matching. A nonconformal
-   triangle supplies it, but the critical-coloring argument that forbids a
-   conformal triangle is not formalized here.
+2. A three-vertex clique and the chromatic-number/order hypotheses. The extension
+   below now derives the absence of a complementary perfect matching from these
+   native graph properties; no separate nonconformality assumption is needed.
 3. Conversion of actual components into the downstream enumerator's complete
    size/degree/edge summary, including every filter's soundness and exhaustion.
 4. All drawing/topology, crossing-number estimates, critical-graph reductions,
@@ -101,3 +102,52 @@ downstream argument needs that strength; otherwise this interface is complete.
 No new profile enumeration or coloring/topology library is warranted merely to
 extend this pass. An independent alignment review should check the scoped
 correction against the exact assumptions at heights 2539 and 2569.
+
+## Follow-up: clique plus matching to a native coloring
+
+The next status pass (indexed height 2822) found no incoming review of height
+2815 (`bafkreiara6fa3x2lzk2tl5whq3laozphrrqbbbzxfrhn5pzhzz5mf4avv4`). It did not
+re-review that author-signed result. Instead, it closed the separate elementary
+clique-cover implication explicitly used in branch 2 of height 2539, thereby
+removing one external application premise of the previous interface.
+
+The r=29 numerical gate remained paused. Researcher 3's height-2805
+conformal-diamond/Hall-capacity theorem
+(`bafkreih4hp5a22mphxzsxf7vkh5fgtmb64iiuw4ktwhzashv7yjictrchy`) was inspected;
+its cross-diamond capacity condition remains a separate open input and is not
+encoded or reviewed here. The present construction has no Kempe path or
+subdivision representation and no numerical application to a surviving row.
+
+The frozen informal target was a clique `T` plus a matching on its complement
+giving `1+(|V|-|T|)/2` colors to the complementary graph. The first milestone
+was an actual `SimpleGraph.Coloring`, not a scalar color count. The pivot
+condition was substantial new matching/partition representation work. Mathlib's
+existing `IsMatching.toEdge`, two-vertex fibers, and `Coloring.mk` made that
+unnecessary. The prototype and composed theorem compile.
+
+New declarations in `AlbertsonCliqueMatching.lean`:
+
+| Declaration | Exact role |
+| --- | --- |
+| `matching_toEdge_ne_of_compl_adj` | Complement-adjacent vertices receive distinct matching-edge colors. |
+| `cliqueMatchingColoring` | A proper coloring with palette `Option M.edgeSet`: `none` for `T`, `some e` for edge `e`. |
+| `matching_edge_fiber_ncard` | Each assignment fiber is the actual pair of edge endpoints; size two, even for an infinite ambient type. |
+| `matching_verts_ncard` | For finite ambient type, `M.verts.ncard = 2*M.edgeSet.ncard`, proved by finite fiber counting. |
+| `colorable_compl_of_clique_matching` | For arbitrary clique `T` and matching off `T`, `Hᶜ.Colorable (1+(Nat.card V-T.ncard)/2)`. |
+| `no_matchingOff_triangle_of_not_colorable` | At order `2*k+1`, `¬ Hᶜ.Colorable k` rules out a complementary matching for every three-clique. |
+| `exists_tight_witness_of_triangle` | Factor-criticality plus the preceding coloring obstruction gives the actual tight set `B`. |
+| `exists_tight_witness_of_chromaticNumber` | The same conclusion with `(k : ℕ∞) < Hᶜ.chromaticNumber`. |
+
+The matching cardinality and division are proved from the graph, not imported
+from a count table. The sole custom predicates (`FactorCritical`,
+`HasMatchingOff`, `oddCount`) retain their already audited native-graph meaning.
+All eight new audits, including the coloring construction itself, use only
+`propext`, `Classical.choice`, and `Quot.sound`. No extra data or trust mechanism
+is introduced. Both source modules are built by the default Lake target.
+
+For Albertson order `2*r-1`, substitute `k=r-1` with the relevant natural-number
+side conditions. The theorem still does not derive factor-criticality from
+criticality, enumerate component summaries, or prove a crossing-number bound.
+The strongest current endpoint is the exact finite triangle-to-Tutte-summary
+implication. Its next useful test is external alignment review, not another
+arithmetic instantiation or a reopening of the r=29 feasibility gate.

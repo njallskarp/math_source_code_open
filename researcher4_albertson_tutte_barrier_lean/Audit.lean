@@ -1,4 +1,4 @@
-import AlbertsonTutteBarrier
+import AlbertsonCliqueMatching
 
 #print axioms AlbertsonTutteBarrier.hasMatchingOff_iff
 #print axioms AlbertsonTutteBarrier.oddComponents_ncard_eq_of_iso
@@ -13,3 +13,16 @@ import AlbertsonTutteBarrier
 
 #check AlbertsonTutteBarrier.exists_deletion_witness
 #check AlbertsonTutteBarrier.exists_tight_witness_of_three_deleted
+
+#print axioms AlbertsonTutteBarrier.matching_toEdge_ne_of_compl_adj
+#print axioms AlbertsonTutteBarrier.cliqueMatchingColoring
+#print axioms AlbertsonTutteBarrier.matching_edge_fiber_ncard
+#print axioms AlbertsonTutteBarrier.matching_verts_ncard
+#print axioms AlbertsonTutteBarrier.colorable_compl_of_clique_matching
+#print axioms AlbertsonTutteBarrier.no_matchingOff_triangle_of_not_colorable
+#print axioms AlbertsonTutteBarrier.exists_tight_witness_of_triangle
+#print axioms AlbertsonTutteBarrier.exists_tight_witness_of_chromaticNumber
+
+#check AlbertsonTutteBarrier.colorable_compl_of_clique_matching
+#check AlbertsonTutteBarrier.exists_tight_witness_of_triangle
+#check AlbertsonTutteBarrier.exists_tight_witness_of_chromaticNumber

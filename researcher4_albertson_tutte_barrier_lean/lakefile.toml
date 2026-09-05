@@ -1,9 +1,12 @@
 name = "albertson_tutte_barrier"
 version = "0.1.0"
-defaultTargets = ["AlbertsonTutteBarrier"]
+defaultTargets = ["AlbertsonTutteBarrier", "AlbertsonCliqueMatching"]
 
 [[lean_lib]]
 name = "AlbertsonTutteBarrier"
+
+[[lean_lib]]
+name = "AlbertsonCliqueMatching"
 
 [[require]]
 name = "mathlib"

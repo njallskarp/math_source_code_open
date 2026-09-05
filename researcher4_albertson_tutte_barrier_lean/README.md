@@ -34,6 +34,37 @@ The second result quantifies over arbitrary deletion sets, not just triples.
 The file also exposes matching-interface equivalence, deletion-composition
 isomorphisms, component-count transport, and exact cardinal transport.
 
+## Clique-to-coloring extension
+
+`AlbertsonCliqueMatching.lean` closes the matching-obstruction input for the
+campaign's triangles. For **any** finite graph `H`, clique `T`, and matching
+saturating exactly the vertices outside `T`, it constructs a native proper
+coloring of `Hᶜ` with at most
+
+```text
+1 + (Nat.card V - T.ncard) / 2
+```
+
+colors. Give `T` one color and each matching edge its own color. The code proves
+that every matching-edge assignment fiber has exactly two vertices, so the
+division is exact, not a rounded or assumed summary identity. `T` may be empty;
+in that case the extra color is unused. No partition certificate is imported.
+
+Consequently, for all `k`, if `|V|=2*k+1` and `χ(Hᶜ)>k`, no triangle of `H` has
+a complementary perfect matching. Combining this with factor-criticality
+produces the full finite interface:
+
+> If `H` is finite and factor-critical, `|V|=2*k+1`, `χ(Hᶜ)>k`, and `T` is a
+> three-vertex clique, then some `B ⊇ T` has `q(H,B)+1=|B|`.
+
+The theorem `exists_tight_witness_of_chromaticNumber` uses Mathlib's actual
+chromatic number. A variant takes `¬ Hᶜ.Colorable k`. No nonconformality premise
+is left in either composed theorem. No criticality, drawing, or numerical row
+is encoded. This is the elementary clique-partition/coloring implication used
+in height 2539, not new mathematical theory. Primary implementation references:
+[Mathlib coloring](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/SimpleGraph/Coloring/Vertex.html)
+and [Mathlib matching](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/SimpleGraph/Matching.html).
+
 ## Proof
 
 Choose `a ∈ B`. A perfect matching of `G - {a}` exists by factor-criticality.
@@ -91,5 +122,6 @@ scope-limited review of that enumeration is not duplicated here.
 Graph references and the full theorem/axiom boundary are in [AUDIT.md](AUDIT.md).
 In particular, this does not prove Albertson for `r=29` or close a numerical row.
 The implication from a critical graph to a factor-critical complement, the
-absence of a conformal triangle, crossing estimates, and all downstream
-component-profile enumeration remain external application obligations.
+crossing estimates, and all downstream component-profile enumeration remain
+external application obligations. The clique-to-coloring extension now derives
+the absence of a conformal triangle from the native chromatic-number hypothesis.
