@@ -1,0 +1,13 @@
+{
+  "common_red_core_edge": [10, 11],
+  "core_differences": [1, 5, 8, 12],
+  "footprints": ["1c48", "0e2c", "1f42"],
+  "outside_indices": [0, 10, 18],
+  "pair_blue_witnesses": [
+    {"outside_pair": [0, 10], "independent_core_triple": [0, 4, 7]},
+    {"outside_pair": [0, 18], "independent_core_triple": [0, 4, 7]},
+    {"outside_pair": [10, 18], "independent_core_triple": [0, 4, 7]}
+  ],
+  "source_artifact_ref": "bafkreigl5xpol5rwgkymeo3xi5ikrqvgjv55txzo6qmvegazysdzipd6du",
+  "source_certificate_sha256": "f3fbd6c8bbd743ac82f6cbb6ba0f7fa1ef33a6fb8b905d1282f44f78b153392c"
+}

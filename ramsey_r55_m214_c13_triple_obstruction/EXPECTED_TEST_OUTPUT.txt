@@ -1,0 +1,7 @@
+REJECTED missing-common-bit
+REJECTED nonindependent-witness
+REJECTED witness-meets-union
+REJECTED nonedge-common-pair
+REJECTED duplicate-outside-pair
+REJECTED wrong-source-hash
+ALL 6 NEGATIVE CONTROLS REJECTED

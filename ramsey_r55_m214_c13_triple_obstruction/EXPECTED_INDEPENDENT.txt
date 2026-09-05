@@ -1,0 +1,4 @@
+VERIFIED TRIPLE-INCOMPATIBILITY OBSTRUCTION
+core_edges=26 independent_triples=78 independent_fours=39 legal_footprints=3
+pair_blue_witnesses=3 common_red_edge=10,11 truth_assignments=8 safe=0
+affine_orbit=52 deletion_models=4 source_height=2969
