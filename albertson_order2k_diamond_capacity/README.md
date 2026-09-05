@@ -13,6 +13,14 @@ eliminate any of the surviving order-58 rows.  It strictly sharpens the local
 obstruction in the earlier one-triple Kempe lemma and identifies the remaining
 cross-deletion input needed before that lane should resume.
 
+**Correction and follow-up (2026-09-05).** The original public version reused
+`a_1` in the triple and first pair and therefore displayed the wrong size for
+`N_H(v)`. The labels below are repaired. The proof mechanism is unchanged.
+[`CORRECTION_AND_ALIGNMENT.md`](CORRECTION_AND_ALIGNMENT.md) proves a uniform
+two-vertex-criticality separation family and explains exactly why the Tutte
+interfaces at Discovery Net heights 2815 and 2831 do not control these
+conformal deletion triangles.
+
 ## Setup
 
 Let `G` be a `k`-vertex-critical graph on `2k` vertices, let
@@ -25,9 +33,9 @@ assigned to `v`.  It occurs there exactly once because `d_G(v)=k-1`.  Thus we
 may write
 
 ```
-B=N_G(v)={b_0,b_1,...,b_{k-2}},
-A=N_H(v)={a_0,a_1,...,a_{k-2}},
-C_0={b_0,a_0,a_1},       C_i={b_i,a_i}  (1 <= i <= k-2).
+B=N_G(v)={b_0,b_2,...,b_{k-1}},
+A=N_H(v)={a_0,a_1,a_2,...,a_{k-1}},
+C_0={b_0,a_0,a_1},       C_i={b_i,a_i}  (2 <= i <= k-1).
 ```
 
 Each colour class is independent in `G` and hence a clique in `H`.
@@ -37,7 +45,7 @@ Each colour class is independent in `G` and hence a clique in `H`.
 Put
 
 ```
-D={v,b_0,a_0,a_1},       M={a_i b_i : 1 <= i <= k-2}.
+D={v,b_0,a_0,a_1},       M={a_i b_i : 2 <= i <= k-1}.
 ```
 
 Then `H[D]` is the diamond `K_4-vb_0`, and `M` is a perfect matching of
@@ -62,7 +70,7 @@ unrelated clique factors after different deletions.
 
 ## Theorem: the two-slot Hall-capacity criterion
 
-Let `J=H[B]`.  For every `i>=1` with `b_0b_i in E(J)`, define
+Let `J=H[B]`.  For every `i>=2` with `b_0b_i in E(J)`, define
 
 ```
 S_i={s in {0,1} : b_0-a_i-a_s-b_i is a path in G}.
@@ -70,7 +78,7 @@ S_i={s in {0,1} : b_0-a_i-a_s-b_i is a path in G}.
 
 Every `S_i` is nonempty.  Suppose that
 
-1. `d_J(b_i)<=1` for each pair-class representative `b_i`, `i>=1`; and
+1. `d_J(b_i)<=1` for each pair-class representative `b_i`, `i>=2`; and
 2. the family `{S_i : b_0b_i in E(J)}` has an injective system of
    representatives in the two slots `{0,1}`.
 
@@ -97,7 +105,7 @@ on `v`, contrary to `k`-criticality.  Hence representatives adjacent in `G`
 can be joined directly, while representatives nonadjacent in `G` have a
 shortest odd bichromatic path of length three.
 
-For `1<=i<j<=k-2`, if `b_i b_j` is an edge of `H`, the only possible
+For `2<=i<j<=k-1`, if `b_i b_j` is an edge of `H`, the only possible
 length-three bichromatic path is
 
 ```
@@ -116,7 +124,7 @@ that is adjacent in `G`, the forced path above for every edge of
 available path for each edge `b_0b_i` of `J`.  Add the direct paths `vb_i`.
 The branch set is `{v} union B`.
 
-An internal vertex `a_i`, `i>=1`, occurs only on paths corresponding to
+An internal vertex `a_i`, `i>=2`, occurs only on paths corresponding to
 edges of `J` incident with `b_i`; condition 1 therefore permits it on at
 most one chosen path.  The special vertices `a_0,a_1` occur only on paths
 from `b_0`, and condition 2 assigns them injectively.  Thus the chosen branch
