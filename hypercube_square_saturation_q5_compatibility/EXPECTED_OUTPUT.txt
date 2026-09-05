@@ -1,0 +1,41 @@
+{
+  "asymptotic_constant": "39984/22175",
+  "bound": "sat(Q_d,Q_2) >= 39984*d*2^d/(22175*d+57793) for d>=5",
+  "edge_facet_multiplicity": 4,
+  "edge_square_multiplicity": 4,
+  "external_q5_squarefree_edge_cap": 56,
+  "global_slack_coefficient": "673/22848",
+  "improvement_over_119_66": "119/1463550",
+  "live4_capacity_distribution": {
+    "0": 130,
+    "1": 80
+  },
+  "live4_required_edges": 17,
+  "live8_capacity_distribution": {
+    "16": 5,
+    "28": 40
+  },
+  "live8_required_edges": 34,
+  "possible_live_facet_counts": [
+    4,
+    8
+  ],
+  "q4_equality_pairs_E_S": [
+    [
+      0,
+      0
+    ],
+    [
+      17,
+      3
+    ]
+  ],
+  "q5_edges": 80,
+  "q5_facets": 10,
+  "q5_slack_edge_ratio": "673/1904",
+  "q5_squares": 80,
+  "q5_vertices": 32,
+  "strict_q5_delta_lower_bound": 1
+}
+certificate_sha256=b8dc72003a6019476da1ca7695c04508099281573891dbb6a2265eb6a91e8c21
+status=PASS
