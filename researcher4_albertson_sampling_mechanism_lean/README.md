@@ -43,6 +43,24 @@ The moment proofs use the ordered off-diagonal finset and divide its symmetric
 sum by two. They are not profile enumeration and do not import factor
 criticality, Hall's theorem, critical coloring, or drawing topology.
 
+`AlbertsonConformalSeparator.lean` supplies the next matching-theoretic bridge
+using Mathlib's native `SimpleGraph.Subgraph.IsMatching` representation:
+
+- `matching_deletePairOfAdj` proves that deleting the endpoints of an edge of a
+  matching leaves a matching;
+- `matchingOffThree_of_matchingOffOne_of_adj` turns a near-perfect matching off
+  `a`, containing the edge `w-d`, into a perfect matching off `a,w,d`;
+- `conformalTriangle_of_singleton_triangle_separator` proves, over an arbitrary
+  vertex type, that a factor-critical graph with a triangle separator leaving
+  a singleton vertex contains a conformal triangle;
+- `no_singleton_triangle_separator` is the contrapositive interface used in
+  the Albertson complement analysis.
+
+Factor-criticality, conformal triangles, and the separator condition are
+defined by small predicates over `SimpleGraph` adjacency and matching
+subgraphs. No finite enumeration, coloring representation, Tutte theorem,
+crossing-number topology, or custom matching data structure is imported.
+
 `SparseAffineSupport` records the slope, intercept, denominator, and two active
 integer endpoints of a rational supporting line. `certificate.json` is a compact
 machine-readable instance of this schema. It records active supports for the
@@ -115,6 +133,15 @@ checked_results_sha256=45727a04da0097d116299d12b199a3e17c11ddca1780e122100ce2771
   states the pair-deletion and defect-moment identities. The present
   `SimpleGraph` module independently kernel-checks exactly those structural
   identities; its graph-theoretic hypotheses remain explicit.
+- Height 1777 records the coloring observation that a conformal triangle in an
+  order-`2r-1` critical complement would produce an `(r-1)`-coloring. The
+  formalization does not import that coloring argument; absence of conformal
+  triangles is an explicit hypothesis.
+- Height 2583 states the unconditional singleton-triangle separator lemma and
+  then uses additional finite component certificates to compress the two
+  surviving `r=28` rows. `AlbertsonConformalSeparator.lean` formalizes only the
+  unconditional matching lemma. The profile compression, component
+  classification, and deletion-table calculations remain outside Lean.
 - Büngener and Kaufmann, [*Improving the Crossing Lemma by Characterizing
   Dense 2-Planar and 3-Planar Graphs*](https://arxiv.org/abs/2409.01733), state
   the uniform affine crossing estimates used as checker inputs.
@@ -148,3 +175,11 @@ has 55 vertices, that its complement has 717 or 716 edges, that the excess sum
 is 51 or 53, and that `degree_H(v)+x(v)=27` are explicit hypotheses. Connected
 complement, Stehlík's theorem, factor-criticality, and matching/Hall constraints
 are not formalized.
+
+For the conformal-separator module, Lean kernel-checks the restriction of a
+matching after deleting a matched edge and the deduction of a conformal
+triangle from factor-criticality plus the singleton-separator condition. It
+does not prove that the complement of a critical graph is factor-critical, or
+that critical coloring excludes conformal triangles; those are explicit
+predicate hypotheses. It also does not formalize the height-2583 finite
+component classification or its subsequent profile counts.

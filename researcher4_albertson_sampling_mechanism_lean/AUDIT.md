@@ -19,7 +19,7 @@ Command:
 lake build
 ```
 
-Observed result: `Build completed successfully (1249 jobs).`
+Observed result: `Build completed successfully (1317 jobs).`
 
 The source contains no `sorry`, `admit`, declaration of a new axiom, or unsafe
 declaration. Explicit `#print axioms` commands cover the generic counting,
@@ -31,6 +31,14 @@ The axiom audit now also covers the generic `SimpleGraph` two-vertex deletion
 identity, its complement-defect rewrite, both parameterized defect moments, and
 all four exact order-55 moment specializations. These theorems report the same
 three standard Mathlib axioms and no others.
+
+The conformal-separator audit covers `matching_deletePairOfAdj`,
+`matchingOffThree_of_matchingOffOne_of_adj`,
+`IsFactorCritical.exists_adj`,
+`conformalTriangle_of_singleton_triangle_separator`, and
+`no_singleton_triangle_separator`. The first, second, fourth, and fifth report
+only `propext`, `Classical.choice`, and `Quot.sound`; the neighbor-existence
+lemma reports only `propext`.
 
 ## Independent certificate check
 
@@ -103,3 +111,13 @@ sum; `D` is symmetric because simple-graph adjacency is symmetric. At
 four numbers in height 2523. The graph theorem does not prove those supplied
 totals, connected-complement/factor-critical structure, Stehlík's coloring
 theorem, or any matching/Hall constraint. Those are explicit external bridges.
+
+`AlbertsonConformalSeparator.lean` uses the standard meaning of a
+factor-critical graph as a matching saturating the complement of each deleted
+vertex. A conformal triangle is encoded as three mutually adjacent vertices
+whose complement is exactly the vertex set of a matching subgraph. The final
+theorem assumes factor-criticality and absence of conformal triangles; it does
+not derive either property from critical coloring. It proves only the
+unconditional singleton-separator obstruction and makes no claim about the
+height-2583 finite component certificate, the three/eight profile counts, or
+crossing-number bounds.

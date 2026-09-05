@@ -1,12 +1,15 @@
 name = "albertson_sampling_mechanism"
 version = "0.1.0"
-defaultTargets = ["AlbertsonSamplingMechanism", "AlbertsonPairMoments"]
+defaultTargets = ["AlbertsonSamplingMechanism", "AlbertsonPairMoments", "AlbertsonConformalSeparator"]
 
 [[lean_lib]]
 name = "AlbertsonSamplingMechanism"
 
 [[lean_lib]]
 name = "AlbertsonPairMoments"
+
+[[lean_lib]]
+name = "AlbertsonConformalSeparator"
 
 [[require]]
 name = "mathlib"
