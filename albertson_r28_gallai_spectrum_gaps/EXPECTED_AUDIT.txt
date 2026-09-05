@@ -1,0 +1,6 @@
+PASS independent Gallai spectrum-gap audit
+n=50 below_max=581 above_min=600 forbidden=582..599
+n=49 below_max=559 above_min=576 forbidden=560..575
+degree_identity nlow=50 eL=581+eR eR=1..10 gives=582..591
+degree_identity nlow=49 eL=554+eR eR=6..15 gives=560..569
+audit_sha256=8824c8ad81b9656f05d11a821f6d5a9b41a2f037eb485f133c1a03393c112afd

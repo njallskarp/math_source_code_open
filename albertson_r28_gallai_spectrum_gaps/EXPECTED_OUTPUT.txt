@@ -1,0 +1,10 @@
+PASS Albertson r=28 Gallai spectrum-gap elimination
+block_spectrum n=50 target=582..591 hits=NONE previous=581 witness=K3+K23+K26 components=1 next=600 witness=K25+K25 components=2
+block_spectrum n=49 target=560..569 hits=NONE previous=559 witness=K3+K22+K26 components=1 next=576 witness=K24+K25 components=2
+local_degree_2_3_orbit H_N(w1)=s,t3 H_N(w2)=s,t1,t2 H_edges(s,T)=0
+local_eR_min_by_k=0:7,1:6,2:7,3:7,4:9
+row=769 profile=0^50,1^3,25^2 eR_floor=1 eL_range=582..591 gallai_spectrum_hits=NONE ELIMINATED
+row=769 profile=0^50,1^2,2^1,24^1,25^1 eR_floor=1 eL_range=582..591 gallai_spectrum_hits=NONE ELIMINATED
+row=769 profile=0^49,1^4,24^1,25^1 eR_floor=6 eL_range=560..569 gallai_spectrum_hits=NONE ELIMINATED
+summary row=769 input_profiles=3 survivors=0
+certificate_sha256=1df764cbebf67b1f5adaada7688de11c8b6f9c9f0e78003c79e10946055b44a1
