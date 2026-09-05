@@ -1,0 +1,9 @@
+PASS structural Albertson r=28 separator certificate audit
+middle_b=6..24 deficiency_min=(b-3)(27-b)>=63>53
+b=25 internal_H_max=21 cross_upper<=35<cross_lower=75
+b=26 internal_H_max=10 cross_upper<=44<cross_lower=52
+row=768 b=3,4,5 boundary_candidates=13 survivors=b3:51,1;50,1,1|b4:49,1,1
+row=768 terminal b27_split=7767 K28_minus_edge_GB_floor=338>325 b28_split=8268>7098
+row=769 b=3,4,5 boundary_candidates=13 survivors=b3:51,1;50,1,1|b4:49,1,1
+row=769 terminal b27_split=7732 K28_minus_edge_GB_floor=337>325 b28_split=8238>7098
+audit_sha256=6c0413c0c3e1951c272368f6e56b0f5ebfdca868e88fc22e1895d2a8702ab08f

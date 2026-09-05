@@ -1,0 +1,23 @@
+PASS clean-room Albertson r=28 separator certificate review
+arithmetic=exact_Fraction partition_representation=ascending_multiplicity subset_sum=integer_bitset
+soundness_controls=PASS
+row=768 triangle_free q=27 residual_order=28 residual_edges=339 split_lower=8268>Z28=7098
+row=768 b=3 initial=8 reasons=bipartite:6,survives:2 survivors=51,1;50,1,1
+row=768 b=4 initial=4 reasons=bipartite:3,survives:1 survivors=49,1,1
+row=768 b=5 initial=1 reasons=bipartite:1 survivors=NONE
+row=768 b=25 initial=11 reasons=cross_edges:11 survivors=NONE
+row=768 b=26 initial=8 reasons=cross_edges:8 survivors=NONE
+row=768 b=27 initial=3 reasons=split:1,topological_K28:2 survivors=NONE
+row=768 b=28 initial=1 reasons=split:1 survivors=NONE
+row=768 initial_configurations=36 surviving_barriers=3,4 survivor_multisets=b3:51,1;50,1,1|b4:49,1,1
+row=769 triangle_free q=27 residual_order=28 residual_edges=338 split_lower=8238>Z28=7098
+row=769 b=3 initial=8 reasons=bipartite:6,survives:2 survivors=51,1;50,1,1
+row=769 b=4 initial=4 reasons=bipartite:3,survives:1 survivors=49,1,1
+row=769 b=5 initial=1 reasons=bipartite:1 survivors=NONE
+row=769 b=25 initial=13 reasons=cross_edges:13 survivors=NONE
+row=769 b=26 initial=8 reasons=cross_edges:8 survivors=NONE
+row=769 b=27 initial=3 reasons=split:1,topological_K28:2 survivors=NONE
+row=769 b=28 initial=1 reasons=split:1 survivors=NONE
+row=769 initial_configurations=38 surviving_barriers=3,4 survivor_multisets=b3:51,1;50,1,1|b4:49,1,1
+entry_records=74 certificate_sha256=bd5ce6a29e7fb90259e5fe4ec3b341cbb5fcceb8de25ad0416a8bbe21af5cf5e
+conclusion=r28_rows_768_769_triangle_case_only_b3_b4_and_b4_only_49_1_1; triangle_free=eliminated
