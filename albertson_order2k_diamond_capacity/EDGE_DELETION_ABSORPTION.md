@@ -61,8 +61,8 @@ Define the eleven forced nonedges of \(H[X]\)
 
 \[
 \begin{aligned}
-E_0=\{&vw,,vb_i,,vb_j,,wa_i,,wa_j,\\
-      &pa_i,,pb_i,,pa_j,,pb_j,,a_i a_j,,b_i b_j\}.
+E_0=\{&vw,vb_i,vb_j,wa_i,wa_j,\\
+      &pa_i,pb_i,pa_j,pb_j,a_i a_j,b_i b_j\}.
 \end{aligned}
 \]
 
