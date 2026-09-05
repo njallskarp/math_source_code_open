@@ -1,0 +1,10 @@
+PASS certificate schema=r55-m214-aggregate-pseudomodel-v1
+PASS exceptional_core order=13 edges=39 degree=6 red_K5=0 blue_K5=0
+PASS signatures count=30 size6=28 size7=2 incidence=14^13 allowed=3432 capacity_min_slack=0
+PASS union_cuts roots=4043 tight=498 min_slack=0
+PASS degree_fixture edges=445 degrees=20^13,21^30 M=214
+PASS scalar_profiles W=39 Delta=604 T_red=1403 T_blue=1463 D=28
+PASS class_sieve q_20,20=39 S_20=-78 bounds=[-80,-78]
+PASS backbone red_delta=13 blue_delta=12 red_diameter=2 blue_diameter=3 kappa_red>=4 kappa_blue>=2
+LIMITATION assigned_profiles_are_aggregate mismatch_vertices=43 monochromatic_red_K5=0,1,4,13,14
+CERTIFICATE_SHA256 e59a33cf352645528217125b3cae0e65a1a10dcbcc0ff8795e544ad964a5a550
