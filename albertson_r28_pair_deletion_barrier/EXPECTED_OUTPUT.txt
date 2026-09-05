@@ -1,0 +1,10 @@
+PASS Albertson r=28 pair-deletion barrier
+row=768 H_edges=717 G_edges=768 excess=0:4,1:51 roots=0,1,27,28
+row=768 one_deletion_sum=360044 bound=7060
+row=768 pair_deficits=0:2,1:108,2:762,3:613 moments=3471,8673 pair_deletion_sum=9000908 bound=7060
+row=768 conformal_triangle=0,1,2 remainder_matching=26
+row=769 H_edges=716 G_edges=769 excess=0:2,1:53 roots=0,27
+row=769 one_deletion_sum=361685 bound=7092
+row=769 pair_deficits=1:55,2:767,3:663 moments=3578,9090 pair_deletion_sum=9040923 bound=7091
+row=769 conformal_triangle=0,1,2 remainder_matching=26
+certificate_sha256=289b5baf49b7fb3f1fd04a32c1b3d0985254e16a4c15501cc97f2baaf27c5d08
