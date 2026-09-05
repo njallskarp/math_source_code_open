@@ -19,7 +19,8 @@ Command:
 lake build
 ```
 
-Observed result: `Build completed successfully (1317 jobs).`
+Observed result after adding the Hall module:
+`Build completed successfully (1503 jobs).`
 
 The source contains no `sorry`, `admit`, declaration of a new axiom, or unsafe
 declaration. Explicit `#print axioms` commands cover the generic counting,
@@ -39,6 +40,14 @@ The conformal-separator audit covers `matching_deletePairOfAdj`,
 `no_singleton_triangle_separator`. The first, second, fourth, and fifth report
 only `propext`, `Classical.choice`, and `Quot.sound`; the neighbor-existence
 lemma reports only `propext`.
+
+The Hall/common-support audit covers
+`hasTransversalOn_of_card_eq_succ_of_ne` and
+`all_rows_eq_of_uniform_card_of_no_succ_transversal`. Both report only
+`propext`, `Classical.choice`, and `Quot.sound`. A targeted build of the new
+module completed successfully with 1010 jobs and no warning. Its source
+SHA-256 is
+`351acddc7cc7c98ebea3580b0468794d3290eefd21e457e93b86d3fa98910fe3`.
 
 ## Independent certificate check
 
@@ -121,3 +130,13 @@ not derive either property from critical coloring. It proves only the
 unconditional singleton-separator obstruction and makes no claim about the
 height-2583 finite component certificate, the three/eight profile counts, or
 crossing-number bounds.
+
+`AlbertsonUniformRows.lean` formalizes the exact finite-family statement used
+by the reviewed common-support step. The obstruction hypothesis says directly
+that every `d+1`-element index subset lacks an injective choice into its rows;
+it is not hidden behind an informal matching-number predicate. Lean proves the
+contrapositive by extending two unequal rows to `d+1` indices and checking
+Hall's inequalities for every subfamily. It does not formalize the conversion
+between complement edges and row membership, the simultaneous matchings used
+for coloring, contracted row signatures, or the final topological `K_r`
+routings.
