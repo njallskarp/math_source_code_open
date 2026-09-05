@@ -1,0 +1,1 @@
+{"bytes":29045208,"cut_rows":37569,"lines":37570,"max_removed":2,"row_counts":{"degree_20_removed_1":546,"degree_20_removed_2":11193,"degree_21_removed_2":25830},"sha256":"724ea8d7788010b31617523b7d04b293b668445ca98b89463307b8403353036c"}

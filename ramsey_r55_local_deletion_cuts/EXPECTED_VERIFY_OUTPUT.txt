@@ -1,0 +1,6 @@
+PASS deletion identity on 33868 labeled graphs and 2131019 graph/subset pairs
+PASS 18 positive exact-deficiency-seven rows for local orders 18..24
+PASS 5 scalar-cap fixtures violate a deletion cut
+PASS height-2731 witness satisfies 247094 known-range cuts; minimum slack 0
+PASS 54 scalar-good root-colors satisfy 197142 cuts; minimum slack 4
+SCOPE transferable valid inequalities; they do not exclude the height-2731 survivor
