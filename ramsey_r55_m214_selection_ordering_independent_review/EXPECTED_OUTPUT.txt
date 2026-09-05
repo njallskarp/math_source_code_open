@@ -1,0 +1,6 @@
+PASS cell_stabilizer cells=4 sizes=6,7,15,14 pair_rows=232
+PASS mixed_radix_key tuples=48424 adjacent_lex_checks=48420
+PASS schedule_closure arithmetic_goals=874 syntactic_images=25922
+PASS cutting_planes_identity coefficient_sum=0 rhs_sum=2
+PASS abstract_orbit_sorting cases=363 key_alphabet=0,1,2 sizes=1..5
+VERDICT height-2563 selection ordering is equisatisfiability-preserving
