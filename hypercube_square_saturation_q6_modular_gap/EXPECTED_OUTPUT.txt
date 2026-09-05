@@ -1,0 +1,68 @@
+{
+  "arithmetic_audit_sha256": "07e7fd0fb86f3d62cedf08b3f0288ca000ebf187055381b03fbe85858c1002a4",
+  "arithmetic_equality_E_D_k": [
+    95,
+    12,
+    12
+  ],
+  "arithmetic_equality_direction_edges": [
+    30,
+    13,
+    13,
+    13,
+    13,
+    13
+  ],
+  "arithmetic_equality_facet_edges": [
+    24,
+    41,
+    41,
+    41,
+    41,
+    41,
+    41,
+    41,
+    41,
+    41,
+    41,
+    41
+  ],
+  "arithmetic_equality_profile_count": 1,
+  "asymptotic_constant": "5183640/2874791",
+  "bound": "sat(Q_d,Q_2) >= 5183640*d*2^d/(2874791*d+7492489) for d>=6",
+  "edge_cap_by_live_count": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 1,
+    "6": 6,
+    "7": 11,
+    "8": 20,
+    "9": 36,
+    "10": 64,
+    "11": 88,
+    "12": 132
+  },
+  "equality_realizability": "not asserted",
+  "finite_bound_cross_difference": "1452990*(d-1)",
+  "global_slack_coefficient": "87289/2962080",
+  "improvement_over_39270_21779": "1452990/62610073189",
+  "local_slack_edge_ratio": "87289/148104",
+  "minimum_W_by_live_count": {
+    "5": 274,
+    "6": 148,
+    "7": 122,
+    "8": 70,
+    "9": 66,
+    "10": 58,
+    "11": 41,
+    "12": 37
+  },
+  "q5_squarefree_edge_cap": 56,
+  "q6_squarefree_edge_cap": 132,
+  "strict_q6_modular_gap": 37
+}
+certificate_sha256=e52282edc4a5bb2e6783b072278a2c180254a877a423bb74b72e565926f58a3c
+status=PASS
