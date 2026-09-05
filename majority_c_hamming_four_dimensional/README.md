@@ -131,6 +131,21 @@ has exact majority C-chromatic number `s^2+2*s-2` by the nonlinear one-box
 construction, but every coordinate-line lift has at most one fewer colour.
 See [BALANCED_STARS_THIN_OBSTRUCTION.md](BALANCED_STARS_THIN_OBSTRUCTION.md).
 
+Intersecting that sharp thin bound with the one-box theorem gives an exact
+first-carry phase classification.  If `m,n>=s`, `2<=p<s`, the positive
+residues are `r=m mod s`, `u=n mod s`, and `r*u*p<2*s`, then the sequential
+line stripping plus whole residue tail attains the quotient exactly when
+
+```text
+s <= r*u*p < 2*s  and  r+u+p >= s+2.
+```
+
+Throughout this region every coordinate-line partition is exactly one part
+short.  Every admissible residue pattern also embeds in infinitely many
+ordered near-triangle Hamming graphs, with an explicit exact formula for the
+majority C-chromatic number.  See
+[FIRST_CARRY_SEPARATION.md](FIRST_CARRY_SEPARATION.md).
+
 A transversal alignment of the larger rectangle stars now eliminates every
 modular carry as soon as all three minor sides are at least `s`. Precisely,
 every box
@@ -176,6 +191,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 verify_multibox_obstruction.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_cross_boundary.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_three_coordinate_slabs.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_balanced_stars_thin.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify_first_carry_separation.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_all_large_three_box.py
 PYTHONDONTWRITEBYTECODE=1 python3 verify_specialist_star_reduction.py
 ```
@@ -260,6 +276,9 @@ The three-coordinate slab checker reports the compact expected output in
 
 The balanced-star/thin-coordinate checker reports the compact expected
 output in `expected_balanced_stars_thin_stdout.txt`.
+
+The first-carry classification checker reports the compact expected output in
+`expected_first_carry_separation_stdout.txt`.
 
 The all-large three-box checker reports the compact expected output in
 `expected_all_large_three_box_stdout.txt`.

@@ -1,0 +1,14 @@
+first-carry residue tuples through s=160: 318231
+volume-carry tuples: 194215
+legal whole-tail tuples: 632
+exact nonlinear/line separations: 632
+admissible ordered residue patterns: 632
+near-triangle embeddings through q=8: 4424
+cell-level partitions through s=12: 40
+cell-level parts checked: 2200
+cell-level cells checked: 20168
+p=1 boundary: (4,3,2,1) has gap 0
+degree boundary: (4,2,1,2) tail degree 2 < 3
+second-carry boundary: (3,2,2,2) needs 2 parts
+base realization: K_11 square K_8 square K_7 square K_2 = 37; line ceiling 36
+all exact checks passed
