@@ -1,0 +1,18 @@
+PASS Albertson r=28 separator compression
+b3_safe_singleton_neighborhoods=0
+b4_labelled_patterns=18 orbits=3 codes=00000110101,00000111101,00101011001
+b4_singleton_degree_types=2,2;2,3
+row=768 profile=0^51,1^2,24^1,25^1 sum=360156 bound=7062
+row=768 profile=0^52,2^1,24^1,25^1 sum=360157 bound=7062
+row=768 profile=0^52,1^1,25^2 sum=360160 bound=7062
+row=768 profiles=3 minimum=360156 bound=7062 queried_q=716,717,739,740,741 uniform_lift_to_7070=7
+row=769 profile=0^51,2^2,24^1,25^1 sum=361740 bound=7093
+row=769 profile=0^52,4^1,24^1,25^1 sum=361741 bound=7093
+row=769 profile=0^51,1^1,3^1,24^1,25^1 sum=361741 bound=7093
+row=769 profile=0^50,1^2,2^1,24^1,25^1 sum=361741 bound=7093
+row=769 profile=0^49,1^4,24^1,25^1 sum=361742 bound=7093
+row=769 profile=0^52,3^1,25^2 sum=361744 bound=7094
+row=769 profile=0^51,1^1,2^1,25^2 sum=361744 bound=7094
+row=769 profile=0^50,1^3,25^2 sum=361745 bound=7094
+row=769 profiles=8 minimum=361740 bound=7093 queried_q=717,718,738,739,740,741,742 uniform_lift_to_7098=4
+certificate_sha256=6000d19605a542df816052cb5704fddde3590d7197143c4923ea47cd81e4eb20
