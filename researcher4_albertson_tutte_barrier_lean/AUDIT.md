@@ -57,8 +57,8 @@ algorithm or an enumeration of all component-size multisets.
 ## Axioms and reproducibility
 
 `lake build` succeeds without warnings. `lake env lean Audit.lean` audits the ten
-original interface/main theorems plus the eight extension declarations listed
-below; their axiom union is exactly:
+original interface/main theorems, eight clique/matching declarations, and eight
+deletion-coloring theorems: 26 declarations in total. Their axiom union is exactly:
 
 ```text
 propext, Classical.choice, Quot.sound
@@ -80,8 +80,10 @@ dependency. Public source excludes `.lake` and all binaries/caches.
 
 Applying the result to a complement `H` of a critical graph still requires:
 
-1. The theorem (e.g. the campaign's use of Stehlík) giving factor-criticality of
-   the relevant complement. It is a hypothesis here, not imported as an axiom.
+1. The theorem (the campaign's use of Stehlík) supplying proper deletion
+   colorings with every class of size at least two. The latest extension
+   derives factor-criticality from this explicit hypothesis and the order.
+   No critical-graph theorem is imported as an axiom.
 2. A three-vertex clique and the chromatic-number/order hypotheses. The extension
    below now derives the absence of a complementary perfect matching from these
    native graph properties; no separate nonconformality assumption is needed.
@@ -141,13 +143,77 @@ New declarations in `AlbertsonCliqueMatching.lean`:
 The matching cardinality and division are proved from the graph, not imported
 from a count table. The sole custom predicates (`FactorCritical`,
 `HasMatchingOff`, `oddCount`) retain their already audited native-graph meaning.
-All eight new audits, including the coloring construction itself, use only
+All eight clique/matching audits, including the coloring construction itself, use only
 `propext`, `Classical.choice`, and `Quot.sound`. No extra data or trust mechanism
-is introduced. Both source modules are built by the default Lake target.
+is introduced. These source modules are built by the default Lake target.
 
 For Albertson order `2*r-1`, substitute `k=r-1` with the relevant natural-number
 side conditions. The theorem still does not derive factor-criticality from
 criticality, enumerate component summaries, or prove a crossing-number bound.
-The strongest current endpoint is the exact finite triangle-to-Tutte-summary
-implication. Its next useful test is external alignment review, not another
+At that stage the endpoint was the finite triangle-to-Tutte-summary
+implication. Its next useful test was external alignment review, not another
 arithmetic instantiation or a reopening of the r=29 feasibility gate.
+
+## Follow-up: supplied deletion colorings to factor-criticality
+
+At indexed height 2840, heights 2815 and 2831 had no incoming review; this is
+not independent validation of either author-signed artifact. The graph search
+found no duplicate formal consumer of the Stehlík deletion-coloring endpoint.
+Height 2539 explicitly uses that endpoint to obtain pair classes at order
+`2*r-1` and hence a factor-critical complement. This pass formalizes only that
+elementary finite implication and composes it with height 2831
+(`bafkreifqkfotqbjwoeac36sp2z2voseggs6k4n7v24ejzfbeo2262ykuya`).
+
+The frozen target was a proper coloring of `2*k` vertices with palette `Fin k`
+and all classes at least two, producing a native complementary perfect matching;
+then apply the construction after every vertex deletion. The broader counting
+lemma accepts any finite palette and any lower bound `d`. The pivot condition
+was substantial bespoke coloring or matching representation. Native finite
+fiber sums, `SimpleGraph.Coloring`, matching subgraphs, and injective subgraph
+maps sufficed. No recurrence, row-specific arithmetic, or profile enumeration
+was reopened. Researcher 3's diamond/Hall-capacity route is untouched.
+
+Primary-literature alignment was checked before implementation: M. Stehlík,
+“Critical graphs with connected complements,” J. Combin. Theory Ser. B 89
+(2003), 189–194, DOI `10.1016/S0095-8956(03)00069-8`.
+The [publisher's abstract](https://www.sciencedirect.com/science/article/pii/S0095895603000698)
+states the required deletion-coloring theorem. Search exposed that primary
+abstract; direct full-page retrieval returned HTTP 403. The full paper's proof
+was not inspected or reverified. Its theorem remains an external application
+obligation. No new mathematical theorem or independent literature review is
+claimed for this elementary formalized consumer.
+
+New declarations in `AlbertsonDeletionColoring.lean`:
+
+| Declaration | Exact role |
+| --- | --- |
+| `sum_fiber_ncard` | The sum of actual finite fiber cardinalities is `Nat.card V`. |
+| `fiber_ncard_eq_of_lower` | If every fiber has size at least `d` and the total is `d * Fintype.card A`, every fiber has size exactly `d`. |
+| `existsUnique_other_of_fiber_two` | Every vertex in a two-element fiber has exactly one distinct vertex of the same color. |
+| `perfectMatching_compl_of_pair_coloring` | Equal-colored pairs define an actual perfect matching in the complement. |
+| `perfectMatching_compl_of_large_classes` | For any finite palette, order twice its size and classes of size at least two suffice for the preceding matching. |
+| `matching_on_set_of_pair_coloring` | A pair coloring of `G.induce S` gives a matching subgraph of `Gᶜ` with saturated vertex set exactly `S`. |
+| `HasLargeDeletionColorings G k` | Explicit input: for every vertex `v`, a proper `Fin k` coloring of `G-v` has all classes of size at least two. This is a definition, not an axiom or an existence assertion. |
+| `factorCritical_compl_of_deletion_colorings` | This input plus `Nat.card V=2*k+1` yields `FactorCritical Gᶜ`. |
+| `exists_tight_witness_of_deletion_colorings` | The same input/order, `(k : ℕ∞) < G.chromaticNumber`, and a complement three-clique yield `B ⊇ T` with `oddCount Gᶜ B + 1 = B.ncard`. |
+
+All eight new theorems have axiom set exactly
+`[propext, Classical.choice, Quot.sound]`. There is no certificate, external
+data, custom axiom, extra trust mechanism, or assumed induced/complement
+commutation. The actual subtype lifting and its exact vertex set are proved.
+All three modules build as default targets. The two older source modules are
+unchanged. The proof is classical existential, not an executable matching or
+barrier algorithm.
+
+The strongest endpoint now takes deletion colorings, not factor-criticality,
+as the external structural input. It still requires the native order,
+chromatic-number, and triangle hypotheses. Criticality and connected complement
+have not been formalized as sufficient to supply those colorings. Drawing
+topology, crossing inequalities, and all downstream summary soundness remain
+external. No unconditional Albertson result or complete r=29 row follows.
+
+The next falsifiable step is independent alignment review of this precise
+Stehlík-consumer interface against height 2539, including palette cardinality
+and the substitution `k=r-1`. Absent a specific further required bridge, close
+authoring here; a full critical-coloring or topological library would exceed
+the bounded task. The r=29 numerical gate remains paused.

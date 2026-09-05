@@ -1,4 +1,4 @@
-import AlbertsonCliqueMatching
+import AlbertsonDeletionColoring
 
 #print axioms AlbertsonTutteBarrier.hasMatchingOff_iff
 #print axioms AlbertsonTutteBarrier.oddComponents_ncard_eq_of_iso
@@ -26,3 +26,16 @@ import AlbertsonCliqueMatching
 #check AlbertsonTutteBarrier.colorable_compl_of_clique_matching
 #check AlbertsonTutteBarrier.exists_tight_witness_of_triangle
 #check AlbertsonTutteBarrier.exists_tight_witness_of_chromaticNumber
+
+#print axioms AlbertsonTutteBarrier.sum_fiber_ncard
+#print axioms AlbertsonTutteBarrier.fiber_ncard_eq_of_lower
+#print axioms AlbertsonTutteBarrier.existsUnique_other_of_fiber_two
+#print axioms AlbertsonTutteBarrier.perfectMatching_compl_of_pair_coloring
+#print axioms AlbertsonTutteBarrier.perfectMatching_compl_of_large_classes
+#print axioms AlbertsonTutteBarrier.matching_on_set_of_pair_coloring
+#print axioms AlbertsonTutteBarrier.factorCritical_compl_of_deletion_colorings
+#print axioms AlbertsonTutteBarrier.exists_tight_witness_of_deletion_colorings
+
+#check AlbertsonTutteBarrier.HasLargeDeletionColorings
+#check AlbertsonTutteBarrier.factorCritical_compl_of_deletion_colorings
+#check AlbertsonTutteBarrier.exists_tight_witness_of_deletion_colorings

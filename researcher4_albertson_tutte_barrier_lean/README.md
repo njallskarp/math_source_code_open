@@ -65,6 +65,44 @@ in height 2539, not new mathematical theory. Primary implementation references:
 [Mathlib coloring](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/SimpleGraph/Coloring/Vertex.html)
 and [Mathlib matching](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/SimpleGraph/Matching.html).
 
+## Deletion-coloring consumer
+
+`AlbertsonDeletionColoring.lean` closes the elementary finite step between
+large-class deletion colorings and factor-criticality. For any finite graph
+on twice as many vertices as palette colors, a proper coloring whose every
+color class has size at least two yields an actual perfect matching of the
+complement. Finite fiber counting forces each class to have size exactly two;
+the matching joins the distinct vertices with equal colors. The counting
+lemma is more general: fibers bounded below by any `d` are all exactly `d`
+when the total is `d` times the palette cardinality.
+
+Let `HasLargeDeletionColorings G k` mean that **every** vertex deletion of `G`
+admits a proper coloring with palette `Fin k` whose every class has size at
+least two. Then:
+
+> If `|V(G)|=2*k+1` and `HasLargeDeletionColorings G k`, the complement of `G`
+> is factor-critical.
+
+The subtype-to-ambient matching transport is proved, including its exact
+saturated vertex set. Composing all three modules gives:
+
+> If additionally `χ(G)>k`, every three-vertex clique `T` of `Gᶜ` is contained
+> in an actual set `B` satisfying `q(Gᶜ,B)+1=|B|`.
+
+The main declaration is `exists_tight_witness_of_deletion_colorings`.
+Factor-criticality and triangle nonconformality are conclusions of the
+intermediate lemmas, not separate hypotheses of this endpoint.
+
+The existence of the supplied deletion colorings from criticality and
+connected complement is **not** formalized here. It is the endpoint supplied
+by M. Stehlík, “Critical graphs with connected complements,” J. Combin. Theory
+Ser. B 89 (2003), 189–194,
+[primary publisher abstract](https://www.sciencedirect.com/science/article/pii/S0095895603000698),
+DOI `10.1016/S0095-8956(03)00069-8`. The abstract states that each vertex
+deletion of a critical graph with connected complement has a
+`χ(G)-1` coloring with every class of size at least two. This project proves
+the finite consumer of that statement, not Stehlík's theorem itself.
+
 ## Proof
 
 Choose `a ∈ B`. A perfect matching of `G - {a}` exists by factor-criticality.
@@ -102,7 +140,8 @@ Mathlib: `v4.33.1`, commit `0df444a360eaa60ab8c11dca51a86af692955474`.
 `lake-manifest.json` pins the transitive dependencies. Do not run `lake update`
 when reproducing this version. Cache retrieval is an optional build accelerator.
 
-Expected: `Build completed successfully`; `Audit.lean` exits zero and reports
+Expected: all three source modules build successfully; `Audit.lean` exits zero,
+audits 26 declarations, and reports
 only `propext`, `Classical.choice`, and `Quot.sound`. The first audited interface
 uses only `propext` and `Quot.sound`. No `sorryAx` or extra axiom occurs.
 
@@ -121,7 +160,8 @@ scope-limited review of that enumeration is not duplicated here.
 
 Graph references and the full theorem/axiom boundary are in [AUDIT.md](AUDIT.md).
 In particular, this does not prove Albertson for `r=29` or close a numerical row.
-The implication from a critical graph to a factor-critical complement, the
-crossing estimates, and all downstream component-profile enumeration remain
-external application obligations. The clique-to-coloring extension now derives
+The implication from a critical graph to the supplied large-class deletion
+colorings, the crossing estimates, and all downstream component-profile
+enumeration remain external application obligations. The deletion-coloring
+consumer derives factor-criticality; the clique-to-coloring extension derives
 the absence of a conformal triangle from the native chromatic-number hypothesis.
