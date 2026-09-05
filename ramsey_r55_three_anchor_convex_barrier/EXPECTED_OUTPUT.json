@@ -1,0 +1,125 @@
+{
+  "cell_permutation_group_order": 111451255603200000,
+  "cell_sizes": [
+    6,
+    4,
+    4,
+    6,
+    5,
+    6,
+    6,
+    3
+  ],
+  "central_edge_counts_upper_triangle": [
+    [
+      4,
+      13,
+      15,
+      20,
+      19,
+      23,
+      20,
+      8
+    ],
+    [
+      2,
+      8,
+      10,
+      12,
+      16,
+      10,
+      5
+    ],
+    [
+      1,
+      10,
+      13,
+      9,
+      14,
+      9
+    ],
+    [
+      7,
+      12,
+      16,
+      18,
+      8
+    ],
+    [
+      5,
+      14,
+      15,
+      10
+    ],
+    [
+      6,
+      18,
+      8
+    ],
+    [
+      7,
+      6
+    ],
+    [
+      0
+    ]
+  ],
+  "density_sha256": "2e7af47c2285c70ce4b3831b3abe757bfb80238cb2f3a3dfd02f807d9b4ed0c8",
+  "five_set_patterns": 2165,
+  "five_sets": 962598,
+  "local_profiles": [
+    [
+      0,
+      1,
+      22,
+      108
+    ],
+    [
+      0,
+      0,
+      20,
+      100
+    ],
+    [
+      3,
+      1,
+      21,
+      99
+    ],
+    [
+      3,
+      0,
+      21,
+      96
+    ],
+    [
+      9,
+      1,
+      21,
+      97
+    ],
+    [
+      9,
+      0,
+      21,
+      97
+    ]
+  ],
+  "mixed_exact_range": [
+    "77/20",
+    "31/5"
+  ],
+  "mixed_patterns": 88,
+  "outside_exact_range": [
+    "37/15",
+    "2239/360"
+  ],
+  "outside_patterns": 782,
+  "outside_uniform_bound": [
+    "7/6",
+    "15/2"
+  ],
+  "pattern_average_sha256": "0fd57a5b7956be05b42c016062f8065d380b944b9657a1e9d0d805490d5e94c6",
+  "seed_edge_sha256": "1a976bedb69fa94cdf0500e4087bf4e395585812c298b3095794468e004b279f",
+  "status": "PASS_EXACT_CONVEX_BARRIER"
+}
