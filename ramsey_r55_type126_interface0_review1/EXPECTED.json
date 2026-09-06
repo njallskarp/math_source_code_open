@@ -1,0 +1,27 @@
+{
+  "cases": 348,
+  "clause_range": [
+    19230,
+    19311
+  ],
+  "fixed_pairs_per_case": 514,
+  "free_pairs_per_case": 389,
+  "imported": [
+    "completeness of the 29-representative equality catalogue",
+    "Paley-17 uniqueness for the outside red neighborhood",
+    "U(23)=122 only for deficiency wording",
+    "soundness of drat-trim and ordinary compiler/hardware semantics"
+  ],
+  "kernel_variables_per_case": 272,
+  "manifest_sha256": "6d306dde34a449f0aa66a6b7054309f1396879f5d46e018751aaa9a0e0be28b0",
+  "marked_template_sha256": "101b8d5bd81ddc273fa4f076a4d72bd3fcbd5d74b43890e3072aa208db702142",
+  "proof_bytes": 48678110,
+  "proof_trace_index_sha256": "5485b5ee6beb58d6eb9475d8d3f132a8df023fd58e15acadaebfe2aa5ac4d6e0",
+  "proofs_verified_from_logs": 348,
+  "relative_markings": 12,
+  "representatives": 29,
+  "status": "ACCEPTED_WITH_EXPLICIT_IMPORTS",
+  "target_commit": "ccc1580ba01738757795afa24f74e55af05f2aff",
+  "target_ref": "bafkreiagv3iecpt7t4azoq67xba7zzumqnhrpxvtfwrysdw3txn2g5xhei",
+  "unique_physical_matrices": 348
+}
