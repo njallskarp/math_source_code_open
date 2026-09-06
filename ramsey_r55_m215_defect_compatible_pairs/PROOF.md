@@ -209,8 +209,9 @@ at least $\lceil(n-16)/2\rceil$, giving $2,2,3$ disjoint pairs.
 ## Complete marked-cell formulas
 
 Let $\sigma$ be the pair color and $\eta$ the common color of its
-incidences with $y$. The edge color $\eta$ is distinct from the
-excess-color label at $y$. Retain both choices of each color. The four cells
+incidences with $y$. The edge color $\eta$ and the excess-color label
+at $y$ are separate parameters; their values may agree. Retain both
+choices of each color. The four cells
 have sizes $(c,20-c,20-c,c+1)$, with marks:
 
 | $\sigma$ | $\eta$ | $z$ | $y$ |
