@@ -1,0 +1,91 @@
+{
+  "derived": {
+    "edge_boundary_upper_bound": 46,
+    "ordinary_strict_gap": 10,
+    "partition_lower_bound_sides_at_least_2": 34,
+    "partition_lower_bound_sides_at_least_3": 48,
+    "q_by_smaller_side_size_1_to_21": [
+      18,
+      34,
+      48,
+      60,
+      72,
+      82,
+      90,
+      96,
+      102,
+      106,
+      108,
+      108,
+      108,
+      106,
+      102,
+      96,
+      90,
+      82,
+      72,
+      60,
+      48
+    ],
+    "q_equals_48_at_sizes": [
+      3,
+      21
+    ],
+    "restricted_strict_gap": 2,
+    "vertex_boundary_upper_bound": 24
+  },
+  "evidence_sha256": "d380c83bd5d69cb2add6483c9b39f7aec6e9202662a9c5e22b7aa41ff5f80ef5",
+  "exhaustive_small_graph_checks": {
+    "all_labelled_graphs": 33866,
+    "connected_graphs": 27475,
+    "orders": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "ordinary_strict_gap_cases": 20108,
+    "restricted_strict_gap_cases": 1198,
+    "turan_maxima_expected": {
+      "2": 1,
+      "3": 3,
+      "4": 6,
+      "5": 9,
+      "6": 13
+    },
+    "turan_maxima_observed": {
+      "2": 1,
+      "3": 3,
+      "4": 6,
+      "5": 9,
+      "6": 13
+    }
+  },
+  "hypotheses": {
+    "degree_interval_each_colour": [
+      18,
+      24
+    ],
+    "induced_clique_number_at_most": 4,
+    "order": 43
+  },
+  "status": "INDEPENDENTLY_VERIFIED_R55_GLOBAL_EDGE_CUT_GAPS",
+  "strictness_controls": {
+    "ordinary_equality_control": {
+      "L2": 2,
+      "delta": 2,
+      "graph": "C4",
+      "has_nonvertex_minimum_cut": true,
+      "lambda": 2
+    },
+    "restricted_equality_control": {
+      "L3": 6,
+      "edge_boundary_minimum": 6,
+      "graph": "K(2,2,2)",
+      "has_nonedge_boundary_minimum_cut": true,
+      "lambda_prime": 6
+    }
+  },
+  "trust_boundary": "CPython integer/bit operations and exhaustive enumeration through order six; R(4,5)=25 and the Motzkin-Straus/Turan theorem are imported, not reproved"
+}
