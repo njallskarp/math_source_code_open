@@ -1,0 +1,21 @@
+{
+  "status": "VERIFIED_H24_ATTACHMENT_BY_COMPLETE_MASK_SWEEP",
+  "core_order": 24,
+  "core_red_blue_edges": [138, 138],
+  "core_blue_red_four_sets": [105, 105],
+  "core_five_sets_checked": 42504,
+  "self_complement_pairs_checked": 276,
+  "attachment_masks_checked": 16777216,
+  "valid_attachment_masks": 14641,
+  "rejected_attachment_masks": 16762575,
+  "unique_activity_word": [1, 2, 2, 1, 0],
+  "local_patterns_per_full_bag": [11, 11, 11, 11],
+  "forced_red": [20, 23],
+  "forced_blue": [21, 22],
+  "valid_mask_sum": 149117179464,
+  "valid_mask_xor": 9469920,
+  "free_pairs_at_order_43": 627,
+  "outside_vertices_needed_by_R44_upper_bound": 18,
+  "strengthened_first_excluded_order": 42,
+  "closure_table_bytes": 33554432
+}
