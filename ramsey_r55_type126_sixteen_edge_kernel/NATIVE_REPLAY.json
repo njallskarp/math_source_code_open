@@ -1,0 +1,66 @@
+{
+  "python": "CPython 3.12",
+  "compiler": "GCC 16.2.0",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic"
+  ],
+  "kissat": {
+    "version": "4.0.4",
+    "repository": "https://github.com/arminbiere/kissat",
+    "commit": "8af8e56f174b778aef3aa45af9f739b2a5f492c2",
+    "arguments": [
+      "--time=30",
+      "CASE.cnf",
+      "CASE.drat"
+    ]
+  },
+  "drat_trim": {
+    "repository": "https://github.com/marijnheule/drat-trim",
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "arguments": [
+      "CASE.cnf",
+      "CASE.drat"
+    ],
+    "required_stdout": "s VERIFIED",
+    "required_exit": 0
+  },
+  "complete_cases": 348,
+  "observed_proof_bytes": 393307542,
+  "proof_storage": "Regenerated in external scratch, not included in source; every proof must be checked.",
+  "physical_free_edges": 405,
+  "kernel_variables": 288,
+  "covered_original_cases": 696,
+  "local_models": 181,
+  "observed_solver_seconds": 208.67838270775974,
+  "observed_checker_seconds": 196.44969219947234,
+  "maximum_solver_seconds": 3.872675416059792,
+  "clause_range": [
+    21279,
+    21566
+  ],
+  "independent_local_assignments": 65536,
+  "fresh_public_checkout_replay_seconds": 484.76392295770347,
+  "fresh_replay_stages": [
+    {
+      "stage": "compile-audit_cnf.txt",
+      "seconds": 1.8081864998675883
+    },
+    {
+      "stage": "compile-audit_local.txt",
+      "seconds": 1.0598974581807852
+    },
+    {
+      "stage": "controls.json",
+      "seconds": 3.8397349999286234
+    },
+    {
+      "stage": "cohort.log",
+      "seconds": 478.0561039997265
+    }
+  ],
+  "fresh_replay_status": "VERIFIED_COMPLETE_SIXTEEN_EDGE_FAMILY_AND_TWO_COHORT_EXCLUSION"
+}

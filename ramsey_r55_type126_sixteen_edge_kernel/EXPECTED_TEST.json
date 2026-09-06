@@ -1,0 +1,110 @@
+{
+  "consensus_keys": 348,
+  "corruptions_rejected": 33,
+  "covered_original_keys": 696,
+  "full_assignments": 32768,
+  "local_classification": {
+    "all_unique_hub": true,
+    "complete_assignments": 65536,
+    "dense_models": [
+      27818,
+      37717
+    ],
+    "density_histogram": {
+      "104": 6,
+      "105": 35,
+      "106": 69,
+      "107": 54,
+      "108": 15,
+      "109": 2
+    },
+    "forbidden_pair_count": 20,
+    "forbidden_triple_count": 3,
+    "literal_local_clauses": 49,
+    "minimal_clauses": 26,
+    "model_sha256": "5c5f82175ea41fd9b54aa3d31a39597f415890eada945192c6b011500ad954f9",
+    "required_meeting_sets": 3,
+    "triple_necessity": {
+      "pair_only_model_count": 203,
+      "witnesses": [
+        {
+          "mask": 41041,
+          "minimum_red_positions": 5,
+          "red_four": [
+            6,
+            14,
+            15,
+            19
+          ],
+          "red_positions": [
+            1,
+            5,
+            7,
+            14,
+            16
+          ],
+          "removed_hyperedge": [
+            7,
+            14,
+            16
+          ],
+          "witnesses_without_this_triple": 8
+        },
+        {
+          "mask": 9745,
+          "minimum_red_positions": 5,
+          "red_four": [
+            10,
+            14,
+            17,
+            19
+          ],
+          "red_positions": [
+            1,
+            5,
+            10,
+            11,
+            14
+          ],
+          "removed_hyperedge": [
+            10,
+            11,
+            14
+          ],
+          "witnesses_without_this_triple": 6
+        },
+        {
+          "mask": 42001,
+          "minimum_red_positions": 5,
+          "red_four": [
+            10,
+            14,
+            15,
+            19
+          ],
+          "red_positions": [
+            1,
+            5,
+            11,
+            14,
+            16
+          ],
+          "removed_hyperedge": [
+            11,
+            14,
+            16
+          ],
+          "witnesses_without_this_triple": 2
+        }
+      ]
+    },
+    "valid_local_fillings": 181
+  },
+  "marked_template_sha256": "2edb1da04cd2101cabd288a9d2d93e85a72809071169a1798333454f783e7f1d",
+  "omitted_vertex_relaxation_checked": true,
+  "original_keys_per_consensus_key": 2,
+  "physical_edge_transports": 628488,
+  "satisfying_assignments": 32243,
+  "small_formulas": 32,
+  "status": "VERIFIED_SIXTEEN_EDGE_CLASSIFICATION_COVERAGE_AND_KERNEL_CONTROLS"
+}
