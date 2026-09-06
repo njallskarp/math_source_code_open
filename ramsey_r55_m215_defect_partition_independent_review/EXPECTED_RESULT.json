@@ -1,0 +1,52 @@
+{
+  "certificate_sha256": "01007f019ceaed4119815c4e99a5f7e35d55f2c0207074f814971a49be37e2d6",
+  "finite_control_five_set_instances": 197632,
+  "finite_control_graphs": 33868,
+  "finite_control_vertex_instances": 202013,
+  "intrinsic_by_profile": {
+    "A": 72,
+    "B": 4,
+    "C": 6
+  },
+  "intrinsic_total": 82,
+  "mutations_rejected": 4,
+  "rooted_by_profile": {
+    "A": 624,
+    "B": 24,
+    "C": 26
+  },
+  "rooted_total": 674,
+  "side_capacities": {
+    "A": [
+      {
+        "20": 5,
+        "21": 16
+      }
+    ],
+    "B": [
+      {
+        "19": 0,
+        "20": 5,
+        "21": 16
+      },
+      {
+        "19": 1,
+        "20": 3,
+        "21": 17
+      }
+    ],
+    "C": [
+      {
+        "20": 5,
+        "21": 16,
+        "22": 0
+      },
+      {
+        "20": 6,
+        "21": 14,
+        "22": 1
+      }
+    ]
+  },
+  "status": "INDEPENDENTLY_VERIFIED_M215_DEFECT_PARTITION_INTERFACE"
+}
