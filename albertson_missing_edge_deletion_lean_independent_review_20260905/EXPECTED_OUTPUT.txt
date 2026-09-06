@@ -1,0 +1,6 @@
+labelled_graphs_n_le_6=33868
+checked_theorem_premises=2087657
+checked_exact_characterizations=318814
+minimum_support_at_exact_budget=1:2,2:3,3:3,4:4,5:4,6:4,7:5,8:5,9:5,10:5,11:6,12:6,13:6,14:6,15:6
+strict_gap_counterexample=n:3,mask:1,edges:1,budget:1,t:3,improved:2
+status=PASS
