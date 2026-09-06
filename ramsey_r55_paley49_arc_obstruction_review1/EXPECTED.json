@@ -1,0 +1,46 @@
+{
+  "blue_red_witnesses": [
+    480,
+    33792
+  ],
+  "certificate_sha256": "ffa55fc61f4fb2733dbb492b32d7acf3f4aaa4a7da6392c72eb7a9811b33f594",
+  "classification_recomputed": false,
+  "dependency_ref": "bafkreicxhkf2dmw6olzioypy4qubctodu4u4aoyluxe5p6kq6fhpftvnoe",
+  "empty_lines": [
+    7,
+    6,
+    4
+  ],
+  "expanded_affine_linear_cases": 34272,
+  "gl2_matrices_per_chart": 2016,
+  "imported_theorem": "Hill--Love (2003): exactly three projective equivalence classes of 22-point four-arcs in PG(2,7).",
+  "projective_points_and_lines": 57,
+  "representative_profiles": [
+    [
+      7,
+      1,
+      0,
+      21,
+      28
+    ],
+    [
+      6,
+      2,
+      3,
+      16,
+      30
+    ],
+    [
+      4,
+      4,
+      9,
+      6,
+      34
+    ]
+  ],
+  "status": "ACCEPTED_WITH_HILL_LOVE_CLASSIFICATION_IMPORTED",
+  "target_commit": "3699fda9b6c67adb2b0f1266c735271033201e79",
+  "target_ref": "bafkreigbtza7cclrgw7ylpkxy2bbgdgmy64fbas66uhni6o34tx4la3keq",
+  "translation_color_checks": 117649,
+  "witness_stream_sha256": "6cff1310892dcea121505536e0fb9d947ea2f82a8e0178c18fbf1725999455d2"
+}
