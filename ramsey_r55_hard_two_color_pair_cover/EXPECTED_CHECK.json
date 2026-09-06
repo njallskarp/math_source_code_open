@@ -1,0 +1,26 @@
+{
+  "balanced_subsets": 13226,
+  "bounds_matched": 28,
+  "certificate_sha256": "92af1173b28d905d808ef40cac1dd644ceb60b7569b478f5681f873e97fe6572",
+  "fixture_monochromatic_five_set": [
+    0,
+    1,
+    3,
+    5,
+    12
+  ],
+  "literal_pair_checks": 163410,
+  "mutations_rejected": 3,
+  "scalar_roots_matched": 56,
+  "small_graphs": 1034,
+  "transport_counts": {
+    "blue_10": 66,
+    "blue_11": 45,
+    "blue_12": 24,
+    "blue_13": 4,
+    "red_10": 63,
+    "red_11": 36,
+    "red_12": 24,
+    "red_13": 5
+  }
+}

@@ -1,0 +1,959 @@
+{
+  "bounds": [
+    {
+      "balanced_vertices": 15,
+      "high_pairs_lower_if_codegrees_at_most_13": 1,
+      "margin_above_all_codegrees_9": 4,
+      "pair_sum_lower": 949
+    },
+    {
+      "balanced_vertices": 16,
+      "high_pairs_lower_if_codegrees_at_most_13": 2,
+      "margin_above_all_codegrees_9": 8,
+      "pair_sum_lower": 1088
+    },
+    {
+      "balanced_vertices": 17,
+      "high_pairs_lower_if_codegrees_at_most_13": 4,
+      "margin_above_all_codegrees_9": 16,
+      "pair_sum_lower": 1240
+    },
+    {
+      "balanced_vertices": 18,
+      "high_pairs_lower_if_codegrees_at_most_13": 6,
+      "margin_above_all_codegrees_9": 23,
+      "pair_sum_lower": 1400
+    },
+    {
+      "balanced_vertices": 19,
+      "high_pairs_lower_if_codegrees_at_most_13": 8,
+      "margin_above_all_codegrees_9": 32,
+      "pair_sum_lower": 1571
+    },
+    {
+      "balanced_vertices": 20,
+      "high_pairs_lower_if_codegrees_at_most_13": 10,
+      "margin_above_all_codegrees_9": 40,
+      "pair_sum_lower": 1750
+    },
+    {
+      "balanced_vertices": 21,
+      "high_pairs_lower_if_codegrees_at_most_13": 13,
+      "margin_above_all_codegrees_9": 50,
+      "pair_sum_lower": 1940
+    },
+    {
+      "balanced_vertices": 22,
+      "high_pairs_lower_if_codegrees_at_most_13": 16,
+      "margin_above_all_codegrees_9": 61,
+      "pair_sum_lower": 2140
+    },
+    {
+      "balanced_vertices": 23,
+      "high_pairs_lower_if_codegrees_at_most_13": 18,
+      "margin_above_all_codegrees_9": 72,
+      "pair_sum_lower": 2349
+    },
+    {
+      "balanced_vertices": 24,
+      "high_pairs_lower_if_codegrees_at_most_13": 21,
+      "margin_above_all_codegrees_9": 84,
+      "pair_sum_lower": 2568
+    },
+    {
+      "balanced_vertices": 25,
+      "high_pairs_lower_if_codegrees_at_most_13": 24,
+      "margin_above_all_codegrees_9": 96,
+      "pair_sum_lower": 2796
+    },
+    {
+      "balanced_vertices": 26,
+      "high_pairs_lower_if_codegrees_at_most_13": 28,
+      "margin_above_all_codegrees_9": 111,
+      "pair_sum_lower": 3036
+    },
+    {
+      "balanced_vertices": 27,
+      "high_pairs_lower_if_codegrees_at_most_13": 31,
+      "margin_above_all_codegrees_9": 124,
+      "pair_sum_lower": 3283
+    },
+    {
+      "balanced_vertices": 28,
+      "high_pairs_lower_if_codegrees_at_most_13": 35,
+      "margin_above_all_codegrees_9": 140,
+      "pair_sum_lower": 3542
+    },
+    {
+      "balanced_vertices": 29,
+      "high_pairs_lower_if_codegrees_at_most_13": 39,
+      "margin_above_all_codegrees_9": 154,
+      "pair_sum_lower": 3808
+    },
+    {
+      "balanced_vertices": 30,
+      "high_pairs_lower_if_codegrees_at_most_13": 44,
+      "margin_above_all_codegrees_9": 173,
+      "pair_sum_lower": 4088
+    },
+    {
+      "balanced_vertices": 31,
+      "high_pairs_lower_if_codegrees_at_most_13": 47,
+      "margin_above_all_codegrees_9": 188,
+      "pair_sum_lower": 4373
+    },
+    {
+      "balanced_vertices": 32,
+      "high_pairs_lower_if_codegrees_at_most_13": 52,
+      "margin_above_all_codegrees_9": 208,
+      "pair_sum_lower": 4672
+    },
+    {
+      "balanced_vertices": 33,
+      "high_pairs_lower_if_codegrees_at_most_13": 56,
+      "margin_above_all_codegrees_9": 224,
+      "pair_sum_lower": 4976
+    },
+    {
+      "balanced_vertices": 34,
+      "high_pairs_lower_if_codegrees_at_most_13": 62,
+      "margin_above_all_codegrees_9": 247,
+      "pair_sum_lower": 5296
+    },
+    {
+      "balanced_vertices": 35,
+      "high_pairs_lower_if_codegrees_at_most_13": 66,
+      "margin_above_all_codegrees_9": 264,
+      "pair_sum_lower": 5619
+    },
+    {
+      "balanced_vertices": 36,
+      "high_pairs_lower_if_codegrees_at_most_13": 72,
+      "margin_above_all_codegrees_9": 288,
+      "pair_sum_lower": 5958
+    },
+    {
+      "balanced_vertices": 37,
+      "high_pairs_lower_if_codegrees_at_most_13": 77,
+      "margin_above_all_codegrees_9": 306,
+      "pair_sum_lower": 6300
+    },
+    {
+      "balanced_vertices": 38,
+      "high_pairs_lower_if_codegrees_at_most_13": 84,
+      "margin_above_all_codegrees_9": 333,
+      "pair_sum_lower": 6660
+    },
+    {
+      "balanced_vertices": 39,
+      "high_pairs_lower_if_codegrees_at_most_13": 88,
+      "margin_above_all_codegrees_9": 352,
+      "pair_sum_lower": 7021
+    },
+    {
+      "balanced_vertices": 40,
+      "high_pairs_lower_if_codegrees_at_most_13": 95,
+      "margin_above_all_codegrees_9": 380,
+      "pair_sum_lower": 7400
+    },
+    {
+      "balanced_vertices": 41,
+      "high_pairs_lower_if_codegrees_at_most_13": 100,
+      "margin_above_all_codegrees_9": 400,
+      "pair_sum_lower": 7780
+    },
+    {
+      "balanced_vertices": 42,
+      "high_pairs_lower_if_codegrees_at_most_13": 108,
+      "margin_above_all_codegrees_9": 431,
+      "pair_sum_lower": 8180
+    }
+  ],
+  "scalar_roots": [
+    {
+      "M": 214,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "red",
+      "red_edges": 445
+    },
+    {
+      "M": 214,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "red",
+      "red_edges": 445
+    },
+    {
+      "M": 214,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "red",
+      "red_edges": 445
+    },
+    {
+      "M": 214,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "red",
+      "red_edges": 445
+    },
+    {
+      "M": 214,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "blue",
+      "red_edges": 445
+    },
+    {
+      "M": 214,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "blue",
+      "red_edges": 445
+    },
+    {
+      "M": 214,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "blue",
+      "red_edges": 445
+    },
+    {
+      "M": 214,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "blue",
+      "red_edges": 445
+    },
+    {
+      "M": 215,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "red",
+      "red_edges": 446
+    },
+    {
+      "M": 215,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "red",
+      "red_edges": 446
+    },
+    {
+      "M": 215,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "red",
+      "red_edges": 446
+    },
+    {
+      "M": 215,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "red",
+      "red_edges": 446
+    },
+    {
+      "M": 215,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "blue",
+      "red_edges": 446
+    },
+    {
+      "M": 215,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "blue",
+      "red_edges": 446
+    },
+    {
+      "M": 215,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "blue",
+      "red_edges": 446
+    },
+    {
+      "M": 215,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "blue",
+      "red_edges": 446
+    },
+    {
+      "M": 216,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "red",
+      "red_edges": 447
+    },
+    {
+      "M": 216,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "red",
+      "red_edges": 447
+    },
+    {
+      "M": 216,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "red",
+      "red_edges": 447
+    },
+    {
+      "M": 216,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "red",
+      "red_edges": 447
+    },
+    {
+      "M": 216,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "blue",
+      "red_edges": 447
+    },
+    {
+      "M": 216,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "blue",
+      "red_edges": 447
+    },
+    {
+      "M": 216,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "blue",
+      "red_edges": 447
+    },
+    {
+      "M": 216,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "blue",
+      "red_edges": 447
+    },
+    {
+      "M": 217,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "red",
+      "red_edges": 448
+    },
+    {
+      "M": 217,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "red",
+      "red_edges": 448
+    },
+    {
+      "M": 217,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "red",
+      "red_edges": 448
+    },
+    {
+      "M": 217,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "red",
+      "red_edges": 448
+    },
+    {
+      "M": 217,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "blue",
+      "red_edges": 448
+    },
+    {
+      "M": 217,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "blue",
+      "red_edges": 448
+    },
+    {
+      "M": 217,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "blue",
+      "red_edges": 448
+    },
+    {
+      "M": 217,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "blue",
+      "red_edges": 448
+    },
+    {
+      "M": 218,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "red",
+      "red_edges": 449
+    },
+    {
+      "M": 218,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "red",
+      "red_edges": 449
+    },
+    {
+      "M": 218,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "red",
+      "red_edges": 449
+    },
+    {
+      "M": 218,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "red",
+      "red_edges": 449
+    },
+    {
+      "M": 218,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "blue",
+      "red_edges": 449
+    },
+    {
+      "M": 218,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "blue",
+      "red_edges": 449
+    },
+    {
+      "M": 218,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "blue",
+      "red_edges": 449
+    },
+    {
+      "M": 218,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "blue",
+      "red_edges": 449
+    },
+    {
+      "M": 219,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "red",
+      "red_edges": 450
+    },
+    {
+      "M": 219,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "red",
+      "red_edges": 450
+    },
+    {
+      "M": 219,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "red",
+      "red_edges": 450
+    },
+    {
+      "M": 219,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "red",
+      "red_edges": 450
+    },
+    {
+      "M": 219,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "blue",
+      "red_edges": 450
+    },
+    {
+      "M": 219,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "blue",
+      "red_edges": 450
+    },
+    {
+      "M": 219,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "blue",
+      "red_edges": 450
+    },
+    {
+      "M": 219,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "blue",
+      "red_edges": 450
+    },
+    {
+      "M": 220,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "red",
+      "red_edges": 451
+    },
+    {
+      "M": 220,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "red",
+      "red_edges": 451
+    },
+    {
+      "M": 220,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "red",
+      "red_edges": 451
+    },
+    {
+      "M": 220,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "red",
+      "red_edges": 451
+    },
+    {
+      "M": 220,
+      "cell_sizes": [
+        10,
+        10,
+        10,
+        11
+      ],
+      "codegree": 10,
+      "common_core_types_imported": 313,
+      "free_edges_after_pinning_common_core": 775,
+      "pair_color": "blue",
+      "red_edges": 451
+    },
+    {
+      "M": 220,
+      "cell_sizes": [
+        11,
+        9,
+        9,
+        12
+      ],
+      "codegree": 11,
+      "common_core_types_imported": 105,
+      "free_edges_after_pinning_common_core": 765,
+      "pair_color": "blue",
+      "red_edges": 451
+    },
+    {
+      "M": 220,
+      "cell_sizes": [
+        12,
+        8,
+        8,
+        13
+      ],
+      "codegree": 12,
+      "common_core_types_imported": 12,
+      "free_edges_after_pinning_common_core": 754,
+      "pair_color": "blue",
+      "red_edges": 451
+    },
+    {
+      "M": 220,
+      "cell_sizes": [
+        13,
+        7,
+        7,
+        14
+      ],
+      "codegree": 13,
+      "common_core_types_imported": 1,
+      "free_edges_after_pinning_common_core": 742,
+      "pair_color": "blue",
+      "red_edges": 451
+    }
+  ],
+  "schema": 1
+}

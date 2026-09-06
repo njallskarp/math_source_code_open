@@ -1,0 +1,10 @@
+{
+  "bounds_checked": 28,
+  "certificate_sha256": "92af1173b28d905d808ef40cac1dd644ceb60b7569b478f5681f873e97fe6572",
+  "coarse_core_templates_conditional_on_catalogs": 6034,
+  "hard_branch_exact_anchors_at_least": 22,
+  "hard_branch_high_pairs_at_least": 16,
+  "scalar_roots": 56,
+  "threshold_15_all_at_most_9": 945,
+  "threshold_15_pair_sum": 949
+}

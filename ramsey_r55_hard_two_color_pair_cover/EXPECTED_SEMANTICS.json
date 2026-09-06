@@ -1,0 +1,23 @@
+{
+  "blue_only_degree_control_pairs": 231,
+  "budget_exact_anchor_minima_by_M": {
+    "214": 28,
+    "215": 27,
+    "216": 26,
+    "217": 25,
+    "218": 24,
+    "219": 23,
+    "220": 22
+  },
+  "codegree_ten_15_vertex_margin": 4,
+  "signed_and_incidence_subsets_compared": 13246,
+  "unfiltered_degree_profiles_by_M": {
+    "214": 1,
+    "215": 3,
+    "216": 7,
+    "217": 14,
+    "218": 21,
+    "219": 27,
+    "220": 31
+  }
+}
