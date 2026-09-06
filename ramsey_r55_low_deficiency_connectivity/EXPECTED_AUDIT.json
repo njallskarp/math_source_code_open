@@ -1,0 +1,1 @@
+{"audit": "PASS", "edge_sha256": "7ad8fce8852efd386b3ec188841e114930c9ab8856d80c5e8339b8c73805032a", "edges": 108, "four_cut_parts": [1, 17], "small_cuts_checked": 1794, "small_graph_clique_controls": 3300}

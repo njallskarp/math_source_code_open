@@ -1,0 +1,15 @@
+{
+  "order": 22,
+  "paley_order": 17,
+  "separator": [17, 18, 19, 20],
+  "isolated_after_cut": 21,
+  "hamilton_cycle": [21, 17, 10, 1, 0, 9, 8, 16, 20, 4, 2, 3, 11, 12, 13, 5, 14, 6, 15, 7, 18, 19],
+  "red_signatures": [
+    [0, 1, 3, 4, 6, 10, 11, 15],
+    [0, 2, 3, 6, 7, 9, 12, 14],
+    [1, 2, 5, 7, 8, 12, 13, 15],
+    [2, 4, 5, 8, 9, 11, 14, 16]
+  ],
+  "graph6_base64": "VXpsWFdtSnBaRGVKRUpiRGdwXEVKc1duWUtUZWRKSkVja3NsPz9Adw==",
+  "edge_sha256": "7ad8fce8852efd386b3ec188841e114930c9ab8856d80c5e8339b8c73805032a"
+}
