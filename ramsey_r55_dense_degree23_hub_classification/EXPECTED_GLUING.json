@@ -1,0 +1,12 @@
+{
+  "complete_cases": 144,
+  "free_edges_per_case": 389,
+  "interfaces": [
+    6,
+    7,
+    8
+  ],
+  "manifest_sha256": "e5d7b3b63e4508537c65cedeec9ef38c1ba39ca6e636349eb4f78227d15c214a",
+  "new_global_hub_deficiency_lower_bound": 8,
+  "status": "VERIFIED_COMPLETE_TYPE62_DENSITY115_EXCLUSION"
+}

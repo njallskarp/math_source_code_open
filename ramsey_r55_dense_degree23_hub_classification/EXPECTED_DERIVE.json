@@ -1,0 +1,12 @@
+{
+  "isomorphism_classes": [
+    24,
+    29
+  ],
+  "labeled_counts": [
+    6528,
+    47328
+  ],
+  "maximum_cross_edges": 37,
+  "status": "COMPLETE_DENSE_PALEY17_FAMILIES_REGENERATED"
+}

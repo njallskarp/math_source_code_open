@@ -1,0 +1,47 @@
+{
+  "consumer": {
+    "boundary_keys": 3276,
+    "degree23_hub_deficiency_lower_bounds": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      null,
+      7,
+      7,
+      7,
+      6,
+      6,
+      6,
+      6
+    ],
+    "free_edges_per_boundary_key": 389,
+    "keys_by_type": {
+      "126": 3132,
+      "62": 144
+    },
+    "marked_template_sha256": "521272c785ae085202e4d09f24fd482efd80a65bc3dd1930c70aa1dbdff19788",
+    "physical_edge_transports": 2958228
+  },
+  "families": [
+    {
+      "all_rigid": true,
+      "classes": 24,
+      "labeled_tuples": 6528,
+      "maximum_edges": 115,
+      "tuple_sha256": "b314d237f489f94600ccd90e0ef7c7ac3faaf98a9910ae09ce4adfc8e827651c",
+      "type": 62
+    },
+    {
+      "all_rigid": true,
+      "classes": 29,
+      "labeled_tuples": 47328,
+      "maximum_edges": 116,
+      "tuple_sha256": "6006ad0f7d35b0ffe64128a1702d06924e755e46b675b0eaca8e7798d65b69fa",
+      "type": 126
+    }
+  ],
+  "paley_automorphisms": 136,
+  "status": "VERIFIED_COMPLETE_DENSE_HUB_CLASSIFICATION"
+}

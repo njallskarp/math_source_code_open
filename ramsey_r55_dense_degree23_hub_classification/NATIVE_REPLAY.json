@@ -1,0 +1,19 @@
+{
+  "all_verdicts": "s VERIFIED",
+  "checked_cases": 144,
+  "checker_seconds_total": 45.35350809292868,
+  "drat_trim": {
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "url": "https://github.com/marijnheule/drat-trim"
+  },
+  "kissat": {
+    "commit": "8af8e56f174b778aef3aa45af9f739b2a5f492c2",
+    "url": "https://github.com/arminbiere/kissat",
+    "version": "4.0.4"
+  },
+  "note": "Observed proof identities are provenance; replay may produce different valid traces. Formula identities are required.",
+  "proof_bytes_total": 16851125,
+  "proofs_record_sha256": "4dca27dbd29bd2c76664feb81b7c614cdcd5bab2a65dde9a7aef396dc7ad290c",
+  "solver_seconds_max": 0.21052941726520658,
+  "solver_seconds_total": 13.343973668757826
+}

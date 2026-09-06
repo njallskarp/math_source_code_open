@@ -1,0 +1,8 @@
+{
+  "certificate_mutations_rejected": 4,
+  "malformed_graph6_rejected": 5,
+  "missing_interface_rejected": true,
+  "physical_assignments": 35049,
+  "status": "DENSE_HUB_DEFINITION_CONTROLS_PASS",
+  "valid_local_graphs": 27027
+}
