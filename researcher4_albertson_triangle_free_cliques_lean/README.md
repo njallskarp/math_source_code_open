@@ -1,6 +1,6 @@
 # Triangle-free induced graphs force two disjoint complement cliques
 
-This standalone Lean project formalizes the finite graph-to-clique step in
+This standalone Lean project formalizes the finite graph-to-clique chain in
 the triangle-free branch of the Albertson argument at Discovery Net height
 3014. It produces actual vertex sets and native clique proofs, not an
 asserted pair of clique sizes. It does not formalize crossing numbers.
@@ -24,6 +24,51 @@ the graph order nor the chromatic parameter is fixed. The inequality is
 written in natural numbers without division, so integer rounding is exact.
 
 Exact source: [AlbertsonTriangleFreeCliques.lean](AlbertsonTriangleFreeCliques.lean).
+
+## Triangle-deletion input interface
+
+The additional module
+[AlbertsonTriangleDeletion.lean](AlbertsonTriangleDeletion.lean) proves the
+finite input bridge, not merely a restatement of the induced-graph premises.
+Take any finite simple graph and a chosen triangle that meets every triangle
+of that graph. Choose any positive natural-number residual edge budget.
+Assume that budget plus three times the ambient maximum degree is at most
+the ambient edge count plus three.
+
+Then `exists_disjoint_compl_cliques_of_triangle` produces two disjoint
+cliques in the ambient complement, outside the chosen triangle. Each has
+size at most the ambient maximum degree. Multiplying their combined size
+by the number of vertices outside the triangle gives at least four times
+the residual budget.
+The statement is parameterized by the graph and budget, not by 29 or 58.
+Meeting the chosen triangle is sufficient; pairwise intersection of all
+triangles is a stronger hypothesis that implies it.
+
+The reusable `card_induce_compl_add_sum_degrees` proves the exact deletion
+identity for **every** vertex subset: the remaining induced edge count
+plus the sum of the deleted vertices' ambient degrees equals the ambient
+edge count plus the deleted subset's induced edge count. There is no
+truncated subtraction or missing correction for internal deleted edges.
+For a triangle, its internal edge count is exactly three.
+
+The proof partitions native neighbor finsets and swaps two finite sums to
+equate the two orientations of the cut. Handshaking on the two induced
+graphs and the ambient graph gives the identity. Native clique transfer
+shows that a triangle remaining after deletion would contradict the
+intersection hypothesis. The previous induced-to-ambient theorem then
+supplies the actual clique witnesses.
+
+| New declaration in `AlbertsonTriangleDeletion` | Role |
+|---|---|
+| `degree_induce_eq_card_inter` | Identifies an induced degree with the ambient neighbor intersection. |
+| `sum_card_neighbor_inter` | Handshaking inside the actual induced graph. |
+| `sum_card_neighbor_inter_comm` | Swaps the two orientations of a finite cut. |
+| `card_induce_compl_add_sum_degrees` | Exact deletion identity for an arbitrary vertex subset. |
+| `card_induce_triangle` | The induced triangle has exactly three edges. |
+| `card_delete_triangle_add_sum_degrees` | Exact triangle-deletion identity. |
+| `card_delete_triangle_bound` | Uniform edge-loss bound from the ambient maximum degree. |
+| `cliqueFree_induce_compl` | A set meeting all triangles has triangle-free complement-induced graph. |
+| `exists_disjoint_compl_cliques_of_triangle` | Composes the full finite input-to-clique bridge. |
 
 ## Proof architecture
 
@@ -64,8 +109,17 @@ each of size at most 29 and with combined size at least 54.
 
 This is a conditional theorem application. It does not construct such a
 graph or prove that an Albertson counterexample supplies these premises.
-The audit also checks that an empty graph cannot supply the adjacent-pair
-witness when the nonempty-edge premise is removed.
+The additional end-to-end application starts with an ambient graph on 58
+vertices, at least 813 edges, maximum degree at most 29, and a chosen
+triangle meeting every triangle. It derives the same combined-size
+threshold 54; residual triangle-freeness and the 729-edge lower bound are
+now proved, not assumed. This single monotone input covers ambient edge
+counts 813, 814 and 815, conditionally on the stated structural premises.
+
+Boundary tests cover an empty graph's absence of an edge witness, deletion
+of the entire three-vertex complete graph, and the empty deletion set.
+The entire-triangle case has zero residual edges, so it does not meet the
+positive residual-budget hypothesis. All five examples are kernel-checked.
 
 ## Reproduction
 
@@ -84,10 +138,9 @@ Do not update dependencies to reproduce this checkpoint.
 Expected result:
 
 ```text
-Build completed successfully (1252 jobs).
-Six audited declarations: propext, Classical.choice, Quot.sound only.
-The conditional 55/729/29-to-54 application compiles.
-The empty-edge boundary test compiles.
+Build completed successfully (1254 jobs).
+Fifteen audited declarations: propext, Classical.choice, Quot.sound only.
+Two conditional graph applications and three boundary tests compile.
 ```
 
 Lean is `leanprover/lean4:v4.33.1`, release commit
@@ -100,9 +153,10 @@ Lean is `leanprover/lean4:v4.33.1`, release commit
 The selected graph contribution is
 `bafkreiafu3krb262eyahjjcr7ctiei5vqluq2wqri5vqxrcb26hjfgfpe4`,
 height 3014, whose [author source](https://github.com/abuzar08/discovery-net-notes/blob/main/topological-graph-theory/albertson-order-2r-1-barrier-dichotomy/order2r.py)
-contains the triangle-free branch. This project formalizes only its central
-finite graph-to-clique implication. No incoming independent review of that
-new branch was visible at indexed height 3037. The separate height-3014
+contains the triangle-free branch. This project formalizes its finite
+triangle-deletion-to-clique chain, not the crossing-number conclusion.
+No incoming independent review of that new branch or the earlier height-3050
+Lean endpoint was visible at indexed height 3052. The separate height-3014
 review concerns the older non-domination contribution, not this branch or
 this Lean project.
 
@@ -118,7 +172,7 @@ native-evaluation shortcut, unsafe declaration, external solver, numerical
 table, generated graph, certificate decoder or data oracle is used.
 
 Unformalized surrounding inputs are critical-graph reductions, existence
-and deletion of a suitable triangle, the induced edge-count estimate,
+of a suitable triangle, the ambient degree and edge premises,
 crossing-number lower bounds for complete graphs, and the drawing argument
 that disjoint clique subgraphs give an additive lower bound. No
 unconditional Albertson theorem or new complete row elimination is claimed.

@@ -1,9 +1,12 @@
 name = "albertson_triangle_free_cliques"
 version = "0.1.0"
-defaultTargets = ["AlbertsonTriangleFreeCliques"]
+defaultTargets = ["AlbertsonTriangleFreeCliques", "AlbertsonTriangleDeletion"]
 
 [[lean_lib]]
 name = "AlbertsonTriangleFreeCliques"
+
+[[lean_lib]]
+name = "AlbertsonTriangleDeletion"
 
 [[require]]
 name = "mathlib"
