@@ -1,0 +1,21 @@
+{
+  "catalog_upper_U14": 60,
+  "catalog_witness_graph6": "MznZ\\lle{vYVlhsm_",
+  "triangle_types": {
+    "EEE": [3, 0, 0],
+    "EEX": [2, 1, 0],
+    "EXX": [1, 2, 1],
+    "XXX": [0, 3, 3],
+    "EET": [2, 0, 0],
+    "EXT": [1, 1, 0],
+    "XXT": [0, 2, 1]
+  },
+  "type_columns": ["S_E", "S_X", "D"],
+  "lower_a_b_e": [10, 56, 6],
+  "upper_g": 120,
+  "S_E": 1209,
+  "S_X": 2800,
+  "J_edges": 196,
+  "D_lower": 1569,
+  "partner_min": 9
+}

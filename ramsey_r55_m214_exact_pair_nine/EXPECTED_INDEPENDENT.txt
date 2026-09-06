@@ -1,0 +1,3 @@
+PASS literal triangle rows=[('EEE', 3, 0, 0), ('EEX', 2, 1, 0), ('EXX', 1, 2, 1), ('XXX', 0, 3, 3), ('EET', 2, 0, 0), ('EXT', 1, 1, 0), ('XXT', 0, 2, 1)]
+PASS nonstars=2997 minimum_disjoint_edge_pairs=2
+PASS exact averaging margin=1; external U14 upper bound=60

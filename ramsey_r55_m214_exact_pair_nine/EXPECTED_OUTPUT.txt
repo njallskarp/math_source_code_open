@@ -1,0 +1,5 @@
+PASS six-vertex audits: two_edge_allowed=45/105 five_edge_allowed=2997/3003 max_degree_square=26
+PASS seven triangle types; regular13_triangles>=10
+PASS catalog witness n=14 m=60 omega<=3 alpha<=4; upper_U14=60 IS AN EXTERNAL PREMISE
+PASS D>=1569>1568; exact-anchor partner codegree>=9
+certificate_sha256=015e1cec9107cafc6239605284acdecb1d56a93d9d0e0e7849af5122dca18149
