@@ -1,0 +1,4 @@
+PASS cyclic_minor order=28 determinant=3 hadamard_bound=4782969
+PASS constant_triple_sum_kernel rank=27 dimension=1
+PASS blue_equivalence unmarked=100 ordinary_marked=107 pivot=105
+STATUS VERIFIED OUTSIDE-STAR RANK BARRIER

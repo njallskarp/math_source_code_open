@@ -1,0 +1,1 @@
+PASS cyclic_orders=4..32 invalid_cases_rejected=3 affine_checks=3

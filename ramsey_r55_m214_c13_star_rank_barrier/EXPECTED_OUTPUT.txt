@@ -1,0 +1,1 @@
+{"blue_equivalence":[[0,0,100,100],[1,0,93,107],[1,1,93,105]],"constant_triple_sum_kernel_dimension":1,"cyclic_minor_determinant":3,"outside_order":28,"post_total_independent_star_directions":27,"status":"VERIFIED OUTSIDE-STAR RANK BARRIER"}
