@@ -1,0 +1,16 @@
+{
+  "complete_cases": 348,
+  "covered_original_cases": 696,
+  "interfaces": [
+    10,
+    12
+  ],
+  "kernel_edge_variables": 284,
+  "kernel_vertices": 40,
+  "manifest_sha256": "263fc40472bcf4e4950452ce8bc1e3ad9207c121bd7ed2d489c6656f6e48bb00",
+  "new_global_hub_deficiency_lower_bound": 7,
+  "physical_free_edges": 401,
+  "status": "VERIFIED_COMPLETE_CONSENSUS_TYPE126_DENSITY116_EXCLUSION",
+  "unconstrained_outside_edges": 117,
+  "valid_local_fillings": 110
+}
