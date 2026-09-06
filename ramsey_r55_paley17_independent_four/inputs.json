@@ -1,0 +1,141 @@
+{
+  "degree_five_source": {
+    "url": "https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_degree_five_classification",
+    "commit": "8bf27902fba404e35593c90cbc7d2991abeda510",
+    "certificate_sha256": "905518c06dcd9fc4008dd5caf70eece7dbb67c77e6cd6d708388fca3d22a9da1"
+  },
+  "interfaces": [
+    "UsHHirKdlp[IFVI|KpqfR]hAfaRiq]UpYWF[??Bw",
+    "UsHHirKdlp[IFVI|KpqfR[NABbf}?^Scy[D{??Bw",
+    "UsHHirKdlp[IFVI|KpqfR[NAGRv}?\\jBYNK[??Bw",
+    "UsHHirKdlp[IFVI|KpqfROjqDXf}?XVgzsB[??Bw",
+    "UsHHirKdlp[IFVI|KpqfROjo`qv}?[vHZKX[??Bw",
+    "UsHHirKdlp[IFVI|KpqfRW}at`msFRwgqNKW??Bw",
+    "UsHHirKdlp[IFVI|KpqfR[NA[DuUp\\NCz~?G??Bw",
+    "UsHHirKdlp[IFVI|KpqfROjqNKRiq\\pDz~?G??Bw",
+    "UsHHirKdlp[IFVI|KpqfRUEYUfBFs\\Y`z~?G??Bw",
+    "Uv?IXZIhlRWjUXL[iphstSuAhcpht]OvWUl[??Bw",
+    "Uv?IXZIhlRWjUXL[iphstCjRDY`slYrgyeF[??Bw",
+    "Uv?IXZIhlRWjUXL[iphstfEi[dRug^MCw?}[??Bw",
+    "Uv?IXZIhlRWjUXL[iphstKMgElTSNYqizDQ{??Bw"
+  ],
+  "r44_17": {
+    "url": "https://users.cecs.anu.edu.au/~bdm/data/r44_17.g6",
+    "raw_sha256": "23f8802eed6281e1b40c7ec157f687d67624c6a327a513b003bce93e33e9214c",
+    "record": "P}qTKukXaUja[IBjanPeMI\\K",
+    "catalogue_to_paley": [
+      0,
+      1,
+      9,
+      2,
+      16,
+      4,
+      13,
+      15,
+      8,
+      5,
+      14,
+      3,
+      10,
+      12,
+      6,
+      11,
+      7
+    ]
+  },
+  "local_survivors": [
+    {
+      "type": 62,
+      "columns": [
+        [
+          0,
+          2,
+          3,
+          7,
+          8,
+          12,
+          14
+        ],
+        [
+          0,
+          3,
+          4,
+          6,
+          10,
+          11
+        ],
+        [
+          0,
+          1,
+          6,
+          7,
+          11,
+          13,
+          14
+        ],
+        [
+          0,
+          3,
+          5,
+          9,
+          10,
+          14,
+          16
+        ],
+        [
+          1,
+          2,
+          4,
+          5,
+          7,
+          12,
+          15
+        ]
+      ],
+      "red_edges": 112
+    },
+    {
+      "type": 126,
+      "columns": [
+        [
+          8,
+          10,
+          11,
+          14,
+          15
+        ],
+        [
+          6,
+          7,
+          12,
+          16
+        ],
+        [
+          6,
+          9,
+          10,
+          12,
+          13,
+          15
+        ],
+        [
+          5,
+          7,
+          11,
+          12,
+          14
+        ],
+        [
+          3,
+          4,
+          8,
+          11,
+          13,
+          14,
+          16
+        ]
+      ],
+      "red_edges": 106
+    }
+  ]
+}

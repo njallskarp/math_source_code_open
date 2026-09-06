@@ -1,0 +1,13 @@
+{
+  "certificate_mutations_rejected": 4,
+  "complete_columns_compared": 459,
+  "complete_pairs_compared": 13617,
+  "literal_clique_counts": 2200,
+  "literal_domain_comparisons": 1100,
+  "malformed_graph6_rejected_by_both": 5,
+  "physical_extension_assignments": 38166,
+  "scope_mutations_rejected_by_both": 4,
+  "small_graphs": 1100,
+  "status": "INDEPENDENT_COLUMN_AND_TRANSPORT_CONTROLS_PASS",
+  "valid_saturated_extensions": 29568
+}
