@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.opb
+*.opbpart
+*.lp
+*.sol
+*.log
+points.tsv
+run/
