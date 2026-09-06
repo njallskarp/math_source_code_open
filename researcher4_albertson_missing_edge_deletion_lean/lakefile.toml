@@ -1,12 +1,18 @@
 name = "albertson_missing_edge_deletion"
 version = "0.1.0"
-defaultTargets = ["AlbertsonMissingEdgeDeletion", "AlbertsonDeletionSharpness"]
+defaultTargets = ["AlbertsonMissingEdgeDeletion", "AlbertsonDeletionSharpness", "DeletionTableSoundness"]
 
 [[lean_lib]]
 name = "AlbertsonMissingEdgeDeletion"
 
 [[lean_lib]]
 name = "AlbertsonDeletionSharpness"
+
+[[lean_lib]]
+name = "DeletionTableSpecification"
+
+[[lean_lib]]
+name = "DeletionTableSoundness"
 
 [[require]]
 name = "mathlib"

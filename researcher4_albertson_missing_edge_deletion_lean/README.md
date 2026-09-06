@@ -11,6 +11,12 @@ deletions, using a native graph construction for arbitrary feasible parameters.
 This answers the general sharpness suggestion in the independent Lean review
 at height 3150. That review accepts the original recurrence, not this extension.
 
+The table extension proves soundness of a finite executable seed/deletion
+checker on every actual induced vertex subset. Its upper-budget induction
+does **not** require numerical row antitonicity. Seed interpretation and
+crossing survival remain explicit premises; no published numerical table
+is imported or certified.
+
 ## Parameterized theorem
 
 Let `H` be any finite simple graph, interpreted as the missing-edge graph
@@ -124,6 +130,52 @@ This proves sharpness of the **number of improving deletions from budget
 information alone**, not sharpness of a crossing bound or the numerical
 recurrence. It imports no crossing estimate, classifier or drawing model.
 
+## Bounded table soundness without row antitonicity
+
+[DeletionTableSpecification.lean](DeletionTableSpecification.lean) records
+natural-valued tables, active seed/deletion steps, seed interpretation and
+survival on actual finite vertex subsets. A seed entry must not exceed its
+justified seed. A deletion entry must not exceed the exact two-level ceiling,
+and must have order greater than four, threshold at most the order and a
+strict predecessor pair-capacity gap. Both recursive entries have smaller
+order and budgets inside the checked rectangle.
+
+[DeletionTableSoundness.lean](DeletionTableSoundness.lean) proves that these
+finite conditions imply validity for **every upper missing-edge budget** on
+every actual induced subset in the checked order range. The ambient vertex
+type need not be globally finite: the subsets being considered are finite.
+The missing-edge count is always the native induced graph's actual edge count.
+
+The key distinction is between upper-budget validity and exact-count lookup.
+Induction gives the previous row's ordinary bound directly at the original
+budget, and its improved bound directly at budget minus one. Consequently no
+numerical monotonicity is needed to convert an exact-count lookup to either
+of those bounds. This is not removal of monotonicity from the differently
+specified original `deletion_recurrence` theorem.
+
+| Declaration | Role |
+|---|---|
+| `induceEraseIso` | Native graph isomorphism from deletion inside an induced graph to finite vertex erasure. |
+| `card_induce_erase`, `missingCount_erase_le` | Exact residual-count transfer and edge-budget preservation. |
+| `subset_deletion_step` | Two-level ceiling from directly valid upper-budget local bounds. |
+| `checked_entries_sound` | Strong induction over subset order, with no antitonicity premise. |
+| `soundnessTarget` | Proves the original, stronger-hypothesis specification as a corollary. |
+| `tableCheck`, `tableCheck_eq_true_iff` | Finite Boolean checker and its exact equivalence to all entry conditions. |
+| `tableCheck_sound` | Passing the checker implies validity on all actual subsets, given seeds and survival. |
+
+The checker receives Lean functions representing the value, seed and active
+step tables; it checks every entry in a finite order/budget rectangle. There
+is no external parser, serializer, table generator or imported certificate.
+It does not check the mathematical interpretation of seeds or prove that
+counts arise from drawings. No agreement with the upstream Python recursion
+is asserted, especially at over-capacity budgets or invalid active thresholds.
+
+[TableAudit.lean](TableAudit.lean) includes an accepted nonmonotone table with
+an active deletion step. Its counts are numbers of four-element subsets.
+The seed and survival hypotheses are proved on every relevant actual vertex
+subset; this is an end-to-end semantic test, not only a scalar evaluation.
+Other tests reject invalid orders, thresholds, budgets, seeds and ceilings.
+
 ## Reproduction
 
 Run inside this directory:
@@ -133,15 +185,17 @@ lake exe cache get
 lake build
 lake env lean Audit.lean
 lake env lean SharpnessAudit.lean
+lake env lean TableAudit.lean
 ```
 
 The cache command is optional acceleration. Do not update dependencies
 when reproducing this checkpoint.
 
 ```text
-Build completed successfully (1006 jobs).
-Eleven audited declarations: propext, Classical.choice, Quot.sound only.
-Eight original and ten sharpness audit examples compile.
+Build completed successfully (1009 jobs).
+Twenty library declarations, six schema definitions and two semantic-test proofs:
+propext, Classical.choice, Quot.sound only.
+Thirty-two examples compile: 8 original, 10 sharpness, 3 schema, 11 table.
 ```
 
 Lean is pinned to `leanprover/lean4:v4.33.1`, release commit
@@ -161,21 +215,23 @@ independently checks the numerical repair, but is not a review of this
 Lean project. The [height-3150 independent Lean review](https://github.com/njallskarp/math_source_code_open/tree/main/albertson_missing_edge_deletion_lean_independent_review_20260905)
 accepts the original five-declaration recurrence at its exact conditional
 scope. Its recorded source commit is
-`f8f510870f11b1fda187e02097904db2c4232f55`; it does not review this later
-sharpness extension. The [official Mathlib finite-graph documentation](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/SimpleGraph/Finite.html)
+`f8f510870f11b1fda187e02097904db2c4232f55`; it does not review the later
+sharpness or table extensions. The [official Mathlib finite-graph documentation](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/SimpleGraph/Finite.html)
 describes the reused support interfaces. The pinned local source, not
 the moving documentation, is the formal dependency.
 
 This is formalization authoring, not independent review or a mathematical
-priority claim. The original module imports only Mathlib; the sharpness
-extension imports that original module and standard Mathlib interfaces. The local
-lower-bound function's validity and restricted monotonicity, the crossing
-survival inequality, drawing/topology interfaces, and upstream classifier
-or numerical tables remain external. The finite extraction and summation
-are fully proved for the stated inputs.
+priority claim. The original module imports Lean and Mathlib; extensions
+import the original module and standard library interfaces. The original
+local-bound theorem's validity and restricted monotonicity remain premises.
+For table soundness, seed validity on every induced subset and upper budget
+replaces the exact-count lookup; antitonicity is not required. Crossing
+survival, drawing/topology interpretation, upstream classification, numerical
+table extraction and final comparisons remain external. All finite graph
+transport, induction, checker equivalence and summation are proved.
 
 There is no proof hole, custom axiom, native-evaluation shortcut, unsafe
 declaration, external solver, certificate decoder or data oracle.
 See [AUDIT.md](AUDIT.md), [Audit.lean](Audit.lean) and
-[SharpnessAudit.lean](SharpnessAudit.lean) for boundary tests
+[SharpnessAudit.lean](SharpnessAudit.lean) and [TableAudit.lean](TableAudit.lean) for boundary tests
 and exact axiom evidence. No unconditional Albertson theorem is claimed.

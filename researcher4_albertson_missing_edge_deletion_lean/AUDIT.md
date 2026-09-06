@@ -31,9 +31,11 @@ denominator. There is no floating-point calculation or imported number.
 lake build
 lake env lean Audit.lean
 lake env lean SharpnessAudit.lean
+lake env lean TableAudit.lean
 ```
 
-All five original and six sharpness declarations report exactly:
+All five original, six sharpness and nine table-interface declarations,
+six schema definitions and two semantic-test proofs report exactly:
 
 ```text
 propext, Classical.choice, Quot.sound
@@ -45,7 +47,7 @@ holes, custom axioms, native evaluation, unsafe declarations, diagnostic
 traces or private paths. All dependency revisions are pinned in the
 toolchain and manifest; see [README.md](README.md).
 
-The complete two-target build reports 1006 jobs. Builds use the pinned
+The complete three-target build reports 1009 jobs. Builds use the pinned
 dependency cache as acceleration, not a fresh source rebuild of all Mathlib.
 
 ## Eight checked examples
@@ -110,6 +112,57 @@ The zero-budget condition is tested rather than hidden. The exact support
 construction and uniform equivalence are not claims that a numerical crossing
 recurrence is sharp or that its external premises hold.
 
+## Native table soundness and nonmonotone semantic test
+
+The 151-line [DeletionTableSoundness.lean](DeletionTableSoundness.lean) proves
+the formerly unproved `SoundnessTarget` and a stronger version that omits
+row antitonicity. It explicitly identifies nested vertex deletion with
+finite erasure by a native graph isomorphism, transfers actual edge counts,
+and inducts strongly on subset cardinality. No nested-induced-graph or
+cardinality-transfer premise is left to the caller.
+
+`checked_entries_sound` checks every seed/deletion entry in a bounded rectangle.
+Its induction hypothesis is valid at **every upper budget**, so it supplies
+the ordinary and improved local bounds directly. It never infers a larger
+table entry from a value at the actual edge count. Thus the old row-antitonicity
+clause is genuinely unused, not silently replaced by an equivalent premise.
+This does not make the original exact-count recurrence valid without its own
+monotonicity assumption.
+
+The Boolean `tableCheck` uses two finite natural ranges and exact arithmetic.
+`tableCheck_eq_true_iff` proves complete agreement with the entry conditions;
+`tableCheck_sound` gives their interpretation on actual induced subsets.
+Both child budgets lie in range, both children have smaller order, and
+order, threshold and strict-capacity guards are checked even for zero-valued
+entries. Seed interpretation and the survival inequality remain hypotheses.
+
+The schema retains its three earlier boundary checks: the over-capacity
+state at order 37 and budget 685, rejection of threshold 38 there, and
+acceptance of a separately justified zero seed. These test an interface
+boundary, not a recomputation or disproof of the published numerical table.
+
+The eleven examples in `TableAudit.lean` check:
+
+- Acceptance of a nonmonotone table containing an active deletion entry.
+- Formal failure of row antitonicity for that accepted table.
+- Checker soundness on every relevant actual subset and upper budget.
+- The active deletion conclusion on the full six-vertex universe.
+- Valid seed-only acceptance at empty order and zero budget.
+- Rejection of a seed exceeding its justification.
+- Rejection of deletion at order four.
+- Rejection of a threshold exceeding the ambient order.
+- Rejection of a zero-budget deletion step.
+- Rejection of a value one above the exact deletion ceiling.
+- Upward rounding of a nonintegral quotient.
+
+The semantic fixture uses the empty missing-edge graph on six vertices and
+counts all four-element subsets. Its nonzero order-five seed is five at
+budget one and zero at budget zero. Its active order-six, budget-one entry
+is ten, from threshold two. These entries are not antitone but are valid
+upper-budget bounds; the actual full-universe count is fifteen. Two separately
+audited proofs establish seeds and survival on **every** relevant subset.
+No drawing interpretation is asserted, and no external fixture is imported.
+
 ## Source integrity and omitted bridges
 
 Principal source SHA-256:
@@ -124,10 +177,19 @@ Sharpness source SHA-256:
 96a6ddd74e144149fa9ba6785acbeaa47bc0bf98e8563ed66f7c31bd57db2074
 ```
 
-There is no external-data bridge inside the theorems. The remaining
-surrounding claims are the local crossing estimates, restricted
-monotonicity of the actual numerical recurrence, good-drawing and
-crossing-survival interpretation, upstream enumeration, and any final
-Albertson comparison. Neither the author program nor its independent
-review is executed by this project. This is authoring, not independent
-review of earlier artifacts signed by this contributor.
+Table soundness source SHA-256:
+
+```text
+7028c26240187f92b874a5a14aebcf6965ff0c518a92cf4f91b83aa9d0594e68
+```
+
+There is no external-data bridge inside the theorems. The table checker
+operates on Lean functions, not parsed or extracted numerical source. Its
+mathematical consumers still require valid seeds on every subset and upper
+budget, crossing survival and drawing interpretation. An adapter to the
+published program must also supply its active entries, seed provenance,
+capacity/zero conventions and exact agreement with that source. This project
+does not certify that numerical table, the upstream classifier, or any final
+Albertson comparison. Neither the author program nor its independent review
+is executed here. This is authoring, not independent review of earlier
+artifacts signed by this contributor.
