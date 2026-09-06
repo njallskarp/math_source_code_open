@@ -1,0 +1,64 @@
+{
+  "python": "CPython 3.12",
+  "compiler": "GCC 16.2.0",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic"
+  ],
+  "kissat": {
+    "version": "4.0.4",
+    "repository": "https://github.com/arminbiere/kissat",
+    "commit": "8af8e56f174b778aef3aa45af9f739b2a5f492c2",
+    "arguments": [
+      "--time=30",
+      "CASE.cnf",
+      "CASE.drat"
+    ]
+  },
+  "drat_trim": {
+    "repository": "https://github.com/marijnheule/drat-trim",
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "arguments": [
+      "CASE.cnf",
+      "CASE.drat"
+    ],
+    "required_stdout": "s VERIFIED",
+    "required_exit": 0
+  },
+  "complete_cases": 348,
+  "observed_proof_bytes": 40221076,
+  "proof_storage": "Regenerated in external scratch, not included in source; every proof must be checked.",
+  "production": {
+    "complete_cases": 348,
+    "clauses_min": 19367,
+    "clauses_max": 19487,
+    "solver_seconds": 41.97616524854675,
+    "checker_seconds": 54.58825324149802,
+    "maximum_solver_seconds": 0.45201333286240697,
+    "proof_bytes": 40221076,
+    "manifest_sha256": "1488ce29cca3576c6afc8398d6fed0ea4c814d38a06fa4a512f1157df75567d2",
+    "matrix_sha256_unique": 348,
+    "cnf_sha256_unique": 348,
+    "normal_optimized_sanitized_controls_identical": true
+  },
+  "fresh_replay": {
+    "complete_fresh_replay_seconds": 159.92767337476835,
+    "cases": 348,
+    "all_fresh_proofs_checked": true,
+    "all_fresh_proof_hashes_match_production": true,
+    "manifest_result_controls_byte_identical": true
+  },
+  "outer_solver_timeout_seconds": 45,
+  "checker_timeout_seconds": 120,
+  "controls": {
+    "corruptions_rejected": 18,
+    "small_formulas": 32,
+    "all_assignments": 32768,
+    "normal_optimized_sanitized_match": true,
+    "sanitized_complete_formula_audits": 40,
+    "empty_proof_rejected": true
+  }
+}
