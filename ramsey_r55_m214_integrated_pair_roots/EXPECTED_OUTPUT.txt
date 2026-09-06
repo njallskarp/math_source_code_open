@@ -1,0 +1,7 @@
+PASS independent roots=389 families=60,85,70,104,70 partition_roots=70
+PASS root_keys_sha256=de71f59185f53e68dbf4c493609da0fdf3ae4850528eb4c04d437904c747bf4c
+PASS guard truth tables=608 one_hot_widths=1..8
+PASS formula variables=13633 base_rows=1974689 selector_rows=69732 constraints=2044421
+{"bytes":172788992,"constraints":2044421,"equalities":87,"family_counts":[60,85,70,104,70],"lines":2044422,"partition_roots":70,"root_keys_sha256":"de71f59185f53e68dbf4c493609da0fdf3ae4850528eb4c04d437904c747bf4c","roots":389,"selector_rows":69732,"sha256":"469879cf7bc1c2147996163cd14a588a8bff41a3353c14e9bcc498d084f3783f","variables":13633}
+PASS integrated_opb variables=13633 constraints=2044421 equalities=87 base_rows=1974689 selector_rows=69732
+PASS roots=389 families=60,85,70,104,70 partition_roots=70 anchor_units_per_root=83 a_equalities_per_root=43
