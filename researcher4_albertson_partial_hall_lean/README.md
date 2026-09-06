@@ -7,6 +7,10 @@ complement of a 57-vertex graph under an explicit Albertson-motivated incidence
 interface. It does not import a crossing-number table or prove an unconditional
 Albertson theorem.
 
+The graph-native entry point is now `colorable_28_of_degree_partition`: it
+derives the incidence rows, capacities and mass from the graph's degrees and
+its low-region partition. The earlier row-based interface remains available.
+
 ## Parameterized result
 
 In [PartialHall.lean](PartialHall.lean), let `N : I → Finset A` be any finite
@@ -110,6 +114,49 @@ The library basis is the pinned
 and
 [native graph coloring API](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/SimpleGraph/Coloring/Vertex.html).
 
+## Native graph degrees to incidence summaries
+
+[GraphIncidence.lean](GraphIncidence.lean) closes the degree-to-row interface.
+`neighborsIn H v f` is the canonical finite set of region labels whose
+vertices are adjacent to `v`; no externally supplied incidence matrix is
+needed. Four standard sum-type injections distinguish the index, first low,
+second low and extra regions. `degree_four_regions` proves that their neighbor
+counts sum to the native `H.degree v`.
+
+`incidence_summary_of_degrees` is parameterized over arbitrary finite regions,
+possibly empty or unequal in size. Assume no edges within either low region,
+all edges between the two low regions, and constant low degrees `dA` and `dB`.
+It proves all of the following:
+
+- Each first-low vertex has at most `dA - Fintype.card B` index neighbors;
+  the corresponding second-low bound is `dB - Fintype.card A`.
+- The two low neighbor counts of each index sum to at most its graph degree.
+- The total index-to-low and extra-to-low incidences, plus twice the product
+  of the two low-region sizes, equal their total low degrees.
+
+The last statement is an exact balance, not a lower-bound estimate. Its proof
+uses native neighbor sets and symmetric double counting. The auxiliary
+`sum_neighborsIn_comm` even allows noninjective label maps: repeated labels
+are counted on both sides, while the four-region consumer uses actual disjoint
+sum injections.
+
+`colorable_28_of_degree_partition` specializes the graph structure, not an
+imported numerical table. On the same 57-vertex type as above, it assumes:
+
+- The low region is an induced complete bipartite graph on two 24-element parts.
+- Every low vertex has degree 28 in `H`.
+- Every index vertex has degree at most 27 in `H`.
+- The two extra vertices together have at most four neighbors in the low
+  region, counting incidences separately at each extra vertex.
+
+Lean constructs the canonical incidence rows, derives column cap four and
+joint mass at least 188, and concludes `Hᶜ.Colorable 28`. The small extra-to-low
+budget is still an explicit native graph quantity, not an imported Python
+result or a hidden assumption about critical graphs.
+
+The underlying degree definition and complement-degree identity are documented
+in [Mathlib's finite graph API](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/SimpleGraph/Finite.html).
+
 ## Albertson alignment and the remaining boundary
 
 The motivating source is the
@@ -126,8 +173,10 @@ their graph contributions or review status during authoring.
 The important interface obligation is the low-side degree cap. Under the
 stated configuration, each low vertex has complement degree 28, of which 24
 neighbors lie in the other low block. It therefore has at most four neighbors
-among the seven exceptional vertices. This supplies the column cap used here.
-The remaining joint incidence bounds must be justified on the same graph;
+among the seven exceptional vertices. The new graph-native theorem proves
+this column restriction and the total incidence balance from native degrees.
+The degree translation from the original graph to its complement, the region
+identification, and the extra-to-low budget must hold on the same graph;
 the source's numerical enumeration is not a Lean input.
 
 There is also a counting correction to the proposed four-triangle shortcut.
@@ -147,11 +196,12 @@ triangles whose complement has a 29-clique. This refutes only the unrestricted
 four-triangle shortcut: the fixture is not claimed to satisfy the joint-mass
 hypothesis or to be an Albertson counterexample.
 
-The matching, native-triangle and final complement-coloring implications are
-now formalized. Still external are the configuration classification, its
-exhaustive labeled embedding into the original graph, the derivation of the
-incidence bounds on that same graph, criticality, all earlier row eliminations,
-crossing estimates and drawing topology. The explicit finite consumer is not
+The native degree-to-incidence, matching, triangle and final complement-coloring
+implications are now formalized. Still external are the configuration
+classification, its exhaustive labeled embedding into the original graph,
+the complement-degree translation and the barrier derivation of the small
+extra-to-low budget, criticality, all earlier row eliminations, crossing
+estimates and drawing topology. The explicit finite consumer is not
 an unconditional exclusion of row 827 or a theorem for all order-57 graphs.
 It does not address the unequal-block cases with ten or eleven high vertices.
 
@@ -171,7 +221,7 @@ The cache command is optional acceleration. Lean is pinned to
 Mathlib is `0df444a360eaa60ab8c11dca51a86af692955474`.
 The transitive manifest is included.
 
-Expected: a successful 1,108-job build, twenty passing audit examples, and
+Expected: a successful 1,110-job build, twenty-seven passing audit examples, and
 axiom reports confined to `propext`, `Classical.choice`, `Quot.sound`.
 The triangle definition uses only the first and third. See
 [AUDIT.md](AUDIT.md) for the exact verification and trust boundary.

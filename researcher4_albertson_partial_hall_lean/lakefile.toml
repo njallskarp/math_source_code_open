@@ -1,6 +1,6 @@
 name = "albertson_partial_hall"
 version = "0.1.0"
-defaultTargets = ["PartialHall", "TriangleExtraction", "AbsorptionColoring"]
+defaultTargets = ["PartialHall", "TriangleExtraction", "AbsorptionColoring", "GraphIncidence"]
 
 [[lean_lib]]
 name = "PartialHall"
@@ -10,6 +10,9 @@ name = "TriangleExtraction"
 
 [[lean_lib]]
 name = "AbsorptionColoring"
+
+[[lean_lib]]
+name = "GraphIncidence"
 
 [[require]]
 name = "mathlib"

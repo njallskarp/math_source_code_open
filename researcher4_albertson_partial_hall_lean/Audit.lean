@@ -1,4 +1,4 @@
-import AbsorptionColoring
+import GraphIncidence
 
 open Finset AlbertsonPartialHall
 
@@ -16,6 +16,12 @@ open Finset AlbertsonPartialHall
 #print axioms colorable_compl_of_common_representatives
 #print axioms colorable_compl_with_extra_region
 #print axioms colorable_28_of_joint_capacity
+#print axioms neighborsIn
+#print axioms card_filter_sum_regions
+#print axioms sum_neighborsIn_comm
+#print axioms degree_four_regions
+#print axioms incidence_summary_of_degrees
+#print axioms colorable_28_of_degree_partition
 
 -- Concrete incidence families: every column belongs to four of seven rows.
 def firstRows (i : Fin 7) : Finset (Fin 24) :=
@@ -146,3 +152,59 @@ example : capacityGraphᶜ.Colorable 28 :=
 
 example : ∀ w : Fin 2, ∀ v, ¬ capacityGraph.Adj (Sum.inr w) v := by
   rintro w ((i | a | b) | w') <;> simp [capacityGraph, SimpleGraph.fromRel_adj]
+
+-- Three removed incidences are spread over two columns so that two distinct
+-- extra vertices can restore every low degree to exactly 28.
+def degreeRows (i : Fin 7) : Finset (Fin 24) :=
+  univ.filter fun a => (a.val + i.val + 3) % 7 < 4 ∧
+    ¬ ((a.val = 0 ∧ i.val = 0) ∨ (a.val = 1 ∧ (i.val = 5 ∨ i.val = 6)))
+
+def degreeGraph : SimpleGraph ((Fin 7 ⊕ Fin 24 ⊕ Fin 24) ⊕ Fin 2) :=
+  SimpleGraph.fromRel fun v w => match v, w with
+    | Sum.inl (Sum.inl i), Sum.inl (Sum.inr (Sum.inl a)) => a ∈ firstRows i
+    | Sum.inl (Sum.inl i), Sum.inl (Sum.inr (Sum.inr b)) => b ∈ degreeRows i
+    | Sum.inl (Sum.inr (Sum.inl _)), Sum.inl (Sum.inr (Sum.inr _)) => True
+    | Sum.inr w, Sum.inl (Sum.inr (Sum.inr b)) =>
+        (w.val = 0 ∧ b.val = 0) ∨ b.val = 1
+    | _, _ => False
+
+instance : DecidableRel degreeGraph.Adj := by
+  rintro ((i | a | b) | w) ((i' | a' | b') | w') <;>
+    dsimp only [degreeGraph, SimpleGraph.fromRel] <;> infer_instance
+
+example : ∀ a : Fin 24, degreeGraph.degree (firstVertex a) = 28 := by
+  simp only [SimpleGraph.degree, SimpleGraph.neighborFinset_eq_filter]
+  decide
+
+example : ∀ b : Fin 24, degreeGraph.degree (secondVertex b) = 28 := by
+  simp only [SimpleGraph.degree, SimpleGraph.neighborFinset_eq_filter]
+  decide
+
+example : ∀ i : Fin 7, degreeGraph.degree (indexVertex i) ≤ 27 := by
+  simp only [SimpleGraph.degree, SimpleGraph.neighborFinset_eq_filter]
+  decide
+
+example : (∑ w : Fin 2, ((neighborsIn degreeGraph (extraVertex w) firstVertex).card +
+    (neighborsIn degreeGraph (extraVertex w) secondVertex).card)) = 3 := by decide
+
+example : (∑ i : Fin 7, ((neighborsIn degreeGraph (indexVertex i) firstVertex).card +
+    (neighborsIn degreeGraph (indexVertex i) secondVertex).card)) = 189 := by decide
+
+example : degreeGraphᶜ.Colorable 28 :=
+  colorable_28_of_degree_partition degreeGraph
+    (by intros; simp [degreeGraph, SimpleGraph.fromRel_adj, firstVertex])
+    (by intros; simp [degreeGraph, SimpleGraph.fromRel_adj, secondVertex])
+    (by intros; simp [degreeGraph, SimpleGraph.fromRel_adj, firstVertex, secondVertex])
+    (by simp only [SimpleGraph.degree, SimpleGraph.neighborFinset_eq_filter]; decide)
+    (by simp only [SimpleGraph.degree, SimpleGraph.neighborFinset_eq_filter]; decide)
+    (by simp only [SimpleGraph.degree, SimpleGraph.neighborFinset_eq_filter]; decide)
+    (by decide)
+
+-- Empty and unequal regions are allowed by the parameterized summary theorem.
+example : ∀ a : Fin 2, (neighborsIn
+    (⊥ : SimpleGraph ((Fin 0 ⊕ Fin 2 ⊕ Fin 0) ⊕ Fin 0))
+      (firstVertex a) indexVertex).card ≤ 0 := by
+  exact (incidence_summary_of_degrees
+    (⊥ : SimpleGraph ((Fin 0 ⊕ Fin 2 ⊕ Fin 0) ⊕ Fin 0)) 0 100
+    (by intros; simp) (fun b => Fin.elim0 b) (fun _ b => Fin.elim0 b)
+    (by intros; simp) (fun b => Fin.elim0 b)).1
