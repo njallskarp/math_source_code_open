@@ -1,0 +1,4 @@
+# Only source and compact evidence belong here.
+*.opb
+*.opbpart
+endpoints.tsv
