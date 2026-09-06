@@ -1,0 +1,7 @@
+roots 389
+family_counts 60 85 70 104 70
+common_counts 78 78 78 78 77
+suffix_rows 11672
+sharp_T_alpha 3
+sharp_core_independent_fours 4 7 15 27 39
+status PASS

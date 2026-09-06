@@ -1,0 +1,16 @@
+{
+  "base_bytes": 172788992,
+  "base_constraints": 2044421,
+  "base_height": 3160,
+  "base_sha256": "469879cf7bc1c2147996163cd14a588a8bff41a3353c14e9bcc498d084f3783f",
+  "bytes": 174004384,
+  "constraints": 2056093,
+  "equalities": 87,
+  "lines": 2056094,
+  "sha256": "e8ac0385c3654aa6106922bcb32d0e19832b6e8331a17d9aa55b44f7f3a8747a",
+  "suffix_bytes": 1215392,
+  "suffix_rows": 11672,
+  "suffix_sha256": "ff2e24eaf16cc07435ef53b651474d812ad600ac403660722e60e6ebddd20ff1",
+  "variables": 13633
+}
+
