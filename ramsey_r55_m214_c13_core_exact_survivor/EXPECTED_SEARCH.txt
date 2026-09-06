@@ -1,0 +1,10 @@
+moves=4800 target_sum=625
+restart=0 best=1
+restart=1 best=2
+restart=2 best=1
+restart=3 best=1
+restart=4 best=1
+restart=5 best=1
+restart=6 best=1
+restart=7 best=2
+FOUND restart=8 step=1906249 bits=15340caf6ef8de79ee7f91df80303ce3085155b466728c4b8eed71005f31c150f43826e0c225d2714a5cde072f2071f

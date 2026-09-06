@@ -1,0 +1,6 @@
+REJECTED footprint-bit
+REJECTED outside-edge-bit
+REJECTED mark-move
+REJECTED pivot
+REJECTED truncated-bits
+ALL 5 NEGATIVE CONTROLS REJECTED

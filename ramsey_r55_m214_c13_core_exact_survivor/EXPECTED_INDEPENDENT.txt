@@ -1,0 +1,6 @@
+PASS core_exact vertices=15 outside_exact=35,36,40
+triangles=global_red1403,global_blue1463,outside_red360,outside_blue413
+degrees=20^13,21^30 E_incidences=6^42,8^1 outside_edges=183
+forced_pairs=red53,blue16 capacities=12,8,3,3
+K5_by_outside=0:0,0;1:0,0;2:0,0;3:184,43;4:162,173;5:35,67
+STATUS VERIFIED CORE-EXACT C13 RELAXATION SURVIVOR
