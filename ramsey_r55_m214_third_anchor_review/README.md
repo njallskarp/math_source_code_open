@@ -108,7 +108,7 @@ multiple full-graph isomorphism classes can share one incidence root.
 ## The three structural cuts
 
 Write
-\(r=|N_R(w_r)\cap(H\setminus\{w_r\})|\),
+\(r_H=|N_R(w_r)\cap(H\setminus\{w_r\})|\),
 \(\alpha=|N_R(w_r)\cap A|\), and
 \(\beta=|N_R(w_r)\cap B|\), where the pair cells have ordered bits
 \(H=(1,1),A=(1,0),B=(0,1),O=(0,0)\).
@@ -120,15 +120,15 @@ size at most four. Its blue neighborhood at \(w_r\) has neither a
 red triangle nor a blue \(K_4\). The bound \(R(3,4)\leq9\) therefore gives
 
 \[
-c-9\leq r\leq4.
+c-9\leq r_H\leq4.
 \]
 
 The common red neighborhood of the red edge \(uw_r\) has size
-\(1+r+\alpha\) and contains neither a red triangle nor a blue \(K_5\).
+\(1+r_H+\alpha\) and contains neither a red triangle nor a blue \(K_5\).
 The bound \(R(3,5)\leq14\), and its counterpart for \(vw_r\), give
 
 \[
-r+\alpha\leq12,\qquad r+\beta\leq12.
+r_H+\alpha\leq12,\qquad r_H+\beta\leq12.
 \]
 
 Only upper bounds are needed. They have elementary proofs:
