@@ -1,0 +1,10 @@
+{
+  "edge": [0, 2],
+  "physical_variable": 2,
+  "guard_rows": 389,
+  "each_guard_multiplier": "1/389",
+  "selector_equality_multiplier": "1/389",
+  "pre_round_coefficients": {"2": "1"},
+  "pre_round_rhs": "1/389",
+  "rounded_rhs": 1
+}
