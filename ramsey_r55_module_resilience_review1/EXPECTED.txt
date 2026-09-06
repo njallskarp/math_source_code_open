@@ -1,0 +1,9 @@
+VERIFIED_INDEPENDENT_MODULE_RESILIENCE
+prime_after_at_most_7_deletions=true
+no_module_ge_3_after_at_most_15_deletions=true
+strengthening_no_module_eq_5_after_at_most_16_deletions=true
+boundary_28_rows=2
+module3_t16_margin=1
+module4_t15_margin=4
+module5_t16_margin=6
+audit_facts_sha256=41c24618f3f83a49c3a8a4d57900623935f32eb6302b5afa71db5ef4c2bd0fc4
