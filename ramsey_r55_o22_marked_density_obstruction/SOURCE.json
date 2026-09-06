@@ -1,0 +1,9 @@
+{
+  "n": 22,
+  "red_parent_graph6_base64": "VT9DWUJJZVtkU1JXSnZMbkl8Y15nbVVMd3d1YVVtUGZWbEREfGdhZw==",
+  "red_deletions": [[5,12],[10,13],[14,19],[15,18],[16,21],[17,20]],
+  "source_contribution": "bafkreihkoevj5w4svhm253b2ggvqepizsege2ndkjamatfis67a7c5g5ui",
+  "source_height": 3003,
+  "source_commit": "7a0064314f61056e21372a132dfc0c458f38312e",
+  "source_directory": "https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_fixed_core_closure"
+}

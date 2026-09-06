@@ -1,0 +1,2 @@
+VERIFIED: 16 fixed O22 choices excluded; marked density <= 91 < 92
+certificate_sha256=4689c02b45553df1f3a845fbb9b2fc44e28d2784448c33cc82548ea649bb2b3b

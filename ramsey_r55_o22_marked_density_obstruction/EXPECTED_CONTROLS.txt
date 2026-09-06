@@ -1,0 +1,3 @@
+Positive complete replay: PASS
+Damaged certificates rejected: 8/8
+Damaged inputs rejected: 4/4

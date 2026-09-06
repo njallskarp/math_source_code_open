@@ -1,0 +1,488 @@
+{
+  "candidate_family": [
+    {
+      "added_red_edge": [
+        0,
+        10
+      ],
+      "cases": [
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        0,
+        20
+      ],
+      "cases": [
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        2,
+        8
+      ],
+      "cases": [
+        [
+          0,
+          44,
+          89
+        ],
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        3,
+        18
+      ],
+      "cases": [
+        [
+          0,
+          45,
+          90
+        ],
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          45,
+          90
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        4,
+        16
+      ],
+      "cases": [
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        4,
+        19
+      ],
+      "cases": [
+        [
+          0,
+          45,
+          90
+        ],
+        [
+          1,
+          45,
+          90
+        ],
+        [
+          2,
+          44,
+          89
+        ],
+        [
+          4,
+          45,
+          90
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        5,
+        14
+      ],
+      "cases": [
+        [
+          0,
+          44,
+          89
+        ],
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        5,
+        15
+      ],
+      "cases": [
+        [
+          0,
+          44,
+          89
+        ],
+        [
+          1,
+          45,
+          90
+        ],
+        [
+          2,
+          44,
+          89
+        ],
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        9,
+        12
+      ],
+      "cases": [
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        9,
+        17
+      ],
+      "cases": [
+        [
+          0,
+          44,
+          89
+        ],
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          45,
+          90
+        ],
+        [
+          5,
+          46,
+          91
+        ]
+      ],
+      "marked_density_upper_bound": 91
+    },
+    {
+      "added_red_edge": [
+        11,
+        14
+      ],
+      "cases": [
+        [
+          0,
+          44,
+          89
+        ],
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          46,
+          91
+        ]
+      ],
+      "marked_density_upper_bound": 91
+    },
+    {
+      "added_red_edge": [
+        12,
+        19
+      ],
+      "cases": [
+        [
+          0,
+          45,
+          90
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        13,
+        18
+      ],
+      "cases": [
+        [
+          0,
+          45,
+          90
+        ],
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          45,
+          90
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        14,
+        16
+      ],
+      "cases": [
+        [
+          0,
+          44,
+          89
+        ],
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        15,
+        17
+      ],
+      "cases": [
+        [
+          0,
+          44,
+          89
+        ],
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          43,
+          88
+        ],
+        [
+          4,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    },
+    {
+      "added_red_edge": [
+        20,
+        21
+      ],
+      "cases": [
+        [
+          1,
+          44,
+          89
+        ],
+        [
+          2,
+          44,
+          89
+        ],
+        [
+          5,
+          45,
+          90
+        ]
+      ],
+      "marked_density_upper_bound": 90
+    }
+  ],
+  "certificate_sha256": "4689c02b45553df1f3a845fbb9b2fc44e28d2784448c33cc82548ea649bb2b3b",
+  "complete_domain_family_sha256": "6c9da9af5d7cac9700ca7d5702e9623a7f4fc2be1d168cf638656dcf5c513f0e",
+  "eligible_base_domains": 5,
+  "recursive_fourteen_domains": 6,
+  "status": "RECURSIVE O22 MARKED DENSITY AUDIT VERIFIED"
+}
