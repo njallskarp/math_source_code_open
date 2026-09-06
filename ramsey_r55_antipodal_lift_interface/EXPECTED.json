@@ -1,0 +1,184 @@
+{
+  "abstract_nonempty_pair_relations_without_triangle": 978,
+  "abstract_relation_networks_checked": 4096,
+  "arity_width_counts": [
+    {
+      "arity": 0,
+      "records": 219605,
+      "width": 0
+    },
+    {
+      "arity": 1,
+      "records": 155602,
+      "width": 1
+    },
+    {
+      "arity": 1,
+      "records": 134708,
+      "width": 2
+    },
+    {
+      "arity": 1,
+      "records": 29216,
+      "width": 3
+    },
+    {
+      "arity": 1,
+      "records": 12190,
+      "width": 4
+    },
+    {
+      "arity": 1,
+      "records": 1192,
+      "width": 6
+    },
+    {
+      "arity": 2,
+      "records": 32346,
+      "width": 2
+    },
+    {
+      "arity": 2,
+      "records": 26190,
+      "width": 3
+    }
+  ],
+  "atlas_bytes": 1925196,
+  "atlas_sha256": "c76942bd898e56b3a4f633d12267f1d165a2b374bc1bf1d459c45c57dfc07f50",
+  "color_and_block_counts": [
+    {
+      "blocks": [],
+      "color": 0,
+      "records": 107186
+    },
+    {
+      "blocks": [
+        0
+      ],
+      "color": 0,
+      "records": 56310
+    },
+    {
+      "blocks": [
+        1
+      ],
+      "color": 0,
+      "records": 53736
+    },
+    {
+      "blocks": [
+        0,
+        1
+      ],
+      "color": 0,
+      "records": 11016
+    },
+    {
+      "blocks": [
+        2
+      ],
+      "color": 0,
+      "records": 55764
+    },
+    {
+      "blocks": [
+        0,
+        2
+      ],
+      "color": 0,
+      "records": 10566
+    },
+    {
+      "blocks": [
+        1,
+        2
+      ],
+      "color": 0,
+      "records": 8829
+    },
+    {
+      "blocks": [],
+      "color": 1,
+      "records": 112419
+    },
+    {
+      "blocks": [
+        0
+      ],
+      "color": 1,
+      "records": 63076
+    },
+    {
+      "blocks": [
+        1
+      ],
+      "color": 1,
+      "records": 53016
+    },
+    {
+      "blocks": [
+        0,
+        1
+      ],
+      "color": 1,
+      "records": 8532
+    },
+    {
+      "blocks": [
+        2
+      ],
+      "color": 1,
+      "records": 51006
+    },
+    {
+      "blocks": [
+        0,
+        2
+      ],
+      "color": 1,
+      "records": 8982
+    },
+    {
+      "blocks": [
+        1,
+        2
+      ],
+      "color": 1,
+      "records": 10611
+    }
+  ],
+  "fixed_pairs": 276,
+  "full_retained_assignments_enumerated": 0,
+  "local_predicate_shapes": 27,
+  "local_truth_assignments": 20784,
+  "matrix_domains_enumerated": false,
+  "n": 43,
+  "negative_controls": [
+    "changed_block_support",
+    "changed_literal_width",
+    "extra_record",
+    "omitted_record",
+    "overlapping_blocks"
+  ],
+  "physical_five_sets": 962598,
+  "physical_pair_ownership_checked": 903,
+  "possible_color_records": 611049,
+  "removed_pairs": 104,
+  "retained_pairs": 523,
+  "scope": "exact labeled full-K5 lifting interface; no Ramsey verdict",
+  "six_literal_example": [
+    2,
+    3,
+    4,
+    39,
+    40
+  ],
+  "solver_called": false,
+  "three_literal_cross_example": [
+    2,
+    3,
+    15,
+    29,
+    39
+  ]
+}

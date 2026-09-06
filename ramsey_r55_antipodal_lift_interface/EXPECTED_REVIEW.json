@@ -1,0 +1,338 @@
+{
+  "interface": {
+    "all_guards_and_hidden_literals_checked": true,
+    "clause_counts_by_arity": [
+      219338,
+      332908,
+      58536
+    ],
+    "clauses_bytes": 30487019,
+    "clauses_sha256": "2192a68adb96d80cee3ded6c7503b5c96a81b771299500c9e3c58e594519f6b6",
+    "discarded_duplicate_occurrences_by_arity": [
+      267,
+      0,
+      0
+    ],
+    "multiplicity_histogram": {
+      "1": 610515,
+      "2": 267
+    },
+    "physical_records": 611049,
+    "schema_sha256": "ee1fa61df8ca667e348f3d3acf99136a26f0b96705e19f035dd18f86c05d15f2",
+    "unique_clauses": 610782
+  },
+  "negative": {
+    "all_hidden_colorings_checked": 4096,
+    "domains": [
+      [
+        6,
+        9
+      ],
+      [
+        6,
+        9
+      ],
+      [
+        6
+      ]
+    ],
+    "margin_correct_bad_witnesses": [
+      {
+        "color": "blue",
+        "states": [
+          6,
+          6,
+          6
+        ],
+        "vertices": [
+          0,
+          2,
+          5,
+          7,
+          9
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          6,
+          6,
+          9
+        ],
+        "vertices": [
+          0,
+          2,
+          5,
+          7,
+          9
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          6,
+          9,
+          6
+        ],
+        "vertices": [
+          0,
+          4,
+          7,
+          8,
+          10
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          6,
+          9,
+          9
+        ],
+        "vertices": [
+          0,
+          4,
+          5,
+          9,
+          10
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          9,
+          6,
+          6
+        ],
+        "vertices": [
+          0,
+          3,
+          4,
+          8,
+          10
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          9,
+          6,
+          9
+        ],
+        "vertices": [
+          0,
+          3,
+          4,
+          9,
+          10
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          9,
+          9,
+          6
+        ],
+        "vertices": [
+          0,
+          3,
+          4,
+          8,
+          10
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          9,
+          9,
+          9
+        ],
+        "vertices": [
+          0,
+          3,
+          4,
+          9,
+          10
+        ]
+      }
+    ],
+    "oracle_status": "NO_LIFT_PAIRWISE_JOIN",
+    "relations": {
+      "0-1": [
+        [
+          6,
+          9
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          9
+        ]
+      ],
+      "0-2": [
+        [
+          6,
+          6
+        ]
+      ],
+      "1-2": [
+        [
+          6,
+          6
+        ]
+      ]
+    },
+    "valid_lifts": [],
+    "zero_budget_status": "INCOMPLETE"
+  },
+  "positive": {
+    "all_hidden_colorings_checked": 4096,
+    "domains": [
+      [
+        6,
+        9
+      ],
+      [
+        6,
+        9
+      ],
+      [
+        6,
+        9
+      ]
+    ],
+    "margin_correct_bad_witnesses": [
+      {
+        "color": "blue",
+        "states": [
+          6,
+          6,
+          6
+        ],
+        "vertices": [
+          0,
+          2,
+          5,
+          7,
+          9
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          6,
+          6,
+          9
+        ],
+        "vertices": [
+          0,
+          2,
+          5,
+          7,
+          9
+        ]
+      },
+      {
+        "color": "blue",
+        "states": [
+          9,
+          6,
+          9
+        ],
+        "vertices": [
+          0,
+          5,
+          7,
+          9,
+          10
+        ]
+      }
+    ],
+    "oracle_status": "LIFT_FOUND",
+    "relations": {
+      "0-1": [
+        [
+          6,
+          9
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          9
+        ]
+      ],
+      "0-2": [
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          9
+        ]
+      ],
+      "1-2": [
+        [
+          6,
+          6
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          9
+        ]
+      ]
+    },
+    "valid_lifts": [
+      [
+        6,
+        9,
+        6
+      ],
+      [
+        6,
+        9,
+        9
+      ],
+      [
+        9,
+        6,
+        6
+      ],
+      [
+        9,
+        9,
+        6
+      ],
+      [
+        9,
+        9,
+        9
+      ]
+    ],
+    "zero_budget_status": "INCOMPLETE"
+  },
+  "scope": "structural theorem, full guarded interface, and two physical fixtures; no H92 decision",
+  "solver_called": false,
+  "target_height": 3311,
+  "upstream_commit": "815b79be8f879d2bff7baa52b1132f9a0e115e64"
+}
