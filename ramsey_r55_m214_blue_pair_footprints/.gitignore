@@ -1,0 +1,4 @@
+*.opb
+*.opbpart
+*.partial
+__pycache__/

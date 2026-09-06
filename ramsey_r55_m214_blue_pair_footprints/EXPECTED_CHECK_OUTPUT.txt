@@ -1,0 +1,9 @@
+roots 389
+active_roots 156
+family_counts 24 34 28 42 28
+common_counts 78 78
+suffix_rows 74958
+sharp_union_bounds 4 5 6 7 8
+sharp_sum_witnesses 4 5
+individual_only_violations 2 4
+status PASS

@@ -1,0 +1,7 @@
+guard_truth_assignments 160
+suffix_rows_checked 74958
+edge_ids_checked 903
+sharp_cases 5
+strict_projection_codegrees 9 10
+corruptions_rejected 8
+status PASS

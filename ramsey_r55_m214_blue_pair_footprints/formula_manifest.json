@@ -1,0 +1,14 @@
+{
+  "bytes": 187209692,
+  "constraints": 2131051,
+  "equalities": 87,
+  "lines": 2131052,
+  "prior_bytes": 174004384,
+  "prior_height": 3228,
+  "prior_sha256": "e8ac0385c3654aa6106922bcb32d0e19832b6e8331a17d9aa55b44f7f3a8747a",
+  "sha256": "298aed6afa61eff55c21a96dae8af49d24a8c67d13d5d611e342a127c417c997",
+  "suffix_bytes": 13205308,
+  "suffix_rows": 74958,
+  "suffix_sha256": "a2d49a13493739d62cac8d81d43bf56b3d9c518e337304b0228c742b2485f91c",
+  "variables": 13633
+}
