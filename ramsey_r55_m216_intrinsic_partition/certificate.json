@@ -1,0 +1,371 @@
+{
+  "cores": [
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": true,
+      "exceptional_red_excess": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "mask": 4094,
+      "orbit_size": 10
+    },
+    {
+      "central_red_excess": 1,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mask": 40573,
+      "orbit_size": 60
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "mask": 65209,
+      "orbit_size": 60
+    },
+    {
+      "central_red_excess": 2,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mask": 111865,
+      "orbit_size": 30
+    },
+    {
+      "central_red_excess": 2,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mask": 111989,
+      "orbit_size": 60
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "mask": 113913,
+      "orbit_size": 60
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "mask": 114037,
+      "orbit_size": 120
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mask": 128249,
+      "orbit_size": 120
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mask": 128373,
+      "orbit_size": 240
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "mask": 380153,
+      "orbit_size": 120
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "mask": 380277,
+      "orbit_size": 240
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mask": 451059,
+      "orbit_size": 120
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "mask": 451061,
+      "orbit_size": 120
+    },
+    {
+      "central_red_excess": 0,
+      "closed_blue_degree19_pair": false,
+      "exceptional_red_excess": [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mask": 451431,
+      "orbit_size": 120
+    }
+  ],
+  "degree_profile": [
+    19,
+    19,
+    20,
+    20,
+    20,
+    20,
+    20,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21
+  ],
+  "format": "r55-m216-intrinsic-partition-v1",
+  "labeled_necessary_cores": 1480,
+  "roots": [
+    {
+      "central_red_excess": [
+        [
+          7,
+          1
+        ]
+      ],
+      "core_mask": 40573,
+      "index": 0
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 65209,
+      "index": 1
+    },
+    {
+      "central_red_excess": [
+        [
+          7,
+          2
+        ]
+      ],
+      "core_mask": 111865,
+      "index": 2
+    },
+    {
+      "central_red_excess": [
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          1
+        ]
+      ],
+      "core_mask": 111865,
+      "index": 3
+    },
+    {
+      "central_red_excess": [
+        [
+          7,
+          2
+        ]
+      ],
+      "core_mask": 111989,
+      "index": 4
+    },
+    {
+      "central_red_excess": [
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          1
+        ]
+      ],
+      "core_mask": 111989,
+      "index": 5
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 113913,
+      "index": 6
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 114037,
+      "index": 7
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 128249,
+      "index": 8
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 128373,
+      "index": 9
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 380153,
+      "index": 10
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 380277,
+      "index": 11
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 451059,
+      "index": 12
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 451061,
+      "index": 13
+    },
+    {
+      "central_red_excess": [],
+      "core_mask": 451431,
+      "index": 14
+    }
+  ]
+}
