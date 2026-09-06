@@ -1,0 +1,8 @@
+VERIFIED_INDEPENDENT_CAYLEY40_EXHAUSTION
+group_order=40
+inverse_connection_classes=20
+five_sets_through_identity=82251
+distinct_edge_variable_supports=13038
+connection_masks_checked=1048576
+uncovered_masks=0
+support_list_sha256=d45dcd720b70be69683edfba3af9ebb0faca7a9417e63a9f79bbfc7a2897f7b2
