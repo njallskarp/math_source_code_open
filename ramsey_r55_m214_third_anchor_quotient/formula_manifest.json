@@ -1,0 +1,26 @@
+{
+  "base": {
+    "bytes": 172788992,
+    "constraints": 2044421,
+    "equalities": 87,
+    "lines": 2044422,
+    "sha256": "469879cf7bc1c2147996163cd14a588a8bff41a3353c14e9bcc498d084f3783f",
+    "variables": 13633
+  },
+  "certificate_sha256": "20ff070e33f7214025e4f30f01b47b2eb06c502a85573fba54f13f5ee27a9be0",
+  "strengthened": {
+    "bytes": 173401494,
+    "constraints": 2057998,
+    "equalities": 87,
+    "lines": 2057999,
+    "sha256": "a3838c52d9a4cdbc98e67caf137bf6b18e024e075e5e0c4331254dd66d4c3556",
+    "variables": 13633
+  },
+  "suffix": {
+    "bytes": 612502,
+    "ordering_rows": 12099,
+    "rows": 13577,
+    "sha256": "a1a63de5c4bb005b468a8352963ec003b2696eb155c07c16f50b0e7b86bd8d7b",
+    "structural_rows": 1478
+  }
+}

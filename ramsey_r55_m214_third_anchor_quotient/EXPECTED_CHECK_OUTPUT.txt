@@ -1,0 +1,4 @@
+PASS roots=389 pools=2..13 ordering_rows=12099
+PASS orbit_rows=2206343 labeled_rows=5176895776352 min_compression_floor=782213
+PASS family_orbits=274320,532007,340417,751051,308548
+PASS certificate_bytes=35697 suffix_rows=13577 suffix_bytes=612502
