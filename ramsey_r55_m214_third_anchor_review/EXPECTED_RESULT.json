@@ -1,0 +1,25 @@
+{
+  "base_sha256": "469879cf7bc1c2147996163cd14a588a8bff41a3353c14e9bcc498d084f3783f",
+  "family_counts": [
+    60,
+    85,
+    70,
+    104,
+    70
+  ],
+  "inactive_guards_checked": 13577,
+  "incidence_orbit_census_recomputed": false,
+  "literal_root_generator_checks": 12488,
+  "negative_controls_rejected": 16,
+  "ordering_rows": 12099,
+  "ordinary_third_anchor_pool_range": [
+    2,
+    13
+  ],
+  "root_semantic_audit_sha256": "f94eb6e448e57e24dc1037923ac18e6e961c295565da06dd5e7411844cdf5c43",
+  "roots": 389,
+  "sat_or_unsat_claimed": false,
+  "structural_rows": 1478,
+  "suffix_sha256": "a1a63de5c4bb005b468a8352963ec003b2696eb155c07c16f50b0e7b86bd8d7b",
+  "virtual_strengthened_sha256": "a3838c52d9a4cdbc98e67caf137bf6b18e024e075e5e0c4331254dd66d4c3556"
+}
