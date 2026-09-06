@@ -1,0 +1,2 @@
+PASS: local theorem, 16 signatures, fixtures, and clause bridge
+RESULT_SHA256=5fb5d3a3734c75e008ca0c1f8cfb7ac8bebc17aef004b158758dc61c4848f0dc

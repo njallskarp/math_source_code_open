@@ -1,0 +1,187 @@
+{
+  "clause_bridge": {
+    "accepted_blue_branch": 6561,
+    "accepted_red_branch": 65536,
+    "accepted_union": 72097,
+    "assignments_checked": 131072,
+    "blue_branch_binary_clauses": [
+      {
+        "clause": [
+          167,
+          175
+        ],
+        "fixed_vertex": 35
+      },
+      {
+        "clause": [
+          168,
+          176
+        ],
+        "fixed_vertex": 36
+      },
+      {
+        "clause": [
+          169,
+          177
+        ],
+        "fixed_vertex": 37
+      },
+      {
+        "clause": [
+          170,
+          178
+        ],
+        "fixed_vertex": 38
+      },
+      {
+        "clause": [
+          171,
+          179
+        ],
+        "fixed_vertex": 39
+      },
+      {
+        "clause": [
+          172,
+          180
+        ],
+        "fixed_vertex": 40
+      },
+      {
+        "clause": [
+          173,
+          181
+        ],
+        "fixed_vertex": 41
+      },
+      {
+        "clause": [
+          174,
+          182
+        ],
+        "fixed_vertex": 42
+      }
+    ],
+    "branch_overlap": 0,
+    "first_empty_pair": [
+      33,
+      34
+    ],
+    "pair_variable": 166
+  },
+  "controls": {
+    "rejected": [
+      "missing_signature",
+      "wrong_witness",
+      "wrong_pair_color",
+      "bad_fixture_order"
+    ]
+  },
+  "core": {
+    "blue_cross_edges_by_triangle_pair": [
+      6,
+      3,
+      3,
+      3,
+      3,
+      6
+    ],
+    "complementary_red_k4_counts": {
+      "0": 3,
+      "1": 3,
+      "2": 3,
+      "3": 3
+    },
+    "lexicographically_first_complementary_red_k4": {
+      "0": [
+        3,
+        4,
+        7,
+        10
+      ],
+      "1": [
+        0,
+        1,
+        7,
+        10
+      ],
+      "2": [
+        0,
+        3,
+        9,
+        10
+      ],
+      "3": [
+        0,
+        3,
+        6,
+        7
+      ]
+    },
+    "order_three_invariant": true,
+    "red_edges": 42
+  },
+  "fixtures": {
+    "blue_pair14": {
+      "common_blue_fixed_neighbors": [],
+      "five_sets_checked": 2002,
+      "order_three_invariant": true,
+      "pair_red": false,
+      "red_edges": 42,
+      "vertices": 14
+    },
+    "red_pair15": {
+      "common_blue_fixed_neighbors": [
+        14
+      ],
+      "five_sets_checked": 3003,
+      "order_three_invariant": true,
+      "pair_red": true,
+      "red_edges": 43,
+      "vertices": 15
+    }
+  },
+  "full_formula_reproduction": {
+    "base_preserved_exactly": true,
+    "blue_tail_clauses": 9,
+    "identities": {
+      "base": {
+        "bytes": 24968424,
+        "sha256": "214cbdad727ec3f48e97e62246134b341719277981119bd6b89baa5475b2dbb4"
+      },
+      "blue": {
+        "bytes": 24968511,
+        "sha256": "21b9a5e9d4b4ddb9e91388abf6bc45d87488f356adbcbc70fb60d752ad5f13e1"
+      },
+      "red": {
+        "bytes": 24968430,
+        "sha256": "941df55fb7a26c64b1e72dfdff819d3cad15409a5eb83521a57ac2e353562224"
+      }
+    },
+    "inherited_blue_moving_triangle_clauses_found": 7,
+    "red_tail_clauses": 1
+  },
+  "proved_general_criterion": "For disjoint red triangles C_0,...,C_{m-1}, an empty blue pair has no common uniform fixed blue neighbor whenever every pair of triangles has a blue cross-edge and the union of every m-1 triangles contains a red K4.",
+  "runtime": {
+    "dependencies": "Python standard library only",
+    "implementation": "CPython",
+    "python": "3.12.12"
+  },
+  "signatures": {
+    "blue_signature_cases": 11,
+    "complete_obstruction_list_sha256": "bb76b7bdb57afa3b9e70281aa99c941a2ccfb7649aef4229eca02db6a2281300",
+    "red_signature_cases": 5,
+    "signature_masks_checked": 16,
+    "submitted_witness_pairs_checked": 160
+  },
+  "target": {
+    "artifact_ref": "bafkreiazogh6ocmkqa6v2uk25mqefnbo7mmd2472jyekl4hzbmgzhpgpnq",
+    "input_sha256": {
+      "blue_pair14.edges": "3101276f4d277e534e73d95f7ac5f5803daf999449df3678e08846e255552a4a",
+      "certificate.json": "2d79294b8ac0d5079b14e1afde77d9cdc5889dc732b51e56d637f946385d1746",
+      "red_pair15.edges": "9ba40ea39112b462cf9d169cb29adf760a1012811c9d5229fb2c3a5709b3acd0"
+    },
+    "source_commit": "74654f8988817a389becc1a25c0a382b1ab7e855"
+  },
+  "trust_boundary": "Exact CPython integer, set, combination, JSON, and SHA-256 semantics; faithful decoding of the published orbit-word convention and edge-list files. The omitted 24.9 MB inherited CNF and the two UNKNOWN solver traces are not checked."
+}
