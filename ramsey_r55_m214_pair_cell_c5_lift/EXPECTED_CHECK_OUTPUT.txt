@@ -1,0 +1,1 @@
+{"definition_rows":329888,"final_variables":98758,"full_formula":false,"missed_keys":10612,"red_inside_keys":74513,"root_pairs":169662,"rows_checked":838874,"sharp_min_edges":[0,0,0,1,2,5],"status":"PASS"}

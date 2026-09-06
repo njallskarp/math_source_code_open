@@ -1,0 +1,6 @@
+*.opb
+*.opbpart
+*.partial
+__pycache__/
+check
+check_san
