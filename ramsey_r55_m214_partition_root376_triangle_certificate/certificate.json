@@ -1,0 +1,76 @@
+{
+  "variables": [
+    "eA",
+    "eB",
+    "twice_eH",
+    "footprint_z"
+  ],
+  "inequalities": [
+    {
+      "coefficients": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "rhs": 16,
+      "proof": "K4-free seven-vertex A"
+    },
+    {
+      "coefficients": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "rhs": 16,
+      "proof": "K4-free seven-vertex B"
+    },
+    {
+      "coefficients": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "rhs": 52,
+      "proof": "Thirteen core degrees at most four"
+    },
+    {
+      "coefficients": [
+        0,
+        0,
+        0,
+        -1
+      ],
+      "rhs": -5,
+      "proof": "Every outside footprint meets all independent four-sets"
+    }
+  ],
+  "equality": {
+    "coefficients": [
+      1,
+      1,
+      1,
+      -1
+    ],
+    "rhs": 83,
+    "proof": "Two anchor triangle totals minus core E-incidences and anomaly partition"
+  },
+  "inequality_multipliers": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "equality_multiplier": -1,
+  "result": {
+    "coefficients": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "rhs": -4
+  }
+}
