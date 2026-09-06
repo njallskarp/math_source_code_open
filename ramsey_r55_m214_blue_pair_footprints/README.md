@@ -1,4 +1,4 @@
-# Sharp blue-pair footprint cuts for the (M=214) branch
+# Sharp blue-pair footprint cuts for the \(M=214\) branch
 
 ## Result and scope
 
@@ -17,7 +17,7 @@ sharp.
 
 The source generates the resulting 74,958 selector-guarded rows for all 156
 codegree-nine and codegree-ten roots. This is a completeness-preserving
-strengthening of the single integrated (M=214) decision formula, not a
+strengthening of the single integrated \(M=214\) decision formula, not a
 SAT/UNSAT result, solved root, Ramsey graph, or improved Ramsey-number bound.
 
 The mathematical argument and explicit witnesses are in [PROOF.md](PROOF.md).
@@ -125,5 +125,5 @@ The pair-cardinality mechanism is complete: its exact union bound is sharp,
 and its auxiliary-free projection is redundant for \(c\geq11\). Further
 cardinality variants are frozen. A stronger continuation must use actual core
 adjacency, cell capacities, or a different exact certificate mechanism. The
-whole (M=214) branch remains undecided pending a checked graph or replayable
+whole \(M=214\) branch remains undecided pending a checked graph or replayable
 UNSAT proof.
