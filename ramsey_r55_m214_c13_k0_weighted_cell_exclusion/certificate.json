@@ -1,0 +1,13 @@
+{
+  "variables": ["weighted_A", "weighted_B", "twice_eH", "footprint_z"],
+  "inequalities": [
+    {"coefficients": [1, 0, 0, 0], "rhs": 24},
+    {"coefficients": [0, 1, 0, 0], "rhs": 24},
+    {"coefficients": [0, 0, 1, 0], "rhs": 52},
+    {"coefficients": [0, 0, 0, -1], "rhs": -5}
+  ],
+  "equality": {"coefficients": [1, 1, 1, -1], "rhs": 96},
+  "inequality_multipliers": [1, 1, 1, 1],
+  "equality_multiplier": -1,
+  "result": {"coefficients": [0, 0, 0, 0], "rhs": -1}
+}
