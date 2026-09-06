@@ -1,0 +1,1 @@
+{"core_connectivity": 7, "core_diameter": 3, "core_edge_sha256": "7a62bdb8bba5659e9382ae584a40660910b10f6d7780bc5cef9104fa56b113a9", "extension_edge_sha256": "0f5c653842d3d14733cf96f4d530e7d0da6949fa264ce1501ceb19adb13910ef", "internally_disjoint_paths_checked": 861, "nonadjacent_pairs_certified": 123, "outside_deletion_controls": 3, "post_addition_red_K5": 1, "red_edges": 178}
