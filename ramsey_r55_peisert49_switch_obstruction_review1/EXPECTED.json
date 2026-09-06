@@ -1,0 +1,82 @@
+{
+  "admissible_outside_histogram": {
+    "10": 6048,
+    "11": 576,
+    "3": 5760,
+    "4": 1728,
+    "5": 576,
+    "6": 5760,
+    "7": 4608,
+    "8": 576,
+    "9": 8640
+  },
+  "anchor_monochromatic_k4_count_histogram": {
+    "100": 3744,
+    "101": 5184,
+    "102": 576,
+    "103": 1728,
+    "104": 2304,
+    "109": 3456,
+    "96": 1152,
+    "97": 1728,
+    "98": 1728,
+    "99": 12672
+  },
+  "arcs_sha256": "6718119e0c67bb406f438f483732a0d5d04d3bc8af148e8d800499f7b656ec34",
+  "classification_recomputed": false,
+  "dependency_ref": "bafkreicxhkf2dmw6olzioypy4qubctodu4u4aoyluxe5p6kq6fhpftvnoe",
+  "direction_masks": 28,
+  "empty_lines": [
+    7,
+    6,
+    4
+  ],
+  "expanded_affine_linear_cases": 34272,
+  "expanded_case_stream_sha256": "551fca5c1d6f1e0a0d7de3489596c94072dee2491a697807847e5d3c9b2f9119",
+  "gl2_matrices_per_chart": 2016,
+  "imported_theorem": "Hill--Love (2003): exactly three projective equivalence classes of 22-point four-arcs in PG(2,7).",
+  "matrices_per_direction_mask": 72,
+  "maximum_individually_admissible_outside_points": 11,
+  "minimum_forbidden_outside_points": 16,
+  "monochromatic_k4_blue_red": [
+    2156,
+    2156
+  ],
+  "peisert_red_slopes": [
+    0,
+    1,
+    5,
+    7
+  ],
+  "projective_points_and_lines": 57,
+  "representative_profiles": [
+    [
+      7,
+      1,
+      0,
+      21,
+      28
+    ],
+    [
+      6,
+      2,
+      3,
+      16,
+      30
+    ],
+    [
+      4,
+      4,
+      9,
+      6,
+      34
+    ]
+  ],
+  "saturated_outside_projective_points": 105,
+  "status": "ACCEPTED_WITH_HILL_LOVE_CLASSIFICATION_IMPORTED",
+  "target_certificate_consumed_by_independent_checker": false,
+  "target_certificate_sha256_replayed_separately": "dad926f63de0e73cfd66a20f9cbed2ef2b065b5ce2cd998a04743df2c8733cce",
+  "target_commit": "e7eae57dd1196e2fb36120977c97e698da39650b",
+  "target_ref": "bafkreibqyof5gri5bpx3nfo5uggss3oikbnmsah2jlr5q4avqkykk7kcaa",
+  "translation_color_checks": 117649
+}
