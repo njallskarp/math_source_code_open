@@ -32,7 +32,7 @@ p_v=\mathbf 1_{\{v\text{ is the unique pivot}\}}.
 The branch equations give
 
 \[
-d_R(v)=21-m_v,qquad |N_R(v)\cap E|=6+2p_v.
+d_R(v)=21-m_v,\qquad |N_R(v)\cap E|=6+2p_v.
 \]
 
 Put \(R=N_R(v)\), \(B=N_B(v)\), and let \(t_R(v)\) and \(t_B(v)\) be the
