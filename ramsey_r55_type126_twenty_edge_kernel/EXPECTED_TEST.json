@@ -1,0 +1,37 @@
+{
+  "consensus_keys": 348,
+  "corruptions_rejected": 30,
+  "covered_original_keys": 696,
+  "full_assignments": 32768,
+  "local_classification": {
+    "all_unique_hub": true,
+    "complete_assignments": 1048576,
+    "conflict_edges": 29,
+    "dense_models": [
+      318252,
+      730323
+    ],
+    "density_histogram": {
+      "102": 1,
+      "103": 17,
+      "104": 78,
+      "105": 143,
+      "106": 123,
+      "107": 55,
+      "108": 15,
+      "109": 2
+    },
+    "literal_local_clauses": 54,
+    "minimal_clauses": 37,
+    "model_sha256": "99b93296ab9aa6ded652b5f24509465d25cb7810c196a71b22055d5194d06dcd",
+    "required_meeting_sets": 8,
+    "valid_local_fillings": 434
+  },
+  "marked_template_sha256": "3b98404db867f4f8fbd090c7c4ea40a464dcb8382bf8bd72e093033ae63f7a7c",
+  "omitted_vertex_relaxation_checked": true,
+  "original_keys_per_consensus_key": 2,
+  "physical_edge_transports": 628488,
+  "satisfying_assignments": 32243,
+  "small_formulas": 32,
+  "status": "VERIFIED_TWENTY_EDGE_CLASSIFICATION_COVERAGE_AND_KERNEL_CONTROLS"
+}
