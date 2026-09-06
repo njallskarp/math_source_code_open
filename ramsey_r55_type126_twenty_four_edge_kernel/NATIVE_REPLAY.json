@@ -1,0 +1,70 @@
+{
+  "python": "CPython 3.12",
+  "compiler": "GCC 16.2.0",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic"
+  ],
+  "kissat": {
+    "version": "4.0.4",
+    "repository": "https://github.com/arminbiere/kissat",
+    "commit": "8af8e56f174b778aef3aa45af9f739b2a5f492c2",
+    "arguments": [
+      "--time=30",
+      "CASE.cnf",
+      "CASE.drat"
+    ]
+  },
+  "drat_trim": {
+    "repository": "https://github.com/marijnheule/drat-trim",
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "arguments": [
+      "CASE.cnf",
+      "CASE.drat"
+    ],
+    "required_stdout": "s VERIFIED",
+    "required_exit": 0
+  },
+  "complete_cases": 348,
+  "observed_proof_bytes": 1628429698,
+  "proof_storage": "Regenerated in external scratch, not included in source; every proof must be checked.",
+  "physical_free_edges": 413,
+  "kernel_variables": 296,
+  "covered_original_cases": 696,
+  "local_models": 995,
+  "observed_solver_seconds": 819.7846581633203,
+  "observed_checker_seconds": 696.5148916547187,
+  "maximum_solver_seconds": 15.78752270899713,
+  "clause_range": [
+    22408,
+    22604
+  ],
+  "independent_local_assignments": 16777216,
+  "fresh_public_checkout_replay_seconds": 1588.304854250513,
+  "fresh_replay_stages": [
+    {
+      "stage": "compile-audit_cnf.txt",
+      "seconds": 1.629222792107612
+    },
+    {
+      "stage": "compile-audit_local.txt",
+      "seconds": 0.9377274173311889
+    },
+    {
+      "stage": "controls.json",
+      "seconds": 6.157206458039582
+    },
+    {
+      "stage": "cohort.log",
+      "seconds": 1579.5806975830346
+    }
+  ],
+  "fresh_replay_status": "VERIFIED_COMPLETE_TWENTY_FOUR_EDGE_FAMILY_AND_TWO_COHORT_EXCLUSION",
+  "newly_excluded_original_cases": 348,
+  "already_excluded_original_cases": 348,
+  "fresh_proof_hashes_equal": true,
+  "concurrent_replay_note": "Production and fresh isolated-checkout replay ran concurrently, each sequential over348 independent cases; observed times are wall times under shared load."
+}
