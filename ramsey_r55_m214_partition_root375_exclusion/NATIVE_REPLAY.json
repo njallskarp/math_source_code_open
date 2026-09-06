@@ -1,0 +1,19 @@
+{
+  "native_cadical_version": "3.0.1",
+  "cadical_commit": "c60730422e758ef1cebe7aeddf2dda31c996bf04",
+  "drat_trim_commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+  "native_solver_cpu_seconds": 75.96,
+  "native_solver_elapsed_seconds": 77.24,
+  "native_solver_peak_rss_mb": 89.25,
+  "native_drat_replay_seconds": 98.271,
+  "native_lrat_replay_seconds": 6.59,
+  "native_drat_verdict": "VERIFIED",
+  "native_lrat_verdict": "VERIFIED",
+  "native_rat_lemmas": 0,
+  "native_proof_bytes": 497333032,
+  "native_proof_sha256": "525b4b87267d9fe4cd8a176047d5690237875eb028f76f8c3543e0998b5ae2e2",
+  "native_lrat_bytes": 327409221,
+  "native_lrat_sha256": "d8fb535ddaa41061be12350765758151f085ff823f3c4501ec857762e2fab3d1",
+  "compact_rup_bytes": 5127,
+  "compact_rup_sha256": "d43100027074653e039bff7705e62c31c0f7fa370cda0c9a8ff52f27a33619a7"
+}
