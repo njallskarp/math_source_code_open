@@ -1,0 +1,8 @@
+{
+  "individual_rejections": 20,
+  "literal_clique_comparisons": 4400,
+  "literal_edge_addition_comparisons": 5175,
+  "malformed_certificates_rejected_by_both": 10,
+  "small_graphs": 1100,
+  "status": "CHECKER_CONTROLS_PASS"
+}

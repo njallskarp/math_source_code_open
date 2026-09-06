@@ -1,0 +1,46 @@
+{
+  "blocked_cross_additions": 40,
+  "certificate_sha256": "415813f2bb720a6933d7796d4da02c7fb7fb849cb744b1c16fcd8c9eec8859c4",
+  "column_sizes": [
+    7,
+    7,
+    7,
+    7
+  ],
+  "degree_histogram": {
+    "4": 1,
+    "8": 1,
+    "9": 4,
+    "10": 16
+  },
+  "edge_sha256": "712c705777a536ab819973ac4e20a4e8724a1a741ea7858a660a58b2c4900001",
+  "red_edges": 104,
+  "safe_unrestricted_additions": [
+    [
+      0,
+      21
+    ],
+    [
+      2,
+      21
+    ],
+    [
+      3,
+      21
+    ],
+    [
+      5,
+      21
+    ],
+    [
+      9,
+      21
+    ],
+    [
+      13,
+      21
+    ]
+  ],
+  "status": "VERIFIED_CROSS_MAXIMAL_PALEY_C4_COUNTEREXAMPLE",
+  "vertices": 22
+}
