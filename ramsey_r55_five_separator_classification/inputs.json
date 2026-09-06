@@ -1,0 +1,315 @@
+{
+  "upstream": {
+    "directory_url": "https://github.com/njallskarp/math_source_code_open/tree/main/ramsey_r55_degree_five_classification",
+    "commit": "8bf27902fba404e35593c90cbc7d2991abeda510",
+    "certificate_sha256": "905518c06dcd9fc4008dd5caf70eece7dbb67c77e6cd6d708388fca3d22a9da1",
+    "classification_ref": "bafkreih2kf4w7r2t7vzhikr7hwxzhuzxzoqweobk23wsw3oaekq3pxwn3e",
+    "review_ref": "bafkreibx32qk5i5a4xombv5rsgqi5jkwj7p3w4sxjo67c7t4g7ihwmnl7e"
+  },
+  "cores": [
+    "OsHHirKdlp[IFVI|KpqfR",
+    "Ov?IXZIhlRWjUXL[iphst"
+  ],
+  "types": {
+    "126": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    "15": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "220": [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "29": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "54": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    "58": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    "62": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ]
+    ]
+  },
+  "representatives": [
+    {
+      "core": 0,
+      "type": 126,
+      "columns": [
+        2398,
+        37349,
+        9902,
+        18131,
+        47129
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfR]hAfaRiq]UpYWF[??Bw"
+    },
+    {
+      "core": 0,
+      "type": 126,
+      "columns": [
+        3854,
+        29121,
+        255,
+        37463,
+        59449
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfR[NABbf}?^Scy[D{??Bw"
+    },
+    {
+      "core": 0,
+      "type": 126,
+      "columns": [
+        3854,
+        61969,
+        255,
+        25005,
+        36081
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfR[NAGRv}?\\jBYNK[??Bw"
+    },
+    {
+      "core": 0,
+      "type": 126,
+      "columns": [
+        15682,
+        26273,
+        255,
+        35796,
+        45103
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfROjqDXf}?XVgzsB[??Bw"
+    },
+    {
+      "core": 0,
+      "type": 126,
+      "columns": [
+        15682,
+        54148,
+        255,
+        18905,
+        42547
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfROjo`qv}?[vHZKX[??Bw"
+    },
+    {
+      "core": 0,
+      "type": 15,
+      "columns": [
+        6086,
+        25005,
+        28763,
+        35390,
+        36081
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfRW}at`msFRwgqNKW??Bw"
+    },
+    {
+      "core": 0,
+      "type": 62,
+      "columns": [
+        3854,
+        59449,
+        18131,
+        37349,
+        255
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfR[NA[DuUp\\NCz~?G??Bw"
+    },
+    {
+      "core": 0,
+      "type": 62,
+      "columns": [
+        15682,
+        36081,
+        9902,
+        53533,
+        255
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfROjqNKRiq\\pDz~?G??Bw"
+    },
+    {
+      "core": 0,
+      "type": 62,
+      "columns": [
+        26138,
+        14697,
+        6086,
+        49845,
+        255
+      ],
+      "graph6": "UsHHirKdlp[IFVI|KpqfRUEYUfBFs\\Y`z~?G??Bw"
+    },
+    {
+      "core": 1,
+      "type": 126,
+      "columns": [
+        1738,
+        51605,
+        22316,
+        30227,
+        44392
+      ],
+      "graph6": "Uv?IXZIhlRWjUXL[iphstSuAhcpht]OvWUl[??Bw"
+    },
+    {
+      "core": 1,
+      "type": 126,
+      "columns": [
+        11592,
+        22179,
+        23132,
+        35738,
+        47205
+      ],
+      "graph6": "Uv?IXZIhlRWjUXL[iphstCjRDY`slYrgyeF[??Bw"
+    },
+    {
+      "core": 1,
+      "type": 126,
+      "columns": [
+        22073,
+        43321,
+        2782,
+        37095,
+        40704
+      ],
+      "graph6": "Uv?IXZIhlRWjUXL[iphstfEi[dRug^MCw?}[??Bw"
+    },
+    {
+      "core": 1,
+      "type": 126,
+      "columns": [
+        22284,
+        44384,
+        30805,
+        43674,
+        53923
+      ],
+      "graph6": "Uv?IXZIhlRWjUXL[iphstKMgElTSNYqizDQ{??Bw"
+    }
+  ]
+}
