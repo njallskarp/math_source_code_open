@@ -1,0 +1,66 @@
+{
+  "global": {
+    "active_kernel_variables": 296,
+    "clause_range_imported_from_manifest": [
+      22408,
+      22604
+    ],
+    "distinct_partial_templates": 348,
+    "literal_cnf_samples": {
+      "0,0": {
+        "clauses": 22516,
+        "sha256": "769d99b958924ca2156e481a5ab671b2f3f06b0849e29ace213e0ac72e8a176f"
+      },
+      "14,6": {
+        "clauses": 22476,
+        "sha256": "083a1524b6d21f582df945bec71a79e5cc81780f6ff09797435a11d50aba44ec"
+      },
+      "24,7": {
+        "clauses": 22408,
+        "sha256": "31f719dad1e521f2dc7ebe98fd01d9b8eb4a8b96072e93942764334a42ae327c"
+      },
+      "27,5": {
+        "clauses": 22604,
+        "sha256": "a18d1e06b27c04f6e14ac9e00ffc15bcba38932c908d3f2c59b374425e70f289"
+      },
+      "28,11": {
+        "clauses": 22488,
+        "sha256": "4fdc91379cb555e6d75b3fa970550a9b80f9da9084c05e85f37c37e5681ae6a0"
+      }
+    },
+    "manifest_matrix_hashes_checked": 348,
+    "manifest_sha256": "42e4692b75d87d3a34345238da60502d77c1b62b6ce20699473ff4e24f9c0a00",
+    "outside_variables": 117,
+    "physical_edge_transports": 628488,
+    "preimages_per_template": 2,
+    "template_sha256": "150825996e25f472914c89da7fb467ad44e49345597f51455580082e368216f4"
+  },
+  "local": {
+    "dense_masks": [
+      7166538,
+      9610677
+    ],
+    "density_histogram": {
+      "102": 3,
+      "103": 44,
+      "104": 190,
+      "105": 343,
+      "106": 284,
+      "107": 109,
+      "108": 20,
+      "109": 2
+    },
+    "fixed_red_edges": 97,
+    "literal_clause_count": 75,
+    "minimal_blue_five_clauses": 10,
+    "minimal_red_four_clauses": 30,
+    "model_count": 995,
+    "model_sha256": "272dc97a9946ae31e6e032511e0af7c621bd526fc351c3cc620db776151dfe54"
+  },
+  "status": "INDEPENDENT_H3587_LOCAL_AND_TRANSPORT_AUDIT_PASSED",
+  "trust_boundary": "Imports pinned dense-hub inputs/certificate and manifest clause hashes; does not establish SAT unsatisfiability or catalogue completeness.",
+  "upstream_sha256": {
+    "certificate.json": "f0fa14352dff513957204e078c7cc3fdf00ece103fdef7599f0b63e492a79a02",
+    "inputs.json": "8e17676c21e4b9c5b03c21e6fdba25d9d9325b77d0f1ee4f2718681c7db2fca2"
+  }
+}
