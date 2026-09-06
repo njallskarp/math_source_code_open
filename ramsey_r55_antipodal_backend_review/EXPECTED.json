@@ -1,0 +1,36 @@
+{
+  "affine_gate_eliminations": 7947,
+  "clauses": 125119,
+  "cnf_sha256": "9afab291586190b946e30b935970c0dc09f9fc36d906ec816d7c2f5bed5e306f",
+  "comparison_identities": 45,
+  "conditions": {
+    "balance": 3,
+    "constant": 45,
+    "cut": 45
+  },
+  "controls_rejected": [
+    "margin_direction",
+    "missing_cut",
+    "wrong_count",
+    "lost_carry",
+    "reused_output",
+    "adder_clause",
+    "comparison_sign",
+    "extra_clause"
+  ],
+  "count_tree_and_ripple_annotations_required": false,
+  "deterministic_arithmetic_variables": 10074,
+  "full_adders": 5037,
+  "layout_sha256": "8cac48de646842543af5cd207b8c176b11492e750806b179aabf0edfa1274e9e",
+  "local_truth_assignments": 116432,
+  "margin_variables": 208,
+  "physical_expression_sha256": "36ed118d1e9c4a8fa956433901b3368d6da436efb2d37205d22dd5a991818b7d",
+  "physical_variables": 523,
+  "population_count_identities": 100,
+  "scope": "Exactly one auxiliary extension per satisfying retained-edge assignment of the fixed mixed system; no SAT verdict or global Ramsey coverage.",
+  "source_commit": "7f25e7786bbb850b2979a9d877543f1dc44ec5df",
+  "status": "INDEPENDENT_POINTWISE_BACKEND_EQUIVALENCE_PASS",
+  "unary_implications": 170,
+  "unary_words_checked": 784,
+  "variables": 10805
+}
