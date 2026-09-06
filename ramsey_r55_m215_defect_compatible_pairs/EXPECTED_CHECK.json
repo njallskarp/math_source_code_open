@@ -1,0 +1,17 @@
+{
+  "bound_rows_matched": 44,
+  "certificate_sha256": "9dcb80ade7e904b4849094a0bbf2cfed7e07ea0aa5c07ee44752d30824e3afaa",
+  "mutations_rejected": 3,
+  "roots_matched": 720,
+  "scalar_separator": {
+    "one_star_psd_margin": 5,
+    "opposite_star_bound": 413,
+    "pair_sum": 406,
+    "same_star_bound": 415,
+    "two_star_residual_quadratic_value": -42
+  },
+  "sharpness_codegree_histogram": {
+    "8": 2,
+    "9": 26
+  }
+}

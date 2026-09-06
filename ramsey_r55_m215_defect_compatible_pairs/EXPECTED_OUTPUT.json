@@ -1,0 +1,18 @@
+{
+  "certificate_sha256": "9dcb80ade7e904b4849094a0bbf2cfed7e07ea0aa5c07ee44752d30824e3afaa",
+  "compatible_high_pairs_by_exact_blue_set": [
+    3,
+    5,
+    7
+  ],
+  "disjoint_pairs_by_exact_blue_set": [
+    2,
+    2,
+    3
+  ],
+  "marked_cell_keys": 720,
+  "retained_raw_single_anchor_B_keys": 12,
+  "same_blue_star_sharp_eight_pair_sum": 250,
+  "threshold_nine_all_at_most_nine": 324,
+  "threshold_nine_pair_sum": 328
+}
