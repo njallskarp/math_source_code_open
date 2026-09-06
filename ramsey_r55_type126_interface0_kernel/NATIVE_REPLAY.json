@@ -1,0 +1,34 @@
+{
+  "python": "CPython 3.12",
+  "compiler": "GCC 16.2.0",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic"
+  ],
+  "kissat": {
+    "version": "4.0.4",
+    "repository": "https://github.com/arminbiere/kissat",
+    "commit": "8af8e56f174b778aef3aa45af9f739b2a5f492c2",
+    "arguments": [
+      "--time=30",
+      "CASE.cnf",
+      "CASE.drat"
+    ]
+  },
+  "drat_trim": {
+    "repository": "https://github.com/marijnheule/drat-trim",
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "arguments": [
+      "CASE.cnf",
+      "CASE.drat"
+    ],
+    "required_stdout": "s VERIFIED",
+    "required_exit": 0
+  },
+  "complete_cases": 348,
+  "observed_proof_bytes": 48678110,
+  "proof_storage": "Regenerated in external scratch, not included in source; every proof must be checked."
+}
