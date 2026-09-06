@@ -1,0 +1,49 @@
+{
+  "active_variables": 284,
+  "dense_models": [
+    441,
+    3654
+  ],
+  "density_histogram": {
+    "104": 2,
+    "105": 15,
+    "106": 37,
+    "107": 38,
+    "108": 16,
+    "109": 2
+  },
+  "endpoint_transports_checked": 628488,
+  "equality_representatives_checked": 29,
+  "formula_sample": {
+    "0-0": 20919,
+    "0-11": 20898,
+    "1-5": 20912,
+    "13-4": 20908,
+    "17-10": 20822,
+    "2-7": 20898,
+    "22-1": 20867,
+    "27-6": 20915,
+    "28-11": 20854,
+    "3-9": 20903,
+    "5-3": 20915,
+    "8-8": 20878
+  },
+  "formula_sample_size": 12,
+  "inherited_not_reproved": [
+    "completeness of the 29 equality representatives",
+    "U(23)=122",
+    "completeness of the 13-interface census"
+  ],
+  "local_assignments": 4096,
+  "local_model_sha256": "f886a266f5d70846d52afe5dc79443d38f6b1502cb82eac23d9785dd31ad872a",
+  "local_models": 110,
+  "matrix_hashes_matched": 348,
+  "original_cases_covered": 696,
+  "physical_free_edges": 401,
+  "relaxed_matrices_checked": 348,
+  "status": "INDEPENDENT_H3505_DEFINITIONAL_CHECK_PASS",
+  "upstream_hashes": {
+    "certificate.json": "f0fa14352dff513957204e078c7cc3fdf00ece103fdef7599f0b63e492a79a02",
+    "inputs.json": "8e17676c21e4b9c5b03c21e6fdba25d9d9325b77d0f1ee4f2718681c7db2fca2"
+  }
+}

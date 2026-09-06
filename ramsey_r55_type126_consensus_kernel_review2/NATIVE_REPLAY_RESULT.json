@@ -1,0 +1,30 @@
+{
+  "checker": {
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "complete_drat_checks": 348,
+    "independent_lrat_checks": [
+      "0-0",
+      "17-6",
+      "10-9"
+    ],
+    "seconds_total": 148.81055130064487
+  },
+  "clause_range": [
+    20804,
+    20972
+  ],
+  "complete_cases": 348,
+  "controls_sha256": "23e0b878e1c71a4d60fa569551946926defa48352c829c51465a13e5d38c8553",
+  "manifest_sha256": "263fc40472bcf4e4950452ce8bc1e3ad9207c121bd7ed2d489c6656f6e48bb00",
+  "proof_bytes_total": 238785368,
+  "result_sha256": "b64caee0952e0a5979f17d1be94c0643ed76c572202cd407ecef459c004c237a",
+  "runs_sha256": "9215d8e5ee7ffb37adee9caedf7c2e415c0c934c6b153ba96c037d3a71339b49",
+  "solver": {
+    "commit": "8af8e56f174b778aef3aa45af9f739b2a5f492c2",
+    "maximum_seconds": 1.0816669589839876,
+    "seconds_total": 149.7260619592853
+  },
+  "status": "VERIFIED_COMPLETE_CONSENSUS_FAMILY_AND_TWO_COHORT_EXCLUSION",
+  "target_commit": "1613d62eed08e2295cf5dda30b57a095e56c9eef",
+  "variables_per_formula": 401
+}
