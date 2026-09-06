@@ -17,7 +17,7 @@ extension maxima for the five embedded core classes are
 \]
 
 The statement correctly concerns arbitrary extensions that retain one of the
-specified induced (34)-vertex cores. It does not claim a (43)-vertex Ramsey
+specified induced $34$-vertex cores. It does not claim a $43$-vertex Ramsey
 graph, a Ramsey-number improvement, or a classification of all maximum
 extension graphs.
 
@@ -25,38 +25,38 @@ extension graphs.
 
 I first ran the target's published `reproduce.py`, `check.py`, and
 `verify_graph.py` unchanged under CPython 3.12.12. They returned the advertised
-status, certificate digest, five maxima, and a good (40)-vertex graph with
+status, certificate digest, five maxima, and a good $40$-vertex graph with
 397 red edges. I then wrote `independent_check.py`; it imports none of the
 target's code and uses different finite-search mechanisms:
 
-1. Bit-set clique recursion finds exactly the 43 red (K_5)'s of Cyclic(43)
-   and no blue (K_5).
+1. Bit-set clique recursion finds exactly the 43 red $K_5$'s of Cyclic(43)
+   and no blue $K_5$.
 2. Direct enumeration of positive cyclic gap compositions of 43 into nine
    parts at most five gives 45 rooted gap words and 215 deletion sets. Their
    five dihedral orbits each have size 43 and exactly partition the census.
-   The incidence count (8\cdot5<43) separately excludes deletion sets of
+   The incidence count $8\cdot5<43$ separately excludes deletion sets of
    size at most eight.
 3. For each representative core, direct incremental two-colour assignment
-   rejects a branch only when a physical monochromatic core (K_4) is
+   rejects a branch only when a physical monochromatic core $K_4$ is
    completed. It uses neither CNF nor unit propagation. Its complete sorted
    star domains agree entry-for-entry with the certificate.
 4. Pair colours are rebuilt from physical core triangles. An independent
    branch-and-bound search gives compatibility clique caps
-   ((5,7,5,6,4)).
+   $(5,7,5,6,4)$.
 5. The unique class-1 compatible seven-star cohort is
-   ((0,1,3,6,9,10,12)). Direct reconstruction of all 64 allowed mutual-edge
+   $(0,1,3,6,9,10,12)$. Direct reconstruction of all 64 allowed mutual-edge
    assignments finds zero good graphs. This proves the class-1 improvement
    from pair cap seven to extension cap six without using the supplied
    terminal witnesses.
 6. All five supplied lower witnesses are reconstructed from literal edge
    lists, checked against their core and star embeddings, and independently
-   found to contain no monochromatic (K_5).
+   found to contain no monochromatic $K_5$.
 
 The audit produced the following independent census. `good/cases` counts good
 physical assemblies among all allowed colourings of all maximum compatibility
 cliques.
 
-| class | blue/red core (K_4) | stars | compatible pairs | pair cap | maximum cliques | good/cases | exact order |
+| class | blue/red core $K_4$ | stars | compatible pairs | pair cap | maximum cliques | good/cases | exact order |
 |---:|---:|---:|---:|---:|---:|---:|---:|
 | 0 | 409/519 | 16 | 74 | 5 | 24 | 24/49 | 39 |
 | 1 | 370/575 | 13 | 62 | 7 | 1 | 0/64 | 40 |
@@ -72,8 +72,8 @@ ten-vertex induced seed core. Normal and `-O` runs have identical output.
 ## Theorem-to-evidence alignment
 
 The upper-bound reduction is complete. A one-vertex star is admissible exactly
-when its red contacts contain no red core (K_4) and its blue contacts contain
-no blue core (K_4). For two stars, an allowed mutual colour is equivalent to
+when its red contacts contain no red core $K_4$ and its blue contacts contain
+no blue core $K_4$. For two stars, an allowed mutual colour is equivalent to
 the absence of the corresponding monochromatic core triangle among their
 common contacts. The verified diagonal incompatibility prevents repeated star
 types. Hence every extension supplies a clique in the compatibility graph;
@@ -82,9 +82,9 @@ assembly argument, and all its 64 remaining seven-star assignments are
 excluded. The verified witnesses attain every resulting bound.
 
 The global consequence also follows with the stated quantifier. If a labelled
-good graph (G) of order 43 differed from Cyclic(43) only on edges covered by
+good graph $G$ of order 43 differed from Cyclic(43) only on edges covered by
 at most nine vertices, the other at least 34 vertices would induce the same
-good core in both graphs. That core would extend inside (G) to order 43,
+good core in both graphs. That core would extend inside $G$ to order 43,
 contradicting the independently checked maximum of at most 40. Complementing
 all colours preserves this argument.
 
@@ -108,7 +108,7 @@ spectrum; this is not evidence sufficient to certify novelty or priority.
 ## Defects, objections, and remaining gaps
 
 No substantive defect or objection was found. The contribution appropriately
-does not infer that any hypothetical (43)-vertex target contains one of these
+does not infer that any hypothetical $43$-vertex target contains one of these
 cores, does not claim that vertex-cover distance 10 is sharp, and does not
 classify extensions up to isomorphism. Those questions, historical priority,
 and proof-assistant formalization remain open outside this review.
