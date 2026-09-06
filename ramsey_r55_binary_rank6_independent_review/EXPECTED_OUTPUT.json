@@ -1,0 +1,112 @@
+{
+  "alternating_matrix_controls": {
+    "all_principal_gram_models_reconstructed": true,
+    "all_ranks_even": true,
+    "alternating_6_by_6_matrices": 32768,
+    "rank_histogram": {
+      "0": 1,
+      "2": 651,
+      "4": 18228,
+      "6": 13888
+    }
+  },
+  "derived_ramsey_consequence": {
+    "color_bound": 9,
+    "hypothetical_r55_order": 43,
+    "minimum_binary_rank_in_each_color": 8,
+    "order_at_least_for_independent_five": 37,
+    "rank_at_most": 6
+  },
+  "evidence_sha256": "4deea138e8f70b767e3c01cdd8160eadd98d6cb76097d83bed26ee49043470ef",
+  "status": "INDEPENDENTLY_VERIFIED_R55_BINARY_RANK_SIX_OBSTRUCTION",
+  "synthetic_physical_controls": {
+    "instances": 4,
+    "order": 43,
+    "pigeonhole_threshold_for_nine_colors": 37,
+    "rank_0_2_4_6_results": [
+      {
+        "colors_used": 1,
+        "largest_class": 43,
+        "rank": 0,
+        "witness": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "colors_used": 3,
+        "largest_class": 22,
+        "rank": 2,
+        "witness": [
+          0,
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      {
+        "colors_used": 5,
+        "largest_class": 13,
+        "rank": 4,
+        "witness": [
+          0,
+          2,
+          4,
+          6,
+          10
+        ]
+      },
+      {
+        "colors_used": 9,
+        "largest_class": 8,
+        "rank": 6,
+        "witness": [
+          0,
+          2,
+          4,
+          6,
+          12
+        ]
+      }
+    ],
+    "threshold_minus_one_only_forces": 4
+  },
+  "trust_boundary": "written principal-Gram and pullback proofs, CPython exact integer/bit semantics, exhaustive finite checks; no target source, target certificate, solver, or catalog imported",
+  "universal_coordinate_graph": {
+    "ambient_vectors_including_zero": 64,
+    "binary_adjacency_rank": 6,
+    "chromatic_number": 9,
+    "common_neighbours_every_distinct_pair": 16,
+    "hoffman_chromatic_lower_bound": 9,
+    "lagrangian_subspaces": 135,
+    "nonzero_universal_vertices": 63,
+    "nonzero_vectors_per_class": 7,
+    "regular_degree": 32,
+    "spectrum_with_multiplicities": [
+      [
+        32,
+        1
+      ],
+      [
+        4,
+        27
+      ],
+      [
+        -4,
+        35
+      ]
+    ],
+    "spread_classes": 9,
+    "spread_sha256": "6ae03e85ebf23e9c540f55adcf813532eee0cbd169b14f530bae01ecc9b4cd38",
+    "strongly_regular_parameters": [
+      63,
+      32,
+      16,
+      16
+    ]
+  }
+}
