@@ -1,0 +1,50 @@
+{
+  "aggregate_exact_anchor_minima_by_M": {
+    "214": 28,
+    "215": 27,
+    "216": 26,
+    "217": 25,
+    "218": 24,
+    "219": 23,
+    "220": 22
+  },
+  "blue_global_complement_mutations_rejected": 28,
+  "blue_only_control_pairs": 231,
+  "catalog_template_total_imported_not_reverified": 6034,
+  "certificate_mutations_rejected": 5,
+  "five_set_monochromatic_rows_rejected": 2,
+  "five_set_truth_rows": 1024,
+  "free_edge_counts": [
+    742,
+    754,
+    765,
+    775
+  ],
+  "hard_degree_profiles_checked": 104,
+  "hard_profiles_by_M": {
+    "214": 1,
+    "215": 3,
+    "216": 7,
+    "217": 14,
+    "218": 21,
+    "219": 27,
+    "220": 31
+  },
+  "high_pairs_for_22_exact_anchors": 16,
+  "k14_method_lower_vs_all_9": [
+    816,
+    819
+  ],
+  "k15_lower_vs_all_9": [
+    949,
+    945
+  ],
+  "moment_bounds_checked": 28,
+  "neither_cell_omission_mutations_rejected": 56,
+  "physical_edge_values_roundtripped": 50568,
+  "scalar_roots_checked": 56,
+  "status": "INDEPENDENTLY_VERIFIED_HARD_TWO_COLOR_PAIR_COVER",
+  "target_certificate_sha256": "92af1173b28d905d808ef40cac1dd644ceb60b7569b478f5681f873e97fe6572",
+  "transport_only_assignments": 56,
+  "triple_equivalence_truth_rows": 16
+}
