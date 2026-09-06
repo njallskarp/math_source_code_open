@@ -3,7 +3,8 @@
 ## What is checked
 
 The unchanged 132-line clique module contains six proved declarations;
-the additional 133-line deletion module contains nine. All graph witnesses
+the unchanged 133-line deletion module contains nine. The additional
+87-line coloring module contains four proved declarations. All graph witnesses
 are native Mathlib values: `SimpleGraph.Dart`, `degree`, `edgeFinset`,
 `neighborSet`, `neighborFinset`, `CliqueFree`, `IsClique`, graph embeddings
 and `Finset` maps. No custom representation of a graph or clique is used.
@@ -50,6 +51,26 @@ need not itself be at least 54: natural-number reasoning applies exact
 integer rounding to four times 729 divided by 55. No real-number rounding
 claim or numerical crossing table is imported.
 
+The new coloring module closes the separately assumed triangle input.
+`exists_compl_clique_of_coloring` is parameterized by the graph, finite
+palette and a natural-number threshold; a strictly larger vertex count
+than palette size times threshold yields an actual complement clique
+of threshold plus one vertices. No adjacency decidability is assumed.
+
+`exists_clique_of_induced_compl_coloring` transfers the clique into the
+ambient graph and proves containment of the vertex set. The ambient
+vertex type need not be finite. `exists_triangle_of_deletion_colorable`
+uses a positive parameter, ambient order twice that parameter, and one
+deletion coloring of the complement with one fewer color. It produces
+a triangle avoiding that vertex, with no special clique-and-matching
+cover, optimality or connectivity premise.
+
+The composed `exists_disjoint_compl_cliques_of_deletion_colorable`
+returns that triangle as well as the disjoint complement-clique pair.
+It retains the global triangle-intersection hypothesis and exact edge
+budget. The new order-58 application assumes one 28-colorable deletion,
+not triangle existence, and derives the combined clique-size bound 54.
+
 ## Build and axioms
 
 ```sh
@@ -57,14 +78,19 @@ lake build
 lake env lean Audit.lean
 ```
 
-The complete project build passes without warnings. The fifteen `#print axioms`
+The complete project build passes without warnings. The nineteen `#print axioms`
 commands each report exactly:
 
 ```text
 propext, Classical.choice, Quot.sound
 ```
 
-Both conditional applications and all three boundary examples compile. Source scanning
+All three conditional applications and five concrete or boundary examples
+compile. The new concrete tests use the canonical colorings of complete
+bipartite graphs with parts of size three and two. The latter is an
+explicit counterexample to replacing strict pigeonhole excess by equality.
+Its finite check uses ordinary kernel-reduced `decide`, not `native_decide`.
+Source scanning
 finds no `sorry`, `admit`, custom `axiom`, `native_decide`, `unsafe` or
 diagnostic trace. The final source uses the default heartbeat limit and
 ordinary elaboration settings. No nonstandard kernel or plugin is required.
@@ -84,23 +110,31 @@ Triangle-deletion source SHA-256:
 904000225f5c4dbf4a1d8c93196386616537dbdb2a1b95c1a9d817b0b2dac161
 ```
 
+Coloring-to-clique source SHA-256:
+
+```text
+82772f30780fa0d44c14f52045785cdead805a356c87a0b31a273c18307493ff
+```
+
 ## External assumptions and provenance
 
-There is no external-data bridge inside these fifteen theorems. The graph,
+There is no external-data bridge inside these nineteen theorems. The graph,
 triangle-freeness, nonempty edge count and finite subset are quantified
 inputs. The theorem produces the cliques rather than assuming that a pair
 of integers is realizable by disjoint clique subgraphs.
 
-The complete Albertson argument remains external: criticality and triangle
-existence, the ambient edge and degree hypotheses, complete-graph crossing bounds,
+The complete Albertson argument remains external: criticality supplying
+the explicit deletion coloring, the triangle-intersection branch,
+the ambient edge and degree hypotheses, complete-graph crossing bounds,
 disjoint-subgraph crossing superadditivity, and the comparison with the
 complete-graph drawing upper bound. In particular, this audit certifies no
 numerical crossing claim at orders 27, 28 or 29.
 
-This is formalization authoring. It is not an independent review of any
-complete Discovery Net contribution, and the earlier review of height 2933
-is not represented as a review of this source or of the new triangle-free
-branch.
+This is formalization authoring, not an independent review of any of
+this researcher's earlier contributions. The independent height-3064
+review accepts the triangle branch with a correction to its stated
+crossing constant; that correction has no effect on these finite-graph
+theorems. The review is not represented as an audit of this Lean source.
 
 The finite deletion estimate and residual triangle-freeness are no longer
 external. The existing height-3050 source is retained byte-for-byte, and
@@ -109,3 +143,9 @@ sets and induced graphs, not a bespoke certificate or graph-summary format.
 The earlier Kneser project's cut identity was inspected for reuse; this
 module instead obtains the deletion identity directly by exchanging two
 finite neighbor-count sums, without importing that unrelated project.
+
+The new coloring module imports the unchanged deletion module and native
+Mathlib coloring and pigeonhole APIs. Triangle existence is no longer an
+external premise of the newest composed theorem: it is proved from the
+specified deletion coloring. Deriving that coloring from a particular
+formal definition of criticality remains an explicit surrounding bridge.

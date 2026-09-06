@@ -1,4 +1,4 @@
-import AlbertsonTriangleDeletion
+import AlbertsonColoringClique
 
 #print axioms AlbertsonTriangleFreeCliques.sum_dart_fst_degree
 #print axioms AlbertsonTriangleFreeCliques.sum_dart_snd_degree
@@ -16,6 +16,11 @@ import AlbertsonTriangleDeletion
 #print axioms AlbertsonTriangleDeletion.card_delete_triangle_bound
 #print axioms AlbertsonTriangleDeletion.cliqueFree_induce_compl
 #print axioms AlbertsonTriangleDeletion.exists_disjoint_compl_cliques_of_triangle
+
+#print axioms AlbertsonColoringClique.exists_compl_clique_of_coloring
+#print axioms AlbertsonColoringClique.exists_clique_of_induced_compl_coloring
+#print axioms AlbertsonColoringClique.exists_triangle_of_deletion_colorable
+#print axioms AlbertsonColoringClique.exists_disjoint_compl_cliques_of_deletion_colorable
 
 -- The graph-theoretic input used in height 3014, not a graph construction or
 -- a crossing-number theorem. All induced-graph and ambient hypotheses remain.
@@ -70,3 +75,38 @@ example {V : Type*} [Fintype V] [DecidableEq V] (H : SimpleGraph V)
     simpa using h
   simpa only [Finset.sum_empty, h0, Nat.add_zero] using
     AlbertsonTriangleDeletion.card_induce_compl_add_sum_degrees H ∅
+
+-- Neither a triangle nor residual-graph premises are assumed. One deletion
+-- coloring suffices for the triangle; drawing topology remains external.
+example {V : Type*} [Fintype V] [DecidableEq V] (H : SimpleGraph V)
+    [DecidableRel H.Adj] (v : V) (horder : Fintype.card V = 58)
+    (hc : (Hᶜ.induce (↑((Finset.univ : Finset V).erase v) : Set V)).Colorable 28)
+    (hmeet : ∀ T U : Finset V, H.IsNClique 3 T → H.IsNClique 3 U → ¬ Disjoint T U)
+    (hedges : 813 ≤ H.edgeFinset.card) (hdegree : H.maxDegree ≤ 29) :
+    ∃ T X Y : Finset V, v ∉ T ∧ H.IsNClique 3 T ∧ X ⊆ Tᶜ ∧ Y ⊆ Tᶜ ∧
+      Hᶜ.IsClique (X : Set V) ∧ Hᶜ.IsClique (Y : Set V) ∧ Disjoint X Y ∧
+      X.card ≤ 29 ∧ Y.card ≤ 29 ∧ 54 ≤ X.card + Y.card := by
+  obtain ⟨T, X, Y, hvT, hT, hX, hY, hcX, hcY, hXY, hx, hy, hsize⟩ :=
+    AlbertsonColoringClique.exists_disjoint_compl_cliques_of_deletion_colorable H v 29
+      (by decide) horder hc hmeet 729 (by decide) (by omega)
+  refine ⟨T, X, Y, hvT, hT, hX, hY, hcX, hcY, hXY,
+    hx.trans hdegree, hy.trans hdegree, ?_⟩
+  rw [horder] at hsize
+  omega
+
+-- A concrete positive example: the canonical two-coloring of K3,3 supplies
+-- a triangle in its complement, without a separately supplied triangle.
+example : ∃ T : Finset (Σ _ : Fin 2, Fin 3),
+    (SimpleGraph.completeMultipartiteGraph (fun _ : Fin 2 => Fin 3))ᶜ.IsNClique 3 T := by
+  exact AlbertsonColoringClique.exists_compl_clique_of_coloring _
+    (SimpleGraph.completeMultipartiteGraph.coloring _) 2 (by decide)
+
+-- Equality cannot replace strict pigeonhole excess: K2,2 has two colors
+-- and four vertices, but its complement is triangle-free.
+example : (SimpleGraph.completeMultipartiteGraph (fun _ : Fin 2 => Fin 2)).Colorable 2 ∧
+    Fintype.card (Σ _ : Fin 2, Fin 2) = 2 * 2 ∧
+    (SimpleGraph.completeMultipartiteGraph (fun _ : Fin 2 => Fin 2))ᶜ.CliqueFree 3 := by
+  refine ⟨⟨SimpleGraph.completeMultipartiteGraph.coloring _⟩, by decide, ?_⟩
+  unfold SimpleGraph.CliqueFree
+  simp only [SimpleGraph.isNClique_iff]
+  decide

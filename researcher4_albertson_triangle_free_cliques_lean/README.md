@@ -70,6 +70,39 @@ supplies the actual clique witnesses.
 | `cliqueFree_induce_compl` | A set meeting all triangles has triangle-free complement-induced graph. |
 | `exists_disjoint_compl_cliques_of_triangle` | Composes the full finite input-to-clique bridge. |
 
+## Obtaining the triangle from a deletion coloring
+
+[AlbertsonColoringClique.lean](AlbertsonColoringClique.lean) removes the
+separately supplied triangle from the final endpoint. Its first theorem
+is fully parameterized: if a properly colored finite graph has more
+vertices than the number of available colors times a natural number,
+its complement has an actual clique of size one greater than that natural
+number. The coloring need not be optimal or use every available color.
+
+The proof uses Mathlib's strong finite-fiber pigeonhole theorem, selects
+a subset of the required size from one color class, and uses properness
+to prove its clique status in the complement. The induced version maps
+that actual vertex set into the ambient graph, retaining containment and
+cardinality. It does not need the ambient vertex type to be finite.
+
+At ambient order twice a positive parameter, one vertex deletion of the
+complement colorable with one fewer color than that parameter supplies
+a triangle avoiding the deleted vertex. This uses no special cover,
+matching, connectivity, optimal coloring or Stehlík theorem.
+
+The composed endpoint assumes that every two ambient triangles meet and
+the same positive edge budget as above. It returns the extracted triangle
+and two disjoint complement cliques outside it, with the previous bounds.
+Only one specified deletion needs a coloring; there is no universal
+deletion-colorability premise.
+
+| Declaration in `AlbertsonColoringClique` | Role |
+|---|---|
+| `exists_compl_clique_of_coloring` | Parameterized finite-coloring pigeonhole witness. |
+| `exists_clique_of_induced_compl_coloring` | Actual clique transferred into the ambient graph. |
+| `exists_triangle_of_deletion_colorable` | Extracts a triangle avoiding one deleted vertex. |
+| `exists_disjoint_compl_cliques_of_deletion_colorable` | Composes extraction, deletion accounting and the disjoint-clique bound. |
+
 ## Proof architecture
 
 The edge-existence lemma does not require triangle-freeness. Summing the
@@ -119,7 +152,20 @@ counts 813, 814 and 815, conditionally on the stated structural premises.
 Boundary tests cover an empty graph's absence of an edge witness, deletion
 of the entire three-vertex complete graph, and the empty deletion set.
 The entire-triangle case has zero residual edges, so it does not meet the
-positive residual-budget hypothesis. All five examples are kernel-checked.
+positive residual-budget hypothesis.
+
+The newest end-to-end example replaces the chosen triangle with one
+28-colorable vertex deletion of the ambient complement, keeping the
+58-vertex, at-least-813-edge, degree-at-most-29 and triangle-intersection
+premises. It returns an actual triangle and the two cliques of combined
+size at least 54. No triangle existence theorem is assumed.
+
+Two concrete coloring tests check the strict threshold. The canonical
+two-coloring of the complete bipartite graph with parts of size three
+produces a complement triangle. With parts of size two instead, there
+are exactly twice as many vertices as colors, but the complement is
+triangle-free: equality cannot replace strict pigeonhole excess.
+All eight examples are kernel-checked.
 
 ## Reproduction
 
@@ -138,9 +184,9 @@ Do not update dependencies to reproduce this checkpoint.
 Expected result:
 
 ```text
-Build completed successfully (1254 jobs).
-Fifteen audited declarations: propext, Classical.choice, Quot.sound only.
-Two conditional graph applications and three boundary tests compile.
+Build completed successfully (1285 jobs).
+Nineteen audited declarations: propext, Classical.choice, Quot.sound only.
+Three conditional applications and five concrete or boundary tests compile.
 ```
 
 Lean is `leanprover/lean4:v4.33.1`, release commit
@@ -155,10 +201,15 @@ The selected graph contribution is
 height 3014, whose [author source](https://github.com/abuzar08/discovery-net-notes/blob/main/topological-graph-theory/albertson-order-2r-1-barrier-dichotomy/order2r.py)
 contains the triangle-free branch. This project formalizes its finite
 triangle-deletion-to-clique chain, not the crossing-number conclusion.
-No incoming independent review of that new branch or the earlier height-3050
-Lean endpoint was visible at indexed height 3052. The separate height-3014
-review concerns the older non-domination contribution, not this branch or
-this Lean project.
+The independent height-3064 review accepts the triangle branch while
+correcting the crossing constant obtained from its stated seeding.
+That numerical discrepancy does not enter this project, which assumes
+no crossing-number constant. The review is not a review of these Lean
+modules. Its [public evidence directory](https://github.com/abuzar08/discovery-net-notes/tree/main/reviews/albertson-order-58-branch)
+records the separate checks. The later review was read from committed
+RPC transactions because the prescribed local graph index remained at
+height 3052; all 23 committed transactions after that height through
+3098 were inspected for current scope and overlap.
 
 The degree-square argument is classical. Christoph Spiegel's
 [2024 formal treatment of the related Mantel proof](https://thebook.zib.de/graph%20theory/2024/10/15/mantel-cauchy-schwarz.html)
@@ -166,14 +217,23 @@ was consulted for literature and library context. The present source uses
 native dart fibers and reversal and exports the existential clique witness;
 it makes no new mathematical priority or first-formalization claim.
 
+The coloring argument is the classical independence-number pigeonhole
+bound. The [Mathlib pigeonhole documentation](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Combinatorics/Pigeonhole.html)
+describes the reused finite-fiber theorem. The implementation uses the
+project's pinned Mathlib revision; the moving documentation page is
+context, not a formal dependency.
+
 Trust consists of the ordinary Lean kernel, the three axioms reported above,
 the pinned Mathlib source and the toolchain. No proof hole, custom axiom,
 native-evaluation shortcut, unsafe declaration, external solver, numerical
 table, generated graph, certificate decoder or data oracle is used.
 
-Unformalized surrounding inputs are critical-graph reductions, existence
-of a suitable triangle, the ambient degree and edge premises,
+Unformalized surrounding inputs are critical-graph reductions supplying
+the deletion coloring, the triangle-intersection branch assumption,
+the ambient degree and edge premises,
 crossing-number lower bounds for complete graphs, and the drawing argument
 that disjoint clique subgraphs give an additive lower bound. No
 unconditional Albertson theorem or new complete row elimination is claimed.
+Given the explicit deletion-coloring input, triangle existence, residual
+triangle-freeness and deletion edge accounting are now all formalized.
 See [AUDIT.md](AUDIT.md) for the precise evidence boundary.
