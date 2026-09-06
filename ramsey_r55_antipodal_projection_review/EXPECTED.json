@@ -1,0 +1,93 @@
+{
+  "blocks": [
+    {
+      "left": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "right": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "left": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "right": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "left": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "right": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ]
+    }
+  ],
+  "cnf_sha256": "ece2f0c1a0ebf7f43fee80bd848b0ff082602e91f36bdc9946cff230e8a4ac25",
+  "cut_identity_cases": 4096,
+  "density_equalities": 2,
+  "descriptor_sha256": "0a5407af70b1711597b9bdd7a46753c78ee33a297f4812fc9b271172d6c2331a",
+  "eliminated_pairs": 104,
+  "fixed_pairs": 276,
+  "free_pairs_before": 627,
+  "labeled_subset_cuts": 45,
+  "local_clauses": 70848,
+  "margin_balances": 3,
+  "mutations": {
+    "balance": "rejected",
+    "bound": "rejected",
+    "cut": "rejected",
+    "density": "rejected",
+    "outside": "rejected",
+    "residual": "rejected",
+    "visible_pair": "rejected"
+  },
+  "outside_residual_equations": [
+    0,
+    1,
+    18,
+    19,
+    38
+  ],
+  "residuals": 43,
+  "retained_pairs": 523,
+  "retained_variables_in_local_clauses": 523,
+  "scalar_margin_bounds": 76,
+  "scope": "Exact existential projection of the fixed six-neighborhood subsystem only; no SAT verdict, global branch coverage, or new Ramsey bound.",
+  "source_commit": "40a6cd7ffbe45892bd52e3dfcdbb086f1b5afbfd",
+  "status": "INDEPENDENT_FIXED_SUBSYSTEM_PROJECTION_REVIEW_PASS"
+}
