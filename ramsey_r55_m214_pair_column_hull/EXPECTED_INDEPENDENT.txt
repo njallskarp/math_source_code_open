@@ -1,0 +1,1 @@
+PASS roots=389 missed_keys=10612 suffix_rows=13078 triangle_orbits=171 five_sets=962598 local_pair_rows=508986 hull_violations=13 minimum_slack=-72

@@ -1,0 +1,6 @@
+__pycache__/
+*.opb
+*.opbpart
+*.lp
+*.sol
+pair_column_check

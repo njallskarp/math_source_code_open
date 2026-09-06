@@ -1,0 +1,1 @@
+PASS active_columns=13 active_missed_total=6 five_set_count=962598 five_set_max=9 five_set_min=1 hull_rows=13078 hull_violations=13 local_pair_rows=508986 minimum_hull_slack=-72 projected_pair_rows=74958 q_variables=74513 root=['E8', 13, 0, 'A'] root_index=48 selector_rows=69732 triangle_count=12341 triangle_orbits=171 unary_rows=11672
