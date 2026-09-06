@@ -1,9 +1,12 @@
-# Audit of the 17-vertex Charney--Davis proof candidate
+# Audit of the 17-vertex Charney--Davis proof — corrected edition
 
 ## Status and exact theorem
 
-This is a frozen, audit-ready proof candidate. It makes no priority claim and
-has not received independent mathematical acceptance.
+The mathematical proof was independently accepted at Discovery Net height 1340.
+This publication edition corrects the reciprocal scalar in (E5); the corrected
+positive factor preserves the proof. See [MANUSCRIPT.md](MANUSCRIPT.md) for the
+consolidated paper and [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md) for the exact
+correction and the later Lean graph bridges. No priority claim is made.
 
 Let `K` be a field and let `Delta` be a finite flag generalized homology
 5-sphere over `K` with 17 vertices. The claimed conclusion is
@@ -103,16 +106,21 @@ kappa(S) = sum_{i=0}^4 (-1/2)^i f_{i-1}(S).
 ```
 
 With (N1), `h_S(-1)=16 kappa(S)=gamma_2(S)`. For a 4-dimensional
-Eulerian complex `Y`, Gal Corollary 2.2.2 specializes to
+Eulerian complex `Y`, direct evaluation of the face-link identity gives
 
 ```text
-gamma_2(Y) = (1/8) sum_{v in Y} kappa(link_Y(v)).                 (E5)
+gamma_2(Y) = 8 sum_{v in Y} kappa(link_Y(v)).                 (E5)
 ```
 
 Thus Davis--Okun makes every summand nonnegative for a flag rational
 homology 4-sphere. This is the rational-homology version of Gal's proof of
 Corollary 2.2.3; it uses only the Eulerian relations and rational
-homology-sphere vertex links. There is no sign change and no missing factor.
+homology-sphere vertex links. The frozen version and its review mistakenly recorded the factor `1/8`.
+The correct factor is `8`, as follows from
+`2 gamma_2(Y)=sum_v gamma_2(link(v))=16 sum_v kappa(link(v))`.
+The explicit flag sphere `C5*C5*S0` refutes the reciprocal formula; see
+`normalization_check.py`. The qualitative implication of Gal Corollary 2.2.2
+and the 17-vertex proof are unchanged.
 
 ### Coefficient-field bridge
 
@@ -304,8 +312,10 @@ reduce that trust boundary.
 | Gal/Davis--Okun | Traced dimension, sign, and factor: `h(-1)=16 kappa=gamma_2` in dimension three | Davis--Okun is not applied directly in dimension four; Gal's link argument is. Field change remains unformalized. |
 | Link hypotheses | Labbé--Nevo Lemma 2.1(i) and the defining all-links condition | Reviewer must verify the exact generalized-homology-sphere convention and purity. |
 
-No bridge has an internally discovered counterexample. This table records
-self-review only and must not be read as independent acceptance.
+The original self-audit did not detect the reciprocal-factor error in (E5).
+The corrected identity and explicit witness are now recorded above. The
+remaining rows describe the original internal checks; independent acceptance
+of the mathematical theorem is separately recorded at height 1340.
 
 ## Dependency ledger
 
@@ -339,12 +349,12 @@ Committed Discovery Net artifacts before this audit are:
   `bafkreibabtawjk3jj6qw6ebw6g3kjpsllas4mmnpa5vbgbfykupfpkwuwa`
   (height 1310).
 
-The artifact kind `proof_attempt` is intentional pending qualified review.
+The historical artifacts retain their original kinds; height 1340 subsequently
+accepted the mathematical theorem.
 
-## Acceptance and stopping rule
+## Publication boundary
 
-The project remains frozen. Independent acceptance requires a qualified
-reviewer to verify the primary-source statements and the human bridges listed
-above, then record an explicit review disposition. Any objection takes
-priority over expansion. No neighboring conjecture, higher vertex count, or
-additional structural lemma belongs in this package before that review.
+The accepted 17-vertex theorem is the sole target. This edition repairs (E5)
+and consolidates the proof with the later finite-graph formalizations. The
+new manuscript and correction have not themselves received a new independent
+review. No higher vertex count or neighboring conjecture is claimed.

@@ -1,64 +1,72 @@
-# The frozen 17-vertex Charney--Davis proof package
+# The 17-vertex Charney--Davis theorem
 
-This directory is the audit package for the following proof candidate.
+Start with [MANUSCRIPT.md](MANUSCRIPT.md), a complete short proof of the
+following independently accepted graph theorem:
 
-> **Theorem.** If `Delta` is a finite flag generalized homology 5-sphere over
-> a field and has 17 vertices, then `gamma_3(Delta) >= 0`.
+For every finite flag generalized homology 5-sphere over a field with exactly
+17 vertices, the top coefficient in the degree-six gamma expansion satisfies
+\(\gamma_3\geq0\).
 
-The mathematical expansion of this project is frozen. The argument is not
-being generalized or extended while it awaits qualified independent review.
-The claim should be cited as an **independent-audit candidate**, not as an
-independently accepted theorem.
+[PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md) records the exact hypotheses,
+committed review at height 1340, later Lean bridges at heights 1817 and 1829,
+and every remaining human interface. The two Lean projects are not an
+end-to-end formalization of the simplicial theorem.
 
-Start with [`AUDIT.md`](AUDIT.md). It contains the complete short proof,
-normalization conventions, exact statements of the external inputs, a
-dependency table, the Lean trust boundary, and an adversarial bridge-by-bridge
-check. [`REVIEW_REQUEST.md`](REVIEW_REQUEST.md) is the reviewer checklist.
+## Normalization correction
 
-## Package map
+The frozen audit and its review recorded a reciprocal scalar. With
+\(\kappa(S)=F_S(-1/2)\), the correct four-dimensional identity is
 
-- `CharneyDavis17.lean`: h-polynomial recurrence and admissible-edge
-  formalization. This is useful corroboration but is not needed by the
-  shortest consolidated proof.
-- `CharneyDavisPolarReduction.lean`: machine-checked polynomial extraction and
-  integer squeeze used by the consolidated proof.
-- `POLAR_REDUCTION.md`: historical derivation notes, retained for provenance;
-  `AUDIT.md` supersedes it as the normative theorem statement.
-- `audit_check.py`: dependency-free adversarial checks for the complement
-  identity, the rigid integer profile, and the degree-four link arithmetic.
-- `SHA256SUMS`: hashes for the source and audit files.
+\[
+\gamma_2(Y)=8\sum_v\kappa(\operatorname{lk}_Y(v)).
+\]
+
+The explicit flag sphere \(C_5*C_5*S^0\) has left side 1 and link sum 1/8;
+the former factor 1/8 would give 1/64. Both scalars are positive, so the
+correction preserves the nonnegativity implication and the 17-vertex theorem.
+The manuscript derives the factor and the new checker reproduces the witness.
+
+## Source map
+
+- MANUSCRIPT.md: unified proof and exact conventions.
+- PUBLICATION_AUDIT.md: correction, provenance, human/formal interfaces.
+- AUDIT.md: original detailed audit, updated for the correction and review status.
+- CharneyDavisPolarReduction.lean: polynomial extraction, integer rigidity, and
+  conditional local contradiction.
+- CharneyDavis17.lean: historical admissible-edge route and polynomial definitions.
+- ../charney_davis_neighborhood_edges: the later finite-graph 12/14/52 bridge.
+- normalization_check.py: exact face-level witness against the reciprocal factor.
+- audit_check.py: original complement-count and integer-profile checks.
+- POLAR_REDUCTION.md and REVIEW_REQUEST.md: historical derivation and review request.
+- SHA256SUMS: compact integrity manifest, including the new manuscript and checker.
 
 ## Reproduction
 
-Pinned versions:
+Pinned: Lean 4.33.1, Lake 5.0.0-src+819816b, Mathlib v4.33.1.
+Python checks: CPython 3.12.12, standard library only.
 
-```text
-Lean 4.33.1
-Lake 5.0.0-src+819816b
-Mathlib v4.33.1
-Python 3.11 or later (standard library only)
-```
-
-Run:
-
-```bash
-lake update
+~~~sh
+lake clean
 lake exe cache get
 lake build
 python3 audit_check.py
-sha256sum -c SHA256SUMS
-```
+python3 normalization_check.py
+shasum -a 256 -c SHA256SUMS
+~~~
 
-The Lean build prints the axiom audit. The source has no `sorry`, `admit`,
-custom axiom, `unsafe` declaration, or `native_decide`.
+The original checker reports the unique profile and local counts 14/52/-2.
+The normalization checker ends with:
 
-## Primary sources
+~~~text
+result_sha256=1ec9d9fb4543b9328aff9262c2c04923961d1f15b03b23df091d1612020c3367
+VERIFIED
+~~~
 
-- Charney--Davis (1995):
-  <https://msp.org/pjm/1995/171-1/pjm-v171-n1-p04-p.pdf>
-- Davis--Okun, Theorem 11.2.1:
-  <https://arxiv.org/abs/math/0102104>
-- Gal, especially Definition 1.2.1, Corollary 2.2.2, and Corollary 2.2.3:
-  <https://arxiv.org/abs/math/0501046>
-- Labbé--Nevo, especially Lemmas 2.1--2.3, 3.2, 3.4 and Corollary 4.3:
-  <https://arxiv.org/abs/1612.01169>
+Replay the second Lean project using manuscript Section 8. Every manifest
+entry should report OK. Axiom audits contain only the standard propext,
+Classical.choice and Quot.sound, or subsets thereof.
+
+This delivery consolidates the accepted theorem and repairs a displayed
+identity. It adds no 18-vertex claim. Mathematical topology remains human
+proof; the exact checker corroborates the explicit example and does not prove
+the generalized-homology-sphere theorem by finite enumeration.
