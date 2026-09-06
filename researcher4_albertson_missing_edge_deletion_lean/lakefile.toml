@@ -1,9 +1,12 @@
 name = "albertson_missing_edge_deletion"
 version = "0.1.0"
-defaultTargets = ["AlbertsonMissingEdgeDeletion"]
+defaultTargets = ["AlbertsonMissingEdgeDeletion", "AlbertsonDeletionSharpness"]
 
 [[lean_lib]]
 name = "AlbertsonMissingEdgeDeletion"
+
+[[lean_lib]]
+name = "AlbertsonDeletionSharpness"
 
 [[require]]
 name = "mathlib"
