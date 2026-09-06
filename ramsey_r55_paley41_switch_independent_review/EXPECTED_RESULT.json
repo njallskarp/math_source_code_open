@@ -1,0 +1,59 @@
+{
+  "algorithm_controls": {
+    "satisfiable": 184,
+    "small_formulas_checked": 512,
+    "unsatisfiable": 328
+  },
+  "certificate_imported": false,
+  "input_sha256": "67eb55fbd11e5973a23e5a0f58cb37ceda4d763fc17d4984e45bbf2bc34c5005",
+  "method": "physical Euler-criterion audit plus exhaustive deterministic DPLL",
+  "physical_audit": {
+    "clauses": 1184,
+    "colors": {
+      "blue": 542,
+      "red": 642
+    },
+    "paley_degrees": {
+      "maximum": 20,
+      "minimum": 20
+    },
+    "sample_clause_witnesses": [
+      {
+        "color": 0,
+        "vertices": [
+          0,
+          1,
+          3,
+          8,
+          36
+        ]
+      },
+      {
+        "color": 0,
+        "vertices": [
+          0,
+          1,
+          4,
+          6,
+          39
+        ]
+      }
+    ],
+    "widths": {
+      "4": 423,
+      "5": 761
+    }
+  },
+  "search": {
+    "contradiction_leaves": 91,
+    "decisions": 90,
+    "maximum_depth": 10,
+    "memo_hits": 0,
+    "propagated_literals": 813,
+    "recursive_states": 181,
+    "satisfying_leaves": 0
+  },
+  "search_tree_sha256": "4bff7507b02dcef69a581491cd3e097561d192efc9adb6a3fbd6bbaadf760ca7",
+  "status": "INDEPENDENTLY_VERIFIED_PALEY41_SWITCH_OBSTRUCTION",
+  "target_code_imported": false
+}
