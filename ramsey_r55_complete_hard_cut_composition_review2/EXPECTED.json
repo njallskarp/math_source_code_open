@@ -1,0 +1,143 @@
+{
+  "boundary_sizes_13_16": {
+    "13": {
+      "weighted": 22
+    },
+    "14": {
+      "cross": 147,
+      "weighted": 52
+    },
+    "15": {
+      "cross": 998,
+      "weighted": 22
+    },
+    "16": {
+      "cross": 41,
+      "internal": 3585,
+      "weighted": 10
+    }
+  },
+  "candidate_violations": 187929,
+  "certificate_sha256": "fec26f418e8d9464923e099d3a2ec3d6fc9f13fe986f2114425e9a8b9bd4e64e",
+  "closed_by": {
+    "cross": 1186,
+    "internal": 186637,
+    "weighted": 106
+  },
+  "closed_by_M": {
+    "214": {
+      "cross": 35,
+      "internal": 1172,
+      "weighted": 25
+    },
+    "215": {
+      "cross": 125,
+      "internal": 4811,
+      "weighted": 44
+    },
+    "216": {
+      "cross": 239,
+      "internal": 12513,
+      "weighted": 28
+    },
+    "217": {
+      "cross": 296,
+      "internal": 24846,
+      "weighted": 8
+    },
+    "218": {
+      "cross": 244,
+      "internal": 37846,
+      "weighted": 1
+    },
+    "219": {
+      "cross": 153,
+      "internal": 49156
+    },
+    "220": {
+      "cross": 94,
+      "internal": 56293
+    }
+  },
+  "closed_by_color": {
+    "0": {
+      "cross": 1155,
+      "internal": 105951,
+      "weighted": 106
+    },
+    "1": {
+      "cross": 31,
+      "internal": 80686
+    }
+  },
+  "complete_candidate_records_compared": 187929,
+  "independent_sorted_record_sha256": "8a2b4eb1b2be51a57642929b0a33d37d30f4b8eba604c13d65057adf1267bb06",
+  "inherited_not_reproved": [
+    "translation of the displayed triangle caps from the hard-deficiency Ramsey branch",
+    "the degree window 18 through 24 for a hypothetical Ramsey(5,5;43) graph"
+  ],
+  "minimum_gap_witness": {
+    "cross": [
+      28,
+      0,
+      0,
+      0,
+      8,
+      7,
+      0,
+      0,
+      0,
+      101,
+      "cross",
+      1
+    ],
+    "internal": [
+      34,
+      0,
+      0,
+      0,
+      9,
+      6,
+      0,
+      1,
+      0,
+      95,
+      "internal",
+      2
+    ],
+    "weighted": [
+      32,
+      0,
+      0,
+      0,
+      9,
+      5,
+      0,
+      0,
+      0,
+      105,
+      "weighted",
+      29
+    ]
+  },
+  "minimum_positive_gaps": {
+    "cross": 1,
+    "internal": 2,
+    "weighted": 29
+  },
+  "oriented_side_placements": 81996,
+  "profile_counts_by_M": {
+    "214": 1,
+    "215": 3,
+    "216": 7,
+    "217": 14,
+    "218": 21,
+    "219": 27,
+    "220": 31
+  },
+  "profiles": 104,
+  "small_labeled_graphs": 33867,
+  "small_physical_cuts": 2063284,
+  "status": "INDEPENDENT_H3535_COMPLETE_HARD_CUT_PASS",
+  "target_stream_sha256": "8a2b4eb1b2be51a57642929b0a33d37d30f4b8eba604c13d65057adf1267bb06"
+}
