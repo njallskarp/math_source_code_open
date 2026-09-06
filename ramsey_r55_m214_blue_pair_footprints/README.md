@@ -122,7 +122,7 @@ priority claim is made for the elementary exterior-pair argument.
 ## Stopping condition
 
 The pair-cardinality mechanism is complete: its exact union bound is sharp,
-and its auxiliary-free projection is redundant for (c\geq11). Further
+and its auxiliary-free projection is redundant for \(c\geq11\). Further
 cardinality variants are frozen. A stronger continuation must use actual core
 adjacency, cell capacities, or a different exact certificate mechanism. The
 whole (M=214) branch remains undecided pending a checked graph or replayable
