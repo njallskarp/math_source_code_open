@@ -1,0 +1,5 @@
+PASS complete marked pair-incidence roots=389
+family_counts={"C77": 104, "C77partition": 70, "C8": 70, "E77": 85, "E8": 60}
+literal_anomaly_placements={"C77": 3185, "C77partition": 3920, "C8": 490, "E77": 735, "E8": 210}
+PASS all 389 full root descriptors and 83 anchor units per root
+roots_sha256=f7148c9f6e631f1efae81ba1700c0afeb38660aa7556b79ead2c34d67cac978e

@@ -1,0 +1,3 @@
+PASS synthetic full-edge transports=1167
+PASS damaged certificate controls=8
+Synthetic fixtures are not Ramsey graphs or branch witnesses.
