@@ -1,0 +1,37 @@
+{
+  "certificate_sha256": "01007f019ceaed4119815c4e99a5f7e35d55f2c0207074f814971a49be37e2d6",
+  "global_minimum_D_redD_blueD": [
+    28,
+    12,
+    11
+  ],
+  "intrinsic_by_profile": {
+    "A": 72,
+    "B": 4,
+    "C": 6
+  },
+  "intrinsic_total": 82,
+  "minimum_D_redD_blueD": {
+    "A": [
+      28,
+      12,
+      11
+    ],
+    "B": [
+      32,
+      15,
+      14
+    ],
+    "C": [
+      28,
+      12,
+      11
+    ]
+  },
+  "rooted_by_profile": {
+    "A": 624,
+    "B": 24,
+    "C": 26
+  },
+  "rooted_total": 674
+}

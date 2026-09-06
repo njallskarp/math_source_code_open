@@ -1,0 +1,8 @@
+{
+  "certificate_sha256": "01007f019ceaed4119815c4e99a5f7e35d55f2c0207074f814971a49be37e2d6",
+  "identity_graphs": 33868,
+  "identity_vertex_instances": 202013,
+  "intrinsic_entries_checked": 82,
+  "mutations_rejected": 3,
+  "rooted_entries_checked": 674
+}
