@@ -38,7 +38,7 @@ that \(K\) lies above its supporting line. The planar asymmetric
 \[
  h_K(u)=\int_{S^1}\langle u,v\rangle_+\,d\mu(v),
  \qquad
- K=\int_{S^1}[0,v],d\mu(v).
+ K=\int_{S^1}[0,v]\,d\mu(v).
 \]
 
 Since \(h_K(-e_2)=0\) and the integrand is nonnegative, \(v_2\geq0\)
@@ -48,9 +48,9 @@ written \([0,he_1]\). On \(v_2>0\), set \(r=v_1/v_2\) and push forward the
 measure with weight \(v_2\). This gives
 
 \[
- K=[0,he_1]+\int_{\mathbb R}[0,(r,1)],d\nu(r),
+ K=[0,he_1]+\int_{\mathbb R}[0,(r,1)]\,d\nu(r),
  \qquad
- \int(1+|r|),d\nu(r)<\infty.
+ \int(1+|r|)\,d\nu(r)<\infty.
 \]
 
 The first-moment condition follows directly from finiteness of \(\mu\) on
@@ -60,7 +60,7 @@ first-moment approximation, gives
 \[
  |K|=A(\nu)+hM,
  \qquad
- A(\nu)=\frac12\iint|r-s|,d\nu(r)d\nu(s),
+ A(\nu)=\frac12\iint|r-s|\,d\nu(r)d\nu(s),
  \qquad M=\nu(\mathbb R).
 \]
 
@@ -84,7 +84,7 @@ For integrable maps \(R,S\),
 
 \[
  |A(S_\#\nu)-A(R_\#\nu)|
- \leq M\int|S-R|,d\nu.
+ \leq M\int|S-R|\,d\nu.
 \]
 
 Consequently \(d_n=A((Q_n)_\#\nu)\to d=A(Q_\#\nu)>0\). With
@@ -132,14 +132,14 @@ without approximation that
 Adding the horizontal contribution \(hM\) shows that all bodies
 
 \[
- K_{n,t}=[0,he_1]+\int[0,(S_{n,t}(r),1)],d\nu(r)
+ K_{n,t}=[0,he_1]+\int[0,(S_{n,t}(r),1)]\,d\nu(r)
 \]
 
 have the same area. They are genuine shadow systems: for each measurable
 selector \(0\leq f\leq1\), the selected point has horizontal velocity
 
 \[
- \int f(r)(T_n(r)-r),d\nu(r),
+ \int f(r)(T_n(r)-r)\,d\nu(r),
 \]
 
 which is finite by the first-moment hypothesis. The fixed horizontal segment
@@ -160,7 +160,7 @@ Writing \(T\) for the limiting step map, the elementary support estimate
 
 \[
  \sup_{u\in S^1}|h_{K_{n,1}}(u)-h_{K_T}(u)|
- \leq\int|T_n-T|,d\nu
+ \leq\int|T_n-T|\,d\nu
 \]
 
 gives Hausdorff convergence. Area and Firey addition are continuous under
