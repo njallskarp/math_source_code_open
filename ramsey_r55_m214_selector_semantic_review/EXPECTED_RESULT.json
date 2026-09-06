@@ -1,0 +1,29 @@
+{
+  "E_incidence_stars": 43,
+  "active_E_equalities": 16727,
+  "active_anchor_units": 32287,
+  "base_body_sha256": "5f160c74a405726503649581080e3127d6a21c25b8fb59f6ffe72740dce600c4",
+  "constraints": 2044421,
+  "decoded_keys_sha256": "de71f59185f53e68dbf4c493609da0fdf3ae4850528eb4c04d437904c747bf4c",
+  "degree_stars": 43,
+  "equalities": 87,
+  "family_counts": [
+    60,
+    85,
+    70,
+    104,
+    70
+  ],
+  "five_sets_both_colors": 962598,
+  "formula_sha256": "469879cf7bc1c2147996163cd14a588a8bff41a3353c14e9bcc498d084f3783f",
+  "inactive_guards_checked": 69731,
+  "local_triangle_stars": 43,
+  "negative_controls": 24,
+  "partition_blue_units": 70,
+  "partition_equalities": 1960,
+  "roots": 389,
+  "selector_suffix_sha256": "43da325c040c3cec73a0bdf6041f6e70f89b4a89fafb4d7d4b472279f970767a",
+  "triangle_conjunctions": 12341,
+  "variables": 13633,
+  "verdict": "PASS encoding equivalence only; SAT/UNSAT undecided"
+}
