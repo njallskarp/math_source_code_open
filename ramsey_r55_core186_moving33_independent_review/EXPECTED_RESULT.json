@@ -1,0 +1,57 @@
+{
+  "algorithm_controls": {
+    "satisfiable": 184,
+    "small_formulas_checked": 512,
+    "unsatisfiable": 328
+  },
+  "certificate_imported": false,
+  "method": "physical edge-list audit plus exhaustive deterministic DPLL",
+  "obstruction_sha256": "d661bb72385a71aff9b37c1cbe611b6e61169d3e5eef76ab5bc277b8b99e0c12",
+  "parent_sha256": "f034595d4f9fcb40cbf70acb6da75f0f7efda21719b1cc4bd052b75e0e927441",
+  "physical_audit": {
+    "clauses": 494,
+    "colors": {
+      "blue": 288,
+      "red": 206
+    },
+    "event_stream_sha256": "4ea2f5a26841aed9292871667c5fae1e03d148111f706c62890c1999e699eddf",
+    "original_defects": {
+      "blue": 27,
+      "red": 30
+    },
+    "physical_five_sets": 237336,
+    "red_edges": 270,
+    "vertices": 33,
+    "widths": {
+      "4": 139,
+      "5": 355
+    }
+  },
+  "scope_audit": {
+    "attachment_orbit_sizes": {
+      "1": 45,
+      "3": 110
+    },
+    "attachment_orbits": 155,
+    "attachment_pairs": 375,
+    "full_family": "2^407",
+    "full_family_size": "330527984395124299475957654016385519914202341482140609642324397637202895618155672912594605219857642423795606012511679152128",
+    "invariance_equation_rank": 22,
+    "normalized_switch_variables": 32,
+    "same_action_family": "2^165",
+    "same_action_family_size": "46768052394588893382517914646921056628989841375232",
+    "same_action_switch_dimension": 10
+  },
+  "search": {
+    "contradiction_leaves": 142,
+    "decisions": 141,
+    "maximum_depth": 11,
+    "memo_hits": 0,
+    "propagated_literals": 1265,
+    "recursive_states": 283,
+    "satisfying_leaves": 0
+  },
+  "search_tree_sha256": "fd2fe7ddc042f1747b5669740d63493e27f684ac402b3e86ddf47677d152e02c",
+  "status": "INDEPENDENTLY_VERIFIED_CORE186_MOVING33_SWITCH_OBSTRUCTION",
+  "target_code_imported": false
+}
