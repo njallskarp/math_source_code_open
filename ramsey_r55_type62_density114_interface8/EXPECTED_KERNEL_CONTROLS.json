@@ -1,0 +1,11 @@
+{
+  "cohort_templates": 3394,
+  "corruptions_rejected": 19,
+  "full_assignments": 32768,
+  "marked_template_sha256": "14f68e5f54aff43826d29057fc543b7db09a535aab910c3026680cd8e6995e25",
+  "omitted_vertex_relaxation_checked": true,
+  "physical_edge_transports": 3064782,
+  "satisfying_assignments": 32243,
+  "small_formulas": 32,
+  "status": "VERIFIED_KERNEL_CONTROLS_AND_COMPLETE_COHORT"
+}
