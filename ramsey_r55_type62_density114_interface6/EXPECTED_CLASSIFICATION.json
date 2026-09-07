@@ -1,0 +1,19 @@
+{
+  "all_rigid": true,
+  "all_unique_hub": true,
+  "classes": 1697,
+  "column_size_profiles": {
+    "5,7,8,8,8": 51,
+    "6,6,8,8,8": 86,
+    "6,7,7,8,8": 795,
+    "7,7,7,7,8": 765
+  },
+  "full_tuple_sha256": "84f53e3e52093fd4a466251c12f3ae2e937f5f1166eeb372c08b52b9851fdec8",
+  "labeled_tuples": 461584,
+  "orbit_sizes": {
+    "272": 1697
+  },
+  "paley_automorphisms": 136,
+  "s_automorphisms": 2,
+  "status": "VERIFIED_COMPLETE_TYPE62_DENSITY114_CLASSIFICATION"
+}

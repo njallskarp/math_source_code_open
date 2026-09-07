@@ -1,0 +1,125 @@
+{
+  "checker_timeout_seconds": 120,
+  "classification": {
+    "all_rigid": true,
+    "all_unique_hub": true,
+    "classes": 1697,
+    "column_size_profiles": {
+      "5,7,8,8,8": 51,
+      "6,6,8,8,8": 86,
+      "6,7,7,8,8": 795,
+      "7,7,7,7,8": 765
+    },
+    "full_tuple_sha256": "84f53e3e52093fd4a466251c12f3ae2e937f5f1166eeb372c08b52b9851fdec8",
+    "labeled_tuples": 461584,
+    "orbit_sizes": {
+      "272": 1697
+    },
+    "paley_automorphisms": 136,
+    "s_automorphisms": 2,
+    "status": "VERIFIED_COMPLETE_TYPE62_DENSITY114_CLASSIFICATION"
+  },
+  "compiler": "GCC 16.2.0",
+  "controls": {
+    "bad_graph6_records_rejected": 5,
+    "corrupted_local_certificates_rejected": 5,
+    "empty_native_proof_rejected": true,
+    "kernel_assignments": 32768,
+    "kernel_controls_match_Clang17_ASan_UBSan": true,
+    "kernel_corruptions_rejected": 18,
+    "kernel_formulas": 32,
+    "kernel_satisfying_assignments": 32243,
+    "local_physical_configurations": 35049,
+    "normal_optimized_controls_match": true,
+    "physical_pair_transports": 3064782,
+    "strict_cpp_argument_rejected": true,
+    "valid_local_configurations": 27027
+  },
+  "drat_trim": {
+    "arguments": [
+      "CASE.cnf",
+      "CASE.drat"
+    ],
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "repository": "https://github.com/marijnheule/drat-trim",
+    "required_exit": 0,
+    "required_stdout": "s VERIFIED"
+  },
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic"
+  ],
+  "fresh_replay": {
+    "all_fresh_proof_hashes_match_production": true,
+    "all_fresh_proofs_checked": true,
+    "cases": 3394,
+    "complete_fresh_replay_seconds": 1395.0054257498123,
+    "full_classification_rebuilt_and_audited": true,
+    "manifest_result_controls_identical": true,
+    "stage_timings": [
+      {
+        "seconds": 1.9827561248093843,
+        "stage": "audit_dense-compile.txt"
+      },
+      {
+        "seconds": 1.1513624168001115,
+        "stage": "audit_cnf-compile.txt"
+      },
+      {
+        "seconds": 34.97196491668001,
+        "stage": "derive.json"
+      },
+      {
+        "seconds": 127.82579425023869,
+        "stage": "enumeration.json"
+      },
+      {
+        "seconds": 3.987069916911423,
+        "stage": "classification.json"
+      },
+      {
+        "seconds": 1.7486744578927755,
+        "stage": "classification-controls.json"
+      },
+      {
+        "seconds": 5.824074374977499,
+        "stage": "kernel-controls.json"
+      },
+      {
+        "seconds": 1217.4698690003715,
+        "stage": "cohort.log"
+      }
+    ]
+  },
+  "kissat": {
+    "arguments": [
+      "--time=30",
+      "CASE.cnf",
+      "CASE.drat"
+    ],
+    "commit": "8af8e56f174b778aef3aa45af9f739b2a5f492c2",
+    "repository": "https://github.com/arminbiere/kissat",
+    "version": "4.0.4"
+  },
+  "outer_solver_timeout_seconds": 45,
+  "per_case_solver_seconds": 30,
+  "production": {
+    "all_matrices_and_native_check_logs_rechecked": true,
+    "checker_seconds": 313.5005044210702,
+    "clauses_max": 19340,
+    "clauses_min": 19126,
+    "cnf_sha256_unique": 3394,
+    "complete_cases": 3394,
+    "manifest_sha256": "3834410d2a6bd7793f1306db96a34cd6501e6aa39b389e1fd925df31e70b2506",
+    "matrix_sha256_unique": 3394,
+    "maximum_solver_seconds": 0.2028754591010511,
+    "proof_bytes": 152151217,
+    "solver_seconds": 233.71272033359855,
+    "total_clauses": 65215510
+  },
+  "proof_storage": "Every proof is hashed and verified before default per-case cleanup. --keep-native retains native files in external scratch. No native trace is published.",
+  "python": "Python 3.12.12"
+}

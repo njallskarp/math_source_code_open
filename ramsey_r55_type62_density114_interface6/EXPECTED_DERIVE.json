@@ -1,0 +1,10 @@
+{
+  "classes": 1697,
+  "column_domain": 7225,
+  "labeled_tuples": 461584,
+  "orbit_sizes": {
+    "272": 1697
+  },
+  "status": "COMPLETE_TYPE62_DENSITY114_PRODUCED",
+  "tuple_sha256": "84f53e3e52093fd4a466251c12f3ae2e937f5f1166eeb372c08b52b9851fdec8"
+}

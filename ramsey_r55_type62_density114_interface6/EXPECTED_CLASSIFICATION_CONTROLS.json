@@ -1,0 +1,7 @@
+{
+  "certificate_mutations_rejected": 5,
+  "malformed_graph6_rejected": 5,
+  "physical_assignments": 35049,
+  "status": "TYPE62_DENSITY114_REDUCTION_CONTROLS_PASS",
+  "valid_local_graphs": 27027
+}

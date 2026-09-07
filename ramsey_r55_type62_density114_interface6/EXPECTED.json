@@ -1,0 +1,11 @@
+{
+  "complete_cases": 3394,
+  "interface": 6,
+  "kernel_edge_variables": 272,
+  "kernel_vertices": 40,
+  "manifest_sha256": "3834410d2a6bd7793f1306db96a34cd6501e6aa39b389e1fd925df31e70b2506",
+  "new_global_hub_deficiency_lower_bound": 9,
+  "physical_free_edges": 389,
+  "status": "VERIFIED_COMPLETE_INTERFACE6_TYPE62_DENSITY114_EXCLUSION",
+  "unconstrained_outside_edges": 117
+}
