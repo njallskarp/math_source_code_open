@@ -1,0 +1,1 @@
+{"boundary_cell_sizes":[[1],[2],[3],[4],[1,2,3],[2,2],[3,4],[1,2,4]],"damaged_inputs_rejected":58,"exact_basis_image_coordinates":822588,"exact_reconstructed_entries":822588,"full_identity_rank":904,"known_gram_matrices":33,"status":"GLOBAL_PSD_CONTROLS_PASS"}
