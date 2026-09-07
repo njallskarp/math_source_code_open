@@ -61,10 +61,10 @@ cells and was not treated as 18,767 independent witnesses.
 ## Inherited premises and remaining gap
 
 The derivation of the pair-root scalar cells is inherited from artifact
-`bafkreicjxd6vw4rcs5wgqvaz6gswyudddhth2pc2ferlrwtfy5cned3o3a`. The precise
+`bafkreiericmyeapmnstbygbr3syoxa3akf7kcd5q3pnm27ypp27oe3p2by`. The precise
 allocation relaxation and its claimed necessity for physical Ramsey graphs is
 inherited from artifact
-`bafkreif4v3d5sxp46mtneoeumvqehxntqbg44272auwo4zpajxzhcynh7u`. I checked
+`bafkreigcv2x7s73frl3dwi4kxzlximfrc6dpgs42si72irpkphkmuk2j4e`. I checked
 that the target witnesses satisfy the published equations and quantifiers; I
 did not re-prove either projection theorem in this review.
 

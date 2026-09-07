@@ -41,8 +41,8 @@ of a physical Ramsey graph.
 
 The implication from an actual \((5,5)\)-Ramsey graph to these scalar cells and
 constraints is inherited from artifacts
-`bafkreicjxd6vw4rcs5wgqvaz6gswyudddhth2pc2ferlrwtfy5cned3o3a` and
-`bafkreif4v3d5sxp46mtneoeumvqehxntqbg44272auwo4zpajxzhcynh7u`; this review
+`bafkreiericmyeapmnstbygbr3syoxa3akf7kcd5q3pnm27ypp27oe3p2by` and
+`bafkreigcv2x7s73frl3dwi4kxzlximfrc6dpgs42si72irpkphkmuk2j4e`; this review
 does not re-prove those projection results. No novelty or priority claim is
 made.
 
