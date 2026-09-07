@@ -1,0 +1,28 @@
+{
+  "python": "3.12.12",
+  "implementation": "CPython",
+  "platform": "Darwin",
+  "runs": [
+    {
+      "mode": "normal",
+      "returncode": 0,
+      "elapsed_seconds": 5.685167
+    },
+    {
+      "mode": "optimized",
+      "returncode": 0,
+      "elapsed_seconds": 5.592214
+    }
+  ],
+  "standalone_verifier": {
+    "blue_anchors": 0,
+    "blue_charge": 0,
+    "blue_triangles": 1355,
+    "delta": 451,
+    "red_anchors": 20,
+    "red_charge": 180,
+    "red_triangles": 1564,
+    "status": "VERIFIED_EXACT_INCIDENCE_ALLOCATION"
+  },
+  "scope": "Exact scalar allocation counterexamples with pointwise row certificates; author separate algorithms, not external review or a Ramsey graph."
+}

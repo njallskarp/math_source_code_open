@@ -1,0 +1,68 @@
+{
+  "U": [
+    85,
+    92,
+    100,
+    107,
+    114,
+    122,
+    132
+  ],
+  "q0": [
+    9,
+    10,
+    10,
+    10,
+    10,
+    11,
+    11
+  ],
+  "multiplicity": [
+    3,
+    1,
+    2,
+    4,
+    5,
+    1,
+    4
+  ],
+  "r35_counts": [
+    290,
+    313,
+    105,
+    12,
+    1
+  ],
+  "interfaces": [
+    "UsHHirKdlp[IFVI|KpqfR]hAfaRiq]UpYWF[??Bw",
+    "UsHHirKdlp[IFVI|KpqfR[NABbf}?^Scy[D{??Bw",
+    "UsHHirKdlp[IFVI|KpqfR[NAGRv}?\\jBYNK[??Bw",
+    "UsHHirKdlp[IFVI|KpqfROjqDXf}?XVgzsB[??Bw",
+    "UsHHirKdlp[IFVI|KpqfROjo`qv}?[vHZKX[??Bw",
+    "UsHHirKdlp[IFVI|KpqfRW}at`msFRwgqNKW??Bw",
+    "UsHHirKdlp[IFVI|KpqfR[NA[DuUp\\NCz~?G??Bw",
+    "UsHHirKdlp[IFVI|KpqfROjqNKRiq\\pDz~?G??Bw",
+    "UsHHirKdlp[IFVI|KpqfRUEYUfBFs\\Y`z~?G??Bw",
+    "Uv?IXZIhlRWjUXL[iphstSuAhcpht]OvWUl[??Bw",
+    "Uv?IXZIhlRWjUXL[iphstCjRDY`slYrgyeF[??Bw",
+    "Uv?IXZIhlRWjUXL[iphstfEi[dRug^MCw?}[??Bw",
+    "Uv?IXZIhlRWjUXL[iphstKMgElTSNYqizDQ{??Bw"
+  ],
+  "degree23_gaps": [
+    7,
+    7,
+    7,
+    7,
+    7,
+    null,
+    9,
+    9,
+    9,
+    7,
+    7,
+    7,
+    7
+  ],
+  "imported_inputs_sha256": "8e17676c21e4b9c5b03c21e6fdba25d9d9325b77d0f1ee4f2718681c7db2fca2",
+  "imported_source_commit": "590bcae0fe01e88e0a8fcf8030fbb2524973e4cb"
+}
