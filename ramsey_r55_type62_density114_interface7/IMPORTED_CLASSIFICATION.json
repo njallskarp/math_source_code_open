@@ -1,0 +1,15 @@
+{
+  "commit": "607d56027ae008e1b02ee1d351e8f9cf9757b752",
+  "files": {
+    "EXPECTED_CLASSIFICATION.json": "fc4d59ba868cab6cc038a623eb0d60ff3dddc0f697d8fe0370653934a02451e9",
+    "EXPECTED_CLASSIFICATION_CONTROLS.json": "7e1e94aee73b61a4952eadb6f1a1357332930a8a3b1c9292e3ce5b2df43ea3b3",
+    "EXPECTED_DERIVE.json": "a18344505129227ae2219202881ce3a774d95919ca3e090ad1b310a7c4619f5b",
+    "EXPECTED_ENUMERATION.json": "a322cb323f210062ab6191d3016eb5672e47aadf4be0cff7d58d4d119ffaf30e",
+    "audit_classification.py": "278b8eae64bad6994b5fd73eb746e385a7b048f7755615bedc02febc20c353b1",
+    "audit_dense.cpp": "928787a2760be25680efa64440714dfac39f3a6d20ceeb19d5749535c40e6c1b",
+    "certificate.json": "39491fe6f15eb2ff887c0985cbbe50cced364a27047b7ead39427125f5b86cf8",
+    "derive.py": "215b2e0d02585ed324131b35379972354dfdff3b9116cb99fe6ca0f6fa00a6ff",
+    "test_classification.py": "6cc13ece7451438c69df5c6b91e4bb06f6c1ae91f4d611de8d3f77347d9782b7"
+  },
+  "package": "ramsey_r55_type62_density114_interface6"
+}

@@ -1,0 +1,112 @@
+{
+  "checking_flags": "-std=c++20 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+  "controls": {
+    "cohort_templates": 3394,
+    "corruptions_rejected": 19,
+    "full_assignments": 32768,
+    "marked_template_sha256": "6f4ba3b05d524e0d2fe1f537026c1dc09ef9bc5dc47d686162805529e66a373a",
+    "omitted_vertex_relaxation_checked": true,
+    "physical_edge_transports": 3064782,
+    "satisfying_assignments": 32243,
+    "small_formulas": 32,
+    "status": "VERIFIED_KERNEL_CONTROLS_AND_COMPLETE_COHORT"
+  },
+  "empty_proof_rejected": true,
+  "fresh_replay": {
+    "all_matrix_cnf_and_proof_hashes_agree_with_production": true,
+    "cases": 3394,
+    "child_peak_rss_bytes_macos": 555778048,
+    "classification_certificate_sha256": "39491fe6f15eb2ff887c0985cbbe50cced364a27047b7ead39427125f5b86cf8",
+    "complete_classification_replayed": true,
+    "complete_fresh_replay_seconds": 1386.4315038747154,
+    "complete_labeled_tuple_sha256": "84f53e3e52093fd4a466251c12f3ae2e937f5f1166eeb372c08b52b9851fdec8",
+    "timings": [
+      {
+        "seconds": 1.5746292499825358,
+        "stage": "audit_dense-compile.txt"
+      },
+      {
+        "seconds": 1.1236235410906374,
+        "stage": "audit_cnf-compile.txt"
+      },
+      {
+        "seconds": 34.51380179217085,
+        "stage": "derive.json"
+      },
+      {
+        "seconds": 126.03899041702971,
+        "stage": "enumeration.json"
+      },
+      {
+        "seconds": 3.941742875147611,
+        "stage": "classification.json"
+      },
+      {
+        "seconds": 1.7471178332343698,
+        "stage": "classification-controls.json"
+      },
+      {
+        "seconds": 5.791061541996896,
+        "stage": "kernel-controls.json"
+      },
+      {
+        "seconds": 1211.647637499962,
+        "stage": "cohort.log"
+      }
+    ]
+  },
+  "independence": "Different physical decoders and CNF algorithms; native DRAT certificates. The fresh replay is same-program reproducibility, not an external review.",
+  "large_artifacts_published": false,
+  "native_invocations": [
+    "kissat --time=30 CASE.cnf CASE.drat",
+    "drat-trim CASE.cnf CASE.drat"
+  ],
+  "native_limits_seconds": {
+    "proof_checker": 120,
+    "solver": 30,
+    "solver_outer": 45
+  },
+  "optimized_python_sanitized_native_controls_match": true,
+  "prior_incomplete_fresh_attempt": {
+    "boundary_artifacts_match_production_and_proof_rechecked": true,
+    "complete_credit": false,
+    "exact_child_errno_not_retained": true,
+    "failure_stage": "checkpoint writing after an accepted proof",
+    "recorded_keys": 2485
+  },
+  "production": {
+    "all_saved_matrices_and_accepted_logs_checked": true,
+    "cases": 3394,
+    "checker_seconds": 306.0175966336392,
+    "child_peak_rss_bytes_macos": 530235392,
+    "clauses_max": 19391,
+    "clauses_min": 19141,
+    "distinct_cnfs": 3394,
+    "distinct_matrices": 3394,
+    "manifest_sha256": "897ad1057ba5b1e492ac50944afb4895c476b2709f57454b474ccbed9a1ffeef",
+    "maximum_solver_seconds": 0.24508891580626369,
+    "production_seconds": 1205.6729439999908,
+    "proof_bytes": 88359373,
+    "solver_seconds": 230.6632896894589,
+    "total_clauses": 65281067
+  },
+  "release_flags": "-std=c++20 -O3 -Wall -Wextra -Wpedantic",
+  "sanitizer_scope": "32 small native formulas and seven malformed native inputs; full native cohort uses release build",
+  "second_incomplete_fresh_attempt": {
+    "complete_credit": false,
+    "failure_errno": 28,
+    "failure_stage": "saving kernel-control output and outer exit record",
+    "recorded_native_keys": 0
+  },
+  "status": "VERIFIED_COMPLETE_INTERFACE7_TYPE62_DENSITY114_EXCLUSION",
+  "storage": "One checked case at a time; CNFs and DRAT traces are removed after acceptance and atomic hash checkpoint. --keep-native retains them.",
+  "storage_guard": "Wait for 256 MiB before stages, cases and saved outputs; retry ENOSPC result and checkpoint writes while preserving computed output, checked proofs and solver limits.",
+  "versions": {
+    "clang": "Apple clang version 17.0.0 (clang-1700.6.3.2)\nTarget: arm64-apple-darwin25.2.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+    "drat_commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "gcc": "g++-16 (Homebrew GCC 16.2.0) 16.2.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "kissat": "4.0.4",
+    "kissat_commit": "8af8e56f174b778aef3aa45af9f739b2a5f492c2",
+    "python": "Python 3.12.12"
+  }
+}
