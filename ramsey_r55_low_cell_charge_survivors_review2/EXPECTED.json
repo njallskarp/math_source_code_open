@@ -1,0 +1,60 @@
+{
+  "blue_anchors_each": 0,
+  "blue_budget_range": [
+    151,
+    173
+  ],
+  "coarse_labels_retained_only": 18767,
+  "degree23_hubs_each": 20,
+  "degree_pairs": 49,
+  "delta_range": [
+    451,
+    472
+  ],
+  "distinct_neighbor_row_words": 525,
+  "independent_fixture_asymmetric_pairs": 400,
+  "independent_fixture_root_intersection": 17,
+  "independent_global_graphical_checks": 378,
+  "independent_local_graphical_checks": 16254,
+  "independent_neighbor_rows": 8127,
+  "independent_stream_sha256": "738e5aab1bb051bdb45005b7f130fe3e2d927266928c7d937601ad6515106db8",
+  "maximum_blue_deficiency_by_blue_degree": {
+    "18": 3,
+    "19": 4,
+    "20": 5,
+    "21": 4,
+    "22": 4,
+    "23": 3,
+    "24": 4
+  },
+  "multiplicity": [
+    3,
+    1,
+    2,
+    4,
+    5,
+    1,
+    4
+  ],
+  "physical_graph_claimed": false,
+  "q0": [
+    9,
+    10,
+    10,
+    10,
+    10,
+    11,
+    11
+  ],
+  "red_anchors_each": 20,
+  "red_charge_each": 180,
+  "rejected_perturbations": 5,
+  "scalar_cells": 189,
+  "scalar_cells_excluded": 0,
+  "status": "INDEPENDENT_189_CHARGE_SURVIVORS_PASS",
+  "target_fixture_asymmetric_pairs": 400,
+  "target_fixture_root_intersection": 17,
+  "target_fixture_sha256": "09ed445ff0dac46c3cd6caaf7e74fa227649169284c16a157cea701ec42ac7dc",
+  "target_fixture_status": "INDEPENDENT_WITNESS_PASS",
+  "target_stream_sha256": "32798b0d26183ca9a53a70976dddf267c1fb5b823fdb07b34def560a7b076bdc"
+}
