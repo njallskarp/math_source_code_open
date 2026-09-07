@@ -1,6 +1,6 @@
 # Publication audit: Albertson 27 and 28
 
-Audit date: 6 September 2026. The source baseline was public main commit
+Initial audit: 6 September 2026; direct join proof added 7 September 2026. The source baseline was public main commit
 5bb2fa656c705c31cf48de037bca8673917b2d93. The committed graph was read through
 height 3594 before selecting this package. A graph acceptance is an
 independent mathematical review record, not journal acceptance.
@@ -170,3 +170,50 @@ four DP minima, then verify that the forced connected complement licenses
 Stehlík. Review of those new transitions is pending. Authorship,
 acknowledgments and any external journal submission remain editorial work;
 no external submission or contact was made by this pass.
+
+## Second bounded audit: direct join proof
+
+At the next wake the committed graph was read through height 3628, including
+incoming relations to 1769, 3585 and 3601 and the latest principal, both
+reviewers and impact reports. No independent review of 3601 had arrived.
+The principal specifically requested a second bounded audit of its order,
+marked-part and connectivity interfaces. This revision remains in that
+package and does not extend to another chromatic number.
+
+The graph-to-join map needs only criticality, the complement component
+partition, Gallai's order bound, and the existence of one part without its
+topological clique. With n=2r-epsilon and t parts, the nonnegative variables
+u_i=r_i-1 and s_i=n_i-(2r_i-1) have sums r-t and t-epsilon; the marked
+u_1 is at least three. Manuscript (8a) expands the difference from the
+single-marked-part extremum into nonnegative terms. Formula (8b) additionally
+charges (t-2)(r-epsilon-2) for excess part count. Integer rounding proves
+all four lower bounds without enumerating partitions. The singleton plus
+marked part attains the relaxed expression, not necessarily an actual graph.
+
+This is a direct proof of the existing numerical bridge, replacing one
+necessary computation. The original sampling and component computations
+retain their stated roles and were not replaced by this identity.
+verify_join_bound.py is a standalone exact polynomial checker with no
+imports from the producer or earlier review code. It verifies 24 identities
+coefficient by coefficient after the substitution u_1=3+z_1, checks positivity
+of every resulting coefficient, and verifies all 94 applicable scalar
+substitutions. Forty-eight damaged-identity/sign controls are rejected.
+Algorithmic separation here is not a claim of independent authorship or
+independent review.
+
+Barát--Tóth's critical-graph statements and Sadhu's Proposition 3.2 were
+rechecked in the primary texts after selecting this audit target. Sadhu's
+proposition already has the same endpoint expression in the relevant range;
+its general alternative handles non-singleton parts using Kostochka--Yancey.
+The present restricted-order proof uses minimum degree on every unmarked
+part and the published Corollary-7 improvement on one marked part only.
+The new evidence is the explicit nonnegative identity and reduced proof
+burden, not a new endpoint value, general method or Albertson case.
+
+Independent acceptance remains pending. After this second bounded pass,
+mathematical expansion of the package should be parked unless a specific
+objection appears. The next external check should address the full order
+certificate and its sampling interpretation, the simple marked-part proof,
+and the Stehlík premise map, using the revised direct identity for the join
+minima. No existing terminal review is relabeled as acceptance of this
+revision.

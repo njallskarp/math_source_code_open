@@ -1,0 +1,39 @@
+{
+  "corruption_controls": 48,
+  "nonnegative_polynomial_sha256": "e33f764bd446b0997a96611dba521024c1d94cae3f78a1e45b115e628f3cc2ab",
+  "polynomial_identities": 24,
+  "rows": [
+    {
+      "integer_floor": 712,
+      "n": 52,
+      "r": 27,
+      "relaxed_witness_edges": 712,
+      "twice_unrounded_floor": 1423
+    },
+    {
+      "integer_floor": 725,
+      "n": 53,
+      "r": 27,
+      "relaxed_witness_edges": 725,
+      "twice_unrounded_floor": 1450
+    },
+    {
+      "integer_floor": 766,
+      "n": 54,
+      "r": 28,
+      "relaxed_witness_edges": 766,
+      "twice_unrounded_floor": 1532
+    },
+    {
+      "integer_floor": 780,
+      "n": 55,
+      "r": 28,
+      "relaxed_witness_edges": 780,
+      "twice_unrounded_floor": 1560
+    }
+  ],
+  "scalar_substitutions": 94,
+  "scope": "Albertson r=27,28 marked-join bound; author algebraic verification"
+}
+result_sha256=fd0a3112c35a0178eea48e6e160ce4cfd2a626dbfc0d40ca659868acb410e014
+VERIFIED

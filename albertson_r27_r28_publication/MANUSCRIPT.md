@@ -1,6 +1,6 @@
 # Albertson's conjecture for chromatic numbers 27 and 28
 
-*Consolidated proof and publication audit, 6 September 2026.*
+*Consolidated proof and publication audit, revised 7 September 2026.*
 
 ## Abstract
 
@@ -240,14 +240,66 @@ Then
 Exactly one marked part suffices; assigning the stronger bound to every
 part would be unjustified.
 
-The finite dynamic program in reproduce.py minimizes (8) over all
-allowed ordered part sequences with at least two parts. Its state
-records the chromatic and order sums, whether a part is marked, and
-the part count capped at two. Each transition appends one allowed
-part. Since its chromatic number is positive, induction on the
-chromatic sum proves completeness. Keeping only the cheapest state
-is valid because all later costs depend only on the recorded sums
-and mark. Allowing ordered sequences adds duplicates, not omissions.
+The four join minima admit a direct proof. Set
+\(n=2r-\varepsilon\), where \(\varepsilon\in\{1,2\}\), and relabel
+the marked part as part 1. For each of the \(t\ge2\) parts put
+\[
+u_i=r_i-1\ge0,\qquad s_i=n_i-(2r_i-1)\ge0,\qquad
+U=\sum_i u_i=r-t,\quad S=\sum_i s_i=t-\varepsilon.
+\]
+The marked part has \(u_1\ge3\), so \(t\le r-3\).
+We may drop individual parity roundings from (8) to obtain
+\[
+2m\ge n^2-\sum_i n_i(r_i+s_i)+2r_1-6
+=n^2-3r+2\varepsilon-4-Q,
+\]
+where
+\[
+Q=2\sum_i u_i^2+3\sum_i u_i s_i+\sum_i s_i^2-2u_1.
+\]
+Let \(Q_* =2U^2+3US+S^2-2U\). Expansion gives the identity
+\[
+\begin{aligned}
+D:=Q_*-Q={}&
+ \sum_{i=2}^t(4u_1-2)u_i
+ +4\sum_{2\le i<j\le t}u_i u_j\\
+ &+3\sum_{i\ne j}u_i s_j
+ +2\sum_{i<j}s_i s_j\ \ge0.
+\end{aligned}
+\tag{8a}
+\]
+Every term is nonnegative; in particular \(4u_1-2\ge10\).
+Substituting \(U=r-t\), \(S=t-\varepsilon\) gives
+\[
+2m\ge r(n+1)-8+(t-2)(r-\varepsilon-2)+D.
+\tag{8b}
+\]
+The part-count term is nonnegative for the stated values of \(r\).
+Since \(m\) is integral, we have proved
+\[
+m\ge\left\lceil\frac{r(n+1)-8}{2}\right\rceil.
+\tag{8c}
+\]
+The relaxed partition \((1,1)+(r-1,n-1)^*\) attains this expression
+including parity, because its join edge floor is
+\((n-1)+\lceil((r-2)(n-1)+2r-8)/2\rceil\).
+Thus these are exact minima of the stated numerical relaxation;
+no critical graph attaining them is asserted.
+
+This proof uses only one marked part's stronger edge floor and elementary
+minimum degree on the others. It covers all partitions at once. The
+original dynamic program is retained as a corroborating computation,
+but its completeness is no longer needed for the four join bounds.
+The short standalone verify_join_bound.py checks (8a) coefficient by
+coefficient and (8b) for every relevant part count. Its role is algebraic
+verification of the displayed proof, not independent mathematical review.
+
+Sadhu [Sa], Proposition 3.2, already gives the same endpoint expression
+in the present range as one of two alternatives. Its separate treatment
+of non-singleton parts uses a stronger critical-edge theorem. We do not
+claim a new numerical bound or novelty of the classical join method;
+(8a)--(8c) replace our enumerated minimization using the weaker inputs
+already stated above.
 
 | \(r,n\) | Sampling ceiling | Necessary edges if \(H\) disconnected | A minimizing relaxed partition |
 | --- | --- | --- | --- |
@@ -552,6 +604,15 @@ shasum -a 256 -c SHA256SUMS
 The program checks the hashes of three previously reviewed source
 modules, reconstructs the recursive table, verifies both complete
 certificates byte for byte, and reproduces the join and terminal tables.
+The additional direct join identity can be checked with:
+
+~~~sh
+PYTHONDONTWRITEBYTECODE=1 python3 verify_join_bound.py > actual-join.txt
+diff -u EXPECTED_JOIN_BOUND.txt actual-join.txt
+~~~
+
+It checks 24 polynomial identities, 94 scalar substitutions and 48
+corruption controls. All four bounds are also proved directly by (8a)--(8c).
 CPython 3.12.12 and the standard library suffice. The output ends with
 a deterministic result digest and VERIFIED. The temporary actual.txt
 is not source and should not be committed.

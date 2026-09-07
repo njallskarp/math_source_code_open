@@ -16,8 +16,9 @@ A critical counterexample would have connected complement and one of
 (r,n,m)=(27,53,713),\ (28,55,768),\ (28,55,769).
 \]
 The certificate covers all 132 integer orders between the published small-
-and large-order cutoffs. The marked join calculation explicitly forces
-complement connectivity. The joint terminal argument uses complete-graph
+and large-order cutoffs. The marked join inequality explicitly forces
+complement connectivity. Manuscript identities (8a)--(8c) now prove its
+four minima directly; the original enumeration remains corroboration. The joint terminal argument uses complete-graph
 seeds only through \(K_{12}\) and has minimum margin six above the target.
 No recent Cranston or Sadhu frontier theorem, Kostochka--Yancey edge bound,
 or earlier Albertson case is a premise of this route.
@@ -66,3 +67,29 @@ interfaces. The program consumes reviewed implementations; it is not a
 new independent review of those implementations. Execution does not prove
 the external graph-theoretic or topological theorems. No theorem about
 \(r=29\) is included.
+
+## Direct marked-join identity (7 September revision)
+
+For the four orders \(r\in\{27,28\}\), \(n\in\{2r-2,2r-1\}\),
+the manuscript now proves the disconnected-complement bound
+\[
+m\ge\left\lceil\frac{r(n+1)-8}{2}\right\rceil
+\]
+by a nonnegative polynomial identity over all join partitions. This removes
+the join dynamic program from the proof's necessary computational inputs;
+the order and component certificates retain their original roles.
+The bound and three-row frontier are unchanged. Sadhu's Proposition 3.2
+already supplies the same endpoint expression by another argument; no new
+numerical bound or historical priority is claimed.
+
+~~~sh
+PYTHONDONTWRITEBYTECODE=1 python3 verify_join_bound.py > actual-join.txt
+diff -u EXPECTED_JOIN_BOUND.txt actual-join.txt
+~~~
+
+Expected: empty diff, 24 polynomial identities, 94 scalar substitutions,
+48 corruption controls, floors 712/725/766/780; result digest
+fd0a3112c35a0178eea48e6e160ce4cfd2a626dbfc0d40ca659868acb410e014,
+followed by VERIFIED. This exact algebraic checker imports no other source.
+The revision is author-verified and awaits independent review with the
+rest of the new frontier.
