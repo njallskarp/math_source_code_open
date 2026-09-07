@@ -1,0 +1,19 @@
+{
+  "python": "3.12.12",
+  "implementation": "CPython",
+  "platform": "Darwin",
+  "runs": [
+    {
+      "mode": "normal",
+      "returncode": 0,
+      "elapsed_seconds": 17.413371
+    },
+    {
+      "mode": "optimized",
+      "returncode": 0,
+      "elapsed_seconds": 17.543594
+    }
+  ],
+  "literal_cli_verifier": "VERIFIED_PHYSICAL_MONOCHROMATIC_FIVE",
+  "scope": "Author independent algorithms and literal certificate checks; not external review, catalogue replay, or exhaustive enumeration of the physical family."
+}

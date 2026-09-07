@@ -1,0 +1,76 @@
+{
+  "bound_improved": false,
+  "extraction_routes": 4,
+  "free_pair_toggle_controls": 21840,
+  "k6_graphs_two_algorithms": 32768,
+  "physical_controls": 24248,
+  "physical_stream_sha256": "e5d3b95c1fdc01ff2f3c643e22487009a5f2ac954dc1ea57542ae8427174ea55",
+  "r34_degree_sum": 27,
+  "r34_forced_degrees": [
+    3
+  ],
+  "ramsey_graph_found": false,
+  "rejected_certificates": 6,
+  "rejected_graphs": 14,
+  "relabel_color_controls": 2408,
+  "signature_certificate": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      0,
+      1
+    ]
+  ],
+  "star_identity_controls": 8192,
+  "status": "VERIFIED_SHARED_HUB_INJECTION_PACKAGE"
+}
