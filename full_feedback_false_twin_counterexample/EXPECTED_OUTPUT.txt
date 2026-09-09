@@ -1,0 +1,48 @@
+verify.py
+{
+  "base_one_probe": {
+    "round_bound": 10,
+    "states": 11,
+    "unresolved_branches": 16
+  },
+  "extension_one_probe_evasion": {
+    "response_obligations": 234,
+    "states": 18
+  },
+  "extension_two_probe_rounds": 1,
+  "rejected_corruptions": 3,
+  "replication_audit_orders": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "small_replication_instances": 166
+}
+result_sha256=2cdd339096858154c5cd9a2c723b969857bbd71cc074acddaa53a935410f3352
+VERIFIED
+
+solve.py
+[
+  {
+    "n": 12,
+    "all_beliefs": 4096,
+    "winning_beliefs": 4096,
+    "losing_beliefs": 0,
+    "initial_rank": 10,
+    "reachable_beliefs": 49
+  },
+  {
+    "n": 13,
+    "all_beliefs": 8192,
+    "winning_beliefs": 4640,
+    "losing_beliefs": 3552,
+    "initial_rank": null,
+    "reachable_beliefs": 56
+  }
+]
+certificate_sha256=14116980ee0b70f06b8ea951fc73c397973511f1ca39635a8aca0e9d663f037c
+REGENERATED
