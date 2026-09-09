@@ -1,0 +1,76 @@
+{
+  "complete_belief_games": [
+    {
+      "m": 1,
+      "optimal_rounds": 1,
+      "reachable_beliefs": 1,
+      "vertices": 8,
+      "winning_beliefs": 1
+    },
+    {
+      "m": 2,
+      "optimal_rounds": 3,
+      "reachable_beliefs": 41,
+      "vertices": 16,
+      "winning_beliefs": 41
+    },
+    {
+      "m": 3,
+      "optimal_rounds": 5,
+      "reachable_beliefs": 225,
+      "vertices": 24,
+      "winning_beliefs": 225
+    },
+    {
+      "m": 4,
+      "optimal_rounds": 7,
+      "reachable_beliefs": 985,
+      "vertices": 32,
+      "winning_beliefs": 985
+    }
+  ],
+  "core_invariant": [
+    {
+      "core_probe_checks": 0,
+      "m": 1,
+      "nonempty_cores": 12
+    },
+    {
+      "core_probe_checks": 320,
+      "m": 2,
+      "nonempty_cores": 60
+    },
+    {
+      "core_probe_checks": 4032,
+      "m": 3,
+      "nonempty_cores": 252
+    },
+    {
+      "core_probe_checks": 28032,
+      "m": 4,
+      "nonempty_cores": 1020
+    },
+    {
+      "core_probe_checks": 154880,
+      "m": 5,
+      "nonempty_cores": 4092
+    }
+  ],
+  "general_policy": {
+    "counts": {
+      "policy_instances": 4716,
+      "policy_nonterminal_nodes": 9506,
+      "quotient_graphs": 31,
+      "quotient_resolvers": 64
+    },
+    "duration_histogram": {
+      "1": 2068,
+      "2": 1352,
+      "3": 648,
+      "4": 432,
+      "5": 216
+    }
+  }
+}
+result_sha256=8ef82f3275f92f8ff755c5707428e72f1feeabf49f98466ec623b233ac94b506
+VERIFIED
