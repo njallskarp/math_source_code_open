@@ -1,0 +1,26 @@
+{
+  "combined_child_paf": [
+    57,
+    -8,
+    -8,
+    -8,
+    -8,
+    -8,
+    -8,
+    -8
+  ],
+  "discarded_rows": [
+    0,
+    1
+  ],
+  "full_real_correlation_failures": 63,
+  "is_qlp_counterexample": false,
+  "normalized_full_binary_realizations_hex": [
+    "fffb00010001bfff",
+    "fd7d6001000d7d7f",
+    "ffe780010003cfff",
+    "ffbb10000011bbff"
+  ],
+  "valid_child_length": 8,
+  "valid_parent_length": 4
+}

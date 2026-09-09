@@ -59,4 +59,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit('WITHDRAWN: invalid quarter-entry parity filter omitted valid compressed lifts. See README.md and ../qlp64_lift_parity_correction.')

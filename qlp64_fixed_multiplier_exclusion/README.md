@@ -1,3 +1,30 @@
+# Withdrawal of the full-family QLP(64) exclusion
+
+**Status: the full-family exclusion and affine-stabilizer corollary are unsupported
+and withdrawn as of 2026-09-09.** An independent follow-up audit found an
+unjustified parity filter in `compress.py:lifts`. The check
+`(mid//2-bound) % 2` constrains the quarter entry of a child, although the
+proved endpoint parity condition applies to its midpoint. Valid children were
+omitted. In particular, an explicit length-8 quadruple satisfying all the stated
+compressed equations is rejected; each row has a normalized length-64 reversible
+binary realization.
+
+See the [counterexample and exact checker](../qlp64_lift_parity_correction).
+This is a counterexample to the implemented coverage claim, **not** a quaternary
+Legendre pair of length 64. It does not show that the claimed nonexistence theorem
+is false; it shows that the published computation does not establish it.
+
+The reported zero-witness searches still describe their supplied queues. They
+cannot be promoted to full-family exclusions. The earlier elementary
+[half-period positivity lemma](../qlp_power_two_multiplier_obstruction) is
+unaffected. The original `expected.json` and `validation.json` below document the
+invalid-cover run and are retained as historical evidence. `run.py` now exits
+with this withdrawal notice instead of reporting a verified exclusion. A
+corrected complete cover and its full lifts must be checked before any theorem
+is restored.
+
+## Historical report — coverage and theorem claims withdrawn
+
 # No nontrivial common fixed multiplier for a quaternary Legendre pair of length 64
 
 **Computer-assisted result, externally unreviewed (2026-09-09).** There is no
