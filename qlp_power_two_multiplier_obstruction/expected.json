@@ -1,0 +1,268 @@
+{
+  "status": "PASS",
+  "modulus": 64,
+  "subgroup_count": 14,
+  "subgroup_order_counts": {
+    "1": 1,
+    "2": 3,
+    "4": 3,
+    "8": 3,
+    "16": 3,
+    "32": 1
+  },
+  "excluded_subgroups": 11,
+  "remaining_subgroups": [
+    [
+      1
+    ],
+    [
+      1,
+      31
+    ],
+    [
+      1,
+      63
+    ]
+  ],
+  "small_identity_words_checked": {
+    "4": 64,
+    "8": 4096
+  },
+  "subgroups": [
+    {
+      "subgroup": [
+        1
+      ],
+      "order": 1,
+      "forced_half_period_pairs": 0,
+      "autocorrelation_lower_bound": -64,
+      "excluded_by_33": false
+    },
+    {
+      "subgroup": [
+        1,
+        31
+      ],
+      "order": 2,
+      "forced_half_period_pairs": 1,
+      "autocorrelation_lower_bound": -60,
+      "excluded_by_33": false
+    },
+    {
+      "subgroup": [
+        1,
+        33
+      ],
+      "order": 2,
+      "forced_half_period_pairs": 16,
+      "autocorrelation_lower_bound": 0,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        63
+      ],
+      "order": 2,
+      "forced_half_period_pairs": 1,
+      "autocorrelation_lower_bound": -60,
+      "excluded_by_33": false
+    },
+    {
+      "subgroup": [
+        1,
+        15,
+        33,
+        47
+      ],
+      "order": 4,
+      "forced_half_period_pairs": 17,
+      "autocorrelation_lower_bound": 4,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        17,
+        33,
+        49
+      ],
+      "order": 4,
+      "forced_half_period_pairs": 24,
+      "autocorrelation_lower_bound": 32,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        31,
+        33,
+        63
+      ],
+      "order": 4,
+      "forced_half_period_pairs": 17,
+      "autocorrelation_lower_bound": 4,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        7,
+        17,
+        23,
+        33,
+        39,
+        49,
+        55
+      ],
+      "order": 8,
+      "forced_half_period_pairs": 25,
+      "autocorrelation_lower_bound": 36,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        9,
+        17,
+        25,
+        33,
+        41,
+        49,
+        57
+      ],
+      "order": 8,
+      "forced_half_period_pairs": 28,
+      "autocorrelation_lower_bound": 48,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        15,
+        17,
+        31,
+        33,
+        47,
+        49,
+        63
+      ],
+      "order": 8,
+      "forced_half_period_pairs": 25,
+      "autocorrelation_lower_bound": 36,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        3,
+        9,
+        11,
+        17,
+        19,
+        25,
+        27,
+        33,
+        35,
+        41,
+        43,
+        49,
+        51,
+        57,
+        59
+      ],
+      "order": 16,
+      "forced_half_period_pairs": 29,
+      "autocorrelation_lower_bound": 52,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        5,
+        9,
+        13,
+        17,
+        21,
+        25,
+        29,
+        33,
+        37,
+        41,
+        45,
+        49,
+        53,
+        57,
+        61
+      ],
+      "order": 16,
+      "forced_half_period_pairs": 30,
+      "autocorrelation_lower_bound": 56,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        7,
+        9,
+        15,
+        17,
+        23,
+        25,
+        31,
+        33,
+        39,
+        41,
+        47,
+        49,
+        55,
+        57,
+        63
+      ],
+      "order": 16,
+      "forced_half_period_pairs": 29,
+      "autocorrelation_lower_bound": 52,
+      "excluded_by_33": true
+    },
+    {
+      "subgroup": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        29,
+        31,
+        33,
+        35,
+        37,
+        39,
+        41,
+        43,
+        45,
+        47,
+        49,
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        63
+      ],
+      "order": 32,
+      "forced_half_period_pairs": 31,
+      "autocorrelation_lower_bound": 60,
+      "excluded_by_33": true
+    }
+  ]
+}

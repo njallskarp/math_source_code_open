@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "pairs_verified": 7,
+  "negative_controls_rejected": 42,
+  "results": [
+    {
+      "length": 42,
+      "all_nonzero_shifts_verified": 41,
+      "midpoint_psd": [
+        4,
+        82
+      ],
+      "gray_block_sizes": [
+        21,
+        21,
+        20,
+        21
+      ],
+      "literal_words_sha256": "b9d438020f96f35a8b4b55481262e681a33bf972e241331275f5348e9af42e5f"
+    },
+    {
+      "length": 46,
+      "all_nonzero_shifts_verified": 45,
+      "midpoint_psd": [
+        68,
+        26
+      ],
+      "gray_block_sizes": [
+        23,
+        23,
+        22,
+        23
+      ],
+      "literal_words_sha256": "7bb65fcead6311aa9622507f03e337becdaff8fe7d9553d925c4ef7896777044"
+    },
+    {
+      "length": 52,
+      "all_nonzero_shifts_verified": 51,
+      "midpoint_psd": [
+        16,
+        90
+      ],
+      "gray_block_sizes": [
+        26,
+        26,
+        25,
+        26
+      ],
+      "literal_words_sha256": "003c4802856e763481d146778f6edaf9bd6f5819976b6230ff4accd1233361db"
+    },
+    {
+      "length": 58,
+      "all_nonzero_shifts_verified": 57,
+      "midpoint_psd": [
+        20,
+        98
+      ],
+      "gray_block_sizes": [
+        29,
+        29,
+        28,
+        29
+      ],
+      "literal_words_sha256": "2cbae12272527f6ad14818400b1443bd8851cab77f5b5de1165ed6f2c2a8fbcc"
+    },
+    {
+      "length": 66,
+      "all_nonzero_shifts_verified": 65,
+      "midpoint_psd": [
+        4,
+        130
+      ],
+      "gray_block_sizes": [
+        33,
+        33,
+        32,
+        33
+      ],
+      "literal_words_sha256": "ce3ccf2283763f33692f516761fa4a0c5bdd15626bedf15ac94b2b3d7f6d8eb9"
+    },
+    {
+      "length": 72,
+      "all_nonzero_shifts_verified": 71,
+      "midpoint_psd": [
+        64,
+        82
+      ],
+      "gray_block_sizes": [
+        36,
+        36,
+        35,
+        36
+      ],
+      "literal_words_sha256": "a185ac8235340995d9e662f34b4d1abdac7e127a4a92de26729c382053079a5b"
+    },
+    {
+      "length": 80,
+      "all_nonzero_shifts_verified": 79,
+      "midpoint_psd": [
+        32,
+        130
+      ],
+      "gray_block_sizes": [
+        40,
+        40,
+        39,
+        40
+      ],
+      "literal_words_sha256": "17346d926e5ea01b42245562c8ae9d1224eb46f904f168340c0b29f24ee3a0df"
+    }
+  ]
+}
