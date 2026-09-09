@@ -1,0 +1,52 @@
+{
+  "compiler": "Apple clang version 17.0.0 (clang-1700.6.3.2)",
+  "optimized_flags": [
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wshadow"
+  ],
+  "python": "3.12.12",
+  "reduction_audit": [
+    {
+      "audit_length": 8,
+      "canonical": 72,
+      "entrywise_equal": true,
+      "labelled": 2796
+    },
+    {
+      "audit_length": 16,
+      "canonical": 4740,
+      "entrywise_equal": true,
+      "labelled": 223680
+    }
+  ],
+  "reproduction_stdout": "{\"input_sha256\": \"26ed05773c9fc2d46bbabaac93ae61d8a17e14b718c2a21124b6305853d8957a\", \"multipliers\": [31, 63], \"parents\": 1472, \"verified\": true, \"witnesses\": [0, 0]}",
+  "reproduction_stdout_sha256": "4d12e44c8ef3356e1a56987a594165a3d10016709b57bbffc9aa4422a4bd916f",
+  "review": "No independent peer review; the second implementation audits lifts and sampled keys, not the complete search independently.",
+  "sanitizer": {
+    "diagnostics": 0,
+    "flags": [
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer"
+    ],
+    "multipliers": [
+      31,
+      63
+    ],
+    "parents_per_multiplier": 1
+  },
+  "source_sha256": {
+    ".gitignore": "5e4b444abf21fe39b9a891cb93801b20f89ed22b50d344fc419a3316e3bcfa63",
+    "README.md": "0fb792ccdee47b59c681a862c546721b3fde12ba3ae8b6d39db9d6f6655e9790",
+    "audit.py": "adef410fa6eec82bc9432de6a71bb3565fb1c8670018a3d937c9df01363b323b",
+    "compress.py": "21deba5d080ad19406e56bde5d1682cbcc245190a37198fc9794352ee1e49d90",
+    "expected.json": "352e193c6c32854685eace5bc793f088d1c7d8aae673099ca88d1d3a5f3fa765",
+    "lift64.cpp": "7b1327b0219e2d23136f054f143d49d77b8855cf6f0e114d856970bcfe9689f5",
+    "run.py": "aeab00439660f4c9aabff244a7cd1ab8875eb287d390199865f49b93a58521e8"
+  },
+  "standard": "C++20"
+}

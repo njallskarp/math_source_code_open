@@ -1,0 +1,91 @@
+{
+  "audit": {
+    "native_comparisons": [
+      {
+        "complete_row_sets": 966,
+        "direct_array_pair_keys": 720,
+        "full_words": 343104,
+        "h": 31
+      },
+      {
+        "complete_row_sets": 966,
+        "direct_array_pair_keys": 720,
+        "full_words": 343104,
+        "h": 63
+      }
+    ],
+    "small_order_direct_orbit_comparisons": [
+      {
+        "compressed_rows": 6,
+        "full_rows": 12,
+        "h": 3,
+        "n": 8
+      },
+      {
+        "compressed_rows": 6,
+        "full_rows": 12,
+        "h": 7,
+        "n": 8
+      },
+      {
+        "compressed_rows": 39,
+        "full_rows": 140,
+        "h": 7,
+        "n": 16
+      },
+      {
+        "compressed_rows": 39,
+        "full_rows": 140,
+        "h": 15,
+        "n": 16
+      }
+    ]
+  },
+  "compression": [
+    {
+      "labelled_roots": 72,
+      "root_rows": [
+        27,
+        28
+      ]
+    },
+    {
+      "canonical_quadruples": 6,
+      "length": 4,
+      "sha256": "74c503e2e03eb5f179965c821158b33a750d92078e26331e28acaf4092939f27"
+    },
+    {
+      "canonical_quadruples": 72,
+      "length": 8,
+      "sha256": "9a2e5ae49bdfbdaff2f167a34855f525c9d14aa121a66f894190ea2c79b396ca"
+    },
+    {
+      "canonical_quadruples": 4740,
+      "length": 16,
+      "sha256": "ecd36b812de65a3b84ed60a965796ccdf4a266a315728f810fb4aad87c74aa5d"
+    },
+    {
+      "canonical_quadruples": 11776,
+      "length": 32,
+      "sha256": "e8c8527a2c6f4137978d76a6fcfb22954a8100d1db1f5007e1a57b284c6374ae"
+    },
+    {
+      "input_sha256": "26ed05773c9fc2d46bbabaac93ae61d8a17e14b718c2a21124b6305853d8957a",
+      "unit_representatives": 1472
+    }
+  ],
+  "searches": {
+    "31": {
+      "pairs": 1698693120,
+      "parents": 1472,
+      "unique_table_keys": 26736800,
+      "witnesses": 0
+    },
+    "63": {
+      "pairs": 494690304,
+      "parents": 1472,
+      "unique_table_keys": 18059427,
+      "witnesses": 0
+    }
+  }
+}
