@@ -1,0 +1,10 @@
+{
+  "repository": "helgithorskarp/math_results",
+  "commit": "f4c1868af89393e5d7ef18413c430f0ebaae62b2",
+  "directory": "hadwiger_nelson_finite_abelian_lifts",
+  "sha256": {
+    "certificate.json": "d8ff07dcfed71c99b19fb47966b5bedce6c5693fb7cbe611df58f71a66aff597",
+    "q11_five_colouring.json": "7a12bf22cb3ebdaec2a40f8e321c59e4bac59095c83a533b881aa3c0a7aab444",
+    "q11_four_unsat.drat": "b54714d1acc3af2f1269aedcdf5bd2fdc6a899ef47037d6af8c8159c106e11b8"
+  }
+}

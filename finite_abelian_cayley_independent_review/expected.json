@@ -1,0 +1,228 @@
+{
+  "fields": {
+    "all_pair_tests": 167586,
+    "cases": [
+      [
+        2,
+        6,
+        2
+      ],
+      [
+        3,
+        18,
+        0
+      ],
+      [
+        4,
+        40,
+        4
+      ],
+      [
+        5,
+        75,
+        20
+      ],
+      [
+        7,
+        196,
+        60
+      ],
+      [
+        8,
+        288,
+        2
+      ],
+      [
+        9,
+        405,
+        10
+      ],
+      [
+        11,
+        726,
+        150
+      ],
+      [
+        13,
+        1183,
+        156
+      ],
+      [
+        16,
+        2176,
+        5
+      ],
+      [
+        17,
+        2601,
+        272
+      ],
+      [
+        19,
+        3610,
+        252
+      ]
+    ],
+    "integer_rhombus_rows": 933
+  },
+  "negative_controls": [
+    "false additive relation",
+    "reducible modulus",
+    "omitted parameter",
+    "monochromatic q11 word",
+    "unsupported empty clause",
+    "contradiction to pinned colour",
+    "missing proof terminator",
+    "satisfiable one-variable formula"
+  ],
+  "q11": {
+    "chromatic_number": 5,
+    "cnf_clauses": 3753,
+    "cnf_variables": 484,
+    "edges": 726,
+    "ignored_deletions": 101,
+    "rup_additions": 539,
+    "vertices": 121
+  },
+  "q3": {
+    "chromatic_number": 3,
+    "edges": 18,
+    "pairs": 36,
+    "vertices": 9
+  },
+  "small_groups": {
+    "arithmetic": "rational, not modular",
+    "by_invariant_factors": [
+      [
+        [],
+        1,
+        0
+      ],
+      [
+        [
+          2
+        ],
+        2,
+        0
+      ],
+      [
+        [
+          3
+        ],
+        2,
+        0
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        7,
+        1
+      ],
+      [
+        [
+          4
+        ],
+        3,
+        1
+      ],
+      [
+        [
+          5
+        ],
+        3,
+        1
+      ],
+      [
+        [
+          6
+        ],
+        5,
+        3
+      ],
+      [
+        [
+          7
+        ],
+        4,
+        4
+      ],
+      [
+        [
+          2,
+          2,
+          2
+        ],
+        57,
+        71
+      ],
+      [
+        [
+          2,
+          4
+        ],
+        13,
+        19
+      ],
+      [
+        [
+          8
+        ],
+        5,
+        11
+      ],
+      [
+        [
+          3,
+          3
+        ],
+        11,
+        5
+      ],
+      [
+        [
+          9
+        ],
+        5,
+        11
+      ],
+      [
+        [
+          10
+        ],
+        8,
+        24
+      ],
+      [
+        [
+          11
+        ],
+        6,
+        26
+      ],
+      [
+        [
+          2,
+          6
+        ],
+        23,
+        105
+      ],
+      [
+        [
+          12
+        ],
+        9,
+        55
+      ]
+    ],
+    "counts": {
+      "direct_products": 164,
+      "forced_collisions": 337,
+      "group_types": 17,
+      "presentations": 501
+    }
+  },
+  "status": "PASS"
+}
