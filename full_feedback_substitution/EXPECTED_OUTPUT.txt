@@ -1,0 +1,54 @@
+{
+  "cube_join": {
+    "cube_bounds_sha256": "9e60b2ca7c051a871acb5f264fa2decaf5e532094feb93cff385990a822cf5ba",
+    "cube_extremizer": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      16,
+      17,
+      32,
+      33
+    ],
+    "cube_extremizer_neighborhood": 35,
+    "cube_lower_bound_6_13": 35,
+    "cube_split_cases": [
+      38,
+      37,
+      35,
+      35,
+      37,
+      37,
+      35,
+      35,
+      37,
+      37,
+      35,
+      35,
+      37,
+      38
+    ],
+    "cube_subsets_checked": 65814,
+    "join_edges": 4480,
+    "join_far_cell_size": 42,
+    "join_far_response_cells": 128,
+    "join_two_probe_distinct_responses": 128,
+    "join_vertices": 128,
+    "robber_invariant_module_size": 35,
+    "robber_minimum_response_class": 13
+  },
+  "substitution": {
+    "finishing_pairs": 393768,
+    "guarded_targets": 1211592,
+    "projected_responses": 487074,
+    "substitution_graphs": 14027
+  }
+}
+result_sha256=d118f42c7cb5fb2d763287ab3d118882abed4e1f05694f431de448dfbcdec67c
+VERIFIED
