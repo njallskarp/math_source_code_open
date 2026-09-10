@@ -1,0 +1,184 @@
+{
+  "audit": {
+    "alphabet": {
+      "conjugating_invariant_vectors": 16,
+      "invariant_vectors_at_lengths_0_mod_4": 0,
+      "normalized_count_vectors": 528,
+      "positive_controls_lengths_2_mod_4": 16
+    },
+    "lifts": {
+      "mixed_children": 95,
+      "mixed_nonempty_parents": 13,
+      "mixed_parents_including_empty": 21,
+      "symmetric_children": [
+        26,
+        13
+      ],
+      "symmetric_nonempty_parents": [
+        9,
+        6
+      ],
+      "symmetric_parents_including_empty": 25,
+      "ternary_axis_checks": 6561
+    },
+    "roots": {
+      "direct_triples": 8,
+      "root_row_counts": [
+        57,
+        27,
+        28
+      ]
+    }
+  },
+  "axis_oracle": [
+    {
+      "axis_children": 61,
+      "child_length": 8,
+      "complete_sets_equal": true,
+      "empty_fibers": 0,
+      "norm_eligible": 1065,
+      "parents": 1,
+      "unrestricted_folded_box": 6561
+    },
+    {
+      "axis_children": 5361,
+      "child_length": 16,
+      "complete_sets_equal": true,
+      "empty_fibers": 2,
+      "norm_eligible": 1150345,
+      "parents": 13,
+      "unrestricted_folded_box": 2155625
+    },
+    {
+      "axis_children": 196408,
+      "child_length": 32,
+      "complete_sets_equal": true,
+      "empty_fibers": 96,
+      "norm_eligible": 235140232,
+      "parents": 184,
+      "unrestricted_folded_box": 235271304
+    }
+  ],
+  "levels": [
+    {
+      "length": 4,
+      "root_row_counts": [
+        57,
+        27,
+        28
+      ],
+      "sha256": "4e87cb0cb54879133fcf6761b396cb73d614fea9f1d30646a7e894b6fa67aae2",
+      "states": 8
+    },
+    {
+      "length": 8,
+      "row_keys_plus_binary_pairs": 3664,
+      "sha256": "ab43171aa1f012830c8cf164c99d7c645119078b92f3c6bbc349d2a6b35ab415",
+      "states": 116,
+      "viable_parents": 8
+    },
+    {
+      "length": 16,
+      "row_keys_plus_binary_pairs": 1675348,
+      "sha256": "904e74a84b34f661455e03c6a882366570a4240bc2d53d75db44113cd36666bc",
+      "states": 1312,
+      "viable_parents": 100
+    },
+    {
+      "length": 32,
+      "row_keys_plus_binary_pairs": 37010240,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "states": 0,
+      "viable_parents": 640
+    }
+  ],
+  "structural": {
+    "affine": {
+      "fixed_point_free": 1365,
+      "fixed_point_involutions": 67,
+      "involutions": 100,
+      "maps": 2048,
+      "nonidentity_fixed_point_involution_types": {
+        "31": 32,
+        "33": 2,
+        "63": 32
+      },
+      "remaining_after_ordinary_and_mixed_exclusions": [
+        [
+          33,
+          0
+        ],
+        [
+          33,
+          32
+        ]
+      ]
+    },
+    "reflection_control": [
+      {
+        "balanced_axis_words": 2,
+        "example": null,
+        "length": 4,
+        "without_any_reflection": 0
+      },
+      {
+        "balanced_axis_words": 10,
+        "example": null,
+        "length": 8,
+        "without_any_reflection": 0
+      },
+      {
+        "balanced_axis_words": 154,
+        "example": [
+          -1,
+          -1,
+          -1,
+          1,
+          1,
+          -1,
+          -1,
+          1,
+          -1,
+          -1,
+          1,
+          1,
+          1,
+          -1,
+          1,
+          1
+        ],
+        "length": 16,
+        "without_any_reflection": 16
+      }
+    ]
+  },
+  "symmetric_oracle": [
+    {
+      "child_length": 8,
+      "complete_sets_equal": true,
+      "empty_fibers": 0,
+      "globally_eligible": 1648,
+      "interior_box": 729,
+      "matched_children": 193,
+      "parents": 10
+    },
+    {
+      "child_length": 16,
+      "complete_sets_equal": true,
+      "empty_fibers": 0,
+      "globally_eligible": 117150,
+      "interior_box": 78125,
+      "matched_children": 2848,
+      "parents": 26
+    },
+    {
+      "child_length": 32,
+      "complete_sets_equal": true,
+      "empty_fibers": 0,
+      "globally_eligible": 10476351,
+      "interior_box": 14348907,
+      "matched_children": 19860,
+      "parents": 74
+    }
+  ]
+}

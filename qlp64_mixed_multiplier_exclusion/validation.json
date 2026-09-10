@@ -1,0 +1,243 @@
+{
+  "date": "2026-09-10",
+  "expected_sha256": "c3ef5047202fcc7d57cbb6b9623a2e708ed182a5ff8b36cd568227650c3c7baa",
+  "final": {
+    "affine_corollary_conditional_on_ordinary_exclusion": true,
+    "final_compressed_states": 0,
+    "final_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "mixed_multipliers": [
+      31,
+      63
+    ],
+    "ordinary_exclusion_dependency_replayed": false,
+    "verified": true
+  },
+  "full_sanitizer_oracle_replay": {
+    "checks": [
+      {
+        "kind": "axis",
+        "length": 8,
+        "result": {
+          "axis_children": 61,
+          "child_length": 8,
+          "complete_sets_equal": true,
+          "empty_fibers": 0,
+          "norm_eligible": 1065,
+          "parents": 1,
+          "unrestricted_folded_box": 6561
+        },
+        "seconds": 0.37472879099368583
+      },
+      {
+        "kind": "axis",
+        "length": 16,
+        "result": {
+          "axis_children": 5361,
+          "child_length": 16,
+          "complete_sets_equal": true,
+          "empty_fibers": 2,
+          "norm_eligible": 1150345,
+          "parents": 13,
+          "unrestricted_folded_box": 2155625
+        },
+        "seconds": 0.15567900000314694
+      },
+      {
+        "kind": "axis",
+        "length": 32,
+        "result": {
+          "axis_children": 196408,
+          "child_length": 32,
+          "complete_sets_equal": true,
+          "empty_fibers": 96,
+          "norm_eligible": 235140232,
+          "parents": 184,
+          "unrestricted_folded_box": 235271304
+        },
+        "seconds": 34.03555033300654
+      },
+      {
+        "kind": "symmetric",
+        "length": 8,
+        "result": {
+          "child_length": 8,
+          "complete_sets_equal": true,
+          "empty_fibers": 0,
+          "globally_eligible": 1648,
+          "interior_box": 729,
+          "matched_children": 193,
+          "parents": 10
+        },
+        "seconds": 0.3640327499961131
+      },
+      {
+        "kind": "symmetric",
+        "length": 16,
+        "result": {
+          "child_length": 16,
+          "complete_sets_equal": true,
+          "empty_fibers": 0,
+          "globally_eligible": 117150,
+          "interior_box": 78125,
+          "matched_children": 2848,
+          "parents": 26
+        },
+        "seconds": 0.05939883399696555
+      },
+      {
+        "kind": "symmetric",
+        "length": 32,
+        "result": {
+          "child_length": 32,
+          "complete_sets_equal": true,
+          "empty_fibers": 0,
+          "globally_eligible": 10476351,
+          "interior_box": 14348907,
+          "matched_children": 19860,
+          "parents": 74
+        },
+        "seconds": 2.1010279999973136
+      }
+    ],
+    "commands": [
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "-O1",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "<source>/axis_oracle.cpp",
+        "-o",
+        "<workdir>/axis_oracle"
+      ],
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "-O1",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "<source>/symmetric_oracle.cpp",
+        "-o",
+        "<workdir>/symmetric_oracle"
+      ]
+    ]
+  },
+  "path_placeholders": "Source and work-directory prefixes normalized; remaining arguments are literal.",
+  "publication_copy_full_replay": {
+    "commands": [
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "<source>/axis_oracle.cpp",
+        "-o",
+        "<workdir>/axis_oracle"
+      ],
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "<source>/symmetric_oracle.cpp",
+        "-o",
+        "<workdir>/symmetric_oracle"
+      ]
+    ],
+    "compiler": "Apple clang version 17.0.0 (clang-1700.6.3.2)",
+    "oracle_seconds": [
+      {
+        "kind": "axis",
+        "length": 8,
+        "seconds": 0.26709808399755275
+      },
+      {
+        "kind": "axis",
+        "length": 16,
+        "seconds": 0.03324708300351631
+      },
+      {
+        "kind": "axis",
+        "length": 32,
+        "seconds": 8.675640458997805
+      },
+      {
+        "kind": "symmetric",
+        "length": 8,
+        "seconds": 0.1969112500009942
+      },
+      {
+        "kind": "symmetric",
+        "length": 16,
+        "seconds": 0.008193875000870321
+      },
+      {
+        "kind": "symmetric",
+        "length": 32,
+        "seconds": 0.3989177909970749
+      }
+    ],
+    "platform": "macOS-26.2-arm64-arm-64bit",
+    "python": "3.12.12",
+    "source_sha256": {
+      "audit.py": "f8faeaecdef5f6d76da97a707acabfe9e4cd789ae23d7935ef430a6acc842f69",
+      "axis_oracle.cpp": "8ca63f0bffec34eba74eb3793a5c65e4168d33afb0688074969fc7028d043449",
+      "run.py": "c1a9f8605535a0f3b90c5e586e948606763cf2b3ff0903be194234e964bdcf69",
+      "search.py": "5a756a26ac064c0ce79c5ede830cd7d186f4a4fc5d998370faec731a2a17d15e",
+      "structural.py": "ed618684c8fa20934d41f3fb90179800b9d21a4c3e20c6229d9d2d29781b5d52",
+      "symmetric_oracle.cpp": "90cfbd8e7d64a9952b938411d203aebbfaa953098a0c73d5ecfcef7af09ba562"
+    },
+    "stage_seconds": [
+      {
+        "length": 8,
+        "seconds": 0.008383749998756684
+      },
+      {
+        "length": 16,
+        "seconds": 2.5077408750003087
+      },
+      {
+        "length": 32,
+        "seconds": 107.66516191600385
+      }
+    ],
+    "total_seconds": 122.50430316599522
+  },
+  "review": "Author-run independent algorithmic audits; no fresh external review."
+}
