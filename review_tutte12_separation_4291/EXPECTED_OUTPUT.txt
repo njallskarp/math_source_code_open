@@ -1,0 +1,79 @@
+{
+  "evasion": {
+    "core_pairs_by_distance": {
+      "2": 378,
+      "3": 756,
+      "4": 1512
+    },
+    "distance_subfamily_failed_obligations": {
+      "2": 12096,
+      "2,3": 24192,
+      "2,3,4": 0,
+      "2,4": 0,
+      "3": 112644,
+      "3,4": 171612,
+      "4": 113400
+    },
+    "edge_actions": 189,
+    "equivalent_witness_pairs_across_edges": 86940,
+    "obligations": 500094,
+    "support_size_histogram": {
+      "8": 51408,
+      "11": 15120,
+      "51": 20412
+    },
+    "witness_core_incidences": 1618596
+  },
+  "graph": {
+    "bipartite": true,
+    "degree": 3,
+    "diameter": 6,
+    "girth": 12,
+    "order": 126,
+    "size": 189,
+    "twelve_cycle": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      20,
+      19,
+      18,
+      17
+    ]
+  },
+  "policy": {
+    "length_two_legal_walks": 2016,
+    "root_probes": [
+      0,
+      5
+    ],
+    "rows": 122,
+    "rows_by_rank": {
+      "1": 106,
+      "2": 15,
+      "3": 1
+    },
+    "singleton_branches": 1011,
+    "unresolved_branches": 123,
+    "walks_by_capture_round": {
+      "1": 32,
+      "2": 488,
+      "3": 1496
+    }
+  },
+  "policy_sha256": "8753aa21c22b1726e5a676b37b5c93c2f796c5a9cc49b2ec70ca1a8bb5846ed8",
+  "refined_even_distance_invariant": {
+    "checked_obligations": 357210,
+    "core_pairs": 1890,
+    "witness_sha256": "a7c5c3b87fa7b503a06bf4379b1f5290137782483bd878efbe6bca08050a51d5"
+  },
+  "rejected_policy_mutations": 123,
+  "response_sha256": "5ad1bca3175f2f39b99ed90ed7b66211f5396ee962ec9aae13a6db6b4708a7bd"
+}
+result_sha256=74768ad2052526781db603991b45ab4fbdb69be9f1048204c779065c92966d96
+PASS: complete Tutte 12-cage adjacent-pair separation audit
