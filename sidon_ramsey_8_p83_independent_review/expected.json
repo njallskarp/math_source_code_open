@@ -1,0 +1,260 @@
+{
+  "verdict": "accept with stated limitations",
+  "confidence": "high",
+  "profile_replay": {
+    "verified": true,
+    "landscape": {
+      "initial_profiles": [
+        [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          6
+        ],
+        [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          10,
+          7
+        ],
+        [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          9,
+          8
+        ],
+        [
+          11,
+          11,
+          11,
+          11,
+          11,
+          10,
+          10,
+          8
+        ],
+        [
+          11,
+          11,
+          11,
+          11,
+          11,
+          10,
+          9,
+          9
+        ],
+        [
+          11,
+          11,
+          11,
+          11,
+          10,
+          10,
+          10,
+          9
+        ],
+        [
+          11,
+          11,
+          11,
+          10,
+          10,
+          10,
+          10,
+          10
+        ]
+      ],
+      "max_sidon_size": 11,
+      "five_or_more_elevens": "excluded",
+      "four_elevens": "excluded",
+      "only_remaining_profile": [
+        11,
+        11,
+        11,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "eligible_anchor_cases": 5364,
+      "packing_empty_cases": 207,
+      "nonempty_cases": 5157,
+      "anchored_triples": 65073232,
+      "P83_decided": false
+    },
+    "hashes": {
+      "raw11.txt": "ea9cea7a250f9b532bd8bf952aa27b7339b785327fb666835755369d3d0a9e44",
+      "ordered11.txt": "42dd2b3b726c0d488fbaa72d20f90c2f13d27ed7d3eee12dec0e10c461e29c4b",
+      "orbit11.txt": "d2c18038ea0fe65cf909fb11f57f3d97a33e9067eef1c8d5045a78e083fda640",
+      "five.txt": "9f14c593dfdf617da0ff64b9ab3f7f5511786d17d1ebfeadafa8de62cd8bd554",
+      "five_domains.txt": "62b0e6d47e035fe54788a05a87f9486ae1c88848ac7875fede43e69f0c5f3323",
+      "five_trace_0.bin": "6562eb4e5495c100cb020591b90b4a6dd874c443ef4fcdc02567fc1dd7223e49",
+      "cases_four.csv": "6a171fbe3afe6d79ff46db48d45e46a876cc1acae428f242a912a5fd4ad63f9c",
+      "cases_three.csv": "d9858a448b47d98b3a3879e7a0f14e0f773dc50519fb25c8af635830569af236",
+      "terminal_examples.json": "56fe2e9fe18ad227ccd8f3a5bbbe05aa9a72262a991d604b545c107c9b34d8a3",
+      "landscape.json": "8ecf23cc063350032c2f0ef1b426fcb7f59fedd1bc1eab2882908292acfc6bdc"
+    },
+    "seconds": 539.8348274999953,
+    "compiler": "g++ (Homebrew GCC 16.2.0) 16.2.0",
+    "python": "3.12.12 | packaged by conda-forge | (main, Oct 22 2025, 23:34:53) [Clang 19.1.7 ]",
+    "terminal_occurrences": 380,
+    "terminal_distinct_nines": 380,
+    "twelve_counts": [
+      0,
+      0
+    ],
+    "ten_catalog_counts": [
+      24751806,
+      24751806
+    ],
+    "full_query_trace_bytes_per_method": 299368488,
+    "sanitizer28_decisions": 10,
+    "sanitizer39_decisions": 120
+  },
+  "exclusion_replay": {
+    "verified": true,
+    "totals": {
+      "packings": 65073232,
+      "calls1": 1771,
+      "calls2": 2261478,
+      "calls3": 66521099,
+      "calls4": 185585643,
+      "calls5": 65073232,
+      "candidates1": 0,
+      "candidates2": 1771,
+      "candidates3": 2261478,
+      "candidates4": 66521099,
+      "candidates5": 185585643,
+      "found": 0
+    },
+    "cases": 5364,
+    "nonempty_cases": 5157,
+    "terminal_occurrences": 1771,
+    "terminal_distinct_residuals": 1771,
+    "terminal_distinct_triples": 1644,
+    "cases_sha256": "b32d9a00e42e5349dbf6677988fb7c9da107fd325b5507cd308392006a57b250",
+    "all_terminals_sha256": "c73ec06dd3b98c25f70c83951f1ee7d58dab687efb9ad3246741ab6de32e401e",
+    "complete_query_traces_bytewise_equal": true,
+    "case_records_equal": true,
+    "seconds": 1080.711249125001,
+    "jobs": 6,
+    "workers": 6,
+    "compiler": "g++ (Homebrew GCC 16.2.0) 16.2.0",
+    "python": "3.12.12 | packaged by conda-forge | (main, Oct 22 2025, 23:34:53) [Clang 19.1.7 ]",
+    "trace_bytes_per_method": [
+      8044688696,
+      8044688696
+    ],
+    "sanitizer_small_decisions": 4712,
+    "sanitizer_five_ten_positive_decisions": 4,
+    "sanitizer_two_ten_positive_decisions": 4
+  },
+  "independent_audit": {
+    "source_commit": "d198c6081c400f4096b53bb7737ca014442fd160",
+    "initial_profiles": [
+      [
+        11,
+        11,
+        11,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        11,
+        11,
+        10,
+        10,
+        10,
+        9
+      ],
+      [
+        11,
+        11,
+        11,
+        11,
+        11,
+        10,
+        9,
+        9
+      ],
+      [
+        11,
+        11,
+        11,
+        11,
+        11,
+        10,
+        10,
+        8
+      ],
+      [
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        9,
+        8
+      ],
+      [
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        10,
+        7
+      ],
+      [
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        6
+      ]
+    ],
+    "terminal_occurrences": {
+      "four": 380,
+      "three": 1771
+    },
+    "P80_witness": true,
+    "independent_enumerator_controls": 5110,
+    "independent_28": {
+      "domains": 2142,
+      "ten_occurrences": 66,
+      "eleven_occurrences": 0,
+      "nine_occurrences": 318212,
+      "all_five_profiles_impossible": true
+    },
+    "independent_20": {
+      "domains": 1754,
+      "ten_occurrences": 4040,
+      "two_ten_completions": 0
+    },
+    "compiler": "g++-16 (Homebrew GCC 16.2.0) 16.2.0",
+    "verified": true
+  }
+}
