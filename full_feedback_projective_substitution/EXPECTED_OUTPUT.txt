@@ -1,0 +1,119 @@
+{
+  "core_audits": [
+    {
+      "cores": 56,
+      "initial_edges": 21,
+      "initial_unresolved_classes": 84,
+      "q": 2,
+      "shrink_obligations": 252,
+      "unresolved_children": 252,
+      "vertices": 14
+    },
+    {
+      "cores": 286,
+      "initial_edges": 52,
+      "initial_unresolved_classes": 312,
+      "q": 3,
+      "shrink_obligations": 2184,
+      "unresolved_children": 4992,
+      "vertices": 26
+    },
+    {
+      "cores": 3534,
+      "initial_edges": 186,
+      "initial_unresolved_classes": 1860,
+      "q": 5,
+      "shrink_obligations": 57660,
+      "unresolved_children": 290160,
+      "vertices": 62
+    }
+  ],
+  "product_audit": {
+    "orders": [
+      2,
+      2
+    ],
+    "policy_states": 229,
+    "projection_identities": 76832,
+    "proved_round_bound": 4,
+    "response_branches": 2824,
+    "vertices": 196,
+    "worst_rounds": 4
+  },
+  "substitution_audits": [
+    {
+      "policy_states": 11,
+      "proved_round_bound": 3,
+      "q": 2,
+      "response_branches": 108,
+      "scenario": 0,
+      "vertices": 28,
+      "worst_rounds": 3
+    },
+    {
+      "policy_states": 11,
+      "proved_round_bound": 3,
+      "q": 2,
+      "response_branches": 154,
+      "scenario": 1,
+      "vertices": 42,
+      "worst_rounds": 3
+    },
+    {
+      "policy_states": 10,
+      "proved_round_bound": 3,
+      "q": 2,
+      "response_branches": 98,
+      "scenario": 2,
+      "vertices": 28,
+      "worst_rounds": 3
+    },
+    {
+      "policy_states": 9,
+      "proved_round_bound": 3,
+      "q": 2,
+      "response_branches": 93,
+      "scenario": 3,
+      "vertices": 27,
+      "worst_rounds": 3
+    },
+    {
+      "policy_states": 37,
+      "proved_round_bound": 4,
+      "q": 3,
+      "response_branches": 454,
+      "scenario": 0,
+      "vertices": 52,
+      "worst_rounds": 4
+    },
+    {
+      "policy_states": 37,
+      "proved_round_bound": 4,
+      "q": 3,
+      "response_branches": 642,
+      "scenario": 1,
+      "vertices": 78,
+      "worst_rounds": 4
+    },
+    {
+      "policy_states": 31,
+      "proved_round_bound": 4,
+      "q": 3,
+      "response_branches": 401,
+      "scenario": 2,
+      "vertices": 52,
+      "worst_rounds": 4
+    },
+    {
+      "policy_states": 30,
+      "proved_round_bound": 4,
+      "q": 3,
+      "response_branches": 386,
+      "scenario": 3,
+      "vertices": 51,
+      "worst_rounds": 4
+    }
+  ]
+}
+result_sha256=9e562c470475e3bf070137e3f6500c80144a5213e6a68d7cf9c867a2b61f0af9
+VERIFIED
