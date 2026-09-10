@@ -1,0 +1,233 @@
+{
+  "compiler": "Apple clang version 17.0.0 (clang-1700.6.3.2)",
+  "python": "3.12.12",
+  "full_execution": {
+    "31": {
+      "returncode": 0,
+      "seconds": 1262.0850422910007,
+      "peak_rss_bytes": 1025900544
+    },
+    "63": {
+      "returncode": 0,
+      "seconds": 319.73529333300394,
+      "peak_rss_bytes": 1572274176
+    }
+  },
+  "independent63_execution": {
+    "returncode": 0,
+    "seconds": 868.6821060410002,
+    "peak_rss_bytes": 503627776
+  },
+  "native_compression32": {
+    "input_length": 16,
+    "total_input": 6095,
+    "begin": 0,
+    "end": 6095,
+    "pairs": 1848556440,
+    "labelled_matches": 64960,
+    "canonical": 64464,
+    "output": 32232,
+    "unit_reduced": true,
+    "seconds": 77.4231
+  },
+  "empty_quadruple_sample": {
+    "parent_indices": [
+      0,
+      1,
+      7,
+      63
+    ],
+    "children": 0,
+    "complete_entries_equal": true,
+    "python_seconds": 3.2511238750012126,
+    "native": {
+      "input_length": 16,
+      "total_input": 4,
+      "begin": 0,
+      "end": 4,
+      "pairs": 1213056,
+      "labelled_matches": 0,
+      "canonical": 0,
+      "output": 0,
+      "unit_reduced": false,
+      "seconds": 0.0411387
+    }
+  },
+  "nonempty_quadruple_sample": {
+    "parent_indices": [
+      12,
+      52,
+      59
+    ],
+    "children": 288,
+    "unit_children": 144,
+    "complete_entries_equal": true,
+    "python_seconds": 4.607615000000806,
+    "native": {
+      "input_length": 16,
+      "total_input": 3,
+      "begin": 0,
+      "end": 3,
+      "pairs": 1637820,
+      "labelled_matches": 320,
+      "canonical": 288,
+      "output": 288,
+      "unit_reduced": false,
+      "seconds": 0.0691371
+    }
+  },
+  "cover_reproduction": {
+    "cover_verified": true,
+    "parents": 32232,
+    "input_sha256": "3c83edaeda168bde5f5df108adafda651e2a2ae06ccd8d87f73589b7b4e018fd",
+    "full_exclusion_checked": false
+  },
+  "partition_runner_smoke": {
+    "complete_partition_and_resume_agree": true,
+    "searches": {
+      "31": {
+        "parents": 64,
+        "pairs": 79577088,
+        "unique_table_keys": 1001442,
+        "witnesses": 0
+      },
+      "63": {
+        "parents": 64,
+        "pairs": 28114944,
+        "unique_table_keys": 573440,
+        "witnesses": 0
+      }
+    }
+  },
+  "sanitizer": {
+    "flags": [
+      "-O1",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer"
+    ],
+    "compression_complete_stages": [
+      8,
+      16
+    ],
+    "positive_compression32_parents": [
+      12,
+      52,
+      59
+    ],
+    "negative_compression32_parents": [
+      0,
+      1,
+      7,
+      63
+    ],
+    "full_lift_parent_indices": [
+      0,
+      129,
+      16000,
+      32231
+    ],
+    "full_lift_results": {
+      "31": "COMPLETE multiplier 31 parents 4 total_input 4 pairs 4128768 unique_table_keys 57344 witnesses 0",
+      "63": "COMPLETE multiplier 63 parents 4 total_input 4 pairs 983040 unique_table_keys 49152 witnesses 0"
+    },
+    "independent63": {
+      "multiplier": 63,
+      "parents": 64,
+      "distinct_rows": 84,
+      "full_words": 49568,
+      "distinct_row_spectra": 24784,
+      "spectrum_pairs": 3440640,
+      "stored_keys": 950270,
+      "witnesses": 0,
+      "status": "PASS"
+    },
+    "diagnostics": 0
+  },
+  "review_status": "Original coverage defect independently reviewed at height 4243. Corrected complete cover and new full searches have no new external review.",
+  "source_sha256": {
+    ".gitignore": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+    "PROOF.md": "8c369a578fde6947450eced8186e5de3e9001ee22b0b06248f425f8ce8b4b11f",
+    "README.md": "2f8d29d8f2efeef75890e4c14fd90616a29d9c8846d608fb32f999fd12635f7f",
+    "audit_full.py": "adef410fa6eec82bc9432de6a71bb3565fb1c8670018a3d937c9df01363b323b",
+    "box_audit.cpp": "fb47dd14e954872f1e6969bde03f04625b5305d3f4a3a1b6613e57b6ec23d6ef",
+    "cover.py": "c7dd5ffcc92064dc9cf78c203dc7e070fa85f543a1276ea9ee32591895937af2",
+    "expected.json": "7f6ce568c14b720e4a162a4e05469aa2175a7ec85738cd3804287b022b029722",
+    "lift64.cpp": "7b1327b0219e2d23136f054f143d49d77b8855cf6f0e114d856970bcfe9689f5",
+    "match.cpp": "7f86cc7c16b1837526db6cf2ff03d6c3e75722ba4b5b3bb63c72a3caebec80af",
+    "reference.py": "ef9dc92f183f2ed4c7be1dd1387c90acc8278c82108db6444cbfa3c330f2f068",
+    "reversible_check.cpp": "e159ff127fb4f879f2bbb0ad1cb28ba1d29566e61478d64d0745b0b886021fe8",
+    "run.py": "9efac561907b35826eda4f60eb174d479a6701d9217c5e646fd8aec0f97af920"
+  },
+  "source_bound_cover_reproduction": {
+    "cover_verified": true,
+    "parents": 32232,
+    "input_sha256": "3c83edaeda168bde5f5df108adafda651e2a2ae06ccd8d87f73589b7b4e018fd",
+    "full_exclusion_checked": false
+  },
+  "source_bound_full_executables_identical": {
+    "lift64": "777c2eb9e21e2685874b4bf641899321a1a0b7b297f699aa3fd48893e21cf828",
+    "reversible_check": "4e64a0d6ffd212da49155a33fdc315ca830fb3724e3766b7106279c74c4ba273"
+  },
+  "review_bridge_replay": {
+    "small_order": [
+      {
+        "canonical_quadruples": 40,
+        "labelled_quadruples": 864,
+        "length": 4,
+        "multiplier": 1,
+        "normalized_qlps": 64,
+        "real_only_non_qlps": 320,
+        "special_rows": 4,
+        "zero_rows": 6
+      },
+      {
+        "canonical_quadruples": 2,
+        "labelled_quadruples": 16,
+        "length": 4,
+        "multiplier": 3,
+        "normalized_qlps": 0,
+        "real_only_non_qlps": 0,
+        "special_rows": 2,
+        "zero_rows": 2
+      },
+      {
+        "canonical_quadruples": 60,
+        "labelled_quadruples": 1296,
+        "length": 8,
+        "multiplier": 3,
+        "normalized_qlps": 0,
+        "real_only_non_qlps": 0,
+        "special_rows": 6,
+        "zero_rows": 6
+      },
+      {
+        "canonical_quadruples": 60,
+        "labelled_quadruples": 1296,
+        "length": 8,
+        "multiplier": 7,
+        "normalized_qlps": 0,
+        "real_only_non_qlps": 0,
+        "special_rows": 6,
+        "zero_rows": 6
+      },
+      {
+        "canonical_quadruples": 560,
+        "labelled_quadruples": 17280,
+        "length": 10,
+        "multiplier": 9,
+        "normalized_qlps": 192,
+        "real_only_non_qlps": 0,
+        "special_rows": 10,
+        "zero_rows": 12
+      }
+    ],
+    "status": "PASS",
+    "structural": {
+      "affine_maps": 2048,
+      "fixed_point_free_affine_maps": 1365,
+      "half_period_words": 4160,
+      "nonidentity_units": 31
+    }
+  },
+  "review_bridge_source": "../qlp64_fixed_multiplier_independent_review/bridge_check.py"
+}
