@@ -1,0 +1,215 @@
+{
+  "cover32": {
+    "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "states": 0
+  },
+  "cover8": {
+    "sha256": "d620a90b8c9d1ab95fc7b2d9149af97c066172e44a6ff1de141855b0c0605940",
+    "states": 38400
+  },
+  "empty_controls": {
+    "cases": 6,
+    "children": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ]
+  },
+  "fiber_audit": {
+    "all_complete_sets_equal": true,
+    "budgets": [
+      {
+        "parent_length": 4,
+        "parents": 224,
+        "retained": 224
+      },
+      {
+        "parent_length": 8,
+        "parents": 87,
+        "retained": 87
+      },
+      {
+        "parent_length": 16,
+        "parents": 190,
+        "retained": 32
+      }
+    ],
+    "stages": {
+      "16": {
+        "box": 1951213,
+        "children": 1515997,
+        "empty": 0,
+        "fibers": 88
+      },
+      "32": {
+        "box": 22471254,
+        "children": 453134,
+        "empty": 0,
+        "fibers": 57
+      },
+      "8": {
+        "box": 81525,
+        "children": 28589,
+        "empty": 0,
+        "fibers": 47
+      }
+    }
+  },
+  "independent16": {
+    "children": 4352,
+    "complete": true,
+    "complete_lists_equal": true,
+    "nonempty_bucket_pairs": 3936672,
+    "pair_operations": 5276583504,
+    "parents": 87,
+    "real_matches": 5038896
+  },
+  "independent32": {
+    "pair_operations": 11362432,
+    "parents": 190,
+    "real_match_sha256": "9d841032d1e1fbee2340d317172e5cba87f72c2b7e3ffb8658e2b8344cb5d056",
+    "real_matches": 1280,
+    "rejected_by_first_imaginary_lag": {
+      "1": 960,
+      "2": 320
+    },
+    "stored_rows": 466944,
+    "survivors": 0
+  },
+  "independent8": {
+    "complete_children": 38400,
+    "complete_parents": 224,
+    "native_and_python_equal": true,
+    "sha256": "d620a90b8c9d1ab95fc7b2d9149af97c066172e44a6ff1de141855b0c0605940"
+  },
+  "native16": {
+    "children": 4352,
+    "complete": true,
+    "length": 16,
+    "pair_operations": 5276583504,
+    "pairing": "R_S",
+    "parents": 87,
+    "real_matches_before_amicability": 5038896,
+    "table_rows": 4311321,
+    "viable": 87
+  },
+  "native32": {
+    "children": 0,
+    "complete": true,
+    "length": 32,
+    "pair_operations": 11362432,
+    "pairing": "P_min_R_S",
+    "parents": 190,
+    "real_matches_before_amicability": 1280,
+    "table_rows": 466944,
+    "viable": 32
+  },
+  "native8": {
+    "children": 38400,
+    "complete": true,
+    "length": 8,
+    "pair_operations": 89558784,
+    "pairing": "R_S",
+    "parents": 224,
+    "real_matches_before_amicability": 2572800,
+    "table_rows": 170672,
+    "viable": 224
+  },
+  "quotient16": {
+    "sha256": "02a1872b23183d14b07a49bf1834b66e3c8e12c7f00a94ff17f1906824de72df",
+    "states": 190
+  },
+  "quotient8": {
+    "sha256": "3c2da27107ce3fed463d66beeb86e14fa5d0f0c177ca5d2ba9024f6be3b69773",
+    "states": 87
+  },
+  "root2": {
+    "row_counts": [
+      5,
+      5,
+      4
+    ],
+    "sha256": "ccda5bf45a353115e30c80c85756ecae7bb2e59caf96145f623b85b9faf27e9b",
+    "states": 4
+  },
+  "root4": {
+    "row_counts": [
+      249,
+      171,
+      190
+    ],
+    "sha256": "7f755613205c64b4c6ac8c252dc3c960eaf57438b01057494da3f0c4457cbce9",
+    "states": 224
+  },
+  "selected_cover16": {
+    "sha256": "d81eed2252ca78b51485fe8c9c22bab23fb5656e3b81c16e424d673f41cfb23a",
+    "states": 4352
+  },
+  "structural": {
+    "generator_and_folding_checks": 609,
+    "halfperiod_negative_control": {
+      "all_correlations": [
+        16,
+        0,
+        4,
+        0,
+        -4,
+        0,
+        -4,
+        0,
+        -8,
+        0,
+        -4,
+        0,
+        -4,
+        0,
+        4,
+        0
+      ],
+      "codes": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        2,
+        3,
+        2,
+        3,
+        0,
+        3,
+        2,
+        3,
+        2,
+        1
+      ],
+      "length": 16
+    },
+    "quotients": [
+      {
+        "length": 8,
+        "representatives": 87,
+        "tuples": 38400,
+        "valid_orbit_images": 38400
+      },
+      {
+        "length": 16,
+        "representatives": 190,
+        "tuples": 4352,
+        "valid_orbit_images": 4352
+      }
+    ],
+    "roots": {
+      "direct_triples": 224,
+      "row_counts": [
+        249,
+        171,
+        190
+      ]
+    }
+  }
+}

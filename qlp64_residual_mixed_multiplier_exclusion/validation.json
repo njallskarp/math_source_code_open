@@ -1,0 +1,233 @@
+{
+  "date": "2026-09-10",
+  "expected_sha256": "3d64834a05f6ff0b0dadd023ff54879386d8afb998f02de139e1034723d607ab",
+  "final": {
+    "affine_corollary_conditional_on_earlier_exclusions": true,
+    "earlier_exclusions_replayed": false,
+    "final_compressed_states": 0,
+    "final_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "mixed_multiplier": 33,
+    "verified": true
+  },
+  "path_placeholders": "Only source/work-directory prefixes normalized.",
+  "publication_copy_full_replay": {
+    "commands": [
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "<source>/lift_match.cpp",
+        "-o",
+        "<workdir>/lift_match"
+      ],
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "<source>/fiber_export.cpp",
+        "-o",
+        "<workdir>/fiber_export"
+      ],
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "<source>/replay16.cpp",
+        "-o",
+        "<workdir>/replay16"
+      ]
+    ],
+    "compiler": "Apple clang version 17.0.0 (clang-1700.6.3.2)",
+    "platform": "macOS-26.2-arm64-arm-64bit",
+    "python": "3.12.12",
+    "source_sha256": {
+      "audit_fibers.py": "71a91c14f7bca9b85104d180cd072d544393e9d6c57e2117cb663a3bd6dbaba9",
+      "cover.py": "5b7c809127289f732a5f417330cab729065f1954080d726e2ce56d100d3d7b00",
+      "fiber_export.cpp": "8b333d20518d1b3ff108d63fbedfed3eab41c6c4b43e379b880052829ba1c2dd",
+      "lift_match.cpp": "ffedeb2da242f9b08b0cc6d08a7dfe50dd63f439dceeb6bc01a8148411682e74",
+      "quotient.py": "01cc3c2249b2de41503019280e22ce5f81cf50d8f27147d242f551d292821cdd",
+      "replay16.cpp": "dc2c41fc892d37cd6503962ee32d23c35e3bf7acc2cfd9db33c728befdec58ed",
+      "replay32.py": "1e54c4e44b058d5753a30ecdcfa0b0ecb90133cf3033e6228c4703dc483f9ca3",
+      "run.py": "befd0a9a651809cc9a573e7d4fb555ea56e8b307e7bc627cb13426755ef1d934",
+      "structural.py": "2db03462000c30ec4c4919c214d8ef2a014aab76266398e5df764524909986f5"
+    },
+    "timings": {
+      "fiber_audit": 36.26521008399868,
+      "independent16": 9.502272833000461,
+      "independent32": 61.63995658299973,
+      "independent8": 93.44470549999824,
+      "native16": 164.0285121249981,
+      "native32": 0.5543020000040997,
+      "native8": 2.828323415997147
+    },
+    "total_seconds": 381.996522292
+  },
+  "review": "Author-run independent algorithms; no new external review.",
+  "sanitizer_checks": {
+    "checks": [
+      {
+        "check": "production_match",
+        "length": 8,
+        "result": {
+          "children": 38400,
+          "complete": true,
+          "length": 8,
+          "pair_operations": 89558784,
+          "pairing": "R_S",
+          "parents": 224,
+          "real_matches_before_amicability": 2572800,
+          "table_rows": 170672,
+          "viable": 224
+        },
+        "seconds": 6.897729250005796
+      },
+      {
+        "check": "production_match",
+        "length": 16,
+        "result": {
+          "children": 704,
+          "complete": true,
+          "length": 16,
+          "pair_operations": 425288088,
+          "pairing": "R_S",
+          "parents": 6,
+          "real_matches_before_amicability": 313696,
+          "table_rows": 362592,
+          "viable": 6
+        },
+        "seconds": 43.19509287500114
+      },
+      {
+        "check": "production_match",
+        "length": 32,
+        "result": {
+          "children": 0,
+          "complete": true,
+          "length": 32,
+          "pair_operations": 11362432,
+          "pairing": "P_min_R_S",
+          "parents": 190,
+          "real_matches_before_amicability": 1280,
+          "table_rows": 466944,
+          "viable": 32
+        },
+        "seconds": 2.5668268340014038
+      },
+      {
+        "all_bytes_equal": true,
+        "cases": 192,
+        "check": "all_fiber_exports",
+        "seconds": 1.0496628749970114
+      },
+      {
+        "check": "complete_alternate16",
+        "result": {
+          "children": 4352,
+          "complete": true,
+          "nonempty_bucket_pairs": 3936672,
+          "pair_operations": 5276583504,
+          "parents": 87,
+          "real_matches": 5038896
+        },
+        "seconds": 121.84038883400353
+      }
+    ],
+    "commands": [
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "-O1",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "<source>/lift_match.cpp",
+        "-o",
+        "<workdir>/lift_match"
+      ],
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "-O1",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "<source>/fiber_export.cpp",
+        "-o",
+        "<workdir>/fiber_export"
+      ],
+      [
+        "c++",
+        "-std=c++20",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wshadow",
+        "-Werror",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-isystem",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "-O1",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "<source>/replay16.cpp",
+        "-o",
+        "<workdir>/replay16"
+      ]
+    ],
+    "selected_parent_indices": [
+      0,
+      15,
+      31,
+      40,
+      83,
+      86
+    ]
+  }
+}
