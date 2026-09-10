@@ -1,0 +1,260 @@
+{
+  "cores": [
+    {
+      "cores": 56,
+      "edges": 21,
+      "initial": 84,
+      "obligations": 252,
+      "q": 2,
+      "unresolved": 252,
+      "vertices": 14
+    },
+    {
+      "cores": 286,
+      "edges": 52,
+      "initial": 312,
+      "obligations": 2184,
+      "q": 3,
+      "unresolved": 4992,
+      "vertices": 26
+    },
+    {
+      "cores": 1092,
+      "edges": 105,
+      "initial": 840,
+      "obligations": 12600,
+      "q": 4,
+      "unresolved": 46200,
+      "vertices": 42
+    },
+    {
+      "cores": 3534,
+      "edges": 186,
+      "initial": 1860,
+      "obligations": 57660,
+      "q": 5,
+      "unresolved": 290160,
+      "vertices": 62
+    }
+  ],
+  "policies": [
+    {
+      "bound": 2,
+      "branches": 38,
+      "finishing_states": 0,
+      "orders": [
+        2
+      ],
+      "scenario": "singleton",
+      "states": 5,
+      "surviving_target_projection_checks": 16,
+      "tracked_updates": 0,
+      "vertices": 14,
+      "worst_rounds": 2
+    },
+    {
+      "bound": 3,
+      "branches": 108,
+      "finishing_states": 6,
+      "orders": [
+        2
+      ],
+      "scenario": "independent2",
+      "states": 11,
+      "surviving_target_projection_checks": 80,
+      "tracked_updates": 0,
+      "vertices": 28,
+      "worst_rounds": 3
+    },
+    {
+      "bound": 3,
+      "branches": 112,
+      "finishing_states": 5,
+      "orders": [
+        2
+      ],
+      "scenario": "mixed",
+      "states": 10,
+      "surviving_target_projection_checks": 88,
+      "tracked_updates": 0,
+      "vertices": 33,
+      "worst_rounds": 3
+    },
+    {
+      "bound": 3,
+      "branches": 230,
+      "finishing_states": 0,
+      "orders": [
+        3
+      ],
+      "scenario": "singleton",
+      "states": 25,
+      "surviving_target_projection_checks": 132,
+      "tracked_updates": 0,
+      "vertices": 26,
+      "worst_rounds": 3
+    },
+    {
+      "bound": 4,
+      "branches": 538,
+      "finishing_states": 18,
+      "orders": [
+        3
+      ],
+      "scenario": "independent2",
+      "states": 43,
+      "surviving_target_projection_checks": 552,
+      "tracked_updates": 0,
+      "vertices": 52,
+      "worst_rounds": 4
+    },
+    {
+      "bound": 4,
+      "branches": 592,
+      "finishing_states": 12,
+      "orders": [
+        3
+      ],
+      "scenario": "mixed",
+      "states": 37,
+      "surviving_target_projection_checks": 578,
+      "tracked_updates": 0,
+      "vertices": 63,
+      "worst_rounds": 4
+    },
+    {
+      "bound": 4,
+      "branches": 1470,
+      "finishing_states": 0,
+      "orders": [
+        4
+      ],
+      "scenario": "singleton",
+      "states": 133,
+      "surviving_target_projection_checks": 944,
+      "tracked_updates": 0,
+      "vertices": 42,
+      "worst_rounds": 4
+    },
+    {
+      "bound": 5,
+      "branches": 2752,
+      "finishing_states": 40,
+      "orders": [
+        4
+      ],
+      "scenario": "independent2",
+      "states": 173,
+      "surviving_target_projection_checks": 3728,
+      "tracked_updates": 0,
+      "vertices": 84,
+      "worst_rounds": 5
+    },
+    {
+      "bound": 5,
+      "branches": 3178,
+      "finishing_states": 30,
+      "orders": [
+        4
+      ],
+      "scenario": "mixed",
+      "states": 163,
+      "surviving_target_projection_checks": 4434,
+      "tracked_updates": 0,
+      "vertices": 103,
+      "worst_rounds": 5
+    },
+    {
+      "bound": 4,
+      "branches": 2824,
+      "finishing_states": 0,
+      "orders": [
+        2,
+        2
+      ],
+      "scenario": "singleton",
+      "states": 229,
+      "surviving_target_projection_checks": 7144,
+      "tracked_updates": 544,
+      "vertices": 196,
+      "worst_rounds": 4
+    },
+    {
+      "bound": 5,
+      "branches": 7868,
+      "finishing_states": 272,
+      "orders": [
+        2,
+        2
+      ],
+      "scenario": "independent2",
+      "states": 513,
+      "surviving_target_projection_checks": 21408,
+      "tracked_updates": 1448,
+      "vertices": 392,
+      "worst_rounds": 5
+    },
+    {
+      "bound": 5,
+      "branches": 8228,
+      "finishing_states": 202,
+      "orders": [
+        2,
+        2
+      ],
+      "scenario": "mixed",
+      "states": 440,
+      "surviving_target_projection_checks": 25464,
+      "tracked_updates": 1208,
+      "vertices": 490,
+      "worst_rounds": 5
+    },
+    {
+      "bound": 5,
+      "branches": 12088,
+      "finishing_states": 0,
+      "orders": [
+        2,
+        3
+      ],
+      "scenario": "singleton",
+      "states": 819,
+      "surviving_target_projection_checks": 25904,
+      "tracked_updates": 2070,
+      "vertices": 364,
+      "worst_rounds": 5
+    },
+    {
+      "bound": 6,
+      "branches": 28590,
+      "finishing_states": 660,
+      "orders": [
+        2,
+        3
+      ],
+      "scenario": "independent2",
+      "states": 1493,
+      "surviving_target_projection_checks": 82224,
+      "tracked_updates": 5940,
+      "vertices": 728,
+      "worst_rounds": 6
+    },
+    {
+      "bound": 6,
+      "branches": 31278,
+      "finishing_states": 500,
+      "orders": [
+        2,
+        3
+      ],
+      "scenario": "mixed",
+      "states": 1328,
+      "surviving_target_projection_checks": 98848,
+      "tracked_updates": 4954,
+      "vertices": 910,
+      "worst_rounds": 6
+    }
+  ]
+}
+result_sha256=1a76b0169463b183e075ef7829faa5bf6deff3271d0e7987124d5d86c8e5a99c
+PASS: complete expanded-product policy audit
