@@ -1,0 +1,35 @@
+{
+  "evasion": {
+    "checked_obligations": 500094,
+    "core_pairs": 2646,
+    "core_pairs_by_distance": {
+      "2": 378,
+      "3": 756,
+      "4": 1512
+    },
+    "edge_actions_per_core": 189,
+    "witness_sha256": "6ed1dcb1420af9fad43d6eb765e08e144d57c0451fc10cb313179bb05f602a8a"
+  },
+  "graph": {
+    "bipartite": true,
+    "degree": 3,
+    "diameter": 6,
+    "girth": 12,
+    "order": 126,
+    "size": 189
+  },
+  "policy_sha256": "8753aa21c22b1726e5a676b37b5c93c2f796c5a9cc49b2ec70ca1a8bb5846ed8",
+  "rejected_policy_mutations": 3,
+  "winning_policy": {
+    "initial_probes": [
+      0,
+      5
+    ],
+    "policy_nodes": 122,
+    "round_bound": 3,
+    "singleton_response_branches": 1011,
+    "unresolved_response_branches": 123
+  }
+}
+result_sha256=07cf64fff5a15817838bec4c4b9b98490c00ea38f1f28c22b865fe52381c7664
+VERIFIED: unrestricted two probes win; every adjacent-pair strategy loses
