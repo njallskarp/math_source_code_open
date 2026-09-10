@@ -1,0 +1,204 @@
+{
+  "coverage_audit": {
+    "all_folded_roots_valid": true,
+    "canonical": 140,
+    "canonical_sha256": "f842cbd61ebc90951c08c9b3a8b6e4d54fa3a62564f1f9b8748f9c834fd0fa12",
+    "eligible_rows": [
+      867,
+      781
+    ],
+    "example_paf": [
+      57,
+      -8,
+      -8,
+      -8,
+      -8,
+      -8,
+      -8,
+      -8
+    ],
+    "full_binary_realizations": [
+      {
+        "binary_words_hex": [
+          "ababafff55410101",
+          "ababeffe55450100",
+          "0baffff455554100",
+          "ababbbff55110100"
+        ],
+        "full_real_correlation_failures": 51,
+        "multiplier": 31
+      },
+      {
+        "binary_words_hex": [
+          "0101afffffeb0101",
+          "0101effeffef0100",
+          "01055ffefff54100",
+          "0101bbffffbb0100"
+        ],
+        "full_real_correlation_failures": 61,
+        "multiplier": 63
+      }
+    ],
+    "is_qlp_counterexample": false,
+    "labelled": 5868,
+    "length": 8,
+    "omitted_canonical": 68,
+    "omitted_example": [
+      [
+        -4,
+        0,
+        1,
+        0,
+        2,
+        0,
+        1,
+        0
+      ],
+      [
+        -2,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        -2,
+        1,
+        -1,
+        1,
+        0,
+        1,
+        -1,
+        1
+      ],
+      [
+        -3,
+        0,
+        2,
+        0,
+        0,
+        0,
+        2,
+        0
+      ]
+    ],
+    "retained_canonical": 72,
+    "retained_labelled": 2796,
+    "status": "PASS"
+  },
+  "full_family_claim_supported": false,
+  "historical_queue_replay": {
+    "multipliers": [
+      31,
+      63
+    ],
+    "parents": 1472,
+    "verified": true,
+    "witnesses": [
+      0,
+      0
+    ]
+  },
+  "historical_reduction_audit": [
+    {
+      "audit_length": 8,
+      "canonical": 72,
+      "entrywise_equal": true,
+      "labelled": 2796
+    },
+    {
+      "audit_length": 16,
+      "canonical": 4740,
+      "entrywise_equal": true,
+      "labelled": 223680
+    }
+  ],
+  "independent_bridge": {
+    "small_order": [
+      {
+        "canonical_quadruples": 40,
+        "labelled_quadruples": 864,
+        "length": 4,
+        "multiplier": 1,
+        "normalized_qlps": 64,
+        "real_only_non_qlps": 320,
+        "special_rows": 4,
+        "zero_rows": 6
+      },
+      {
+        "canonical_quadruples": 2,
+        "labelled_quadruples": 16,
+        "length": 4,
+        "multiplier": 3,
+        "normalized_qlps": 0,
+        "real_only_non_qlps": 0,
+        "special_rows": 2,
+        "zero_rows": 2
+      },
+      {
+        "canonical_quadruples": 60,
+        "labelled_quadruples": 1296,
+        "length": 8,
+        "multiplier": 3,
+        "normalized_qlps": 0,
+        "real_only_non_qlps": 0,
+        "special_rows": 6,
+        "zero_rows": 6
+      },
+      {
+        "canonical_quadruples": 60,
+        "labelled_quadruples": 1296,
+        "length": 8,
+        "multiplier": 7,
+        "normalized_qlps": 0,
+        "real_only_non_qlps": 0,
+        "special_rows": 6,
+        "zero_rows": 6
+      },
+      {
+        "canonical_quadruples": 560,
+        "labelled_quadruples": 17280,
+        "length": 10,
+        "multiplier": 9,
+        "normalized_qlps": 192,
+        "real_only_non_qlps": 0,
+        "special_rows": 10,
+        "zero_rows": 12
+      }
+    ],
+    "status": "PASS",
+    "structural": {
+      "affine_maps": 2048,
+      "fixed_point_free_affine_maps": 1365,
+      "half_period_words": 4160,
+      "nonidentity_units": 31
+    }
+  },
+  "independent_full_lag": [
+    {
+      "distinct_rows": 966,
+      "full_words": 343104,
+      "multiplier": 31,
+      "parents": 1472,
+      "row_pairs": 1698693120,
+      "status": "PASS",
+      "stored_signed_keys": 53473600,
+      "witnesses": 0
+    },
+    {
+      "distinct_rows": 966,
+      "full_words": 343104,
+      "multiplier": 63,
+      "parents": 1472,
+      "row_pairs": 494690304,
+      "status": "PASS",
+      "stored_signed_keys": 18059427,
+      "witnesses": 0
+    }
+  ],
+  "input_sha256": "26ed05773c9fc2d46bbabaac93ae61d8a17e14b718c2a21124b6305853d8957a",
+  "verdict": "major revision"
+}
