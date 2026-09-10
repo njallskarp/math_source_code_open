@@ -1,0 +1,21 @@
+{
+  "author_profiles_equal_independent": {
+    "5,0": 49,
+    "5,1": 29,
+    "5,2": 15,
+    "5,3": 8,
+    "6,0": 24,
+    "6,1": 13,
+    "6,2": 6
+  },
+  "encoding_primitives": {
+    "lex_assignments": 368,
+    "signed_cardinality_assignments": 6400
+  },
+  "partition_equations": {
+    "girth_at_least_five_graphs": 3776,
+    "labeled_graphs": 33868,
+    "sink_subsets": 8912,
+    "vertex_equations": 52014
+  }
+}

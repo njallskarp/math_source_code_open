@@ -1,0 +1,53 @@
+{
+  "checker_commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+  "checker_repository": "https://github.com/marijnheule/drat-trim",
+  "environment": {
+    "compiler": "Apple clang 17.0.0 (clang-1700.6.3.2)",
+    "compiler_options": "-std=c99 -O2",
+    "machine": "arm64",
+    "platform": "Darwin",
+    "python": "3.12.12",
+    "python_sat": "1.8.dev24",
+    "six": "1.17.0"
+  },
+  "later_boundary_claim": "bafkreib5fpsjsvwsrwznwxavacplel57e2fiyc7hdtwdtfd5vvq5e23bze",
+  "later_boundary_claim_reviewed": false,
+  "later_graph_indexed_height": 4334,
+  "live_source_check": {
+    "computational_source_changed": false,
+    "files_checked": 28,
+    "identical_to_pinned": 25,
+    "status_only_document_changes": [
+      "README.md",
+      "forest_reduction.md",
+      "proof.md"
+    ]
+  },
+  "measurement_note": "The two replays ran concurrently. Python ru_maxrss is bytes on Darwin; the target runner calls its field peak_rss_kb. These are observed resource costs, not portable performance bounds.",
+  "normal_optimized_independent_outputs_identical": true,
+  "runs": {
+    "forest": {
+      "all_formula_and_proof_hashes_match_pinned_manifest": true,
+      "formula_bytes": 211872927,
+      "peak_rss_bytes": 485638144,
+      "proof_bytes": 26643320,
+      "seconds": 195.3989552089988,
+      "verified_unsat": 22
+    },
+    "seven": {
+      "all_formula_and_proof_hashes_match_pinned_manifest": true,
+      "formula_bytes": 434186625,
+      "peak_rss_bytes": 537772032,
+      "proof_bytes": 197327312,
+      "seconds": 316.15138379199925,
+      "verified_unsat": 50
+    }
+  },
+  "selection_contributions": 2174,
+  "selection_indexed_height": 4298,
+  "selection_signing_identities": 45,
+  "target_artifact": "bafkreibkiwcyrtyp43ppig5zmksz5oehsumrj2fmq4o6yo4mo7ezzregsu",
+  "target_commit": "45d35de1240ca42c6226828a13c77ea65f1293e4",
+  "target_height": 4289,
+  "target_repository": "https://github.com/helgithorskarp/math_results"
+}

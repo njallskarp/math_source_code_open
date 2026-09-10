@@ -1,0 +1,44 @@
+{
+  "certificates": [
+    {
+      "bound": "4128637/1000000",
+      "corrected": "4120933/1000000",
+      "delta": "9/500000",
+      "objective": "m",
+      "separate_budget_bound": "4126169/1000000"
+    },
+    {
+      "bound": "-88889/10000",
+      "corrected": "-138976/15625",
+      "delta": "13/1000000",
+      "objective": "-(m+k)",
+      "separate_budget_bound": "-2222681/250000"
+    }
+  ],
+  "coverage": {
+    "cyclic_survivors": 0,
+    "excluded_cases": 22,
+    "forests": 10,
+    "profiles": {
+      "5,0": 49,
+      "5,1": 29,
+      "5,2": 15,
+      "5,3": 8,
+      "6,0": 24,
+      "6,1": 13,
+      "6,2": 6
+    },
+    "remaining_cases": 151,
+    "remaining_forests": [
+      "5_0",
+      "5_1",
+      "5_2a",
+      "5_2b",
+      "6_0",
+      "6_1",
+      "6_2b"
+    ],
+    "sorted_histograms_sha256": "f851f5d8cbe3282ba9e9bb504261a4c69134b6f61b4ec5716378b84a4df15d74",
+    "total_forest_profiles": 173
+  }
+}
