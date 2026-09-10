@@ -1,0 +1,138 @@
+{
+  "actual_substitutions": [
+    {
+      "finishing_singletons": 0,
+      "finishing_states": 0,
+      "internal_label_cases": 126,
+      "module_identifications_internal": 0,
+      "module_identifications_virtual": 0,
+      "policy_states": 312,
+      "projection_identities": 15750,
+      "response_branches": 2509,
+      "scenario": "singletons",
+      "singleton_branches": 2177,
+      "vertices": 126,
+      "worst_rounds": 4
+    },
+    {
+      "finishing_singletons": 1008,
+      "finishing_states": 126,
+      "internal_label_cases": 126,
+      "module_identifications_internal": 0,
+      "module_identifications_virtual": 1951,
+      "policy_states": 312,
+      "projection_identities": 31626,
+      "response_branches": 2581,
+      "scenario": "independent_pairs",
+      "singleton_branches": 298,
+      "vertices": 252,
+      "worst_rounds": 5
+    },
+    {
+      "finishing_singletons": 1512,
+      "finishing_states": 126,
+      "internal_label_cases": 378,
+      "module_identifications_internal": 0,
+      "module_identifications_virtual": 1951,
+      "policy_states": 312,
+      "projection_identities": 47250,
+      "response_branches": 2730,
+      "scenario": "clique_triples",
+      "singleton_branches": 447,
+      "vertices": 378,
+      "worst_rounds": 5
+    },
+    {
+      "finishing_singletons": 2016,
+      "finishing_states": 126,
+      "internal_label_cases": 378,
+      "module_identifications_internal": 0,
+      "module_identifications_virtual": 1951,
+      "policy_states": 312,
+      "projection_identities": 63126,
+      "response_branches": 2879,
+      "scenario": "paths_four",
+      "singleton_branches": 596,
+      "vertices": 504,
+      "worst_rounds": 5
+    },
+    {
+      "finishing_singletons": 2451,
+      "finishing_states": 155,
+      "internal_label_cases": 504,
+      "module_identifications_internal": 37,
+      "module_identifications_virtual": 1951,
+      "policy_states": 312,
+      "projection_identities": 63000,
+      "response_branches": 2842,
+      "scenario": "stars_four",
+      "singleton_branches": 522,
+      "vertices": 504,
+      "worst_rounds": 5
+    },
+    {
+      "finishing_singletons": 4032,
+      "finishing_states": 126,
+      "internal_label_cases": 882,
+      "module_identifications_internal": 0,
+      "module_identifications_virtual": 1951,
+      "policy_states": 312,
+      "projection_identities": 126126,
+      "response_branches": 3475,
+      "scenario": "cubes_three",
+      "singleton_branches": 1192,
+      "vertices": 1008,
+      "worst_rounds": 5
+    },
+    {
+      "finishing_singletons": 1214,
+      "finishing_states": 100,
+      "internal_label_cases": 326,
+      "module_identifications_internal": 0,
+      "module_identifications_virtual": 1582,
+      "policy_states": 309,
+      "projection_identities": 47050,
+      "response_branches": 2735,
+      "scenario": "mixed",
+      "singleton_branches": 824,
+      "vertices": 376,
+      "worst_rounds": 5
+    }
+  ],
+  "distance_two_partition_actions": 378,
+  "graph": {
+    "bipartite": true,
+    "degree": 3,
+    "diameter": 6,
+    "girth": 12,
+    "order": 126,
+    "size": 189
+  },
+  "modified_policy": {
+    "depth": 4,
+    "initial_probes": [
+      0,
+      2
+    ],
+    "nodes_by_rank": {
+      "1": 189,
+      "2": 108,
+      "3": 14,
+      "4": 1
+    },
+    "policy_nodes": 312,
+    "singleton_branches": 2177,
+    "unresolved_branches": 332
+  },
+  "policy_sha256": "4aef3937ab4bfe876279b0855dd95b1b78313daa88bb6b1b252d621370b0d200",
+  "rejected_policy_mutations": 3,
+  "small_graph_interfaces": {
+    "connected_labeled_quotients": 43,
+    "finishing_actions": 7190,
+    "internal_label_cases": 3984,
+    "module_assignments": 172,
+    "projection_identities": 12246
+  }
+}
+result_sha256=5745367018f652ac5abccaedf4b37c56692a07e5499832832b481917081471b0
+VERIFIED: quotient policy and actual substitution interfaces
