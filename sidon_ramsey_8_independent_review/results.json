@@ -1,0 +1,288 @@
+{
+  "schema": "sidon-sr8-independent-review-v1",
+  "date": "2026-09-10",
+  "initial_indexed_height": 4248,
+  "initial_contributions": 2149,
+  "target": "bafkreigvcq46gfxb2k7mp4eun5nw4njlza7jtiullxwboyekp7lgv5sk4a",
+  "author_source_commit": "12e0e0b0050e23d44f173091bb9e780e5eef7e98",
+  "environment": {
+    "python": "3.12.12",
+    "compiler": "Homebrew GCC 16.2.0",
+    "platform": "macOS arm64"
+  },
+  "author_full_independent_replay": {
+    "enumerate_10": {
+      "n": 85,
+      "k": 10,
+      "endpoints": false,
+      "normalized": 14229040,
+      "sets": 49479804,
+      "max_weight": 999996,
+      "nodes": 250239198,
+      "seconds": 8.46981,
+      "complete": true
+    },
+    "enumerate_11": {
+      "n": 85,
+      "k": 11,
+      "endpoints": false,
+      "normalized": 25600,
+      "sets": 56110,
+      "max_weight": 999995,
+      "nodes": 101630425,
+      "seconds": 3.43348,
+      "complete": true
+    },
+    "enumerate_12": {
+      "n": 85,
+      "k": 12,
+      "endpoints": false,
+      "normalized": 0,
+      "sets": 0,
+      "max_weight": 0,
+      "nodes": 23889632,
+      "seconds": 0.748613,
+      "complete": true
+    },
+    "packing": {
+      "packings": 130780,
+      "nodes": 2029824,
+      "seconds": 0.465527,
+      "complete": true
+    },
+    "completions": [
+      {
+        "found": false,
+        "tuples": 21797,
+        "unique_residuals": 21797,
+        "ten_sets": 246609,
+        "eleven_sets": 5,
+        "seconds": 74.8824,
+        "input_read_complete": true
+      },
+      {
+        "found": false,
+        "tuples": 21797,
+        "unique_residuals": 21797,
+        "ten_sets": 248655,
+        "eleven_sets": 2,
+        "seconds": 75.2844,
+        "input_read_complete": true
+      },
+      {
+        "found": false,
+        "tuples": 21797,
+        "unique_residuals": 21797,
+        "ten_sets": 248318,
+        "eleven_sets": 6,
+        "seconds": 75.2058,
+        "input_read_complete": true
+      },
+      {
+        "found": false,
+        "tuples": 21797,
+        "unique_residuals": 21797,
+        "ten_sets": 248992,
+        "eleven_sets": 5,
+        "seconds": 75.4082,
+        "input_read_complete": true
+      },
+      {
+        "found": false,
+        "tuples": 21796,
+        "unique_residuals": 21796,
+        "ten_sets": 248316,
+        "eleven_sets": 5,
+        "seconds": 75.0149,
+        "input_read_complete": true
+      },
+      {
+        "found": false,
+        "tuples": 21796,
+        "unique_residuals": 21796,
+        "ten_sets": 247080,
+        "eleven_sets": 3,
+        "seconds": 75.0582,
+        "input_read_complete": true
+      }
+    ],
+    "reference_completions": [
+      {
+        "tested": 21797,
+        "ten_sets": 246609,
+        "eleven_sets": 5,
+        "seconds": 236.378,
+        "all_unsatisfiable": true
+      },
+      {
+        "tested": 21797,
+        "ten_sets": 248655,
+        "eleven_sets": 2,
+        "seconds": 236.322,
+        "all_unsatisfiable": true
+      },
+      {
+        "tested": 21797,
+        "ten_sets": 248318,
+        "eleven_sets": 6,
+        "seconds": 236.575,
+        "all_unsatisfiable": true
+      },
+      {
+        "tested": 21797,
+        "ten_sets": 248992,
+        "eleven_sets": 5,
+        "seconds": 236.586,
+        "all_unsatisfiable": true
+      },
+      {
+        "tested": 21796,
+        "ten_sets": 248316,
+        "eleven_sets": 5,
+        "seconds": 236.976,
+        "all_unsatisfiable": true
+      },
+      {
+        "tested": 21796,
+        "ten_sets": 247080,
+        "eleven_sets": 3,
+        "seconds": 237.074,
+        "all_unsatisfiable": true
+      }
+    ],
+    "seconds": 409.53492591599934,
+    "conclusion": "SR(8) <= 85"
+  },
+  "referee_first_run": {
+    "generation": [
+      {
+        "enumeration_controls": 350
+      },
+      {
+        "k": 10,
+        "sets": 49479804,
+        "max_weight": 999996,
+        "nodes": 1745325387
+      },
+      {
+        "k": 11,
+        "sets": 56110,
+        "max_weight": 999995,
+        "nodes": 830163298
+      },
+      {
+        "k": 12,
+        "sets": 0,
+        "max_weight": 0,
+        "nodes": 323952799
+      },
+      {
+        "packings": 130780,
+        "unique_residuals": 130780,
+        "packing_nodes": 2059358,
+        "positive_residual_controls": 3
+      }
+    ],
+    "batches": [
+      {
+        "part": 0,
+        "parts": 6,
+        "tested": 21797,
+        "ten_sets": 246609,
+        "eleven_sets": 5,
+        "completable": 0
+      },
+      {
+        "part": 1,
+        "parts": 6,
+        "tested": 21797,
+        "ten_sets": 248655,
+        "eleven_sets": 2,
+        "completable": 0
+      },
+      {
+        "part": 2,
+        "parts": 6,
+        "tested": 21797,
+        "ten_sets": 248318,
+        "eleven_sets": 6,
+        "completable": 0
+      },
+      {
+        "part": 3,
+        "parts": 6,
+        "tested": 21797,
+        "ten_sets": 248992,
+        "eleven_sets": 5,
+        "completable": 0
+      },
+      {
+        "part": 4,
+        "parts": 6,
+        "tested": 21796,
+        "ten_sets": 248316,
+        "eleven_sets": 5,
+        "completable": 0
+      },
+      {
+        "part": 5,
+        "parts": 6,
+        "tested": 21796,
+        "ten_sets": 247080,
+        "eleven_sets": 3,
+        "completable": 0
+      }
+    ],
+    "residual_elapsed_seconds": 89.1489470000015
+  },
+  "referee_delivery_command_run": {
+    "verified": true,
+    "bound": "SR(8) <= 85",
+    "generation": [
+      {
+        "enumeration_controls": 350
+      },
+      {
+        "k": 10,
+        "sets": 49479804,
+        "max_weight": 999996,
+        "nodes": 1745325387
+      },
+      {
+        "k": 11,
+        "sets": 56110,
+        "max_weight": 999995,
+        "nodes": 830163298
+      },
+      {
+        "k": 12,
+        "sets": 0,
+        "max_weight": 0,
+        "nodes": 323952799
+      },
+      {
+        "packings": 130780,
+        "unique_residuals": 130780,
+        "packing_nodes": 2059358,
+        "positive_residual_controls": 3
+      }
+    ],
+    "residual_totals": {
+      "tested": 130780,
+      "ten_sets": 1487970,
+      "eleven_sets": 26,
+      "completable": 0
+    },
+    "refinement": {
+      "eight_element_profile_weight_shortfall": 11116,
+      "tuples_below_4899979": 130,
+      "tuples_below_4899981": 142
+    },
+    "hashes": {
+      "weights.txt": "fd37c58558d7af2066661eccb4f97d271b771c6f0277b06398c7343357cbc703",
+      "ordered_sets.txt": "29f50fe15a092b6b1a8270dcbe7c6f4714b6e21cd3d9ea3fe71831af8d96f907",
+      "packings.txt": "3ac309d39a65e7853042b50a8d11d4203821ed19ba13a952a107befc369d7122"
+    },
+    "seconds": 100.10092724999413
+  }
+}
