@@ -1,0 +1,47 @@
+{
+  "audit_sha256": "cb256cbcdabbd3bc2d70ad019baf1b583e91c2c93486a564fe28d4353e0689cc",
+  "binary_interface": {
+    "independent_subsets": 743,
+    "maximal_counts_by_size": {
+      "4": 24,
+      "5": 16,
+      "8": 2
+    },
+    "subsets": 65536
+  },
+  "counter_assignments": 7423,
+  "labeled_layer_counts": [
+    1,
+    64,
+    1728,
+    25920,
+    239760,
+    1437696,
+    5728896,
+    15326208
+  ],
+  "positive_controls": [
+    {
+      "coverage_histogram": {
+        "1": 192,
+        "2": 36,
+        "3": 12,
+        "4": 16
+      },
+      "minimum_slice": 6,
+      "minimum_slice_orientations_checked": 2,
+      "size": 28
+    },
+    {
+      "coverage_histogram": {
+        "1": 165,
+        "2": 61,
+        "3": 17,
+        "4": 13
+      },
+      "minimum_slice": 7,
+      "minimum_slice_orientations_checked": 9,
+      "size": 30
+    }
+  ]
+}

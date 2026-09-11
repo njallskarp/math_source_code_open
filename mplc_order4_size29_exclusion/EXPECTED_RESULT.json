@@ -1,0 +1,17 @@
+{
+  "status": "VERIFIED",
+  "claim": "29 is not in ML(3,4)",
+  "orbit_counts": [
+    1,
+    1,
+    2,
+    5,
+    18,
+    39,
+    121,
+    253
+  ],
+  "cases": 431,
+  "verified_unsat_cases": 431,
+  "instance_manifest_sha256": "4dcb262693cf41194511e287460e3cfe87971127e468c8136e0696018ad6d6f0"
+}
